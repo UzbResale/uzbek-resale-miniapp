@@ -1,0 +1,704 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#ffffff">
+
+  <title>Узбекский Ресейл</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: #f5f5f5;
+      color: #111;
+      padding-bottom: 90px;
+    }
+
+    .app {
+      max-width: 600px;
+      margin: 0 auto;
+      min-height: 100vh;
+      background: #fff;
+    }
+
+    /* HEADER */
+
+    header {
+      padding: 18px 16px 10px;
+      background: #fff;
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+
+    .logo {
+      text-align: center;
+      font-size: 22px;
+      font-weight: 900;
+      letter-spacing: -1px;
+      margin-bottom: 16px;
+    }
+
+    .logo span {
+      display: block;
+      font-size: 10px;
+      letter-spacing: 3px;
+      font-weight: 600;
+      margin-top: 2px;
+    }
+
+    .search {
+      width: 100%;
+      border: none;
+      background: #f1f1f3;
+      border-radius: 14px;
+      padding: 13px 16px;
+      font-size: 16px;
+      outline: none;
+    }
+
+    /* HERO */
+
+    .hero {
+      margin: 8px 16px 20px;
+      padding: 22px;
+      min-height: 165px;
+      border-radius: 22px;
+      background: #0c0c0c;
+      color: white;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+    }
+
+    .hero small {
+      opacity: .7;
+      margin-bottom: 5px;
+    }
+
+    .hero h1 {
+      font-size: 28px;
+      line-height: 1.05;
+      max-width: 300px;
+    }
+
+    /* CATEGORIES */
+
+    .section {
+      padding: 0 16px;
+      margin-bottom: 24px;
+    }
+
+    .section-title {
+      font-size: 21px;
+      font-weight: 800;
+      margin-bottom: 14px;
+    }
+
+    .categories {
+      display: flex;
+      gap: 10px;
+      overflow-x: auto;
+      padding-bottom: 4px;
+    }
+
+    .category {
+      border: 1px solid #ddd;
+      background: white;
+      border-radius: 999px;
+      padding: 10px 16px;
+      white-space: nowrap;
+      font-weight: 600;
+      cursor: pointer;
+    }
+
+    .category.active {
+      background: #111;
+      color: white;
+      border-color: #111;
+    }
+
+    /* PRODUCTS */
+
+    .products {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+    }
+
+    .product {
+      cursor: pointer;
+      position: relative;
+    }
+
+    .product-image {
+      width: 100%;
+      aspect-ratio: 1 / 1.15;
+      background: #f1f1f1;
+      border-radius: 17px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 54px;
+      margin-bottom: 9px;
+      overflow: hidden;
+    }
+
+    .product-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .heart {
+      position: absolute;
+      right: 9px;
+      top: 9px;
+      width: 35px;
+      height: 35px;
+      border-radius: 50%;
+      border: none;
+      background: rgba(255,255,255,.92);
+      font-size: 19px;
+      cursor: pointer;
+    }
+
+    .product-type {
+      display: inline-block;
+      font-size: 10px;
+      background: #111;
+      color: #fff;
+      padding: 4px 7px;
+      border-radius: 6px;
+      margin-bottom: 5px;
+    }
+
+    .product-name {
+      font-weight: 700;
+      font-size: 14px;
+      line-height: 1.25;
+      min-height: 35px;
+    }
+
+    .product-info {
+      color: #777;
+      font-size: 12px;
+      margin: 3px 0;
+    }
+
+    .price {
+      font-weight: 900;
+      font-size: 15px;
+      margin-top: 5px;
+    }
+
+    /* EMPTY */
+
+    .empty {
+      grid-column: 1 / -1;
+      padding: 50px 20px;
+      text-align: center;
+      color: #777;
+    }
+
+    /* NAVIGATION */
+
+    nav {
+      position: fixed;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 100%;
+      max-width: 600px;
+      background: rgba(255,255,255,.96);
+      border-top: 1px solid #ddd;
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      padding: 9px 5px 18px;
+      z-index: 20;
+    }
+
+    .nav-item {
+      border: none;
+      background: transparent;
+      font-size: 10px;
+      color: #777;
+      cursor: pointer;
+    }
+
+    .nav-icon {
+      display: block;
+      font-size: 21px;
+      margin-bottom: 3px;
+    }
+
+    .nav-item.active {
+      color: #000;
+      font-weight: 800;
+    }
+
+    /* MODAL */
+
+    .modal {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: white;
+      z-index: 50;
+      overflow-y: auto;
+    }
+
+    .modal.open {
+      display: block;
+    }
+
+    .modal-content {
+      max-width: 600px;
+      margin: 0 auto;
+      padding-bottom: 40px;
+    }
+
+    .modal-top {
+      padding: 16px;
+    }
+
+    .back {
+      border: none;
+      background: #eee;
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      font-size: 22px;
+    }
+
+    .modal-image {
+      height: 380px;
+      background: #f1f1f1;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 100px;
+    }
+
+    .modal-details {
+      padding: 22px 18px;
+    }
+
+    .modal-details h2 {
+      font-size: 26px;
+      margin-bottom: 8px;
+    }
+
+    .modal-price {
+      font-size: 24px;
+      font-weight: 900;
+      margin: 15px 0;
+    }
+
+    .details-row {
+      padding: 12px 0;
+      border-bottom: 1px solid #eee;
+    }
+
+    .buy {
+      width: 100%;
+      margin-top: 22px;
+      padding: 16px;
+      background: #111;
+      color: white;
+      border: none;
+      border-radius: 14px;
+      font-size: 17px;
+      font-weight: 800;
+    }
+
+    @media (min-width: 500px) {
+      .products {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<div class="app">
+
+  <header>
+    <div class="logo">
+      УЗБЕКСКИЙ РЕСЕЙЛ
+      <span>UZBEKISTAN</span>
+    </div>
+
+    <input
+      id="search"
+      class="search"
+      type="search"
+      placeholder="🔎 Поиск вещей"
+    >
+  </header>
+
+  <section class="hero">
+    <small>Узбекский Ресейл</small>
+    <h1>Найди свою следующую вещь.</h1>
+  </section>
+
+  <section class="section">
+
+    <h2 class="section-title">Категории</h2>
+
+    <div class="categories">
+      <button class="category active" data-category="Все">Все</button>
+      <button class="category" data-category="Ресейл">♻️ Ресейл</button>
+      <button class="category" data-category="В наличии">🔥 В наличии</button>
+      <button class="category" data-category="Под заказ">🇨🇳 Под заказ</button>
+    </div>
+
+  </section>
+
+  <section class="section">
+
+    <h2 class="section-title">Новые вещи</h2>
+
+    <div class="products" id="products"></div>
+
+  </section>
+
+</div>
+
+<nav>
+
+  <button class="nav-item active">
+    <span class="nav-icon">⌂</span>
+    Главная
+  </button>
+
+  <button class="nav-item">
+    <span class="nav-icon">▦</span>
+    Каталог
+  </button>
+
+  <button class="nav-item">
+    <span class="nav-icon">♡</span>
+    Избранное
+  </button>
+
+  <button class="nav-item">
+    <span class="nav-icon">🛍</span>
+    Корзина
+  </button>
+
+  <button class="nav-item">
+    <span class="nav-icon">○</span>
+    Профиль
+  </button>
+
+</nav>
+
+
+<!-- PRODUCT PAGE -->
+
+<div class="modal" id="productModal">
+
+  <div class="modal-content">
+
+    <div class="modal-top">
+      <button class="back" id="closeModal">←</button>
+    </div>
+
+    <div class="modal-image" id="modalImage"></div>
+
+    <div class="modal-details">
+
+      <span class="product-type" id="modalType"></span>
+
+      <h2 id="modalName"></h2>
+
+      <div class="modal-price" id="modalPrice"></div>
+
+      <div class="details-row" id="modalSize"></div>
+      <div class="details-row" id="modalCondition"></div>
+
+      <button class="buy" id="buyButton">
+        Заказать
+      </button>
+
+    </div>
+
+  </div>
+
+</div>
+
+
+<script>
+
+const products = [
+
+  {
+    id: 1,
+    name: "Bootcut Denim Jeans",
+    price: 250000,
+    size: "M / 29–30",
+    condition: "10/10",
+    type: "Ресейл",
+    emoji: "👖"
+  },
+
+  {
+    id: 2,
+    name: "Cav Empt Box Logo Tee",
+    price: 420000,
+    size: "M",
+    condition: "10/10",
+    type: "Ресейл",
+    emoji: "👕"
+  },
+
+  {
+    id: 3,
+    name: "Vintage Zip Hoodie",
+    price: 390000,
+    size: "L",
+    condition: "9/10",
+    type: "В наличии",
+    emoji: "🧥"
+  },
+
+  {
+    id: 4,
+    name: "New Balance 530",
+    price: 890000,
+    size: "42",
+    condition: "Новые",
+    type: "Под заказ",
+    emoji: "👟"
+  },
+
+  {
+    id: 5,
+    name: "Vintage Cap",
+    price: 180000,
+    size: "One Size",
+    condition: "9/10",
+    type: "В наличии",
+    emoji: "🧢"
+  },
+
+  {
+    id: 6,
+    name: "Workwear Jacket",
+    price: 650000,
+    size: "L",
+    condition: "10/10",
+    type: "Под заказ",
+    emoji: "🧥"
+  }
+
+];
+
+let selectedCategory = "Все";
+let searchText = "";
+let favorites = new Set();
+
+const productsElement = document.getElementById("products");
+
+function formatPrice(price) {
+  return price.toLocaleString("ru-RU") + " сум";
+}
+
+function renderProducts() {
+
+  const filtered = products.filter(product => {
+
+    const categoryMatch =
+      selectedCategory === "Все" ||
+      product.type === selectedCategory;
+
+    const searchMatch =
+      product.name
+        .toLowerCase()
+        .includes(searchText.toLowerCase());
+
+    return categoryMatch && searchMatch;
+
+  });
+
+  productsElement.innerHTML = "";
+
+  if (!filtered.length) {
+
+    productsElement.innerHTML =
+      '<div class="empty">Ничего не найдено</div>';
+
+    return;
+
+  }
+
+  filtered.forEach(product => {
+
+    const card = document.createElement("article");
+
+    card.className = "product";
+
+    card.innerHTML = `
+      <div class="product-image">
+        ${product.emoji}
+      </div>
+
+      <button
+        class="heart"
+        data-favorite="${product.id}"
+        aria-label="Добавить в избранное"
+      >
+        ${favorites.has(product.id) ? "♥" : "♡"}
+      </button>
+
+      <span class="product-type">
+        ${product.type}
+      </span>
+
+      <div class="product-name">
+        ${product.name}
+      </div>
+
+      <div class="product-info">
+        Размер: ${product.size}
+      </div>
+
+      <div class="price">
+        ${formatPrice(product.price)}
+      </div>
+    `;
+
+    card.addEventListener("click", event => {
+
+      if (event.target.closest(".heart")) return;
+
+      openProduct(product);
+
+    });
+
+    productsElement.appendChild(card);
+
+  });
+
+  document
+    .querySelectorAll("[data-favorite]")
+    .forEach(button => {
+
+      button.addEventListener("click", event => {
+
+        event.stopPropagation();
+
+        const id = Number(button.dataset.favorite);
+
+        if (favorites.has(id)) {
+          favorites.delete(id);
+        } else {
+          favorites.add(id);
+        }
+
+        renderProducts();
+
+      });
+
+    });
+
+}
+
+function openProduct(product) {
+
+  document.getElementById("modalImage").textContent =
+    product.emoji;
+
+  document.getElementById("modalType").textContent =
+    product.type;
+
+  document.getElementById("modalName").textContent =
+    product.name;
+
+  document.getElementById("modalPrice").textContent =
+    formatPrice(product.price);
+
+  document.getElementById("modalSize").textContent =
+    "Размер: " + product.size;
+
+  document.getElementById("modalCondition").textContent =
+    "Состояние: " + product.condition;
+
+  document
+    .getElementById("productModal")
+    .classList.add("open");
+
+}
+
+document
+  .getElementById("closeModal")
+  .addEventListener("click", () => {
+
+    document
+      .getElementById("productModal")
+      .classList.remove("open");
+
+  });
+
+
+document
+  .getElementById("search")
+  .addEventListener("input", event => {
+
+    searchText = event.target.value;
+
+    renderProducts();
+
+  });
+
+
+document
+  .querySelectorAll(".category")
+  .forEach(button => {
+
+    button.addEventListener("click", () => {
+
+      document
+        .querySelectorAll(".category")
+        .forEach(item =>
+          item.classList.remove("active")
+        );
+
+      button.classList.add("active");
+
+      selectedCategory =
+        button.dataset.category;
+
+      renderProducts();
+
+    });
+
+  });
+
+
+document
+  .getElementById("buyButton")
+  .addEventListener("click", () => {
+
+    alert(
+      "Оформление заказа подключим на следующем этапе 👍"
+    );
+
+  });
+
+
+renderProducts();
+
+</script>
+
+</body>
+</html>
