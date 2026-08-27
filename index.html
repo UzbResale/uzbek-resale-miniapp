@@ -737,6 +737,11 @@ document.getElementById("customerCity").value="";
 document.getElementById("customerComment").value="";
 
 });
+  document.addEventListener("click", function(e) {
+  if (e.target && e.target.id === "checkoutButton") {
+    openCheckout();
+  }
+});
 
 
 updateCartCount();
