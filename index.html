@@ -30,7 +30,11 @@
 
 const products=[{id:1,name:"Bootcut Denim Jeans",price:250000,size:"M / 29–30",condition:"10/10",type:"Ресейл",icon:"👖"},{id:2,name:"Cav Empt Box Logo Tee",price:420000,size:"M",condition:"10/10",type:"Ресейл",icon:"👕"},{id:3,name:"Vintage Zip Hoodie",price:390000,size:"L",condition:"9/10",type:"В наличии",icon:"🧥"},{id:4,name:"New Balance 530",price:890000,size:"42",condition:"Новые",type:"Под заказ",icon:"👟"}];
 
-let cart=[],favs=[],selected=null,type="Все",q="";const $=id=>document.getElementById(id),money=n=>n.toLocaleString("ru-RU")+" сум";
+let cart=[],favs=[],selected=null,type="Все",q="";
+
+let telegramUser=null;
+
+let orderSending=false;const $=id=>document.getElementById(id),money=n=>n.toLocaleString("ru-RU")+" сум";
 
 function card(p){const e=document.createElement("div");e.className="card";e.innerHTML=`<div class="photo">${p.icon}</div><button class="heart">${favs.includes(p.id)?"♥":"♡"}</button><span class="badge">${p.type}</span><div class="name">${p.name}</div><div class="meta">Размер: ${p.size}</div><div class="price">${money(p.price)}</div>`;e.querySelector(".heart").onclick=x=>{x.stopPropagation();favs=favs.includes(p.id)?favs.filter(i=>i!==p.id):[...favs,p.id];render()};e.onclick=()=>{selected=p;$("bigPhoto").textContent=p.icon;$("pType").textContent=p.type;$("pName").textContent=p.name;$("pPrice").textContent=money(p.price);$("pSize").textContent="Размер: "+p.size;$("pCondition").textContent="Состояние: "+p.condition;$("productView").classList.add("open")};return e}
 
@@ -271,3 +275,4 @@ initTelegram();
 render();
 
 </script></body></html>
+
