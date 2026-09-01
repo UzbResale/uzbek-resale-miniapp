@@ -29,6 +29,13 @@
 .listing-card{border:1px solid #e8e8e8;border-radius:18px;padding:14px;margin-bottom:12px;display:flex;gap:13px;align-items:center}.listing-card img{width:82px;height:82px;object-fit:cover;border-radius:13px;background:#f4f4f4}.listing-info{flex:1;min-width:0}.listing-title{font-weight:900;font-size:15px}.listing-price{font-weight:900;margin-top:5px}.listing-status{display:inline-block;margin-top:7px;padding:6px 9px;border-radius:14px;font-size:11px;font-weight:850}.listing-status.pending{background:#fff1c7}.listing-status.approved{background:#dcf3e3}.listing-status.rejected{background:#fde1e1}.listing-status.sold{background:#e8e8e8}.uploading{opacity:.6;pointer-events:none}
 
 .seller-card{display:flex;align-items:center;gap:13px;padding:15px;border:1px solid #e8e8e8;border-radius:20px;margin:18px 0}.seller-avatar{width:48px;height:48px;border-radius:50%;background:#111;color:#fff;display:flex;align-items:center;justify-content:center;font-weight:900}.seller-main{flex:1}.seller-name{font-weight:900}.seller-sub{font-size:11px;color:#777;margin-top:3px}.seller-link{border:0;background:#f4f4f4;border-radius:12px;padding:10px;font-weight:800}.resale-badge,.official-badge{display:inline-block;border-radius:20px;padding:6px 10px;font-size:10px;font-weight:900}.resale-badge{background:#111;color:#fff}.official-badge{background:#f0f0ed}.telegram-btn{background:#fff!important;color:#111!important;border:1px solid #ddd!important}.seller-profile-head{text-align:center;padding:25px 10px}.seller-profile-head .seller-avatar{width:82px;height:82px;font-size:26px;margin:auto}.seller-stats{display:flex;justify-content:center;gap:34px;margin:17px 0}.seller-stat b{display:block;font-size:20px}.seller-stat span{font-size:11px;color:#777}.faq-item{border-bottom:1px solid #eee}.faq-q{width:100%;border:0;background:#fff;color:#111;padding:18px 2px;display:flex;justify-content:space-between;text-align:left;font-weight:850}.faq-a{display:none;color:#666;font-size:13px;line-height:1.55;padding:0 2px 18px}.faq-item.open .faq-a{display:block}
+
+html,body{min-height:100%;overflow-y:auto!important;-webkit-overflow-scrolling:touch}
+.app{min-height:100vh;padding-bottom:125px!important}
+.page.active{display:block;min-height:calc(100vh - 90px);padding-bottom:125px}
+#sellerProfile,#faq,#profile{overflow:visible}
+#sellerProfile .section,#faq .section{padding-bottom:150px}
+.faq-support-top{margin:8px 0 22px;position:relative;z-index:2}
 </style><script src="https://telegram.org/js/telegram-web-app.js"></script><script src="https://unpkg.com/lucide@latest"></script></head><body><div class="app"><header><div class="top"><div style="width:88px"></div><div class="brand"><div class="mark"><svg class="doppi" viewBox="0 0 96 48" aria-label="Тюбетейка">
 <path d="M8 35C13 15 30 6 48 6s35 9 40 29c-12 5-25 7-40 7S20 40 8 35Z" fill="#111"/>
 <path d="M48 8v31M20 29c8-3 14-8 18-15M76 29c-8-3-14-8-18-15" stroke="#fff" stroke-width="2" fill="none"/>
@@ -46,6 +53,7 @@
 <button class="profile-action" onclick="openOwnSellerProfile()"><i data-lucide="user-round"></i><span>Мой профиль продавца</span><span class="arrow">›</span></button><button class="profile-action" onclick="page('favorites')"><i data-lucide="heart"></i><span>Избранное</span><span class="arrow">›</span></button>
 <button class="profile-action" onclick="page('addresses')"><i data-lucide="map-pin"></i><span>Адреса доставки</span><span class="arrow">›</span></button>
 <button class="profile-action" onclick="page('payments')"><i data-lucide="credit-card"></i><span>Способы оплаты</span><span class="arrow">›</span></button>
+
 </div><div class="profile-group-title">Поддержка</div><div class="profile-actions">
 <button class="profile-action" onclick="page('faq')"><i data-lucide="circle-help"></i><span>FAQ и помощь</span><span class="arrow">›</span></button>
 <button class="profile-action" onclick="page('about')"><i data-lucide="info"></i><span>О нас</span><span class="arrow">›</span></button>
@@ -53,12 +61,11 @@
 </div></div></div></section><section id="myProducts" class="page"><div class="section"><div class="simple-head"><button class="back" onclick="page('profile')">←</button><h1>Мои товары</h1></div><div id="myListingsList"><div class="empty">Загрузка...</div></div><br><button class="btn black" onclick="page('sell')">Продать вещь</button></div></section>
 <section id="addresses" class="page"><div class="section"><div class="simple-head"><button class="back" onclick="page('profile')">←</button><h1>Адреса доставки</h1></div><div id="addressList" class="list-card"></div><br><button class="btn black" id="addAddressBtn">Добавить адрес</button></div></section>
 <section id="payments" class="page"><div class="section"><div class="simple-head"><button class="back" onclick="page('profile')">←</button><h1>Способы оплаты</h1></div><div class="list-card"><div class="list-row"><i data-lucide="banknote"></i><span>Оплата при подтверждении заказа</span></div><div class="list-row"><i data-lucide="credit-card"></i><span>Онлайн-оплата — скоро</span></div></div></div></section>
-
 <section id="support" class="page"><div class="section"><div class="simple-head"><button class="back" onclick="page('profile')">←</button><h1>Поддержка</h1></div><div class="list-card"><button class="list-row" id="supportTelegram"><i data-lucide="send"></i><span>Написать в Telegram</span><span class="arrow">›</span></button><button class="list-row" id="supportCopy"><i data-lucide="copy"></i><span>Скопировать @resaleuzbot</span><span class="arrow">›</span></button></div></div></section>
 <section id="about" class="page"><div class="section"><div class="simple-head"><button class="back" onclick="page('profile')">←</button><h1>О нас</h1></div><h2>УЗБЕКСКИЙ РЕСЕЙЛ</h2><p>Маркетплейс для покупки и продажи вещей, а также заказа новых товаров из Китая.</p><p class="meta">BUY • SELL • ORDER</p></div></section>
 <section id="settingsPage" class="page"><div class="section"><div class="simple-head"><button class="back" onclick="page('profile')">←</button><h1>Настройки</h1></div><div class="switchrow"><span>Вибрация интерфейса</span><button id="hapticSwitch" class="switch on"></button></div><div class="switchrow"><span>Уведомления о заказах</span><button id="notifySwitch" class="switch on"></button></div></div></section>
 <section id="sellerProfile" class="page"><div class="section"><div class="simple-head"><button class="back" onclick="page('catalog')">←</button><h1>Продавец</h1></div><div id="sellerProfileContent"></div></div></section>
-<section id="faq" class="page"><div class="section"><div class="simple-head"><button class="back" onclick="page('profile')">←</button><h1>FAQ</h1></div><div class="faq-list">
+<section id="faq" class="page"><div class="section"><div class="simple-head"><button class="back" onclick="page('profile')">←</button><h1>FAQ</h1></div><button class="btn black faq-support-top" onclick="page('support')">Связаться с поддержкой</button><div class="faq-list">
 <div class="faq-item"><button class="faq-q">Как купить вещь?<span>＋</span></button><div class="faq-a">Откройте товар, нажмите «Купить», заполните данные и подтвердите заказ. Вы получите номер UR-xxxxxx.</div></div>
 <div class="faq-item"><button class="faq-q">Как продать вещь?<span>＋</span></button><div class="faq-a">Откройте «Продать», добавьте фотографии и информацию, затем отправьте объявление на модерацию.</div></div>
 <div class="faq-item"><button class="faq-q">Что такое Ресейл?<span>＋</span></button><div class="faq-a">Это товар другого пользователя. В карточке показывается продавец и его Telegram, если username доступен.</div></div>
@@ -102,6 +109,7 @@ function checkout(){if(!cart.length)return;$("orderForm").style.display="block";
 document.querySelectorAll(".nav").forEach(x=>x.onclick=()=>page(x.dataset.page));
 
 document.querySelectorAll(".filter").forEach(x=>x.onclick=()=>{document.querySelectorAll(".filter").forEach(y=>y.classList.remove("active"));x.classList.add("active");type=x.dataset.type;render()});
+
 document.querySelectorAll(".category-chip").forEach(x=>x.onclick=()=>{document.querySelectorAll(".category-chip").forEach(y=>y.classList.remove("active"));x.classList.add("active");category=x.dataset.category;render()});
 $("sortSelect").onchange=e=>{sortMode=e.target.value;render()};
 
@@ -165,7 +173,6 @@ $("confirmBtn").onclick=async()=>{
 
    name,
 
-
    phone,
 
    city,
@@ -182,7 +189,13 @@ $("confirmBtn").onclick=async()=>{
 
      size:p.size,
 
-     type:p.type
+     type:p.type,
+
+     listingId:p.listingId||null,
+
+     ownerType:p.ownerType||null,
+
+     sellerTelegramId:p.sellerTelegramId||null
 
    })),
 
@@ -207,6 +220,7 @@ $("confirmBtn").onclick=async()=>{
      headers:{"Content-Type":"application/json"},
 
      body:JSON.stringify(payload)
+
 
    });
 
@@ -262,6 +276,7 @@ function orderDate(v){if(!v)return "";const d=new Date(String(v).replace(" ","T"
 
 function renderOrders(a){
   const b=$("ordersList");
+
   if(!a.length){b.innerHTML='<div class="empty">У вас пока нет заказов</div>';return}
   b.innerHTML="";
   a.forEach(o=>{
@@ -275,7 +290,6 @@ function renderOrders(a){
     b.appendChild(c)
   })
 }
-
 
 function historyLabel(status){
   return {new:"Заказ создан",confirmed:"Подтверждён",shipping:"В доставке",completed:"Завершён",cancelled:"Отменён"}[status]||status
@@ -331,7 +345,6 @@ $("sellSubmit").onclick=async()=>{
     btn.textContent="Отправляем на модерацию...";
 
     const response=await fetch(MARKETPLACE_API+"/listings",{
-
       method:"POST",
       headers:{"Content-Type":"application/json"},
       body:JSON.stringify({
@@ -387,7 +400,6 @@ async function loadMarketplaceCatalog(){
   }));
   marketProducts.forEach(p=>{if(!products.some(x=>x.id===p.id))products.unshift(p)});
   render();
-
  }catch(e){console.error("Marketplace catalog",e)}
 }
 async function deleteMyListing(id,title){
@@ -430,20 +442,29 @@ async function openMyListings(){
   }
 }
 function messageSeller(username){
+
  const u=String(username||"").replace(/^@/,"");if(!u)return alert("У продавца нет публичного Telegram username");
  const tg=window.Telegram&&window.Telegram.WebApp;if(tg&&tg.openTelegramLink)tg.openTelegramLink("https://t.me/"+u);else window.open("https://t.me/"+u,"_blank");
 }
-async function openSellerProfile(id){
+async function openSellerProfile(id,fallbackName="",fallbackUsername=""){
  if(!id)return;page("sellerProfile");const b=$("sellerProfileContent");b.innerHTML='<div class="empty">Загрузка...</div>';
  try{const r=await fetch(MARKETPLACE_API+"/seller?telegramId="+encodeURIComponent(id)),d=await r.json();if(!r.ok||!d.ok)throw new Error();
- const p=d.profile,ini=(p.name||"P").split(" ").map(x=>x[0]).join("").slice(0,2).toUpperCase();
+ const p=d.profile;
+ if((!p.name||p.name==="Продавец")&&fallbackName)p.name=fallbackName;
+ if(!p.username&&fallbackUsername)p.username=fallbackUsername;
+ const ini=(p.name||"P").split(" ").map(x=>x[0]).join("").slice(0,2).toUpperCase();
  const items=(p.listings||[]).map(x=>'<div class="listing-card">'+(x.images&&x.images[0]?'<img src="'+x.images[0].image_url+'">':'')+'<div class="listing-info"><div class="listing-title">'+x.title+'</div><div class="meta">'+(x.brand||x.category)+'</div><div class="listing-price">'+money(x.price)+'</div></div></div>').join("");
  b.innerHTML='<div class="seller-profile-head"><div class="seller-avatar">'+ini+'</div><h2>'+p.name+'</h2><div class="seller-sub">'+(p.username?"@"+p.username:"Telegram продавец")+'</div><div class="seller-stats"><div class="seller-stat"><b>'+p.activeCount+'</b><span>Объявлений</span></div><div class="seller-stat"><b>'+p.soldCount+'</b><span>Продано</span></div></div>'+(p.username?'<button class="btn black" onclick="messageSeller(\''+p.username+'\')">Написать в Telegram</button>':'')+'</div><h2>Товары продавца</h2>'+items;
  }catch(e){b.innerHTML='<div class="empty">Не удалось загрузить профиль</div>'}
 }
-function openOwnSellerProfile(){const u=window.Telegram?.WebApp?.initDataUnsafe?.user;if(u?.id)openSellerProfile(String(u.id));}
+function openOwnSellerProfile(){
+ const u=window.Telegram?.WebApp?.initDataUnsafe?.user;
+ if(!u?.id)return;
+ const fallbackName=[u.first_name,u.last_name].filter(Boolean).join(" ")||"Продавец";
+ const fallbackUsername=u.username||"";
+ openSellerProfile(String(u.id),fallbackName,fallbackUsername);
+}
 document.querySelectorAll(".faq-q").forEach(q=>q.onclick=()=>q.parentElement.classList.toggle("open"));
-
 
 function initTelegram(){
 
