@@ -35,7 +35,7 @@
 </svg></div><div class="logo">УЗБЕКСКИЙ РЕСЕЙЛ</div><div class="tag">BUY • SELL • ORDER</div></div><div class="actions"><button class="round" onclick="page('favorites')"><i data-lucide="heart"></i></button><button class="round" onclick="page('cart')"><i data-lucide="shopping-bag"></i><span id="cartCount" class="count">0</span></button></div></div><input id="search" class="search" placeholder="Поиск товаров"></header>
 <section id="home" class="page active"><div class="hero"><div><h1>Найди свою вещь</h1><p>Ресейл, новые вещи и товары из Китая</p><button onclick="page('catalog')">Смотреть</button></div></div><div class="section"><div class="modes"><button class="mode" onclick="type='Ресейл';page('catalog')"><i>↻</i><b>Ресейл</b><small>Вещи от пользователей</small></button><button class="mode" onclick="type='Под заказ';page('catalog')"><i>CN</i><b>Из Китая</b><small>Новые товары и под заказ</small></button><button class="mode" onclick="page('sell')"><i>＋</i><b>Продать</b><small>Выставить свою вещь</small></button></div><div class="title"><h2>Категории</h2><button class="link" onclick="page('catalog')">Смотреть все</button></div><div class="cats"><div class="cat"><i>⌑</i>Одежда</div><div class="cat"><i>⌁</i>Обувь</div><div class="cat"><i>▣</i>Сумки</div><div class="cat"><i><i data-lucide="watch"></i></i>Аксессуары</div><div class="cat"><i><i data-lucide="ellipsis"></i></i>Другое</div></div><div class="title"><h2>Популярное</h2><button class="link" onclick="page('catalog')">Смотреть все</button></div><div id="homeGrid" class="grid"></div></div></section>
 <section id="catalog" class="page"><div class="section"><div class="catalog-head"><h1>Каталог</h1><select id="sortSelect" class="sortselect"><option value="default">Сортировка</option><option value="priceAsc">Цена ↑</option><option value="priceDesc">Цена ↓</option><option value="name">По названию</option></select></div><div class="filters" id="filters"><button class="filter active" data-type="Все">Все</button><button class="filter" data-type="Ресейл">Ресейл</button><button class="filter" data-type="Под заказ">Из Китая</button><button class="filter" data-type="В наличии">В наличии</button></div><div class="category-filter" id="categoryFilters"><button class="category-chip active" data-category="Все">Все категории</button><button class="category-chip" data-category="Одежда">Одежда</button><button class="category-chip" data-category="Обувь">Обувь</button><button class="category-chip" data-category="Аксессуары">Аксессуары</button></div><div id="catalogGrid" class="grid"></div></div></section>
-<section id="sell" class="page"><div class="section"><h1>Продать вещь</h1><p class="meta">Заполните информацию о товаре. Перед публикацией объявление пройдёт проверку.</p><div class="sell-form"><label class="uploadbox" for="sellPhotos"><span><i data-lucide="image-plus"></i><br>Добавить фотографии<br><small>до 10 фото</small></span></label><input id="sellPhotos" class="photo-input" type="file" accept="image/*" multiple><div id="sellPreview" class="preview-grid"></div><div class="field"><label>Название товара *</label><input id="sellName" placeholder="Например: Nike Air Force 1"></div><div class="field"><label>Категория *</label><select id="sellCategory"><option>Одежда</option><option>Обувь</option><option>Сумки</option><option>Аксессуары</option><option>Другое</option></select></div><div class="field"><label>Бренд</label><input id="sellBrand" placeholder="Например: Nike"></div><div class="field"><label>Размер</label><input id="sellSize" placeholder="M, 42, One Size..."></div><div class="field"><label>Состояние *</label><select id="sellCondition"><option>Новое</option><option>Отличное</option><option>Хорошее</option><option>Удовлетворительное</option></select></div><div class="field"><label>Цена, сум *</label><input id="sellPrice" inputmode="numeric" placeholder="500000"></div><div class="field"><label>Описание</label><textarea id="sellDescription" rows="4" placeholder="Расскажите о вещи"></textarea></div><div class="sell-note">Следующим техническим этапом эта форма будет отправляться в админ-панель на модерацию.</div><button class="btn black" id="sellSubmit">Отправить на проверку</button></div></div></section>
+<section id="sell" class="page"><div class="section"><h1>Продать вещь</h1><p class="meta">Заполните информацию о товаре. Перед публикацией объявление пройдёт проверку.</p><div class="sell-form"><label class="uploadbox" for="sellPhotos"><span><i data-lucide="image-plus"></i><br>Добавить фотографии<br><small>до 10 фото</small></span></label><input id="sellPhotos" class="photo-input" type="file" accept="image/*" multiple><div id="sellPreview" class="preview-grid"></div><div class="field"><label>Название товара *</label><input id="sellName" placeholder="Например: Nike Air Force 1"></div><div class="field"><label>Категория *</label><select id="sellCategory"><option>Одежда</option><option>Обувь</option><option>Сумки</option><option>Аксессуары</option><option>Другое</option></select></div><div class="field"><label>Бренд</label><input id="sellBrand" placeholder="Например: Nike"></div><div class="field"><label>Размер</label><input id="sellSize" placeholder="M, 42, One Size..."></div><div class="field"><label>Состояние *</label><select id="sellCondition"><option>Новое</option><option>Отличное</option><option>Хорошее</option><option>Удовлетворительное</option></select></div><div class="field"><label>Цена, сум *</label><input id="sellPrice" inputmode="numeric" placeholder="500000"></div><div class="field"><label>Описание</label><textarea id="sellDescription" rows="4" placeholder="Расскажите о вещи"></textarea></div><button class="btn black" id="sellSubmit">Отправить на проверку</button></div></div></section>
 <section id="favorites" class="page"><div class="section"><h1>Избранное</h1><div id="favoriteGrid" class="grid"></div></div></section><section id="cart" class="page"><div class="section"><h1>Корзина</h1><div id="cartList"></div><div id="cartBottom" style="display:none"><div class="total"><span>Итого</span><span id="total"></span></div><button id="checkoutBtn" class="btn black">Оформить заказ</button></div></div></section>
 <section id="profile" class="page"><div class="profile"><div class="profilecard"><div id="profileAvatar" class="avatar">UR</div><div class="pinfo"><h1 id="profileName">Профиль</h1><p id="profileUsername">Узбекский Ресейл</p><p id="profileId" style="display:none"></p></div></div><div class="profile-actions">
 <button id="myOrdersBtn" class="profile-action"><i data-lucide="package"></i><span>Мои заказы</span><span class="arrow">›</span></button>
@@ -68,11 +68,12 @@
 let cart=[],favs=[],selected=null,type="Все",q="",category="Все",sortMode="default";
 
 let telegramUser=null;
+let marketProducts=[];
 
 let orderSending=false;const ORDERS_API="https://uzbek-resale-orders.amegakid.workers.dev";
 const MARKETPLACE_API="https://uzbek-resale-orders.amegakid.workers.dev";const $=id=>document.getElementById(id),money=n=>Number(n||0).toLocaleString("ru-RU")+" сум";
 
-function card(p){const e=document.createElement("div");e.className="card";e.innerHTML=`<div class="photo"><img src="${p.image}" alt="${p.name}" loading="lazy" onerror="this.style.display='none'"></div><button class="heart">${favs.includes(p.id)?"♥":"♡"}</button><span class="badge">${p.type}</span><div class="name">${p.name}</div><div class="meta">${p.brand} · Размер: ${p.size}</div><div class="price">${money(p.price)}</div>`;e.querySelector(".heart").onclick=x=>{x.stopPropagation();favs=favs.includes(p.id)?favs.filter(i=>i!==p.id):[...favs,p.id];render()};e.onclick=()=>{selected=p;$("bigPhoto").innerHTML=`<img src="${p.image}" alt="${p.name}">`;$("pType").textContent=p.type;$("pName").textContent=p.name;$("pPrice").textContent=money(p.price);$("pSize").textContent="Размер: "+p.size;$("pCondition").textContent="Состояние: "+p.condition;const d=$("productMeta");if(d)d.innerHTML=`<span>Бренд</span><span>${p.brand||"—"}</span><span>Категория</span><span>${p.category||"—"}</span><span>Размер</span><span>${p.size}</span><span>Состояние</span><span>${p.condition}</span>`;$("productView").classList.add("open")};return e}
+function card(p){const e=document.createElement("div");e.className="card";e.innerHTML=`<div class="photo"><img src="${p.image}" alt="${p.name}" loading="lazy" onerror="this.style.display='none'"></div><button class="heart">${favs.includes(p.id)?"♥":"♡"}</button><span class="badge">${p.ownerType==="official"?"✓ ОТ UZBEK RESALE":p.type}</span><div class="name">${p.name}</div><div class="meta">${p.brand} · Размер: ${p.size}</div><div class="price">${money(p.price)}</div>`;e.querySelector(".heart").onclick=x=>{x.stopPropagation();favs=favs.includes(p.id)?favs.filter(i=>i!==p.id):[...favs,p.id];render()};e.onclick=()=>{selected=p;$("bigPhoto").innerHTML=`<img src="${p.image}" alt="${p.name}">`;$("pType").textContent=p.type;$("pName").textContent=p.name;$("pPrice").textContent=money(p.price);$("pSize").textContent="Размер: "+p.size;$("pCondition").textContent="Состояние: "+p.condition;const d=$("productMeta");if(d)d.innerHTML=`<span>Бренд</span><span>${p.brand||"—"}</span><span>Категория</span><span>${p.category||"—"}</span><span>Размер</span><span>${p.size}</span><span>Состояние</span><span>${p.condition}</span>`;$("productView").classList.add("open")};return e}
 
 function fill(id,list){const b=$(id);b.innerHTML="";if(!list.length){b.innerHTML='<div class="empty">Здесь пока ничего нет</div>';return}list.forEach(p=>b.appendChild(card(p)))}
 
@@ -109,7 +110,6 @@ $("confirmBtn").onclick=async()=>{
  const comment=$("buyerComment").value.trim();
 
  
-
 
  if(!name){alert("Введите имя");return}
 
@@ -164,6 +164,7 @@ $("confirmBtn").onclick=async()=>{
      id:p.id,
 
      name:p.name,
+
 
      price:p.price,
 
@@ -221,7 +222,6 @@ $("confirmBtn").onclick=async()=>{
 
  
 
-
  }catch(error){
 
    console.error(error);
@@ -275,8 +275,8 @@ function historyDate(v){
 }
 function openOrderDetail(o){
   const box=$("orderDetailContent");
-  const hist=Array.isArray(o.history)&&o.history.length?o.history:[{status:"new",created_at:o.createdAt},{status:o.status,created_at:o.updatedAt}].filter((x,i,a)=>i===0||x.status!==a[0].status);
 
+  const hist=Array.isArray(o.history)&&o.history.length?o.history:[{status:"new",created_at:o.createdAt},{status:o.status,created_at:o.updatedAt}].filter((x,i,a)=>i===0||x.status!==a[0].status);
   const standard=["new","confirmed","shipping","completed"];
   let timeline="";
   if(o.status==="cancelled"){
@@ -331,8 +331,8 @@ $("sellSubmit").onclick=async()=>{
         size:$("sellSize").value.trim(),
         condition:$("sellCondition").value,
         price,
-        description:$("sellDescription").value.trim(),
 
+        description:$("sellDescription").value.trim(),
         photos
       })
     });
@@ -362,7 +362,32 @@ $("supportCopy").onclick=async()=>{try{await navigator.clipboard.writeText("@res
 $("sellPhotos").onchange=e=>{const files=[...e.target.files].slice(0,10),b=$("sellPreview");b.innerHTML="";files.forEach(f=>{const img=document.createElement("img");img.src=URL.createObjectURL(f);b.appendChild(img)})};
 renderAddresses();
 
+
+async function loadMarketplaceCatalog(){
+ try{
+  const r=await fetch(MARKETPLACE_API+"/catalog"),d=await r.json();
+  if(!r.ok||!d.ok)return;
+  marketProducts=(d.listings||[]).map(x=>({
+   id:"listing-"+x.id,listingId:x.id,name:x.title,price:Number(x.price||0),size:x.size||"—",
+   condition:x.condition||"—",type:x.ownerType==="official"?(x.sourceType==="china"?"Под заказ":"В наличии"):"Ресейл",
+   category:x.category||"Другое",brand:x.brand||"",image:x.images&&x.images[0]?x.images[0].image_url:"",
+   ownerType:x.ownerType||"user",sourceType:x.sourceType||"",isPinned:!!x.isPinned,stockQty:Number(x.stockQty||1)
+  }));
+  marketProducts.forEach(p=>{if(!products.some(x=>x.id===p.id))products.unshift(p)});
+  render();
+ }catch(e){console.error("Marketplace catalog",e)}
+}
+async function deleteMyListing(id,title){
+ if(!confirm("Удалить «"+title+"»? Фотографии тоже будут удалены."))return;
+ const u=window.Telegram?.WebApp?.initDataUnsafe?.user;
+ if(!u)return alert("Откройте через Telegram");
+ const r=await fetch(MARKETPLACE_API+"/listings/delete",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({listingId:id,telegramId:String(u.id)})});
+ const d=await r.json();if(!r.ok||!d.ok)return alert("Не удалось удалить");
+ await openMyListings();await loadMarketplaceCatalog();
+}
+
 function fileToDataUrl(file){
+
   return new Promise((resolve,reject)=>{
     const r=new FileReader();
     r.onload=()=>resolve(r.result);
@@ -386,9 +411,8 @@ async function openMyListings(){
     if(!data.listings.length){box.innerHTML='<div class="empty">У вас пока нет товаров</div>';return}
     box.innerHTML=data.listings.map(x=>{
       const img=x.images&&x.images[0]?x.images[0].image_url:"";
-      return `<div class="listing-card">${img?`<img src="${img}" alt="">`:""}<div class="listing-info"><div class="listing-title">${x.title}</div><div class="meta">${x.brand||x.category}${x.size?" · "+x.size:""}</div><div class="listing-price">${money(x.price)}</div><span class="listing-status ${x.status}">${listingStatus(x.status)}</span>${x.status==="rejected"&&x.rejectionReason?`<div class="meta" style="margin-top:6px">Причина: ${x.rejectionReason}</div>`:""}</div></div>`
+      return `<div class="listing-card">${img?`<img src="${img}" alt="">`:""}<div class="listing-info"><div class="listing-title">${x.title}</div><div class="meta">${x.brand||x.category}${x.size?" · "+x.size:""}</div><div class="listing-price">${money(x.price)}</div><span class="listing-status ${x.status}">${listingStatus(x.status)}</span>${x.status==="rejected"&&x.rejectionReason?`<div class="meta" style="margin-top:6px">Причина: ${x.rejectionReason}</div>`:""}<div><button onclick="event.stopPropagation();deleteMyListing(${x.id},'${x.title.replace(/'/g,"")}')" style="border:0;background:#fff;color:#b42318;font-weight:800;padding:9px 0">Удалить</button></div></div></div>`
     }).join("");
-
   }catch(e){
     console.error(e);box.innerHTML='<div class="empty">Не удалось загрузить товары</div>';
   }
@@ -445,7 +469,6 @@ function initTelegram(){
 
     $("profileAvatar").textContent = initials;
 
-
     $("profileUsername").textContent = u.username ? "@"+u.username : "Telegram пользователь";
 
     $("profileId").textContent = String(u.id || "");
@@ -463,6 +486,7 @@ function initTelegram(){
 initTelegram();
 
 render();
+loadMarketplaceCatalog();
 setTimeout(()=>window.lucide&&lucide.createIcons(),0);
 
 </script></body></html>
