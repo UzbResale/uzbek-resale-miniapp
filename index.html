@@ -38,6 +38,12 @@ html,body{-webkit-overflow-scrolling:touch}
 
 #about .simple-head,#settingsPage .simple-head,#support .simple-head,#sellerProfile .simple-head,#faq .simple-head{margin-top:4px}
 #about h2{margin-top:34px}
+
+/* v10.4 — exact header balance */
+header{position:relative!important}
+header .brand{position:absolute!important;left:50%!important;transform:translateX(-50%)!important;margin:0!important;text-align:center!important;z-index:1}
+header .top-actions{margin-left:auto!important;display:flex!important;align-items:center!important;gap:5px!important;z-index:3}
+header .top-actions button:first-child{transform:translateX(-10px)!important}
 </style><script src="https://telegram.org/js/telegram-web-app.js"></script><script src="https://unpkg.com/lucide@latest"></script></head><body><div class="app"><header><div class="top"><div style="width:88px"></div><div class="brand"><div class="mark"><svg class="doppi" viewBox="0 0 96 48" aria-label="Тюбетейка">
 <path d="M8 35C13 15 30 6 48 6s35 9 40 29c-12 5-25 7-40 7S20 40 8 35Z" fill="#111"/>
 <path d="M48 8v31M20 29c8-3 14-8 18-15M76 29c-8-3-14-8-18-15" stroke="#fff" stroke-width="2" fill="none"/>
@@ -47,6 +53,7 @@ html,body{-webkit-overflow-scrolling:touch}
 <section id="home" class="page active"><div class="hero"><div><h1>Найди свою вещь</h1><p>Ресейл, новые вещи и товары из Китая</p><button onclick="page('catalog')">Смотреть</button></div></div><div class="section"><div class="modes"><button class="mode" onclick="type='Ресейл';page('catalog')"><i>↻</i><b>Ресейл</b><small>Вещи от пользователей</small></button><button class="mode" onclick="type='Под заказ';page('catalog')"><i>CN</i><b>От нас</b><small>В наличии и из Китая</small></button><button class="mode" onclick="page('sell')"><i>＋</i><b>Продать</b><small>Выставить свою вещь</small></button></div><div class="title"><h2>Категории</h2><button class="link" onclick="page('catalog')">Смотреть все</button></div><div class="cats"><div class="cat"><i>⌑</i>Одежда</div><div class="cat"><i>⌁</i>Обувь</div><div class="cat"><i>▣</i>Сумки</div><div class="cat"><i><i data-lucide="watch"></i></i>Аксессуары</div><div class="cat"><i><i data-lucide="ellipsis"></i></i>Другое</div></div><div class="title"><h2>Популярное</h2><button class="link" onclick="page('catalog')">Смотреть все</button></div><div id="homeGrid" class="grid"></div></div></section>
 <section id="catalog" class="page"><div class="section"><div class="catalog-head"><h1>Каталог</h1><select id="sortSelect" class="sortselect"><option value="default">Сортировка</option><option value="priceAsc">Цена ↑</option><option value="priceDesc">Цена ↓</option><option value="name">По названию</option></select></div><div class="filters" id="filters"><button class="filter active" data-type="Все">Все</button><button class="filter" data-type="Ресейл">Ресейл</button><button class="filter" data-type="Под заказ">Из Китая</button><button class="filter" data-type="В наличии">В наличии</button></div><div class="category-filter" id="categoryFilters"><button class="category-chip active" data-category="Все">Все категории</button><button class="category-chip" data-category="Одежда">Одежда</button><button class="category-chip" data-category="Обувь">Обувь</button><button class="category-chip" data-category="Аксессуары">Аксессуары</button></div><div id="catalogGrid" class="grid"></div></div></section>
 <section id="sell" class="page"><div class="section"><h1>Продать вещь</h1><p class="meta">Заполните информацию о товаре. Перед публикацией объявление пройдёт проверку.</p><div class="sell-form"><label class="uploadbox" for="sellPhotos"><span><i data-lucide="image-plus"></i><br>Добавить фотографии<br><small>до 10 фото</small></span></label><input id="sellPhotos" class="photo-input" type="file" accept="image/*" multiple><div id="sellPreview" class="preview-grid"></div><div class="field"><label>Название товара *</label><input id="sellName" placeholder="Например: Nike Air Force 1"></div><div class="field"><label>Категория *</label><select id="sellCategory"><option>Одежда</option><option>Обувь</option><option>Сумки</option><option>Аксессуары</option><option>Другое</option></select></div><div class="field"><label>Бренд</label><input id="sellBrand" placeholder="Например: Nike"></div><div class="field"><label>Размер</label><input id="sellSize" placeholder="M, 42, One Size..."></div><div class="field"><label>Состояние *</label><select id="sellCondition"><option>Новое</option><option>Отличное</option><option>Хорошее</option><option>Удовлетворительное</option></select></div><div class="field"><label>Цена, сум *</label><input id="sellPrice" inputmode="numeric" placeholder="500000"></div><div class="field"><label>Описание</label><textarea id="sellDescription" rows="4" placeholder="Расскажите о вещи"></textarea></div><button class="btn black" id="sellSubmit">Отправить на проверку</button></div></div></section>
+
 <section id="favorites" class="page"><div class="section"><h1>Избранное</h1><div id="favoriteGrid" class="grid"></div></div></section><section id="cart" class="page"><div class="section"><h1>Корзина</h1><div id="cartList"></div><div id="cartBottom" style="display:none"><div class="total"><span>Итого</span><span id="total"></span></div><button id="checkoutBtn" class="btn black">Оформить заказ</button></div></div></section>
 <section id="profile" class="page"><div class="profile"><div class="profilecard"><div id="profileAvatar" class="avatar">UR</div><div class="pinfo"><h1 id="profileName">Профиль</h1><p id="profileUsername">Узбекский Ресейл</p><p id="profileId" style="display:none"></p></div></div><div class="profile-actions">
 <button id="myOrdersBtn" class="profile-action"><i data-lucide="package"></i><span>Мои заказы</span><span class="arrow">›</span></button>
@@ -103,6 +110,7 @@ function renderCart(){const cc=$("cartCount");if(cc)cc.textContent=cart.length;c
 
 function add(p){if(!cart.some(x=>x.id===p.id))cart.push(p);renderCart()}
 
+
 function resetPageScroll(target){const scroller=document.scrollingElement||document.documentElement;if(scroller)scroller.scrollTop=0;document.documentElement.scrollTop=0;document.body.scrollTop=0;window.scrollTo(0,0);const app=document.querySelector(".app");if(app)app.scrollTop=0;if(target){target.scrollTop=0;requestAnimationFrame(()=>target.scrollIntoView({block:"start",behavior:"auto"}))}}
 function page(id){document.querySelectorAll(".page").forEach(x=>x.classList.remove("active"));const target=$(id);if(!target){console.error("Unknown page:",id);return}target.classList.add("active");document.querySelectorAll(".nav").forEach(x=>x.classList.toggle("active",x.dataset.page===id));resetPageScroll(target);setTimeout(()=>resetPageScroll(target),30);setTimeout(()=>resetPageScroll(target),120);render();setTimeout(()=>window.lucide&&lucide.createIcons(),0)}
 
@@ -157,6 +165,7 @@ $("confirmBtn").onclick=async()=>{
  const total=cart.reduce((s,p)=>s+p.price,0);
 
  const tgName=telegramUser
+
 
    ? [telegramUser.first_name,telegramUser.last_name].filter(Boolean).join(" ")
 
@@ -268,6 +277,7 @@ $("confirmBtn").onclick=async()=>{
 
 $("homeBtn").onclick=()=>{$("checkoutView").classList.remove("open");["buyerName","buyerPhone","buyerCity","buyerComment"].forEach(id=>$(id).value="");page("home")};
 
+
  
 
 function orderStatus(s){return ({new:"Новый",confirmed:"Подтверждён",shipping:"В доставке",completed:"Завершён",cancelled:"Отменён"})[s]||s||"Новый"}
@@ -322,6 +332,7 @@ $("myOrdersBtn").onclick=openMyOrders;$("ordersBack").onclick=()=>page("profile"
 
 $("sellSubmit").onclick=async()=>{
   const tg=window.Telegram&&window.Telegram.WebApp;
+
   const user=tg?.initDataUnsafe?.user||{};
   const files=[...$("sellPhotos").files].slice(0,10);
   const title=$("sellName").value.trim();
@@ -432,6 +443,7 @@ async function openMyListings(){
     const data=await r.json();
     if(!r.ok||!data.ok)throw new Error(data.error||"Ошибка загрузки");
     if(!data.listings.length){box.innerHTML='<div class="empty">У вас пока нет товаров</div>';return}
+
     box.innerHTML=data.listings.map(x=>{
       const img=x.images&&x.images[0]?x.images[0].image_url:"";
       return `<div class="listing-card">${img?`<img src="${img}" alt="">`:""}<div class="listing-info"><div class="listing-title">${x.title}</div><div class="meta">${x.brand||x.category}${x.size?" · "+x.size:""}</div><div class="listing-price">${money(x.price)}</div><span class="listing-status ${x.status}">${listingStatus(x.status)}</span>${x.status==="rejected"&&x.rejectionReason?`<div class="meta" style="margin-top:6px">Причина: ${x.rejectionReason}</div>`:""}<div><button onclick="event.stopPropagation();deleteMyListing(${x.id},'${x.title.replace(/'/g,"")}')" style="border:0;background:#fff;color:#b42318;font-weight:800;padding:9px 0">Удалить</button></div></div></div>`
@@ -487,6 +499,7 @@ function initTelegram(){
     if(tg.setBottomBarColor) tg.setBottomBarColor("#ffffff");
 
  
+
 
     const u = tg.initDataUnsafe && tg.initDataUnsafe.user;
 
