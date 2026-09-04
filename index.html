@@ -85,14 +85,14 @@ header .top-actions button:last-child{margin-left:0!important}
 <p>Заказы получают номер UR-xxxxxx. Уведомления и связь сторон работают через Telegram-бота.</p>
 <p>Поддержка: <b>@uzbclothelover</b></p>
 <div class="list-card"><button class="list-row" onclick="page('rules')"><span>Правила использования</span><span class="arrow">›</span></button><button class="list-row" onclick="page('privacy')"><span>Политика конфиденциальности</span><span class="arrow">›</span></button></div></div></section>
-<section id="rules" class="page"><div class="section"><div class="simple-head"><button class="back" onclick="page('about')">←</button><h1>Правила</h1></div>
+<section id="rules" class="page"><div class="section"><div class="simple-head"><button class="back" onclick="backPage('profile')">←</button><h1>Правила</h1></div>
 <h2>Ресейл между пользователями</h2><p>Используя бота или Mini App, размещая объявление или оформляя заказ, пользователь подтверждает ознакомление с правилами.</p>
 <p>Товары с отметкой «Ресейл» размещаются независимыми пользователями. Продавец отвечает за достоверность описания, состояние, качество, подлинность, законность происхождения и передачу товара. Покупателю рекомендуется проверить товар до завершения сделки.</p>
 <h2>Ответственность</h2><p>Для пользовательских Ресейл-сделок Uzbek Re'Sale предоставляет техническую площадку и не является продавцом или стороной сделки. В пределах, допускаемых применимым законодательством, площадка не отвечает за убытки, возникшие непосредственно из действий пользователей.</p>
 <p>Администрация вправе модерировать и удалять объявления, ограничивать доступ и содействовать разрешению споров.</p>
 <h2>Товары от Uzbek Re'Sale</h2><p>Эти ограничения не применяются к товарам с отметкой «✓ От Uzbek Re'Sale»: для них действуют условия покупки у самой площадки.</p>
 <p>Поддержка: @uzbclothelover</p></div></section>
-<section id="privacy" class="page"><div class="section"><div class="simple-head"><button class="back" onclick="page('about')">←</button><h1>Конфиденциальность</h1></div>
+<section id="privacy" class="page"><div class="section"><div class="simple-head"><button class="back" onclick="backPage('profile')">←</button><h1>Конфиденциальность</h1></div>
 <p>Для работы сервиса могут обрабатываться Telegram ID, имя, username, данные объявлений, заказов, доставки и переписки через бота, которые пользователь предоставляет сервису.</p>
 <p>Эти данные используются для работы объявлений, заказов, уведомлений, связи сторон, модерации и поддержки. Не публикуйте в объявлениях лишние персональные данные.</p>
 <p>По вопросам данных: @uzbclothelover</p></div></section>
@@ -140,7 +140,7 @@ function renderCart(){const cc=$("cartCount");if(cc)cc.textContent=cart.length;c
 function add(p){if(!cart.some(x=>x.id===p.id))cart.push(p);renderCart()}
 
 function resetPageScroll(target){const scroller=document.scrollingElement||document.documentElement;if(scroller)scroller.scrollTop=0;document.documentElement.scrollTop=0;document.body.scrollTop=0;window.scrollTo(0,0);const app=document.querySelector(".app");if(app)app.scrollTop=0;if(target){target.scrollTop=0;requestAnimationFrame(()=>target.scrollIntoView({block:"start",behavior:"auto"}))}}
-function page(id){document.querySelectorAll(".page").forEach(x=>x.classList.remove("active"));const target=$(id);if(!target){console.error("Unknown page:",id);return}target.classList.add("active");document.querySelectorAll(".nav").forEach(x=>x.classList.toggle("active",x.dataset.page===id));resetPageScroll(target);setTimeout(()=>resetPageScroll(target),30);setTimeout(()=>resetPageScroll(target),120);render();setTimeout(()=>window.lucide&&lucide.createIcons(),0)}
+function navigatePage(id){document.querySelectorAll(".page").forEach(x=>x.classList.remove("active"));const target=$(id);if(!target){console.error("Unknown page:",id);return}target.classList.add("active");document.querySelectorAll(".nav").forEach(x=>x.classList.toggle("active",x.dataset.page===id));resetPageScroll(target);setTimeout(()=>resetPageScroll(target),30);setTimeout(()=>resetPageScroll(target),120);render();setTimeout(()=>window.lucide&&lucide.createIcons(),0)}
 
 function checkout(){if(!cart.length)return;$("orderForm").style.display="block";$("success").style.display="none";$("checkoutView").classList.add("open")}
 
@@ -305,6 +305,20 @@ $("confirmBtn").onclick=async()=>{
 
  }
 
+}
+let pageHistory=[];
+function currentPageId(){
+  const el=document.querySelector(".page.active");
+  return el ? el.id : "home";
+}
+function page(id){
+  const current=currentPageId();
+  if(current && current!==id) pageHistory.push(current);
+  navigatePage(id);
+}
+function backPage(fallback="profile"){
+  const prev=pageHistory.pop();
+  navigatePage(prev||fallback);
 };
 
 $("homeBtn").onclick=()=>{$("checkoutView").classList.remove("open");["buyerName","buyerPhone","buyerCity","buyerComment"].forEach(id=>$(id).value="");page("home")};
@@ -318,6 +332,7 @@ function orderDate(v){if(!v)return "";const d=new Date(String(v).replace(" ","T"
 function renderOrders(a){
   const b=$("ordersList");
   if(!a.length){b.innerHTML='<div class="empty">У вас пока нет заказов</div>';return}
+
   b.innerHTML="";
   a.forEach(o=>{
     const c=document.createElement("div");c.className="order-card";
@@ -332,7 +347,6 @@ function renderOrders(a){
 }
 
 function historyLabel(status){
-
   return {new:"Заказ создан",confirmed:"Подтверждён",shipping:"В доставке",completed:"Завершён",cancelled:"Отменён"}[status]||status
 }
 function historyDate(v){
@@ -388,7 +402,6 @@ $("sellSubmit").onclick=async()=>{
 
     const response=await fetch(MARKETPLACE_API+"/listings",{
       method:"POST",
-
       headers:{"Content-Type":"application/json"},
       body:JSON.stringify({
         sellerTelegramId:String(user.id),
@@ -444,7 +457,6 @@ async function loadMarketplaceCatalog(){
   render();
  }catch(e){console.error("Marketplace catalog",e)}
 }
-
 async function deleteMyListing(id,title){
  if(!confirm("Удалить «"+title+"»? Фотографии тоже будут удалены."))return;
  const u=window.Telegram?.WebApp?.initDataUnsafe?.user;
@@ -486,6 +498,7 @@ async function openMyListings(){
 }
 function goSellerProfile(id){if(!id){alert("Не удалось определить продавца");return}const pv=$("productView");if(pv)pv.classList.remove("open");page("sellerProfile");setTimeout(()=>openSellerProfile(id),20)}
 function openSellerListing(listingId){const p=products.find(x=>Number(x.listingId||0)===Number(listingId));if(!p){alert("Товар не найден в каталоге");return}page("catalog");setTimeout(()=>{const el=card(p);el.click()},20)}
+
 function messageSeller(username){
  const u=String(username||"").replace(/^@/,"");if(!u)return alert("У продавца нет публичного Telegram username");
  const tg=window.Telegram&&window.Telegram.WebApp;if(tg&&tg.openTelegramLink)tg.openTelegramLink("https://t.me/"+u);else window.open("https://t.me/"+u,"_blank");
@@ -500,7 +513,6 @@ async function openSellerProfile(id,fallbackName="",fallbackUsername=""){
  const items=(p.listings||[]).map(x=>'<div class="listing-card" style="cursor:pointer" onclick="openSellerListing('+x.id+')">'+(x.images&&x.images[0]?'<img src="'+x.images[0].image_url+'">':'')+'<div class="listing-info"><div class="listing-title">'+x.title+'</div><div class="meta">'+(x.brand||x.category)+'</div><div class="listing-price">'+money(x.price)+'</div></div><span class="arrow">›</span></div>').join("");
  b.innerHTML='<div class="seller-profile-head"><div class="seller-avatar">'+ini+'</div><h2>'+p.name+'</h2><div class="seller-sub">'+(p.username?"@"+p.username:"Telegram продавец")+'</div><div class="seller-stats"><div class="seller-stat"><b>'+p.activeCount+'</b><span>Объявлений</span></div><div class="seller-stat"><b>'+p.soldCount+'</b><span>Продано</span></div></div>'+(p.username?'<button class="btn black" onclick="messageSeller(\''+p.username+'\')">Написать в Telegram</button>':'')+'</div><h2>Товары продавца</h2>'+items;
  }catch(e){b.innerHTML='<div class="empty">Не удалось загрузить профиль</div>'}
-
 }
 function openOwnSellerProfile(){
  const u=window.Telegram?.WebApp?.initDataUnsafe?.user;
@@ -543,6 +555,7 @@ function initTelegram(){
 
  
 
+
     const fullName = [u.first_name, u.last_name].filter(Boolean).join(" ") || "Профиль";
 
     const initials = [u.first_name, u.last_name]
@@ -556,7 +569,6 @@ function initTelegram(){
       .slice(0,2)
 
       .toUpperCase() || "UR";
-
 
  
 
