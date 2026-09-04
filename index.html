@@ -50,7 +50,7 @@ header .brand{position:absolute!important;left:50%!important;transform:translate
 header .top-actions{margin-left:auto!important;display:flex!important;align-items:center!important;gap:0!important;z-index:3}
 header .top-actions button:first-child{position:absolute!important;left:18px!important;transform:none!important}
 header .top-actions button:last-child{margin-left:0!important}
-#productSeller{position:relative;z-index:50;pointer-events:auto}#productSeller button{position:relative;z-index:51;pointer-events:auto!important}.admin-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:15px 0}.admin-stat{background:#f5f5f5;border-radius:18px;padding:16px}.admin-stat b{font-size:24px;display:block}.admin-tabs{display:flex;gap:8px;overflow-x:auto;margin:14px 0}.admin-tab{white-space:nowrap;border:0;border-radius:18px;padding:10px 14px;font-weight:800}.admin-tab.on{background:#111;color:#fff}.admin-card{border:1px solid #e7e7e7;border-radius:18px;padding:14px;margin:10px 0}.admin-actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}.admin-actions button{border:0;border-radius:12px;padding:10px 12px;font-weight:800}.admin-form input,.admin-form select,.admin-form textarea{width:100%;box-sizing:border-box;margin:5px 0 12px;padding:13px;border:1px solid #ddd;border-radius:13px;font:inherit}.admin-form label{font-weight:800}.admin-danger{color:#c00}.admin-mini{font-size:12px;color:#777}.admin-check{display:flex!important;align-items:center;gap:8px;margin:10px 0 16px}.admin-check input{width:auto!important;margin:0!important}.admin-clickable{cursor:pointer}.admin-detail-images{display:flex;gap:8px;overflow-x:auto;margin:12px 0}.admin-detail-images img{width:150px;height:180px;object-fit:cover;border-radius:14px;flex:0 0 auto}</style><script src="https://telegram.org/js/telegram-web-app.js"></script><script src="https://unpkg.com/lucide@latest"></script></head><body><div class="app"><header><div class="top"><div style="width:88px"></div><div class="brand"><div class="mark"><svg class="doppi" viewBox="0 0 96 48" aria-label="Тюбетейка">
+#productSeller{position:relative;z-index:50;pointer-events:auto}#productSeller button{position:relative;z-index:51;pointer-events:auto!important}.admin-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:15px 0}.admin-stat{background:#f5f5f5;border-radius:18px;padding:16px}.admin-stat b{font-size:24px;display:block}.admin-tabs{display:flex;gap:8px;overflow-x:auto;margin:14px 0}.admin-tab{white-space:nowrap;border:0;border-radius:18px;padding:10px 14px;font-weight:800}.admin-tab.on{background:#111;color:#fff}.admin-card{border:1px solid #e7e7e7;border-radius:18px;padding:14px;margin:10px 0}.admin-actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}.admin-actions button{border:0;border-radius:12px;padding:10px 12px;font-weight:800}.admin-form input,.admin-form select,.admin-form textarea{width:100%;box-sizing:border-box;margin:5px 0 12px;padding:13px;border:1px solid #ddd;border-radius:13px;font:inherit}.admin-form label{font-weight:800}.admin-danger{color:#c00}.admin-mini{font-size:12px;color:#777}.admin-check{display:flex!important;align-items:center;gap:8px;margin:10px 0 16px}.admin-check input{width:auto!important;margin:0!important}.admin-clickable{cursor:pointer}.admin-detail-images{display:flex;gap:8px;overflow-x:auto;margin:12px 0}.admin-detail-images img{width:150px;height:180px;object-fit:cover;border-radius:14px;flex:0 0 auto}.admin-review-main{position:relative;height:360px;background:#f4f4f4;border-radius:18px;overflow:hidden;margin:12px 0}.admin-review-main>img{width:100%;height:100%;object-fit:contain;cursor:zoom-in}.review-left,.review-right{position:absolute;top:45%;width:42px;height:42px;border:0;border-radius:50%;background:rgba(255,255,255,.9);font-size:28px}.review-left{left:8px}.review-right{right:8px}.review-counter{position:absolute;right:10px;bottom:10px;background:#111;color:#fff;border-radius:12px;padding:5px 9px;font-size:12px}.admin-review-thumbs{display:flex;gap:8px;overflow-x:auto}.admin-review-thumb{width:64px;height:72px;object-fit:cover;border-radius:10px;cursor:pointer}.admin-review-desc{margin:16px 0;padding:14px;background:#f5f5f5;border-radius:14px}.admin-review-actions{position:sticky;bottom:0;background:#fff;padding:12px 0}</style><script src="https://telegram.org/js/telegram-web-app.js"></script><script src="https://unpkg.com/lucide@latest"></script></head><body><div class="app"><header><div class="top"><div style="width:88px"></div><div class="brand"><div class="mark"><svg class="doppi" viewBox="0 0 96 48" aria-label="Тюбетейка">
 <path d="M8 35C13 15 30 6 48 6s35 9 40 29c-12 5-25 7-40 7S20 40 8 35Z" fill="#111"/>
 <path d="M48 8v31M20 29c8-3 14-8 18-15M76 29c-8-3-14-8-18-15" stroke="#fff" stroke-width="2" fill="none"/>
 
@@ -116,6 +116,7 @@ header .top-actions button:last-child{margin-left:0!important}
 <section id="orders" class="page"><div class="section"><div class="orders-head"><button id="ordersBack" class="back">←</button><h1>Мои заказы</h1></div><div id="ordersList"></div></div></section></div>
 <nav><button class="nav active" data-page="home"><span class="icon"><i data-lucide="house"></i></span>Главная</button><button class="nav" data-page="catalog"><span class="icon"><i data-lucide="layout-grid"></i></span>Каталог</button><button class="nav sell" data-page="sell"><span class="icon"><i data-lucide="plus"></i></span>Продать</button><button class="nav" data-page="favorites"><span class="icon"><i data-lucide="heart"></i></span>Избранное</button><button class="nav" data-page="profile"><span class="icon"><i data-lucide="user"></i></span>Профиль</button></nav>
 <div id="productView" class="overlay"><div class="inner"><button id="productBack" class="back">←</button><div id="bigPhoto" class="bigphoto"></div><span id="pType" class="badge"></span><h1 id="pName"></h1><h2 id="pPrice"></h2><p id="pSize"></p><p id="pCondition"></p><div id="productMeta" class="product-details"></div><div id="productSeller"></div><button id="buyBtn" class="btn black">Купить</button><br><br><button id="addBtn" class="btn white">Добавить в корзину</button></div></div>
+<div id="adminReviewView" class="overlay"><div class="inner"><button class="back" onclick="$('adminReviewView').classList.remove('open')">←</button><div id="adminReviewContent"></div></div></div>
 <div id="adminListingView" class="overlay"><div class="inner"><button class="back" onclick="$('adminListingView').classList.remove('open')">←</button><div id="adminListingContent"></div></div></div>
 <div id="orderDetailView" class="overlay"><div class="inner"><button id="orderDetailBack" class="back">←</button><div id="orderDetailContent" class="order-detail"></div></div></div><div id="checkoutView" class="overlay"><div class="inner"><button id="checkoutBack" class="back">←</button><div id="orderForm"><h1>Оформление заказа</h1><div class="field"><label>Имя *</label><input id="buyerName"></div><div class="field"><label>Телефон *</label><input id="buyerPhone" placeholder="+998"></div><div class="field"><label>Город *</label><input id="buyerCity"></div><div class="field"><label>Комментарий</label><input id="buyerComment"></div><p>Оплата и доставка пока подтверждаются вручную.</p><button id="confirmBtn" class="btn black">Подтвердить заказ</button></div><div id="success" class="success" style="display:none"><h1>✓</h1><h2>Заказ оформлен</h2><p>Мы свяжемся с вами для подтверждения.</p><button id="homeBtn" class="btn black">Вернуться в магазин</button></div></div></div><script>const products=[
 {id:1,name:"Basic Stüssy Hoodie Black",price:520000,size:"M",condition:"Отличное",type:"Ресейл",category:"Одежда",brand:"Stüssy",image:"https://www.stussy.com/cdn/shop/files/1925000_BLAC_1.jpg?v=1785178412&width=900"},
@@ -164,6 +165,7 @@ $("confirmBtn").onclick=async()=>{
  const name=$("buyerName").value.trim();
 
  const phone=$("buyerPhone").value.trim();
+
 
  const city=$("buyerCity").value.trim();
 
@@ -219,6 +221,7 @@ $("confirmBtn").onclick=async()=>{
    phone,
 
    city,
+
 
    comment,
 
@@ -276,7 +279,6 @@ $("confirmBtn").onclick=async()=>{
 
      throw new Error(result.error||"Order send failed");
 
-
    }
 
  
@@ -330,6 +332,7 @@ $("homeBtn").onclick=()=>{$("checkoutView").classList.remove("open");["buyerName
 function orderStatus(s){return ({new:"Новый",confirmed:"Подтверждён",shipping:"В доставке",completed:"Завершён",cancelled:"Отменён"})[s]||s||"Новый"}
 
 function orderDate(v){if(!v)return "";const d=new Date(String(v).replace(" ","T")+"Z");return Number.isNaN(d.getTime())?v:d.toLocaleString("ru-RU",{day:"2-digit",month:"2-digit",year:"numeric",hour:"2-digit",minute:"2-digit"})}
+
 
 function renderOrders(a){
   const b=$("ordersList");
@@ -385,8 +388,8 @@ $("sellSubmit").onclick=async()=>{
   const price=Number(String($("sellPrice").value).replace(/\D/g,""));
 
   if(!user.id){alert("Откройте магазин внутри Telegram");return}
-  if(!files.length){alert("Добавьте хотя бы одну фотографию");return}
 
+  if(!files.length){alert("Добавьте хотя бы одну фотографию");return}
   if(!title){alert("Заполните название товара");$("sellName").focus();return}
   if(!price){alert("Введите корректную цену цифрами");const priceInput=$("sellPrice");priceInput.disabled=false;priceInput.focus();priceInput.select();return}
 
@@ -441,8 +444,8 @@ window.deleteAddress=i=>{let a=JSON.parse(localStorage.getItem("uzr_addresses")|
 $("addAddressBtn").onclick=()=>{const v=prompt("Введите адрес доставки");if(!v||!v.trim())return;let a=[];try{a=JSON.parse(localStorage.getItem("uzr_addresses")||"[]")}catch(e){}a.push(v.trim());localStorage.setItem("uzr_addresses",JSON.stringify(a));renderAddresses()};
 $("supportTelegram").onclick=()=>{const tg=window.Telegram&&window.Telegram.WebApp;if(tg&&tg.openTelegramLink)tg.openTelegramLink("https://t.me/uzbclothelover");else window.open("https://t.me/uzbclothelover","_blank")};
 function loadSwitch(id,key,defaultOn=true){const el=$(id);if(!el)return;const saved=localStorage.getItem(key);const on=saved===null?defaultOn:saved==="1";el.classList.toggle("on",on);el.onclick=()=>{const next=!el.classList.contains("on");el.classList.toggle("on",next);localStorage.setItem(key,next?"1":"0")}};loadSwitch("hapticSwitch","uzr_haptic",true);loadSwitch("notifySwitch","uzr_notifications",true);
-$("sellPhotos").onchange=e=>{const files=[...e.target.files].slice(0,10),b=$("sellPreview");b.innerHTML="";files.forEach(f=>{const img=document.createElement("img");img.src=URL.createObjectURL(f);b.appendChild(img)})};
 
+$("sellPhotos").onchange=e=>{const files=[...e.target.files].slice(0,10),b=$("sellPreview");b.innerHTML="";files.forEach(f=>{const img=document.createElement("img");img.src=URL.createObjectURL(f);b.appendChild(img)})};
 renderAddresses();
 
 
@@ -497,8 +500,8 @@ async function openMyListings(){
     box.innerHTML=data.listings.map(x=>{
       const img=x.images&&x.images[0]?x.images[0].image_url:"";
       return `<div class="listing-card">${img?`<img src="${img}" alt="">`:""}<div class="listing-info"><div class="listing-title">${x.title}</div><div class="meta">${x.brand||x.category}${x.size?" · "+x.size:""}</div><div class="listing-price">${money(x.price)}</div><span class="listing-status ${x.status}">${listingStatus(x.status)}</span>${x.status==="rejected"&&x.rejectionReason?`<div class="meta" style="margin-top:6px">Причина: ${x.rejectionReason}</div>`:""}<div><button onclick="event.stopPropagation();deleteMyListing(${x.id},'${x.title.replace(/'/g,"")}')" style="border:0;background:#fff;color:#b42318;font-weight:800;padding:9px 0">Удалить</button></div></div></div>`
-    }).join("");
 
+    }).join("");
   }catch(e){
     console.error(e);box.innerHTML='<div class="empty">Не удалось загрузить товары</div>';
   }
@@ -553,12 +556,12 @@ async function openAdminPanel(){if(!await refreshAdminAccess()){alert("Нет д
 async function loadAdmin(){try{const d=await adminFetch("/admin/dashboard");$("adminStats").innerHTML=`<div class="admin-stat"><b>${d.stats.pending}</b><span>Модерация</span></div><div class="admin-stat"><b>${d.stats.orders}</b><span>Заказы</span></div><div class="admin-stat"><b>${d.stats.active}</b><span>Товары</span></div><div class="admin-stat"><b>${d.stats.users}</b><span>Продавцы</span></div>`;adminTab("moderation")}catch(e){$("adminContent").innerHTML='<div class="empty">Нет доступа</div>'}}
 async function adminTab(tab,btn){
  document.querySelectorAll(".admin-tab").forEach(x=>x.classList.toggle("on",x===btn));
- const c=$("adminContent");c.innerHTML='<div class="empty">Загрузка...</div>';
 
+ const c=$("adminContent");c.innerHTML='<div class="empty">Загрузка...</div>';
  try{
   if(tab==="moderation"){
    const d=await adminFetch("/admin/listings?status=pending");
-   c.innerHTML=d.listings.map(x=>`<div class="admin-card"><b>#${x.id} ${x.title}</b><div>${money(x.price)} · ${x.category}</div><div class="admin-mini">${x.seller_name||""}</div><div class="admin-actions"><button onclick="adminModerate(${x.id},'approve')">✅ Одобрить</button><button onclick="adminModerate(${x.id},'reject')">❌ Отклонить</button></div></div>`).join("")||'<div class="empty">Нет объявлений</div>';
+   c.innerHTML=d.listings.map(x=>`<div class="admin-card admin-clickable" onclick="adminReviewListing(${x.id})"><div style="display:flex;gap:10px;align-items:center">${x.images?.[0]?.image_url?`<img src="${x.images[0].image_url}" style="width:68px;height:78px;object-fit:cover;border-radius:12px">`:""}<div><b>#${x.id} ${x.title}</b><div>${money(x.price)} · ${x.category}</div><div class="admin-mini">${x.seller_name||""} · Фото: ${(x.images||[]).length}</div></div></div><div class="admin-actions"><button onclick="event.stopPropagation();adminModerate(${x.id},'approve')">✅ Одобрить</button><button onclick="event.stopPropagation();adminModerate(${x.id},'reject')">❌ Отклонить</button></div></div>`).join("")||'<div class="empty">Нет объявлений</div>';
   }
   if(tab==="orders"){
    const d=await adminFetch("/admin/orders");
@@ -582,7 +585,20 @@ async function adminTab(tab,btn){
   }
  }catch(e){c.innerHTML='<div class="empty">Ошибка загрузки: '+String(e.message||e)+'</div>'}
 }
-async function adminModerate(id,action){let reason="";if(action==="reject")reason=prompt("Причина:")||"";await adminFetch("/admin/moderate",{method:"POST",body:JSON.stringify({id,action,reason})});loadAdmin()}
+async function adminModerate(id,action){
+ let reason="";
+ if(action==="reject"){
+   reason=prompt("Причина отклонения:\n\nНапример: некачественные фото, неверное описание, запрещённый товар, дубликат.")||"";
+   reason=reason.trim();
+   if(!reason)return alert("Укажите причину отклонения");
+ }
+ try{
+   await adminFetch("/admin/moderate",{method:"POST",body:JSON.stringify({id,action,reason})});
+   $("adminReviewView")?.classList.remove("open");
+   alert(action==="approve"?"✓ Объявление одобрено":"✓ Объявление отклонено\nПричина: "+reason);
+   loadAdmin();
+ }catch(e){alert("Ошибка модерации: "+String(e.message||e))}
+}
 async function adminPreparePhotos(files){
  const out=[];
  for(const file of [...files]){
@@ -596,6 +612,7 @@ async function adminPreparePhotos(files){
 async function adminCreateOfficial(){
  const btn=$("aoCreateBtn"),files=$("aoImages").files;
  const b={title:$("aoTitle").value.trim(),category:$("aoCategory").value.trim(),brand:$("aoBrand").value.trim(),size:$("aoSize").value.trim(),condition:$("aoCondition").value,price:Number($("aoPrice").value),stockQty:Number($("aoStock").value||0),sourceType:$("aoSource").value,isPinned:$("aoPinned").checked,description:$("aoDesc").value.trim(),photos:[]};
+
  if(!b.title||!b.category||!b.price)return alert("Заполните название, категорию и цену");
  if(!files.length)return alert("Добавьте хотя бы одну фотографию");
  try{btn.disabled=true;btn.textContent="Загрузка фото...";b.photos=await adminPreparePhotos(files);btn.textContent="Создание...";await adminFetch("/admin/official",{method:"POST",body:JSON.stringify(b)});alert("✓ Товар Uzbek Re'Sale создан");adminTab("official")}catch(e){alert("Ошибка: "+String(e.message||e))}finally{if(btn){btn.disabled=false;btn.textContent="Создать товар"}}
@@ -610,11 +627,37 @@ async function adminEditOfficial(id){
  const d=await adminFetch("/admin/listings?owner=official"),x=d.listings.find(v=>Number(v.id)===Number(id));if(!x)return;
  const title=prompt("Название:",x.title);if(title===null)return;
  const price=prompt("Цена:",x.price);if(price===null)return;
-
  const stock=prompt("Остаток:",x.stock_qty);if(stock===null)return;
  await adminFetch("/admin/listing-update",{method:"POST",body:JSON.stringify({id,title,price:Number(price),stockQty:Number(stock)})});loadOfficialList();
 }
 async function adminOrderStatus(id,status){await adminFetch("/admin/order-status",{method:"POST",body:JSON.stringify({id,status})});adminTab("orders")}
+let adminReviewImages=[],adminReviewImageIndex=0;
+function adminRenderReviewImage(){
+ const img=$("adminReviewMainImage"),count=$("adminReviewCounter");
+ if(!img||!adminReviewImages.length)return;
+ img.src=adminReviewImages[adminReviewImageIndex].image_url;
+ if(count)count.textContent=(adminReviewImageIndex+1)+" / "+adminReviewImages.length;
+}
+function adminReviewPrev(){if(!adminReviewImages.length)return;adminReviewImageIndex=(adminReviewImageIndex-1+adminReviewImages.length)%adminReviewImages.length;adminRenderReviewImage()}
+function adminReviewNext(){if(!adminReviewImages.length)return;adminReviewImageIndex=(adminReviewImageIndex+1)%adminReviewImages.length;adminRenderReviewImage()}
+function adminReviewFullscreen(){
+ const img=$("adminReviewMainImage");if(!img)return;
+ if(img.requestFullscreen)img.requestFullscreen().catch(()=>{});
+}
+async function adminReviewListing(id){
+ try{
+  const d=await adminFetch("/admin/listing-detail?id="+encodeURIComponent(id)),x=d.listing;
+  adminReviewImages=x.images||[];adminReviewImageIndex=0;
+  const thumbs=adminReviewImages.map((im,i)=>`<img src="${im.image_url}" onclick="adminReviewImageIndex=${i};adminRenderReviewImage()" class="admin-review-thumb">`).join("");
+  $("adminReviewContent").innerHTML=`<h1>Проверка объявления</h1>
+   ${adminReviewImages.length?`<div class="admin-review-main"><img id="adminReviewMainImage" onclick="adminReviewFullscreen()"><button class="review-left" onclick="adminReviewPrev()">‹</button><button class="review-right" onclick="adminReviewNext()">›</button><span id="adminReviewCounter" class="review-counter"></span></div><div class="admin-review-thumbs">${thumbs}</div>`:'<div class="empty">Фотографий нет</div>'}
+   <h2>${x.title}</h2><h3>${money(x.price||0)}</h3>
+   <div class="product-details"><span>Категория</span><span>${x.category||"—"}</span><span>Бренд</span><span>${x.brand||"—"}</span><span>Размер</span><span>${x.size||"—"}</span><span>Состояние</span><span>${x.condition||"—"}</span><span>Продавец</span><span>${x.seller_name||"—"}</span><span>Telegram</span><span>${x.seller_username?"@"+x.seller_username:"ID "+(x.seller_telegram_id||"—")}</span></div>
+   ${x.description?`<div class="admin-review-desc">${x.description}</div>`:""}
+   <div class="admin-actions admin-review-actions"><button onclick="adminModerate(${x.id},'approve')">✅ Одобрить</button><button class="admin-danger" onclick="adminModerate(${x.id},'reject')">❌ Отклонить</button></div>`;
+  $("adminReviewView").classList.add("open");adminRenderReviewImage();
+ }catch(e){alert("Не удалось открыть объявление: "+String(e.message||e))}
+}
 async function adminOpenListing(id){
  try{
   const d=await adminFetch("/admin/listing-detail?id="+encodeURIComponent(id));
@@ -624,18 +667,26 @@ async function adminOpenListing(id){
  }catch(e){alert("Не удалось открыть объявление: "+String(e.message||e))}
 }
 async function adminDeleteListing(id){
- if(!confirm("Удалить товар Uzbek Re'Sale и все его фотографии?\n\nИстория уже созданных заказов сохранится."))return;
  try{
-   const d=await adminFetch("/admin/listing?id="+encodeURIComponent(id),{method:"DELETE"});
-   alert("✓ Товар удалён\nФото удалено: "+Number(d.deletedImages||0));
+
+   const detail=await adminFetch("/admin/listing-detail?id="+encodeURIComponent(id));
+   const x=detail.listing;
+   let reason="";
+   if(x.owner_type!=="official"){
+     reason=prompt("Причина удаления пользовательского объявления:\n\nНапример: нарушение правил, дубликат, некорректное описание, подозрение на мошенничество, запрещённый товар.")||"";
+     reason=reason.trim();
+     if(!reason)return alert("Для пользовательского Ресейл-товара причина обязательна");
+   }
+   if(!confirm(x.owner_type==="official"?"Удалить товар Uzbek Re'Sale и все его фотографии?\n\nИстория заказов сохранится.":"Удалить пользовательское объявление?\n\nПродавец получит указанную причину. История заказов сохранится."))return;
+   const d=await adminFetch("/admin/listing?id="+encodeURIComponent(id)+"&reason="+encodeURIComponent(reason),{method:"DELETE"});
+   alert("✓ Товар удалён\nФото удалено: "+Number(d.deletedImages||0)+(reason?"\nПричина отправлена продавцу.":""));
    $("adminListingView")?.classList.remove("open");
+   $("adminReviewView")?.classList.remove("open");
    try{await loadOfficialList()}catch(_){}
    try{await loadMarketplaceCatalog()}catch(_){}
    const cleanupBtn=[...document.querySelectorAll(".admin-tab")].find(x=>x.textContent.trim()==="Очистка"&&x.classList.contains("on"));
    if(cleanupBtn)await adminTab("cleanup",cleanupBtn);
- }catch(e){
-   alert("Не удалось удалить товар: "+String(e.message||e));
- }
+ }catch(e){alert("Не удалось удалить товар: "+String(e.message||e))}
 }
 function initTelegram(){
   const adminBtnOnInit=$("adminPanelBtn");
@@ -667,13 +718,13 @@ function initTelegram(){
 
     if(!u) return;
 
-
     telegramUser = u;
     refreshAdminAccess();
 
  
 
     const fullName = [u.first_name, u.last_name].filter(Boolean).join(" ") || "Профиль";
+
 
     const initials = [u.first_name, u.last_name]
 
