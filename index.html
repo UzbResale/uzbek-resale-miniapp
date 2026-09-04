@@ -576,7 +576,7 @@ async function adminTab(tab,btn){
   }
   if(tab==="cleanup"){
    const d=await adminFetch("/admin/listings");
-   c.innerHTML='<p class="meta">Удаление товара удаляет фотографии ImageKit. История заказов сохраняется.</p>'+d.listings.map(x=>`<div class="admin-card"><b>#${x.id} ${x.title}</b><div>${x.status} · ${x.owner_type}</div><div class="admin-actions"><button class="admin-danger" onclick="adminDeleteListing(${x.id})">Удалить товар + фото</button></div></div>`).join("")||'<div class="empty">Товаров нет</div>';
+   c.innerHTML='<p class="meta">Official-товары удаляются вместе с фото ImageKit. Пользовательские Ресейл-товары очищайте через «Мои товары» продавца — история заказов сохраняется.</p>'+d.listings.map(x=>`<div class="admin-card"><b>#${x.id} ${x.title}</b><div>${x.status} · ${x.owner_type}</div><div class="admin-actions">${x.owner_type==="official"?`<button class="admin-danger" onclick="adminDeleteListing(${x.id})">Удалить official + фото</button>`:`<span class="admin-mini">♻ Пользовательский товар</span>`}</div></div>`).join("")||'<div class="empty">Товаров нет</div>';
   }
  }catch(e){c.innerHTML='<div class="empty">Ошибка загрузки: '+String(e.message||e)+'</div>'}
 }
