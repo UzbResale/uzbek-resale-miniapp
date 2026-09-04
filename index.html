@@ -67,13 +67,98 @@ nav{background:rgba(255,255,255,.97)!important;backdrop-filter:blur(18px);-webki
 .admin-grid{gap:10px!important}.admin-stat{background:linear-gradient(145deg,#f6f8fb,#eef3f8)!important;border:1px solid #e7edf3!important}.admin-stat b{color:var(--navy)!important}.admin-tabs{background:#eef2f6;padding:4px;border-radius:16px!important}.admin-tab{background:transparent!important;color:#516173!important}.admin-tab.on{background:var(--navy)!important;color:#fff!important;box-shadow:0 4px 10px rgba(11,42,74,.16)}.admin-card{border-color:var(--line)!important;box-shadow:0 4px 18px rgba(11,42,74,.035)!important}.admin-actions button{background:#f1f5f9;color:var(--navy)}.admin-actions button.admin-danger,.admin-danger{color:var(--red)!important}.admin-review-main{background:#eef2f6!important}.review-counter{background:var(--navy)!important}.admin-review-actions{background:rgba(255,255,255,.96)!important;backdrop-filter:blur(12px)}
 @media(max-width:430px){.app{box-shadow:none}.hero{height:205px!important}.hero h1{font-size:27px!important}.photo{height:190px!important}.grid{gap:20px 10px!important}.logo{font-size:17px!important}.round{width:39px!important;height:39px!important}.section{padding-left:16px!important;padding-right:16px!important}.inner{padding-left:18px!important;padding-right:18px!important}.bigphoto{margin-left:-18px!important;margin-right:-18px!important}.admin-review-main{height:330px!important}}
 
-</style><script src="https://telegram.org/js/telegram-web-app.js"></script><script src="https://unpkg.com/lucide@latest"></script></head><body><div class="app"><header><div class="top"><div style="width:88px"></div><div class="brand"><div class="mark"><svg class="doppi" viewBox="0 0 96 48" aria-label="Тюбетейка">
+
+/* HOME FINAL CANDIDATE */
+header{padding:12px 18px 11px!important}
+header .top{position:relative!important;min-height:66px!important;justify-content:center!important}
+header .brand{position:absolute!important;left:50%!important;top:0!important;transform:translateX(-50%)!important;width:230px!important;z-index:2!important}
+header .header-fav{position:absolute!important;left:0!important;top:14px!important;z-index:4!important}
+header .actions{position:absolute!important;right:0!important;top:14px!important;z-index:4!important}
+header .actions button:first-child{position:relative!important;left:auto!important;transform:none!important}
+header .round{width:42px!important;height:42px!important;background:#fff!important;border:1px solid #e2e8f0!important;box-shadow:0 5px 16px rgba(9,39,68,.07)!important}
+header .doppi{width:45px!important;height:27px!important;margin-top:0!important}
+header .logo{font-size:17px!important;line-height:1.05!important}
+header .tag{font-size:6.5px!important;letter-spacing:2.45px!important;margin-top:5px!important}
+header .search{margin-top:7px!important;height:48px!important;border-radius:15px!important;background:#f4f6f9!important}
+.page.active{min-height:0!important}
+#adminPanel>.section,#sellerProfile>.section,#favorites>.section{padding-top:20px!important}
+#home{background:#fff!important}
+.home-hero{margin:14px 18px 12px;height:236px;border-radius:23px;overflow:hidden;position:relative;background:linear-gradient(135deg,#071c31 0%,#0b3158 56%,#174f82 100%);box-shadow:0 14px 32px rgba(8,39,69,.18);display:flex}
+.home-hero:after{content:"";position:absolute;inset:0;background:radial-gradient(circle at 78% 35%,rgba(255,255,255,.14),transparent 28%),linear-gradient(90deg,rgba(3,18,32,.15),transparent 60%);pointer-events:none}
+.home-hero-copy{position:relative;z-index:3;width:59%;padding:21px 0 19px 21px;color:#fff;display:flex;flex-direction:column;align-items:flex-start;justify-content:center}
+.hero-kicker{font-size:8px;font-weight:800;letter-spacing:2px;color:#a9c3dc;margin-bottom:7px}
+.home-hero h1{font-size:30px;line-height:.98;letter-spacing:-1px;margin:0 0 10px;font-weight:900}
+.home-hero p{font-size:11.5px;line-height:1.35;color:#d8e4ef;margin:0 0 14px;max-width:230px}
+.home-hero button{height:42px;border:0;border-radius:12px;background:#fff;color:#0b2a4a;padding:0 14px;font-size:12px;font-weight:850;display:flex;align-items:center;gap:7px;box-shadow:0 7px 18px rgba(0,0,0,.13)}
+.home-hero button svg{width:15px;height:15px}
+.hero-product{position:absolute;right:-24px;bottom:-13px;width:55%;height:100%;z-index:2;display:flex;align-items:flex-end;justify-content:center;transform:rotate(-7deg)}
+.hero-product-glow{position:absolute;width:170px;height:170px;border-radius:50%;background:rgba(255,255,255,.15);right:20px;bottom:28px}
+.hero-product img{position:relative;width:190px;height:190px;object-fit:contain;filter:drop-shadow(0 20px 18px rgba(0,0,0,.35))}
+.home-content{padding:0 18px 26px}
+.home-modes{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin:0 0 20px}
+.home-mode{position:relative;min-width:0;min-height:126px;border:1px solid #e2e8f0;background:#fff;border-radius:18px;padding:13px 10px 11px;text-align:left;color:#0b2948;box-shadow:0 5px 18px rgba(9,39,68,.035)}
+.home-mode:active{transform:scale(.98);background:#f8fafc}
+.mode-icon{width:40px;height:40px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:#edf4fa;color:#0b3763;margin-bottom:9px}
+.mode-icon svg{width:20px;height:20px}
+.home-mode strong{display:block;font-size:15px;line-height:1.05;letter-spacing:-.2px}
+.home-mode small{display:block;color:#7c8794;font-size:9.5px;line-height:1.25;margin-top:5px;max-width:92px}
+.mode-arrow{position:absolute;right:11px;bottom:9px;font-size:16px;font-weight:800;color:#0b3763}
+.home-section-title{display:flex;align-items:center;justify-content:space-between;margin:0 0 10px}
+.home-section-title h2{font-size:21px;letter-spacing:-.55px;color:#0c1f35;margin:0}
+.home-section-title button{border:0;background:none;color:#0b477e;font-size:11px;font-weight:800;padding:5px 0}
+.home-categories{display:grid;grid-template-columns:repeat(5,1fr);gap:5px;margin:0 0 20px}
+.home-categories button{min-width:0;border:0;background:transparent;padding:0;color:#17283b;text-align:center}
+.home-categories span{width:49px;height:49px;margin:0 auto 6px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:#f0f5fa;border:1px solid #e7edf4;color:#0b3763}
+.home-categories button:active span{background:#0b3763;color:#fff;transform:scale(.96)}
+.home-categories svg{width:21px;height:21px;stroke-width:1.8}
+.home-categories b{display:block;font-size:9px;font-weight:650;white-space:nowrap}
+.popular-title{margin-top:2px}
+.home-grid{margin-top:0!important}
+#homeGrid.grid{gap:17px 10px!important}
+#homeGrid .photo{height:185px!important;border-radius:17px!important}
+#homeGrid .heart{width:34px!important;height:34px!important;top:7px!important;right:7px!important}
+#homeGrid .badge{font-size:8px!important;margin-top:6px!important}
+#homeGrid .name{font-size:13px!important;margin-top:5px!important}
+#homeGrid .meta{font-size:9.5px!important}
+#homeGrid .price{font-size:15px!important}
+#favorites .empty{min-height:310px;display:flex;align-items:center;justify-content:center;flex-direction:column;padding:30px 16px!important}
+#favorites .empty:before{content:"♡";width:72px;height:72px;border-radius:24px;background:#edf4fa;color:#0b3763;display:flex;align-items:center;justify-content:center;font-size:38px;margin-bottom:14px}
+@media(max-width:430px){
+ .home-hero{height:218px;margin-left:16px;margin-right:16px}
+ .home-hero-copy{padding-left:18px;width:61%}.home-hero h1{font-size:27px}
+ .hero-product{right:-35px;width:57%}.hero-product img{width:170px;height:170px}
+ .home-content{padding-left:16px;padding-right:16px}
+ .home-mode{min-height:119px;padding-left:9px;padding-right:8px}.home-mode strong{font-size:14px}.home-mode small{font-size:8.8px}
+ .home-categories{gap:2px}.home-categories span{width:46px;height:46px}.home-categories b{font-size:8.5px}
+}
+</style><script src="https://telegram.org/js/telegram-web-app.js"></script><script src="https://unpkg.com/lucide@latest"></script></head><body><div class="app"><header><div class="top"><button class="round header-fav" onclick="page('favorites')" aria-label="Избранное"><i data-lucide="heart"></i></button><div class="brand"><div class="mark"><svg class="doppi" viewBox="0 0 96 48" aria-label="Тюбетейка">
 <path d="M8 35C13 15 30 6 48 6s35 9 40 29c-12 5-25 7-40 7S20 40 8 35Z" fill="#111"/>
 <path d="M48 8v31M20 29c8-3 14-8 18-15M76 29c-8-3-14-8-18-15" stroke="#fff" stroke-width="2" fill="none"/>
 <path d="M28 32c4-6 8-8 12-8s8 2 8 8c0-6 4-8 8-8s8 2 12 8" stroke="#fff" stroke-width="1.8" fill="none"/>
 <path d="M13 35c22 5 48 5 70 0" stroke="#fff" stroke-width="2" fill="none"/>
-</svg></div><div class="logo">УЗБЕКСКИЙ РЕСЕЙЛ</div><div class="tag">BUY • SELL • ORDER</div></div><div class="actions"><button class="round" onclick="page('favorites')"><i data-lucide="heart"></i></button><button class="round" onclick="page('cart')"><i data-lucide="shopping-bag"></i><span id="cartCount" class="count">0</span></button></div></div><input id="search" class="search" placeholder="Поиск товаров"></header>
-<section id="home" class="page active"><div class="hero"><div><h1>Покупай. Продавай. Заказывай.</h1><p>Ресейл между пользователями и товары от Uzbek Re'Sale</p><button onclick="page('catalog')">Смотреть товары</button></div></div><div class="section"><div class="modes"><button class="mode" onclick="type='Ресейл';page('catalog')"><i>↻</i><b>Ресейл</b><small>Вещи от пользователей</small></button><button class="mode" onclick="type='Под заказ';page('catalog')"><i>CN</i><b>От нас</b><small>В наличии и из Китая</small></button><button class="mode" onclick="page('sell')"><i>＋</i><b>Продать</b><small>Выставить свою вещь</small></button></div><div class="title"><h2>Категории</h2><button class="link" onclick="page('catalog')">Смотреть все</button></div><div class="cats"><div class="cat"><i>⌑</i>Одежда</div><div class="cat"><i>⌁</i>Обувь</div><div class="cat"><i>▣</i>Сумки</div><div class="cat"><i><i data-lucide="watch"></i></i>Аксессуары</div><div class="cat"><i><i data-lucide="ellipsis"></i></i>Другое</div></div><div class="title"><h2>Популярное</h2><button class="link" onclick="page('catalog')">Смотреть все</button></div><div id="homeGrid" class="grid"></div></div></section>
+</svg></div><div class="logo">УЗБЕКСКИЙ РЕСЕЙЛ</div><div class="tag">BUY • SELL • ORDER</div></div><div class="actions"><button class="round" onclick="page('cart')" aria-label="Корзина"><i data-lucide="shopping-bag"></i><span id="cartCount" class="count">0</span></button></div></div><input id="search" class="search" placeholder="Поиск товаров"></header>
+<section id="home" class="page active">
+<div class="home-hero">
+ <div class="home-hero-copy"><span class="hero-kicker">UZBEK RE'SALE</span><h1>Покупай.<br>Продавай.<br>Заказывай.</h1><p>Ресейл между пользователями и товары от Uzbek Re'Sale</p><button onclick="openHomeCatalog('all')">Смотреть товары <i data-lucide="arrow-right"></i></button></div>
+ <div class="hero-product"><div class="hero-product-glow"></div><img src="https://nb.scene7.com/is/image/NB/u530hfw_nb_02_i?$pdpflexf2$=&hei=700&wid=700" alt="New Balance 530"></div>
+</div>
+<div class="home-content">
+ <div class="home-modes">
+  <button class="home-mode" onclick="openHomeCatalog('resale')"><span class="mode-icon"><i data-lucide="refresh-cw"></i></span><strong>Ресейл</strong><small>Вещи от пользователей</small><span class="mode-arrow">→</span></button>
+  <button class="home-mode" onclick="openHomeCatalog('official')"><span class="mode-icon"><i data-lucide="badge-check"></i></span><strong>От нас</strong><small>В наличии и из Китая</small><span class="mode-arrow">→</span></button>
+  <button class="home-mode" onclick="page('sell')"><span class="mode-icon"><i data-lucide="plus"></i></span><strong>Продать</strong><small>Выставить свою вещь</small><span class="mode-arrow">→</span></button>
+ </div>
+ <div class="home-section-title"><h2>Категории</h2><button onclick="openHomeCatalog('all')">Смотреть все</button></div>
+ <div class="home-categories">
+  <button onclick="openHomeCategory('Одежда')"><span><i data-lucide="shirt"></i></span><b>Одежда</b></button>
+  <button onclick="openHomeCategory('Обувь')"><span><i data-lucide="footprints"></i></span><b>Обувь</b></button>
+  <button onclick="openHomeCategory('Сумки')"><span><i data-lucide="shopping-bag"></i></span><b>Сумки</b></button>
+  <button onclick="openHomeCategory('Аксессуары')"><span><i data-lucide="watch"></i></span><b>Аксессуары</b></button>
+  <button onclick="openHomeCategory('Другое')"><span><i data-lucide="ellipsis"></i></span><b>Другое</b></button>
+ </div>
+ <div class="home-section-title popular-title"><h2>Популярное</h2><button onclick="openHomeCatalog('all')">Смотреть все</button></div>
+ <div id="homeGrid" class="grid home-grid"></div>
+</div></section>
 <section id="catalog" class="page"><div class="section"><div class="catalog-head"><h1>Каталог</h1><select id="sortSelect" class="sortselect"><option value="default">Сортировка</option><option value="priceAsc">Цена ↑</option><option value="priceDesc">Цена ↓</option><option value="name">По названию</option></select></div><div class="filters" id="filters"><button class="filter active" data-type="Все">Все</button><button class="filter" data-type="Ресейл">Ресейл</button><button class="filter" data-type="Под заказ">Из Китая</button><button class="filter" data-type="В наличии">В наличии</button></div><div class="category-filter" id="categoryFilters"><button class="category-chip active" data-category="Все">Все категории</button><button class="category-chip" data-category="Одежда">Одежда</button><button class="category-chip" data-category="Обувь">Обувь</button><button class="category-chip" data-category="Аксессуары">Аксессуары</button></div><div id="catalogGrid" class="grid"></div></div></section>
 <section id="sell" class="page"><div class="section"><h1>Продать вещь</h1><p class="meta">Заполните информацию о товаре. Перед публикацией объявление пройдёт проверку.</p><div class="sell-form"><label class="uploadbox" for="sellPhotos"><span><i data-lucide="image-plus"></i><br>Добавить фотографии<br><small>до 10 фото</small></span></label><input id="sellPhotos" class="photo-input" type="file" accept="image/*" multiple><div id="sellPreview" class="preview-grid"></div><div class="field"><label>Название товара *</label><input id="sellName" placeholder="Например: Nike Air Force 1"></div><div class="field"><label>Категория *</label><select id="sellCategory"><option>Одежда</option><option>Обувь</option><option>Сумки</option><option>Аксессуары</option><option>Другое</option></select></div><div class="field"><label>Бренд</label><input id="sellBrand" placeholder="Например: Nike"></div><div class="field"><label>Размер</label><input id="sellSize" placeholder="M, 42, One Size..."></div><div class="field"><label>Состояние *</label><select id="sellCondition"><option>Новое</option><option>Отличное</option><option>Хорошее</option><option>Удовлетворительное</option></select></div><div class="field"><label>Цена, сум *</label><input id="sellPrice" inputmode="numeric" placeholder="500000"></div><div class="field"><label>Описание</label><textarea id="sellDescription" rows="4" placeholder="Расскажите о вещи"></textarea></div><button class="btn black" id="sellSubmit">Отправить на проверку</button></div></div></section>
 <section id="favorites" class="page"><div class="section"><h1>Избранное</h1><div id="favoriteGrid" class="grid"></div></div></section><section id="cart" class="page"><div class="section"><h1>Корзина</h1><div id="cartList"></div><div id="cartBottom" style="display:none"><div class="total"><span>Итого</span><span id="total"></span></div><button id="checkoutBtn" class="btn black">Оформить заказ</button></div></div></section>
@@ -140,7 +225,7 @@ nav{background:rgba(255,255,255,.97)!important;backdrop-filter:blur(18px);-webki
 {id:4,name:"Nike Club Cap Black",price:280000,size:"One Size",condition:"Новое",type:"В наличии",category:"Аксессуары",brand:"Nike",image:"https://www.nike.qa/dw/image/v2/BDVB_PRD/on/demandware.static/-/Sites-akeneo-master-catalog/default/dw551391f0/nk/af6/8/a/b/5/2/af68ab52_2c8b_4c37_a883_e3703b445a05.jpg"}
 ];
 
-let cart=[],favs=[],selected=null,type="Все",q="",category="Все",sortMode="default";
+let cart=[],favs=[],selected=null,type="Все",q="",category="Все",sortMode="default",ownerFilter="";
 
 let telegramUser=null;
 let marketProducts=[];
@@ -152,21 +237,38 @@ function card(p){const e=document.createElement("div");e.className="card";e.inne
 
 function fill(id,list){const b=$(id);b.innerHTML="";if(!list.length){b.innerHTML='<div class="empty">Здесь пока ничего нет</div>';return}list.forEach(p=>b.appendChild(card(p)))}
 
-function render(){let list=products.filter(p=>(type==="Все"||p.type===type)&&(category==="Все"||p.category===category)&&p.name.toLowerCase().includes(q.toLowerCase()));if(sortMode==="priceAsc")list=[...list].sort((a,b)=>a.price-b.price);if(sortMode==="priceDesc")list=[...list].sort((a,b)=>b.price-a.price);if(sortMode==="name")list=[...list].sort((a,b)=>a.name.localeCompare(b.name));fill("homeGrid",products.slice(0,4));fill("catalogGrid",list);fill("favoriteGrid",products.filter(p=>favs.includes(p.id)));renderCart()}
+function render(){let list=products.filter(p=>(type==="Все"||p.type===type)&&(!ownerFilter||p.ownerType===ownerFilter)&&(category==="Все"||p.category===category)&&p.name.toLowerCase().includes(q.toLowerCase()));if(sortMode==="priceAsc")list=[...list].sort((a,b)=>a.price-b.price);if(sortMode==="priceDesc")list=[...list].sort((a,b)=>b.price-a.price);if(sortMode==="name")list=[...list].sort((a,b)=>a.name.localeCompare(b.name));fill("homeGrid",products.slice(0,4));fill("catalogGrid",list);fill("favoriteGrid",products.filter(p=>favs.includes(p.id)));renderCart()}
 
 function renderCart(){const cc=$("cartCount");if(cc)cc.textContent=cart.length;const b=$("cartList");b.innerHTML="";if(!cart.length){b.innerHTML='<div class="empty">Корзина пока пустая 🛍</div>';$("cartBottom").style.display="none";return}$("cartBottom").style.display="block";cart.forEach(p=>{const r=document.createElement("div");r.className="cartrow";r.innerHTML=`<div class="cartpic"><img src="${p.image}" alt="${p.name}"></div><div class="grow"><b>${p.name}</b><div class="meta">${p.size}</div><div class="price">${money(p.price)}</div></div><button class="remove">×</button>`;r.querySelector(".remove").onclick=()=>{cart=cart.filter(x=>x.id!==p.id);renderCart()};b.appendChild(r)});$("total").textContent=money(cart.reduce((s,p)=>s+p.price,0))}
 
 function add(p){if(!cart.some(x=>x.id===p.id))cart.push(p);renderCart()}
 
-function resetPageScroll(target){const scroller=document.scrollingElement||document.documentElement;if(scroller)scroller.scrollTop=0;document.documentElement.scrollTop=0;document.body.scrollTop=0;window.scrollTo(0,0);const app=document.querySelector(".app");if(app)app.scrollTop=0;if(target){target.scrollTop=0;requestAnimationFrame(()=>target.scrollIntoView({block:"start",behavior:"auto"}))}}
+function resetPageScroll(target){const scroller=document.scrollingElement||document.documentElement;if(scroller)scroller.scrollTop=0;document.documentElement.scrollTop=0;document.body.scrollTop=0;window.scrollTo({top:0,left:0,behavior:"auto"});const app=document.querySelector(".app");if(app)app.scrollTop=0;if(target)target.scrollTop=0}
 function navigatePage(id){document.querySelectorAll(".page").forEach(x=>x.classList.remove("active"));const target=$(id);if(!target){console.error("Unknown page:",id);return}target.classList.add("active");document.querySelectorAll(".nav").forEach(x=>x.classList.toggle("active",x.dataset.page===id));resetPageScroll(target);setTimeout(()=>resetPageScroll(target),30);setTimeout(()=>resetPageScroll(target),120);render();setTimeout(()=>window.lucide&&lucide.createIcons(),0)}
 
+function syncCatalogFilterUI(){
+ document.querySelectorAll(".filter").forEach(x=>x.classList.toggle("active",!ownerFilter&&x.dataset.type===type));
+ document.querySelectorAll(".category-chip").forEach(x=>x.classList.toggle("active",x.dataset.category===category));
+}
+function openHomeCatalog(mode){
+ q="";category="Все";ownerFilter="";
+ if(mode==="resale")type="Ресейл";
+ else if(mode==="official"){type="Все";ownerFilter="official"}
+ else type="Все";
+ const search=$("search");if(search)search.value="";
+ syncCatalogFilterUI();page("catalog");render();
+}
+function openHomeCategory(cat){
+ q="";type="Все";ownerFilter="";category=cat;
+ const search=$("search");if(search)search.value="";
+ syncCatalogFilterUI();page("catalog");render();
+}
 function checkout(){if(!cart.length)return;$("orderForm").style.display="block";$("success").style.display="none";$("checkoutView").classList.add("open")}
 
 document.querySelectorAll(".nav").forEach(x=>x.onclick=()=>page(x.dataset.page));
 
-document.querySelectorAll(".filter").forEach(x=>x.onclick=()=>{document.querySelectorAll(".filter").forEach(y=>y.classList.remove("active"));x.classList.add("active");type=x.dataset.type;render()});
-document.querySelectorAll(".category-chip").forEach(x=>x.onclick=()=>{document.querySelectorAll(".category-chip").forEach(y=>y.classList.remove("active"));x.classList.add("active");category=x.dataset.category;render()});
+document.querySelectorAll(".filter").forEach(x=>x.onclick=()=>{document.querySelectorAll(".filter").forEach(y=>y.classList.remove("active"));x.classList.add("active");ownerFilter="";type=x.dataset.type;render()});
+document.querySelectorAll(".category-chip").forEach(x=>x.onclick=()=>{document.querySelectorAll(".category-chip").forEach(y=>y.classList.remove("active"));x.classList.add("active");ownerFilter="";category=x.dataset.category;render()});
 $("sortSelect").onchange=e=>{sortMode=e.target.value;render()};
 
 $("search").oninput=e=>{q=e.target.value;render()};$("productBack").onclick=()=>$("productView").classList.remove("open");
