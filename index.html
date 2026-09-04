@@ -600,7 +600,7 @@ async function adminCreateOfficial(){
 }
 async function loadOfficialList(){
  const d=await adminFetch("/admin/listings?owner=official");
- $("officialList").innerHTML=d.listings.map(x=>`<div class="admin-card">${x.images?.[0]?.image_url?`<img src="${x.images[0].image_url}" style="width:72px;height:72px;object-fit:cover;border-radius:12px;float:left;margin-right:10px">`:""}<b>${x.is_pinned?"📌 ":""}${x.title}</b><div>${money(x.price)} · Остаток ${x.stock_qty}</div><div class="admin-mini">${x.source_type==="china"?"Из Китая":"В наличии"} · ${x.status}</div><div class="admin-actions"><button onclick="adminTogglePin(${x.id},${x.is_pinned?0:1})">${x.is_pinned?"Открепить":"📌 Закрепить"}</button><button onclick="adminEditOfficial(${x.id})">✏️ Редактировать</button><button onclick="adminToggleSale(${x.id},'${x.status==="approved"?"paused":"approved"}')">${x.status==="approved"?"Снять с продажи":"Вернуть в продажу"}</button><button class="admin-danger" onclick="adminDeleteListing(${x.id})">Удалить</button></div><div style="clear:both"></div></div>`).join("")||'<div class="empty">Наших товаров нет</div>';
+ $("officialList").innerHTML=d.listings.map(x=>`<div class="admin-card">${x.images?.[0]?.image_url?`<img src="${x.images[0].image_url}" style="width:72px;height:72px;object-fit:cover;border-radius:12px;float:left;margin-right:10px">`:""}<b>${x.is_pinned?"📌 ":""}${x.title}</b><div>${money(x.price)} · Остаток ${x.stock_qty}</div><div class="admin-mini">${x.source_type==="china"?"Из Китая":"В наличии"} · ${x.status}</div><div class="admin-actions"><button onclick="adminTogglePin(${x.id},${x.is_pinned?0:1})">${x.is_pinned?"Открепить":"📌 Закрепить"}</button><button onclick="adminEditOfficial(${x.id})">✏️ Редактировать</button><button onclick="adminToggleSale(${x.id},'${x.status==="approved"?"paused":"approved"}')">${x.status==="approved"?"Снять с продажи":"Вернуть в продажу"}</button><button class="admin-danger" onclick="adminDeleteListing(${x.id})">🗑 Удалить товар</button></div><div style="clear:both"></div></div>`).join("")||'<div class="empty">Наших товаров нет</div>';
 }
 async function adminTogglePin(id,v){await adminFetch("/admin/listing-update",{method:"POST",body:JSON.stringify({id,isPinned:!!v})});loadOfficialList()}
 async function adminToggleSale(id,status){await adminFetch("/admin/listing-update",{method:"POST",body:JSON.stringify({id,status})});loadOfficialList()}
@@ -613,7 +613,17 @@ async function adminEditOfficial(id){
 }
 async function adminOrderStatus(id,status){await adminFetch("/admin/order-status",{method:"POST",body:JSON.stringify({id,status})});adminTab("orders")}
 
-async function adminDeleteListing(id){if(!confirm("Удалить товар и его фотографии? История заказов останется."))return;await adminFetch("/admin/listing?id="+id,{method:"DELETE"});alert("Удалено");loadAdmin()}
+async function adminDeleteListing(id){
+ if(!confirm("Удалить товар Uzbek Re'Sale и все его фотографии?\n\nИстория уже созданных заказов сохранится."))return;
+ try{
+   const d=await adminFetch("/admin/listing?id="+encodeURIComponent(id),{method:"DELETE"});
+   alert("✓ Товар удалён\nФото удалено: "+Number(d.deletedImages||0));
+   await loadOfficialList();
+   await loadMarketplaceCatalog();
+ }catch(e){
+   alert("Не удалось удалить товар: "+String(e.message||e));
+ }
+}
 function initTelegram(){
   const adminBtnOnInit=$("adminPanelBtn");
   if(adminBtnOnInit){adminBtnOnInit.hidden=true;adminBtnOnInit.style.setProperty("display","none","important")}
@@ -659,6 +669,7 @@ function initTelegram(){
 
       .join("")
 
+
       .slice(0,2)
 
       .toUpperCase() || "UR";
@@ -668,7 +679,6 @@ function initTelegram(){
     $("profileName").textContent = fullName;
 
     $("profileAvatar").textContent = initials;
-
 
     $("profileUsername").textContent = u.username ? "@"+u.username : "Telegram пользователь";
 
