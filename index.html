@@ -581,23 +581,22 @@ async function adminTab(tab,btn){
  }catch(e){c.innerHTML='<div class="empty">Ошибка загрузки: '+String(e.message||e)+'</div>'}
 }
 async function adminModerate(id,action){let reason="";if(action==="reject")reason=prompt("Причина:")||"";await adminFetch("/admin/moderate",{method:"POST",body:JSON.stringify({id,action,reason})});loadAdmin()}
-async function adminUploadImages(files){
+async function adminPreparePhotos(files){
  const out=[];
  for(const file of [...files]){
   if(!file.type.startsWith("image/"))continue;
+  if(file.size>10*1024*1024)throw new Error("Фото слишком большое: "+file.name);
   const dataUrl=await new Promise((res,rej)=>{const fr=new FileReader();fr.onload=()=>res(fr.result);fr.onerror=rej;fr.readAsDataURL(file)});
-  const r=await fetch(MARKETPLACE_API+"/marketplace/upload-image",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({file:dataUrl,fileName:file.name})});
-  const d=await r.json();if(!r.ok||!d.ok)throw new Error(d.error||"IMAGE_UPLOAD_FAILED");
-  out.push({url:d.url,fileId:d.fileId});
+  out.push({name:file.name,dataUrl});
  }
  return out;
 }
 async function adminCreateOfficial(){
  const btn=$("aoCreateBtn"),files=$("aoImages").files;
- const b={title:$("aoTitle").value.trim(),category:$("aoCategory").value.trim(),brand:$("aoBrand").value.trim(),size:$("aoSize").value.trim(),condition:$("aoCondition").value,price:Number($("aoPrice").value),stockQty:Number($("aoStock").value||0),sourceType:$("aoSource").value,isPinned:$("aoPinned").checked,description:$("aoDesc").value.trim(),images:[]};
+ const b={title:$("aoTitle").value.trim(),category:$("aoCategory").value.trim(),brand:$("aoBrand").value.trim(),size:$("aoSize").value.trim(),condition:$("aoCondition").value,price:Number($("aoPrice").value),stockQty:Number($("aoStock").value||0),sourceType:$("aoSource").value,isPinned:$("aoPinned").checked,description:$("aoDesc").value.trim(),photos:[]};
  if(!b.title||!b.category||!b.price)return alert("Заполните название, категорию и цену");
  if(!files.length)return alert("Добавьте хотя бы одну фотографию");
- try{btn.disabled=true;btn.textContent="Загрузка фото...";b.images=await adminUploadImages(files);btn.textContent="Создание...";await adminFetch("/admin/official",{method:"POST",body:JSON.stringify(b)});alert("✓ Товар Uzbek Re'Sale создан");adminTab("official")}catch(e){alert("Ошибка: "+String(e.message||e))}finally{if(btn){btn.disabled=false;btn.textContent="Создать товар"}}
+ try{btn.disabled=true;btn.textContent="Загрузка фото...";b.photos=await adminPreparePhotos(files);btn.textContent="Создание...";await adminFetch("/admin/official",{method:"POST",body:JSON.stringify(b)});alert("✓ Товар Uzbek Re'Sale создан");adminTab("official")}catch(e){alert("Ошибка: "+String(e.message||e))}finally{if(btn){btn.disabled=false;btn.textContent="Создать товар"}}
 }
 async function loadOfficialList(){
  const d=await adminFetch("/admin/listings?owner=official");
@@ -612,8 +611,8 @@ async function adminEditOfficial(id){
  const stock=prompt("Остаток:",x.stock_qty);if(stock===null)return;
  await adminFetch("/admin/listing-update",{method:"POST",body:JSON.stringify({id,title,price:Number(price),stockQty:Number(stock)})});loadOfficialList();
 }
-
 async function adminOrderStatus(id,status){await adminFetch("/admin/order-status",{method:"POST",body:JSON.stringify({id,status})});adminTab("orders")}
+
 async function adminDeleteListing(id){if(!confirm("Удалить товар и его фотографии? История заказов останется."))return;await adminFetch("/admin/listing?id="+id,{method:"DELETE"});alert("Удалено");loadAdmin()}
 function initTelegram(){
   const adminBtnOnInit=$("adminPanelBtn");
@@ -669,6 +668,7 @@ function initTelegram(){
     $("profileName").textContent = fullName;
 
     $("profileAvatar").textContent = initials;
+
 
     $("profileUsername").textContent = u.username ? "@"+u.username : "Telegram пользователь";
 
