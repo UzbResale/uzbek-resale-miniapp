@@ -50,7 +50,7 @@ header .brand{position:absolute!important;left:50%!important;transform:translate
 header .top-actions{margin-left:auto!important;display:flex!important;align-items:center!important;gap:0!important;z-index:3}
 header .top-actions button:first-child{position:absolute!important;left:18px!important;transform:none!important}
 header .top-actions button:last-child{margin-left:0!important}
-</style><script src="https://telegram.org/js/telegram-web-app.js"></script><script src="https://unpkg.com/lucide@latest"></script></head><body><div class="app"><header><div class="top"><div style="width:88px"></div><div class="brand"><div class="mark"><svg class="doppi" viewBox="0 0 96 48" aria-label="Тюбетейка">
+#productSeller{position:relative;z-index:50;pointer-events:auto}#productSeller button{position:relative;z-index:51;pointer-events:auto!important}</style><script src="https://telegram.org/js/telegram-web-app.js"></script><script src="https://unpkg.com/lucide@latest"></script></head><body><div class="app"><header><div class="top"><div style="width:88px"></div><div class="brand"><div class="mark"><svg class="doppi" viewBox="0 0 96 48" aria-label="Тюбетейка">
 <path d="M8 35C13 15 30 6 48 6s35 9 40 29c-12 5-25 7-40 7S20 40 8 35Z" fill="#111"/>
 <path d="M48 8v31M20 29c8-3 14-8 18-15M76 29c-8-3-14-8-18-15" stroke="#fff" stroke-width="2" fill="none"/>
 
@@ -106,7 +106,7 @@ let marketProducts=[];
 let orderSending=false;const ORDERS_API="https://uzbek-resale-orders.amegakid.workers.dev";
 const MARKETPLACE_API="https://uzbek-resale-orders.amegakid.workers.dev";const $=id=>document.getElementById(id),money=n=>Number(n||0).toLocaleString("ru-RU")+" сум";
 
-function card(p){const e=document.createElement("div");e.className="card";e.innerHTML=`<div class="photo"><img src="${p.image}" alt="${p.name}" loading="lazy" onerror="this.style.display='none'"></div><button class="heart">${favs.includes(p.id)?"♥":"♡"}</button><span class="badge">${p.ownerType==="official"?"✓ ОТ UZBEK RESALE":p.type}</span><div class="name">${p.name}</div><div class="meta">${p.brand} · Размер: ${p.size}</div><div class="price">${money(p.price)}</div>`;e.querySelector(".heart").onclick=x=>{x.stopPropagation();favs=favs.includes(p.id)?favs.filter(i=>i!==p.id):[...favs,p.id];render()};e.onclick=()=>{selected=p;$("bigPhoto").innerHTML=`<img src="${p.image}" alt="${p.name}">`;$("pType").textContent=p.type;$("pName").textContent=p.name;$("pPrice").textContent=money(p.price);$("pSize").textContent="Размер: "+p.size;$("pCondition").textContent="Состояние: "+p.condition;const d=$("productMeta");if(d)d.innerHTML=`<span>Бренд</span><span>${p.brand||"—"}</span><span>Категория</span><span>${p.category||"—"}</span><span>Размер</span><span>${p.size}</span><span>Состояние</span><span>${p.condition}</span>`;const sb=$("productSeller");if(sb){if(p.ownerType==="official"){sb.innerHTML='<div class="seller-card"><div class="seller-avatar">UR</div><div class="seller-main"><div class="official-badge">✓ ОТ UZBEK RE\'SALE</div><div class="seller-sub">'+(p.sourceType==="china"?"Из Китая":"В наличии")+'</div></div></div>';}else if(p.listingId){const ini=(p.sellerName||"P").split(" ").map(x=>x[0]).join("").slice(0,2).toUpperCase();sb.innerHTML='<div class="resale-badge">♻ РЕСЕЙЛ</div><div class="seller-card"><div class="seller-avatar">'+ini+'</div><div class="seller-main"><div class="seller-name">'+(p.sellerName||"Продавец")+'</div><div class="seller-sub">'+(p.sellerUsername?"@"+p.sellerUsername:"Telegram продавец")+'</div></div><button class="seller-link" onclick="event.stopPropagation();closeProduct();setTimeout(()=>openSellerProfile(\''+p.sellerTelegramId+'\'),30)">Профиль</button></div>'+(p.sellerUsername?'<button class="btn telegram-btn" onclick="event.stopPropagation();messageSeller(\''+p.sellerUsername+'\')">Написать в Telegram</button>':'');}else sb.innerHTML="";}$("productView").classList.add("open")};return e}
+function card(p){const e=document.createElement("div");e.className="card";e.innerHTML=`<div class="photo"><img src="${p.image}" alt="${p.name}" loading="lazy" onerror="this.style.display='none'"></div><button class="heart">${favs.includes(p.id)?"♥":"♡"}</button><span class="badge">${p.ownerType==="official"?"✓ ОТ UZBEK RESALE":p.type}</span><div class="name">${p.name}</div><div class="meta">${p.brand} · Размер: ${p.size}</div><div class="price">${money(p.price)}</div>`;e.querySelector(".heart").onclick=x=>{x.stopPropagation();favs=favs.includes(p.id)?favs.filter(i=>i!==p.id):[...favs,p.id];render()};e.onclick=()=>{selected=p;$("bigPhoto").innerHTML=`<img src="${p.image}" alt="${p.name}">`;$("pType").textContent=p.type;$("pName").textContent=p.name;$("pPrice").textContent=money(p.price);$("pSize").textContent="Размер: "+p.size;$("pCondition").textContent="Состояние: "+p.condition;const d=$("productMeta");if(d)d.innerHTML=`<span>Бренд</span><span>${p.brand||"—"}</span><span>Категория</span><span>${p.category||"—"}</span><span>Размер</span><span>${p.size}</span><span>Состояние</span><span>${p.condition}</span>`;const sb=$("productSeller");if(sb){if(p.ownerType==="official"){sb.innerHTML='<div class="seller-card"><div class="seller-avatar">UR</div><div class="seller-main"><div class="official-badge">✓ ОТ UZBEK RE\'SALE</div><div class="seller-sub">'+(p.sourceType==="china"?"Из Китая":"В наличии")+'</div></div></div>';}else if(p.listingId){const ini=(p.sellerName||"P").split(" ").map(x=>x[0]).join("").slice(0,2).toUpperCase();sb.innerHTML='<div class="resale-badge">♻ РЕСЕЙЛ</div><div class="seller-card"><div class="seller-avatar">'+ini+'</div><div class="seller-main"><div class="seller-name">'+(p.sellerName||"Продавец")+'</div><div class="seller-sub">'+(p.sellerUsername?"@"+p.sellerUsername:"Telegram продавец")+'</div></div><button class="seller-link" onclick="event.preventDefault();event.stopPropagation();goSellerProfile(\''+p.sellerTelegramId+'\')">Профиль</button></div>'+(p.sellerUsername?'<button class="btn telegram-btn" onclick="event.stopPropagation();messageSeller(\''+p.sellerUsername+'\')">Написать в Telegram</button>':'');}else sb.innerHTML="";}$("productView").classList.add("open")};return e}
 
 function fill(id,list){const b=$(id);b.innerHTML="";if(!list.length){b.innerHTML='<div class="empty">Здесь пока ничего нет</div>';return}list.forEach(p=>b.appendChild(card(p)))}
 
@@ -171,6 +171,9 @@ $("confirmBtn").onclick=async()=>{
 
  const total=cart.reduce((s,p)=>s+p.price,0);
 
+ const liveTelegramUser=window.Telegram?.WebApp?.initDataUnsafe?.user||telegramUser||null;
+ telegramUser=liveTelegramUser;
+
  const tgName=telegramUser
 
    ? [telegramUser.first_name,telegramUser.last_name].filter(Boolean).join(" ")
@@ -218,6 +221,7 @@ $("confirmBtn").onclick=async()=>{
    total,
 
    telegramName:tgName,
+
 
    telegramUsername:tgUsername,
 
@@ -277,7 +281,6 @@ $("confirmBtn").onclick=async()=>{
 
    btn.textContent="Подтвердить заказ";
 
-
  }
 
 };
@@ -329,6 +332,7 @@ function openOrderDetail(o){
   }
   const items=(o.items||[]).map(i=>{const pp=products.find(p=>p.id===i.id||p.name===i.name);return `<div class="detail-item">${pp?`<img src="${pp.image}" alt="">`:""}<div class="grow"><b>${i.name||"Товар"}</b><div class="meta">${i.size?"Размер: "+i.size:""}</div><div class="price">${money(i.price)}</div></div></div>`}).join("");
   box.innerHTML=`<div class="detail-number">${o.orderNumber||"Заказ"}</div><div class="detail-status status-${o.status||"new"}">${orderStatus(o.status)}</div><div class="timeline"><div class="timeline-title">Статус заказа</div>${timeline}</div><div class="detail-items"><div class="timeline-title">Товары</div>${items}</div><div class="detail-box"><div class="detail-row"><span>Итого</span><span>${money(o.total)}</span></div><div class="detail-row"><span>Имя</span><span>${o.customerName||"—"}</span></div><div class="detail-row"><span>Телефон</span><span>${o.phone||"—"}</span></div><div class="detail-row"><span>Город</span><span>${o.city||"—"}</span></div><div class="detail-row"><span>Комментарий</span><span>${o.comment||"—"}</span></div></div>`;
+
   $("orderDetailView").classList.add("open")
 }
 
@@ -345,7 +349,8 @@ $("sellSubmit").onclick=async()=>{
 
   if(!user.id){alert("Откройте магазин внутри Telegram");return}
   if(!files.length){alert("Добавьте хотя бы одну фотографию");return}
-  if(!title||!price){alert("Заполните название и цену");return}
+  if(!title){alert("Заполните название товара");$("sellName").focus();return}
+  if(!price){alert("Введите корректную цену цифрами");const priceInput=$("sellPrice");priceInput.disabled=false;priceInput.focus();priceInput.select();return}
 
   const btn=$("sellSubmit");
   btn.classList.add("uploading");btn.disabled=true;btn.textContent="Загружаем фотографии...";
@@ -383,11 +388,11 @@ $("sellSubmit").onclick=async()=>{
     alert(`Объявление #${result.listingId} отправлено на модерацию`);
     $("sellName").value="";$("sellBrand").value="";$("sellSize").value="";
     $("sellPrice").value="";$("sellDescription").value="";$("sellPhotos").value="";
+
     $("sellPreview").innerHTML="";
     await openMyListings();
   }catch(error){
     console.error(error);
-
     alert("Ошибка: "+(error.message||error));
   }finally{
     btn.classList.remove("uploading");btn.disabled=false;btn.textContent="Отправить на проверку";
@@ -439,11 +444,11 @@ function listingStatus(s){
   return {pending:"На модерации",approved:"Опубликован",rejected:"Отклонён",sold:"Продан",deleted:"Удалён"}[s]||s;
 }
 async function openMyListings(){
+
   const tg=window.Telegram&&window.Telegram.WebApp;
   const user=tg?.initDataUnsafe?.user||{};
   if(!user.id){alert("Откройте магазин внутри Telegram");return}
   page("myProducts");
-
   const box=$("myListingsList");box.innerHTML='<div class="empty">Загрузка...</div>';
   try{
     const r=await fetch(MARKETPLACE_API+"/listings?sellerTelegramId="+encodeURIComponent(user.id));
@@ -458,13 +463,14 @@ async function openMyListings(){
     console.error(e);box.innerHTML='<div class="empty">Не удалось загрузить товары</div>';
   }
 }
+function goSellerProfile(id){if(!id){alert("Не удалось определить продавца");return}const pv=$("productView");if(pv)pv.classList.remove("open");page("sellerProfile");setTimeout(()=>openSellerProfile(id),20)}
 function openSellerListing(listingId){const p=products.find(x=>Number(x.listingId||0)===Number(listingId));if(!p){alert("Товар не найден в каталоге");return}openProduct(p.id)}
 function messageSeller(username){
  const u=String(username||"").replace(/^@/,"");if(!u)return alert("У продавца нет публичного Telegram username");
  const tg=window.Telegram&&window.Telegram.WebApp;if(tg&&tg.openTelegramLink)tg.openTelegramLink("https://t.me/"+u);else window.open("https://t.me/"+u,"_blank");
 }
 async function openSellerProfile(id,fallbackName="",fallbackUsername=""){
- if(!id)return;page("sellerProfile");const b=$("sellerProfileContent");b.innerHTML='<div class="empty">Загрузка...</div>';
+ if(!id)return;if(!$("sellerProfile").classList.contains("active"))page("sellerProfile");const b=$("sellerProfileContent");b.innerHTML='<div class="empty">Загрузка...</div>';
  try{const r=await fetch(MARKETPLACE_API+"/seller?telegramId="+encodeURIComponent(id)),d=await r.json();if(!r.ok||!d.ok)throw new Error();
  const p=d.profile;
  if((!p.name||p.name==="Продавец")&&fallbackName)p.name=fallbackName;
@@ -494,6 +500,7 @@ function initTelegram(){
   try{
 
     tg.ready();
+
 
     tg.expand();
 
@@ -554,6 +561,5 @@ initTelegram();
 render();
 loadMarketplaceCatalog();
 setTimeout(()=>window.lucide&&lucide.createIcons(),0);
-
 
 </script></body></html>
