@@ -50,7 +50,7 @@ header .brand{position:absolute!important;left:50%!important;transform:translate
 header .top-actions{margin-left:auto!important;display:flex!important;align-items:center!important;gap:0!important;z-index:3}
 header .top-actions button:first-child{position:absolute!important;left:18px!important;transform:none!important}
 header .top-actions button:last-child{margin-left:0!important}
-#productSeller{position:relative;z-index:50;pointer-events:auto}#productSeller button{position:relative;z-index:51;pointer-events:auto!important}.admin-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:15px 0}.admin-stat{background:#f5f5f5;border-radius:18px;padding:16px}.admin-stat b{font-size:24px;display:block}.admin-tabs{display:flex;gap:8px;overflow-x:auto;margin:14px 0}.admin-tab{white-space:nowrap;border:0;border-radius:18px;padding:10px 14px;font-weight:800}.admin-tab.on{background:#111;color:#fff}.admin-card{border:1px solid #e7e7e7;border-radius:18px;padding:14px;margin:10px 0}.admin-actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}.admin-actions button{border:0;border-radius:12px;padding:10px 12px;font-weight:800}.admin-form input,.admin-form select,.admin-form textarea{width:100%;box-sizing:border-box;margin:5px 0 12px;padding:13px;border:1px solid #ddd;border-radius:13px;font:inherit}.admin-form label{font-weight:800}.admin-danger{color:#c00}.admin-mini{font-size:12px;color:#777}</style><script src="https://telegram.org/js/telegram-web-app.js"></script><script src="https://unpkg.com/lucide@latest"></script></head><body><div class="app"><header><div class="top"><div style="width:88px"></div><div class="brand"><div class="mark"><svg class="doppi" viewBox="0 0 96 48" aria-label="Тюбетейка">
+#productSeller{position:relative;z-index:50;pointer-events:auto}#productSeller button{position:relative;z-index:51;pointer-events:auto!important}.admin-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:15px 0}.admin-stat{background:#f5f5f5;border-radius:18px;padding:16px}.admin-stat b{font-size:24px;display:block}.admin-tabs{display:flex;gap:8px;overflow-x:auto;margin:14px 0}.admin-tab{white-space:nowrap;border:0;border-radius:18px;padding:10px 14px;font-weight:800}.admin-tab.on{background:#111;color:#fff}.admin-card{border:1px solid #e7e7e7;border-radius:18px;padding:14px;margin:10px 0}.admin-actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}.admin-actions button{border:0;border-radius:12px;padding:10px 12px;font-weight:800}.admin-form input,.admin-form select,.admin-form textarea{width:100%;box-sizing:border-box;margin:5px 0 12px;padding:13px;border:1px solid #ddd;border-radius:13px;font:inherit}.admin-form label{font-weight:800}.admin-danger{color:#c00}.admin-mini{font-size:12px;color:#777}.admin-check{display:flex!important;align-items:center;gap:8px;margin:10px 0 16px}.admin-check input{width:auto!important;margin:0!important}</style><script src="https://telegram.org/js/telegram-web-app.js"></script><script src="https://unpkg.com/lucide@latest"></script></head><body><div class="app"><header><div class="top"><div style="width:88px"></div><div class="brand"><div class="mark"><svg class="doppi" viewBox="0 0 96 48" aria-label="Тюбетейка">
 <path d="M8 35C13 15 30 6 48 6s35 9 40 29c-12 5-25 7-40 7S20 40 8 35Z" fill="#111"/>
 <path d="M48 8v31M20 29c8-3 14-8 18-15M76 29c-8-3-14-8-18-15" stroke="#fff" stroke-width="2" fill="none"/>
 
@@ -62,7 +62,6 @@ header .top-actions button:last-child{margin-left:0!important}
 <section id="sell" class="page"><div class="section"><h1>Продать вещь</h1><p class="meta">Заполните информацию о товаре. Перед публикацией объявление пройдёт проверку.</p><div class="sell-form"><label class="uploadbox" for="sellPhotos"><span><i data-lucide="image-plus"></i><br>Добавить фотографии<br><small>до 10 фото</small></span></label><input id="sellPhotos" class="photo-input" type="file" accept="image/*" multiple><div id="sellPreview" class="preview-grid"></div><div class="field"><label>Название товара *</label><input id="sellName" placeholder="Например: Nike Air Force 1"></div><div class="field"><label>Категория *</label><select id="sellCategory"><option>Одежда</option><option>Обувь</option><option>Сумки</option><option>Аксессуары</option><option>Другое</option></select></div><div class="field"><label>Бренд</label><input id="sellBrand" placeholder="Например: Nike"></div><div class="field"><label>Размер</label><input id="sellSize" placeholder="M, 42, One Size..."></div><div class="field"><label>Состояние *</label><select id="sellCondition"><option>Новое</option><option>Отличное</option><option>Хорошее</option><option>Удовлетворительное</option></select></div><div class="field"><label>Цена, сум *</label><input id="sellPrice" inputmode="numeric" placeholder="500000"></div><div class="field"><label>Описание</label><textarea id="sellDescription" rows="4" placeholder="Расскажите о вещи"></textarea></div><button class="btn black" id="sellSubmit">Отправить на проверку</button></div></div></section>
 <section id="favorites" class="page"><div class="section"><h1>Избранное</h1><div id="favoriteGrid" class="grid"></div></div></section><section id="cart" class="page"><div class="section"><h1>Корзина</h1><div id="cartList"></div><div id="cartBottom" style="display:none"><div class="total"><span>Итого</span><span id="total"></span></div><button id="checkoutBtn" class="btn black">Оформить заказ</button></div></div></section>
 <section id="profile" class="page"><div class="profile"><div class="profilecard"><div id="profileAvatar" class="avatar">UR</div><div class="pinfo"><h1 id="profileName">Профиль</h1><p id="profileUsername">Узбекский Ресейл</p><p id="profileId" style="display:none"></p></div></div><div class="profile-actions">
-<button id="adminStatusBtn" class="profile-action" onclick="showAdminAuthStatus()"><i data-lucide="shield-question"></i><span>Проверить Admin доступ</span><span class="arrow">›</span></button>
 <button id="adminPanelBtn" class="profile-action" hidden style="display:none!important" onclick="openAdminPanel()"><i data-lucide="shield-check"></i><span>Admin Panel</span><span class="arrow">›</span></button>
 <button id="myOrdersBtn" class="profile-action"><i data-lucide="package"></i><span>Мои заказы</span><span class="arrow">›</span></button>
 <button class="profile-action" onclick="page('sell')"><i data-lucide="circle-plus"></i><span>Продать вещь</span><span class="arrow">›</span></button>
@@ -109,8 +108,8 @@ header .top-actions button:last-child{margin-left:0!important}
 <div class="faq-item"><button class="faq-q">Как узнать статус заказа?<span>＋</span></button><div class="faq-a">Профиль → Мои заказы. Там отображается история изменения статуса.</div></div>
 <div class="faq-item"><button class="faq-q">Как связаться по проблеме?<span>＋</span></button><div class="faq-a">Сообщите поддержке номер заказа UR-xxxxxx.</div></div>
 <div class="faq-item"><button class="faq-q">Кто отвечает за Ресейл-товар?<span>＋</span></button><div class="faq-a">За описание, состояние, подлинность и передачу пользовательского Ресейл-товара отвечает продавец.</div></div>
-
 <div class="faq-item"><button class="faq-q">Что делать при споре?<span>＋</span></button><div class="faq-a">Сохраните номер UR-xxxxxx и обратитесь в поддержку @uzbclothelover.</div></div>
+
 <div class="faq-item"><button class="faq-q">Как связаться без username?<span>＋</span></button><div class="faq-a">Используйте кнопку связи в сообщении о заказе. Бот передаст сообщения между сторонами без публичного @username.</div></div>
 <div class="faq-item"><button class="faq-q">Какие правила действуют?<span>＋</span></button><div class="faq-a">Используя сервис, размещая объявление или оформляя заказ, вы подтверждаете ознакомление с Правилами и Политикой конфиденциальности.</div></div></div></div></section>
 <section id="adminPanel" class="page"><div class="section"><div class="simple-head"><button class="back" onclick="backPage('profile')">←</button><h1>Admin Panel</h1></div><div id="adminStats" class="admin-grid"></div><div class="admin-tabs"><button class="admin-tab on" onclick="adminTab('moderation',this)">Модерация</button><button class="admin-tab" onclick="adminTab('orders',this)">Заказы</button><button class="admin-tab" onclick="adminTab('official',this)">Товары от нас</button><button class="admin-tab" onclick="adminTab('cleanup',this)">Очистка</button></div><div id="adminContent"></div></div></section>
@@ -167,6 +166,7 @@ $("confirmBtn").onclick=async()=>{
 
  const city=$("buyerCity").value.trim();
 
+
  const comment=$("buyerComment").value.trim();
 
  
@@ -222,6 +222,7 @@ $("confirmBtn").onclick=async()=>{
 
    comment,
 
+
    items:cart.map(p=>({
 
      id:p.id,
@@ -275,7 +276,6 @@ $("confirmBtn").onclick=async()=>{
    if(!response.ok||!result.ok){
 
      throw new Error(result.error||"Order send failed");
-
 
    }
 
@@ -332,6 +332,7 @@ function orderStatus(s){return ({new:"Новый",confirmed:"Подтвержд�
 function orderDate(v){if(!v)return "";const d=new Date(String(v).replace(" ","T")+"Z");return Number.isNaN(d.getTime())?v:d.toLocaleString("ru-RU",{day:"2-digit",month:"2-digit",year:"numeric",hour:"2-digit",minute:"2-digit"})}
 
 function renderOrders(a){
+
   const b=$("ordersList");
   if(!a.length){b.innerHTML='<div class="empty">У вас пока нет заказов</div>';return}
   b.innerHTML="";
@@ -386,8 +387,8 @@ $("sellSubmit").onclick=async()=>{
 
   if(!user.id){alert("Откройте магазин внутри Telegram");return}
   if(!files.length){alert("Добавьте хотя бы одну фотографию");return}
-
   if(!title){alert("Заполните название товара");$("sellName").focus();return}
+
   if(!price){alert("Введите корректную цену цифрами");const priceInput=$("sellPrice");priceInput.disabled=false;priceInput.focus();priceInput.select();return}
 
   const btn=$("sellSubmit");
@@ -442,8 +443,8 @@ $("addAddressBtn").onclick=()=>{const v=prompt("Введите адрес дос
 $("supportTelegram").onclick=()=>{const tg=window.Telegram&&window.Telegram.WebApp;if(tg&&tg.openTelegramLink)tg.openTelegramLink("https://t.me/uzbclothelover");else window.open("https://t.me/uzbclothelover","_blank")};
 function loadSwitch(id,key,defaultOn=true){const el=$(id);if(!el)return;const saved=localStorage.getItem(key);const on=saved===null?defaultOn:saved==="1";el.classList.toggle("on",on);el.onclick=()=>{const next=!el.classList.contains("on");el.classList.toggle("on",next);localStorage.setItem(key,next?"1":"0")}};loadSwitch("hapticSwitch","uzr_haptic",true);loadSwitch("notifySwitch","uzr_notifications",true);
 $("sellPhotos").onchange=e=>{const files=[...e.target.files].slice(0,10),b=$("sellPreview");b.innerHTML="";files.forEach(f=>{const img=document.createElement("img");img.src=URL.createObjectURL(f);b.appendChild(img)})};
-
 renderAddresses();
+
 
 
 async function loadMarketplaceCatalog(){
@@ -498,8 +499,8 @@ async function openMyListings(){
   }catch(e){
     console.error(e);box.innerHTML='<div class="empty">Не удалось загрузить товары</div>';
   }
-
 }
+
 function goSellerProfile(id){if(!id){alert("Не удалось определить продавца");return}const pv=$("productView");if(pv)pv.classList.remove("open");page("sellerProfile");setTimeout(()=>openSellerProfile(id),20)}
 function openSellerListing(listingId){const p=products.find(x=>Number(x.listingId||0)===Number(listingId));if(!p){alert("Товар не найден в каталоге");return}page("catalog");setTimeout(()=>{const el=card(p);el.click()},20)}
 function messageSeller(username){
@@ -527,13 +528,7 @@ function openOwnSellerProfile(){
 document.querySelectorAll(".faq-q").forEach(q=>q.onclick=()=>q.parentElement.classList.toggle("open"));
 
 function adminHeaders(){return{"Content-Type":"application/json","X-Telegram-Init-Data":String(window.Telegram?.WebApp?.initData||"")}}
-async function showAdminAuthStatus(){
- try{
-  const r=await fetch(MARKETPLACE_API+"/admin/auth-status",{headers:adminHeaders()});
-  const d=await r.json();
-  alert("Admin Auth\n\nTelegram подпись: "+(d.valid?"VALID":"INVALID")+"\nПричина: "+(d.reason||"—")+"\nTelegram ID: "+(d.verifiedId||"—")+"\nСовпадает с ADMIN_ID: "+(d.matchesAdmin?"ДА":"НЕТ"));
- }catch(e){alert("Ошибка проверки: "+String(e.message||e))}
-}
+
 
 async function adminFetch(path,opt={}){const r=await fetch(MARKETPLACE_API+path,{...opt,headers:{...adminHeaders(),...(opt.headers||{})}});let d={};try{d=await r.json()}catch(e){}if(!r.ok)throw new Error(d.error||("HTTP_"+r.status));return d}
 async function refreshAdminAccess(){
@@ -554,19 +549,72 @@ async function refreshAdminAccess(){
 }
 async function openAdminPanel(){if(!await refreshAdminAccess()){alert("Нет доступа к Admin Panel");return}page("adminPanel");loadAdmin()}
 async function loadAdmin(){try{const d=await adminFetch("/admin/dashboard");$("adminStats").innerHTML=`<div class="admin-stat"><b>${d.stats.pending}</b><span>Модерация</span></div><div class="admin-stat"><b>${d.stats.orders}</b><span>Заказы</span></div><div class="admin-stat"><b>${d.stats.active}</b><span>Товары</span></div><div class="admin-stat"><b>${d.stats.users}</b><span>Продавцы</span></div>`;adminTab("moderation")}catch(e){$("adminContent").innerHTML='<div class="empty">Нет доступа</div>'}}
+async function adminTab(tab,btn){
+ document.querySelectorAll(".admin-tab").forEach(x=>x.classList.toggle("on",x===btn));
+ const c=$("adminContent");c.innerHTML='<div class="empty">Загрузка...</div>';
+ try{
+  if(tab==="moderation"){
+   const d=await adminFetch("/admin/listings?status=pending");
+   c.innerHTML=d.listings.map(x=>`<div class="admin-card"><b>#${x.id} ${x.title}</b><div>${money(x.price)} · ${x.category}</div><div class="admin-mini">${x.seller_name||""}</div><div class="admin-actions"><button onclick="adminModerate(${x.id},'approve')">✅ Одобрить</button><button onclick="adminModerate(${x.id},'reject')">❌ Отклонить</button></div></div>`).join("")||'<div class="empty">Нет объявлений</div>';
 
-async function adminTab(tab,btn){document.querySelectorAll(".admin-tab").forEach(x=>x.classList.toggle("on",x===btn));const c=$("adminContent");c.innerHTML='<div class="empty">Загрузка...</div>';try{
-if(tab==="moderation"){const d=await adminFetch("/admin/listings?status=pending");c.innerHTML=d.listings.map(x=>`<div class="admin-card"><b>#${x.id} ${x.title}</b><div>${money(x.price)} · ${x.category}</div><div class="admin-mini">${x.seller_name||""}</div><div class="admin-actions"><button onclick="adminModerate(${x.id},'approve')">✅ Одобрить</button><button onclick="adminModerate(${x.id},'reject')">❌ Отклонить</button></div></div>`).join("")||'<div class="empty">Нет объявлений</div>'}
-if(tab==="orders"){const d=await adminFetch("/admin/orders");c.innerHTML=d.orders.map(o=>`<div class="admin-card"><b>${o.order_number}</b><div>${o.status} · ${money(o.total)}</div><div class="admin-mini">${o.name||""} · ${o.phone||""}</div></div>`).join("")||'<div class="empty">Заказов нет</div>'}
-if(tab==="official"){c.innerHTML=`<h2>Добавить товар от нас</h2><div class="admin-form"><label>Название</label><input id="aoTitle"><label>Категория</label><input id="aoCategory"><label>Бренд</label><input id="aoBrand"><label>Размер</label><input id="aoSize"><label>Цена</label><input id="aoPrice" type="number" inputmode="numeric"><label>Количество</label><input id="aoStock" type="number" value="1"><label>Тип</label><select id="aoSource"><option value="stock">В наличии</option><option value="china">Из Китая</option></select><label><input id="aoPinned" type="checkbox"> Закрепить</label><label>Описание</label><textarea id="aoDesc"></textarea><button class="btn black" onclick="adminCreateOfficial()">Создать товар</button></div><h2>Наши товары</h2><div id="officialList"></div>`;loadOfficialList()}
-if(tab==="cleanup"){const d=await adminFetch("/admin/listings");c.innerHTML='<p class="meta">Удаление товара удаляет фото ImageKit. История заказов сохраняется.</p>'+d.listings.map(x=>`<div class="admin-card"><b>#${x.id} ${x.title}</b><div>${x.status} · ${x.owner_type}</div><div class="admin-actions"><button class="admin-danger" onclick="adminDeleteListing(${x.id})">Удалить товар + фото</button></div></div>`).join("")} }catch(e){c.innerHTML='<div class="empty">Ошибка загрузки: '+String(e.message||e)+'</div>'}
+  }
+  if(tab==="orders"){
+   const d=await adminFetch("/admin/orders");
+   c.innerHTML=d.orders.map(o=>`<div class="admin-card"><b>${o.order_number}</b><div>${o.status} · ${money(o.total)}</div><div class="admin-mini">${o.name||""} · ${o.phone||""} · ${o.city||""}</div><div class="admin-actions"><button onclick="adminOrderStatus(${o.id},'confirmed')">✅ Подтвердить</button><button onclick="adminOrderStatus(${o.id},'shipping')">🚚 В доставке</button><button onclick="adminOrderStatus(${o.id},'completed')">🏁 Завершить</button><button onclick="adminOrderStatus(${o.id},'cancelled')">❌ Отменить</button></div></div>`).join("")||'<div class="empty">Заказов нет</div>';
+  }
+  if(tab==="official"){
+   c.innerHTML=`<h2>Добавить товар от нас</h2><div class="admin-form">
+    <label>Фото</label><input id="aoImages" type="file" accept="image/*" multiple><div id="aoImageHint" class="admin-mini">Можно выбрать несколько фотографий</div>
+    <label>Название</label><input id="aoTitle"><label>Категория</label><input id="aoCategory"><label>Бренд</label><input id="aoBrand"><label>Размер</label><input id="aoSize">
+    <label>Состояние</label><select id="aoCondition"><option>Новое</option><option>Отличное</option><option>Хорошее</option></select>
+    <label>Цена</label><input id="aoPrice" type="number" inputmode="numeric"><label>Количество</label><input id="aoStock" type="number" value="1" min="0">
+    <label>Тип</label><select id="aoSource"><option value="stock">В наличии</option><option value="china">Из Китая</option></select>
+    <label class="admin-check"><input id="aoPinned" type="checkbox"> <span>Закрепить товар первым</span></label>
+    <label>Описание</label><textarea id="aoDesc"></textarea>
+    <button class="btn black" id="aoCreateBtn" onclick="adminCreateOfficial()">Создать товар</button></div><h2>Наши товары</h2><div id="officialList"></div>`;
+   loadOfficialList();
+  }
+  if(tab==="cleanup"){
+   const d=await adminFetch("/admin/listings");
+   c.innerHTML='<p class="meta">Удаление товара удаляет фотографии ImageKit. История заказов сохраняется.</p>'+d.listings.map(x=>`<div class="admin-card"><b>#${x.id} ${x.title}</b><div>${x.status} · ${x.owner_type}</div><div class="admin-actions"><button class="admin-danger" onclick="adminDeleteListing(${x.id})">Удалить товар + фото</button></div></div>`).join("")||'<div class="empty">Товаров нет</div>';
+  }
+ }catch(e){c.innerHTML='<div class="empty">Ошибка загрузки: '+String(e.message||e)+'</div>'}
 }
 async function adminModerate(id,action){let reason="";if(action==="reject")reason=prompt("Причина:")||"";await adminFetch("/admin/moderate",{method:"POST",body:JSON.stringify({id,action,reason})});loadAdmin()}
-async function adminCreateOfficial(){const b={title:$("aoTitle").value.trim(),category:$("aoCategory").value.trim(),brand:$("aoBrand").value.trim(),size:$("aoSize").value.trim(),price:Number($("aoPrice").value),stockQty:Number($("aoStock").value||1),sourceType:$("aoSource").value,isPinned:$("aoPinned").checked,description:$("aoDesc").value.trim()};if(!b.title||!b.category||!b.price)return alert("Заполните название, категорию и цену");await adminFetch("/admin/official",{method:"POST",body:JSON.stringify(b)});alert("Товар создан");adminTab("official")}
-async function loadOfficialList(){const d=await adminFetch("/admin/listings?owner=official");$("officialList").innerHTML=d.listings.map(x=>`<div class="admin-card"><b>${x.is_pinned?"📌 ":""}${x.title}</b><div>${money(x.price)} · Остаток ${x.stock_qty}</div><div class="admin-mini">${x.source_type==="china"?"Из Китая":"В наличии"} · ${x.status}</div><div class="admin-actions"><button onclick="adminTogglePin(${x.id},${x.is_pinned?0:1})">${x.is_pinned?"Открепить":"📌 Закрепить"}</button><button onclick="adminDeleteListing(${x.id})">Удалить</button></div></div>`).join("")||'<div class="empty">Наших товаров нет</div>'}
+async function adminUploadImages(files){
+ const out=[];
+ for(const file of [...files]){
+  if(!file.type.startsWith("image/"))continue;
+  const dataUrl=await new Promise((res,rej)=>{const fr=new FileReader();fr.onload=()=>res(fr.result);fr.onerror=rej;fr.readAsDataURL(file)});
+  const r=await fetch(MARKETPLACE_API+"/marketplace/upload-image",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({file:dataUrl,fileName:file.name})});
+  const d=await r.json();if(!r.ok||!d.ok)throw new Error(d.error||"IMAGE_UPLOAD_FAILED");
+  out.push({url:d.url,fileId:d.fileId});
+ }
+ return out;
+}
+async function adminCreateOfficial(){
+ const btn=$("aoCreateBtn"),files=$("aoImages").files;
+ const b={title:$("aoTitle").value.trim(),category:$("aoCategory").value.trim(),brand:$("aoBrand").value.trim(),size:$("aoSize").value.trim(),condition:$("aoCondition").value,price:Number($("aoPrice").value),stockQty:Number($("aoStock").value||0),sourceType:$("aoSource").value,isPinned:$("aoPinned").checked,description:$("aoDesc").value.trim(),images:[]};
+ if(!b.title||!b.category||!b.price)return alert("Заполните название, категорию и цену");
+ if(!files.length)return alert("Добавьте хотя бы одну фотографию");
+ try{btn.disabled=true;btn.textContent="Загрузка фото...";b.images=await adminUploadImages(files);btn.textContent="Создание...";await adminFetch("/admin/official",{method:"POST",body:JSON.stringify(b)});alert("✓ Товар Uzbek Re'Sale создан");adminTab("official")}catch(e){alert("Ошибка: "+String(e.message||e))}finally{if(btn){btn.disabled=false;btn.textContent="Создать товар"}}
+}
+async function loadOfficialList(){
+ const d=await adminFetch("/admin/listings?owner=official");
+ $("officialList").innerHTML=d.listings.map(x=>`<div class="admin-card">${x.images?.[0]?.image_url?`<img src="${x.images[0].image_url}" style="width:72px;height:72px;object-fit:cover;border-radius:12px;float:left;margin-right:10px">`:""}<b>${x.is_pinned?"📌 ":""}${x.title}</b><div>${money(x.price)} · Остаток ${x.stock_qty}</div><div class="admin-mini">${x.source_type==="china"?"Из Китая":"В наличии"} · ${x.status}</div><div class="admin-actions"><button onclick="adminTogglePin(${x.id},${x.is_pinned?0:1})">${x.is_pinned?"Открепить":"📌 Закрепить"}</button><button onclick="adminEditOfficial(${x.id})">✏️ Редактировать</button><button onclick="adminToggleSale(${x.id},'${x.status==="approved"?"paused":"approved"}')">${x.status==="approved"?"Снять с продажи":"Вернуть в продажу"}</button><button class="admin-danger" onclick="adminDeleteListing(${x.id})">Удалить</button></div><div style="clear:both"></div></div>`).join("")||'<div class="empty">Наших товаров нет</div>';
+}
 async function adminTogglePin(id,v){await adminFetch("/admin/listing-update",{method:"POST",body:JSON.stringify({id,isPinned:!!v})});loadOfficialList()}
-async function adminDeleteListing(id){if(!confirm("Удалить товар и фото? Заказы останутся."))return;await adminFetch("/admin/listing?id="+id,{method:"DELETE"});alert("Удалено");loadAdmin()}
+async function adminToggleSale(id,status){await adminFetch("/admin/listing-update",{method:"POST",body:JSON.stringify({id,status})});loadOfficialList()}
+async function adminEditOfficial(id){
+ const d=await adminFetch("/admin/listings?owner=official"),x=d.listings.find(v=>Number(v.id)===Number(id));if(!x)return;
+ const title=prompt("Название:",x.title);if(title===null)return;
+ const price=prompt("Цена:",x.price);if(price===null)return;
+ const stock=prompt("Остаток:",x.stock_qty);if(stock===null)return;
+ await adminFetch("/admin/listing-update",{method:"POST",body:JSON.stringify({id,title,price:Number(price),stockQty:Number(stock)})});loadOfficialList();
+}
 
+async function adminOrderStatus(id,status){await adminFetch("/admin/order-status",{method:"POST",body:JSON.stringify({id,status})});adminTab("orders")}
+async function adminDeleteListing(id){if(!confirm("Удалить товар и его фотографии? История заказов останется."))return;await adminFetch("/admin/listing?id="+id,{method:"DELETE"});alert("Удалено");loadAdmin()}
 function initTelegram(){
   const adminBtnOnInit=$("adminPanelBtn");
   if(adminBtnOnInit){adminBtnOnInit.hidden=true;adminBtnOnInit.style.setProperty("display","none","important")}
