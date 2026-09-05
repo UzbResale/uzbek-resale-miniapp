@@ -3252,6 +3252,71 @@ nav.bottom,.bottom-nav,.bottom{
   color:#62788c!important;
   line-height:1.35!important;
 }
+
+/* =========================================================
+   ORDER SUCCESS V1 — final confirmation
+   ========================================================= */
+#checkoutView .success-premium{
+  min-height:calc(100dvh - 70px)!important;
+  display:none;
+  flex-direction:column!important;
+  align-items:center!important;
+  justify-content:center!important;
+  box-sizing:border-box!important;
+  padding:34px 8px 52px!important;
+  text-align:center!important;
+}
+#checkoutView .success-premium[style*="block"]{display:flex!important}
+#checkoutView .success-check{
+  width:94px!important;height:94px!important;
+  display:flex!important;align-items:center!important;justify-content:center!important;
+  margin:0 0 20px!important;
+  border-radius:50%!important;
+  background:#dff7e9!important;
+  box-shadow:0 0 0 13px rgba(36,177,100,.07),0 12px 30px rgba(18,124,68,.10)!important;
+}
+#checkoutView .success-check span{
+  width:58px!important;height:58px!important;
+  display:flex!important;align-items:center!important;justify-content:center!important;
+  border-radius:50%!important;background:#20ad61!important;color:#fff!important;
+  font-size:31px!important;font-weight:900!important;line-height:1!important;
+}
+#checkoutView .success-kicker{
+  margin-bottom:7px!important;color:#8292a1!important;
+  font-size:7.5px!important;font-weight:900!important;letter-spacing:2.2px!important;
+}
+#checkoutView .success-premium h2{
+  margin:0!important;color:#081f38!important;
+  font-size:27px!important;line-height:1.05!important;font-weight:900!important;letter-spacing:-.45px!important;
+}
+#checkoutView .success-premium>p{
+  max-width:290px!important;margin:10px auto 18px!important;padding:0!important;
+  background:none!important;color:#7c8996!important;font-size:10px!important;line-height:1.5!important;
+}
+#checkoutView .success-info{
+  width:100%!important;box-sizing:border-box!important;
+  margin:0 0 14px!important;padding:4px 13px!important;
+  border:1px solid #e6edf2!important;border-radius:17px!important;background:#fff!important;
+  box-shadow:0 4px 16px rgba(7,38,68,.035)!important;text-align:left!important;
+}
+#checkoutView .success-info>div{
+  display:flex!important;align-items:center!important;justify-content:space-between!important;gap:14px!important;
+  min-height:44px!important;border-bottom:1px solid #f0f3f5!important;
+}
+#checkoutView .success-info>div:last-child{border-bottom:0!important}
+#checkoutView .success-info span{color:#98a2ac!important;font-size:9px!important}
+#checkoutView .success-info b{color:#0a223a!important;font-size:9.5px!important;font-weight:850!important;text-align:right!important}
+#checkoutView .success-primary,#checkoutView .success-secondary{
+  width:100%!important;height:51px!important;margin:0!important;border-radius:14px!important;
+  font-size:11px!important;font-weight:900!important;
+}
+#checkoutView .success-primary{
+  border:0!important;background:#07518a!important;color:#fff!important;
+  box-shadow:0 6px 17px rgba(7,81,138,.14)!important;
+}
+#checkoutView .success-secondary{
+  margin-top:9px!important;border:1.5px solid #dce5ed!important;background:#fff!important;color:#0a416f!important;box-shadow:none!important;
+}
 </style><script src="https://telegram.org/js/telegram-web-app.js"></script><script src="https://unpkg.com/lucide@latest"></script></head><body><div class="app"><header><div class="top"><button class="round header-fav" onclick="page('favorites')" aria-label="Избранное"><i data-lucide="heart"></i></button><div class="brand"><div class="mark"><svg class="doppi" viewBox="0 0 96 48" aria-label="Тюбетейка">
 <path d="M8 35C13 15 30 6 48 6s35 9 40 29c-12 5-25 7-40 7S20 40 8 35Z" fill="#111"/>
 <path d="M48 8v31M20 29c8-3 14-8 18-15M76 29c-8-3-14-8-18-15" stroke="#fff" stroke-width="2" fill="none"/>
@@ -3442,7 +3507,18 @@ nav.bottom,.bottom-nav,.bottom{
   <div class="checkout-info"><span class="checkout-info-icon">i</span><div><b>Подтверждение заказа</b><p>Оплата и доставка согласовываются вручную после оформления.</p></div></div>
   <button id="confirmBtn" class="btn black checkout-confirm-premium">Подтвердить заказ</button>
 </div>
-<div id="success" class="success" style="display:none"><h1>✓</h1><h2>Заказ оформлен</h2><p>Мы свяжемся с вами для подтверждения.</p><button id="homeBtn" class="btn black">Вернуться в магазин</button></div>
+<div id="success" class="success success-premium" style="display:none">
+  <div class="success-check"><span>✓</span></div>
+  <div class="success-kicker">UZBEK RE'SALE</div>
+  <h2>Заказ оформлен!</h2>
+  <p id="successOrderText">Мы свяжемся с вами для подтверждения.</p>
+  <div class="success-info">
+    <div><span>Статус</span><b>Заказ создан</b></div>
+    <div><span>Что дальше</span><b>Подтверждение в Telegram</b></div>
+  </div>
+  <button id="successOrdersBtn" class="btn success-primary">Перейти в мои заказы</button>
+  <button id="homeBtn" class="btn success-secondary">Продолжить покупки</button>
+</div>
 </div></div><script>const products=[
 {id:1,name:"Basic Stüssy Hoodie Black",price:520000,size:"M",condition:"Отличное",type:"Ресейл",category:"Одежда",brand:"Stüssy",image:"https://www.stussy.com/cdn/shop/files/1925000_BLAC_1.jpg?v=1785178412&width=900"},
 {id:2,name:"New Balance 530 White",price:920000,size:"42",condition:"Новое",type:"Под заказ",category:"Обувь",brand:"New Balance",image:"https://nb.scene7.com/is/image/NB/u530hfw_nb_02_i?$pdpflexf2$=&hei=700&wid=700"},
@@ -3710,7 +3786,7 @@ $("confirmBtn").onclick=async()=>{
 
    $("orderForm").style.display="none";
 
-   $("success").style.display="block";const successText=$("success").querySelector("p");if(successText&&result.orderNumber)successText.textContent=`Номер заказа: ${result.orderNumber}. Мы свяжемся с вами для подтверждения.`;
+   $("success").style.display="block";const successText=$("successOrderText");if(successText&&result.orderNumber)successText.textContent=`Номер заказа: ${result.orderNumber}. Мы свяжемся с вами для подтверждения.`;
 
    cart=[];
 
@@ -3751,6 +3827,7 @@ function backPage(fallback="profile"){
 };
 
 $("homeBtn").onclick=()=>{$("checkoutView").classList.remove("open");["buyerName","buyerPhone","buyerCity","buyerComment"].forEach(id=>$(id).value="");page("home")};
+$("successOrdersBtn").onclick=()=>{$("checkoutView").classList.remove("open");["buyerName","buyerPhone","buyerCity","buyerComment"].forEach(id=>$(id).value="");openMyOrders()};
 
  
 
