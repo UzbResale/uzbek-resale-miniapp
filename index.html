@@ -1017,15 +1017,31 @@ header .header-fav,header .actions{top:13px!important}
 .resale-badge{display:inline-flex!important;align-items:center!important;gap:6px!important;border-radius:999px!important;padding:6px 11px!important;font-size:9px!important;font-weight:850!important;margin-bottom:10px!important;box-shadow:none!important}
 .official-badge{display:inline-flex!important;align-items:center!important;border-radius:999px!important;padding:6px 11px!important;font-size:9px!important;font-weight:850!important;letter-spacing:.02em!important}
 
-/* v2.3 — exact clean visual pass */
+/* Official Uzbek Re'Sale avatar */
+#productSeller .official-logo-avatar{
+ width:56px!important;height:56px!important;flex:0 0 56px!important;
+ padding:0!important;overflow:hidden!important;border-radius:50%!important;
+ background:#fff!important;border:1px solid #dfe7ef!important;
+ box-shadow:0 4px 14px rgba(7,59,109,.08)!important;
+}
+#productSeller .official-logo-avatar img{
+ width:100%!important;height:100%!important;object-fit:cover!important;display:block!important;
+}
+#productSeller .official-seller-card{align-items:center!important}
 
-/* Home/catalog: even, clean cards without photo frames */
-.card{display:flex!important;flex-direction:column!important;min-width:0!important}
+/* =========================================================
+   MOCKUP EXACT PASS v2.3
+   Visual target: approved 4-screen mockup.
+   ========================================================= */
+[hidden], .availability-badge[hidden]{display:none!important}
+
+/* HOME / CATALOG PRODUCT CARDS — clean, borderless photos */
+.card{position:relative!important}
 .card .photo{
-  height:205px!important;
+  height:230px!important;
   border:0!important;
   border-radius:18px!important;
-  background:#f6f7f8!important;
+  background:#f7f7f7!important;
   overflow:hidden!important;
   box-shadow:none!important;
 }
@@ -1033,116 +1049,246 @@ header .header-fav,header .actions{top:13px!important}
   width:100%!important;height:100%!important;
   object-fit:contain!important;
   padding:0!important;
+  background:transparent!important;
   border:0!important;
-  background:#f6f7f8!important;
 }
-.card .heart{top:8px!important;right:8px!important}
+.card .heart{
+  right:9px!important;top:9px!important;
+  width:38px!important;height:38px!important;
+  background:rgba(255,255,255,.96)!important;
+  border:0!important;
+  box-shadow:0 4px 16px rgba(7,42,74,.08)!important;
+  color:#0b355d!important;
+}
 .card .badge{
-  align-self:flex-start!important;
-  margin-top:7px!important;margin-bottom:5px!important;
-}
-.card .name{
-  min-height:36px!important;
-  margin:0!important;
-}
-.card .meta{min-height:14px!important;margin-top:5px!important}
-.card .price{margin-top:7px!important}
-
-/* Product gallery: no outer frames; only active thumbnail gets navy outline */
-.product-gallery-final{
-  padding:12px 14px 0!important;
-  background:#fff!important;
-}
-.product-bigphoto-final{
-  height:320px!important;
-  border:0!important;
-  border-radius:20px!important;
-  background:#f6f7f8!important;
+  margin:7px 0 5px!important;
+  min-height:24px!important;
+  padding:0 10px!important;
+  border-radius:999px!important;
+  font-size:8.5px!important;
+  font-weight:850!important;
   box-shadow:none!important;
 }
-.product-bigphoto-final img{
-  padding:0!important;
+.card .badge-official{background:#eaf3ff!important;color:#0a5794!important}
+.card .badge-resale{background:#07518a!important;color:#fff!important}
+.card .badge-order{background:#07518a!important;color:#fff!important}
+.card .name{
+  margin:0!important;
+  min-height:0!important;
+  font-size:15px!important;
+  line-height:1.14!important;
+  letter-spacing:-.25px!important;
+  color:#0a2139!important;
+}
+.card .meta{
+  margin-top:7px!important;
+  font-size:10px!important;
+  line-height:1.2!important;
+  color:#98a1ac!important;
+}
+.card .price{
+  margin-top:7px!important;
+  font-size:18px!important;
+  line-height:1!important;
+  color:#0a2139!important;
+}
+
+/* PRODUCT GALLERY — no ugly frames/side gutters */
+.product-gallery-final{
+  height:auto!important;
+  padding:10px 14px 0!important;
+  background:#fff!important;
   border:0!important;
+  overflow:visible!important;
+}
+.product-bigphoto-final{
+  height:355px!important;
+  margin:0!important;
+  border:0!important;
+  border-radius:20px!important;
+  background:#f7f7f7!important;
+  overflow:hidden!important;
+}
+.product-bigphoto-final img{
+  width:100%!important;height:100%!important;
   object-fit:contain!important;
-  background:#f6f7f8!important;
+  padding:0!important;
+  background:transparent!important;
+  border:0!important;
+}
+.product-circle{
+  left:12px!important;top:12px!important;
+  width:40px!important;height:40px!important;
+  border:0!important;
+  background:rgba(255,255,255,.96)!important;
+  box-shadow:0 5px 18px rgba(7,42,74,.10)!important;
+}
+.photo-counter{
+  right:12px!important;bottom:12px!important;
+  border-radius:999px!important;
+  background:#183b5c!important;
+  padding:6px 10px!important;
 }
 .photo-thumbs{
   padding:10px 14px 4px!important;
-  gap:8px!important;
+  gap:9px!important;
+  background:#fff!important;
 }
 .photo-thumbs button{
   width:64px!important;height:64px!important;flex:0 0 64px!important;
+  padding:0!important;
   border:0!important;
   border-radius:12px!important;
-  background:#f6f7f8!important;
+  background:#f7f7f7!important;
+  overflow:hidden!important;
   box-shadow:none!important;
 }
 .photo-thumbs button.active{
-  border:2px solid #0b4b84!important;
-  box-shadow:none!important;
+  border:0!important;
+  box-shadow:0 0 0 3px #07518a!important;
 }
 .photo-thumbs img{
-  padding:0!important;
-  border:0!important;
+  width:100%!important;height:100%!important;
   object-fit:contain!important;
-  background:#f6f7f8!important;
+  padding:0!important;
+  background:transparent!important;
 }
 
-/* Official store profile row exactly like the approved mockup */
-#productSeller .official-store-card{
-  display:flex!important;
+/* Product badges: exact different colors */
+.product-type-line{gap:7px!important;margin-bottom:9px!important}
+.product-type-line .badge{
+  min-height:25px!important;
+  padding:0 11px!important;
+  border-radius:999px!important;
+  font-size:8.5px!important;
+  box-shadow:none!important;
+}
+.product-type-line .badge-official{background:#07518a!important;color:#fff!important}
+.product-type-line .badge-resale{background:#07518a!important;color:#fff!important}
+.product-type-line .badge-order{background:#07518a!important;color:#fff!important}
+.availability-badge{
+  min-height:25px!important;
+  padding:0 11px!important;
+  border-radius:999px!important;
+  font-size:8.5px!important;
+  font-weight:850!important;
+}
+.availability-badge.china{background:#ffe4a8!important;color:#9b5a00!important}
+.availability-badge.stock{background:#dcf6e7!important;color:#17844d!important}
+
+/* Condition pills */
+.product-quick-spec{gap:7px!important;margin-bottom:14px!important}
+.product-quick-spec span{
+  border:0!important;
+  border-radius:999px!important;
+  padding:8px 11px!important;
+  font-size:9px!important;
+  font-weight:750!important;
+}
+#pSize{background:#f1f4f7!important;color:#607082!important}
+#pCondition.spec-new{background:#dcf6e7!important;color:#17844d!important}
+#pCondition.spec-excellent,#pCondition.spec-good{background:#e8f3ff!important;color:#1769ad!important}
+#pCondition.spec-fair{background:#fff0cf!important;color:#956200!important}
+
+/* Details and seller cards */
+.product-details-final{
+  margin:0 0 13px!important;
+  padding:9px 0!important;
+  border-top:1px solid #edf0f3!important;
+  border-bottom:1px solid #edf0f3!important;
+}
+.resale-badge{
+  display:inline-flex!important;
   align-items:center!important;
-  gap:12px!important;
-  padding:12px 14px!important;
-  border:1px solid #e1e8ef!important;
+  margin:0 0 10px!important;
+  padding:0 11px!important;
+  min-height:25px!important;
+  border-radius:999px!important;
+  background:#07518a!important;
+  color:#fff!important;
+  font-size:8.5px!important;
+  font-weight:850!important;
+}
+#productSeller .seller-card{
+  margin:0 0 14px!important;
+  padding:11px!important;
+  border:1px solid #e6ebf0!important;
   border-radius:16px!important;
   background:#fff!important;
   box-shadow:none!important;
 }
-#productSeller .official-store-avatar{
-  width:52px!important;height:52px!important;flex:0 0 52px!important;
-  padding:0!important;
-  border-radius:50%!important;
-  overflow:hidden!important;
-  background:#fff!important;
-  border:1px solid #e5ebf1!important;
+#productSeller .seller-avatar{
+  width:48px!important;height:48px!important;flex:0 0 48px!important;
 }
-#productSeller .official-store-avatar img{
+#productSeller .official-logo-avatar{
+  width:52px!important;height:52px!important;flex:0 0 52px!important;
+  border:1px solid #e7ebef!important;
+  background:#fff!important;
+  box-shadow:none!important;
+}
+#productSeller .official-logo-avatar img{
   width:100%!important;height:100%!important;
-  display:block!important;
   object-fit:contain!important;
-  padding:4px!important;
+  padding:5px!important;
   box-sizing:border-box!important;
   background:#fff!important;
 }
-#productSeller .official-store-name{
-  display:flex!important;
-  align-items:center!important;
-  gap:5px!important;
-  color:#0b223b!important;
-  font-size:13px!important;
-  line-height:1.15!important;
+#productSeller .official-badge{
+  background:transparent!important;
+  color:#0a2139!important;
+  padding:0!important;
+  min-height:0!important;
+  font-size:11px!important;
   font-weight:850!important;
 }
-#productSeller .verified-check{
-  width:16px!important;height:16px!important;
-  display:inline-flex!important;align-items:center!important;justify-content:center!important;
-  border-radius:50%!important;
-  background:#1688f8!important;color:#fff!important;
-  font-size:10px!important;font-weight:900!important;
-}
-#productSeller .official-store-card .seller-sub{
-  margin-top:3px!important;
-  color:#8b96a2!important;
-  font-size:9px!important;
+#productSeller .seller-link{
+  background:#f2f5f8!important;
+  color:#0b355d!important;
+  border:0!important;
+  border-radius:11px!important;
+  font-weight:850!important;
 }
 
-/* Keep resale seller row clean; no stray decorative dot/pill */
-#productSeller .resale-badge{
-  display:inline-flex!important;
-  background:#0b4b84!important;
+/* Different action colors */
+.product-buy-final{
+  background:#07518a!important;
   color:#fff!important;
-  margin:0 0 10px!important;
+  border:0!important;
+}
+.product-cart-final{
+  background:#fff!important;
+  color:#07518a!important;
+  border:1.5px solid #07518a!important;
+}
+
+/* Seller profile: personal seller remains personal; cleaner list cards */
+#sellerProfile .seller-profile-head{
+  background:#f4f7fb!important;
+  border-radius:0!important;
+  padding:28px 18px 24px!important;
+}
+#sellerProfile .seller-avatar{
+  background:#07518a!important;
+  color:#fff!important;
+}
+#sellerProfile .listing-card{
+  background:#fff!important;
+  border:1px solid #e8edf2!important;
+  border-radius:16px!important;
+  box-shadow:none!important;
+}
+#sellerProfile .listing-card img{
+  border:0!important;
+  border-radius:12px!important;
+  background:#f7f7f7!important;
+  object-fit:contain!important;
+}
+
+/* mobile proportions from the approved mockup */
+@media(max-width:430px){
+  .card .photo{height:205px!important}
+  .product-bigphoto-final{height:330px!important}
+  .product-body-final{padding:13px 14px 100px!important}
 }
 </style><script src="https://telegram.org/js/telegram-web-app.js"></script><script src="https://unpkg.com/lucide@latest"></script></head><body><div class="app"><header><div class="top"><button class="round header-fav" onclick="page('favorites')" aria-label="Избранное"><i data-lucide="heart"></i></button><div class="brand"><div class="mark"><svg class="doppi" viewBox="0 0 96 48" aria-label="Тюбетейка">
 <path d="M8 35C13 15 30 6 48 6s35 9 40 29c-12 5-25 7-40 7S20 40 8 35Z" fill="#111"/>
@@ -1306,7 +1452,7 @@ function card(p){const e=document.createElement("div");e.className="card";e.inne
  const pt=$("pType");pt.textContent=p.ownerType==="official"?"✓ От Uzbek Re'Sale":(p.type||"Ресейл");pt.className="badge "+(p.ownerType==="official"?"badge-official":((p.type||"")==="Под заказ"?"badge-order":"badge-resale"));
  const av=$("pAvailabilityBadge");if(av){if(p.ownerType==="official"){av.hidden=false;av.textContent=p.sourceType==="china"?"Из Китая":"В наличии";av.className="availability-badge "+(p.sourceType==="china"?"china":"stock")}else{av.hidden=true;av.textContent=""}}
  $("pName").textContent=p.name;$("pPrice").textContent=money(p.price);$("pSize").textContent="Размер: "+p.size;const pc=$("pCondition");pc.textContent="Состояние: "+p.condition;pc.className="";pc.classList.add((/нов/i.test(p.condition)?"spec-new":/отлич/i.test(p.condition)?"spec-excellent":/хорош/i.test(p.condition)?"spec-good":"spec-fair"));
- const pv=$("productView"), pvi=pv?pv.querySelector(".inner"):null; if(pv) pv.scrollTop=0; if(pvi) pvi.scrollTop=0;const d=$("productMeta");if(d)d.innerHTML=`<span>Бренд</span><span>${p.brand||"—"}</span><span>Категория</span><span>${p.category||"—"}</span><span>Размер</span><span>${p.size}</span><span>Состояние</span><span>${p.condition}</span>${p.ownerType==="official"?`<span>Наличие</span><span>${p.sourceType==="china"?"Из Китая":"В наличии"} · ${p.stockQty===1?"Осталась 1 шт.":"Осталось: "+p.stockQty+" шт."}</span>`:""}`;const sb=$("productSeller");if(sb){if(p.ownerType==="official"){sb.innerHTML='<div class="seller-card official-store-card"><div class="seller-avatar official-store-avatar"><img src="data:image/webp;base64,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" alt="Uzbek Re&#39;Sale"></div><div class="seller-main"><div class="official-store-name">Узбекский Re&#39;Sale <span class="verified-check">✓</span></div><div class="seller-sub">Официальный продавец</div></div></div>';}else if(p.listingId){const ini=(p.sellerName||"P").split(" ").map(x=>x[0]).join("").slice(0,2).toUpperCase();sb.innerHTML='<div class="resale-badge">♻ Ресейл</div><div class="seller-card"><div class="seller-avatar">'+ini+'</div><div class="seller-main"><div class="seller-name">'+(p.sellerName||"Продавец")+'</div><div class="seller-sub">'+(p.sellerUsername?"@"+p.sellerUsername:"Telegram продавец")+'</div></div><button class="seller-link" onclick="event.preventDefault();event.stopPropagation();goSellerProfile(\''+p.sellerTelegramId+'\')">Профиль</button></div>'+(p.sellerUsername?'<button class="btn telegram-btn" onclick="event.stopPropagation();messageSeller(\''+p.sellerUsername+'\')">Написать в Telegram</button>':'');}else sb.innerHTML="";}$("productView").classList.add("open")};return e}
+ const pv=$("productView"), pvi=pv?pv.querySelector(".inner"):null; if(pv) pv.scrollTop=0; if(pvi) pvi.scrollTop=0;const d=$("productMeta");if(d)d.innerHTML=`<span>Бренд</span><span>${p.brand||"—"}</span><span>Категория</span><span>${p.category||"—"}</span><span>Размер</span><span>${p.size}</span><span>Состояние</span><span>${p.condition}</span>${p.ownerType==="official"?`<span>Наличие</span><span>${p.sourceType==="china"?"Из Китая":"В наличии"} · ${p.stockQty===1?"Осталась 1 шт.":"Осталось: "+p.stockQty+" шт."}</span>`:""}`;const sb=$("productSeller");if(sb){if(p.ownerType==="official"){sb.innerHTML='<div class="seller-card official-seller-card"><div class="seller-avatar official-logo-avatar"><img src="data:image/webp;base64,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" alt="Uzbek Re&#39;Sale"></div><div class="seller-main"><div class="official-badge">✓ От Uzbek Re\'Sale</div><div class="seller-sub">'+(p.sourceType==="china"?"Из Китая":"В наличии")+'</div></div></div>';}else if(p.listingId){const ini=(p.sellerName||"P").split(" ").map(x=>x[0]).join("").slice(0,2).toUpperCase();sb.innerHTML='<div class="resale-badge">♻ Ресейл</div><div class="seller-card"><div class="seller-avatar">'+ini+'</div><div class="seller-main"><div class="seller-name">'+(p.sellerName||"Продавец")+'</div><div class="seller-sub">'+(p.sellerUsername?"@"+p.sellerUsername:"Telegram продавец")+'</div></div><button class="seller-link" onclick="event.preventDefault();event.stopPropagation();goSellerProfile(\''+p.sellerTelegramId+'\')">Профиль</button></div>'+(p.sellerUsername?'<button class="btn telegram-btn" onclick="event.stopPropagation();messageSeller(\''+p.sellerUsername+'\')">Написать в Telegram</button>':'');}else sb.innerHTML="";}$("productView").classList.add("open")};return e}
 
 function fill(id,list){const b=$(id);b.innerHTML="";if(!list.length){b.innerHTML='<div class="empty">Здесь пока ничего нет</div>';return}list.forEach(p=>b.appendChild(card(p)))}
 
@@ -1724,9 +1870,14 @@ async function openSellerProfile(id,fallbackName="",fallbackUsername=""){
 function openOwnSellerProfile(){
  const u=window.Telegram?.WebApp?.initDataUnsafe?.user;
  if(!u?.id)return;
- const fallbackName=[u.first_name,u.last_name].filter(Boolean).join(" ")||"Продавец";
- const fallbackUsername=u.username||"";
- openSellerProfile(String(u.id),fallbackName,fallbackUsername);
+ page("sellerProfile");
+ const b=$("sellerProfileContent");
+ const name=[u.first_name,u.last_name].filter(Boolean).join(" ")||"Продавец";
+ const username=u.username||"";
+ const ini=name.split(" ").map(x=>x[0]).join("").slice(0,2).toUpperCase();
+ const mine=products.filter(p=>p.ownerType!=="official" && String(p.sellerTelegramId||"")===String(u.id));
+ const items=mine.map(p=>'<div class="listing-card" style="cursor:pointer" onclick="openSellerListing('+Number(p.listingId||0)+')">'+(p.image?'<img src="'+p.image+'">':'')+'<div class="listing-info"><div class="listing-title">'+p.name+'</div><div class="meta">'+(p.brand||p.category)+'</div><div class="listing-price">'+money(p.price)+'</div></div><span class="arrow">›</span></div>').join("");
+ b.innerHTML='<div class="seller-profile-head"><div class="seller-avatar">'+ini+'</div><h2>'+name+'</h2><div class="seller-sub">'+(username?"@"+username:"Telegram продавец")+'</div><div class="seller-stats"><div class="seller-stat"><b>'+mine.length+'</b><span>Объявлений</span></div></div>'+(username?'<button class="btn black" onclick="messageSeller(\''+username+'\')">Написать в Telegram</button>':'')+'</div><h2>Мои товары</h2>'+(items||'<div class="empty">У вас пока нет опубликованных Ресейл-товаров</div>');
 }
 document.querySelectorAll(".faq-q").forEach(q=>q.onclick=()=>q.parentElement.classList.toggle("open"));
 
