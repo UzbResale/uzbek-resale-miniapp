@@ -2880,6 +2880,52 @@ nav.bottom,.bottom-nav,.bottom{
 #sell.active,#favorites.active,#orders.active,#faq.active,#rules.active,#about.active,#settingsPage.active,#adminPanel.active{
   padding-bottom:92px!important;
 }
+
+/* =========================================================
+   SELL FORM V1 — PREMIUM, existing upload/moderation logic preserved
+   ========================================================= */
+#sell.active{background:#f6f9fc!important}
+#sell .sell-premium-section{padding:14px 14px 112px!important}
+#sell .sell-intro{margin:2px 2px 14px!important}
+#sell .sell-intro h1{margin:0!important;color:#081f38!important;font-size:27px!important;line-height:1.05!important;font-weight:900!important}
+#sell .sell-intro .meta{margin:7px 0 0!important;color:#8492a1!important;font-size:10px!important;line-height:1.45!important}
+#sell .sell-progress{display:flex!important;align-items:flex-start!important;margin:0 2px 16px!important;padding:12px 14px!important;border-radius:17px!important;background:#fff!important;border:1px solid #e8edf2!important}
+#sell .sell-step{width:64px!important;display:flex!important;flex-direction:column!important;align-items:center!important;gap:5px!important;color:#738294!important;font-size:8px!important;font-weight:750!important;text-align:center!important}
+#sell .sell-step b{width:27px!important;height:27px!important;display:flex!important;align-items:center!important;justify-content:center!important;border-radius:50%!important;background:#eaf0f5!important;color:#607285!important;font-size:10px!important}
+#sell .sell-step.active b{background:#07518a!important;color:#fff!important}
+#sell .sell-progress>i{flex:1 1 auto!important;height:2px!important;margin:13px 4px 0!important;background:#dce5ed!important}
+#sell .sell-form{display:block!important}
+#sell .sell-panel{margin:0 0 11px!important;padding:13px!important;border:1px solid #e7edf2!important;border-radius:18px!important;background:#fff!important;box-shadow:0 4px 16px rgba(7,38,68,.035)!important}
+#sell .sell-panel-head{display:flex!important;align-items:center!important;justify-content:space-between!important;margin-bottom:11px!important}
+#sell .sell-panel-head h2{margin:0!important;color:#081f38!important;font-size:16px!important;font-weight:900!important}
+#sell .sell-panel-head span{color:#8492a1!important;font-size:9px!important}
+#sell .uploadbox{min-height:150px!important;display:flex!important;align-items:center!important;justify-content:center!important;margin:0!important;border:1.5px dashed #b9cee0!important;border-radius:16px!important;background:#f7fbff!important;color:#0b416f!important;text-align:center!important;cursor:pointer!important}
+#sell .uploadbox span{display:flex!important;flex-direction:column!important;align-items:center!important;gap:5px!important}
+#sell .uploadbox svg{width:28px!important;height:28px!important;margin-bottom:4px!important}
+#sell .uploadbox strong{font-size:12px!important;color:#0a2947!important}
+#sell .uploadbox small{font-size:9px!important;color:#8593a2!important}
+#sell .preview-grid{display:grid!important;grid-template-columns:repeat(5,minmax(0,1fr))!important;gap:7px!important;margin-top:9px!important}
+#sell .preview-grid:empty{display:none!important}
+#sell .preview-grid>*{aspect-ratio:1/1!important;border-radius:11px!important;overflow:hidden!important}
+#sell .preview-grid img{width:100%!important;height:100%!important;object-fit:cover!important}
+#sell .sell-two{display:grid!important;grid-template-columns:1fr 1fr!important;gap:9px!important}
+#sell .field{margin:0 0 10px!important}
+#sell .field label{display:block!important;margin:0 0 6px!important;color:#0b2946!important;font-size:9.5px!important;font-weight:850!important}
+#sell .field input,#sell .field select,#sell .field textarea{width:100%!important;box-sizing:border-box!important;margin:0!important;border:1px solid #dbe5ed!important;border-radius:13px!important;background:#fff!important;color:#0b2239!important;font-size:11px!important;outline:none!important;box-shadow:none!important}
+#sell .field input,#sell .field select{height:45px!important;padding:0 12px!important}
+#sell .field textarea{min-height:94px!important;padding:11px 12px!important;resize:vertical!important}
+#sell .field input:focus,#sell .field select:focus,#sell .field textarea:focus{border-color:#4d91c4!important;box-shadow:0 0 0 3px rgba(22,117,184,.08)!important}
+#sell .sell-price-wrap{display:flex!important;align-items:center!important;border:1px solid #dbe5ed!important;border-radius:13px!important;overflow:hidden!important;background:#fff!important}
+#sell .sell-price-wrap input{flex:1!important;border:0!important;border-radius:0!important}
+#sell .sell-price-wrap span{padding:0 12px!important;color:#52677a!important;font-size:10px!important;font-weight:800!important}
+#sell .sell-moderation-note{display:flex!important;gap:10px!important;align-items:flex-start!important;padding:11px!important;border-radius:13px!important;background:#f2f7fb!important;color:#0b416f!important}
+#sell .sell-moderation-note svg{width:20px!important;height:20px!important;flex:0 0 20px!important}
+#sell .sell-moderation-note div{display:flex!important;flex-direction:column!important;gap:3px!important}
+#sell .sell-moderation-note b{font-size:10px!important}
+#sell .sell-moderation-note span{color:#718294!important;font-size:9px!important;line-height:1.35!important}
+#sell .sell-submit-premium{width:100%!important;height:52px!important;display:flex!important;align-items:center!important;justify-content:center!important;gap:8px!important;margin:2px 0 0!important;border:0!important;border-radius:14px!important;background:#07518a!important;color:#fff!important;font-size:11px!important;font-weight:900!important;box-shadow:0 6px 17px rgba(7,81,138,.14)!important}
+#sell .sell-submit-premium svg{width:17px!important;height:17px!important}
+@media(max-width:380px){#sell .sell-two{grid-template-columns:1fr!important}#sell .preview-grid{grid-template-columns:repeat(4,minmax(0,1fr))!important}}
 </style><script src="https://telegram.org/js/telegram-web-app.js"></script><script src="https://unpkg.com/lucide@latest"></script></head><body><div class="app"><header><div class="top"><button class="round header-fav" onclick="page('favorites')" aria-label="Избранное"><i data-lucide="heart"></i></button><div class="brand"><div class="mark"><svg class="doppi" viewBox="0 0 96 48" aria-label="Тюбетейка">
 <path d="M8 35C13 15 30 6 48 6s35 9 40 29c-12 5-25 7-40 7S20 40 8 35Z" fill="#111"/>
 <path d="M48 8v31M20 29c8-3 14-8 18-15M76 29c-8-3-14-8-18-15" stroke="#fff" stroke-width="2" fill="none"/>
@@ -2946,7 +2992,44 @@ nav.bottom,.bottom-nav,.bottom{
     <div id="catalogGrid" class="grid catalog-final-grid"></div>
   </div>
 </section>
-<section id="sell" class="page"><div class="profile-page-top"><button class="profile-page-back" type="button" onclick="backPage('profile')" aria-label="Назад">←</button><div class="profile-page-top-title">Продать вещь</div></div><div class="section"><h1>Продать вещь</h1><p class="meta">Заполните информацию о товаре. Перед публикацией объявление пройдёт проверку.</p><div class="sell-form"><label class="uploadbox" for="sellPhotos"><span><i data-lucide="image-plus"></i><br>Добавить фотографии<br><small>до 10 фото</small></span></label><input id="sellPhotos" class="photo-input" type="file" accept="image/*" multiple><div id="sellPreview" class="preview-grid"></div><div class="field"><label>Название товара *</label><input id="sellName" placeholder="Например: Nike Air Force 1"></div><div class="field"><label>Категория *</label><select id="sellCategory"><option>Одежда</option><option>Обувь</option><option>Аксессуары</option><option>Другое</option></select></div><div class="field"><label>Бренд</label><input id="sellBrand" placeholder="Например: Nike"></div><div class="field"><label>Размер</label><input id="sellSize" placeholder="M, 42, One Size..."></div><div class="field"><label>Состояние *</label><select id="sellCondition"><option>Новое</option><option>Отличное</option><option>Хорошее</option><option>Удовлетворительное</option></select></div><div class="field"><label>Цена, сум *</label><input id="sellPrice" inputmode="numeric" placeholder="500000"></div><div class="field"><label>Описание</label><textarea id="sellDescription" rows="4" placeholder="Расскажите о вещи"></textarea></div><button class="btn black" id="sellSubmit">Отправить на проверку</button></div></div></section>
+<section id="sell" class="page">
+<div class="profile-page-top"><button class="profile-page-back" type="button" onclick="backPage('profile')" aria-label="Назад">←</button><div class="profile-page-top-title">Продать вещь</div></div>
+<div class="section sell-premium-section">
+  <div class="sell-intro"><h1>Продать вещь</h1><p class="meta">Заполните информацию о товаре. Перед публикацией объявление пройдёт проверку.</p></div>
+  <div class="sell-progress" aria-hidden="true">
+    <div class="sell-step active"><b>1</b><span>Фото</span></div><i></i>
+    <div class="sell-step active"><b>2</b><span>О товаре</span></div><i></i>
+    <div class="sell-step active"><b>3</b><span>Цена</span></div>
+  </div>
+  <div class="sell-form">
+    <div class="sell-panel sell-photo-panel">
+      <div class="sell-panel-head"><h2>Фотографии</h2><span>до 10 фото</span></div>
+      <label class="uploadbox" for="sellPhotos"><span><i data-lucide="camera"></i><strong>Добавить фотографии</strong><small>Нажмите, чтобы выбрать до 10 фото</small></span></label>
+      <input id="sellPhotos" class="photo-input" type="file" accept="image/*" multiple>
+      <div id="sellPreview" class="preview-grid"></div>
+    </div>
+    <div class="sell-panel">
+      <div class="sell-panel-head"><h2>Информация о товаре</h2></div>
+      <div class="field sell-full"><label>Название товара *</label><input id="sellName" placeholder="Например: Nike Air Force 1"></div>
+      <div class="sell-two">
+        <div class="field"><label>Категория *</label><select id="sellCategory"><option>Одежда</option><option>Обувь</option><option>Аксессуары</option><option>Другое</option></select></div>
+        <div class="field"><label>Бренд</label><input id="sellBrand" placeholder="Например: Nike"></div>
+      </div>
+      <div class="sell-two">
+        <div class="field"><label>Размер</label><input id="sellSize" placeholder="M, 42, One Size..."></div>
+        <div class="field"><label>Состояние *</label><select id="sellCondition"><option>Новое</option><option>Отличное</option><option>Хорошее</option><option>Удовлетворительное</option></select></div>
+      </div>
+      <div class="field sell-full"><label>Описание</label><textarea id="sellDescription" rows="4" placeholder="Расскажите о вещи: особенности, дефекты (если есть), причина продажи"></textarea></div>
+    </div>
+    <div class="sell-panel">
+      <div class="sell-panel-head"><h2>Цена</h2></div>
+      <div class="field sell-price-field"><label>Цена, сум *</label><div class="sell-price-wrap"><input id="sellPrice" inputmode="numeric" placeholder="500000"><span>сум</span></div></div>
+      <div class="sell-moderation-note"><i data-lucide="shield-check"></i><div><b>Перед публикацией — модерация</b><span>После одобрения товар появится в каталоге.</span></div></div>
+    </div>
+    <button class="btn black sell-submit-premium" id="sellSubmit"><i data-lucide="send"></i><span>Отправить на модерацию</span></button>
+  </div>
+</div>
+</section>
 <section id="favorites" class="page"><div class="profile-page-top"><button class="profile-page-back" type="button" onclick="backPage('profile')" aria-label="Назад">←</button><div class="profile-page-top-title">Избранное</div></div>
   <div class="favorites-layout">
     <div id="favoritesEmpty" class="favorites-empty-state">
