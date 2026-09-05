@@ -638,6 +638,343 @@ header .header-fav,header .actions{top:13px!important}
 .product-buy-final{background:#073b6d!important;color:#fff!important;border:0!important}
 .product-cart-final{background:#fff!important;color:#0b355d!important;border:1px solid #dce4ec!important}
 @media(max-width:390px){.product-gallery-final{height:325px}.product-body-final{padding-left:14px;padding-right:14px}.product-body-final>h1,.product-body-final>h2{font-size:22px!important}}
+
+/* =========================================================
+   CART — FINAL DESIGN CANDIDATE
+   CSS ONLY. Cart/order logic untouched.
+   ========================================================= */
+#cart{
+  background:#fff!important;
+  padding-bottom:88px!important;
+}
+#cart>.section{
+  padding:18px 16px 26px!important;
+}
+#cart>.section>h1{
+  margin:0 0 15px!important;
+  font-size:27px!important;
+  line-height:1!important;
+  letter-spacing:-.7px!important;
+  color:#0b223b!important;
+}
+#cart>.section>h1:after{
+  content:"Ваши выбранные товары";
+  display:block;
+  margin-top:6px;
+  font-size:9px;
+  line-height:1.2;
+  letter-spacing:0;
+  font-weight:500;
+  color:#94a0ac;
+}
+
+/* Existing cart rows */
+#cartList{
+  display:flex!important;
+  flex-direction:column!important;
+  gap:10px!important;
+}
+#cartList .cartrow{
+  position:relative!important;
+  display:grid!important;
+  grid-template-columns:88px minmax(0,1fr) 30px!important;
+  align-items:center!important;
+  gap:11px!important;
+  min-height:112px!important;
+  padding:10px!important;
+  margin:0!important;
+  border:1px solid #e1e7ed!important;
+  border-radius:16px!important;
+  background:#fff!important;
+  box-shadow:0 4px 15px rgba(7,38,68,.035)!important;
+}
+#cartList .cartpic{
+  width:88px!important;
+  height:92px!important;
+  border-radius:12px!important;
+  overflow:hidden!important;
+  background:#f3f4f3!important;
+}
+#cartList .cartpic img{
+  width:100%!important;
+  height:100%!important;
+  object-fit:contain!important;
+  padding:5px!important;
+  box-sizing:border-box!important;
+}
+#cartList .grow{
+  min-width:0!important;
+  align-self:center!important;
+}
+#cartList .grow>b{
+  display:-webkit-box!important;
+  -webkit-line-clamp:2!important;
+  -webkit-box-orient:vertical!important;
+  overflow:hidden!important;
+  margin:0 0 5px!important;
+  color:#0b223b!important;
+  font-size:12px!important;
+  line-height:1.18!important;
+}
+#cartList .meta{
+  margin:0 0 7px!important;
+  color:#89949f!important;
+  font-size:9px!important;
+  line-height:1.2!important;
+}
+#cartList .meta:before{
+  content:"Размер: ";
+}
+#cartList .price{
+  margin:0!important;
+  color:#081e36!important;
+  font-size:14px!important;
+  line-height:1!important;
+  font-weight:900!important;
+}
+#cartList .remove{
+  align-self:start!important;
+  justify-self:end!important;
+  width:29px!important;
+  height:29px!important;
+  min-width:29px!important;
+  padding:0!important;
+  border:0!important;
+  border-radius:9px!important;
+  background:#fff3f3!important;
+  color:#d73d49!important;
+  font-size:19px!important;
+  line-height:29px!important;
+  font-weight:500!important;
+}
+
+/* Total block */
+#cartBottom{
+  margin-top:15px!important;
+  padding:14px!important;
+  border:1px solid #e1e7ed!important;
+  border-radius:17px!important;
+  background:#f8fafc!important;
+}
+#cartBottom .total{
+  display:flex!important;
+  align-items:center!important;
+  justify-content:space-between!important;
+  margin:0 0 12px!important;
+  padding:0 0 12px!important;
+  border-bottom:1px solid #e3e9ef!important;
+}
+#cartBottom .total span:first-child{
+  color:#667789!important;
+  font-size:11px!important;
+  font-weight:650!important;
+}
+#cartBottom #total{
+  color:#081e36!important;
+  font-size:18px!important;
+  font-weight:900!important;
+}
+#cartBottom #checkoutBtn{
+  width:100%!important;
+  height:48px!important;
+  min-height:48px!important;
+  margin:0!important;
+  border:0!important;
+  border-radius:13px!important;
+  background:#073b6d!important;
+  color:#fff!important;
+  font-size:12px!important;
+  font-weight:850!important;
+}
+
+/* Empty cart — same design language as Favorites */
+#cartList .empty{
+  min-height:360px!important;
+  display:flex!important;
+  flex-direction:column!important;
+  align-items:center!important;
+  justify-content:center!important;
+  text-align:center!important;
+  padding:0!important;
+  color:#8b949e!important;
+  font-size:14px!important;
+}
+#cartList .empty:before{
+  content:"🛍";
+  width:72px!important;
+  height:72px!important;
+  display:flex!important;
+  align-items:center!important;
+  justify-content:center!important;
+  margin:0 0 15px!important;
+  border-radius:23px!important;
+  background:#edf4fa!important;
+  font-size:28px!important;
+}
+
+/* Checkout: only style existing real fields, no invented delivery/payment features */
+#checkoutView{
+  background:#fff!important;
+}
+#checkoutView>.inner{
+  padding:18px 16px 30px!important;
+  background:#fff!important;
+}
+#checkoutView #checkoutBack{
+  width:40px!important;
+  height:40px!important;
+  border-radius:50%!important;
+  border:1px solid #dfe6ed!important;
+  background:#fff!important;
+  color:#0b355d!important;
+  margin:0 0 14px!important;
+}
+#checkoutView h1{
+  margin:0 0 18px!important;
+  font-size:26px!important;
+  line-height:1.05!important;
+  color:#0b223b!important;
+}
+#checkoutView .field{
+  margin-bottom:11px!important;
+}
+#checkoutView .field label{
+  display:block!important;
+  margin:0 0 5px!important;
+  color:#526577!important;
+  font-size:9px!important;
+  font-weight:750!important;
+}
+#checkoutView .field input{
+  width:100%!important;
+  height:48px!important;
+  box-sizing:border-box!important;
+  border:1px solid #dfe6ed!important;
+  border-radius:13px!important;
+  background:#fff!important;
+  padding:0 13px!important;
+  color:#0b223b!important;
+  font-size:12px!important;
+  outline:none!important;
+}
+#checkoutView .field input:focus{
+  border-color:#8db0cf!important;
+  box-shadow:0 0 0 3px rgba(7,59,109,.07)!important;
+}
+#checkoutView #orderForm>p{
+  margin:5px 0 15px!important;
+  padding:11px!important;
+  border-radius:12px!important;
+  background:#f3f7fb!important;
+  color:#6e7e8d!important;
+  font-size:9px!important;
+  line-height:1.4!important;
+}
+#checkoutView #confirmBtn,
+#checkoutView #homeBtn{
+  width:100%!important;
+  height:49px!important;
+  min-height:49px!important;
+  border:0!important;
+  border-radius:13px!important;
+  background:#073b6d!important;
+  color:#fff!important;
+  font-size:12px!important;
+  font-weight:850!important;
+}
+#checkoutView .success{
+  min-height:65vh!important;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+}
+#checkoutView .success h1{
+  width:76px!important;
+  height:76px!important;
+  display:flex!important;
+  align-items:center!important;
+  justify-content:center!important;
+  margin:0 auto 16px!important;
+  border-radius:50%!important;
+  background:#e7f8ed!important;
+  color:#1a9a53!important;
+  font-size:34px!important;
+}
+#checkoutView .success h2{
+  margin:0 0 8px!important;
+  color:#0b223b!important;
+  font-size:22px!important;
+}
+#checkoutView .success p{
+  margin:0 0 20px!important;
+  color:#89949f!important;
+  font-size:11px!important;
+}
+
+@media(max-width:390px){
+ #cart>.section{padding-left:14px!important;padding-right:14px!important}
+ #cartList .cartrow{grid-template-columns:82px minmax(0,1fr) 28px!important}
+ #cartList .cartpic{width:82px!important;height:88px!important}
+ #checkoutView>.inner{padding-left:14px!important;padding-right:14px!important}
+}
+
+/* =========================================================
+   DESIGN SYSTEM v2 — BADGES ONLY / SAFE PASS
+   No Popular / Discount badges. No JS changes.
+   ========================================================= */
+.badge,
+#productView #pType{
+  display:inline-flex!important;align-items:center!important;justify-content:center!important;
+  min-height:22px!important;padding:0 9px!important;border:0!important;border-radius:999px!important;
+  background:#073b6d!important;color:#fff!important;
+  font-size:8px!important;font-weight:800!important;line-height:1!important;
+  box-shadow:0 2px 7px rgba(7,59,109,.08)!important;
+}
+
+/* Existing text-driven badge variants */
+.badge[data-type="Под заказ"]{background:#0a416f!important}
+.badge[data-type="В наличии"]{background:#16a35b!important}
+.badge[data-type="Из Китая"]{background:#ffb23f!important;color:#553000!important}
+
+/* Catalog/listing badges: style from actual rendered text without changing logic */
+.card .badge{background:#073b6d!important;color:#fff!important}
+.card .badge:has(+ .name){white-space:nowrap!important}
+
+/* Existing condition chips in product view */
+#productView #pCondition{
+  border:0!important;border-radius:999px!important;
+  background:#e8f3ff!important;color:#1767b2!important;
+  padding:7px 10px!important;font-weight:750!important;
+}
+#productView #pSize{
+  border:0!important;border-radius:999px!important;
+  background:#f2f5f8!important;color:#536576!important;
+  padding:7px 10px!important;font-weight:700!important;
+}
+
+/* Seller official badge, if existing logic renders it */
+#productSeller .official-badge{
+  display:inline-flex!important;align-items:center!important;
+  min-height:24px!important;padding:0 10px!important;border-radius:999px!important;
+  background:#e7f0ff!important;color:#1767c4!important;
+  font-size:8px!important;font-weight:850!important;border:0!important;
+}
+
+/* Moderation / My Products status chips: preserve text and logic, improve presentation */
+.status,.status-badge,.listing-status{
+  border-radius:999px!important;
+  padding:6px 10px!important;
+  font-size:8.5px!important;
+  font-weight:800!important;
+}
+
+/* Approved condition palette when those classes already exist */
+.status-new,.condition-new{background:#e5f8ec!important;color:#17924f!important}
+.status-excellent,.condition-excellent{background:#e7f2ff!important;color:#176cc1!important}
+.status-good,.condition-good{background:#edf5fb!important;color:#3e759e!important}
+.status-satisfactory,.condition-satisfactory{background:#fff3d9!important;color:#8b6518!important}
 </style><script src="https://telegram.org/js/telegram-web-app.js"></script><script src="https://unpkg.com/lucide@latest"></script></head><body><div class="app"><header><div class="top"><button class="round header-fav" onclick="page('favorites')" aria-label="Избранное"><i data-lucide="heart"></i></button><div class="brand"><div class="mark"><svg class="doppi" viewBox="0 0 96 48" aria-label="Тюбетейка">
 <path d="M8 35C13 15 30 6 48 6s35 9 40 29c-12 5-25 7-40 7S20 40 8 35Z" fill="#111"/>
 <path d="M48 8v31M20 29c8-3 14-8 18-15M76 29c-8-3-14-8-18-15" stroke="#fff" stroke-width="2" fill="none"/>
