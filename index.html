@@ -2958,6 +2958,62 @@ nav.bottom,.bottom-nav,.bottom{
 #myProducts .my-products-add span{font-size:17px!important;vertical-align:-1px!important}
 #myListingsList>.empty{min-height:310px!important;display:flex!important;align-items:center!important;justify-content:center!important;text-align:center!important;color:#97a2ad!important}
 @media(max-width:380px){#myListingsList .my-product-card{grid-template-columns:96px minmax(0,1fr)!important}#myListingsList .my-product-photo{width:96px!important;height:112px!important}}
+
+/* =========================================================
+   MY ORDERS V1 — premium list + detail
+   Existing orders API/history logic preserved.
+   ========================================================= */
+#orders.active{background:#f6f9fc!important}
+#orders .orders-premium-section{padding:14px 14px 112px!important}
+#orders .orders-head{display:flex!important;align-items:center!important;gap:11px!important;margin:0 0 15px!important}
+#orders .orders-head>div{min-width:0!important}
+#orders .orders-head h1{margin:0!important;color:#081f38!important;font-size:24px!important;line-height:1.05!important;font-weight:900!important}
+#orders .orders-head p{margin:5px 0 0!important;color:#8996a4!important;font-size:9.5px!important}
+#ordersList{display:flex!important;flex-direction:column!important;gap:10px!important}
+#ordersList .order-card{margin:0!important;padding:13px!important;border:1px solid #e6edf2!important;border-radius:18px!important;background:#fff!important;box-shadow:0 4px 16px rgba(7,38,68,.04)!important;cursor:pointer!important}
+#ordersList .order-top{display:flex!important;align-items:center!important;justify-content:space-between!important;gap:10px!important}
+#ordersList .order-number{color:#081f38!important;font-size:14px!important;font-weight:900!important}
+#ordersList .order-status,#orderDetailView .detail-status{display:inline-flex!important;align-items:center!important;min-height:24px!important;padding:0 9px!important;border-radius:999px!important;font-size:8px!important;font-weight:850!important}
+.status-new{background:#e7f2ff!important;color:#1769ad!important}
+.status-confirmed{background:#e5f6ec!important;color:#16844d!important}
+.status-shipping{background:#fff1cf!important;color:#956100!important}
+.status-completed{background:#dff6e8!important;color:#147a48!important}
+.status-cancelled{background:#fde7e7!important;color:#b42318!important}
+#ordersList .order-date{margin:6px 0 10px!important;color:#9aa4ae!important;font-size:8.5px!important}
+#ordersList .order-item{display:grid!important;grid-template-columns:58px minmax(0,1fr)!important;column-gap:10px!important;align-items:center!important;margin:0!important;padding:9px 0!important;border-top:1px solid #f0f3f5!important}
+#ordersList .order-thumb{grid-row:1/4!important;width:58px!important;height:58px!important;border-radius:11px!important;object-fit:contain!important;background:#f5f5f4!important}
+#ordersList .order-item-name{color:#0a223a!important;font-size:11px!important;line-height:1.2!important;font-weight:850!important}
+#ordersList .order-item .meta{margin-top:3px!important;color:#98a2ac!important;font-size:8.5px!important}
+#ordersList .order-item .price{margin-top:5px!important;color:#07518a!important;font-size:11px!important;font-weight:900!important}
+#ordersList .order-total{display:flex!important;align-items:center!important;justify-content:space-between!important;margin-top:5px!important;padding-top:11px!important;border-top:1px solid #edf1f4!important;color:#5e6d7c!important;font-size:10px!important}
+#ordersList .order-total span:last-child{color:#081f38!important;font-size:14px!important;font-weight:900!important}
+#ordersList>.empty,#ordersList>.orders-loading{min-height:330px!important;display:flex!important;align-items:center!important;justify-content:center!important;text-align:center!important;color:#97a2ad!important;font-size:10px!important}
+
+/* Order detail overlay */
+#orderDetailView.open{background:#f6f9fc!important}
+#orderDetailView .inner{padding:14px 14px 34px!important;background:#f6f9fc!important}
+#orderDetailView .back{position:sticky!important;top:8px!important;z-index:20!important;margin-bottom:12px!important}
+#orderDetailView .order-detail{padding-bottom:30px!important}
+#orderDetailView .detail-number{display:inline-block!important;margin:0 8px 10px 0!important;color:#081f38!important;font-size:24px!important;line-height:1!important;font-weight:900!important}
+#orderDetailView .detail-status{vertical-align:4px!important}
+#orderDetailView .timeline,#orderDetailView .detail-items,#orderDetailView .detail-box{margin:0 0 11px!important;padding:13px!important;border:1px solid #e6edf2!important;border-radius:18px!important;background:#fff!important;box-shadow:0 4px 16px rgba(7,38,68,.035)!important}
+#orderDetailView .timeline-title{margin:0 0 12px!important;color:#081f38!important;font-size:13px!important;font-weight:900!important}
+#orderDetailView .timeline-step{position:relative!important;display:grid!important;grid-template-columns:18px minmax(0,1fr)!important;column-gap:9px!important;min-height:42px!important;padding-bottom:7px!important}
+#orderDetailView .timeline-step:not(:last-child)::after{content:""!important;position:absolute!important;left:6px!important;top:15px!important;bottom:-2px!important;width:2px!important;background:#e3eaf0!important}
+#orderDetailView .timeline-dot{grid-row:1/3!important;width:14px!important;height:14px!important;margin-top:1px!important;border:3px solid #d8e2ea!important;border-radius:50%!important;background:#fff!important;box-sizing:border-box!important}
+#orderDetailView .timeline-step.done .timeline-dot{border-color:#1687e8!important;background:#1687e8!important}
+#orderDetailView .timeline-step.cancelled .timeline-dot{border-color:#d84b43!important;background:#d84b43!important}
+#orderDetailView .timeline-label{color:#0a223a!important;font-size:10px!important;font-weight:850!important}
+#orderDetailView .timeline-date{margin-top:3px!important;color:#9aa4ae!important;font-size:8.5px!important}
+#orderDetailView .detail-item{display:grid!important;grid-template-columns:62px minmax(0,1fr)!important;gap:10px!important;align-items:center!important;padding:9px 0!important;border-top:1px solid #f0f3f5!important}
+#orderDetailView .detail-item img{width:62px!important;height:62px!important;border-radius:12px!important;object-fit:contain!important;background:#f5f5f4!important}
+#orderDetailView .detail-item b{color:#0a223a!important;font-size:11px!important}
+#orderDetailView .detail-item .meta{margin-top:4px!important;color:#98a2ac!important;font-size:8.5px!important}
+#orderDetailView .detail-item .price{margin-top:6px!important;color:#07518a!important;font-size:11px!important;font-weight:900!important}
+#orderDetailView .detail-box .detail-row{display:grid!important;grid-template-columns:90px minmax(0,1fr)!important;gap:12px!important;min-height:39px!important;align-items:center!important;border-bottom:1px solid #f0f3f5!important}
+#orderDetailView .detail-box .detail-row:last-child{border-bottom:0!important}
+#orderDetailView .detail-box .detail-row span:first-child{color:#98a2ac!important;font-size:9px!important}
+#orderDetailView .detail-box .detail-row span:last-child{color:#0a223a!important;font-size:9.5px!important;font-weight:800!important;text-align:right!important}
 </style><script src="https://telegram.org/js/telegram-web-app.js"></script><script src="https://unpkg.com/lucide@latest"></script></head><body><div class="app"><header><div class="top"><button class="round header-fav" onclick="page('favorites')" aria-label="Избранное"><i data-lucide="heart"></i></button><div class="brand"><div class="mark"><svg class="doppi" viewBox="0 0 96 48" aria-label="Тюбетейка">
 <path d="M8 35C13 15 30 6 48 6s35 9 40 29c-12 5-25 7-40 7S20 40 8 35Z" fill="#111"/>
 <path d="M48 8v31M20 29c8-3 14-8 18-15M76 29c-8-3-14-8-18-15" stroke="#fff" stroke-width="2" fill="none"/>
@@ -3123,7 +3179,7 @@ nav.bottom,.bottom-nav,.bottom{
 <div class="faq-item"><button class="faq-q">Как связаться без username?<span>＋</span></button><div class="faq-a">Используйте кнопку связи в сообщении о заказе. Бот передаст сообщения между сторонами без публичного @username.</div></div>
 <div class="faq-item"><button class="faq-q">Какие правила действуют?<span>＋</span></button><div class="faq-a">Используя сервис, размещая объявление или оформляя заказ, вы подтверждаете ознакомление с Правилами и Политикой конфиденциальности.</div></div></div></div></section>
 <section id="adminPanel" class="page"><div class="section"><div class="simple-head"><button class="back" onclick="backPage('profile')">←</button><h1>Admin Panel</h1></div><div id="adminStats" class="admin-grid"></div><div class="admin-tabs"><button class="admin-tab on" onclick="adminTab('moderation',this)">Модерация</button><button class="admin-tab" onclick="adminTab('orders',this)">Заказы</button><button class="admin-tab" onclick="adminTab('official',this)">Товары от нас</button><button class="admin-tab" onclick="adminTab('cleanup',this)">Очистка</button></div><div id="adminContent"></div></div></section>
-<section id="orders" class="page"><div class="section"><div class="orders-head"><button id="ordersBack" class="back">←</button><h1>Мои заказы</h1></div><div id="ordersList"></div></div></section></div>
+<section id="orders" class="page"><div class="section orders-premium-section"><div class="orders-head"><button id="ordersBack" class="back">←</button><div><h1>Мои заказы</h1><p>Покупки и статус доставки</p></div></div><div id="ordersList"></div></div></section></div>
 <nav><button class="nav active" data-page="home"><span class="icon"><i data-lucide="house"></i></span>Главная</button><button class="nav" data-page="catalog"><span class="icon"><i data-lucide="layout-grid"></i></span>Каталог</button><button class="nav sell" data-page="sell"><span class="icon"><i data-lucide="plus"></i></span>Продать</button><button class="nav" data-page="favorites"><span class="icon"><i data-lucide="heart"></i></span>Избранное</button><button class="nav" data-page="profile"><span class="icon"><i data-lucide="user"></i></span>Профиль</button></nav>
 <div id="productView" class="overlay product-final-view"><div class="inner product-final-inner">
 <div class="product-gallery-final"><button id="productBack" class="product-circle product-back-final">←</button><div id="bigPhoto" class="bigphoto product-bigphoto-final"></div><div id="photoCounter" class="photo-counter" hidden></div></div><div id="photoThumbs" class="photo-thumbs"></div>
