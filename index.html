@@ -1395,6 +1395,151 @@ header .header-fav,header .actions{top:13px!important}
  background:#1687e8!important;color:#fff!important;
  font-size:9px!important;font-weight:900!important;
 }
+
+/* =========================================================
+   PRODUCT GRID CARDS v3 — approved compact marketplace design
+   PRESENTATION ONLY: existing product DOM + click logic preserved.
+   ========================================================= */
+
+/* tighter two-column grid */
+.grid{
+  gap:10px!important;
+  align-items:start!important;
+}
+
+/* card itself stays clickable via existing JS */
+.card{
+  min-width:0!important;
+  margin:0!important;
+  padding:0 0 9px!important;
+  border:0!important;
+  border-radius:17px!important;
+  background:#fff!important;
+  box-shadow:0 5px 18px rgba(7,38,68,.055)!important;
+  overflow:hidden!important;
+}
+
+/* image is the hero; no visible frame */
+.card .photo{
+  position:relative!important;
+  width:100%!important;
+  height:205px!important;
+  margin:0!important;
+  border:0!important;
+  border-radius:17px 17px 14px 14px!important;
+  background:#f4f5f6!important;
+  overflow:hidden!important;
+  box-shadow:none!important;
+}
+.card .photo img{
+  width:100%!important;
+  height:100%!important;
+  display:block!important;
+  object-fit:contain!important;
+  padding:0!important;
+  margin:0!important;
+  border:0!important;
+  background:transparent!important;
+}
+
+/* favorite button floats over photo */
+.card .heart{
+  position:absolute!important;
+  top:9px!important;
+  right:9px!important;
+  z-index:3!important;
+  width:36px!important;
+  height:36px!important;
+  border:0!important;
+  border-radius:50%!important;
+  background:rgba(255,255,255,.95)!important;
+  color:#0a416f!important;
+  box-shadow:0 4px 14px rgba(7,38,68,.10)!important;
+  backdrop-filter:blur(7px)!important;
+}
+
+/* all text gets compact internal padding without changing markup */
+.card .badge{
+  margin:7px 9px 0!important;
+  min-height:22px!important;
+  width:max-content!important;
+  max-width:calc(100% - 18px)!important;
+  padding:0 9px!important;
+  border:0!important;
+  border-radius:999px!important;
+  font-size:8px!important;
+  line-height:22px!important;
+  font-weight:850!important;
+  letter-spacing:0!important;
+  box-shadow:none!important;
+}
+.card .badge-official{
+  background:#e7f2ff!important;
+  color:#1265ad!important;
+}
+.card .badge-resale,
+.card .badge-order{
+  background:#074f87!important;
+  color:#fff!important;
+}
+
+.card .name{
+  margin:6px 9px 0!important;
+  min-height:34px!important;
+  display:-webkit-box!important;
+  -webkit-box-orient:vertical!important;
+  -webkit-line-clamp:2!important;
+  overflow:hidden!important;
+  color:#081f38!important;
+  font-size:14px!important;
+  line-height:1.16!important;
+  font-weight:850!important;
+  letter-spacing:-.15px!important;
+}
+.card .meta{
+  margin:5px 9px 0!important;
+  min-height:13px!important;
+  overflow:hidden!important;
+  white-space:nowrap!important;
+  text-overflow:ellipsis!important;
+  color:#939eaa!important;
+  font-size:9.5px!important;
+  line-height:1.2!important;
+}
+.card .price{
+  margin:7px 9px 0!important;
+  color:#081f38!important;
+  font-size:17px!important;
+  line-height:1!important;
+  font-weight:900!important;
+  letter-spacing:-.2px!important;
+}
+
+/* catalog slightly roomier than home, same component */
+#catalog .grid{gap:11px!important}
+
+/* keep cards compact on real Telegram width */
+@media(max-width:430px){
+  .grid{gap:8px!important}
+  .card{border-radius:15px!important;padding-bottom:8px!important}
+  .card .photo{
+    height:188px!important;
+    border-radius:15px 15px 13px 13px!important;
+  }
+  .card .heart{
+    width:34px!important;height:34px!important;
+    top:8px!important;right:8px!important;
+  }
+  .card .name{font-size:13px!important;min-height:31px!important}
+  .card .price{font-size:16px!important}
+}
+
+/* very narrow desktop preview / Telegram webview */
+@media(max-width:365px){
+  .card .photo{height:168px!important}
+  .card .badge{margin-left:7px!important;margin-right:7px!important}
+  .card .name,.card .meta,.card .price{margin-left:7px!important;margin-right:7px!important}
+}
 </style><script src="https://telegram.org/js/telegram-web-app.js"></script><script src="https://unpkg.com/lucide@latest"></script></head><body><div class="app"><header><div class="top"><button class="round header-fav" onclick="page('favorites')" aria-label="Избранное"><i data-lucide="heart"></i></button><div class="brand"><div class="mark"><svg class="doppi" viewBox="0 0 96 48" aria-label="Тюбетейка">
 <path d="M8 35C13 15 30 6 48 6s35 9 40 29c-12 5-25 7-40 7S20 40 8 35Z" fill="#111"/>
 <path d="M48 8v31M20 29c8-3 14-8 18-15M76 29c-8-3-14-8-18-15" stroke="#fff" stroke-width="2" fill="none"/>
