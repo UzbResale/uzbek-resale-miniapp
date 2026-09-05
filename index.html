@@ -2049,6 +2049,17 @@ header .header-fav,header .actions{top:13px!important}
  .card .card-info .price{font-size:15.5px!important}
  .card .card-title-row .name{font-size:12px!important}
 }
+
+/* V6.1 — Telegram favorite tap fix */
+.card .card-media{pointer-events:auto!important}
+.card .card-media .photo{pointer-events:none!important}
+.card .card-media .heart{
+ pointer-events:auto!important;
+ touch-action:manipulation!important;
+ cursor:pointer!important;
+ z-index:30!important;
+ -webkit-tap-highlight-color:transparent!important;
+}
 </style><script src="https://telegram.org/js/telegram-web-app.js"></script><script src="https://unpkg.com/lucide@latest"></script></head><body><div class="app"><header><div class="top"><button class="round header-fav" onclick="page('favorites')" aria-label="Избранное"><i data-lucide="heart"></i></button><div class="brand"><div class="mark"><svg class="doppi" viewBox="0 0 96 48" aria-label="Тюбетейка">
 <path d="M8 35C13 15 30 6 48 6s35 9 40 29c-12 5-25 7-40 7S20 40 8 35Z" fill="#111"/>
 <path d="M48 8v31M20 29c8-3 14-8 18-15M76 29c-8-3-14-8-18-15" stroke="#fff" stroke-width="2" fill="none"/>
@@ -2203,7 +2214,21 @@ let marketProducts=[];
 let orderSending=false;const ORDERS_API="https://uzbek-resale-orders.amegakid.workers.dev";
 const MARKETPLACE_API="https://uzbek-resale-orders.amegakid.workers.dev";const $=id=>document.getElementById(id),money=n=>Number(n||0).toLocaleString("ru-RU")+" сум";
 
-function card(p){const e=document.createElement("div");e.className="card";e.innerHTML=`<div class="card-media"><div class="photo"><img src="${p.image}" alt="${p.name}" loading="lazy" onerror="this.style.display='none'"></div><button class="heart">${favs.includes(p.id)?"♥":"♡"}</button></div><div class="card-info"><div class="price">${money(p.price)}</div><div class="card-title-row"><div class="name">${p.name}</div><span class="card-check">✓</span></div><div class="meta">${p.brand} · Размер: ${p.size}</div><span class="badge ${p.ownerType==="official"?"badge-official":(p.type==="Под заказ"?"badge-order":"badge-resale")}">${p.ownerType==="official"?"От Uzbek Re'Sale":p.type}</span></div>`;e.querySelector(".heart").onclick=x=>{x.stopPropagation();favs=favs.includes(p.id)?favs.filter(i=>i!==p.id):[...favs,p.id];render()};e.onclick=()=>{selected=p;
+function card(p){const e=document.createElement("div");e.className="card";e.innerHTML=`<div class="card-media"><div class="photo"><img src="${p.image}" alt="${p.name}" loading="lazy" onerror="this.style.display='none'"></div><button class="heart">${favs.includes(p.id)?"♥":"♡"}</button></div><div class="card-info"><div class="price">${money(p.price)}</div><div class="card-title-row"><div class="name">${p.name}</div><span class="card-check">✓</span></div><div class="meta">${p.brand} · Размер: ${p.size}</div><span class="badge ${p.ownerType==="official"?"badge-official":(p.type==="Под заказ"?"badge-order":"badge-resale")}">${p.ownerType==="official"?"От Uzbek Re'Sale":p.type}</span></div>`;{
+ const heart=e.querySelector(".heart");
+ let favLock=0;
+ const doFav=x=>{
+   x.preventDefault();x.stopPropagation();
+   const now=Date.now();
+   if(now-favLock<350)return false;
+   favLock=now;
+   favs=favs.includes(p.id)?favs.filter(i=>i!==p.id):[...favs,p.id];
+   render();
+   return false;
+ };
+ heart.onclick=doFav;
+ heart.ontouchend=doFav;
+}e.onclick=()=>{selected=p;
  const gallery=(p.images&&p.images.length?p.images:[p.image]).filter(Boolean);
  const showGalleryPhoto=(idx)=>{if(!gallery.length)return;idx=(idx+gallery.length)%gallery.length;$("bigPhoto").innerHTML=`<img src="${gallery[idx]}" alt="${p.name}">`;const pc=$("photoCounter");if(pc){pc.hidden=gallery.length<2;pc.textContent=(idx+1)+" / "+gallery.length}document.querySelectorAll("#photoThumbs button").forEach((b,i)=>b.classList.toggle("active",i===idx))};
  const thumbs=$("photoThumbs");if(thumbs){thumbs.innerHTML=gallery.length>1?gallery.map((src,i)=>`<button type="button" data-gallery-index="${i}"><img src="${src}" alt=""></button>`).join(""):"";thumbs.querySelectorAll("button").forEach(b=>b.onclick=ev=>{ev.stopPropagation();showGalleryPhoto(Number(b.dataset.galleryIndex))})}
