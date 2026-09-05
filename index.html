@@ -609,6 +609,55 @@ header .header-fav,header .actions{top:13px!important}
  #catalog .photo{height:174px!important}
  .catalog-title-row h1{font-size:26px!important}
 }
+
+/* PRODUCT CARD — MOCKUP MATCH */
+.product-mockup-view{background:#fff!important}
+.product-mockup-inner{padding:0!important;background:#fff!important}
+.product-photo-stage{position:relative;height:365px;background:#f3f4f3;overflow:hidden}
+.product-main-photo{height:100%!important;margin:0!important;background:transparent!important;border-radius:0!important}
+.product-main-photo img{width:100%!important;height:100%!important;object-fit:contain!important;padding:28px 22px 18px!important;box-sizing:border-box!important}
+.product-round{position:absolute;z-index:6;top:14px;width:40px;height:40px;border-radius:50%;border:1px solid #dfe6ed;background:rgba(255,255,255,.96);color:#0a355e;display:flex;align-items:center;justify-content:center;font-size:20px;box-shadow:0 5px 14px rgba(7,38,68,.07)}
+.product-back{left:14px}.product-heart{right:14px}.product-heart.active{background:#073b6d;color:#fff}
+.product-photo-count{position:absolute;right:14px;bottom:12px;background:#0b2948;color:#fff;border-radius:11px;padding:5px 9px;font-size:9px;font-weight:800}
+.product-thumbs{display:flex;gap:7px;overflow-x:auto;padding:9px 16px 0;background:#fff;scrollbar-width:none}
+.product-thumbs:empty{display:none}.product-thumbs::-webkit-scrollbar{display:none}
+.product-thumbs button{width:62px;height:58px;flex:0 0 62px;padding:0;border:1px solid #e0e6ec;border-radius:10px;background:#f5f6f6;overflow:hidden}
+.product-thumbs button.active{border:2px solid #073b6d}.product-thumbs img{width:100%;height:100%;object-fit:cover}
+.product-info-sheet{padding:15px 16px 108px}
+.product-badge-row{display:flex;gap:7px;align-items:center;margin-bottom:8px}.product-badge-row .badge{margin:0!important}
+.availability-pill{display:inline-flex;height:24px;align-items:center;padding:0 9px;border-radius:7px;font-size:8.5px;font-weight:850}.availability-pill.stock{background:#e7f8ed;color:#178047}.availability-pill.china{background:#fff0d8;color:#b46600}.availability-pill.resale{background:#eaf2f9;color:#0b477a}
+.product-info-sheet>h1{font-size:24px!important;line-height:1.08!important;letter-spacing:-.6px!important;margin:0!important;color:#081e36!important}
+.product-info-sheet>h2{font-size:24px!important;line-height:1!important;margin:8px 0 12px!important;color:#081e36!important}
+.product-mini-specs{display:flex;gap:7px;flex-wrap:wrap;margin-bottom:12px}.product-mini-specs span{background:#f4f7f9;border:1px solid #e2e8ee;border-radius:9px;padding:7px 9px;color:#536576;font-size:9px}
+.product-details-mockup{grid-template-columns:1fr 1.35fr!important;padding:10px 0!important;margin:0 0 13px!important;border-radius:0!important;background:#fff!important}
+.product-details-mockup span{font-size:10px!important;padding:4px 2px!important}.product-details-mockup span:nth-child(odd){color:#8b96a1!important}.product-details-mockup span:nth-child(even){font-weight:800!important;color:#102a43!important}
+.product-seller-card{margin:13px 0 8px!important;padding:12px!important;border-radius:16px!important;border:1px solid #e0e7ee!important;box-shadow:none!important}.seller-kicker{font-size:8px;color:#98a2ad;margin-bottom:2px}.product-seller-card .seller-avatar{width:46px;height:46px}.product-seller-card .seller-link{background:#f2f5f8!important;color:#0b355d!important}.product-seller-card .official-badge{font-size:8px!important;padding:7px 8px!important;background:#edf3f8!important}
+.product-message-btn{height:44px!important;min-height:44px!important;border-radius:12px!important;margin:0 0 14px!important;color:#0b355d!important}
+.product-description-card{border-top:1px solid #edf0f3;padding:13px 0 4px;margin-top:4px}.product-description-card h3{font-size:14px;margin:0 0 7px;color:#0b223b}.product-description-card p{font-size:10.5px;line-height:1.45;color:#687583;margin:0}
+.product-safe-note{display:flex;gap:10px;align-items:flex-start;background:#f3f7fb;border-radius:14px;padding:11px;margin:13px 0}.product-safe-note>span{width:28px;height:28px;flex:0 0 28px;border-radius:50%;background:#073b6d;color:#fff;display:flex;align-items:center;justify-content:center;font-weight:900}.product-safe-note b{display:block;font-size:10px;color:#0b2948}.product-safe-note small{display:block;font-size:8.5px;line-height:1.35;color:#7a8794;margin-top:3px}
+.product-bottom-actions{position:sticky;bottom:0;background:rgba(255,255,255,.97);backdrop-filter:blur(14px);display:grid;gap:8px;padding-top:10px}.product-bottom-actions .btn{height:48px!important;min-height:48px!important;border-radius:13px!important;font-size:12px!important}.product-bottom-actions .black{background:#073b6d!important}.product-bottom-actions .white{background:#fff!important;color:#0b355d!important;border:1px solid #dce4ec!important}
+@media(max-width:390px){.product-photo-stage{height:335px}.product-info-sheet{padding-left:14px;padding-right:14px}.product-info-sheet>h1,.product-info-sheet>h2{font-size:22px!important}}
+
+/* PRODUCT CARD — APPROVED MOCKUP EXACT PASS */
+.product-photo-stage{height:370px!important;background:#f2f3f2!important}
+.product-main-photo img{padding:24px 20px 16px!important}
+.product-thumbs{padding:10px 16px 2px!important;gap:8px!important}
+.product-thumbs button{width:66px!important;height:62px!important;flex-basis:66px!important;border-radius:9px!important}
+.product-info-sheet{padding:15px 16px 108px!important}
+.product-badge-row{margin-bottom:9px!important}
+.product-info-sheet>h1{font-size:25px!important;margin:0!important;line-height:1.06!important}
+.product-brand-line{font-size:11px;color:#778391;margin-top:5px;font-weight:650}
+.product-info-sheet>h2{font-size:25px!important;margin:10px 0 13px!important}
+.product-mini-specs{margin-bottom:13px!important}
+.product-mini-specs span{border-radius:8px!important;background:#f5f7f9!important;padding:7px 9px!important}
+.product-details-mockup{margin-bottom:14px!important;border-top:1px solid #edf0f3!important;border-bottom:1px solid #edf0f3!important}
+.product-seller-card{margin:14px 0 8px!important}
+.product-description-card{margin-top:12px!important;padding-top:14px!important}
+.product-description-card h3{font-size:14px!important}
+.product-description-card p{font-size:10.5px!important}
+.product-bottom-actions{margin-top:16px!important}
+.product-safe-note{display:none!important}
+@media(max-width:390px){.product-photo-stage{height:342px!important}.product-info-sheet>h1,.product-info-sheet>h2{font-size:23px!important}}
 </style><script src="https://telegram.org/js/telegram-web-app.js"></script><script src="https://unpkg.com/lucide@latest"></script></head><body><div class="app"><header><div class="top"><button class="round header-fav" onclick="page('favorites')" aria-label="Избранное"><i data-lucide="heart"></i></button><div class="brand"><div class="mark"><svg class="doppi" viewBox="0 0 96 48" aria-label="Тюбетейка">
 <path d="M8 35C13 15 30 6 48 6s35 9 40 29c-12 5-25 7-40 7S20 40 8 35Z" fill="#111"/>
 <path d="M48 8v31M20 29c8-3 14-8 18-15M76 29c-8-3-14-8-18-15" stroke="#fff" stroke-width="2" fill="none"/>
@@ -739,7 +788,26 @@ header .header-fav,header .actions{top:13px!important}
 <section id="adminPanel" class="page"><div class="section"><div class="simple-head"><button class="back" onclick="backPage('profile')">←</button><h1>Admin Panel</h1></div><div id="adminStats" class="admin-grid"></div><div class="admin-tabs"><button class="admin-tab on" onclick="adminTab('moderation',this)">Модерация</button><button class="admin-tab" onclick="adminTab('orders',this)">Заказы</button><button class="admin-tab" onclick="adminTab('official',this)">Товары от нас</button><button class="admin-tab" onclick="adminTab('cleanup',this)">Очистка</button></div><div id="adminContent"></div></div></section>
 <section id="orders" class="page"><div class="section"><div class="orders-head"><button id="ordersBack" class="back">←</button><h1>Мои заказы</h1></div><div id="ordersList"></div></div></section></div>
 <nav><button class="nav active" data-page="home"><span class="icon"><i data-lucide="house"></i></span>Главная</button><button class="nav" data-page="catalog"><span class="icon"><i data-lucide="layout-grid"></i></span>Каталог</button><button class="nav sell" data-page="sell"><span class="icon"><i data-lucide="plus"></i></span>Продать</button><button class="nav" data-page="favorites"><span class="icon"><i data-lucide="heart"></i></span>Избранное</button><button class="nav" data-page="profile"><span class="icon"><i data-lucide="user"></i></span>Профиль</button></nav>
-<div id="productView" class="overlay"><div class="inner"><button id="productBack" class="back">←</button><div id="bigPhoto" class="bigphoto"></div><span id="pType" class="badge"></span><h1 id="pName"></h1><h2 id="pPrice"></h2><p id="pSize"></p><p id="pCondition"></p><div id="productMeta" class="product-details"></div><div id="productSeller"></div><button id="buyBtn" class="btn black">Купить</button><br><br><button id="addBtn" class="btn white">Добавить в корзину</button></div></div>
+<div id="productView" class="overlay product-mockup-view"><div class="inner product-mockup-inner">
+<div class="product-photo-stage">
+  <button id="productBack" class="product-round product-back">←</button>
+  <button id="productHeart" class="product-round product-heart">♡</button>
+  <div id="bigPhoto" class="bigphoto product-main-photo"></div>
+  <div id="productPhotoCount" class="product-photo-count">1 / 1</div>
+</div>
+<div id="productThumbs" class="product-thumbs"></div>
+<div class="product-info-sheet">
+  <div class="product-badge-row"><span id="pType" class="badge"></span><span id="pAvailability" class="availability-pill"></span></div>
+  <h1 id="pName"></h1>
+  <div id="pBrandLine" class="product-brand-line"></div>
+  <h2 id="pPrice"></h2>
+  <div class="product-mini-specs"><span id="pSize"></span><span id="pCondition"></span></div>
+  <div id="productMeta" class="product-details product-details-mockup"></div>
+  <div id="productSeller"></div>
+  <div id="productDescriptionCard" class="product-description-card"><h3>Описание</h3><p id="productDescriptionText">Информация о товаре указана продавцом.</p></div>
+  
+  <div class="product-bottom-actions"><button id="buyBtn" class="btn black">Купить</button><button id="addBtn" class="btn white">Добавить в корзину</button></div>
+</div></div></div>
 <div id="adminReviewView" class="overlay"><div class="inner"><button class="back" onclick="$('adminReviewView').classList.remove('open')">←</button><div id="adminReviewContent"></div></div></div>
 <div id="adminListingView" class="overlay"><div class="inner"><button class="back" onclick="$('adminListingView').classList.remove('open')">←</button><div id="adminListingContent"></div></div></div>
 <div id="orderDetailView" class="overlay"><div class="inner"><button id="orderDetailBack" class="back">←</button><div id="orderDetailContent" class="order-detail"></div></div></div><div id="checkoutView" class="overlay"><div class="inner"><button id="checkoutBack" class="back">←</button><div id="orderForm"><h1>Оформление заказа</h1><div class="field"><label>Имя *</label><input id="buyerName"></div><div class="field"><label>Телефон *</label><input id="buyerPhone" placeholder="+998"></div><div class="field"><label>Город *</label><input id="buyerCity"></div><div class="field"><label>Комментарий</label><input id="buyerComment"></div><p>Оплата и доставка пока подтверждаются вручную.</p><button id="confirmBtn" class="btn black">Подтвердить заказ</button></div><div id="success" class="success" style="display:none"><h1>✓</h1><h2>Заказ оформлен</h2><p>Мы свяжемся с вами для подтверждения.</p><button id="homeBtn" class="btn black">Вернуться в магазин</button></div></div></div><script>const products=[
@@ -757,9 +825,30 @@ let marketProducts=[];
 let orderSending=false;const ORDERS_API="https://uzbek-resale-orders.amegakid.workers.dev";
 const MARKETPLACE_API="https://uzbek-resale-orders.amegakid.workers.dev";const $=id=>document.getElementById(id),money=n=>Number(n||0).toLocaleString("ru-RU")+" сум";
 
-function card(p){const e=document.createElement("div");e.className="card";e.innerHTML=`<div class="photo"><img src="${p.image}" alt="${p.name}" loading="lazy" onerror="this.style.display='none'"></div><button class="heart">${favs.includes(p.id)?"♥":"♡"}</button><span class="badge">${p.ownerType==="official"?"✓ ОТ UZBEK RESALE":p.type}</span><div class="name">${p.name}</div><div class="meta">${p.brand} · Размер: ${p.size}</div><div class="price">${money(p.price)}</div>`;e.querySelector(".heart").onclick=x=>{x.stopPropagation();favs=favs.includes(p.id)?favs.filter(i=>i!==p.id):[...favs,p.id];render()};e.onclick=()=>{selected=p;$("bigPhoto").innerHTML=`<img src="${p.image}" alt="${p.name}">`;$("pType").textContent=p.type;$("pName").textContent=p.name;$("pPrice").textContent=money(p.price);$("pSize").textContent="Размер: "+p.size;$("pCondition").textContent="Состояние: "+p.condition;const d=$("productMeta");if(d)d.innerHTML=`<span>Бренд</span><span>${p.brand||"—"}</span><span>Категория</span><span>${p.category||"—"}</span><span>Размер</span><span>${p.size}</span><span>Состояние</span><span>${p.condition}</span>${p.ownerType==="official"?`<span>Наличие</span><span>${p.sourceType==="china"?"Из Китая":"В наличии"} · ${p.stockQty===1?"Осталась 1 шт.":"Осталось: "+p.stockQty+" шт."}</span>`:""}`;const sb=$("productSeller");if(sb){if(p.ownerType==="official"){sb.innerHTML='<div class="seller-card"><div class="seller-avatar">UR</div><div class="seller-main"><div class="official-badge">✓ ОТ UZBEK RE\'SALE</div><div class="seller-sub">'+(p.sourceType==="china"?"Из Китая":"В наличии")+'</div></div></div>';}else if(p.listingId){const ini=(p.sellerName||"P").split(" ").map(x=>x[0]).join("").slice(0,2).toUpperCase();sb.innerHTML='<div class="resale-badge">♻ РЕСЕЙЛ</div><div class="seller-card"><div class="seller-avatar">'+ini+'</div><div class="seller-main"><div class="seller-name">'+(p.sellerName||"Продавец")+'</div><div class="seller-sub">'+(p.sellerUsername?"@"+p.sellerUsername:"Telegram продавец")+'</div></div><button class="seller-link" onclick="event.preventDefault();event.stopPropagation();goSellerProfile(\''+p.sellerTelegramId+'\')">Профиль</button></div>'+(p.sellerUsername?'<button class="btn telegram-btn" onclick="event.stopPropagation();messageSeller(\''+p.sellerUsername+'\')">Написать в Telegram</button>':'');}else sb.innerHTML="";}$("productView").classList.add("open")};return e}
-
-function fill(id,list){const b=$(id);b.innerHTML="";if(!list.length){b.innerHTML='<div class="empty">Здесь пока ничего нет</div>';return}list.forEach(p=>b.appendChild(card(p)))}
+function card(p){const e=document.createElement("div");e.className="card";e.innerHTML=`<div class="photo"><img src="${p.image}" alt="${p.name}" loading="lazy" onerror="this.style.display='none'"></div><button class="heart">${favs.includes(p.id)?"♥":"♡"}</button><span class="badge">${p.ownerType==="official"?"✓ ОТ UZBEK RESALE":p.type}</span><div class="name">${p.name}</div><div class="meta">${p.brand} · Размер: ${p.size}</div><div class="price">${money(p.price)}</div>`;e.querySelector(".heart").onclick=x=>{x.stopPropagation();favs=favs.includes(p.id)?favs.filter(i=>i!==p.id):[...favs,p.id];render()};e.onclick=()=>{selected=p;
+ const photos=(p.images&&p.images.length?p.images.map(x=>x.image_url||x):[p.image]).filter(Boolean);
+ const showPhoto=i=>{const src=photos[i]||p.image;$("bigPhoto").innerHTML=`<img src="${src}" alt="${p.name}">`;$("productPhotoCount").textContent=(i+1)+" / "+Math.max(1,photos.length);document.querySelectorAll("#productThumbs button").forEach((b,n)=>b.classList.toggle("active",n===i))};
+ $("productThumbs").innerHTML=photos.length>1?photos.map((src,i)=>`<button onclick="event.stopPropagation();window.__showProductPhoto(${i})"><img src="${src}"></button>`).join(""):"";
+ window.__showProductPhoto=showPhoto;showPhoto(0);
+ $("pType").textContent=p.ownerType==="official"?"✓ От Uzbek Re'Sale":(p.type||"Ресейл");
+ $("pName").textContent=p.name;$("pBrandLine").textContent=p.brand||"";$("pPrice").textContent=money(p.price);
+ $("pSize").textContent="Размер: "+(p.size||"—");$("pCondition").textContent="Состояние: "+(p.condition||"—");
+ $("pAvailability").textContent=p.ownerType==="official"?(p.sourceType==="china"?"Из Китая":(Number(p.stockQty||0)>0?"В наличии":"Нет в наличии")):"Ресейл";
+ $("pAvailability").className="availability-pill "+(p.ownerType==="official"?(p.sourceType==="china"?"china":"stock"):"resale");
+ $("productDescriptionText").textContent=p.description||"Информация о товаре указана продавцом.";
+ const d=$("productMeta");if(d)d.innerHTML=`<span>Бренд</span><span>${p.brand||"—"}</span><span>Категория</span><span>${p.category||"—"}</span><span>Размер</span><span>${p.size||"—"}</span><span>Состояние</span><span>${p.condition||"—"}</span>${p.ownerType==="official"?`<span>Наличие</span><span>${p.sourceType==="china"?"Из Китая":(p.stockQty===1?"Осталась 1 шт.":"Осталось: "+p.stockQty+" шт.")}</span>`:""}`;
+ const sb=$("productSeller");if(sb){
+  if(p.ownerType==="official"){
+    sb.innerHTML=`<div class="seller-card product-seller-card"><div class="seller-avatar">UR</div><div class="seller-main"><div class="seller-kicker">Продавец</div><div class="seller-name">Uzbek Re'Sale</div><div class="seller-sub">${p.sourceType==="china"?"Из Китая":"В наличии"}</div></div><div class="official-badge">✓ Официальный</div></div>`;
+  }else if(p.listingId){
+    const ini=(p.sellerName||"P").split(" ").map(x=>x[0]).join("").slice(0,2).toUpperCase();
+    sb.innerHTML=`<div class="seller-card product-seller-card"><div class="seller-avatar">${ini}</div><div class="seller-main"><div class="seller-kicker">Продавец</div><div class="seller-name">${p.sellerName||"Продавец"}</div><div class="seller-sub">${p.sellerUsername?"@"+p.sellerUsername:"Telegram продавец"}</div></div><button class="seller-link" data-seller-profile="${p.sellerTelegramId||""}">Профиль</button></div>${p.sellerUsername?`<button class="btn telegram-btn product-message-btn" data-message-seller="${p.sellerUsername}">Написать продавцу</button>`:""}`;
+    const profileBtn=sb.querySelector("[data-seller-profile]");if(profileBtn)profileBtn.onclick=ev=>{ev.stopPropagation();goSellerProfile(profileBtn.dataset.sellerProfile)};
+    const msgBtn=sb.querySelector("[data-message-seller]");if(msgBtn)msgBtn.onclick=ev=>{ev.stopPropagation();messageSeller(msgBtn.dataset.messageSeller)};
+  }else sb.innerHTML="";
+}
+ $("productHeart").textContent=favs.includes(p.id)?"♥":"♡";$("productHeart").classList.toggle("active",favs.includes(p.id));
+ $("productView").classList.add("open");resetPageScroll($("productView"))};return e}
 
 function render(){let list=products.filter(p=>(type==="Все"||p.type===type)&&(!ownerFilter||p.ownerType===ownerFilter)&&(category==="Все"||p.category===category)&&p.name.toLowerCase().includes(q.toLowerCase()));if(sortMode==="priceAsc")list=[...list].sort((a,b)=>a.price-b.price);if(sortMode==="priceDesc")list=[...list].sort((a,b)=>b.price-a.price);if(sortMode==="name")list=[...list].sort((a,b)=>a.name.localeCompare(b.name));fill("homeGrid",products.slice(0,4));fill("catalogGrid",list);
 const catalogResultCount=$("catalogResultCount");if(catalogResultCount)catalogResultCount.textContent=list.length+" "+(list.length===1?"товар":(list.length>=2&&list.length<=4?"товара":"товаров"));
@@ -809,7 +898,7 @@ $("search").oninput=e=>{
  if(q && currentPageId()!=="catalog") page("catalog");
  render();
 };
-$("productBack").onclick=()=>$("productView").classList.remove("open");
+$("productBack").onclick=()=>$("productView").classList.remove("open");$("productHeart").onclick=()=>{if(!selected)return;favs=favs.includes(selected.id)?favs.filter(i=>i!==selected.id):[...favs,selected.id];$("productHeart").textContent=favs.includes(selected.id)?"♥":"♡";$("productHeart").classList.toggle("active",favs.includes(selected.id));render()};
 
 $("addBtn").onclick=()=>{add(selected);$("productView").classList.remove("open");page("cart")};$("buyBtn").onclick=()=>{add(selected);$("productView").classList.remove("open");checkout()};
 
