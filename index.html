@@ -2060,6 +2060,15 @@ header .header-fav,header .actions{top:13px!important}
  z-index:30!important;
  -webkit-tap-highlight-color:transparent!important;
 }
+
+/* V6.2 — Favorites render + card verification cleanup */
+.card .card-title-row{
+  display:block!important;
+  margin-top:7px!important;
+}
+.card .card-check{
+  display:none!important;
+}
 </style><script src="https://telegram.org/js/telegram-web-app.js"></script><script src="https://unpkg.com/lucide@latest"></script></head><body><div class="app"><header><div class="top"><button class="round header-fav" onclick="page('favorites')" aria-label="Избранное"><i data-lucide="heart"></i></button><div class="brand"><div class="mark"><svg class="doppi" viewBox="0 0 96 48" aria-label="Тюбетейка">
 <path d="M8 35C13 15 30 6 48 6s35 9 40 29c-12 5-25 7-40 7S20 40 8 35Z" fill="#111"/>
 <path d="M48 8v31M20 29c8-3 14-8 18-15M76 29c-8-3-14-8-18-15" stroke="#fff" stroke-width="2" fill="none"/>
@@ -2214,7 +2223,7 @@ let marketProducts=[];
 let orderSending=false;const ORDERS_API="https://uzbek-resale-orders.amegakid.workers.dev";
 const MARKETPLACE_API="https://uzbek-resale-orders.amegakid.workers.dev";const $=id=>document.getElementById(id),money=n=>Number(n||0).toLocaleString("ru-RU")+" сум";
 
-function card(p){const e=document.createElement("div");e.className="card";e.innerHTML=`<div class="card-media"><div class="photo"><img src="${p.image}" alt="${p.name}" loading="lazy" onerror="this.style.display='none'"></div><button class="heart">${favs.includes(p.id)?"♥":"♡"}</button></div><div class="card-info"><div class="price">${money(p.price)}</div><div class="card-title-row"><div class="name">${p.name}</div><span class="card-check">✓</span></div><div class="meta">${p.brand} · Размер: ${p.size}</div><span class="badge ${p.ownerType==="official"?"badge-official":(p.type==="Под заказ"?"badge-order":"badge-resale")}">${p.ownerType==="official"?"От Uzbek Re'Sale":p.type}</span></div>`;{
+function card(p){const e=document.createElement("div");e.className="card";e.innerHTML=`<div class="card-media"><div class="photo"><img src="${p.image}" alt="${p.name}" loading="lazy" onerror="this.style.display='none'"></div><button class="heart">${favs.includes(p.id)?"♥":"♡"}</button></div><div class="card-info"><div class="price">${money(p.price)}</div><div class="card-title-row"><div class="name">${p.name}</div></div><div class="meta">${p.brand} · Размер: ${p.size}</div><span class="badge ${p.ownerType==="official"?"badge-official":(p.type==="Под заказ"?"badge-order":"badge-resale")}">${p.ownerType==="official"?"От Uzbek Re'Sale":p.type}</span></div>`;{
  const heart=e.querySelector(".heart");
  let favLock=0;
  const doFav=x=>{
@@ -2243,7 +2252,11 @@ function fill(id,list){const b=$(id);b.innerHTML="";if(!list.length){b.innerHTML
 function render(){let list=products.filter(p=>(type==="Все"||p.type===type)&&(!ownerFilter||p.ownerType===ownerFilter)&&(category==="Все"||p.category===category)&&p.name.toLowerCase().includes(q.toLowerCase()));if(sortMode==="priceAsc")list=[...list].sort((a,b)=>a.price-b.price);if(sortMode==="priceDesc")list=[...list].sort((a,b)=>b.price-a.price);if(sortMode==="name")list=[...list].sort((a,b)=>a.name.localeCompare(b.name));fill("homeGrid",products.slice(0,4));fill("catalogGrid",list);
 const catalogResultCount=$("catalogResultCount");if(catalogResultCount)catalogResultCount.textContent=list.length+" "+(list.length===1?"товар":(list.length>=2&&list.length<=4?"товара":"товаров"));
 const favoriteItems=products.filter(p=>favs.includes(p.id));
-$("favoriteGrid").innerHTML=favoriteItems.map(card).join("");
+const favoriteGrid=$("favoriteGrid");
+if(favoriteGrid){
+  favoriteGrid.innerHTML="";
+  favoriteItems.forEach(p=>favoriteGrid.appendChild(card(p)));
+}
 const favoritesEmpty=$("favoritesEmpty");
 if(favoritesEmpty)favoritesEmpty.style.display=favoriteItems.length?"none":"flex";
 document.querySelectorAll("#favorites .empty").forEach(el=>el.remove());
