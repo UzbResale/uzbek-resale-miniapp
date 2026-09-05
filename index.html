@@ -324,6 +324,23 @@ header .header-fav,header .actions{top:13px!important}
  .home-categories{gap:6px!important}
  .home-categories span{width:50px!important;height:50px!important}
 }
+
+/* FAVORITES FINAL — true centered empty state */
+#favorites{padding-bottom:0!important}
+#favorites .favorites-section{position:relative!important;min-height:calc(100dvh - 184px)!important;padding:0 16px 88px!important}
+#favorites .favorites-empty-state{
+ min-height:calc(100dvh - 272px)!important;width:100%!important;
+ display:flex;flex-direction:column;align-items:center;justify-content:center;
+ text-align:center;transform:translateY(-8px);
+}
+#favorites .favorites-empty-icon{
+ width:76px;height:76px;display:flex;align-items:center;justify-content:center;
+ border-radius:24px;background:#edf4fa;color:#0a477a;margin:0 0 18px;
+}
+#favorites .favorites-empty-icon svg{width:34px;height:34px;stroke-width:1.8}
+#favorites .favorites-empty-state h1{margin:0 0 12px!important;font-size:27px!important;line-height:1.08!important;letter-spacing:-.6px!important;text-align:center!important}
+#favorites .favorites-empty-state p{margin:0!important;color:#8a929c!important;font-size:16px!important;line-height:1.35!important;text-align:center!important}
+#favorites #favoriteGrid:not(:empty){padding-top:20px!important}
 </style><script src="https://telegram.org/js/telegram-web-app.js"></script><script src="https://unpkg.com/lucide@latest"></script></head><body><div class="app"><header><div class="top"><button class="round header-fav" onclick="page('favorites')" aria-label="Избранное"><i data-lucide="heart"></i></button><div class="brand"><div class="mark"><svg class="doppi" viewBox="0 0 96 48" aria-label="Тюбетейка">
 <path d="M8 35C13 15 30 6 48 6s35 9 40 29c-12 5-25 7-40 7S20 40 8 35Z" fill="#111"/>
 <path d="M48 8v31M20 29c8-3 14-8 18-15M76 29c-8-3-14-8-18-15" stroke="#fff" stroke-width="2" fill="none"/>
@@ -352,7 +369,9 @@ header .header-fav,header .actions{top:13px!important}
 </div></section>
 <section id="catalog" class="page"><div class="section"><div class="catalog-head"><h1>Каталог</h1><select id="sortSelect" class="sortselect"><option value="default">Сортировка</option><option value="priceAsc">Цена ↑</option><option value="priceDesc">Цена ↓</option><option value="name">По названию</option></select></div><div class="filters" id="filters"><button class="filter active" data-type="Все">Все</button><button class="filter" data-type="Ресейл">Ресейл</button><button class="filter" data-type="Под заказ">Из Китая</button><button class="filter" data-type="В наличии">В наличии</button></div><div class="category-filter" id="categoryFilters"><button class="category-chip active" data-category="Все">Все категории</button><button class="category-chip" data-category="Одежда">Одежда</button><button class="category-chip" data-category="Обувь">Обувь</button><button class="category-chip" data-category="Аксессуары">Аксессуары</button><button class="category-chip" data-category="Другое">Другое</button></div><div id="catalogGrid" class="grid"></div></div></section>
 <section id="sell" class="page"><div class="section"><h1>Продать вещь</h1><p class="meta">Заполните информацию о товаре. Перед публикацией объявление пройдёт проверку.</p><div class="sell-form"><label class="uploadbox" for="sellPhotos"><span><i data-lucide="image-plus"></i><br>Добавить фотографии<br><small>до 10 фото</small></span></label><input id="sellPhotos" class="photo-input" type="file" accept="image/*" multiple><div id="sellPreview" class="preview-grid"></div><div class="field"><label>Название товара *</label><input id="sellName" placeholder="Например: Nike Air Force 1"></div><div class="field"><label>Категория *</label><select id="sellCategory"><option>Одежда</option><option>Обувь</option><option>Аксессуары</option><option>Другое</option></select></div><div class="field"><label>Бренд</label><input id="sellBrand" placeholder="Например: Nike"></div><div class="field"><label>Размер</label><input id="sellSize" placeholder="M, 42, One Size..."></div><div class="field"><label>Состояние *</label><select id="sellCondition"><option>Новое</option><option>Отличное</option><option>Хорошее</option><option>Удовлетворительное</option></select></div><div class="field"><label>Цена, сум *</label><input id="sellPrice" inputmode="numeric" placeholder="500000"></div><div class="field"><label>Описание</label><textarea id="sellDescription" rows="4" placeholder="Расскажите о вещи"></textarea></div><button class="btn black" id="sellSubmit">Отправить на проверку</button></div></div></section>
-<section id="favorites" class="page"><div class="section"><h1>Избранное</h1><div id="favoriteGrid" class="grid"></div></div></section><section id="cart" class="page"><div class="section"><h1>Корзина</h1><div id="cartList"></div><div id="cartBottom" style="display:none"><div class="total"><span>Итого</span><span id="total"></span></div><button id="checkoutBtn" class="btn black">Оформить заказ</button></div></div></section>
+<section id="favorites" class="page"><div class="section favorites-section">
+<div id="favoritesEmpty" class="favorites-empty-state"><div class="favorites-empty-icon"><i data-lucide="heart"></i></div><h1>Избранное</h1><p>Здесь пока ничего нет</p></div>
+<div id="favoriteGrid" class="grid"></div></div></section><section id="cart" class="page"><div class="section"><h1>Корзина</h1><div id="cartList"></div><div id="cartBottom" style="display:none"><div class="total"><span>Итого</span><span id="total"></span></div><button id="checkoutBtn" class="btn black">Оформить заказ</button></div></div></section>
 <section id="profile" class="page"><div class="profile"><div class="profilecard"><div id="profileAvatar" class="avatar">UR</div><div class="pinfo"><h1 id="profileName">Профиль</h1><p id="profileUsername">Узбекский Ресейл</p><p id="profileId" style="display:none"></p></div></div><div class="profile-actions">
 <button id="adminPanelBtn" class="profile-action" hidden style="display:none!important" onclick="openAdminPanel()"><i data-lucide="shield-check"></i><span>Admin Panel</span><span class="arrow">›</span></button>
 <button id="myOrdersBtn" class="profile-action"><i data-lucide="package"></i><span>Мои заказы</span><span class="arrow">›</span></button>
@@ -428,7 +447,11 @@ function card(p){const e=document.createElement("div");e.className="card";e.inne
 
 function fill(id,list){const b=$(id);b.innerHTML="";if(!list.length){b.innerHTML='<div class="empty">Здесь пока ничего нет</div>';return}list.forEach(p=>b.appendChild(card(p)))}
 
-function render(){let list=products.filter(p=>(type==="Все"||p.type===type)&&(!ownerFilter||p.ownerType===ownerFilter)&&(category==="Все"||p.category===category)&&p.name.toLowerCase().includes(q.toLowerCase()));if(sortMode==="priceAsc")list=[...list].sort((a,b)=>a.price-b.price);if(sortMode==="priceDesc")list=[...list].sort((a,b)=>b.price-a.price);if(sortMode==="name")list=[...list].sort((a,b)=>a.name.localeCompare(b.name));fill("homeGrid",products.slice(0,4));fill("catalogGrid",list);fill("favoriteGrid",products.filter(p=>favs.includes(p.id)));renderCart()}
+function render(){let list=products.filter(p=>(type==="Все"||p.type===type)&&(!ownerFilter||p.ownerType===ownerFilter)&&(category==="Все"||p.category===category)&&p.name.toLowerCase().includes(q.toLowerCase()));if(sortMode==="priceAsc")list=[...list].sort((a,b)=>a.price-b.price);if(sortMode==="priceDesc")list=[...list].sort((a,b)=>b.price-a.price);if(sortMode==="name")list=[...list].sort((a,b)=>a.name.localeCompare(b.name));fill("homeGrid",products.slice(0,4));fill("catalogGrid",list);
+const favoriteItems=products.filter(p=>favs.includes(p.id));
+$("favoriteGrid").innerHTML=favoriteItems.map(card).join("");
+const favoritesEmpty=$("favoritesEmpty");if(favoritesEmpty)favoritesEmpty.style.display=favoriteItems.length?"none":"flex";
+renderCart()}
 
 function renderCart(){const cc=$("cartCount");if(cc)cc.textContent=cart.length;const b=$("cartList");b.innerHTML="";if(!cart.length){b.innerHTML='<div class="empty">Корзина пока пустая 🛍</div>';$("cartBottom").style.display="none";return}$("cartBottom").style.display="block";cart.forEach(p=>{const r=document.createElement("div");r.className="cartrow";r.innerHTML=`<div class="cartpic"><img src="${p.image}" alt="${p.name}"></div><div class="grow"><b>${p.name}</b><div class="meta">${p.size}</div><div class="price">${money(p.price)}</div></div><button class="remove">×</button>`;r.querySelector(".remove").onclick=()=>{cart=cart.filter(x=>x.id!==p.id);renderCart()};b.appendChild(r)});$("total").textContent=money(cart.reduce((s,p)=>s+p.price,0))}
 
