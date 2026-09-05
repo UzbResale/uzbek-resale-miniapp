@@ -2751,6 +2751,48 @@ header .header-fav,header .actions{top:13px!important}
   margin:0 -14px 22px!important;
   padding-top:28px!important;
 }
+
+/* =========================================================
+   PROFILE FLOW V2 — hard viewport normalization
+   Seller profile itself is intentionally NOT changed here.
+   ========================================================= */
+#myProducts.active,#orders.active,#sell.active,#favorites.active,#faq.active,#rules.active,#about.active,#settingsPage.active,#adminPanel.active{
+  position:fixed!important;
+  z-index:44!important;
+  inset:0!important;
+  width:100%!important;
+  height:100dvh!important;
+  max-height:100dvh!important;
+  margin:0!important;
+  padding:0 0 92px!important;
+  box-sizing:border-box!important;
+  overflow-y:auto!important;
+  overflow-x:hidden!important;
+  background:#fff!important;
+  transform:none!important;
+  -webkit-overflow-scrolling:touch!important;
+  overscroll-behavior:contain!important;
+}
+/* Main profile stays a normal nav page, but always starts cleanly */
+#profile.active{
+  margin-top:0!important;
+  padding-top:0!important;
+  overflow-y:auto!important;
+}
+/* child page content starts at the top instead of inheriting old page spacing */
+#myProducts.active > .section,#orders.active > .section,#sell.active > .section,#faq.active > .section,#rules.active > .section,#about.active > .section,#settingsPage.active > .section,#adminPanel.active > .section{
+  margin-top:0!important;
+  padding-top:18px!important;
+}
+/* favorites has its shared header/search; don't redesign it here */
+#favorites.active{
+  padding-top:0!important;
+}
+/* keep bottom navigation above child pages */
+nav.bottom,.bottom-nav,.bottom{
+  position:fixed!important;
+  z-index:70!important;
+}
 </style><script src="https://telegram.org/js/telegram-web-app.js"></script><script src="https://unpkg.com/lucide@latest"></script></head><body><div class="app"><header><div class="top"><button class="round header-fav" onclick="page('favorites')" aria-label="Избранное"><i data-lucide="heart"></i></button><div class="brand"><div class="mark"><svg class="doppi" viewBox="0 0 96 48" aria-label="Тюбетейка">
 <path d="M8 35C13 15 30 6 48 6s35 9 40 29c-12 5-25 7-40 7S20 40 8 35Z" fill="#111"/>
 <path d="M48 8v31M20 29c8-3 14-8 18-15M76 29c-8-3-14-8-18-15" stroke="#fff" stroke-width="2" fill="none"/>
@@ -2834,8 +2876,8 @@ header .header-fav,header .actions{top:13px!important}
 <button class="profile-action" onclick="page('sell')"><i data-lucide="circle-plus"></i><span>Продать вещь</span><span class="arrow">›</span></button>
 <button class="profile-action" onclick="openMyListings()"><i data-lucide="shirt"></i><span>Мои товары</span><span class="arrow">›</span></button>
 <button class="profile-action" onclick="openOwnSellerProfile()"><i data-lucide="user-round"></i><span>Мой профиль продавца</span><span class="arrow">›</span></button><button class="profile-action" onclick="page('favorites')"><i data-lucide="heart"></i><span>Избранное</span><span class="arrow">›</span></button>
-<button class="profile-action" onclick="page('addresses')"><i data-lucide="map-pin"></i><span>Адреса доставки</span><span class="arrow">›</span></button>
-<button class="profile-action" onclick="page('payments')"><i data-lucide="credit-card"></i><span>Способы оплаты</span><span class="arrow">›</span></button>
+
+
 </div><div class="profile-group-title">Поддержка</div><div class="profile-actions">
 <button class="profile-action" onclick="page('faq')"><i data-lucide="circle-help"></i><span>FAQ и помощь</span><span class="arrow">›</span></button>
 <button class="profile-action" onclick="page('rules')"><i data-lucide="file-text"></i><span>Правила</span><span class="arrow">›</span></button>
@@ -2955,7 +2997,19 @@ function renderCart(){const cc=$("cartCount");if(cc)cc.textContent=cart.length;c
 function add(p){if(!cart.some(x=>x.id===p.id))cart.push(p);renderCart()}
 
 function resetPageScroll(target){const scroller=document.scrollingElement||document.documentElement;if(scroller)scroller.scrollTop=0;document.documentElement.scrollTop=0;document.body.scrollTop=0;window.scrollTo({top:0,left:0,behavior:"auto"});const app=document.querySelector(".app");if(app)app.scrollTop=0;if(target)target.scrollTop=0}
-function navigatePage(id){document.querySelectorAll(".page").forEach(x=>x.classList.remove("active"));const target=$(id);if(!target){console.error("Unknown page:",id);return}target.classList.add("active");document.querySelectorAll(".nav").forEach(x=>x.classList.toggle("active",x.dataset.page===id));resetPageScroll(target);setTimeout(()=>resetPageScroll(target),30);setTimeout(()=>resetPageScroll(target),120);render();setTimeout(()=>window.lucide&&lucide.createIcons(),0)}
+function navigatePage(id){
+ document.querySelectorAll(".page").forEach(x=>x.classList.remove("active"));
+ const target=$(id);if(!target){console.error("Unknown page:",id);return}
+ target.scrollTop=0;
+ target.classList.add("active");
+ document.querySelectorAll(".nav").forEach(x=>x.classList.toggle("active",x.dataset.page===id));
+ const app=document.querySelector(".app"),scroller=document.scrollingElement||document.documentElement;
+ if(app)app.scrollTop=0;if(scroller)scroller.scrollTop=0;document.documentElement.scrollTop=0;document.body.scrollTop=0;window.scrollTo(0,0);target.scrollTop=0;
+ requestAnimationFrame(()=>{if(app)app.scrollTop=0;if(scroller)scroller.scrollTop=0;target.scrollTop=0;window.scrollTo(0,0)});
+ setTimeout(()=>{if(app)app.scrollTop=0;if(scroller)scroller.scrollTop=0;target.scrollTop=0;window.scrollTo(0,0)},30);
+ render();
+ setTimeout(()=>window.lucide&&lucide.createIcons(),0);
+}
 
 function syncCatalogFilterUI(){
  document.querySelectorAll(".filter").forEach(x=>x.classList.toggle("active",!ownerFilter&&x.dataset.type===type));
