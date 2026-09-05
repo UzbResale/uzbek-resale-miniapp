@@ -3098,6 +3098,36 @@ nav.bottom,.bottom-nav,.bottom{
   width:100%!important;
   box-sizing:border-box!important;
 }
+
+/* =========================================================
+   CART V1 — premium compact cart
+   Existing cart/add/remove/checkout logic preserved.
+   ========================================================= */
+#cart.active{background:#f6f9fc!important}
+#cart .cart-premium-section{padding:14px 14px 112px!important}
+#cart .cart-head{display:flex!important;align-items:center!important;gap:11px!important;margin:0 0 15px!important}
+#cart .cart-head>div{min-width:0!important}
+#cart .cart-head h1{margin:0!important;color:#081f38!important;font-size:24px!important;line-height:1.05!important;font-weight:900!important}
+#cart .cart-head p{margin:5px 0 0!important;color:#8996a4!important;font-size:9.5px!important}
+#cartList{display:flex!important;flex-direction:column!important;gap:9px!important}
+#cartList .cartrow{display:grid!important;grid-template-columns:84px minmax(0,1fr) 32px!important;gap:11px!important;align-items:center!important;margin:0!important;padding:9px!important;border:1px solid #e6edf2!important;border-radius:17px!important;background:#fff!important;box-shadow:0 4px 16px rgba(7,38,68,.04)!important}
+#cartList .cartpic{width:84px!important;height:84px!important;margin:0!important;padding:0!important;overflow:hidden!important;border:0!important;border-radius:13px!important;background:#f4f5f5!important}
+#cartList .cartpic img{width:100%!important;height:100%!important;display:block!important;object-fit:contain!important;margin:0!important;padding:0!important;border:0!important}
+#cartList .grow{min-width:0!important}
+#cartList .grow b{display:-webkit-box!important;-webkit-box-orient:vertical!important;-webkit-line-clamp:2!important;overflow:hidden!important;color:#0a223a!important;font-size:12px!important;line-height:1.18!important;font-weight:900!important}
+#cartList .grow .meta{margin-top:5px!important;color:#98a2ac!important;font-size:9px!important}
+#cartList .grow .price{margin-top:8px!important;color:#07518a!important;font-size:14px!important;font-weight:900!important}
+#cartList .remove{width:30px!important;height:30px!important;display:flex!important;align-items:center!important;justify-content:center!important;margin:0!important;padding:0!important;border:0!important;border-radius:10px!important;background:#fff0f0!important;color:#cf4037!important;font-size:18px!important;line-height:1!important;cursor:pointer!important}
+#cartBottom{margin-top:11px!important;padding:13px!important;border:1px solid #e3eaf0!important;border-radius:18px!important;background:#fff!important;box-shadow:0 5px 18px rgba(7,38,68,.045)!important}
+#cartBottom .cart-summary-label{margin:0 0 9px!important;color:#8d99a5!important;font-size:8.5px!important}
+#cartBottom .total{display:flex!important;align-items:center!important;justify-content:space-between!important;margin:0!important;padding:0 0 12px!important;border-bottom:1px solid #edf1f4!important}
+#cartBottom .total span:first-child{color:#607080!important;font-size:10px!important}
+#cartBottom .total span:last-child{color:#081f38!important;font-size:18px!important;font-weight:900!important}
+#cartBottom #checkoutBtn{width:100%!important;height:50px!important;margin:12px 0 0!important;border:0!important;border-radius:14px!important;background:#07518a!important;color:#fff!important;font-size:11px!important;font-weight:900!important;box-shadow:0 6px 17px rgba(7,81,138,.14)!important}
+#cartBottom .cart-note{margin-top:9px!important;color:#98a2ac!important;font-size:8px!important;line-height:1.35!important;text-align:center!important}
+#cartList .empty{min-height:calc(100dvh - 350px)!important;display:flex!important;align-items:center!important;justify-content:center!important;padding:0 20px!important;color:#909ba6!important;font-size:11px!important;text-align:center!important}
+#cartList .empty:before{content:"🛍"!important;width:70px!important;height:70px!important;flex:0 0 70px!important;margin-right:14px!important;border-radius:22px!important;background:#edf4fa!important;font-size:27px!important}
+@media(max-width:380px){#cartList .cartrow{grid-template-columns:74px minmax(0,1fr) 30px!important}#cartList .cartpic{width:74px!important;height:74px!important}}
 </style><script src="https://telegram.org/js/telegram-web-app.js"></script><script src="https://unpkg.com/lucide@latest"></script></head><body><div class="app"><header><div class="top"><button class="round header-fav" onclick="page('favorites')" aria-label="Избранное"><i data-lucide="heart"></i></button><div class="brand"><div class="mark"><svg class="doppi" viewBox="0 0 96 48" aria-label="Тюбетейка">
 <path d="M8 35C13 15 30 6 48 6s35 9 40 29c-12 5-25 7-40 7S20 40 8 35Z" fill="#111"/>
 <path d="M48 8v31M20 29c8-3 14-8 18-15M76 29c-8-3-14-8-18-15" stroke="#fff" stroke-width="2" fill="none"/>
@@ -3211,7 +3241,7 @@ nav.bottom,.bottom-nav,.bottom{
     </div>
     <div id="favoriteGrid" class="grid favorites-grid"></div>
   </div>
-</section><section id="cart" class="page"><div class="section"><h1>Корзина</h1><div id="cartList"></div><div id="cartBottom" style="display:none"><div class="total"><span>Итого</span><span id="total"></span></div><button id="checkoutBtn" class="btn black">Оформить заказ</button></div></div></section>
+</section><section id="cart" class="page"><div class="section cart-premium-section"><div class="cart-head"><button class="back" type="button" onclick="page('home')">←</button><div><h1>Корзина</h1><p>Ваши выбранные товары</p></div></div><div id="cartList"></div><div id="cartBottom" style="display:none"><div class="cart-summary-label">Сумма заказа</div><div class="total"><span>Итого</span><span id="total"></span></div><button id="checkoutBtn" class="btn black">Оформить заказ</button><div class="cart-note">Оплата и доставка подтверждаются после оформления.</div></div></div></section>
 <section id="profile" class="page"><div class="profile"><div class="profilecard"><div id="profileAvatar" class="avatar">UR</div><div class="pinfo"><h1 id="profileName">Профиль</h1><p id="profileUsername">Узбекский Ресейл</p><p id="profileId" style="display:none"></p></div></div><div class="profile-actions">
 <button id="adminPanelBtn" class="profile-action" hidden style="display:none!important" onclick="openAdminPanel()"><i data-lucide="shield-check"></i><span>Admin Panel</span><span class="arrow">›</span></button>
 <button id="myOrdersBtn" class="profile-action"><i data-lucide="package"></i><span>Мои заказы</span><span class="arrow">›</span></button>
