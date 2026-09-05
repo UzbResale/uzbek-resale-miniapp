@@ -201,6 +201,60 @@ header .brand{left:50%!important;transform:translateX(-50%)!important}
  .home-categories span{width:46px!important;height:46px!important}
  .home-categories b{font-size:8px!important}
 }
+
+/* FAVORITES EMPTY — centered composition */
+#favorites .section:has(#favoriteGrid:empty){
+  min-height:calc(100dvh - 190px)!important;
+  display:flex!important;
+  flex-direction:column!important;
+  align-items:center!important;
+  justify-content:center!important;
+  text-align:center!important;
+  padding:20px 24px 100px!important;
+}
+#favorites .section:has(#favoriteGrid:empty)>h1{
+  width:100%!important;
+  text-align:center!important;
+  margin:0 0 18px!important;
+  font-size:28px!important;
+}
+#favorites #favoriteGrid:empty{
+  display:block!important;
+  width:100%!important;
+  min-height:0!important;
+}
+#favorites #favoriteGrid:empty:before{
+  content:"♡";
+  width:76px;height:76px;margin:0 auto 16px;
+  display:flex;align-items:center;justify-content:center;
+  border-radius:24px;background:#edf4fa;color:#0b3763;
+  font-size:39px;font-weight:400;
+}
+#favorites #favoriteGrid:empty:after{
+  content:"Здесь пока ничего нет";
+  display:block;color:#7d8792;font-size:16px;line-height:1.35;
+  white-space:pre-line;
+}
+/* Hide the legacy generated empty card if render inserts it */
+#favorites .section:has(.empty) {
+  min-height:calc(100dvh - 190px)!important;
+  display:flex!important;flex-direction:column!important;
+  align-items:center!important;justify-content:center!important;
+  text-align:center!important;padding:20px 24px 100px!important;
+}
+#favorites .section:has(.empty)>h1{width:100%!important;text-align:center!important;margin:0 0 18px!important}
+#favorites .empty{
+  width:100%!important;min-height:0!important;padding:0!important;
+  display:flex!important;flex-direction:column!important;
+  align-items:center!important;justify-content:center!important;text-align:center!important;
+  color:#7d8792!important;font-size:16px!important;
+}
+#favorites .empty:before{
+  content:"♡"!important;width:76px!important;height:76px!important;
+  border-radius:24px!important;background:#edf4fa!important;color:#0b3763!important;
+  display:flex!important;align-items:center!important;justify-content:center!important;
+  font-size:39px!important;margin:0 auto 16px!important;
+}
 </style><script src="https://telegram.org/js/telegram-web-app.js"></script><script src="https://unpkg.com/lucide@latest"></script></head><body><div class="app"><header><div class="top"><button class="round header-fav" onclick="page('favorites')" aria-label="Избранное"><i data-lucide="heart"></i></button><div class="brand"><div class="mark"><svg class="doppi" viewBox="0 0 96 48" aria-label="Тюбетейка">
 <path d="M8 35C13 15 30 6 48 6s35 9 40 29c-12 5-25 7-40 7S20 40 8 35Z" fill="#111"/>
 <path d="M48 8v31M20 29c8-3 14-8 18-15M76 29c-8-3-14-8-18-15" stroke="#fff" stroke-width="2" fill="none"/>
@@ -339,7 +393,14 @@ document.querySelectorAll(".filter").forEach(x=>x.onclick=()=>{document.querySel
 document.querySelectorAll(".category-chip").forEach(x=>x.onclick=()=>{document.querySelectorAll(".category-chip").forEach(y=>y.classList.remove("active"));x.classList.add("active");ownerFilter="";category=x.dataset.category;render()});
 $("sortSelect").onchange=e=>{sortMode=e.target.value;render()};
 
-$("search").oninput=e=>{q=e.target.value;render()};$("productBack").onclick=()=>$("productView").classList.remove("open");
+$("search").oninput=e=>{
+ q=e.target.value.trim();
+ ownerFilter="";type="Все";category="Все";
+ syncCatalogFilterUI();
+ if(q && currentPageId()!=="catalog") page("catalog");
+ render();
+};
+$("productBack").onclick=()=>$("productView").classList.remove("open");
 
 $("addBtn").onclick=()=>{add(selected);$("productView").classList.remove("open");page("cart")};$("buyBtn").onclick=()=>{add(selected);$("productView").classList.remove("open");checkout()};
 
