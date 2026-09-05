@@ -2793,6 +2793,93 @@ nav.bottom,.bottom-nav,.bottom{
   position:fixed!important;
   z-index:70!important;
 }
+
+/* =========================================================
+   PROFILE CHILD NAV V3 — modern consistent back navigation
+   ========================================================= */
+.profile-page-top{
+  position:sticky!important;
+  top:0!important;
+  z-index:35!important;
+  display:flex!important;
+  align-items:center!important;
+  gap:11px!important;
+  min-height:64px!important;
+  margin:0!important;
+  padding:10px 14px!important;
+  box-sizing:border-box!important;
+  background:rgba(255,255,255,.96)!important;
+  border-bottom:1px solid #eef1f4!important;
+  backdrop-filter:blur(12px)!important;
+}
+.profile-page-back{
+  width:42px!important;
+  height:42px!important;
+  flex:0 0 42px!important;
+  display:inline-flex!important;
+  align-items:center!important;
+  justify-content:center!important;
+  margin:0!important;
+  padding:0!important;
+  border:1px solid #e3eaf0!important;
+  border-radius:14px!important;
+  background:#f5f8fb!important;
+  color:#073b66!important;
+  box-shadow:none!important;
+  font-size:22px!important;
+  line-height:1!important;
+  font-weight:650!important;
+  cursor:pointer!important;
+  -webkit-tap-highlight-color:transparent!important;
+}
+.profile-page-back:active{
+  transform:scale(.96)!important;
+  background:#edf4fa!important;
+}
+.profile-page-top-title{
+  min-width:0!important;
+  overflow:hidden!important;
+  white-space:nowrap!important;
+  text-overflow:ellipsis!important;
+  color:#081f38!important;
+  font-size:18px!important;
+  line-height:1.1!important;
+  font-weight:900!important;
+  letter-spacing:-.25px!important;
+}
+
+/* Sell already has its own hero title immediately below */
+#sell .profile-page-top-title{font-size:17px!important}
+#sell.active > .section{padding-top:10px!important}
+
+/* Existing legacy back buttons get the same new visual language */
+.simple-head .back,
+.page .back{
+  width:42px!important;
+  height:42px!important;
+  min-width:42px!important;
+  display:inline-flex!important;
+  align-items:center!important;
+  justify-content:center!important;
+  padding:0!important;
+  border:1px solid #e3eaf0!important;
+  border-radius:14px!important;
+  background:#f5f8fb!important;
+  color:#073b66!important;
+  box-shadow:none!important;
+  font-size:22px!important;
+  line-height:1!important;
+}
+
+/* Empty Favorites keeps the new back header above it */
+#favorites.active #favoritesEmpty:not([hidden]){
+  min-height:calc(100dvh - 345px)!important;
+}
+
+/* Keep content clear of bottom nav */
+#sell.active,#favorites.active,#orders.active,#faq.active,#rules.active,#about.active,#settingsPage.active,#adminPanel.active{
+  padding-bottom:92px!important;
+}
 </style><script src="https://telegram.org/js/telegram-web-app.js"></script><script src="https://unpkg.com/lucide@latest"></script></head><body><div class="app"><header><div class="top"><button class="round header-fav" onclick="page('favorites')" aria-label="Избранное"><i data-lucide="heart"></i></button><div class="brand"><div class="mark"><svg class="doppi" viewBox="0 0 96 48" aria-label="Тюбетейка">
 <path d="M8 35C13 15 30 6 48 6s35 9 40 29c-12 5-25 7-40 7S20 40 8 35Z" fill="#111"/>
 <path d="M48 8v31M20 29c8-3 14-8 18-15M76 29c-8-3-14-8-18-15" stroke="#fff" stroke-width="2" fill="none"/>
@@ -2859,8 +2946,8 @@ nav.bottom,.bottom-nav,.bottom{
     <div id="catalogGrid" class="grid catalog-final-grid"></div>
   </div>
 </section>
-<section id="sell" class="page"><div class="section"><h1>Продать вещь</h1><p class="meta">Заполните информацию о товаре. Перед публикацией объявление пройдёт проверку.</p><div class="sell-form"><label class="uploadbox" for="sellPhotos"><span><i data-lucide="image-plus"></i><br>Добавить фотографии<br><small>до 10 фото</small></span></label><input id="sellPhotos" class="photo-input" type="file" accept="image/*" multiple><div id="sellPreview" class="preview-grid"></div><div class="field"><label>Название товара *</label><input id="sellName" placeholder="Например: Nike Air Force 1"></div><div class="field"><label>Категория *</label><select id="sellCategory"><option>Одежда</option><option>Обувь</option><option>Аксессуары</option><option>Другое</option></select></div><div class="field"><label>Бренд</label><input id="sellBrand" placeholder="Например: Nike"></div><div class="field"><label>Размер</label><input id="sellSize" placeholder="M, 42, One Size..."></div><div class="field"><label>Состояние *</label><select id="sellCondition"><option>Новое</option><option>Отличное</option><option>Хорошее</option><option>Удовлетворительное</option></select></div><div class="field"><label>Цена, сум *</label><input id="sellPrice" inputmode="numeric" placeholder="500000"></div><div class="field"><label>Описание</label><textarea id="sellDescription" rows="4" placeholder="Расскажите о вещи"></textarea></div><button class="btn black" id="sellSubmit">Отправить на проверку</button></div></div></section>
-<section id="favorites" class="page">
+<section id="sell" class="page"><div class="profile-page-top"><button class="profile-page-back" type="button" onclick="backPage('profile')" aria-label="Назад">←</button><div class="profile-page-top-title">Продать вещь</div></div><div class="section"><h1>Продать вещь</h1><p class="meta">Заполните информацию о товаре. Перед публикацией объявление пройдёт проверку.</p><div class="sell-form"><label class="uploadbox" for="sellPhotos"><span><i data-lucide="image-plus"></i><br>Добавить фотографии<br><small>до 10 фото</small></span></label><input id="sellPhotos" class="photo-input" type="file" accept="image/*" multiple><div id="sellPreview" class="preview-grid"></div><div class="field"><label>Название товара *</label><input id="sellName" placeholder="Например: Nike Air Force 1"></div><div class="field"><label>Категория *</label><select id="sellCategory"><option>Одежда</option><option>Обувь</option><option>Аксессуары</option><option>Другое</option></select></div><div class="field"><label>Бренд</label><input id="sellBrand" placeholder="Например: Nike"></div><div class="field"><label>Размер</label><input id="sellSize" placeholder="M, 42, One Size..."></div><div class="field"><label>Состояние *</label><select id="sellCondition"><option>Новое</option><option>Отличное</option><option>Хорошее</option><option>Удовлетворительное</option></select></div><div class="field"><label>Цена, сум *</label><input id="sellPrice" inputmode="numeric" placeholder="500000"></div><div class="field"><label>Описание</label><textarea id="sellDescription" rows="4" placeholder="Расскажите о вещи"></textarea></div><button class="btn black" id="sellSubmit">Отправить на проверку</button></div></div></section>
+<section id="favorites" class="page"><div class="profile-page-top"><button class="profile-page-back" type="button" onclick="backPage('profile')" aria-label="Назад">←</button><div class="profile-page-top-title">Избранное</div></div>
   <div class="favorites-layout">
     <div id="favoritesEmpty" class="favorites-empty-state">
       <div class="favorites-empty-icon"><i data-lucide="heart"></i></div>
