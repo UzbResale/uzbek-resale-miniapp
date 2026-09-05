@@ -1540,6 +1540,173 @@ header .header-fav,header .actions{top:13px!important}
   .card .badge{margin-left:7px!important;margin-right:7px!important}
   .card .name,.card .meta,.card .price{margin-left:7px!important;margin-right:7px!important}
 }
+
+/* =========================================================
+   CARDS V4 — APPROVED REFERENCE
+   Rounded top photo + integrated white info body.
+   Presentation only. Existing product/listing logic untouched.
+   ========================================================= */
+
+.grid{
+  gap:9px!important;
+  align-items:start!important;
+}
+
+.card{
+  position:relative!important;
+  min-width:0!important;
+  margin:0!important;
+  padding:0 0 10px!important;
+  overflow:hidden!important;
+  border:0!important;
+  border-radius:18px!important;
+  background:#fff!important;
+  box-shadow:0 5px 18px rgba(7,38,68,.075)!important;
+}
+
+/* photo: rounded ONLY at the top, flat into card body */
+.card .photo{
+  position:relative!important;
+  width:100%!important;
+  height:190px!important;
+  margin:0!important;
+  overflow:hidden!important;
+  border:0!important;
+  border-radius:18px 18px 0 0!important;
+  background:#f2f2f2!important;
+  box-shadow:none!important;
+}
+.card .photo img{
+  width:100%!important;
+  height:100%!important;
+  display:block!important;
+  object-fit:contain!important;
+  object-position:center!important;
+  box-sizing:border-box!important;
+  padding:5px!important; /* modest breathing room, not huge zoom */
+  margin:0!important;
+  border:0!important;
+  border-radius:0!important;
+  background:transparent!important;
+  transform:none!important;
+}
+
+/* favorite overlay like the approved reference */
+.card .heart{
+  position:absolute!important;
+  z-index:5!important;
+  top:9px!important;
+  right:9px!important;
+  width:35px!important;
+  height:35px!important;
+  min-width:35px!important;
+  padding:0!important;
+  border:0!important;
+  border-radius:50%!important;
+  background:rgba(68,64,65,.55)!important;
+  color:#fff!important;
+  box-shadow:none!important;
+  backdrop-filter:blur(5px)!important;
+}
+
+/* PRICE FIRST visually */
+.card .price{
+  margin:9px 10px 0!important;
+  color:#1489d0!important;
+  font-size:17px!important;
+  line-height:1!important;
+  font-weight:900!important;
+  letter-spacing:-.2px!important;
+}
+
+/* Name */
+.card .name{
+  margin:7px 10px 0!important;
+  min-height:31px!important;
+  display:-webkit-box!important;
+  -webkit-box-orient:vertical!important;
+  -webkit-line-clamp:2!important;
+  overflow:hidden!important;
+  color:#111827!important;
+  font-size:13px!important;
+  line-height:1.16!important;
+  font-weight:850!important;
+  letter-spacing:-.1px!important;
+}
+
+/* Brand / size */
+.card .meta{
+  margin:5px 10px 0!important;
+  min-height:12px!important;
+  overflow:hidden!important;
+  white-space:nowrap!important;
+  text-overflow:ellipsis!important;
+  color:#9aa2ac!important;
+  font-size:9.5px!important;
+  line-height:1.2!important;
+}
+
+/* badge at bottom of info body */
+.card .badge{
+  margin:8px 10px 0!important;
+  min-height:22px!important;
+  width:max-content!important;
+  max-width:calc(100% - 20px)!important;
+  padding:0 9px!important;
+  border:0!important;
+  border-radius:999px!important;
+  font-size:8px!important;
+  line-height:22px!important;
+  font-weight:850!important;
+  box-shadow:none!important;
+}
+.card .badge-official{
+  background:#e7f3ff!important;
+  color:#1374bd!important;
+}
+.card .badge-resale,
+.card .badge-order{
+  background:#07518a!important;
+  color:#fff!important;
+}
+
+/* We cannot reorder existing DOM with CSS normally, so use flex order on card
+   while keeping photo and heart semantics intact. */
+.card{
+  display:flex!important;
+  flex-direction:column!important;
+}
+.card .photo{order:1!important}
+.card .heart{order:1!important}
+.card .price{order:2!important}
+.card .name{order:3!important}
+.card .meta{order:4!important}
+.card .badge{order:5!important}
+
+/* Catalog uses the exact same card component */
+#catalog .grid{gap:10px!important}
+
+@media(max-width:430px){
+  .grid{gap:8px!important}
+  .card{border-radius:16px!important;padding-bottom:9px!important}
+  .card .photo{
+    height:178px!important;
+    border-radius:16px 16px 0 0!important;
+  }
+  .card .photo img{padding:4px!important}
+  .card .heart{
+    width:34px!important;height:34px!important;min-width:34px!important;
+    top:8px!important;right:8px!important;
+  }
+  .card .price{font-size:16px!important;margin-left:9px!important;margin-right:9px!important}
+  .card .name,.card .meta,.card .badge{margin-left:9px!important;margin-right:9px!important}
+}
+
+@media(max-width:365px){
+  .card .photo{height:164px!important}
+  .card .price{font-size:15px!important}
+  .card .name{font-size:12px!important}
+}
 </style><script src="https://telegram.org/js/telegram-web-app.js"></script><script src="https://unpkg.com/lucide@latest"></script></head><body><div class="app"><header><div class="top"><button class="round header-fav" onclick="page('favorites')" aria-label="Избранное"><i data-lucide="heart"></i></button><div class="brand"><div class="mark"><svg class="doppi" viewBox="0 0 96 48" aria-label="Тюбетейка">
 <path d="M8 35C13 15 30 6 48 6s35 9 40 29c-12 5-25 7-40 7S20 40 8 35Z" fill="#111"/>
 <path d="M48 8v31M20 29c8-3 14-8 18-15M76 29c-8-3-14-8-18-15" stroke="#fff" stroke-width="2" fill="none"/>
