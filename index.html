@@ -407,6 +407,208 @@ header .header-fav,header .actions{top:13px!important}
   z-index:2!important;
   padding-top:20px!important;
 }
+
+/* ===== FAVORITES — PIXEL CENTER FINAL ===== */
+#favorites{
+  position:relative!important;
+  padding:0!important;
+  margin:0!important;
+  min-height:0!important;
+  height:calc(100dvh - 181px)!important;
+  overflow:hidden!important;
+  background:#fff!important;
+}
+#favorites .favorites-layout{
+  position:relative!important;
+  width:100%!important;
+  height:100%!important;
+  min-height:0!important;
+  padding:0 16px 76px!important;
+  margin:0!important;
+  box-sizing:border-box!important;
+}
+#favorites .favorites-empty-state{
+  position:absolute!important;
+  inset:0 16px 76px 16px!important;
+  width:auto!important;
+  height:auto!important;
+  min-height:0!important;
+  margin:0!important;
+  padding:0!important;
+  transform:none!important;
+  display:flex!important;
+  flex-direction:column!important;
+  align-items:center!important;
+  justify-content:center!important;
+  text-align:center!important;
+  box-sizing:border-box!important;
+}
+#favorites .favorites-empty-icon{
+  width:72px!important;
+  height:72px!important;
+  flex:0 0 72px!important;
+  margin:0 0 16px!important;
+  padding:0!important;
+  border-radius:22px!important;
+  background:#edf4fa!important;
+  color:#0a477a!important;
+  display:flex!important;
+  align-items:center!important;
+  justify-content:center!important;
+}
+#favorites .favorites-empty-icon svg{
+  width:32px!important;height:32px!important;
+}
+#favorites .favorites-empty-state h1{
+  width:auto!important;
+  margin:0 0 9px!important;
+  padding:0!important;
+  font-size:27px!important;
+  line-height:1.1!important;
+  letter-spacing:-.5px!important;
+  text-align:center!important;
+}
+#favorites .favorites-empty-state p{
+  width:auto!important;
+  margin:0!important;
+  padding:0!important;
+  font-size:15px!important;
+  line-height:1.35!important;
+  color:#8b939d!important;
+  text-align:center!important;
+}
+#favorites .favorites-grid{
+  position:relative!important;
+  z-index:2!important;
+  padding-top:18px!important;
+}
+#favorites .empty,#favorites .empty:before,#favorites .empty:after,
+#favorites #favoriteGrid:empty:before,#favorites #favoriteGrid:empty:after{
+  display:none!important;content:none!important;
+}
+@supports(height:100svh){
+  #favorites{height:calc(100svh - 181px)!important}
+}
+
+/* =========================================================
+   CATALOG — FINAL DESIGN CANDIDATE
+   Home design and v1.3.6 functionality remain unchanged.
+   ========================================================= */
+#catalog{background:#fff!important;padding-bottom:84px!important}
+.catalog-final{padding:18px 16px 26px!important}
+.catalog-title-row{
+  display:flex;align-items:flex-end;justify-content:space-between;
+  gap:12px;margin:0 0 15px;
+}
+.catalog-eyebrow{
+  display:block;font-size:7px;line-height:1;
+  letter-spacing:2px;font-weight:800;color:#8fa0b2;margin-bottom:5px;
+}
+.catalog-title-row h1{
+  margin:0!important;font-size:28px!important;line-height:1!important;
+  letter-spacing:-.8px!important;color:#0b223b!important;
+}
+.catalog-sort{
+  appearance:none;-webkit-appearance:none;
+  height:38px;max-width:132px;
+  border:1px solid #dfe6ee;border-radius:12px;
+  background:#f7f9fc;
+  color:#123452;font-size:10px;font-weight:750;
+  padding:0 28px 0 11px;
+  background-image:
+    linear-gradient(45deg,transparent 50%,#17466e 50%),
+    linear-gradient(135deg,#17466e 50%,transparent 50%);
+  background-position:calc(100% - 14px) 16px,calc(100% - 10px) 16px;
+  background-size:4px 4px,4px 4px;background-repeat:no-repeat;
+}
+.catalog-category-scroll{
+  display:flex;gap:7px;overflow-x:auto;scrollbar-width:none;
+  margin:0 -16px;padding:0 16px 11px;
+}
+.catalog-category-scroll::-webkit-scrollbar{display:none}
+#catalog .category-chip{
+  flex:0 0 auto;height:36px!important;
+  border:1px solid #e1e7ee!important;border-radius:12px!important;
+  background:#f7f9fc!important;color:#294158!important;
+  padding:0 13px!important;font-size:10px!important;font-weight:700!important;
+  box-shadow:none!important;
+}
+#catalog .category-chip.active{
+  background:#073b6d!important;color:#fff!important;border-color:#073b6d!important;
+}
+.catalog-toolbar{
+  border-top:1px solid #edf1f5;
+  border-bottom:1px solid #edf1f5;
+  margin:0 -16px;padding:10px 16px;
+}
+#catalog .catalog-type-filters{
+  display:flex!important;gap:7px!important;overflow-x:auto!important;
+  margin:0!important;padding:0!important;scrollbar-width:none;
+}
+#catalog .catalog-type-filters::-webkit-scrollbar{display:none}
+#catalog .filter{
+  flex:0 0 auto!important;height:34px!important;
+  border:1px solid #e1e7ee!important;border-radius:17px!important;
+  background:#fff!important;color:#365069!important;
+  padding:0 12px!important;font-size:9.5px!important;font-weight:750!important;
+}
+#catalog .filter.active{
+  background:#eaf3fb!important;color:#073b6d!important;border-color:#cfe1f1!important;
+}
+.catalog-results-row{
+  display:flex;align-items:center;justify-content:space-between;
+  gap:10px;padding:13px 0 10px;
+}
+.catalog-results-row>span:first-child{
+  font-size:11px;font-weight:850;color:#123452;
+}
+.catalog-hint{
+  font-size:8.5px;color:#98a2ad;text-align:right;
+}
+#catalog .catalog-final-grid{
+  grid-template-columns:repeat(2,minmax(0,1fr))!important;
+  gap:17px 10px!important;margin:0!important;
+}
+#catalog .card{
+  min-width:0!important;
+}
+#catalog .photo{
+  height:184px!important;border-radius:17px!important;
+  background:#f4f5f5!important;overflow:hidden!important;
+  border:1px solid #f0f1f2!important;
+}
+#catalog .photo img{object-fit:contain!important}
+#catalog .heart{
+  width:34px!important;height:34px!important;
+  right:7px!important;top:7px!important;
+  background:rgba(255,255,255,.94)!important;
+  box-shadow:0 4px 12px rgba(8,39,69,.08)!important;
+}
+#catalog .badge{
+  margin-top:6px!important;font-size:8px!important;
+  border-radius:6px!important;padding:4px 7px!important;
+}
+#catalog .name{
+  margin-top:5px!important;font-size:13px!important;
+  line-height:1.18!important;letter-spacing:-.15px!important;
+  min-height:30px;
+}
+#catalog .meta{
+  font-size:9px!important;line-height:1.25!important;
+  color:#8a939d!important;margin-top:3px!important;
+}
+#catalog .price{
+  margin-top:5px!important;font-size:15px!important;
+  line-height:1.1!important;color:#071f38!important;
+}
+@media(max-width:390px){
+ .catalog-final{padding-left:14px!important;padding-right:14px!important}
+ .catalog-category-scroll{margin-left:-14px!important;margin-right:-14px!important;padding-left:14px!important;padding-right:14px!important}
+ .catalog-toolbar{margin-left:-14px!important;margin-right:-14px!important;padding-left:14px!important;padding-right:14px!important}
+ #catalog .catalog-final-grid{gap:15px 9px!important}
+ #catalog .photo{height:174px!important}
+ .catalog-title-row h1{font-size:26px!important}
+}
 </style><script src="https://telegram.org/js/telegram-web-app.js"></script><script src="https://unpkg.com/lucide@latest"></script></head><body><div class="app"><header><div class="top"><button class="round header-fav" onclick="page('favorites')" aria-label="Избранное"><i data-lucide="heart"></i></button><div class="brand"><div class="mark"><svg class="doppi" viewBox="0 0 96 48" aria-label="Тюбетейка">
 <path d="M8 35C13 15 30 6 48 6s35 9 40 29c-12 5-25 7-40 7S20 40 8 35Z" fill="#111"/>
 <path d="M48 8v31M20 29c8-3 14-8 18-15M76 29c-8-3-14-8-18-15" stroke="#fff" stroke-width="2" fill="none"/>
@@ -433,11 +635,57 @@ header .header-fav,header .actions{top:13px!important}
  <div class="home-section-title popular-title"><h2>Популярное</h2><button onclick="openHomeCatalog('all')">Смотреть все</button></div>
  <div id="homeGrid" class="grid home-grid"></div>
 </div></section>
-<section id="catalog" class="page"><div class="section"><div class="catalog-head"><h1>Каталог</h1><select id="sortSelect" class="sortselect"><option value="default">Сортировка</option><option value="priceAsc">Цена ↑</option><option value="priceDesc">Цена ↓</option><option value="name">По названию</option></select></div><div class="filters" id="filters"><button class="filter active" data-type="Все">Все</button><button class="filter" data-type="Ресейл">Ресейл</button><button class="filter" data-type="Под заказ">Из Китая</button><button class="filter" data-type="В наличии">В наличии</button></div><div class="category-filter" id="categoryFilters"><button class="category-chip active" data-category="Все">Все категории</button><button class="category-chip" data-category="Одежда">Одежда</button><button class="category-chip" data-category="Обувь">Обувь</button><button class="category-chip" data-category="Аксессуары">Аксессуары</button><button class="category-chip" data-category="Другое">Другое</button></div><div id="catalogGrid" class="grid"></div></div></section>
+<section id="catalog" class="page">
+  <div class="catalog-final">
+    <div class="catalog-title-row">
+      <div>
+        <span class="catalog-eyebrow">UZBEK RE'SALE</span>
+        <h1>Каталог</h1>
+      </div>
+      <select id="sortSelect" class="catalog-sort" aria-label="Сортировка">
+        <option value="default">Сортировка</option>
+        <option value="priceAsc">Цена ↑</option>
+        <option value="priceDesc">Цена ↓</option>
+        <option value="name">По названию</option>
+      </select>
+    </div>
+
+    <div class="catalog-category-scroll" id="categoryFilters">
+      <button class="category-chip active" data-category="Все">Все</button>
+      <button class="category-chip" data-category="Одежда">Одежда</button>
+      <button class="category-chip" data-category="Обувь">Обувь</button>
+      <button class="category-chip" data-category="Аксессуары">Аксессуары</button>
+      <button class="category-chip" data-category="Другое">Другое</button>
+    </div>
+
+    <div class="catalog-toolbar">
+      <div class="filters catalog-type-filters" id="filters">
+        <button class="filter active" data-type="Все">Все товары</button>
+        <button class="filter" data-type="Ресейл">Ресейл</button>
+        <button class="filter" data-type="Под заказ">Из Китая</button>
+        <button class="filter" data-type="В наличии">В наличии</button>
+      </div>
+    </div>
+
+    <div class="catalog-results-row">
+      <span id="catalogResultCount">Товары</span>
+      <span class="catalog-hint">Нажмите на товар для просмотра</span>
+    </div>
+
+    <div id="catalogGrid" class="grid catalog-final-grid"></div>
+  </div>
+</section>
 <section id="sell" class="page"><div class="section"><h1>Продать вещь</h1><p class="meta">Заполните информацию о товаре. Перед публикацией объявление пройдёт проверку.</p><div class="sell-form"><label class="uploadbox" for="sellPhotos"><span><i data-lucide="image-plus"></i><br>Добавить фотографии<br><small>до 10 фото</small></span></label><input id="sellPhotos" class="photo-input" type="file" accept="image/*" multiple><div id="sellPreview" class="preview-grid"></div><div class="field"><label>Название товара *</label><input id="sellName" placeholder="Например: Nike Air Force 1"></div><div class="field"><label>Категория *</label><select id="sellCategory"><option>Одежда</option><option>Обувь</option><option>Аксессуары</option><option>Другое</option></select></div><div class="field"><label>Бренд</label><input id="sellBrand" placeholder="Например: Nike"></div><div class="field"><label>Размер</label><input id="sellSize" placeholder="M, 42, One Size..."></div><div class="field"><label>Состояние *</label><select id="sellCondition"><option>Новое</option><option>Отличное</option><option>Хорошее</option><option>Удовлетворительное</option></select></div><div class="field"><label>Цена, сум *</label><input id="sellPrice" inputmode="numeric" placeholder="500000"></div><div class="field"><label>Описание</label><textarea id="sellDescription" rows="4" placeholder="Расскажите о вещи"></textarea></div><button class="btn black" id="sellSubmit">Отправить на проверку</button></div></div></section>
-<section id="favorites" class="page"><div class="section favorites-section">
-<div id="favoritesEmpty" class="favorites-empty-state"><div class="favorites-empty-icon"><i data-lucide="heart"></i></div><h1>Избранное</h1><p>Здесь пока ничего нет</p></div>
-<div id="favoriteGrid" class="grid"></div></div></section><section id="cart" class="page"><div class="section"><h1>Корзина</h1><div id="cartList"></div><div id="cartBottom" style="display:none"><div class="total"><span>Итого</span><span id="total"></span></div><button id="checkoutBtn" class="btn black">Оформить заказ</button></div></div></section>
+<section id="favorites" class="page">
+  <div class="favorites-layout">
+    <div id="favoritesEmpty" class="favorites-empty-state">
+      <div class="favorites-empty-icon"><i data-lucide="heart"></i></div>
+      <h1>Избранное</h1>
+      <p>Здесь пока ничего нет</p>
+    </div>
+    <div id="favoriteGrid" class="grid favorites-grid"></div>
+  </div>
+</section><section id="cart" class="page"><div class="section"><h1>Корзина</h1><div id="cartList"></div><div id="cartBottom" style="display:none"><div class="total"><span>Итого</span><span id="total"></span></div><button id="checkoutBtn" class="btn black">Оформить заказ</button></div></div></section>
 <section id="profile" class="page"><div class="profile"><div class="profilecard"><div id="profileAvatar" class="avatar">UR</div><div class="pinfo"><h1 id="profileName">Профиль</h1><p id="profileUsername">Узбекский Ресейл</p><p id="profileId" style="display:none"></p></div></div><div class="profile-actions">
 <button id="adminPanelBtn" class="profile-action" hidden style="display:none!important" onclick="openAdminPanel()"><i data-lucide="shield-check"></i><span>Admin Panel</span><span class="arrow">›</span></button>
 <button id="myOrdersBtn" class="profile-action"><i data-lucide="package"></i><span>Мои заказы</span><span class="arrow">›</span></button>
@@ -514,6 +762,7 @@ function card(p){const e=document.createElement("div");e.className="card";e.inne
 function fill(id,list){const b=$(id);b.innerHTML="";if(!list.length){b.innerHTML='<div class="empty">Здесь пока ничего нет</div>';return}list.forEach(p=>b.appendChild(card(p)))}
 
 function render(){let list=products.filter(p=>(type==="Все"||p.type===type)&&(!ownerFilter||p.ownerType===ownerFilter)&&(category==="Все"||p.category===category)&&p.name.toLowerCase().includes(q.toLowerCase()));if(sortMode==="priceAsc")list=[...list].sort((a,b)=>a.price-b.price);if(sortMode==="priceDesc")list=[...list].sort((a,b)=>b.price-a.price);if(sortMode==="name")list=[...list].sort((a,b)=>a.name.localeCompare(b.name));fill("homeGrid",products.slice(0,4));fill("catalogGrid",list);
+const catalogResultCount=$("catalogResultCount");if(catalogResultCount)catalogResultCount.textContent=list.length+" "+(list.length===1?"товар":(list.length>=2&&list.length<=4?"товара":"товаров"));
 const favoriteItems=products.filter(p=>favs.includes(p.id));
 $("favoriteGrid").innerHTML=favoriteItems.map(card).join("");
 const favoritesEmpty=$("favoritesEmpty");
