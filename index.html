@@ -1707,6 +1707,348 @@ header .header-fav,header .actions{top:13px!important}
   .card .price{font-size:15px!important}
   .card .name{font-size:12px!important}
 }
+
+/* =========================================================
+   CARD V5 — SINGLE AUTHORITATIVE VISUAL LAYER
+   Target: user's compact C2C reference.
+   No JS / Cloudflare / ImageKit / moderation changes.
+   ========================================================= */
+
+/* Two cards almost touch, but still breathe */
+.grid{
+  display:grid!important;
+  grid-template-columns:repeat(2,minmax(0,1fr))!important;
+  gap:10px 8px!important;
+  align-items:start!important;
+}
+
+/* ONE integrated card */
+.card{
+  position:relative!important;
+  display:flex!important;
+  flex-direction:column!important;
+  min-width:0!important;
+  margin:0!important;
+  padding:0 0 9px!important;
+  border:0!important;
+  border-radius:16px!important;
+  overflow:hidden!important;
+  background:#fff!important;
+  box-shadow:0 3px 14px rgba(7,38,68,.07)!important;
+}
+
+/* photo occupies the top ~62%; rounded only at TOP */
+.card .photo{
+  order:1!important;
+  position:relative!important;
+  width:100%!important;
+  height:172px!important;
+  margin:0!important;
+  padding:0!important;
+  overflow:hidden!important;
+  border:0!important;
+  border-radius:16px 16px 0 0!important;
+  background:#f1f1f1!important;
+  box-shadow:none!important;
+}
+
+/* Fill more naturally than contain, but do not aggressively zoom */
+.card .photo img{
+  width:100%!important;
+  height:100%!important;
+  display:block!important;
+  margin:0!important;
+  padding:0!important;
+  border:0!important;
+  border-radius:0!important;
+  background:#f1f1f1!important;
+  object-fit:cover!important;
+  object-position:center!important;
+  transform:scale(1.01)!important;
+}
+
+/* favorite */
+.card .heart{
+  position:absolute!important;
+  z-index:5!important;
+  top:8px!important;
+  right:8px!important;
+  width:34px!important;
+  height:34px!important;
+  min-width:34px!important;
+  margin:0!important;
+  padding:0!important;
+  border:0!important;
+  border-radius:50%!important;
+  background:rgba(70,66,67,.58)!important;
+  color:#fff!important;
+  box-shadow:none!important;
+  backdrop-filter:blur(5px)!important;
+}
+
+/* Reference hierarchy: price → title → secondary line → source badge */
+.card .price{
+  order:2!important;
+  margin:9px 9px 0!important;
+  color:#1593d2!important;
+  font-size:16px!important;
+  line-height:1!important;
+  font-weight:900!important;
+  letter-spacing:-.2px!important;
+}
+.card .name{
+  order:3!important;
+  margin:7px 9px 0!important;
+  min-height:29px!important;
+  display:-webkit-box!important;
+  -webkit-box-orient:vertical!important;
+  -webkit-line-clamp:2!important;
+  overflow:hidden!important;
+  color:#111!important;
+  font-size:12.5px!important;
+  line-height:1.15!important;
+  font-weight:850!important;
+  letter-spacing:-.08px!important;
+}
+.card .meta{
+  order:4!important;
+  margin:5px 9px 0!important;
+  min-height:12px!important;
+  overflow:hidden!important;
+  white-space:nowrap!important;
+  text-overflow:ellipsis!important;
+  color:#a0a4aa!important;
+  font-size:8.5px!important;
+  line-height:1.2!important;
+}
+.card .badge{
+  order:5!important;
+  margin:7px 9px 0!important;
+  width:max-content!important;
+  max-width:calc(100% - 18px)!important;
+  min-height:20px!important;
+  padding:0 8px!important;
+  border:0!important;
+  border-radius:999px!important;
+  font-size:7.5px!important;
+  line-height:20px!important;
+  font-weight:850!important;
+  white-space:nowrap!important;
+  box-shadow:none!important;
+}
+.card .badge-official{
+  background:#e6f3ff!important;
+  color:#0875bd!important;
+}
+.card .badge-resale,
+.card .badge-order{
+  background:#07518a!important;
+  color:#fff!important;
+}
+
+/* Catalog gets exactly the same component */
+#catalog .grid{gap:10px 8px!important}
+
+/* Real Telegram widths */
+@media(max-width:430px){
+  .grid{gap:9px 7px!important}
+  .card{border-radius:15px!important}
+  .card .photo{
+    height:166px!important;
+    border-radius:15px 15px 0 0!important;
+  }
+}
+@media(max-width:380px){
+  .card .photo{height:154px!important}
+  .card .price{font-size:15px!important}
+  .card .name{font-size:12px!important}
+}
+
+/* =========================================================
+   CARD V6 — STRUCTURAL C2C CARD
+   Exact layout is isolated with card-media/card-info wrappers.
+   ========================================================= */
+.grid{
+ display:grid!important;
+ grid-template-columns:repeat(2,minmax(0,1fr))!important;
+ column-gap:8px!important;
+ row-gap:11px!important;
+ align-items:start!important;
+}
+.card{
+ display:block!important;
+ position:relative!important;
+ min-width:0!important;
+ margin:0!important;
+ padding:0!important;
+ overflow:hidden!important;
+ border:0!important;
+ border-radius:16px!important;
+ background:#fff!important;
+ box-shadow:0 3px 14px rgba(10,35,60,.08)!important;
+}
+
+/* media has rounded TOP corners only. Bottom is mathematically square. */
+.card .card-media{
+ position:relative!important;
+ width:100%!important;
+ height:176px!important;
+ margin:0!important;
+ padding:0!important;
+ overflow:hidden!important;
+ border-radius:16px 16px 0 0!important;
+ background:#f1f1f1!important;
+}
+.card .card-media .photo{
+ position:absolute!important;
+ inset:0!important;
+ width:100%!important;
+ height:100%!important;
+ margin:0!important;
+ padding:0!important;
+ border:0!important;
+ border-radius:0!important;
+ overflow:hidden!important;
+ background:#f1f1f1!important;
+ box-shadow:none!important;
+}
+.card .card-media .photo img{
+ width:100%!important;
+ height:100%!important;
+ display:block!important;
+ margin:0!important;
+ padding:0!important;
+ border:0!important;
+ border-radius:0!important;
+ object-fit:cover!important;
+ object-position:center!important;
+ background:#f1f1f1!important;
+ transform:none!important;
+}
+.card .card-media .heart{
+ position:absolute!important;
+ top:8px!important;
+ right:8px!important;
+ z-index:3!important;
+ width:34px!important;
+ height:34px!important;
+ min-width:34px!important;
+ margin:0!important;
+ padding:0!important;
+ border:0!important;
+ border-radius:50%!important;
+ background:rgba(67,63,64,.58)!important;
+ color:#fff!important;
+ font-size:19px!important;
+ line-height:34px!important;
+ box-shadow:none!important;
+}
+
+/* white body is physically separate from image, like the user's reference */
+.card .card-info{
+ display:block!important;
+ position:relative!important;
+ min-height:116px!important;
+ padding:9px 9px 10px!important;
+ background:#fff!important;
+ border-radius:0 0 16px 16px!important;
+}
+.card .card-info .price{
+ display:block!important;
+ margin:0!important;
+ padding:0!important;
+ color:#168ed0!important;
+ font-size:16px!important;
+ line-height:1.05!important;
+ font-weight:900!important;
+ letter-spacing:-.2px!important;
+}
+.card .card-title-row{
+ display:flex!important;
+ align-items:flex-start!important;
+ justify-content:space-between!important;
+ gap:5px!important;
+ margin-top:7px!important;
+}
+.card .card-title-row .name{
+ flex:1 1 auto!important;
+ min-width:0!important;
+ min-height:0!important;
+ margin:0!important;
+ padding:0!important;
+ display:-webkit-box!important;
+ -webkit-box-orient:vertical!important;
+ -webkit-line-clamp:2!important;
+ overflow:hidden!important;
+ color:#101820!important;
+ font-size:12.5px!important;
+ line-height:1.15!important;
+ font-weight:850!important;
+}
+.card .card-check{
+ flex:0 0 18px!important;
+ width:18px!important;
+ height:18px!important;
+ display:inline-flex!important;
+ align-items:center!important;
+ justify-content:center!important;
+ margin-top:-1px!important;
+ border-radius:50%!important;
+ background:#e1f7e7!important;
+ border:1px solid #a9e4b8!important;
+ color:#35a956!important;
+ font-size:11px!important;
+ font-weight:900!important;
+}
+.card .card-info .meta{
+ display:block!important;
+ min-height:0!important;
+ margin:6px 0 0!important;
+ padding:0!important;
+ overflow:hidden!important;
+ white-space:nowrap!important;
+ text-overflow:ellipsis!important;
+ color:#a0a4aa!important;
+ font-size:8.8px!important;
+ line-height:1.2!important;
+}
+.card .card-info .badge{
+ display:inline-flex!important;
+ align-items:center!important;
+ width:max-content!important;
+ max-width:100%!important;
+ min-height:20px!important;
+ margin:7px 0 0!important;
+ padding:0 8px!important;
+ border:0!important;
+ border-radius:999px!important;
+ font-size:7.5px!important;
+ line-height:20px!important;
+ font-weight:850!important;
+ white-space:nowrap!important;
+ box-shadow:none!important;
+}
+.card .card-info .badge-official{background:#e7f3ff!important;color:#1176bd!important}
+.card .card-info .badge-resale,
+.card .card-info .badge-order{background:#07518a!important;color:#fff!important}
+
+#catalog .grid{column-gap:8px!important;row-gap:11px!important}
+
+@media(max-width:430px){
+ .grid{column-gap:7px!important;row-gap:10px!important}
+ .card{border-radius:15px!important}
+ .card .card-media{
+   height:168px!important;
+   border-radius:15px 15px 0 0!important;
+ }
+ .card .card-info{
+   min-height:111px!important;
+   padding:8px 8px 9px!important;
+   border-radius:0 0 15px 15px!important;
+ }
+ .card .card-info .price{font-size:15.5px!important}
+ .card .card-title-row .name{font-size:12px!important}
+}
 </style><script src="https://telegram.org/js/telegram-web-app.js"></script><script src="https://unpkg.com/lucide@latest"></script></head><body><div class="app"><header><div class="top"><button class="round header-fav" onclick="page('favorites')" aria-label="Избранное"><i data-lucide="heart"></i></button><div class="brand"><div class="mark"><svg class="doppi" viewBox="0 0 96 48" aria-label="Тюбетейка">
 <path d="M8 35C13 15 30 6 48 6s35 9 40 29c-12 5-25 7-40 7S20 40 8 35Z" fill="#111"/>
 <path d="M48 8v31M20 29c8-3 14-8 18-15M76 29c-8-3-14-8-18-15" stroke="#fff" stroke-width="2" fill="none"/>
@@ -1861,7 +2203,7 @@ let marketProducts=[];
 let orderSending=false;const ORDERS_API="https://uzbek-resale-orders.amegakid.workers.dev";
 const MARKETPLACE_API="https://uzbek-resale-orders.amegakid.workers.dev";const $=id=>document.getElementById(id),money=n=>Number(n||0).toLocaleString("ru-RU")+" сум";
 
-function card(p){const e=document.createElement("div");e.className="card";e.innerHTML=`<div class="photo"><img src="${p.image}" alt="${p.name}" loading="lazy" onerror="this.style.display='none'"></div><button class="heart">${favs.includes(p.id)?"♥":"♡"}</button><span class="badge ${p.ownerType==="official"?"badge-official":(p.type==="Под заказ"?"badge-order":"badge-resale")}">${p.ownerType==="official"?"✓ ОТ UZBEK RESALE":p.type}</span><div class="name">${p.name}</div><div class="meta">${p.brand} · Размер: ${p.size}</div><div class="price">${money(p.price)}</div>`;e.querySelector(".heart").onclick=x=>{x.stopPropagation();favs=favs.includes(p.id)?favs.filter(i=>i!==p.id):[...favs,p.id];render()};e.onclick=()=>{selected=p;
+function card(p){const e=document.createElement("div");e.className="card";e.innerHTML=`<div class="card-media"><div class="photo"><img src="${p.image}" alt="${p.name}" loading="lazy" onerror="this.style.display='none'"></div><button class="heart">${favs.includes(p.id)?"♥":"♡"}</button></div><div class="card-info"><div class="price">${money(p.price)}</div><div class="card-title-row"><div class="name">${p.name}</div><span class="card-check">✓</span></div><div class="meta">${p.brand} · Размер: ${p.size}</div><span class="badge ${p.ownerType==="official"?"badge-official":(p.type==="Под заказ"?"badge-order":"badge-resale")}">${p.ownerType==="official"?"От Uzbek Re'Sale":p.type}</span></div>`;e.querySelector(".heart").onclick=x=>{x.stopPropagation();favs=favs.includes(p.id)?favs.filter(i=>i!==p.id):[...favs,p.id];render()};e.onclick=()=>{selected=p;
  const gallery=(p.images&&p.images.length?p.images:[p.image]).filter(Boolean);
  const showGalleryPhoto=(idx)=>{if(!gallery.length)return;idx=(idx+gallery.length)%gallery.length;$("bigPhoto").innerHTML=`<img src="${gallery[idx]}" alt="${p.name}">`;const pc=$("photoCounter");if(pc){pc.hidden=gallery.length<2;pc.textContent=(idx+1)+" / "+gallery.length}document.querySelectorAll("#photoThumbs button").forEach((b,i)=>b.classList.toggle("active",i===idx))};
  const thumbs=$("photoThumbs");if(thumbs){thumbs.innerHTML=gallery.length>1?gallery.map((src,i)=>`<button type="button" data-gallery-index="${i}"><img src="${src}" alt=""></button>`).join(""):"";thumbs.querySelectorAll("button").forEach(b=>b.onclick=ev=>{ev.stopPropagation();showGalleryPhoto(Number(b.dataset.galleryIndex))})}
