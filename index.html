@@ -3128,6 +3128,81 @@ nav.bottom,.bottom-nav,.bottom{
 #cartList .empty{min-height:calc(100dvh - 350px)!important;display:flex!important;align-items:center!important;justify-content:center!important;padding:0 20px!important;color:#909ba6!important;font-size:11px!important;text-align:center!important}
 #cartList .empty:before{content:"🛍"!important;width:70px!important;height:70px!important;flex:0 0 70px!important;margin-right:14px!important;border-radius:22px!important;background:#edf4fa!important;font-size:27px!important}
 @media(max-width:380px){#cartList .cartrow{grid-template-columns:74px minmax(0,1fr) 30px!important}#cartList .cartpic{width:74px!important;height:74px!important}}
+
+/* =========================================================
+   CHECKOUT V1 — premium form, real existing fields only
+   ========================================================= */
+#checkoutView{background:#f6f9fc!important}
+#checkoutView>.checkout-premium-inner{
+  width:100%!important;
+  min-height:100dvh!important;
+  box-sizing:border-box!important;
+  padding:14px 14px 40px!important;
+  background:#f6f9fc!important;
+}
+#checkoutView .checkout-premium-back{
+  width:42px!important;height:42px!important;
+  display:flex!important;align-items:center!important;justify-content:center!important;
+  margin:0 0 14px!important;padding:0!important;
+  border:1px solid #e3eaf0!important;border-radius:14px!important;
+  background:#fff!important;color:#073b66!important;
+  box-shadow:0 3px 12px rgba(7,38,68,.04)!important;
+  font-size:21px!important;
+}
+#checkoutView .checkout-heading{margin:0 2px 15px!important}
+#checkoutView .checkout-heading>span{
+  display:block!important;margin-bottom:6px!important;
+  color:#7f91a2!important;font-size:7.5px!important;font-weight:850!important;letter-spacing:2.2px!important
+}
+#checkoutView .checkout-heading h1{
+  margin:0!important;color:#081f38!important;
+  font-size:27px!important;line-height:1.05!important;font-weight:900!important;letter-spacing:-.45px!important
+}
+#checkoutView .checkout-heading p{
+  margin:7px 0 0!important;color:#8996a4!important;font-size:9.5px!important;line-height:1.45!important
+}
+#checkoutView .checkout-panel{
+  padding:13px!important;border:1px solid #e6edf2!important;border-radius:18px!important;
+  background:#fff!important;box-shadow:0 4px 16px rgba(7,38,68,.035)!important
+}
+#checkoutView .checkout-panel .field{margin:0 0 11px!important}
+#checkoutView .checkout-panel .field:last-child{margin-bottom:0!important}
+#checkoutView .field label{
+  display:block!important;margin:0 0 6px!important;
+  color:#0b2946!important;font-size:9.5px!important;font-weight:850!important
+}
+#checkoutView .field input{
+  width:100%!important;height:47px!important;box-sizing:border-box!important;
+  margin:0!important;padding:0 12px!important;
+  border:1px solid #dbe5ed!important;border-radius:13px!important;
+  background:#fff!important;color:#0b2239!important;font-size:11px!important;outline:none!important
+}
+#checkoutView .field input:focus{
+  border-color:#4d91c4!important;box-shadow:0 0 0 3px rgba(22,117,184,.08)!important
+}
+#checkoutView .checkout-info{
+  display:flex!important;align-items:flex-start!important;gap:10px!important;
+  margin:11px 0!important;padding:11px!important;
+  border-radius:14px!important;background:#edf5fb!important
+}
+#checkoutView .checkout-info-icon{
+  width:22px!important;height:22px!important;flex:0 0 22px!important;
+  display:flex!important;align-items:center!important;justify-content:center!important;
+  border-radius:50%!important;background:#07518a!important;color:#fff!important;
+  font-size:10px!important;font-weight:900!important
+}
+#checkoutView .checkout-info b{display:block!important;color:#0b416f!important;font-size:9.5px!important}
+#checkoutView .checkout-info p{
+  margin:4px 0 0!important;padding:0!important;background:none!important;
+  color:#718294!important;font-size:8.7px!important;line-height:1.4!important
+}
+#checkoutView .checkout-confirm-premium{
+  width:100%!important;height:52px!important;margin:0!important;
+  border:0!important;border-radius:14px!important;
+  background:#07518a!important;color:#fff!important;
+  box-shadow:0 6px 17px rgba(7,81,138,.14)!important;
+  font-size:11px!important;font-weight:900!important
+}
 </style><script src="https://telegram.org/js/telegram-web-app.js"></script><script src="https://unpkg.com/lucide@latest"></script></head><body><div class="app"><header><div class="top"><button class="round header-fav" onclick="page('favorites')" aria-label="Избранное"><i data-lucide="heart"></i></button><div class="brand"><div class="mark"><svg class="doppi" viewBox="0 0 96 48" aria-label="Тюбетейка">
 <path d="M8 35C13 15 30 6 48 6s35 9 40 29c-12 5-25 7-40 7S20 40 8 35Z" fill="#111"/>
 <path d="M48 8v31M20 29c8-3 14-8 18-15M76 29c-8-3-14-8-18-15" stroke="#fff" stroke-width="2" fill="none"/>
@@ -3304,7 +3379,22 @@ nav.bottom,.bottom-nav,.bottom{
 </div></div></div>
 <div id="adminReviewView" class="overlay"><div class="inner"><button class="back" onclick="$('adminReviewView').classList.remove('open')">←</button><div id="adminReviewContent"></div></div></div>
 <div id="adminListingView" class="overlay"><div class="inner"><button class="back" onclick="$('adminListingView').classList.remove('open')">←</button><div id="adminListingContent"></div></div></div>
-<div id="orderDetailView" class="overlay"><div class="inner"><button id="orderDetailBack" class="back">←</button><div id="orderDetailContent" class="order-detail"></div></div></div><div id="checkoutView" class="overlay"><div class="inner"><button id="checkoutBack" class="back">←</button><div id="orderForm"><h1>Оформление заказа</h1><div class="field"><label>Имя *</label><input id="buyerName"></div><div class="field"><label>Телефон *</label><input id="buyerPhone" placeholder="+998"></div><div class="field"><label>Город *</label><input id="buyerCity"></div><div class="field"><label>Комментарий</label><input id="buyerComment"></div><p>Оплата и доставка пока подтверждаются вручную.</p><button id="confirmBtn" class="btn black">Подтвердить заказ</button></div><div id="success" class="success" style="display:none"><h1>✓</h1><h2>Заказ оформлен</h2><p>Мы свяжемся с вами для подтверждения.</p><button id="homeBtn" class="btn black">Вернуться в магазин</button></div></div></div><script>const products=[
+<div id="orderDetailView" class="overlay"><div class="inner"><button id="orderDetailBack" class="back">←</button><div id="orderDetailContent" class="order-detail"></div></div></div>
+<div id="checkoutView" class="overlay"><div class="inner checkout-premium-inner">
+<button id="checkoutBack" class="back checkout-premium-back">←</button>
+<div id="orderForm">
+  <div class="checkout-heading"><span>UZBEK RE'SALE</span><h1>Оформление заказа</h1><p>Оставьте контактные данные для подтверждения покупки.</p></div>
+  <div class="checkout-panel">
+    <div class="field"><label>Имя *</label><input id="buyerName" placeholder="Ваше имя"></div>
+    <div class="field"><label>Телефон *</label><input id="buyerPhone" placeholder="+998"></div>
+    <div class="field"><label>Город *</label><input id="buyerCity" placeholder="Например: Ташкент"></div>
+    <div class="field"><label>Комментарий</label><input id="buyerComment" placeholder="Комментарий к заказу"></div>
+  </div>
+  <div class="checkout-info"><span class="checkout-info-icon">i</span><div><b>Подтверждение заказа</b><p>Оплата и доставка согласовываются вручную после оформления.</p></div></div>
+  <button id="confirmBtn" class="btn black checkout-confirm-premium">Подтвердить заказ</button>
+</div>
+<div id="success" class="success" style="display:none"><h1>✓</h1><h2>Заказ оформлен</h2><p>Мы свяжемся с вами для подтверждения.</p><button id="homeBtn" class="btn black">Вернуться в магазин</button></div>
+</div></div><script>const products=[
 {id:1,name:"Basic Stüssy Hoodie Black",price:520000,size:"M",condition:"Отличное",type:"Ресейл",category:"Одежда",brand:"Stüssy",image:"https://www.stussy.com/cdn/shop/files/1925000_BLAC_1.jpg?v=1785178412&width=900"},
 {id:2,name:"New Balance 530 White",price:920000,size:"42",condition:"Новое",type:"Под заказ",category:"Обувь",brand:"New Balance",image:"https://nb.scene7.com/is/image/NB/u530hfw_nb_02_i?$pdpflexf2$=&hei=700&wid=700"},
 {id:3,name:"Carhartt Detroit Jacket Brown",price:780000,size:"L",condition:"Отличное",type:"Ресейл",category:"Одежда",brand:"Carhartt",image:"https://s7d9.scene7.com/is/image/Carhartt/Product_1blog"},
