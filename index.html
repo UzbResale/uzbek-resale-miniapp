@@ -2069,6 +2069,26 @@ header .header-fav,header .actions{top:13px!important}
 .card .card-check{
   display:none!important;
 }
+
+/* V6.3 — Favorites layout/state final fix */
+#favorites #favoriteGrid{
+  width:100%!important;
+  grid-template-columns:repeat(2,minmax(0,1fr))!important;
+  gap:10px 8px!important;
+  padding:0!important;
+  margin:0!important;
+  align-items:start!important;
+}
+#favorites #favoritesEmpty[hidden]{
+  display:none!important;
+}
+#favorites #favoritesEmpty{
+  position:relative!important;
+  z-index:0!important;
+}
+#favorites #favoriteGrid:not(:empty) + #favoritesEmpty{
+  display:none!important;
+}
 </style><script src="https://telegram.org/js/telegram-web-app.js"></script><script src="https://unpkg.com/lucide@latest"></script></head><body><div class="app"><header><div class="top"><button class="round header-fav" onclick="page('favorites')" aria-label="Избранное"><i data-lucide="heart"></i></button><div class="brand"><div class="mark"><svg class="doppi" viewBox="0 0 96 48" aria-label="Тюбетейка">
 <path d="M8 35C13 15 30 6 48 6s35 9 40 29c-12 5-25 7-40 7S20 40 8 35Z" fill="#111"/>
 <path d="M48 8v31M20 29c8-3 14-8 18-15M76 29c-8-3-14-8-18-15" stroke="#fff" stroke-width="2" fill="none"/>
@@ -2258,7 +2278,13 @@ if(favoriteGrid){
   favoriteItems.forEach(p=>favoriteGrid.appendChild(card(p)));
 }
 const favoritesEmpty=$("favoritesEmpty");
-if(favoritesEmpty)favoritesEmpty.style.display=favoriteItems.length?"none":"flex";
+if(favoritesEmpty){
+  favoritesEmpty.style.display=favoriteItems.length?"none":"flex";
+  favoritesEmpty.hidden=!!favoriteItems.length;
+}
+if(favoriteGrid){
+  favoriteGrid.style.display=favoriteItems.length?"grid":"none";
+}
 document.querySelectorAll("#favorites .empty").forEach(el=>el.remove());
 renderCart()}
 
