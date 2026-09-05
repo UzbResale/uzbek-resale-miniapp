@@ -2720,6 +2720,37 @@ header .header-fav,header .actions{top:13px!important}
 #sellerProfile .seller-profile-head{
   margin-top:0!important;
 }
+
+/* V1.3 — seller profile blank-space HARD FIX */
+#sellerProfile.active{
+  display:block!important;
+  position:fixed!important;
+  z-index:45!important;
+  inset:0!important;
+  width:100%!important;
+  height:100dvh!important;
+  max-height:100dvh!important;
+  margin:0!important;
+  padding:0!important;
+  overflow-y:auto!important;
+  overflow-x:hidden!important;
+  background:#fff!important;
+  transform:none!important;
+  -webkit-overflow-scrolling:touch!important;
+  overscroll-behavior:contain!important;
+}
+#sellerProfile.active #sellerProfileContent{
+  width:100%!important;
+  min-height:100%!important;
+  margin:0!important;
+  padding:0 14px 105px!important;
+  box-sizing:border-box!important;
+  background:#fff!important;
+}
+#sellerProfile.active .seller-profile-head{
+  margin:0 -14px 22px!important;
+  padding-top:28px!important;
+}
 </style><script src="https://telegram.org/js/telegram-web-app.js"></script><script src="https://unpkg.com/lucide@latest"></script></head><body><div class="app"><header><div class="top"><button class="round header-fav" onclick="page('favorites')" aria-label="Избранное"><i data-lucide="heart"></i></button><div class="brand"><div class="mark"><svg class="doppi" viewBox="0 0 96 48" aria-label="Тюбетейка">
 <path d="M8 35C13 15 30 6 48 6s35 9 40 29c-12 5-25 7-40 7S20 40 8 35Z" fill="#111"/>
 <path d="M48 8v31M20 29c8-3 14-8 18-15M76 29c-8-3-14-8-18-15" stroke="#fff" stroke-width="2" fill="none"/>
@@ -3313,7 +3344,7 @@ function messageSeller(username){
 async function openSellerProfile(id,fallbackName="",fallbackUsername=""){
  if(!id)return;
  document.querySelectorAll(".page").forEach(x=>x.classList.remove("active"));
- const target=$("sellerProfile");if(!target)return;target.classList.add("active");
+ const target=$("sellerProfile");if(!target)return;target.classList.add("active");target.scrollTop=0;requestAnimationFrame(()=>{target.scrollTop=0;window.scrollTo(0,0)});
  document.querySelectorAll(".nav").forEach(x=>x.classList.remove("active"));
  const b=$("sellerProfileContent");b.innerHTML='<div class="empty">Загрузка...</div>';
  resetPageScroll(target);target.scrollTop=0;
@@ -3345,7 +3376,7 @@ function openOwnSellerProfile(){
  document.querySelectorAll(".page").forEach(x=>x.classList.remove("active"));
  const target=$("sellerProfile");if(!target)return;
  target.scrollTop=0;
- target.classList.add("active");
+ target.classList.add("active");target.scrollTop=0;requestAnimationFrame(()=>{target.scrollTop=0;window.scrollTo(0,0)});
  document.querySelectorAll(".nav").forEach(x=>x.classList.remove("active"));
  requestAnimationFrame(()=>{if(app)app.scrollTop=0;target.scrollTop=0;if(scroller)scroller.scrollTop=0;window.scrollTo(0,0)});
  const b=$("sellerProfileContent");
