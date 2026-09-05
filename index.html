@@ -3317,6 +3317,73 @@ nav.bottom,.bottom-nav,.bottom{
 #checkoutView .success-secondary{
   margin-top:9px!important;border:1.5px solid #dce5ed!important;background:#fff!important;color:#0a416f!important;box-shadow:none!important;
 }
+
+/* =========================================================
+   ADMIN PANEL V1 — full visual overhaul
+   Existing admin API / moderation / orders / ImageKit logic preserved.
+   ========================================================= */
+#adminPanel.active{background:#f6f9fc!important}
+#adminPanel .admin-premium-section{padding:14px 14px 112px!important}
+#adminPanel .admin-premium-head{display:flex!important;align-items:center!important;gap:11px!important;margin:0 0 14px!important}
+#adminPanel .admin-premium-head>div{min-width:0!important}
+#adminPanel .admin-kicker{display:block!important;margin-bottom:4px!important;color:#7f91a2!important;font-size:7px!important;font-weight:900!important;letter-spacing:1.8px!important}
+#adminPanel .admin-premium-head h1{margin:0!important;color:#081f38!important;font-size:24px!important;line-height:1!important;font-weight:900!important}
+#adminPanel .admin-premium-head p{margin:5px 0 0!important;color:#8996a4!important;font-size:9px!important}
+
+/* Stats */
+#adminPanel .admin-grid{display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:8px!important;margin:0 0 12px!important}
+#adminPanel .admin-grid>*{min-width:0!important;padding:11px!important;border:1px solid #e5ebf0!important;border-radius:15px!important;background:#fff!important;box-shadow:0 3px 12px rgba(7,38,68,.035)!important}
+#adminPanel .admin-grid b{display:block!important;color:#081f38!important;font-size:17px!important;font-weight:900!important}
+#adminPanel .admin-grid span,#adminPanel .admin-grid div{color:#8492a1!important;font-size:8.5px!important}
+
+/* Tabs */
+#adminPanel .admin-tabs{display:flex!important;gap:6px!important;width:100%!important;margin:0 0 12px!important;padding:4px!important;box-sizing:border-box!important;overflow-x:auto!important;border:1px solid #e4ebf1!important;border-radius:14px!important;background:#fff!important;scrollbar-width:none!important}
+#adminPanel .admin-tabs::-webkit-scrollbar{display:none!important}
+#adminPanel .admin-tab{flex:0 0 auto!important;min-height:34px!important;margin:0!important;padding:0 11px!important;border:0!important;border-radius:10px!important;background:transparent!important;color:#718294!important;font-size:8.5px!important;font-weight:850!important;white-space:nowrap!important}
+#adminPanel .admin-tab.on{background:#07518a!important;color:#fff!important;box-shadow:0 3px 10px rgba(7,81,138,.12)!important}
+
+/* Generic cards used by moderation/orders/cleanup */
+#adminContent .admin-card{margin:0 0 9px!important;padding:11px!important;border:1px solid #e5ebf0!important;border-radius:17px!important;background:#fff!important;box-shadow:0 4px 15px rgba(7,38,68,.035)!important;color:#0a223a!important}
+#adminContent .admin-card b{color:#081f38!important;font-size:11px!important;font-weight:900!important}
+#adminContent .admin-card>div{margin-top:5px!important;font-size:9px!important;color:#53687b!important}
+#adminContent .admin-card img{border-radius:12px!important;background:#f4f5f5!important}
+#adminContent .admin-mini{color:#98a2ac!important;font-size:8.5px!important;line-height:1.35!important}
+#adminContent .admin-clickable{cursor:pointer!important}
+#adminContent .admin-actions{display:flex!important;flex-wrap:wrap!important;gap:6px!important;margin-top:10px!important}
+#adminContent .admin-actions button{min-height:34px!important;padding:0 10px!important;border:0!important;border-radius:10px!important;background:#edf5fb!important;color:#0b4b80!important;font-size:8px!important;font-weight:850!important}
+#adminContent .admin-actions button:first-child{background:#e2f6e9!important;color:#177c49!important}
+#adminContent .admin-actions button:last-child{background:#fdeaea!important;color:#b42318!important}
+#adminContent .admin-danger{background:#fdeaea!important;color:#b42318!important}
+
+/* Official product form */
+#adminContent>h2{margin:4px 0 10px!important;color:#081f38!important;font-size:17px!important;font-weight:900!important}
+#adminContent .admin-form{display:grid!important;grid-template-columns:1fr 1fr!important;column-gap:9px!important;margin:0 0 16px!important;padding:13px!important;border:1px solid #e5ebf0!important;border-radius:18px!important;background:#fff!important;box-shadow:0 4px 16px rgba(7,38,68,.035)!important}
+#adminContent .admin-form>label{display:block!important;margin:0 0 5px!important;color:#0b2946!important;font-size:8.5px!important;font-weight:850!important}
+#adminContent .admin-form>input,#adminContent .admin-form>select,#adminContent .admin-form>textarea,#adminContent .admin-form>.admin-mini,#adminContent .admin-form>.admin-check,#adminContent .admin-form>.btn{margin-bottom:10px!important}
+#adminContent .admin-form>label,#adminContent .admin-form>input,#adminContent .admin-form>select,#adminContent .admin-form>textarea,#adminContent .admin-form>.admin-mini,#adminContent .admin-form>.admin-check,#adminContent .admin-form>.btn{grid-column:span 1!important}
+#adminContent .admin-form #aoImages,#adminContent .admin-form #aoImageHint,#adminContent .admin-form #aoDesc,#adminContent .admin-form #aoCreateBtn{grid-column:1/-1!important}
+#adminContent .admin-form input,#adminContent .admin-form select,#adminContent .admin-form textarea{width:100%!important;box-sizing:border-box!important;border:1px solid #dbe5ed!important;border-radius:12px!important;background:#fff!important;color:#0a223a!important;font-size:9.5px!important;outline:none!important}
+#adminContent .admin-form input,#adminContent .admin-form select{height:42px!important;padding:0 10px!important}
+#adminContent .admin-form textarea{min-height:82px!important;padding:10px!important;resize:vertical!important}
+#adminContent .admin-form input:focus,#adminContent .admin-form select:focus,#adminContent .admin-form textarea:focus{border-color:#4d91c4!important;box-shadow:0 0 0 3px rgba(22,117,184,.07)!important}
+#adminContent .admin-check{display:flex!important;align-items:center!important;gap:7px!important;min-height:36px!important;padding:0 9px!important;border-radius:11px!important;background:#f5f8fb!important;color:#52677a!important;font-size:8.5px!important}
+#adminContent .admin-check input{width:16px!important;height:16px!important;min-height:0!important;margin:0!important}
+#adminContent #aoCreateBtn{height:47px!important;margin-top:2px!important;border:0!important;border-radius:13px!important;background:#07518a!important;color:#fff!important;font-size:10px!important;font-weight:900!important;box-shadow:0 5px 15px rgba(7,81,138,.13)!important}
+#adminContent .admin-size-help{grid-column:1/-1!important;margin-top:-5px!important}
+
+/* Official product list */
+#officialList{display:flex!important;flex-direction:column!important;gap:8px!important}
+#officialList .admin-card{margin:0!important}
+
+/* Loading / empty */
+#adminContent>.empty{min-height:280px!important;display:flex!important;align-items:center!important;justify-content:center!important;text-align:center!important;color:#98a2ac!important;font-size:10px!important}
+
+/* Review overlays */
+#adminReviewView.open,#adminListingView.open{background:#f6f9fc!important}
+#adminReviewView .inner,#adminListingView .inner{padding:14px!important;background:#f6f9fc!important}
+#adminReviewView .back,#adminListingView .back{width:42px!important;height:42px!important;margin-bottom:12px!important;border:1px solid #e3eaf0!important;border-radius:14px!important;background:#fff!important;color:#073b66!important}
+#adminReviewContent,#adminListingContent{padding-bottom:30px!important}
+@media(max-width:380px){#adminContent .admin-form{grid-template-columns:1fr!important}#adminContent .admin-form>*{grid-column:1!important}#adminContent .admin-form #aoImages,#adminContent .admin-form #aoImageHint,#adminContent .admin-form #aoDesc,#adminContent .admin-form #aoCreateBtn,#adminContent .admin-size-help{grid-column:1!important}}
 </style><script src="https://telegram.org/js/telegram-web-app.js"></script><script src="https://unpkg.com/lucide@latest"></script></head><body><div class="app"><header><div class="top"><button class="round header-fav" onclick="page('favorites')" aria-label="Избранное"><i data-lucide="heart"></i></button><div class="brand"><div class="mark"><svg class="doppi" viewBox="0 0 96 48" aria-label="Тюбетейка">
 <path d="M8 35C13 15 30 6 48 6s35 9 40 29c-12 5-25 7-40 7S20 40 8 35Z" fill="#111"/>
 <path d="M48 8v31M20 29c8-3 14-8 18-15M76 29c-8-3-14-8-18-15" stroke="#fff" stroke-width="2" fill="none"/>
@@ -3481,7 +3548,7 @@ nav.bottom,.bottom-nav,.bottom{
 <div class="faq-item"><button class="faq-q">Что делать при споре?<span>＋</span></button><div class="faq-a">Сохраните номер UR-xxxxxx и обратитесь в поддержку @uzbclothelover.</div></div>
 <div class="faq-item"><button class="faq-q">Как связаться без username?<span>＋</span></button><div class="faq-a">Используйте кнопку связи в сообщении о заказе. Бот передаст сообщения между сторонами без публичного @username.</div></div>
 <div class="faq-item"><button class="faq-q">Какие правила действуют?<span>＋</span></button><div class="faq-a">Используя сервис, размещая объявление или оформляя заказ, вы подтверждаете ознакомление с Правилами и Политикой конфиденциальности.</div></div></div></div></section>
-<section id="adminPanel" class="page"><div class="section"><div class="simple-head"><button class="back" onclick="backPage('profile')">←</button><h1>Admin Panel</h1></div><div id="adminStats" class="admin-grid"></div><div class="admin-tabs"><button class="admin-tab on" onclick="adminTab('moderation',this)">Модерация</button><button class="admin-tab" onclick="adminTab('orders',this)">Заказы</button><button class="admin-tab" onclick="adminTab('official',this)">Товары от нас</button><button class="admin-tab" onclick="adminTab('cleanup',this)">Очистка</button></div><div id="adminContent"></div></div></section>
+<section id="adminPanel" class="page"><div class="section admin-premium-section"><div class="simple-head admin-premium-head"><button class="back" onclick="backPage('profile')">←</button><div><span class="admin-kicker">UZBEK RE'SALE</span><h1>Admin Panel</h1><p>Управление маркетплейсом</p></div></div><div id="adminStats" class="admin-grid"></div><div class="admin-tabs"><button class="admin-tab on" onclick="adminTab('moderation',this)">Модерация</button><button class="admin-tab" onclick="adminTab('orders',this)">Заказы</button><button class="admin-tab" onclick="adminTab('official',this)">Товары от нас</button><button class="admin-tab" onclick="adminTab('cleanup',this)">Очистка</button></div><div id="adminContent"></div></div></section>
 <section id="orders" class="page"><div class="section orders-premium-section"><div class="orders-head"><button id="ordersBack" class="back">←</button><div><h1>Мои заказы</h1><p>Покупки и статус доставки</p></div></div><div id="ordersList"></div></div></section></div>
 <nav><button class="nav active" data-page="home"><span class="icon"><i data-lucide="house"></i></span>Главная</button><button class="nav" data-page="catalog"><span class="icon"><i data-lucide="layout-grid"></i></span>Каталог</button><button class="nav sell" data-page="sell"><span class="icon"><i data-lucide="plus"></i></span>Продать</button><button class="nav" data-page="favorites"><span class="icon"><i data-lucide="heart"></i></span>Избранное</button><button class="nav" data-page="profile"><span class="icon"><i data-lucide="user"></i></span>Профиль</button></nav>
 <div id="productView" class="overlay product-final-view"><div class="inner product-final-inner">
