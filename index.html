@@ -2530,6 +2530,196 @@ header .header-fav,header .actions{top:13px!important}
   #productView #pPrice{font-size:28px!important}
   #productView .product-body-final{padding-left:14px!important;padding-right:14px!important}
 }
+
+/* =========================================================
+   SELLER PROFILE V1 — premium + profile-nav fix companion
+   ========================================================= */
+#sellerProfile{
+  background:#fff!important;
+  overflow-y:auto!important;
+  overscroll-behavior:contain!important;
+}
+#sellerProfile.active{display:block!important}
+#sellerProfile .section{
+  margin:0!important;
+  padding:0 0 100px!important;
+  background:#fff!important;
+}
+#sellerProfileContent{
+  min-height:calc(100dvh - 150px)!important;
+  padding:0 14px 90px!important;
+  background:#fff!important;
+}
+#sellerProfile .seller-profile-head{
+  position:relative!important;
+  margin:0 -14px 22px!important;
+  padding:28px 18px 24px!important;
+  border:0!important;
+  border-radius:0 0 28px 28px!important;
+  background:linear-gradient(180deg,#eef5fb 0%,#f7faff 100%)!important;
+  text-align:center!important;
+}
+#sellerProfile .seller-profile-head .seller-avatar{
+  width:82px!important;
+  height:82px!important;
+  display:flex!important;
+  align-items:center!important;
+  justify-content:center!important;
+  margin:0 auto 12px!important;
+  border:5px solid #fff!important;
+  border-radius:50%!important;
+  background:#07518a!important;
+  color:#fff!important;
+  box-shadow:0 8px 24px rgba(7,81,138,.12)!important;
+  font-size:25px!important;
+  font-weight:900!important;
+}
+#sellerProfile .seller-profile-head h2{
+  margin:0!important;
+  color:#081f38!important;
+  font-size:25px!important;
+  line-height:1.1!important;
+  font-weight:900!important;
+  letter-spacing:-.4px!important;
+}
+#sellerProfile .seller-sub{
+  margin-top:6px!important;
+  color:#8a96a3!important;
+  font-size:11px!important;
+}
+#sellerProfile .seller-stats{
+  display:flex!important;
+  justify-content:center!important;
+  gap:38px!important;
+  margin:18px 0 0!important;
+}
+#sellerProfile .seller-stat{
+  min-width:72px!important;
+  text-align:center!important;
+}
+#sellerProfile .seller-stat b{
+  display:block!important;
+  color:#081f38!important;
+  font-size:21px!important;
+  line-height:1!important;
+  font-weight:900!important;
+}
+#sellerProfile .seller-stat span{
+  display:block!important;
+  margin-top:5px!important;
+  color:#8b96a1!important;
+  font-size:9.5px!important;
+}
+#sellerProfile .seller-profile-head .btn{
+  width:100%!important;
+  min-height:46px!important;
+  margin-top:19px!important;
+  border:0!important;
+  border-radius:14px!important;
+  background:#07518a!important;
+  color:#fff!important;
+  font-size:11px!important;
+  font-weight:900!important;
+  box-shadow:0 5px 16px rgba(7,81,138,.12)!important;
+}
+#sellerProfileContent > h2{
+  margin:0 0 12px!important;
+  color:#081f38!important;
+  font-size:21px!important;
+  line-height:1.1!important;
+  font-weight:900!important;
+}
+#sellerProfile .listing-card{
+  display:grid!important;
+  grid-template-columns:76px minmax(0,1fr) 20px!important;
+  align-items:center!important;
+  gap:11px!important;
+  min-height:96px!important;
+  margin:0 0 9px!important;
+  padding:9px!important;
+  border:1px solid #e8edf2!important;
+  border-radius:17px!important;
+  background:#fff!important;
+  box-shadow:0 3px 14px rgba(7,38,68,.04)!important;
+}
+#sellerProfile .listing-card img{
+  width:76px!important;
+  height:76px!important;
+  margin:0!important;
+  padding:0!important;
+  border:0!important;
+  border-radius:13px!important;
+  object-fit:cover!important;
+  background:#f4f5f5!important;
+}
+#sellerProfile .listing-info{
+  min-width:0!important;
+}
+#sellerProfile .listing-title{
+  display:-webkit-box!important;
+  -webkit-box-orient:vertical!important;
+  -webkit-line-clamp:2!important;
+  overflow:hidden!important;
+  color:#0a223a!important;
+  font-size:12px!important;
+  line-height:1.2!important;
+  font-weight:900!important;
+}
+#sellerProfile .listing-info .meta{
+  margin-top:5px!important;
+  color:#9aa3ac!important;
+  font-size:9px!important;
+}
+#sellerProfile .listing-price{
+  margin-top:7px!important;
+  color:#07518a!important;
+  font-size:13px!important;
+  font-weight:900!important;
+}
+#sellerProfile .listing-card .arrow{
+  color:#7890a5!important;
+  font-size:22px!important;
+  font-weight:700!important;
+}
+#sellerProfile .empty{
+  min-height:220px!important;
+  display:flex!important;
+  align-items:center!important;
+  justify-content:center!important;
+  text-align:center!important;
+  color:#9aa3ac!important;
+}
+
+/* Main profile bottom-nav target remains normal and scrolls from top */
+#profile.active{
+  display:block!important;
+  overflow-y:auto!important;
+}
+#profile .profile{
+  padding-bottom:100px!important;
+}
+
+/* V1.2 seller profile — force immediate top opening */
+#sellerProfile{
+  position:relative!important;
+  top:0!important;
+  margin-top:0!important;
+  padding-top:0!important;
+  scroll-margin-top:0!important;
+}
+#sellerProfile.active{
+  display:block!important;
+  top:0!important;
+  margin-top:0!important;
+  padding-top:0!important;
+}
+#sellerProfileContent{
+  margin-top:0!important;
+  padding-top:0!important;
+}
+#sellerProfile .seller-profile-head{
+  margin-top:0!important;
+}
 </style><script src="https://telegram.org/js/telegram-web-app.js"></script><script src="https://unpkg.com/lucide@latest"></script></head><body><div class="app"><header><div class="top"><button class="round header-fav" onclick="page('favorites')" aria-label="Избранное"><i data-lucide="heart"></i></button><div class="brand"><div class="mark"><svg class="doppi" viewBox="0 0 96 48" aria-label="Тюбетейка">
 <path d="M8 35C13 15 30 6 48 6s35 9 40 29c-12 5-25 7-40 7S20 40 8 35Z" fill="#111"/>
 <path d="M48 8v31M20 29c8-3 14-8 18-15M76 29c-8-3-14-8-18-15" stroke="#fff" stroke-width="2" fill="none"/>
@@ -3121,7 +3311,12 @@ function messageSeller(username){
  const tg=window.Telegram&&window.Telegram.WebApp;if(tg&&tg.openTelegramLink)tg.openTelegramLink("https://t.me/"+u);else window.open("https://t.me/"+u,"_blank");
 }
 async function openSellerProfile(id,fallbackName="",fallbackUsername=""){
- if(!id)return;if(!$("sellerProfile").classList.contains("active"))page("sellerProfile");const b=$("sellerProfileContent");b.innerHTML='<div class="empty">Загрузка...</div>';
+ if(!id)return;
+ document.querySelectorAll(".page").forEach(x=>x.classList.remove("active"));
+ const target=$("sellerProfile");if(!target)return;target.classList.add("active");
+ document.querySelectorAll(".nav").forEach(x=>x.classList.remove("active"));
+ const b=$("sellerProfileContent");b.innerHTML='<div class="empty">Загрузка...</div>';
+ resetPageScroll(target);target.scrollTop=0;
  try{const r=await fetch(MARKETPLACE_API+"/seller?telegramId="+encodeURIComponent(id)),d=await r.json();if(!r.ok||!d.ok)throw new Error();
  const p=d.profile;
  if((!p.name||p.name==="Продавец")&&fallbackName)p.name=fallbackName;
@@ -3129,19 +3324,33 @@ async function openSellerProfile(id,fallbackName="",fallbackUsername=""){
  const ini=(p.name||"P").split(" ").map(x=>x[0]).join("").slice(0,2).toUpperCase();
  const items=(p.listings||[]).map(x=>'<div class="listing-card" style="cursor:pointer" onclick="openSellerListing('+x.id+')">'+(x.images&&x.images[0]?'<img src="'+x.images[0].image_url+'">':'')+'<div class="listing-info"><div class="listing-title">'+x.title+'</div><div class="meta">'+(x.brand||x.category)+'</div><div class="listing-price">'+money(x.price)+'</div></div><span class="arrow">›</span></div>').join("");
  b.innerHTML='<div class="seller-profile-head"><div class="seller-avatar">'+ini+'</div><h2>'+p.name+'</h2><div class="seller-sub">'+(p.username?"@"+p.username:"Telegram продавец")+'</div><div class="seller-stats"><div class="seller-stat"><b>'+p.activeCount+'</b><span>Объявлений</span></div><div class="seller-stat"><b>'+p.soldCount+'</b><span>Продано</span></div></div>'+(p.username?'<button class="btn black" onclick="messageSeller(\''+p.username+'\')">Написать в Telegram</button>':'')+'</div><h2>Товары продавца</h2>'+items;
- }catch(e){b.innerHTML='<div class="empty">Не удалось загрузить профиль</div>'}
+ resetPageScroll(target);target.scrollTop=0;
+ setTimeout(()=>{resetPageScroll(target);target.scrollTop=0},30);
+ setTimeout(()=>window.lucide&&lucide.createIcons(),0);
+ }catch(e){b.innerHTML='<div class="empty">Не удалось загрузить профиль</div>';resetPageScroll(target);target.scrollTop=0}
 }
 function openOwnSellerProfile(){
- const u=window.Telegram?.WebApp?.initDataUnsafe?.user;
- if(!u?.id)return;
+ const tg=window.Telegram?.WebApp?.initDataUnsafe?.user||null;
+ const profileNameText=($("profileName")?.textContent||"").trim();
+ const profileUsernameText=($("profileUsername")?.textContent||"").trim();
+ const profileIdText=($("profileId")?.textContent||"").trim();
+ const id=String(tg?.id||telegramUser?.id||profileIdText||"");
+ const name=([tg?.first_name,tg?.last_name].filter(Boolean).join(" ")||profileNameText||"Продавец").trim();
+ const username=(tg?.username||telegramUser?.username||profileUsernameText.replace(/^@/,"")||"").trim();
+ const app=document.querySelector(".app");
+ const scroller=document.scrollingElement||document.documentElement;
+ if(app)app.scrollTop=0;
+ if(scroller)scroller.scrollTop=0;
+ document.documentElement.scrollTop=0;document.body.scrollTop=0;window.scrollTo(0,0);
  document.querySelectorAll(".page").forEach(x=>x.classList.remove("active"));
- const target=$("sellerProfile");if(!target)return;target.classList.add("active");
- document.querySelectorAll(".nav").forEach(x=>x.classList.toggle("active",x.dataset.page==="profile"));
+ const target=$("sellerProfile");if(!target)return;
+ target.scrollTop=0;
+ target.classList.add("active");
+ document.querySelectorAll(".nav").forEach(x=>x.classList.remove("active"));
+ requestAnimationFrame(()=>{if(app)app.scrollTop=0;target.scrollTop=0;if(scroller)scroller.scrollTop=0;window.scrollTo(0,0)});
  const b=$("sellerProfileContent");
- const name=[u.first_name,u.last_name].filter(Boolean).join(" ")||"Продавец";
- const username=u.username||"";
- const ini=name.split(" ").map(x=>x[0]).join("").slice(0,2).toUpperCase();
- const mine=products.filter(p=>p.ownerType!=="official" && String(p.sellerTelegramId||"")===String(u.id));
+ const ini=name.split(/\s+/).filter(Boolean).map(x=>x[0]).join("").slice(0,2).toUpperCase()||"P";
+ const mine=products.filter(p=>p.ownerType!=="official" && id && String(p.sellerTelegramId||"")===id);
  const items=mine.map(p=>'<div class="listing-card" style="cursor:pointer" onclick="openSellerListing('+Number(p.listingId||0)+')">'+(p.image?'<img src="'+p.image+'">':'')+'<div class="listing-info"><div class="listing-title">'+p.name+'</div><div class="meta">'+(p.brand||p.category)+'</div><div class="listing-price">'+money(p.price)+'</div></div><span class="arrow">›</span></div>').join("");
  b.innerHTML='<div class="seller-profile-head"><div class="seller-avatar">'+ini+'</div><h2>'+name+'</h2><div class="seller-sub">'+(username?"@"+username:"Telegram продавец")+'</div><div class="seller-stats"><div class="seller-stat"><b>'+mine.length+'</b><span>Объявлений</span></div></div>'+(username?'<button class="btn black" onclick="messageSeller(\''+username+'\')">Написать в Telegram</button>':'')+'</div><h2>Мои товары</h2>'+(items||'<div class="empty">У вас пока нет опубликованных Ресейл-товаров</div>');
  resetPageScroll(target);target.scrollTop=0;
