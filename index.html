@@ -3695,6 +3695,132 @@ nav .nav .icon,
 nav .nav svg{
   border-radius:0;
 }
+
+/* PRODUCT HEART V1.4 — isolated final */
+.card .card-media{position:relative!important;overflow:hidden!important}
+.card .product-heart,#officialStoreView .card .product-heart{
+ all:unset!important;position:absolute!important;top:10px!important;right:10px!important;z-index:30!important;
+ box-sizing:border-box!important;width:36px!important;height:36px!important;
+ display:flex!important;align-items:center!important;justify-content:center!important;
+ border:1px solid rgba(221,230,237,.96)!important;border-radius:50%!important;
+ background:rgba(255,255,255,.96)!important;color:#0b416f!important;
+ box-shadow:0 3px 12px rgba(7,38,68,.10)!important;
+ font-family:Arial,sans-serif!important;font-size:23px!important;font-weight:400!important;line-height:1!important;
+ cursor:pointer!important;-webkit-tap-highlight-color:transparent!important;touch-action:manipulation!important
+}
+.card .product-heart.is-favorite,#officialStoreView .card .product-heart.is-favorite{
+ border-color:#07518a!important;background:#07518a!important;color:#fff!important;font-size:19px!important
+}
+.card .product-heart:active,#officialStoreView .card .product-heart:active{transform:scale(.94)!important}
+.card .product-heart::before,.card .product-heart::after{content:none!important;display:none!important}
+.card button.heart{display:none!important}
+
+/* =========================================================
+   PRODUCT HEART V1.5 — STACKING FIX
+   Hearts stay inside cards and NEVER paint over bottom nav.
+   ========================================================= */
+.card{
+  position:relative!important;
+  z-index:1!important;
+}
+.card .card-media{
+  position:relative!important;
+  z-index:1!important;
+  overflow:hidden!important;
+  isolation:isolate!important;
+}
+.card .product-heart,
+#officialStoreView .card .product-heart{
+  z-index:4!important;
+}
+
+/* Bottom navigation is always the top UI layer above catalog/home cards */
+.app > nav,
+body > nav,
+nav:has(.nav),
+.bottom-nav{
+  position:fixed!important;
+  z-index:900!important;
+  isolation:isolate!important;
+  background:rgba(255,255,255,.98)!important;
+}
+
+/* Cards/grid content must remain beneath the navigation layer */
+#home .grid,
+#catalog .grid,
+#favoriteGrid,
+#officialStoreGrid{
+  position:relative!important;
+  z-index:1!important;
+}
+
+/* Reserve visual space so the last card row does not sit under the fixed nav */
+#home,
+#catalog,
+#favorites{
+  padding-bottom:92px!important;
+}
+
+/* =========================================================
+   PRIVACY V1 — page-position fix
+   Same behavior as Settings / About / Rules.
+   ========================================================= */
+#privacy.active{
+  position:fixed!important;
+  z-index:44!important;
+  inset:0!important;
+  width:100%!important;
+  height:100dvh!important;
+  max-height:100dvh!important;
+  margin:0!important;
+  padding:0 0 92px!important;
+  box-sizing:border-box!important;
+  overflow-y:auto!important;
+  overflow-x:hidden!important;
+  background:#fff!important;
+  transform:none!important;
+  -webkit-overflow-scrolling:touch!important;
+  overscroll-behavior:contain!important;
+}
+#privacy.active>.section{
+  margin:0!important;
+  padding:18px 14px 112px!important;
+}
+#privacy .simple-head{
+  display:flex!important;
+  align-items:center!important;
+  gap:11px!important;
+  margin:0 0 18px!important;
+}
+#privacy .simple-head .back{
+  width:42px!important;
+  height:42px!important;
+  min-width:42px!important;
+  flex:0 0 42px!important;
+  display:inline-flex!important;
+  align-items:center!important;
+  justify-content:center!important;
+  margin:0!important;
+  padding:0!important;
+  border:1px solid #dfe8ef!important;
+  border-radius:13px!important;
+  background:#f5f8fb!important;
+  color:#073b66!important;
+  box-shadow:none!important;
+  font-size:20px!important;
+}
+#privacy .simple-head h1{
+  margin:0!important;
+  color:#081f38!important;
+  font-size:24px!important;
+  line-height:1.05!important;
+  font-weight:900!important;
+}
+#privacy p{
+  color:#52677a!important;
+  font-size:11px!important;
+  line-height:1.55!important;
+}
 </style><script src="https://telegram.org/js/telegram-web-app.js"></script><script src="https://unpkg.com/lucide@latest"></script></head><body><div class="app"><header><div class="top"><button class="round header-fav" onclick="page('favorites')" aria-label="Избранное"><i data-lucide="heart"></i></button><div class="brand"><div class="mark"><svg class="doppi" viewBox="0 0 96 48" aria-label="Тюбетейка">
 <path d="M8 35C13 15 30 6 48 6s35 9 40 29c-12 5-25 7-40 7S20 40 8 35Z" fill="#111"/>
 <path d="M48 8v31M20 29c8-3 14-8 18-15M76 29c-8-3-14-8-18-15" stroke="#fff" stroke-width="2" fill="none"/>
@@ -3942,8 +4068,8 @@ let marketProducts=[];
 let orderSending=false;const ORDERS_API="https://uzbek-resale-orders.amegakid.workers.dev";
 const MARKETPLACE_API="https://uzbek-resale-orders.amegakid.workers.dev";const $=id=>document.getElementById(id),money=n=>Number(n||0).toLocaleString("ru-RU")+" сум";
 
-function card(p){const e=document.createElement("div");e.className="card";e.innerHTML=`<div class="card-media"><div class="photo"><img src="${p.image}" alt="${p.name}" loading="lazy" onerror="this.style.display='none'"></div><button class="heart ${favs.includes(p.id)?"is-favorite":""}">${favs.includes(p.id)?"♥":"♡"}</button></div><div class="card-info"><div class="price">${money(p.price)}</div><div class="card-title-row"><div class="name">${p.name}</div></div><div class="meta">${p.brand} · Размер: ${p.size}</div><span class="badge ${p.ownerType==="official"?"badge-official":(p.type==="Под заказ"?"badge-order":"badge-resale")}">${p.ownerType==="official"?"От Uzbek Re'Sale":p.type}</span></div>`;{
- const heart=e.querySelector(".heart");
+function card(p){const e=document.createElement("div");e.className="card";e.innerHTML=`<div class="card-media"><div class="photo"><img src="${p.image}" alt="${p.name}" loading="lazy" onerror="this.style.display='none'"></div><button type="button" class="product-heart ${favs.includes(p.id)?"is-favorite":""}" aria-label="Избранное">${favs.includes(p.id)?"♥":"♡"}</button></div><div class="card-info"><div class="price">${money(p.price)}</div><div class="card-title-row"><div class="name">${p.name}</div></div><div class="meta">${p.brand} · Размер: ${p.size}</div><span class="badge ${p.ownerType==="official"?"badge-official":(p.type==="Под заказ"?"badge-order":"badge-resale")}">${p.ownerType==="official"?"От Uzbek Re'Sale":p.type}</span></div>`;{
+ const heart=e.querySelector(".product-heart");
  let favLock=0;
  const doFav=x=>{
    x.preventDefault();x.stopPropagation();
@@ -4012,6 +4138,7 @@ function navigatePage(id){
  const target=$(id);if(!target){console.error("Unknown page:",id);return}
  target.scrollTop=0;
  target.classList.add("active");
+ if(id==="privacy"){target.scrollTop=0;requestAnimationFrame(()=>{target.scrollTop=0;window.scrollTo(0,0)})}
  document.querySelectorAll(".nav").forEach(x=>x.classList.toggle("active",x.dataset.page===id));
  const app=document.querySelector(".app"),scroller=document.scrollingElement||document.documentElement;
  if(app)app.scrollTop=0;if(scroller)scroller.scrollTop=0;document.documentElement.scrollTop=0;document.body.scrollTop=0;window.scrollTo(0,0);target.scrollTop=0;
@@ -4071,7 +4198,7 @@ function openOfficialStore(){
   g.innerHTML="";
   items.forEach(p=>{
     const el=card(p);
-    el.addEventListener("click",(ev)=>{if(!ev.target.closest(".heart"))closeOfficialStore()},{capture:true});
+    el.addEventListener("click",(ev)=>{if(!ev.target.closest(".product-heart"))closeOfficialStore()},{capture:true});
     g.appendChild(el);
   });
   v.classList.add("open");
