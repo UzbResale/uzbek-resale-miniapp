@@ -4243,6 +4243,72 @@ input,select,textarea{
   font-weight:700!important;
   letter-spacing:-.02em!important;
 }
+
+/* =========================================================
+   LISTING SUCCESS V1 — replaces browser alert / github.io popup
+   ========================================================= */
+#listingSuccessView.open{
+  display:flex!important;
+  position:fixed!important;
+  z-index:1200!important;
+  inset:0!important;
+  align-items:center!important;
+  justify-content:center!important;
+  padding:22px!important;
+  box-sizing:border-box!important;
+  background:rgba(7,31,55,.28)!important;
+  backdrop-filter:blur(8px)!important;
+}
+#listingSuccessView .listing-success-card{
+  width:100%!important;
+  max-width:390px!important;
+  box-sizing:border-box!important;
+  padding:28px 18px 18px!important;
+  border:1px solid rgba(225,233,240,.95)!important;
+  border-radius:24px!important;
+  background:#fff!important;
+  box-shadow:0 22px 60px rgba(5,30,54,.18)!important;
+  text-align:center!important;
+}
+.listing-success-check{
+  width:76px!important;height:76px!important;
+  display:flex!important;align-items:center!important;justify-content:center!important;
+  margin:0 auto 17px!important;border-radius:50%!important;
+  background:#dff7e9!important;color:#20a85f!important;
+  box-shadow:0 0 0 10px rgba(36,177,100,.06)!important;
+  font-size:38px!important;font-weight:700!important;
+}
+.listing-success-kicker{
+  margin-bottom:6px!important;color:#8b99a6!important;
+  font-size:7px!important;font-weight:600!important;letter-spacing:2px!important;
+}
+.listing-success-card h2{
+  margin:0!important;color:#081f38!important;
+  font-size:23px!important;line-height:1.08!important;font-weight:700!important;
+}
+.listing-success-card>p{
+  margin:9px auto 15px!important;color:#7d8b99!important;
+  font-size:10px!important;line-height:1.45!important;
+}
+.listing-success-note{
+  display:flex!important;align-items:center!important;justify-content:space-between!important;
+  min-height:44px!important;margin-bottom:13px!important;padding:0 12px!important;
+  border:1px solid #e8edf2!important;border-radius:13px!important;background:#f8fafc!important;
+}
+.listing-success-note span{color:#8b98a5!important;font-size:9px!important}
+.listing-success-note b{color:#956100!important;font-size:9.5px!important;font-weight:600!important}
+.listing-success-primary,.listing-success-secondary{
+  width:100%!important;height:49px!important;margin:0!important;
+  border-radius:14px!important;font-size:10.5px!important;font-weight:600!important;
+}
+.listing-success-primary{
+  border:0!important;background:#07518a!important;color:#fff!important;
+  box-shadow:0 6px 17px rgba(7,81,138,.13)!important;
+}
+.listing-success-secondary{
+  margin-top:8px!important;border:1px solid #dce5ed!important;
+  background:#fff!important;color:#0a416f!important;box-shadow:none!important;
+}
 </style><script src="https://telegram.org/js/telegram-web-app.js"></script><script src="https://unpkg.com/lucide@latest"></script></head><body><div class="app"><header><div class="top"><button class="round header-fav" onclick="page('favorites')" aria-label="Избранное"><i data-lucide="heart"></i></button><div class="brand"><div class="mark"><svg class="doppi" viewBox="0 0 96 48" aria-label="Тюбетейка">
 <path d="M8 35C13 15 30 6 48 6s35 9 40 29c-12 5-25 7-40 7S20 40 8 35Z" fill="#111"/>
 <path d="M48 8v31M20 29c8-3 14-8 18-15M76 29c-8-3-14-8-18-15" stroke="#fff" stroke-width="2" fill="none"/>
@@ -4417,6 +4483,15 @@ input,select,textarea{
 <div id="productMeta" class="product-details product-details-final"></div><div id="productSeller"></div>
 <div class="product-actions-final"><button id="buyBtn" class="btn product-buy-final">Купить</button><button id="addBtn" class="btn product-cart-final">Добавить в корзину</button></div>
 </div></div></div>
+<div id="listingSuccessView" class="overlay listing-success-view"><div class="listing-success-card">
+  <div class="listing-success-check">✓</div>
+  <div class="listing-success-kicker">UZBEK RE'SALE</div>
+  <h2>Объявление отправлено</h2>
+  <p id="listingSuccessText">Ваш товар отправлен на модерацию.</p>
+  <div class="listing-success-note"><span>Статус</span><b>На модерации</b></div>
+  <button id="listingSuccessMyBtn" class="btn listing-success-primary">Перейти в мои товары</button>
+  <button id="listingSuccessHomeBtn" class="btn listing-success-secondary">На главную</button>
+</div></div>
 <div id="officialStoreView" class="overlay official-store-view"><div class="inner official-store-inner">
   <button id="officialStoreBack" class="back official-store-back">←</button>
   <div class="official-store-banner"></div>
@@ -4906,11 +4981,13 @@ $("sellSubmit").onclick=async()=>{
     const result=await response.json();
     if(!response.ok||!result.ok)throw new Error(result.message||result.error||"Не удалось отправить объявление");
 
-    alert(`Объявление #${result.listingId} отправлено на модерацию`);
     $("sellName").value="";$("sellBrand").value="";$("sellSize").value="";
     $("sellPrice").value="";$("sellDescription").value="";$("sellPhotos").value="";
     $("sellPreview").innerHTML="";
-    await openMyListings();
+    const successText=$("listingSuccessText");
+    if(successText)successText.textContent=`Объявление #${result.listingId} отправлено на модерацию.`;
+    $("listingSuccessView").classList.add("open");
+    setTimeout(()=>window.lucide&&lucide.createIcons(),0);
   }catch(error){
     console.error(error);
     alert("Ошибка: "+(error.message||error));
@@ -4918,6 +4995,9 @@ $("sellSubmit").onclick=async()=>{
     btn.classList.remove("uploading");btn.disabled=false;btn.textContent="Отправить на проверку";
   }
 };
+
+$("listingSuccessMyBtn").onclick=()=>{$("listingSuccessView").classList.remove("open");openMyListings()};
+$("listingSuccessHomeBtn").onclick=()=>{$("listingSuccessView").classList.remove("open");page("home")};
 
 function renderAddresses(){const b=$("addressList");if(!b)return;let a=[];try{a=JSON.parse(localStorage.getItem("uzr_addresses")||"[]")}catch(e){}b.innerHTML=a.length?a.map((x,i)=>`<button class="list-row" onclick="deleteAddress(${i})"><i data-lucide="map-pin"></i><span>${x}</span><span class="arrow">×</span></button>`).join(""):`<div class="empty">Адресов пока нет</div>`;setTimeout(()=>window.lucide&&lucide.createIcons(),0)}
 window.deleteAddress=i=>{let a=JSON.parse(localStorage.getItem("uzr_addresses")||"[]");a.splice(i,1);localStorage.setItem("uzr_addresses",JSON.stringify(a));renderAddresses()};
