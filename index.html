@@ -4020,6 +4020,73 @@ nav:has(.nav),
     height:84px!important;
   }
 }
+
+/* =========================================================
+   PERSONAL SELLER PROFILE V4.1 — ORNAMENT + HEADER POSITION
+   ========================================================= */
+
+/* Slight right shift only */
+#sellerProfile .simple-head{
+  padding-left:10px!important;
+  padding-right:10px!important;
+}
+#sellerProfile .simple-head .back{
+  margin-left:2px!important;
+}
+#sellerProfile .simple-head h1{
+  margin-left:1px!important;
+}
+
+/* Cleaner pale-blue Uzbek ornamental hero */
+#sellerProfile .seller-profile-head{
+  position:relative!important;
+  background:
+    radial-gradient(circle at 50% 18%,rgba(7,81,138,.055),transparent 30%),
+    linear-gradient(180deg,#f2f8fd 0%,#f7fbfe 64%,#fff 100%)!important;
+}
+
+/* Left + right ornamental edge motifs, CSS only */
+#sellerProfile .seller-profile-head::before{
+  content:""!important;
+  position:absolute!important;
+  inset:0!important;
+  z-index:0!important;
+  pointer-events:none!important;
+  opacity:.32!important;
+  background-image:
+    linear-gradient(45deg,transparent 41%,rgba(41,126,187,.20) 42% 47%,transparent 48%),
+    linear-gradient(-45deg,transparent 41%,rgba(41,126,187,.20) 42% 47%,transparent 48%),
+    radial-gradient(circle at 0% 28%,transparent 0 20px,rgba(41,126,187,.16) 21px 23px,transparent 24px),
+    radial-gradient(circle at 100% 28%,transparent 0 20px,rgba(41,126,187,.16) 21px 23px,transparent 24px)!important;
+  background-size:42px 42px,42px 42px,92px 92px,92px 92px!important;
+  background-position:left center,right center,left 16px,right 16px!important;
+  background-repeat:repeat-y,repeat-y,no-repeat,no-repeat!important;
+  -webkit-mask-image:linear-gradient(90deg,#000 0%,rgba(0,0,0,.78) 11%,transparent 27%,transparent 73%,rgba(0,0,0,.78) 89%,#000 100%)!important;
+  mask-image:linear-gradient(90deg,#000 0%,rgba(0,0,0,.78) 11%,transparent 27%,transparent 73%,rgba(0,0,0,.78) 89%,#000 100%)!important;
+}
+#sellerProfile .seller-profile-head::after{
+  content:""!important;
+  position:absolute!important;
+  left:50%!important;
+  top:18px!important;
+  width:230px!important;
+  height:130px!important;
+  transform:translateX(-50%)!important;
+  z-index:0!important;
+  pointer-events:none!important;
+  opacity:.07!important;
+  border:2px solid #07518a!important;
+  border-bottom:0!important;
+  border-radius:115px 115px 0 0!important;
+  box-shadow:
+    0 -16px 0 -14px #07518a,
+    46px 10px 0 -44px #07518a,
+    -46px 10px 0 -44px #07518a!important;
+}
+#sellerProfile .seller-profile-head>*{
+  position:relative!important;
+  z-index:1!important;
+}
 </style><script src="https://telegram.org/js/telegram-web-app.js"></script><script src="https://unpkg.com/lucide@latest"></script></head><body><div class="app"><header><div class="top"><button class="round header-fav" onclick="page('favorites')" aria-label="Избранное"><i data-lucide="heart"></i></button><div class="brand"><div class="mark"><svg class="doppi" viewBox="0 0 96 48" aria-label="Тюбетейка">
 <path d="M8 35C13 15 30 6 48 6s35 9 40 29c-12 5-25 7-40 7S20 40 8 35Z" fill="#111"/>
 <path d="M48 8v31M20 29c8-3 14-8 18-15M76 29c-8-3-14-8-18-15" stroke="#fff" stroke-width="2" fill="none"/>
