@@ -3521,6 +3521,100 @@ nav.bottom,.bottom-nav,.bottom{
     margin-top:-50px!important;
   }
 }
+
+/* =========================================================
+   NAV + HEART POLISH V1
+   ========================================================= */
+
+/* One approved back-button system everywhere */
+.back,
+.profile-page-back,
+.product-back-final,
+.official-store-back,
+#checkoutBack,
+#orderDetailBack,
+#ordersBack,
+#adminReviewView .back,
+#adminListingView .back{
+  width:42px!important;
+  height:42px!important;
+  min-width:42px!important;
+  flex:0 0 42px!important;
+  display:inline-flex!important;
+  align-items:center!important;
+  justify-content:center!important;
+  margin:0!important;
+  padding:0!important;
+  border:1px solid #dfe8ef!important;
+  border-radius:13px!important;
+  background:#f5f8fb!important;
+  color:#073b66!important;
+  box-shadow:none!important;
+  font-size:20px!important;
+  line-height:1!important;
+  font-weight:650!important;
+  -webkit-tap-highlight-color:transparent!important;
+}
+.back:active,
+.profile-page-back:active,
+.product-back-final:active,
+.official-store-back:active,
+#checkoutBack:active,
+#orderDetailBack:active,
+#ordersBack:active{
+  transform:scale(.96)!important;
+  background:#edf4fa!important;
+}
+
+/* Product overlay back stays correctly positioned */
+#productView .product-back-final{
+  position:absolute!important;
+  top:22px!important;
+  left:24px!important;
+  z-index:20!important;
+}
+
+/* Official store back: same button, fixed placement */
+#officialStoreView .official-store-back{
+  position:fixed!important;
+  top:14px!important;
+  left:max(14px,calc(50% - 296px))!important;
+  z-index:8!important;
+}
+
+/* Hearts: stable hit area + visible selected state */
+.card .heart,
+#officialStoreView .card .heart{
+  width:38px!important;
+  height:38px!important;
+  display:flex!important;
+  align-items:center!important;
+  justify-content:center!important;
+  padding:0!important;
+  border:0!important;
+  border-radius:50%!important;
+  background:rgba(76,76,76,.58)!important;
+  color:#fff!important;
+  font-size:20px!important;
+  line-height:1!important;
+  z-index:12!important;
+  cursor:pointer!important;
+  -webkit-tap-highlight-color:transparent!important;
+  touch-action:manipulation!important;
+}
+.card .heart:active,
+#officialStoreView .card .heart:active{
+  transform:scale(.92)!important;
+}
+.card .heart.is-favorite,
+#officialStoreView .card .heart.is-favorite{
+  background:#07518a!important;
+  color:#fff!important;
+}
+
+@media(max-width:430px){
+  #officialStoreView .official-store-back{left:14px!important}
+}
 </style><script src="https://telegram.org/js/telegram-web-app.js"></script><script src="https://unpkg.com/lucide@latest"></script></head><body><div class="app"><header><div class="top"><button class="round header-fav" onclick="page('favorites')" aria-label="Избранное"><i data-lucide="heart"></i></button><div class="brand"><div class="mark"><svg class="doppi" viewBox="0 0 96 48" aria-label="Тюбетейка">
 <path d="M8 35C13 15 30 6 48 6s35 9 40 29c-12 5-25 7-40 7S20 40 8 35Z" fill="#111"/>
 <path d="M48 8v31M20 29c8-3 14-8 18-15M76 29c-8-3-14-8-18-15" stroke="#fff" stroke-width="2" fill="none"/>
@@ -3768,7 +3862,7 @@ let marketProducts=[];
 let orderSending=false;const ORDERS_API="https://uzbek-resale-orders.amegakid.workers.dev";
 const MARKETPLACE_API="https://uzbek-resale-orders.amegakid.workers.dev";const $=id=>document.getElementById(id),money=n=>Number(n||0).toLocaleString("ru-RU")+" сум";
 
-function card(p){const e=document.createElement("div");e.className="card";e.innerHTML=`<div class="card-media"><div class="photo"><img src="${p.image}" alt="${p.name}" loading="lazy" onerror="this.style.display='none'"></div><button class="heart">${favs.includes(p.id)?"♥":"♡"}</button></div><div class="card-info"><div class="price">${money(p.price)}</div><div class="card-title-row"><div class="name">${p.name}</div></div><div class="meta">${p.brand} · Размер: ${p.size}</div><span class="badge ${p.ownerType==="official"?"badge-official":(p.type==="Под заказ"?"badge-order":"badge-resale")}">${p.ownerType==="official"?"От Uzbek Re'Sale":p.type}</span></div>`;{
+function card(p){const e=document.createElement("div");e.className="card";e.innerHTML=`<div class="card-media"><div class="photo"><img src="${p.image}" alt="${p.name}" loading="lazy" onerror="this.style.display='none'"></div><button class="heart ${favs.includes(p.id)?"is-favorite":""}">${favs.includes(p.id)?"♥":"♡"}</button></div><div class="card-info"><div class="price">${money(p.price)}</div><div class="card-title-row"><div class="name">${p.name}</div></div><div class="meta">${p.brand} · Размер: ${p.size}</div><span class="badge ${p.ownerType==="official"?"badge-official":(p.type==="Под заказ"?"badge-order":"badge-resale")}">${p.ownerType==="official"?"От Uzbek Re'Sale":p.type}</span></div>`;{
  const heart=e.querySelector(".heart");
  let favLock=0;
  const doFav=x=>{
@@ -3897,7 +3991,7 @@ function openOfficialStore(){
   g.innerHTML="";
   items.forEach(p=>{
     const el=card(p);
-    el.addEventListener("click",()=>closeOfficialStore(),{capture:true});
+    el.addEventListener("click",(ev)=>{if(!ev.target.closest(".heart"))closeOfficialStore()},{capture:true});
     g.appendChild(el);
   });
   v.classList.add("open");
