@@ -4309,6 +4309,122 @@ input,select,textarea{
   margin-top:8px!important;border:1px solid #dce5ed!important;
   background:#fff!important;color:#0a416f!important;box-shadow:none!important;
 }
+
+/* =========================================================
+   FAVORITES EMPTY V2 — SINGLE AUTHORITATIVE EMPTY STATE
+   ========================================================= */
+#favorites.active{
+  position:fixed!important;
+  inset:0!important;
+  z-index:40!important;
+  width:100%!important;
+  height:100dvh!important;
+  margin:0!important;
+  padding:0 0 84px!important;
+  box-sizing:border-box!important;
+  overflow-y:auto!important;
+  overflow-x:hidden!important;
+  background:#fff!important;
+}
+#favorites .profile-page-top{
+  position:relative!important;
+  z-index:3!important;
+  display:flex!important;
+  align-items:center!important;
+  gap:11px!important;
+  min-height:72px!important;
+  margin:0!important;
+  padding:12px 14px!important;
+  box-sizing:border-box!important;
+  border-bottom:1px solid #edf1f4!important;
+  background:#fff!important;
+}
+#favorites .profile-page-back{
+  width:42px!important;height:42px!important;min-width:42px!important;
+  display:flex!important;align-items:center!important;justify-content:center!important;
+  margin:0!important;padding:0!important;
+  border:1px solid #dfe8ef!important;border-radius:13px!important;
+  background:#f5f8fb!important;color:#073b66!important;
+  font-size:20px!important;font-weight:500!important;
+}
+#favorites .profile-page-top-title{
+  color:#081f38!important;
+  font-size:21px!important;
+  line-height:1!important;
+  font-weight:700!important;
+}
+#favorites .favorites-layout{
+  position:relative!important;
+  width:100%!important;
+  min-height:calc(100dvh - 156px)!important;
+  box-sizing:border-box!important;
+  padding:0 14px 20px!important;
+}
+/* Dedicated empty state only */
+#favorites .favorites-empty-state{
+  position:absolute!important;
+  inset:0 14px 0!important;
+  display:flex!important;
+  flex-direction:column!important;
+  align-items:center!important;
+  justify-content:center!important;
+  box-sizing:border-box!important;
+  padding:0 20px 76px!important;
+  text-align:center!important;
+}
+#favorites .favorites-empty-icon{
+  width:72px!important;height:72px!important;
+  display:flex!important;align-items:center!important;justify-content:center!important;
+  margin:0 0 15px!important;
+  border-radius:22px!important;
+  background:#edf4fa!important;color:#07518a!important;
+}
+#favorites .favorites-empty-icon svg{
+  width:32px!important;height:32px!important;
+  stroke-width:1.8!important;
+}
+#favorites .favorites-empty-state h1{
+  margin:0!important;
+  color:#081f38!important;
+  font-size:25px!important;
+  line-height:1.08!important;
+  font-weight:700!important;
+  letter-spacing:-.025em!important;
+}
+#favorites .favorites-empty-state p{
+  margin:8px 0 0!important;
+  color:#8a97a4!important;
+  font-size:11px!important;
+  line-height:1.4!important;
+  font-weight:400!important;
+}
+/* Absolutely disable all old pseudo-empty content */
+#favorites #favoriteGrid:empty::before,
+#favorites #favoriteGrid:empty::after{
+  content:none!important;
+  display:none!important;
+}
+#favorites #favoriteGrid:empty{
+  display:none!important;
+  min-height:0!important;
+  padding:0!important;
+  margin:0!important;
+}
+/* When products exist, dedicated empty state disappears and normal grid owns layout */
+#favorites .favorites-layout:has(#favoriteGrid:not(:empty)) .favorites-empty-state{
+  display:none!important;
+}
+#favorites #favoriteGrid:not(:empty){
+  display:grid!important;
+  position:relative!important;
+  z-index:1!important;
+  padding-top:14px!important;
+  padding-bottom:22px!important;
+}
+@media(max-width:430px){
+  #favorites .favorites-layout{min-height:calc(100dvh - 150px)!important}
+  #favorites .favorites-empty-state{padding-bottom:68px!important}
+}
 </style><script src="https://telegram.org/js/telegram-web-app.js"></script><script src="https://unpkg.com/lucide@latest"></script></head><body><div class="app"><header><div class="top"><button class="round header-fav" onclick="page('favorites')" aria-label="Избранное"><i data-lucide="heart"></i></button><div class="brand"><div class="mark"><svg class="doppi" viewBox="0 0 96 48" aria-label="Тюбетейка">
 <path d="M8 35C13 15 30 6 48 6s35 9 40 29c-12 5-25 7-40 7S20 40 8 35Z" fill="#111"/>
 <path d="M48 8v31M20 29c8-3 14-8 18-15M76 29c-8-3-14-8-18-15" stroke="#fff" stroke-width="2" fill="none"/>
