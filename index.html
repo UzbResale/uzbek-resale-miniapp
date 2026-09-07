@@ -3615,6 +3615,86 @@ nav.bottom,.bottom-nav,.bottom{
 @media(max-width:430px){
   #officialStoreView .official-store-back{left:14px!important}
 }
+
+/* =========================================================
+   HEARTS V1.3 — FINAL VISUAL FIX
+   No grey floating circles. Existing favorite logic preserved.
+   ========================================================= */
+.card .card-media{
+  position:relative!important;
+  overflow:hidden!important;
+}
+.card .heart,
+#officialStoreView .card .heart{
+  position:absolute!important;
+  top:9px!important;
+  right:9px!important;
+  bottom:auto!important;
+  left:auto!important;
+  width:34px!important;
+  height:34px!important;
+  min-width:34px!important;
+  min-height:34px!important;
+  display:flex!important;
+  align-items:center!important;
+  justify-content:center!important;
+  margin:0!important;
+  padding:0!important;
+  border:1px solid rgba(221,230,237,.95)!important;
+  border-radius:50%!important;
+  background:rgba(255,255,255,.96)!important;
+  color:#0b416f!important;
+  box-shadow:0 3px 12px rgba(7,38,68,.10)!important;
+  font-family:Arial,sans-serif!important;
+  font-size:0!important;
+  line-height:1!important;
+  z-index:25!important;
+  transform:none!important;
+  cursor:pointer!important;
+  -webkit-tap-highlight-color:transparent!important;
+  touch-action:manipulation!important;
+}
+.card .heart::before,
+#officialStoreView .card .heart::before{
+  content:"♡"!important;
+  display:block!important;
+  color:#0b416f!important;
+  font-size:23px!important;
+  line-height:30px!important;
+  font-weight:400!important;
+  transform:translateY(-1px)!important;
+}
+.card .heart.is-favorite,
+#officialStoreView .card .heart.is-favorite{
+  border-color:#07518a!important;
+  background:#07518a!important;
+  color:#fff!important;
+  box-shadow:0 4px 12px rgba(7,81,138,.18)!important;
+}
+.card .heart.is-favorite::before,
+#officialStoreView .card .heart.is-favorite::before{
+  content:"♥"!important;
+  color:#fff!important;
+  font-size:19px!important;
+  transform:none!important;
+}
+.card .heart:active,
+#officialStoreView .card .heart:active{
+  transform:scale(.94)!important;
+}
+
+/* Defensive cleanup: no duplicate/floating heart controls outside card media */
+.card>.heart,
+.card-info>.heart{
+  display:none!important;
+}
+
+/* Bottom navigation must never inherit heart button styling */
+nav .nav,
+nav .nav .icon,
+nav .nav svg{
+  border-radius:0;
+}
 </style><script src="https://telegram.org/js/telegram-web-app.js"></script><script src="https://unpkg.com/lucide@latest"></script></head><body><div class="app"><header><div class="top"><button class="round header-fav" onclick="page('favorites')" aria-label="Избранное"><i data-lucide="heart"></i></button><div class="brand"><div class="mark"><svg class="doppi" viewBox="0 0 96 48" aria-label="Тюбетейка">
 <path d="M8 35C13 15 30 6 48 6s35 9 40 29c-12 5-25 7-40 7S20 40 8 35Z" fill="#111"/>
 <path d="M48 8v31M20 29c8-3 14-8 18-15M76 29c-8-3-14-8-18-15" stroke="#fff" stroke-width="2" fill="none"/>
