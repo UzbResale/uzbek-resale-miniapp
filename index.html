@@ -4661,7 +4661,13 @@ input,select,textarea{
 {id:4,name:"Nike Club Cap Black",price:280000,size:"One Size",condition:"Новое",type:"В наличии",category:"Аксессуары",brand:"Nike",image:"https://www.nike.qa/dw/image/v2/BDVB_PRD/on/demandware.static/-/Sites-akeneo-master-catalog/default/dw551391f0/nk/af6/8/a/b/5/2/af68ab52_2c8b_4c37_a883_e3703b445a05.jpg"}
 ];
 
+const UZR_CART_STORAGE="uzr_cart_v1";
+const UZR_FAVS_STORAGE="uzr_favs_v1";
+function saveCartState(){try{localStorage.setItem(UZR_CART_STORAGE,JSON.stringify(cart))}catch(e){console.warn("Cart save failed",e)}}
+function saveFavsState(){try{localStorage.setItem(UZR_FAVS_STORAGE,JSON.stringify(favs))}catch(e){console.warn("Favorites save failed",e)}}
 let cart=[],favs=[],selected=null,type="Все",q="",category="Все",sortMode="default",ownerFilter="";
+try{const v=JSON.parse(localStorage.getItem(UZR_CART_STORAGE)||"[]");if(Array.isArray(v))cart=v}catch(e){}
+try{const v=JSON.parse(localStorage.getItem(UZR_FAVS_STORAGE)||"[]");if(Array.isArray(v))favs=v}catch(e){}
 let selectedProductSize="";
 function productSizes(p){
  const raw=String(p?.size||"").trim();
@@ -4689,7 +4695,7 @@ function card(p){const e=document.createElement("div");e.className="card";e.inne
    const now=Date.now();
    if(now-favLock<350)return false;
    favLock=now;
-   favs=favs.includes(p.id)?favs.filter(i=>i!==p.id):[...favs,p.id];
+   favs=favs.includes(p.id)?favs.filter(i=>i!==p.id):[...favs,p.id]; saveFavsState();
    render();
    return false;
  };
@@ -4735,13 +4741,13 @@ if(favoriteGrid){
 document.querySelectorAll("#favorites .empty").forEach(el=>el.remove());
 renderCart()}
 
-function renderCart(){const cc=$("cartCount");if(cc)cc.textContent=cart.length;const b=$("cartList");b.innerHTML="";if(!cart.length){b.innerHTML='<div class="empty">Корзина пока пустая 🛍</div>';$("cartBottom").style.display="none";return}$("cartBottom").style.display="block";cart.forEach(p=>{const r=document.createElement("div");r.className="cartrow";r.innerHTML=`<div class="cartpic"><img src="${p.image}" alt="${p.name}"></div><div class="grow"><b>${p.name}</b><div class="meta">Размер: ${p.size||"—"}</div><div class="price">${money(p.price)}</div></div><button class="remove">×</button>`;r.querySelector(".remove").onclick=()=>{const key=p.cartKey||String(p.id);cart=cart.filter(x=>(x.cartKey||String(x.id))!==key);renderCart()};b.appendChild(r)});$("total").textContent=money(cart.reduce((s,p)=>s+p.price,0))}
+function renderCart(){const cc=$("cartCount");if(cc)cc.textContent=cart.length;const b=$("cartList");b.innerHTML="";if(!cart.length){b.innerHTML='<div class="empty">Корзина пока пустая 🛍</div>';$("cartBottom").style.display="none";return}$("cartBottom").style.display="block";cart.forEach(p=>{const r=document.createElement("div");r.className="cartrow";r.innerHTML=`<div class="cartpic"><img src="${p.image}" alt="${p.name}"></div><div class="grow"><b>${p.name}</b><div class="meta">Размер: ${p.size||"—"}</div><div class="price">${money(p.price)}</div></div><button class="remove">×</button>`;r.querySelector(".remove").onclick=()=>{const key=p.cartKey||String(p.id);cart=cart.filter(x=>(x.cartKey||String(x.id))!==key); saveCartState();renderCart()};b.appendChild(r)});$("total").textContent=money(cart.reduce((s,p)=>s+p.price,0))}
 
 function add(p){
  const chosen=needsSizePicker(p)?selectedProductSize:String(p.size||"");
  if(needsSizePicker(p)&&!chosen){alert("Выберите размер");return false}
  const item={...p,size:chosen||p.size,cartKey:String(p.id)+"::"+(chosen||p.size||"")};
- if(!cart.some(x=>(x.cartKey||String(x.id))===item.cartKey))cart.push(item);
+ if(!cart.some(x=>(x.cartKey||String(x.id))===item.cartKey)){cart.push(item);saveCartState();}
  renderCart();return true
 }
 
@@ -4959,7 +4965,7 @@ $("confirmBtn").onclick=async()=>{
 
    $("success").style.display="block";const successText=$("successOrderText");if(successText&&result.orderNumber)successText.textContent=`Номер заказа: ${result.orderNumber}. Мы свяжемся с вами для подтверждения.`;
 
-   cart=[];
+   cart=[]; saveCartState();
 
    renderCart();
 
