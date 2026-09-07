@@ -4112,6 +4112,137 @@ nav:has(.nav),
   font-weight:900!important;
   letter-spacing:0!important;
 }
+
+/* =========================================================
+   TYPOGRAPHY V1 — iOS / SF SYSTEM STYLE
+   Typography only. Geometry and functionality untouched.
+   ========================================================= */
+
+:root{
+  --ios-font:-apple-system,BlinkMacSystemFont,"SF Pro Text","SF Pro Display","Helvetica Neue",Arial,sans-serif;
+}
+
+/* Global system font */
+html,body,button,input,select,textarea{
+  font-family:var(--ios-font)!important;
+  -webkit-font-smoothing:antialiased!important;
+  -moz-osx-font-smoothing:grayscale!important;
+  text-rendering:optimizeLegibility!important;
+}
+
+/* Main headings — lighter than the previous 900 */
+h1,h2,h3,
+.section h1,
+.simple-head h1,
+.orders-head h1,
+.cart-head h1,
+.checkout-heading h1,
+#sellerProfile .seller-profile-head h2,
+#officialStoreView .official-store-name-row h1,
+#officialStoreView .official-store-products-head h2,
+#adminPanel .admin-premium-head h1{
+  font-family:var(--ios-font)!important;
+  font-weight:700!important;
+  letter-spacing:-.025em!important;
+}
+
+/* Product / card titles */
+.card .name,
+.card-title-row .name,
+.listing-title,
+.order-item-name,
+#sellerProfile .listing-card b,
+#officialStoreView .card .name{
+  font-family:var(--ios-font)!important;
+  font-weight:650!important;
+  letter-spacing:-.012em!important;
+}
+
+/* Prices and important numeric values */
+.price,
+.listing-price,
+.order-number,
+.order-total span:last-child,
+.total span:last-child,
+.seller-stat b,
+#officialStoreView .official-store-facts b{
+  font-family:var(--ios-font)!important;
+  font-weight:700!important;
+  letter-spacing:-.012em!important;
+  font-variant-numeric:tabular-nums!important;
+}
+
+/* Buttons: iOS-like medium/semibold rather than heavy black */
+.btn,
+button,
+.profile-action,
+.admin-tab,
+.admin-actions button,
+.official-support-btn,
+#checkoutBtn,
+#confirmBtn{
+  font-family:var(--ios-font)!important;
+  font-weight:600!important;
+  letter-spacing:-.005em!important;
+}
+
+/* Navigation */
+.nav,
+.nav span,
+.bottom-nav{
+  font-family:var(--ios-font)!important;
+  font-weight:500!important;
+}
+.nav.active,
+.nav.active span{
+  font-weight:650!important;
+}
+
+/* Secondary / metadata text */
+.meta,
+.seller-sub,
+.profilecard p,
+.field label,
+.card .meta,
+.admin-mini,
+.order-date,
+.timeline-date,
+.checkout-heading p,
+.official-store-subtitle,
+.official-store-description{
+  font-family:var(--ios-font)!important;
+  font-weight:400!important;
+  letter-spacing:0!important;
+}
+
+/* Labels / badges retain clarity without looking overly bold */
+.badge,
+.availability-badge,
+.listing-status,
+.order-status,
+.detail-status,
+.size-picker-label,
+.admin-kicker,
+.success-kicker{
+  font-family:var(--ios-font)!important;
+  font-weight:600!important;
+  letter-spacing:0!important;
+}
+
+/* Inputs use normal iOS text weight */
+input,select,textarea{
+  font-weight:400!important;
+  letter-spacing:0!important;
+}
+
+/* Keep avatars visually centered with the same geometry */
+.avatar,
+.seller-avatar,
+#profileAvatar{
+  font-family:var(--ios-font)!important;
+  font-weight:700!important;
+  letter-spacing:-.02em!important;
+}
 </style><script src="https://telegram.org/js/telegram-web-app.js"></script><script src="https://unpkg.com/lucide@latest"></script></head><body><div class="app"><header><div class="top"><button class="round header-fav" onclick="page('favorites')" aria-label="Избранное"><i data-lucide="heart"></i></button><div class="brand"><div class="mark"><svg class="doppi" viewBox="0 0 96 48" aria-label="Тюбетейка">
 <path d="M8 35C13 15 30 6 48 6s35 9 40 29c-12 5-25 7-40 7S20 40 8 35Z" fill="#111"/>
 <path d="M48 8v31M20 29c8-3 14-8 18-15M76 29c-8-3-14-8-18-15" stroke="#fff" stroke-width="2" fill="none"/>
