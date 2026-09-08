@@ -4573,6 +4573,7 @@ input,select,textarea{
   opacity:.55!important;
   cursor:default!important;
 }
+.field-limit{display:block;margin-top:5px;color:#9aa7b4;font-size:8px;line-height:1.2}
 </style><script src="https://telegram.org/js/telegram-web-app.js"></script><script src="https://unpkg.com/lucide@latest"></script></head><body><div class="app"><header><div class="top"><button class="round header-fav" onclick="page('favorites')" aria-label="Избранное"><i data-lucide="heart"></i></button><div class="brand"><div class="mark"><svg class="doppi" viewBox="0 0 96 48" aria-label="Тюбетейка">
 <path d="M8 35C13 15 30 6 48 6s35 9 40 29c-12 5-25 7-40 7S20 40 8 35Z" fill="#111"/>
 <path d="M48 8v31M20 29c8-3 14-8 18-15M76 29c-8-3-14-8-18-15" stroke="#fff" stroke-width="2" fill="none"/>
@@ -4657,16 +4658,16 @@ input,select,textarea{
     </div>
     <div class="sell-panel">
       <div class="sell-panel-head"><h2>Информация о товаре</h2></div>
-      <div class="field sell-full"><label>Название товара *</label><input id="sellName" placeholder="Например: Nike Air Force 1"></div>
+      <div class="field sell-full"><label>Название товара *</label><input id="sellName" maxlength="60" placeholder="Например: Nike Air Force 1"><small class="field-limit">до 60 символов</small></div>
       <div class="sell-two">
         <div class="field"><label>Категория *</label><select id="sellCategory"><option>Одежда</option><option>Обувь</option><option>Аксессуары</option><option>Другое</option></select></div>
-        <div class="field"><label>Бренд</label><input id="sellBrand" placeholder="Например: Nike"></div>
+        <div class="field"><label>Бренд</label><input id="sellBrand" maxlength="30" placeholder="Например: Nike"><small class="field-limit">до 30 символов</small></div>
       </div>
       <div class="sell-two">
-        <div class="field"><label>Размер</label><input id="sellSize" placeholder="M, 42, One Size..."></div>
+        <div class="field"><label>Размер</label><input id="sellSize" maxlength="20" placeholder="M, 42, One Size..."><small class="field-limit">до 20 символов</small></div>
         <div class="field"><label>Состояние *</label><select id="sellCondition"><option>Новое</option><option>Отличное</option><option>Хорошее</option><option>Удовлетворительное</option></select></div>
       </div>
-      <div class="field sell-full"><label>Описание</label><textarea id="sellDescription" rows="4" placeholder="Расскажите о вещи: особенности, дефекты (если есть), причина продажи"></textarea></div>
+      <div class="field sell-full"><label>Описание</label><textarea id="sellDescription" maxlength="500" rows="4" placeholder="Расскажите о вещи: особенности, дефекты (если есть), причина продажи"></textarea><small class="field-limit">до 500 символов</small></div>
     </div>
     <div class="sell-panel">
       <div class="sell-panel-head"><h2>Цена</h2></div>
@@ -5369,7 +5370,12 @@ $("sellSubmit").onclick=async()=>{
     });
 
     const result=await response.json();
-    if(!response.ok||!result.ok)throw new Error(result.message||result.error||"Не удалось отправить объявление");
+    if(!response.ok||!result.ok){
+      if(result.error==="RATE_LIMITED"){
+        throw new Error("Можно отправить максимум 5 объявлений в час. Попробуйте позже.");
+      }
+      throw new Error(result.message||result.error||"Не удалось отправить объявление");
+    }
 
     $("sellName").value="";$("sellBrand").value="";$("sellSize").value="";
     $("sellPrice").value="";$("sellDescription").value="";$("sellPhotos").value="";
