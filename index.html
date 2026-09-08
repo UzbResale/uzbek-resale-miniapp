@@ -4650,8 +4650,8 @@ input,select,textarea{
   </div>
   <div class="sell-form">
     <div class="sell-panel sell-photo-panel">
-      <div class="sell-panel-head"><h2>Фотографии</h2><span>до 10 фото</span></div>
-      <label class="uploadbox" for="sellPhotos"><span><i data-lucide="camera"></i><strong>Добавить фотографии</strong><small>Нажмите, чтобы выбрать до 10 фото</small></span></label>
+      <div class="sell-panel-head"><h2>Фотографии</h2><span>до 6 фото</span></div>
+      <label class="uploadbox" for="sellPhotos"><span><i data-lucide="camera"></i><strong>Добавить фотографии</strong><small>Нажмите, чтобы выбрать до 6 фото · максимум 10 MB каждое</small></span></label>
       <input id="sellPhotos" class="photo-input" type="file" accept="image/*" multiple>
       <div id="sellPreview" class="preview-grid"></div>
     </div>
@@ -5326,7 +5326,10 @@ $("myOrdersBtn").onclick=openMyOrders;$("ordersBack").onclick=()=>page("profile"
 $("sellSubmit").onclick=async()=>{
   const tg=window.Telegram&&window.Telegram.WebApp;
   const user=tg?.initDataUnsafe?.user||{};
-  const files=[...$("sellPhotos").files].slice(0,10);
+  const selectedFiles=[...$("sellPhotos").files];
+   if(selectedFiles.length>6){alert("Можно загрузить максимум 6 фотографий");return}
+   if(selectedFiles.some(f=>f.size>10*1024*1024)){alert("Каждая фотография должна быть не больше 10 MB");return}
+   const files=selectedFiles.slice(0,6);
   const title=$("sellName").value.trim();
   const price=Number(String($("sellPrice").value).replace(/\D/g,""));
 
@@ -5391,7 +5394,7 @@ window.deleteAddress=i=>{let a=JSON.parse(localStorage.getItem("uzr_addresses")|
 $("addAddressBtn").onclick=()=>{const v=prompt("Введите адрес доставки");if(!v||!v.trim())return;let a=[];try{a=JSON.parse(localStorage.getItem("uzr_addresses")||"[]")}catch(e){}a.push(v.trim());localStorage.setItem("uzr_addresses",JSON.stringify(a));renderAddresses()};
 $("supportTelegram").onclick=()=>{const tg=window.Telegram&&window.Telegram.WebApp;if(tg&&tg.openTelegramLink)tg.openTelegramLink("https://t.me/uzbclothelover");else window.open("https://t.me/uzbclothelover","_blank")};
 function loadSwitch(id,key,defaultOn=true){const el=$(id);if(!el)return;const saved=localStorage.getItem(key);const on=saved===null?defaultOn:saved==="1";el.classList.toggle("on",on);el.onclick=()=>{const next=!el.classList.contains("on");el.classList.toggle("on",next);localStorage.setItem(key,next?"1":"0")}};loadSwitch("hapticSwitch","uzr_haptic",true);loadSwitch("notifySwitch","uzr_notifications",true);
-$("sellPhotos").onchange=e=>{const files=[...e.target.files].slice(0,10),b=$("sellPreview");b.innerHTML="";files.forEach(f=>{const img=document.createElement("img");img.src=URL.createObjectURL(f);b.appendChild(img)})};
+$("sellPhotos").onchange=e=>{const all=[...e.target.files],b=$("sellPreview");b.innerHTML="";if(all.length>6){alert("Максимум 6 фотографий");e.target.value="";return}if(all.some(f=>f.size>10*1024*1024)){alert("Фотография больше 10 MB");e.target.value="";return}const files=all.slice(0,6);files.forEach(f=>{const img=document.createElement("img");img.src=URL.createObjectURL(f);b.appendChild(img)})};
 renderAddresses();
 
 
@@ -5549,7 +5552,7 @@ async function adminTab(tab,btn){
   }
   if(tab==="official"){
    c.innerHTML=`<h2>Добавить товар от нас</h2><div class="admin-form">
-    <label>Фото</label><input id="aoImages" type="file" accept="image/*" multiple><div id="aoImageHint" class="admin-mini">Можно выбрать несколько фотографий</div>
+    <label>Фото</label><input id="aoImages" type="file" accept="image/*" multiple><div id="aoImageHint" class="admin-mini">До 6 фотографий · максимум 10 MB каждая</div>
     <label>Название</label><input id="aoTitle"><label>Категория</label><input id="aoCategory"><label>Бренд</label><input id="aoBrand"><label>Размер / размеры</label><input id="aoSize" placeholder="Например: S, M, L, XL"><div class="admin-mini admin-size-help">Для товара «Из Китая» укажите несколько размеров через запятую — покупатель выберет размер кнопкой.</div>
     <label>Состояние</label><select id="aoCondition"><option>Новое</option><option>Отличное</option><option>Хорошее</option></select>
     <label>Цена</label><input id="aoPrice" type="number" inputmode="numeric"><label>Количество</label><input id="aoStock" type="number" value="1" min="0">
@@ -5580,8 +5583,10 @@ async function adminModerate(id,action){
  }catch(e){alert("Ошибка модерации: "+String(e.message||e))}
 }
 async function adminPreparePhotos(files){
+ const selected=[...files];
+ if(selected.length>6)throw new Error("Можно загрузить максимум 6 фотографий");
  const out=[];
- for(const file of [...files]){
+ for(const file of selected){
   if(!file.type.startsWith("image/"))continue;
   if(file.size>10*1024*1024)throw new Error("Фото слишком большое: "+file.name);
   const dataUrl=await new Promise((res,rej)=>{const fr=new FileReader();fr.onload=()=>res(fr.result);fr.onerror=rej;fr.readAsDataURL(file)});
