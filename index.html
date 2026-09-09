@@ -4574,6 +4574,20 @@ input,select,textarea{
   cursor:default!important;
 }
 .field-limit{display:block;margin-top:5px;color:#9aa7b4;font-size:8px;line-height:1.2}
+
+/* CLEANUP V2 */
+.cleanup-v2-head{
+  display:flex!important;align-items:center!important;justify-content:space-between!important;
+  gap:10px!important;margin:0 0 12px!important;padding:12px!important;
+  border:1px solid #e4ebf1!important;border-radius:16px!important;background:#fff!important
+}
+.cleanup-v2-head b{display:block!important;font-size:11px!important;color:#09223c!important}
+.cleanup-v2-head small{display:block!important;margin-top:4px!important;max-width:190px!important;color:#8493a1!important;font-size:8px!important;line-height:1.35!important}
+.cleanup-purge-btn{flex:0 0 auto!important;min-height:36px!important;padding:0 10px!important;border-radius:11px!important}
+.cleanup-purge-btn:disabled{opacity:.45!important}
+.cleanup-v2-section-title{margin:13px 2px 8px!important;color:#6f8090!important;font-size:9px!important;font-weight:700!important;text-transform:uppercase!important;letter-spacing:.6px!important}
+.cleanup-v2-active{margin-top:14px!important}
+.cleanup-v2-active summary{cursor:pointer!important;padding:11px 4px!important;color:#52697d!important;font-size:10px!important;font-weight:650!important}
 </style><script src="https://telegram.org/js/telegram-web-app.js"></script><script src="https://unpkg.com/lucide@latest"></script></head><body><div class="app"><header><div class="top"><button class="round header-fav" onclick="page('favorites')" aria-label="Избранное"><i data-lucide="heart"></i></button><div class="brand"><div class="mark"><svg class="doppi" viewBox="0 0 96 48" aria-label="Тюбетейка">
 <path d="M8 35C13 15 30 6 48 6s35 9 40 29c-12 5-25 7-40 7S20 40 8 35Z" fill="#111"/>
 <path d="M48 8v31M20 29c8-3 14-8 18-15M76 29c-8-3-14-8-18-15" stroke="#fff" stroke-width="2" fill="none"/>
@@ -4852,6 +4866,7 @@ let marketProducts=[];
 
 let orderSending=false;const ORDERS_API="https://uzbek-resale-orders.amegakid.workers.dev";
 const MARKETPLACE_API="https://uzbek-resale-orders.amegakid.workers.dev";const $=id=>document.getElementById(id),money=n=>Number(n||0).toLocaleString("ru-RU")+" сум";
+function escapeHtml(v){return String(v??"").replace(/[&<>"']/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[m]))}
 
 let maintenanceState={maintenance:false,isAdmin:false,bypass:false};
 let adminMaintenanceEnabled=false;
@@ -5570,7 +5585,49 @@ async function adminTab(tab,btn){
   }
   if(tab==="cleanup"){
    const d=await adminFetch("/admin/listings");
-   c.innerHTML='<p class="meta">Нажмите на объявление, чтобы открыть его. Администратор может удалить любой товар вместе с его фото ImageKit. История заказов сохраняется.</p>'+d.listings.map(x=>`<div class="admin-card admin-clickable" onclick="adminOpenListing(${x.id})"><b>${x.owner_type==="official"?"✓":"♻"} #${x.id} ${x.title}</b><div>${x.status} · ${x.owner_type}</div><div class="admin-mini">${money(x.price||0)}</div><div class="admin-actions"><button class="admin-danger" onclick="event.stopPropagation();adminDeleteListing(${x.id})">🗑 Удалить товар + фото</button></div></div>`).join("")||'<div class="empty">Товаров нет</div>';
+   const all=Array.isArray(d.listings)?d.listings:[];
+   const trash=all.filter(x=>["deleted","rejected"].includes(String(x.status||"")));
+   const active=all.filter(x=>!["deleted","rejected"].includes(String(x.status||"")));
+   const deletedCount=trash.filter(x=>x.status==="deleted").length;
+
+   c.innerHTML=`
+    <div class="cleanup-v2-head">
+      <div>
+        <b>Очистка данных</b>
+        <small>Удалённые объявления можно стереть из D1 навсегда. История заказов сохранится.</small>
+      </div>
+      <button class="admin-danger cleanup-purge-btn" ${deletedCount?"":"disabled"} onclick="adminPurgeDeleted()">
+        🧹 Очистить удалённые (${deletedCount})
+      </button>
+    </div>
+
+    <div class="cleanup-v2-section-title">Корзина · ${trash.length}</div>
+    ${trash.map(x=>`
+      <div class="admin-card">
+        <b>${x.owner_type==="official"?"✓":"♻"} #${x.id} ${escapeHtml(String(x.title||""))}</b>
+        <div>${escapeHtml(String(x.status||""))} · ${escapeHtml(String(x.owner_type||""))}</div>
+        <div class="admin-mini">${money(x.price||0)}</div>
+        <div class="admin-actions">
+          <button onclick="adminOpenListing(${x.id})">Открыть</button>
+          <button class="admin-danger" onclick="adminPermanentDeleteListing(${x.id},'${String(x.status||"").replace(/'/g,"")}')">
+            🗑 Удалить навсегда
+          </button>
+        </div>
+      </div>`).join("")||'<div class="empty">Удалённых и отклонённых объявлений нет</div>'}
+
+    <details class="cleanup-v2-active">
+      <summary>Активные записи · ${active.length}</summary>
+      <p class="meta">Здесь обычное удаление остаётся безопасным: пользовательские товары сначала переходят в deleted.</p>
+      ${active.map(x=>`
+        <div class="admin-card admin-clickable" onclick="adminOpenListing(${x.id})">
+          <b>${x.owner_type==="official"?"✓":"♻"} #${x.id} ${escapeHtml(String(x.title||""))}</b>
+          <div>${escapeHtml(String(x.status||""))} · ${escapeHtml(String(x.owner_type||""))}</div>
+          <div class="admin-mini">${money(x.price||0)}</div>
+          <div class="admin-actions">
+            <button class="admin-danger" onclick="event.stopPropagation();adminDeleteListing(${x.id})">🗑 Удалить товар + фото</button>
+          </div>
+        </div>`).join("")||'<div class="empty">Активных записей нет</div>'}
+    </details>`;
   }
  }catch(e){c.innerHTML='<div class="empty">Ошибка загрузки: '+String(e.message||e)+'</div>'}
 }
@@ -5656,6 +5713,50 @@ async function adminOpenListing(id){
   $("adminListingView").classList.add("open");
  }catch(e){alert("Не удалось открыть объявление: "+String(e.message||e))}
 }
+async function adminPermanentDeleteListing(id,status){
+  const label=status==="rejected"?"отклонённое":"удалённое";
+  if(!confirm(
+    "Удалить "+label+" объявление #"+id+" НАВСЕГДА?\n\n"+
+    "Запись исчезнет из D1 и из вкладки «Очистка». Остаточные фото ImageKit будут удалены. История заказов сохранится."
+  ))return;
+
+  try{
+    const d=await adminFetch("/admin/listing-permanent?id="+encodeURIComponent(id),{method:"DELETE"});
+    alert("✓ Удалено навсегда\nФото удалено: "+Number(d.deletedImages||0));
+    try{await loadMarketplaceCatalog()}catch(_){}
+    await adminTab("cleanup",[...document.querySelectorAll(".admin-tab")].find(x=>x.textContent.trim()==="Очистка"));
+  }catch(e){
+    alert("Не удалось удалить навсегда: "+String(e.message||e));
+  }
+}
+
+async function adminPurgeDeleted(){
+  if(!confirm(
+    "Очистить ВСЕ записи со статусом deleted?\n\n"+
+    "Они будут удалены из D1 навсегда. Оставшиеся фото ImageKit тоже будут удалены. История заказов не удаляется."
+  ))return;
+
+  if(!confirm("Последнее подтверждение: действительно очистить все deleted объявления?"))return;
+
+  try{
+    const d=await adminFetch("/admin/cleanup-purge",{
+      method:"POST",
+      body:JSON.stringify({mode:"deleted"})
+    });
+    const failed=Array.isArray(d.failures)?d.failures.length:0;
+    alert(
+      "✓ Очистка завершена\n"+
+      "Записей удалено: "+Number(d.purged||0)+"\n"+
+      "Фото удалено: "+Number(d.deletedImages||0)+
+      (failed?"\nОшибок: "+failed:"")
+    );
+    try{await loadMarketplaceCatalog()}catch(_){}
+    await adminTab("cleanup",[...document.querySelectorAll(".admin-tab")].find(x=>x.textContent.trim()==="Очистка"));
+  }catch(e){
+    alert("Ошибка очистки: "+String(e.message||e));
+  }
+}
+
 async function adminDeleteListing(id){
  try{
    const detail=await adminFetch("/admin/listing-detail?id="+encodeURIComponent(id));
