@@ -4674,7 +4674,294 @@ nav{max-width:560px!important;left:50%!important;transform:translateX(-50%)!impo
 @media(min-width:500px){.home-v2,.catalog-v2,.settings-profile-v2{padding-left:18px;padding-right:18px}.product-grid-v2{gap:22px 14px!important}.product-grid-v2 .photo{aspect-ratio:.9/1!important}}
 @media(prefers-reduced-motion:reduce){*,*:before,*:after{animation-duration:.001ms!important;transition-duration:.001ms!important}}
 
-.settings-value-v2{font-size:9px;font-weight:700;color:var(--green);white-space:nowrap}</style><script src="https://telegram.org/js/telegram-web-app.js"></script><script src="https://unpkg.com/lucide@latest"></script><style id="v2-final-overrides">
+.settings-value-v2{font-size:9px;font-weight:700;color:var(--green);white-space:nowrap}
+/* === RE'SALE 2.0 BLOCK 1 — TELEGRAM-LIKE DESIGN SYSTEM === */
+:root{
+  --rs-bg:#f2f3f5;--rs-surface:#fff;--rs-text:#171717;--rs-muted:#6f7a86;--rs-tertiary:#9aa3ad;
+  --rs-line:rgba(60,60,67,.12);--rs-accent:#2481cc;
+  --rs-blue:#2481cc;--rs-blue-soft:#eaf4fc;--rs-green:#34c759;--rs-green-soft:#eaf8ef;
+  --rs-orange:#ff9500;--rs-orange-soft:#fff3df;--rs-red:#ff3b30;--rs-red-soft:#ffeded;
+  --rs-purple:#8e5cff;--rs-purple-soft:#f1ebff;--rs-cyan:#32ade6;--rs-cyan-soft:#eaf8ff;
+  --rs-teal:#2bb7a9;--rs-gray:#8e8e93;--rs-gray-soft:#f0f1f3;--rs-indigo:#5267d8;
+  --rs-font:-apple-system,BlinkMacSystemFont,"SF Pro Text","SF Pro Display","Segoe UI",Roboto,Arial,sans-serif;
+  --rs-reg:400;--rs-med:500;--rs-semi:600;
+  --rs-fast:120ms;--rs-normal:180ms;--rs-ease:cubic-bezier(.2,.75,.25,1);
+}
+html,body,.page{background:var(--rs-bg)!important;color:var(--rs-text)!important}
+body,button,input,textarea,select{font-family:var(--rs-font)!important;font-weight:var(--rs-reg)!important}
+b,strong,h1,h2,h3,h4,h5,h6{font-weight:var(--rs-semi)!important;letter-spacing:-.02em!important}
+.meta,small{color:var(--rs-muted)!important;font-weight:var(--rs-reg)!important}
+
+/* Telegram-like grouped settings */
+.settings-card-v2{background:var(--rs-surface)!important;border-radius:20px!important;overflow:hidden!important;box-shadow:none!important}
+.settings-row-v2{min-height:56px!important;background:#fff!important;padding:10px 14px!important;gap:12px!important}
+.settings-row-v2+.settings-row-v2:before{left:58px!important;background:var(--rs-line)!important}
+.settings-row-v2 b{font-size:15px!important;font-weight:var(--rs-med)!important;letter-spacing:0!important}
+.settings-row-v2 small{font-size:12px!important;margin-top:2px!important;color:var(--rs-muted)!important}
+.settings-label-v2{margin:22px 14px 7px!important;font-size:11px!important;font-weight:var(--rs-med)!important;color:var(--rs-tertiary)!important;letter-spacing:.08em!important}
+.settings-icon-v2{width:32px!important;height:32px!important;border-radius:8px!important;box-shadow:none!important}
+.settings-icon-v2 svg{width:18px!important;height:18px!important;stroke-width:1.9!important}
+.settings-row-v2>svg{width:16px!important;height:16px!important;color:#b6bcc2!important;stroke-width:1.8!important}
+
+/* Profile */
+.profile-identity-v2{padding:18px 10px 24px!important}
+.profile-avatar-v2{width:88px!important;height:88px!important;margin-bottom:12px!important;font-size:28px!important;font-weight:var(--rs-med)!important;box-shadow:none!important}
+.profile-identity-v2 h1{font-size:26px!important;font-weight:var(--rs-med)!important}
+.profile-identity-v2 p{font-size:14px!important;color:var(--rs-accent)!important}
+
+/* Header */
+.app-header-v2{background:rgba(242,243,245,.94)!important;border-bottom:1px solid var(--rs-line)!important}
+.brand-v2 b{font-size:17px!important;font-weight:var(--rs-semi)!important}
+.brand-v2 small{font-size:8px!important;font-weight:var(--rs-med)!important}
+.search-shell-v2{background:#e7e8ea!important;border-radius:16px!important}
+.search-shell-v2 input{font-size:15px!important;font-weight:var(--rs-reg)!important}
+.icon-btn-v2{background:#fff!important;box-shadow:none!important}
+
+/* Home/catalog typography */
+.home-intro-v2 h1,.page-title-v2 h1{font-size:28px!important;font-weight:var(--rs-semi)!important}
+.home-intro-v2 p,.page-title-v2 p{font-size:14px!important;color:var(--rs-muted)!important}
+.eyebrow-v2,.section-head-v2 span{font-size:11px!important;font-weight:var(--rs-med)!important;color:var(--rs-tertiary)!important;letter-spacing:.08em!important}
+.section-head-v2 h2{font-size:22px!important;font-weight:var(--rs-semi)!important}
+.section-head-v2 button{font-size:14px!important;font-weight:var(--rs-med)!important}
+.home-action-v2{background:#fff!important;border-radius:20px!important;box-shadow:none!important}
+.home-action-v2 b{font-size:16px!important;font-weight:var(--rs-med)!important}
+.home-action-v2 small{font-size:12px!important}
+.action-icon-v2 svg,.category-strip-v2 svg{stroke-width:1.9!important}
+.category-strip-v2 b{font-size:12px!important;font-weight:var(--rs-med)!important}
+.catalog-type-v2 button,.catalog-category-v2 button{font-size:13px!important;font-weight:var(--rs-med)!important}
+
+/* Product cards */
+.product-grid-v2 .price{font-size:16px!important;font-weight:var(--rs-semi)!important;color:var(--rs-accent)!important}
+.product-grid-v2 .name{font-size:14px!important;font-weight:var(--rs-med)!important;line-height:1.3!important}
+.product-grid-v2 .meta{font-size:11px!important;color:var(--rs-muted)!important}
+.product-grid-v2 .badge{font-size:10px!important;font-weight:var(--rs-med)!important}
+.product-grid-v2 .product-heart,.product-fav-v2{background:rgba(255,255,255,.72)!important;border:0!important;box-shadow:none!important;backdrop-filter:blur(12px)!important;-webkit-backdrop-filter:blur(12px)!important}
+.product-grid-v2 .product-heart.is-favorite,.product-fav-v2.is-favorite{color:var(--rs-red)!important}
+
+/* Product detail */
+.product-title-v2 h1{font-size:26px!important;font-weight:var(--rs-med)!important}
+.product-title-v2 h2{font-size:26px!important;font-weight:var(--rs-semi)!important}
+.product-label-v2{font-size:11px!important;font-weight:var(--rs-med)!important;color:var(--rs-tertiary)!important}
+.product-meta-v2 span{font-size:14px!important;font-weight:var(--rs-reg)!important}
+.product-spec-v2 span{font-size:12px!important;font-weight:var(--rs-med)!important}
+.product-actions-v2 .btn{font-size:15px!important;font-weight:var(--rs-med)!important}
+
+/* Semantic chips */
+.status-new,.badge-new{background:var(--rs-blue-soft)!important;color:var(--rs-blue)!important}
+.status-confirmed,.badge-confirmed{background:var(--rs-cyan-soft)!important;color:#177aa6!important}
+.status-shipping,.badge-shipping{background:var(--rs-purple-soft)!important;color:var(--rs-purple)!important}
+.status-completed,.badge-completed,.status-published{background:var(--rs-green-soft)!important;color:#198c45!important}
+.status-cancelled,.badge-cancelled{background:var(--rs-red-soft)!important;color:#c6352d!important}
+.status-moderation,.badge-moderation{background:var(--rs-orange-soft)!important;color:#a66200!important}
+.status-sold,.badge-sold{background:var(--rs-gray-soft)!important;color:#666!important}
+
+/* Bottom nav */
+nav{background:rgba(255,255,255,.95)!important;border-top:1px solid var(--rs-line)!important;box-shadow:none!important}
+.nav{font-size:11px!important;font-weight:var(--rs-reg)!important;color:#8c96a0!important}
+.nav.active{color:var(--rs-accent)!important;font-weight:var(--rs-med)!important}
+
+/* Interaction */
+button,.card,.settings-row-v2,.home-action-v2,.category-strip-v2 button{
+ transition:transform var(--rs-fast) var(--rs-ease),background-color var(--rs-normal) var(--rs-ease),color var(--rs-normal) var(--rs-ease),opacity var(--rs-fast) var(--rs-ease)!important
+}
+button:active,.card:active,.settings-row-v2:active,.home-action-v2:active,.category-strip-v2 button:active{transform:scale(.985)!important}
+@media(max-width:360px){.settings-row-v2 b{font-size:14px!important}.settings-row-v2 small{font-size:11px!important}.product-grid-v2 .price{font-size:15px!important}}
+@media(prefers-reduced-motion:reduce){*,*:before,*:after{animation-duration:.001ms!important;transition-duration:.001ms!important}}
+
+
+/* ===== BLOCK 1.1 — TELEGRAM SETTINGS ACCURATE PROFILE ===== */
+.telegram-profile-v3,
+.telegram-settings-page-v3{
+  background:#f2f3f5!important;
+}
+
+.telegram-profile-v3{
+  padding:14px 16px calc(108px + env(safe-area-inset-bottom))!important;
+}
+
+.telegram-identity-v3{
+  padding:14px 8px 22px!important;
+}
+.telegram-identity-v3 .profile-avatar-v2{
+  width:86px!important;
+  height:86px!important;
+  border-radius:50%!important;
+  margin-bottom:12px!important;
+  font-size:28px!important;
+  font-weight:500!important;
+}
+.telegram-identity-v3 h1{
+  margin:0!important;
+  font-size:24px!important;
+  line-height:1.18!important;
+  font-weight:500!important;
+  letter-spacing:-.015em!important;
+}
+.telegram-identity-v3 p{
+  margin:3px 0 0!important;
+  font-size:14px!important;
+  line-height:1.25!important;
+  font-weight:400!important;
+  color:#2481cc!important;
+}
+
+.telegram-profile-v3 .settings-label-v2{
+  margin:19px 14px 7px!important;
+  font-size:11px!important;
+  line-height:1!important;
+  font-weight:500!important;
+  letter-spacing:.06em!important;
+  color:#8f99a4!important;
+}
+
+.telegram-group-v3{
+  margin:0 0 18px!important;
+  background:#fff!important;
+  border-radius:22px!important;
+  overflow:hidden!important;
+  box-shadow:none!important;
+  border:0!important;
+}
+
+.telegram-row-v3{
+  min-height:54px!important;
+  height:54px!important;
+  display:grid!important;
+  grid-template-columns:34px minmax(0,1fr) 15px!important;
+  align-items:center!important;
+  gap:12px!important;
+  padding:0 14px!important;
+  background:#fff!important;
+  border:0!important;
+  text-align:left!important;
+  position:relative!important;
+  box-shadow:none!important;
+}
+
+.telegram-static-row-v3{
+  grid-template-columns:34px minmax(0,1fr) auto!important;
+}
+
+.telegram-row-v3 + .telegram-row-v3:before{
+  content:""!important;
+  position:absolute!important;
+  top:0!important;
+  left:60px!important;
+  right:0!important;
+  height:1px!important;
+  background:rgba(60,60,67,.11)!important;
+}
+
+.telegram-row-title-v3{
+  min-width:0!important;
+  font-size:16px!important;
+  line-height:1!important;
+  font-weight:400!important;
+  letter-spacing:0!important;
+  color:#111!important;
+  white-space:nowrap!important;
+  overflow:hidden!important;
+  text-overflow:ellipsis!important;
+}
+
+.telegram-row-v3>svg{
+  width:15px!important;
+  height:15px!important;
+  stroke-width:2!important;
+  color:#b5bbc1!important;
+}
+
+.telegram-row-value-v3{
+  justify-self:end!important;
+  color:#8e8e93!important;
+  font-size:15px!important;
+  font-weight:400!important;
+  margin-right:4px!important;
+}
+
+.telegram-row-v3:has(.telegram-row-value-v3){
+  grid-template-columns:34px minmax(0,1fr) auto 15px!important;
+}
+
+/* Telegram icon = colored rounded square, NOT circle */
+.telegram-row-v3 .settings-icon-v2{
+  width:30px!important;
+  height:30px!important;
+  border-radius:8px!important;
+  display:flex!important;
+  align-items:center!important;
+  justify-content:center!important;
+  color:#fff!important;
+  box-shadow:none!important;
+  flex:0 0 auto!important;
+}
+
+.telegram-row-v3 .settings-icon-v2 svg{
+  width:18px!important;
+  height:18px!important;
+  stroke:#fff!important;
+  stroke-width:2!important;
+}
+
+.tg-blue{background:#2f8ce6!important}
+.tg-orange{background:#ff9f0a!important}
+.tg-purple{background:#9b51e0!important}
+.tg-red{background:#ff4d57!important}
+.tg-cyan{background:#3aaee8!important}
+.tg-green{background:#34c759!important}
+.tg-gray{background:#8e8e93!important}
+.tg-indigo{background:#5869dc!important}
+
+/* Remove all legacy subtitles from Telegram rows */
+.telegram-row-v3 small,
+.telegram-row-v3 .settings-row-copy-v2 small{
+  display:none!important;
+}
+
+/* Settings sub-page */
+.telegram-settings-page-v3{
+  padding:16px 16px calc(108px + env(safe-area-inset-bottom))!important;
+}
+.telegram-subhead-v3{
+  margin-bottom:14px!important;
+}
+.telegram-subhead-v3 h1{
+  font-size:24px!important;
+  font-weight:500!important;
+  letter-spacing:-.015em!important;
+}
+.telegram-subhead-v3 p{
+  display:none!important;
+}
+
+/* More Telegram-like switch sizing */
+.telegram-static-row-v3 .switch{
+  width:48px!important;
+  height:28px!important;
+  border-radius:999px!important;
+  margin:0!important;
+}
+
+/* Admin row stays compact */
+.telegram-admin-group-v3:has(#adminPanelBtn[style*="display:none"]){
+  display:none!important;
+}
+
+/* Small phones */
+@media(max-width:360px){
+  .telegram-profile-v3{padding-left:12px!important;padding-right:12px!important}
+  .telegram-row-v3{padding-left:12px!important;padding-right:12px!important}
+  .telegram-row-title-v3{font-size:15px!important}
+  .telegram-row-v3 .settings-icon-v2{width:29px!important;height:29px!important}
+}
+
+/* Remove bold inherited styles from profile rows */
+.telegram-row-v3 b,
+.telegram-row-v3 strong{
+  font-weight:400!important;
+}
+
+</style><script src="https://telegram.org/js/telegram-web-app.js"></script><script src="https://unpkg.com/lucide@latest"></script><style id="v2-final-overrides">
 /* Final cascade guard: legacy v1 styles must not override 2.0 critical geometry. */
 .overlay{z-index:1200!important}
 #productView .product-body-v2{padding-bottom:104px!important}
@@ -4789,24 +5076,103 @@ nav{max-width:560px!important;left:50%!important;transform:translateX(-50%)!impo
     <div id="favoriteGrid" class="grid favorites-grid"></div>
   </div>
 </section><section id="cart" class="page"><div class="section cart-premium-section"><div class="cart-head"><button class="back" type="button" onclick="page('home')">←</button><div><h1>Корзина</h1><p>Ваши выбранные товары</p></div></div><div id="cartList"></div><div id="cartBottom" style="display:none"><div class="cart-summary-label">Сумма заказа</div><div class="total"><span>Итого</span><span id="total"></span></div><button id="checkoutBtn" class="btn black">Оформить заказ</button><div class="cart-note">Оплата и доставка подтверждаются после оформления.</div></div></div></section>
-<section id="profile" class="page"><div class="settings-profile-v2">
-<div class="profile-identity-v2"><div id="profileAvatar" class="profile-avatar-v2">UR</div><h1 id="profileName">Профиль</h1><p id="profileUsername">Telegram пользователь</p><p id="profileId" hidden></p></div>
-<div class="settings-label-v2">ПОКУПКИ И ПРОДАЖИ</div><div class="settings-card-v2">
-<button id="myOrdersBtn" class="settings-row-v2"><span class="settings-icon-v2 blue"><i data-lucide="package"></i></span><span><b>Мои заказы</b><small>История покупок и статусы</small></span><i data-lucide="chevron-right"></i></button>
-<button class="settings-row-v2" onclick="openMyListings()"><span class="settings-icon-v2 orange"><i data-lucide="shirt"></i></span><span><b>Мои товары</b><small>Объявления и модерация</small></span><i data-lucide="chevron-right"></i></button>
-<button class="settings-row-v2" onclick="openOwnSellerProfile()"><span class="settings-icon-v2 purple"><i data-lucide="user-round"></i></span><span><b>Профиль продавца</b><small>Как вас видят покупатели</small></span><i data-lucide="chevron-right"></i></button>
-<button class="settings-row-v2" onclick="page('favorites')"><span class="settings-icon-v2 red"><i data-lucide="heart"></i></span><span><b>Избранное</b><small>Сохранённые товары</small></span><i data-lucide="chevron-right"></i></button>
-<button class="settings-row-v2" onclick="page('viewed')"><span class="settings-icon-v2 cyan"><i data-lucide="history"></i></span><span><b>Просмотренные</b><small>Недавно открытые товары</small></span><i data-lucide="chevron-right"></i></button>
-</div>
-<div class="settings-label-v2">ИНТЕРФЕЙС</div><div class="settings-card-v2"><button class="settings-row-v2" onclick="page('settingsPage')"><span class="settings-icon-v2 blue"><i data-lucide="settings-2"></i></span><span><b>Настройки</b><small>Вибрация и уведомления</small></span><i data-lucide="chevron-right"></i></button></div>
-<div class="settings-label-v2">ПОМОЩЬ</div><div class="settings-card-v2">
-<button class="settings-row-v2" onclick="page('faq')"><span class="settings-icon-v2 green"><i data-lucide="circle-help"></i></span><span><b>FAQ и помощь</b><small>Ответы и поддержка</small></span><i data-lucide="chevron-right"></i></button>
-<button class="settings-row-v2" onclick="page('rules')"><span class="settings-icon-v2 gray"><i data-lucide="file-text"></i></span><span><b>Правила</b><small>Правила маркетплейса</small></span><i data-lucide="chevron-right"></i></button>
-<button class="settings-row-v2" onclick="page('privacy')"><span class="settings-icon-v2 teal"><i data-lucide="shield-check"></i></span><span><b>Конфиденциальность</b><small>Как используются данные</small></span><i data-lucide="chevron-right"></i></button>
-<button class="settings-row-v2" onclick="page('about')"><span class="settings-icon-v2 gray"><i data-lucide="info"></i></span><span><b>О приложении</b><small>Uzbek Re'Sale</small></span><i data-lucide="chevron-right"></i></button>
-</div>
-<div class="settings-card-v2"><button id="adminPanelBtn" class="settings-row-v2" hidden style="display:none!important" onclick="openAdminPanel()"><span class="settings-icon-v2 indigo"><i data-lucide="shield"></i></span><span><b>Admin Panel</b><small>Управление маркетплейсом</small></span><i data-lucide="chevron-right"></i></button></div>
-</div></section><section id="viewed" class="page"><div class="section page-v2"><div class="simple-head simple-head-v2"><button class="back back-v2" onclick="backPage('profile')">←</button><div><h1>Просмотренные</h1><p>Недавно открытые товары</p></div></div><div id="viewedGrid" class="grid product-grid-v2"></div><div id="viewedEmpty" class="empty-v2" hidden><i data-lucide="history"></i><b>Здесь пока пусто</b><p>Откройте несколько товаров — они появятся здесь.</p><button onclick="page('catalog')">Перейти в каталог</button></div></div></section><section id="myProducts" class="page"><div class="section my-products-section"><div class="simple-head"><button class="back" onclick="page('profile')">←</button><div><h1>Мои товары</h1><p>Ваши объявления и их статусы</p></div></div><div id="myListingsList"><div class="empty">Загрузка...</div></div><button class="btn black my-products-add" onclick="page('sell')"><span>＋</span> Продать вещь</button></div></section>
+
+<section id="profile" class="page">
+  <div class="settings-profile-v2 telegram-profile-v3">
+    <div class="profile-identity-v2 telegram-identity-v3">
+      <div id="profileAvatar" class="profile-avatar-v2">UR</div>
+      <h1 id="profileName">Профиль</h1>
+      <p id="profileUsername">Telegram пользователь</p>
+      <p id="profileId" hidden></p>
+    </div>
+
+    <div class="settings-label-v2">ПОКУПКИ И ПРОДАЖИ</div>
+    <div class="settings-card-v2 telegram-group-v3">
+      <button id="myOrdersBtn" class="settings-row-v2 telegram-row-v3">
+        <span class="settings-icon-v2 tg-blue"><i data-lucide="package"></i></span>
+        <span class="telegram-row-title-v3">Мои заказы</span>
+        <i data-lucide="chevron-right"></i>
+      </button>
+      <button class="settings-row-v2 telegram-row-v3" onclick="openMyListings()">
+        <span class="settings-icon-v2 tg-orange"><i data-lucide="shirt"></i></span>
+        <span class="telegram-row-title-v3">Мои товары</span>
+        <i data-lucide="chevron-right"></i>
+      </button>
+      <button class="settings-row-v2 telegram-row-v3" onclick="openOwnSellerProfile()">
+        <span class="settings-icon-v2 tg-purple"><i data-lucide="user-round"></i></span>
+        <span class="telegram-row-title-v3">Профиль продавца</span>
+        <i data-lucide="chevron-right"></i>
+      </button>
+      <button class="settings-row-v2 telegram-row-v3" onclick="page('favorites')">
+        <span class="settings-icon-v2 tg-red"><i data-lucide="heart"></i></span>
+        <span class="telegram-row-title-v3">Избранное</span>
+        <i data-lucide="chevron-right"></i>
+      </button>
+      <button class="settings-row-v2 telegram-row-v3" onclick="page('viewed')">
+        <span class="settings-icon-v2 tg-cyan"><i data-lucide="history"></i></span>
+        <span class="telegram-row-title-v3">Просмотренные</span>
+        <i data-lucide="chevron-right"></i>
+      </button>
+    </div>
+
+    <div class="settings-label-v2">НАСТРОЙКИ</div>
+    <div class="settings-card-v2 telegram-group-v3">
+      <button class="settings-row-v2 telegram-row-v3" onclick="page('settingsPage')">
+        <span class="settings-icon-v2 tg-blue"><i data-lucide="settings-2"></i></span>
+        <span class="telegram-row-title-v3">Настройки</span>
+        <i data-lucide="chevron-right"></i>
+      </button>
+      <button class="settings-row-v2 telegram-row-v3" onclick="page('settingsPage')">
+        <span class="settings-icon-v2 tg-green"><i data-lucide="bell"></i></span>
+        <span class="telegram-row-title-v3">Уведомления</span>
+        <i data-lucide="chevron-right"></i>
+      </button>
+      <button class="settings-row-v2 telegram-row-v3" onclick="page('settingsPage')">
+        <span class="settings-icon-v2 tg-purple"><i data-lucide="waves"></i></span>
+        <span class="telegram-row-title-v3">Виброотклик</span>
+        <i data-lucide="chevron-right"></i>
+      </button>
+      <button class="settings-row-v2 telegram-row-v3" onclick="page('settingsPage')">
+        <span class="settings-icon-v2 tg-cyan"><i data-lucide="circle-half"></i></span>
+        <span class="telegram-row-title-v3">Оформление</span>
+        <i data-lucide="chevron-right"></i>
+      </button>
+    </div>
+
+    <div class="settings-label-v2">ПОМОЩЬ</div>
+    <div class="settings-card-v2 telegram-group-v3">
+      <button class="settings-row-v2 telegram-row-v3" onclick="page('faq')">
+        <span class="settings-icon-v2 tg-green"><i data-lucide="circle-help"></i></span>
+        <span class="telegram-row-title-v3">FAQ и помощь</span>
+        <i data-lucide="chevron-right"></i>
+      </button>
+      <button class="settings-row-v2 telegram-row-v3" onclick="page('rules')">
+        <span class="settings-icon-v2 tg-gray"><i data-lucide="file-text"></i></span>
+        <span class="telegram-row-title-v3">Правила</span>
+        <i data-lucide="chevron-right"></i>
+      </button>
+      <button class="settings-row-v2 telegram-row-v3" onclick="page('privacy')">
+        <span class="settings-icon-v2 tg-red"><i data-lucide="shield"></i></span>
+        <span class="telegram-row-title-v3">Конфиденциальность</span>
+        <i data-lucide="chevron-right"></i>
+      </button>
+      <button class="settings-row-v2 telegram-row-v3" onclick="page('about')">
+        <span class="settings-icon-v2 tg-blue"><i data-lucide="info"></i></span>
+        <span class="telegram-row-title-v3">О приложении</span>
+        <i data-lucide="chevron-right"></i>
+      </button>
+    </div>
+
+    <div class="settings-card-v2 telegram-group-v3 telegram-admin-group-v3">
+      <button id="adminPanelBtn" class="settings-row-v2 telegram-row-v3" hidden style="display:none!important" onclick="openAdminPanel()">
+        <span class="settings-icon-v2 tg-indigo"><i data-lucide="shield-check"></i></span>
+        <span class="telegram-row-title-v3">Admin Panel</span>
+        <i data-lucide="chevron-right"></i>
+      </button>
+    </div>
+  </div>
+</section>
+<section id="myProducts" class="page"><div class="section my-products-section"><div class="simple-head"><button class="back" onclick="page('profile')">←</button><div><h1>Мои товары</h1><p>Ваши объявления и их статусы</p></div></div><div id="myListingsList"><div class="empty">Загрузка...</div></div><button class="btn black my-products-add" onclick="page('sell')"><span>＋</span> Продать вещь</button></div></section>
 <section id="addresses" class="page"><div class="section"><div class="simple-head"><button class="back" onclick="page('profile')">←</button><h1>Адреса доставки</h1></div><div id="addressList" class="list-card"></div><br><button class="btn black" id="addAddressBtn">Добавить адрес</button></div></section>
 <section id="payments" class="page"><div class="section"><div class="simple-head"><button class="back" onclick="page('profile')">←</button><h1>Способы оплаты</h1></div><div class="list-card"><div class="list-row"><i data-lucide="banknote"></i><span>Оплата при подтверждении заказа</span></div><div class="list-row"><i data-lucide="credit-card"></i><span>Онлайн-оплата — скоро</span></div></div></div></section>
 <section id="support" class="page"><div class="section"><div class="simple-head"><button class="back" onclick="page('profile')">←</button><h1>Поддержка</h1></div><div class="list-card"><button class="list-row" id="supportTelegram" onclick="openTelegramUsername('uzbclothelover')"><i data-lucide="send"></i><span>Написать в Telegram</span><span class="arrow">›</span></button></div></div></section>
@@ -4829,12 +5195,35 @@ nav{max-width:560px!important;left:50%!important;transform:translateX(-50%)!impo
 <p>Для работы сервиса могут обрабатываться Telegram ID, имя, username, данные объявлений, заказов, доставки и переписки через бота, которые пользователь предоставляет сервису.</p>
 <p>Эти данные используются для работы объявлений, заказов, уведомлений, связи сторон, модерации и поддержки. Не публикуйте в объявлениях лишние персональные данные.</p>
 <p>По вопросам данных: @uzbclothelover</p></div></section>
-<section id="settingsPage" class="page"><div class="section page-v2"><div class="simple-head simple-head-v2"><button class="back back-v2" onclick="backPage('profile')">←</button><div><h1>Настройки</h1><p>Поведение приложения</p></div></div>
-<div class="settings-label-v2">ОЩУЩЕНИЯ</div><div class="settings-card-v2">
-<div class="settings-row-v2 static"><span class="settings-icon-v2 purple"><i data-lucide="smartphone"></i></span><span><b>Виброотклик</b><small>Отклик на все действия</small></span><button id="hapticSwitch" class="switch on" type="button"></button></div>
-<div class="settings-row-v2 static"><span class="settings-icon-v2 blue"><i data-lucide="bell"></i></span><span><b>Уведомления о заказах</b><small>Сейчас приходят через Telegram-бота</small></span><span class="settings-value-v2">Активны</span></div>
-</div><div class="settings-note-v2"><i data-lucide="info"></i><span>Системная, светлая и тёмная темы добавим после завершения UI 2.0.</span></div>
-</div></section>
+
+<section id="settingsPage" class="page">
+  <div class="section page-v2 telegram-settings-page-v3">
+    <div class="simple-head simple-head-v2 telegram-subhead-v3">
+      <button class="back back-v2" onclick="backPage('profile')" aria-label="Назад">←</button>
+      <div><h1>Настройки</h1></div>
+    </div>
+
+    <div class="settings-card-v2 telegram-group-v3">
+      <div class="settings-row-v2 telegram-row-v3 telegram-static-row-v3">
+        <span class="settings-icon-v2 tg-green"><i data-lucide="bell"></i></span>
+        <span class="telegram-row-title-v3">Уведомления</span>
+        <button id="notifySwitch" class="switch on" type="button" aria-label="Уведомления"></button>
+      </div>
+      <div class="settings-row-v2 telegram-row-v3 telegram-static-row-v3">
+        <span class="settings-icon-v2 tg-purple"><i data-lucide="waves"></i></span>
+        <span class="telegram-row-title-v3">Виброотклик</span>
+        <button id="hapticSwitch" class="switch on" type="button" aria-label="Виброотклик"></button>
+      </div>
+      <button class="settings-row-v2 telegram-row-v3">
+        <span class="settings-icon-v2 tg-cyan"><i data-lucide="circle-half"></i></span>
+        <span class="telegram-row-title-v3">Оформление</span>
+        <span class="telegram-row-value-v3">Системная</span>
+        <i data-lucide="chevron-right"></i>
+      </button>
+    </div>
+  </div>
+</section>
+
 <section id="sellerProfile" class="page"><div class="section"><div class="simple-head"><button class="back" onclick="page('catalog')">←</button><h1>Продавец</h1></div><div id="sellerProfileContent"></div></div></section>
 <section id="faq" class="page"><div class="section"><div class="simple-head"><button class="back" onclick="page('profile')">←</button><h1>FAQ</h1></div><button class="btn black faq-support-top" onclick="openTelegramUsername('uzbclothelover')">Связаться с поддержкой</button><div class="faq-list">
 <div class="faq-item"><button class="faq-q">Как купить вещь?<span>＋</span></button><div class="faq-a">Откройте товар, нажмите «Купить», заполните данные и подтвердите заказ. Вы получите номер UR-xxxxxx.</div></div>
@@ -5999,4 +6388,5 @@ checkServiceStatus().then(state=>{
 setInterval(checkServiceStatus,30000);
 setTimeout(()=>window.lucide&&lucide.createIcons(),0);
 
-</script></body></html>
+</script><script>window.__UZBEK_RESALE_DESIGN_SYSTEM__={version:"2.0-block1",telegramLike:true};</script>
+</body></html>
