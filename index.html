@@ -4966,7 +4966,7 @@ button:active,.card:active,.settings-row-v2:active,.home-action-v2:active,.categ
 .brand-logo-fixed{background:transparent!important;border:0!important;padding:0!important;height:42px!important;display:flex!important;align-items:center!important;justify-content:center!important}
 .brand-logo-fixed img{display:block!important;width:150px!important;max-width:44vw!important;height:38px!important;object-fit:contain!important}
 .home-fixed-v5{padding:14px 14px calc(106px + env(safe-area-inset-bottom))!important;background:#fff!important}
-.hero-fixed-v5{position:relative!important;min-height:245px!important;border-radius:20px!important;overflow:hidden!important;margin-bottom:12px!important;background-image:linear-gradient(90deg,rgba(6,9,13,.91) 0%,rgba(6,9,13,.68) 48%,rgba(6,9,13,.15) 100%),url('assets/hero.webp')!important;background-size:cover!important;background-position:center!important}
+.hero-fixed-v5{position:relative!important;min-height:245px!important;border-radius:20px!important;overflow:hidden!important;margin-bottom:12px!important;background-image:linear-gradient(90deg,rgba(6,9,13,.91) 0%,rgba(6,9,13,.68) 48%,rgba(6,9,13,.15) 100%),url('hero.webp')!important;background-size:cover!important;background-position:center!important}
 .hero-copy-fixed-v5{position:relative!important;z-index:2!important;padding:26px 22px!important;max-width:76%!important;color:#fff!important}
 .hero-copy-fixed-v5>span{display:block!important;font-size:10px!important;font-weight:500!important;letter-spacing:.09em!important;color:rgba(255,255,255,.78)!important;margin-bottom:7px!important}
 .hero-copy-fixed-v5 h1{margin:0!important;color:#fff!important;font-size:30px!important;line-height:1.05!important;font-weight:600!important;letter-spacing:-.025em!important}
@@ -4983,6 +4983,93 @@ button:active,.card:active,.settings-row-v2:active,.home-action-v2:active,.categ
 .cats-fixed-v5{display:grid!important;grid-template-columns:repeat(4,minmax(0,1fr))!important;gap:8px!important;margin-bottom:27px!important}.cats-fixed-v5 button{position:relative!important;aspect-ratio:1/1!important;border:0!important;border-radius:16px!important;overflow:hidden!important;padding:0!important;background-image:linear-gradient(180deg,rgba(0,0,0,.02) 30%,rgba(0,0,0,.64) 100%),var(--cat-bg)!important;background-size:cover!important;background-position:center!important}.cats-fixed-v5 span{position:absolute!important;left:9px!important;bottom:9px!important;color:#fff!important;font-size:11px!important;line-height:1!important;font-weight:500!important;text-shadow:0 1px 3px rgba(0,0,0,.3)!important}
 .home-products-fixed-v5{display:grid!important;grid-auto-flow:column!important;grid-auto-columns:minmax(145px,42%)!important;grid-template-columns:none!important;gap:10px!important;overflow-x:auto!important;padding:2px 1px 7px!important;margin:0!important;scrollbar-width:none!important}.home-products-fixed-v5::-webkit-scrollbar{display:none!important}.home-products-fixed-v5 .photo{aspect-ratio:1/1.05!important;border-radius:16px 16px 0 0!important}.home-products-fixed-v5 .card-info{padding:8px 8px 10px!important;background:#fff!important;border:1px solid rgba(60,60,67,.09)!important;border-top:0!important;border-radius:0 0 14px 14px!important}
 @media(max-width:360px){.home-fixed-v5{padding-left:10px!important;padding-right:10px!important}.hero-fixed-v5{min-height:220px!important}.hero-copy-fixed-v5{padding:22px 18px!important;max-width:82%!important}.hero-copy-fixed-v5 h1{font-size:26px!important}.quick-fixed-v5{gap:7px!important}.quick-card-fixed-v5{height:154px!important}.quick-text-fixed-v5 b{font-size:14px!important}.cats-fixed-v5{gap:6px!important}.cats-fixed-v5 span{font-size:10px!important}}
+
+
+/* ===== ROOT ASSET PATH HOTFIX ===== */
+.brand-logo-v4 img{content:url("resale-logo.webp")!important}
+
+#heroV4{
+  background-image:url("hero.webp")!important;
+  background-size:cover!important;
+  background-position:center!important;
+}
+#featureResaleBg{
+  background-image:url("feature-resale.webp")!important;
+  background-size:cover!important;
+  background-position:center!important;
+}
+#featureOfficialBg{
+  background-image:url("feature-official.webp")!important;
+  background-size:cover!important;
+  background-position:center!important;
+}
+.sell-v4{
+  background-image:url("feature-sell.webp")!important;
+  background-size:cover!important;
+  background-position:center!important;
+}
+#catClothesBg{
+  background-image:url("cat-clothes.webp")!important;
+  background-size:cover!important;
+  background-position:center!important;
+}
+#catShoesBg{
+  background-image:url("cat-shoes.webp")!important;
+  background-size:cover!important;
+  background-position:center!important;
+}
+#catAccessoriesBg{
+  background-image:url("cat-accessories.webp")!important;
+  background-size:cover!important;
+  background-position:center!important;
+}
+#catOtherBg{
+  background-image:url("cat-other.webp")!important;
+  background-size:cover!important;
+  background-position:center!important;
+}
+
+/* Prevent runtime product images from overriding approved static home art */
+.home-premium-v4 #heroV4.has-image-v4,
+.home-premium-v4 #featureResaleBg,
+.home-premium-v4 #featureOfficialBg,
+.home-premium-v4 #catClothesBg,
+.home-premium-v4 #catShoesBg,
+.home-premium-v4 #catAccessoriesBg,
+.home-premium-v4 #catOtherBg{
+  background-size:cover!important;
+  background-position:center!important;
+}
+
+/* Fix clipped first card in Popular/China rails */
+.home-grid-premium-v4{
+  display:flex!important;
+  gap:10px!important;
+  overflow-x:auto!important;
+  overflow-y:hidden!important;
+  padding:2px 14px 8px 0!important;
+  margin:0 0 26px!important;
+  scroll-padding-left:0!important;
+  scroll-snap-type:x proximity!important;
+  -webkit-overflow-scrolling:touch!important;
+  scrollbar-width:none!important;
+}
+.home-grid-premium-v4::-webkit-scrollbar{display:none!important}
+.home-grid-premium-v4 .card{
+  flex:0 0 42%!important;
+  min-width:145px!important;
+  margin-left:0!important;
+  scroll-snap-align:start!important;
+}
+.home-grid-premium-v4 .card:first-child{
+  margin-left:0!important;
+}
+
+/* remove accidental negative/translated positioning */
+.home-grid-premium-v4,
+.home-grid-premium-v4 .card{
+  transform:none!important;
+}
 
 </style><script src="https://telegram.org/js/telegram-web-app.js"></script><script src="https://unpkg.com/lucide@latest"></script><style id="v2-final-overrides">
 /* Final cascade guard: legacy v1 styles must not override 2.0 critical geometry. */
@@ -5024,7 +5111,7 @@ button:active,.card:active,.settings-row-v2:active,.home-action-v2:active,.categ
 </head><body><div class="app"><header id="appHeader" class="app-header-v2">
 <div class="app-topbar-v2">
 <button class="icon-btn-v2" onclick="page('favorites')" aria-label="Избранное"><i data-lucide="heart"></i></button>
-<button class="brand-v2 brand-logo-fixed" onclick="page('home')" aria-label="Главная"><img src="assets/resale-logo.webp" alt="RE'SALE"></button>
+<button class="brand-v2 brand-logo-fixed" onclick="page('home')" aria-label="Главная"><img src="resale-logo.webp" alt="RE'SALE"></button>
 <button class="icon-btn-v2" onclick="page('cart')" aria-label="Корзина"><i data-lucide="shopping-bag"></i><span id="cartCount" class="count count-v2">0</span></button>
 </div>
 <div class="search-shell-v2"><i data-lucide="search"></i><input id="search" placeholder="Поиск вещей, брендов и категорий" autocomplete="off"><button id="searchClearV2" type="button" hidden>×</button></div>
@@ -5042,17 +5129,17 @@ button:active,.card:active,.settings-row-v2:active,.home-action-v2:active,.categ
     </div>
 
     <div class="quick-fixed-v5">
-      <button class="quick-card-fixed-v5" onclick="openHomeCatalog('resale')" style="--quick-bg:url('assets/feature-resale.webp')">
+      <button class="quick-card-fixed-v5" onclick="openHomeCatalog('resale')" style="--quick-bg:url('feature-resale.webp')">
         <div class="quick-icon-fixed-v5 blue"><i data-lucide="repeat-2"></i></div>
         <div class="quick-text-fixed-v5"><b>Ресейл</b><small>От пользователей</small></div>
         <span class="quick-arrow-fixed-v5"><i data-lucide="chevron-right"></i></span>
       </button>
-      <button class="quick-card-fixed-v5" onclick="openHomeCatalog('official')" style="--quick-bg:url('assets/feature-official.webp')">
+      <button class="quick-card-fixed-v5" onclick="openHomeCatalog('official')" style="--quick-bg:url('feature-official.webp')">
         <div class="quick-icon-fixed-v5 orange"><i data-lucide="badge-check"></i></div>
         <div class="quick-text-fixed-v5"><b>От нас</b><small>Uzbek Re'Sale</small></div>
         <span class="quick-arrow-fixed-v5"><i data-lucide="chevron-right"></i></span>
       </button>
-      <button class="quick-card-fixed-v5" onclick="page('sell')" style="--quick-bg:url('assets/feature-sell.webp')">
+      <button class="quick-card-fixed-v5" onclick="page('sell')" style="--quick-bg:url('feature-sell.webp')">
         <div class="quick-icon-fixed-v5 green"><i data-lucide="plus"></i></div>
         <div class="quick-text-fixed-v5"><b>Продать</b><small>Разместить вещь</small></div>
         <span class="quick-arrow-fixed-v5"><i data-lucide="chevron-right"></i></span>
@@ -5061,10 +5148,10 @@ button:active,.card:active,.settings-row-v2:active,.home-action-v2:active,.categ
 
     <div class="home-head-fixed-v5"><h2>Категории</h2><button onclick="openHomeCatalog('all')">Все товары <i data-lucide="chevron-right"></i></button></div>
     <div class="cats-fixed-v5">
-      <button onclick="openHomeCategory('Одежда')" style="--cat-bg:url('assets/cat-clothes.webp')"><span>Одежда</span></button>
-      <button onclick="openHomeCategory('Обувь')" style="--cat-bg:url('assets/cat-shoes.webp')"><span>Обувь</span></button>
-      <button onclick="openHomeCategory('Аксессуары')" style="--cat-bg:url('assets/cat-accessories.webp')"><span>Аксессуары</span></button>
-      <button onclick="openHomeCategory('Другое')" style="--cat-bg:url('assets/cat-other.webp')"><span>Другое</span></button>
+      <button onclick="openHomeCategory('Одежда')" style="--cat-bg:url('cat-clothes.webp')"><span>Одежда</span></button>
+      <button onclick="openHomeCategory('Обувь')" style="--cat-bg:url('cat-shoes.webp')"><span>Обувь</span></button>
+      <button onclick="openHomeCategory('Аксессуары')" style="--cat-bg:url('cat-accessories.webp')"><span>Аксессуары</span></button>
+      <button onclick="openHomeCategory('Другое')" style="--cat-bg:url('cat-other.webp')"><span>Другое</span></button>
     </div>
 
     <div class="home-head-fixed-v5"><h2>Популярное</h2><button onclick="openHomeCatalog('all')">Смотреть все <i data-lucide="chevron-right"></i></button></div>
