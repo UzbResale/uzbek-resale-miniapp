@@ -5582,6 +5582,959 @@ button:active,.card:active,.settings-row-v2:active,.home-action-v2:active,.categ
   }
 }
 
+
+/* ===== APPROVED MOCKUP PASS v7.6 ===== */
+
+/* Smaller, cleaner top logo */
+.brand-approved-v7{
+  height:32px!important;
+}
+.brand-approved-v7 img{
+  width:126px!important;
+  max-width:34vw!important;
+  height:30px!important;
+  object-fit:contain!important;
+}
+@media(max-width:360px){
+  .brand-approved-v7 img{
+    width:116px!important;
+    height:28px!important;
+  }
+}
+
+/* Exact approved top-card palette */
+.resale-v7{
+  color:#fff!important;
+  background:
+    radial-gradient(circle at 78% 10%,rgba(255,255,255,.14),transparent 28%),
+    linear-gradient(145deg,#2f98df 0%,#0e67c7 100%)!important;
+}
+.official-v7{
+  color:#111!important;
+  background:
+    radial-gradient(circle at 85% 10%,rgba(255,255,255,.80),transparent 28%),
+    linear-gradient(145deg,#fffaf4 0%,#f8ede2 100%)!important;
+}
+.sell-v7{
+  color:#0d2e21!important;
+  background:
+    radial-gradient(circle at 85% 10%,rgba(255,255,255,.78),transparent 28%),
+    linear-gradient(145deg,#e8fff2 0%,#d4f5e3 100%)!important;
+}
+.resale-v7 .market-action-icon-v7{
+  background:rgba(255,255,255,.14)!important;
+  color:#fff!important;
+}
+.official-v7 .market-action-icon-v7{
+  background:rgba(255,255,255,.90)!important;
+  color:#111827!important;
+}
+.sell-v7 .market-action-icon-v7{
+  background:linear-gradient(180deg,#13935a,#087742)!important;
+  color:#fff!important;
+}
+
+/* Bottom navigation: plus-only FAB, Telegram/iOS feel */
+nav .nav[onclick="page('sell')"],
+nav button[onclick="page('sell')"]{
+  color:transparent!important;
+  font-size:0!important;
+  overflow:visible!important;
+}
+nav .nav[onclick="page('sell')"] .icon,
+nav button[onclick="page('sell')"] .icon{
+  width:54px!important;
+  height:54px!important;
+  border-radius:50%!important;
+  display:flex!important;
+  align-items:center!important;
+  justify-content:center!important;
+  background:linear-gradient(180deg,#2ea0ff 0%,#2481cc 100%)!important;
+  color:#fff!important;
+  box-shadow:
+    0 8px 22px rgba(36,129,204,.26),
+    0 2px 6px rgba(0,0,0,.08)!important;
+  transform:translateY(-10px)!important;
+}
+nav .nav[onclick="page('sell')"] .icon svg,
+nav button[onclick="page('sell')"] .icon svg{
+  width:25px!important;
+  height:25px!important;
+  stroke:#fff!important;
+  stroke-width:1.8!important;
+}
+nav .nav[onclick="page('sell')"]:active .icon,
+nav button[onclick="page('sell')"]:active .icon{
+  transform:translateY(-10px) scale(.94)!important;
+}
+
+/* Make bottom bar itself feel lighter and more Telegram/iOS-like */
+nav{
+  background:rgba(255,255,255,.96)!important;
+  border-top:1px solid rgba(60,60,67,.10)!important;
+  box-shadow:0 -8px 24px rgba(20,35,50,.04)!important;
+}
+
+
+nav .nav[onclick="page('sell')"]{
+  text-indent:-9999px!important;
+}
+nav .nav[onclick="page('sell')"] .icon{
+  text-indent:0!important;
+}
+
+
+/* ===== APPROVED MOCKUP EXACT BUTTON PASS v7.7 ===== */
+
+/* Header icon buttons */
+.icon-btn-v2{
+  width:40px!important;
+  height:40px!important;
+  border-radius:50%!important;
+  background:#f7f8fa!important;
+  border:0!important;
+  box-shadow:none!important;
+}
+.icon-btn-v2 svg{
+  width:20px!important;
+  height:20px!important;
+  stroke-width:1.8!important;
+}
+
+/* Search/filter row */
+.search-row-v7{
+  grid-template-columns:minmax(0,1fr) 40px!important;
+  gap:8px!important;
+  margin-top:9px!important;
+}
+.search-row-v7 .search-shell-v2{
+  height:40px!important;
+  border-radius:14px!important;
+  background:#f1f4f7!important;
+}
+.search-filter-v7{
+  width:40px!important;
+  height:40px!important;
+  border-radius:14px!important;
+  background:#f2f5f8!important;
+}
+
+/* Main 3 cards: exact compact mockup proportions */
+.home-action-row-v7{
+  gap:8px!important;
+  margin:12px 0 13px!important;
+}
+.market-action-v7{
+  height:112px!important;
+  border-radius:15px!important;
+  padding:11px 12px!important;
+  box-shadow:none!important;
+}
+.resale-v7{
+  background:linear-gradient(145deg,#2f98df 0%,#0e67c7 100%)!important;
+}
+.official-v7{
+  background:linear-gradient(145deg,#fffaf4 0%,#f8ede2 100%)!important;
+}
+.sell-v7{
+  background:linear-gradient(145deg,#e8fff2 0%,#d4f5e3 100%)!important;
+}
+
+.market-action-icon-v7{
+  width:29px!important;
+  height:29px!important;
+  margin:0 0 18px!important;
+}
+.market-action-icon-v7 svg{
+  width:15px!important;
+  height:15px!important;
+  stroke-width:1.9!important;
+}
+.resale-v7 .market-action-icon-v7{
+  background:rgba(255,255,255,.16)!important;
+}
+.official-v7 .market-action-icon-v7{
+  background:#fff!important;
+}
+.sell-v7 .market-action-icon-v7{
+  background:#0f8a50!important;
+}
+
+.market-action-text-v7{
+  left:12px!important;
+  right:10px!important;
+  bottom:11px!important;
+}
+.market-action-text-v7 b{
+  font-size:14px!important;
+  line-height:1.05!important;
+  font-weight:600!important;
+}
+.market-action-text-v7 small{
+  margin-top:4px!important;
+  font-size:8.8px!important;
+  line-height:1.1!important;
+  opacity:.78!important;
+}
+.market-action-arrow-v7{
+  right:9px!important;
+  top:12px!important;
+  width:13px!important;
+  height:13px!important;
+}
+
+/* Category cards: compact wide mockup look */
+.category-grid-v7{
+  gap:8px!important;
+  margin:0 0 19px!important;
+}
+.category-tile-v7{
+  width:100%!important;
+  height:76px!important;
+  aspect-ratio:auto!important;
+  border-radius:14px!important;
+  margin:0 0 5px!important;
+  box-shadow:none!important;
+}
+.category-tile-v7 svg{
+  width:22px!important;
+  height:22px!important;
+  stroke-width:1.9!important;
+}
+.clothing-v7{background:#e6f3ff!important;color:#2481cc!important}
+.shoes-v7{background:#e6f7f2!important;color:#148865!important}
+.accessories-v7{background:#f0e8ff!important;color:#7d4dde!important}
+.other-v7{background:#eef1f4!important;color:#59636e!important}
+.category-grid-v7 b{
+  font-size:9.5px!important;
+  font-weight:500!important;
+  line-height:1.05!important;
+}
+
+/* Popular heading closer to mockup */
+.popular-head-v7{
+  margin:0 1px 8px!important;
+}
+.popular-head-v7 h2{
+  font-size:18px!important;
+  font-weight:600!important;
+}
+.popular-head-v7 button{
+  font-size:10px!important;
+}
+
+/* Center FAB mockup proportions */
+nav .nav[onclick="page('sell')"] .icon,
+nav button[onclick="page('sell')"] .icon{
+  width:46px!important;
+  height:46px!important;
+  transform:translateY(-8px)!important;
+  background:linear-gradient(180deg,#2d9ff2,#2481cc)!important;
+  box-shadow:0 5px 14px rgba(36,129,204,.22)!important;
+}
+nav .nav[onclick="page('sell')"] .icon svg,
+nav button[onclick="page('sell')"] .icon svg{
+  width:22px!important;
+  height:22px!important;
+}
+
+/* Compact adaptation */
+@media(max-width:360px){
+  .market-action-v7{height:104px!important;padding:10px!important}
+  .market-action-icon-v7{width:27px!important;height:27px!important;margin-bottom:16px!important}
+  .market-action-text-v7{left:10px!important;bottom:9px!important}
+  .market-action-text-v7 b{font-size:13px!important}
+  .market-action-text-v7 small{font-size:8px!important}
+  .category-tile-v7{height:68px!important;border-radius:13px!important}
+  .category-tile-v7 svg{width:20px!important;height:20px!important}
+  .category-grid-v7 b{font-size:9px!important}
+}
+
+
+/* ===== APPROVED MOCKUP VISUAL PASS v7.8 ===== */
+
+/* Compact centered logo */
+.brand-approved-v7{
+  height:30px!important;
+}
+.brand-approved-v7 img{
+  width:118px!important;
+  max-width:32vw!important;
+  height:28px!important;
+  object-fit:contain!important;
+}
+
+/* Heart/cart circles exactly light iOS/Telegram */
+.icon-btn-v2{
+  width:40px!important;
+  height:40px!important;
+  border-radius:50%!important;
+  background:rgba(247,249,252,.96)!important;
+  border:0!important;
+  box-shadow:0 4px 12px rgba(28,45,66,.035)!important;
+}
+
+/* Search + filter */
+.search-row-v7{
+  grid-template-columns:minmax(0,1fr) 40px!important;
+  gap:8px!important;
+  margin-top:9px!important;
+}
+.search-row-v7 .search-shell-v2{
+  height:40px!important;
+  border-radius:14px!important;
+  background:linear-gradient(180deg,#f2f5f9 0%,#edf1f5 100%)!important;
+}
+.search-filter-v7{
+  width:40px!important;
+  height:40px!important;
+  border-radius:14px!important;
+  background:linear-gradient(180deg,#f5f8fc,#edf2f8)!important;
+}
+
+/* EXACT top-card visual language from approved mockup */
+.home-action-row-v7{
+  gap:8px!important;
+  margin:12px 0 14px!important;
+}
+.market-action-v7{
+  height:112px!important;
+  border-radius:15px!important;
+  padding:11px 12px!important;
+  border:0!important;
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.20),
+    0 2px 8px rgba(35,55,75,.025)!important;
+}
+
+/* Blue card: stronger top-left glow + deep lower-right blue */
+.resale-v7{
+  color:#fff!important;
+  background:
+    radial-gradient(120px 80px at 18% 7%, rgba(82,181,255,.62) 0%, rgba(82,181,255,0) 68%),
+    radial-gradient(120px 90px at 91% 88%, rgba(0,65,160,.24), transparent 72%),
+    linear-gradient(145deg,#299ce9 0%,#1683dc 44%,#0963c4 100%)!important;
+}
+
+/* Cream card */
+.official-v7{
+  color:#111!important;
+  background:
+    radial-gradient(130px 85px at 20% 4%, rgba(255,255,255,.98) 0%, rgba(255,255,255,0) 72%),
+    linear-gradient(145deg,#fffaf4 0%,#fbf1e8 52%,#f5e7db 100%)!important;
+}
+
+/* Mint card */
+.sell-v7{
+  color:#082a1b!important;
+  background:
+    radial-gradient(130px 85px at 18% 4%, rgba(255,255,255,.92) 0%, rgba(255,255,255,0) 70%),
+    linear-gradient(145deg,#e8fff4 0%,#d7f7e8 52%,#c9f0dc 100%)!important;
+}
+
+/* Top icons */
+.market-action-icon-v7{
+  width:29px!important;
+  height:29px!important;
+  margin:0 0 18px!important;
+  border-radius:50%!important;
+}
+.market-action-icon-v7 svg{
+  width:15px!important;
+  height:15px!important;
+}
+.resale-v7 .market-action-icon-v7{
+  background:rgba(255,255,255,.17)!important;
+  color:#fff!important;
+}
+.official-v7 .market-action-icon-v7{
+  background:rgba(255,255,255,.92)!important;
+  color:#111827!important;
+}
+.sell-v7 .market-action-icon-v7{
+  background:linear-gradient(180deg,#11945a,#087943)!important;
+  color:#fff!important;
+  box-shadow:0 3px 8px rgba(8,121,67,.12)!important;
+}
+
+/* Action typography/arrow */
+.market-action-text-v7{
+  left:12px!important;
+  right:10px!important;
+  bottom:11px!important;
+}
+.market-action-text-v7 b{
+  font-size:14px!important;
+  line-height:1.05!important;
+  font-weight:600!important;
+}
+.market-action-text-v7 small{
+  margin-top:4px!important;
+  font-size:8.8px!important;
+  line-height:1.1!important;
+  opacity:.76!important;
+}
+.market-action-arrow-v7{
+  right:9px!important;
+  top:12px!important;
+  width:13px!important;
+  height:13px!important;
+}
+
+/* Category tiles: same pastel gradients as mockup */
+.category-grid-v7{
+  gap:8px!important;
+  margin:0 0 19px!important;
+}
+.category-tile-v7{
+  height:76px!important;
+  aspect-ratio:auto!important;
+  border-radius:14px!important;
+  margin:0 0 5px!important;
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.50),
+    0 2px 8px rgba(20,40,60,.018)!important;
+}
+.category-tile-v7 svg{
+  width:22px!important;
+  height:22px!important;
+}
+.clothing-v7{
+  background:
+    radial-gradient(75px 58px at 25% 15%, rgba(255,255,255,.85), transparent 72%),
+    linear-gradient(145deg,#ecf8ff,#dfefff)!important;
+  color:#2481cc!important;
+}
+.shoes-v7{
+  background:
+    radial-gradient(75px 58px at 25% 15%, rgba(255,255,255,.85), transparent 72%),
+    linear-gradient(145deg,#eefbf7,#def4ed)!important;
+  color:#128663!important;
+}
+.accessories-v7{
+  background:
+    radial-gradient(75px 58px at 25% 15%, rgba(255,255,255,.85), transparent 72%),
+    linear-gradient(145deg,#f5f0ff,#e9e0ff)!important;
+  color:#7d4dde!important;
+}
+.other-v7{
+  background:
+    radial-gradient(75px 58px at 25% 15%, rgba(255,255,255,.85), transparent 72%),
+    linear-gradient(145deg,#f6f7f9,#e9edf1)!important;
+  color:#58636f!important;
+}
+.category-grid-v7 b{
+  font-size:9.5px!important;
+  font-weight:500!important;
+}
+
+/* Bottom bar and plus-only FAB */
+nav{
+  background:rgba(255,255,255,.965)!important;
+  border-top:1px solid rgba(60,60,67,.09)!important;
+  box-shadow:0 -8px 22px rgba(20,35,50,.035)!important;
+  backdrop-filter:blur(18px)!important;
+  -webkit-backdrop-filter:blur(18px)!important;
+}
+nav .nav.sell{
+  font-size:0!important;
+  color:transparent!important;
+}
+nav .nav.sell .icon{
+  width:46px!important;
+  height:46px!important;
+  border-radius:50%!important;
+  display:flex!important;
+  align-items:center!important;
+  justify-content:center!important;
+  transform:translateY(-8px)!important;
+  background:
+    radial-gradient(35px 28px at 34% 18%, rgba(85,190,255,.72), transparent 72%),
+    linear-gradient(180deg,#2e9ff1 0%,#2481cc 100%)!important;
+  color:#fff!important;
+  box-shadow:
+    0 7px 17px rgba(36,129,204,.24),
+    0 2px 5px rgba(0,0,0,.06)!important;
+}
+nav .nav.sell .icon svg{
+  width:22px!important;
+  height:22px!important;
+  stroke:#fff!important;
+  stroke-width:1.8!important;
+}
+
+/* keep product cards exactly as before */
+.home-product-grid-v6 .card,
+.home-product-grid-v6 .photo,
+.home-product-grid-v6 .card-info{
+  /* intentionally no visual overrides here */
+}
+
+@media(max-width:360px){
+  .brand-approved-v7 img{width:108px!important;height:26px!important}
+  .market-action-v7{height:104px!important}
+  .category-tile-v7{height:68px!important}
+  nav .nav.sell .icon{width:44px!important;height:44px!important}
+}
+
+
+/* ===== ACTION ICON PINS MATCH MOCKUP v7.9 ===== */
+.market-action-icon-v7{
+  width:36px!important;
+  height:36px!important;
+  margin:0!important;
+  position:absolute!important;
+  left:12px!important;
+  top:13px!important;
+  border-radius:50%!important;
+  display:flex!important;
+  align-items:center!important;
+  justify-content:center!important;
+}
+.market-action-icon-v7 svg{
+  width:22px!important;
+  height:22px!important;
+  stroke-width:2.05!important;
+}
+
+/* Resale: large white refresh icon, no tiny-looking pin */
+.resale-v7 .market-action-icon-v7{
+  background:transparent!important;
+  color:#fff!important;
+  box-shadow:none!important;
+}
+.resale-v7 .market-action-icon-v7 svg{
+  width:27px!important;
+  height:27px!important;
+  stroke-width:2!important;
+}
+
+/* Official: bold black verified badge like mockup */
+.official-v7 .market-action-icon-v7{
+  background:transparent!important;
+  color:#101820!important;
+  box-shadow:none!important;
+}
+.official-v7 .market-action-icon-v7 svg{
+  width:27px!important;
+  height:27px!important;
+  stroke-width:2.25!important;
+}
+
+/* Sell: green circular + pin */
+.sell-v7 .market-action-icon-v7{
+  width:35px!important;
+  height:35px!important;
+  left:12px!important;
+  top:12px!important;
+  background:linear-gradient(180deg,#14975b 0%,#087a43 100%)!important;
+  color:#fff!important;
+  box-shadow:0 3px 8px rgba(8,122,67,.14)!important;
+}
+.sell-v7 .market-action-icon-v7 svg{
+  width:21px!important;
+  height:21px!important;
+  stroke-width:1.9!important;
+}
+
+/* Text remains safely below the larger icons */
+.market-action-text-v7{
+  left:12px!important;
+  right:9px!important;
+  bottom:11px!important;
+}
+
+/* Arrow position/size exactly restrained */
+.market-action-arrow-v7{
+  right:9px!important;
+  top:13px!important;
+  width:13px!important;
+  height:13px!important;
+  stroke-width:2.1!important;
+}
+
+@media(max-width:360px){
+  .market-action-icon-v7{
+    left:10px!important;
+    top:11px!important;
+    width:32px!important;
+    height:32px!important;
+  }
+  .resale-v7 .market-action-icon-v7 svg,
+  .official-v7 .market-action-icon-v7 svg{
+    width:24px!important;
+    height:24px!important;
+  }
+  .sell-v7 .market-action-icon-v7{
+    width:32px!important;
+    height:32px!important;
+    left:10px!important;
+    top:10px!important;
+  }
+  .sell-v7 .market-action-icon-v7 svg{
+    width:19px!important;
+    height:19px!important;
+  }
+}
+
+
+/* ===== TOP ACTION CARDS FINAL MATCH v8.0 ===== */
+.home-action-row-v7{
+  display:grid!important;
+  grid-template-columns:repeat(3,minmax(0,1fr))!important;
+  gap:10px!important;
+  margin:14px 0 15px!important;
+}
+
+.market-action-v7{
+  position:relative!important;
+  min-width:0!important;
+  height:136px!important;
+  border-radius:18px!important;
+  padding:0!important;
+  overflow:hidden!important;
+  text-align:left!important;
+  border:0!important;
+  box-shadow:none!important;
+}
+
+/* exact color language from the approved mockup */
+.resale-v7{
+  color:#fff!important;
+  background:
+    radial-gradient(140px 100px at 15% 6%, rgba(81,184,255,.58), transparent 68%),
+    linear-gradient(145deg,#2f9be3 0%,#1984db 46%,#0b66c9 100%)!important;
+}
+.official-v7{
+  color:#0d1520!important;
+  background:
+    radial-gradient(150px 100px at 18% 5%, rgba(255,255,255,.98), transparent 70%),
+    linear-gradient(145deg,#fffaf4 0%,#faefe4 55%,#f4e5d8 100%)!important;
+}
+.sell-v7{
+  color:#0d2f21!important;
+  background:
+    radial-gradient(150px 100px at 18% 5%, rgba(255,255,255,.96), transparent 70%),
+    linear-gradient(145deg,#e9fff4 0%,#d9f7e8 55%,#ccefdc 100%)!important;
+}
+
+/* large expressive icons as in the mockup */
+.market-action-icon-v7{
+  position:absolute!important;
+  left:16px!important;
+  top:18px!important;
+  width:42px!important;
+  height:42px!important;
+  border-radius:50%!important;
+  display:flex!important;
+  align-items:center!important;
+  justify-content:center!important;
+  margin:0!important;
+  background:transparent!important;
+  box-shadow:none!important;
+}
+.market-action-icon-v7 svg{
+  width:36px!important;
+  height:36px!important;
+}
+.resale-v7 .market-action-icon-v7{
+  color:#fff!important;
+}
+.official-v7 .market-action-icon-v7{
+  color:#111827!important;
+}
+.sell-v7 .market-action-icon-v7{
+  width:42px!important;
+  height:42px!important;
+  color:#fff!important;
+  background:linear-gradient(180deg,#15975d 0%,#087943 100%)!important;
+  box-shadow:0 4px 10px rgba(8,121,67,.14)!important;
+}
+.sell-v7 .market-action-icon-v7 svg{
+  width:26px!important;
+  height:26px!important;
+}
+
+/* text */
+.market-action-text-v7{
+  position:absolute!important;
+  left:16px!important;
+  right:14px!important;
+  bottom:15px!important;
+}
+.market-action-text-v7 b{
+  display:block!important;
+  font-size:17px!important;
+  line-height:1.05!important;
+  font-weight:600!important;
+  letter-spacing:-.02em!important;
+  color:inherit!important;
+}
+.market-action-text-v7 small{
+  display:block!important;
+  margin-top:6px!important;
+  font-size:10.5px!important;
+  line-height:1.15!important;
+  font-weight:400!important;
+  color:inherit!important;
+  opacity:.76!important;
+  white-space:nowrap!important;
+  overflow:hidden!important;
+  text-overflow:ellipsis!important;
+}
+
+/* right arrow */
+.market-action-arrow-v7{
+  position:absolute!important;
+  right:12px!important;
+  top:20px!important;
+  width:16px!important;
+  height:16px!important;
+  opacity:.9!important;
+}
+
+/* desktop Telegram preview stays balanced */
+@media(min-width:500px){
+  .market-action-v7{
+    height:140px!important;
+  }
+}
+
+/* small phones */
+@media(max-width:360px){
+  .home-action-row-v7{gap:7px!important}
+  .market-action-v7{height:124px!important;border-radius:16px!important}
+  .market-action-icon-v7{left:12px!important;top:15px!important;width:36px!important;height:36px!important}
+  .market-action-icon-v7 svg{width:30px!important;height:30px!important}
+  .sell-v7 .market-action-icon-v7{width:36px!important;height:36px!important}
+  .sell-v7 .market-action-icon-v7 svg{width:23px!important;height:23px!important}
+  .market-action-text-v7{left:12px!important;bottom:12px!important}
+  .market-action-text-v7 b{font-size:15px!important}
+  .market-action-text-v7 small{font-size:9px!important}
+  .market-action-arrow-v7{right:9px!important;top:17px!important;width:14px!important;height:14px!important}
+}
+
+
+/* ===== EXACT REFERENCE MATCH v8.1 =====
+   Match the user's first reference screenshot:
+   - shorter top cards
+   - larger category tiles
+   - icon/text positions corrected
+*/
+.home-action-row-v7{
+  display:grid!important;
+  grid-template-columns:repeat(3,minmax(0,1fr))!important;
+  gap:8px!important;
+  margin:12px 0 12px!important;
+}
+
+.market-action-v7{
+  height:100px!important;
+  border-radius:14px!important;
+  padding:0!important;
+  overflow:hidden!important;
+  box-shadow:none!important;
+}
+
+/* keep the approved gradients */
+.resale-v7{
+  background:
+    radial-gradient(125px 78px at 14% 3%,rgba(77,183,255,.62),transparent 67%),
+    linear-gradient(145deg,#2f9be3 0%,#1984db 45%,#0b66c9 100%)!important;
+}
+.official-v7{
+  background:
+    radial-gradient(125px 78px at 18% 4%,rgba(255,255,255,.98),transparent 70%),
+    linear-gradient(145deg,#fffaf4 0%,#faefe4 55%,#f5e7dc 100%)!important;
+}
+.sell-v7{
+  background:
+    radial-gradient(125px 78px at 18% 4%,rgba(255,255,255,.96),transparent 70%),
+    linear-gradient(145deg,#e8fff3 0%,#d8f7e7 55%,#ccefdc 100%)!important;
+}
+
+/* icon geometry from reference */
+.market-action-icon-v7{
+  position:absolute!important;
+  left:12px!important;
+  top:11px!important;
+  width:30px!important;
+  height:30px!important;
+  margin:0!important;
+  display:flex!important;
+  align-items:center!important;
+  justify-content:center!important;
+  border-radius:50%!important;
+  box-shadow:none!important;
+}
+.resale-v7 .market-action-icon-v7{
+  background:rgba(255,255,255,.15)!important;
+  color:#fff!important;
+}
+.resale-v7 .market-action-icon-v7 svg{
+  width:21px!important;
+  height:21px!important;
+}
+.official-v7 .market-action-icon-v7{
+  background:rgba(255,255,255,.92)!important;
+  color:#111827!important;
+}
+.official-v7 .market-action-icon-v7 svg{
+  width:21px!important;
+  height:21px!important;
+}
+.sell-v7 .market-action-icon-v7{
+  width:34px!important;
+  height:34px!important;
+  left:11px!important;
+  top:10px!important;
+  background:linear-gradient(180deg,#13955a 0%,#087a43 100%)!important;
+  color:#fff!important;
+  box-shadow:0 3px 8px rgba(8,121,67,.13)!important;
+}
+.sell-v7 .market-action-icon-v7 svg{
+  width:21px!important;
+  height:21px!important;
+}
+
+/* title + subtitle exactly lower, like reference */
+.market-action-text-v7{
+  position:absolute!important;
+  left:12px!important;
+  right:9px!important;
+  bottom:10px!important;
+}
+.market-action-text-v7 b{
+  display:block!important;
+  font-size:13px!important;
+  line-height:1.03!important;
+  font-weight:600!important;
+  letter-spacing:-.01em!important;
+}
+.market-action-text-v7 small{
+  display:block!important;
+  margin-top:4px!important;
+  font-size:7.7px!important;
+  line-height:1.05!important;
+  font-weight:400!important;
+  opacity:.76!important;
+  white-space:nowrap!important;
+  overflow:hidden!important;
+  text-overflow:ellipsis!important;
+}
+
+/* chevron small and high */
+.market-action-arrow-v7{
+  position:absolute!important;
+  right:8px!important;
+  top:11px!important;
+  width:11px!important;
+  height:11px!important;
+  stroke-width:2.1!important;
+}
+
+/* category tiles — larger again, exactly like user's reference */
+.category-grid-v7{
+  display:grid!important;
+  grid-template-columns:repeat(4,minmax(0,1fr))!important;
+  gap:8px!important;
+  margin:0 0 20px!important;
+}
+.category-tile-v7{
+  width:100%!important;
+  height:88px!important;
+  aspect-ratio:auto!important;
+  border-radius:14px!important;
+  margin:0 0 6px!important;
+  box-shadow:none!important;
+}
+.category-tile-v7 svg{
+  width:25px!important;
+  height:25px!important;
+  stroke-width:1.95!important;
+}
+.category-grid-v7 b{
+  display:block!important;
+  font-size:9.5px!important;
+  line-height:1.05!important;
+  font-weight:500!important;
+  white-space:nowrap!important;
+}
+
+/* exact soft colors */
+.clothing-v7{
+  background:linear-gradient(145deg,#e9f6ff 0%,#dfefff 100%)!important;
+  color:#2481cc!important;
+}
+.shoes-v7{
+  background:linear-gradient(145deg,#eefbf8 0%,#dff5ee 100%)!important;
+  color:#148865!important;
+}
+.accessories-v7{
+  background:linear-gradient(145deg,#f5f0ff 0%,#e9e1ff 100%)!important;
+  color:#7c4dde!important;
+}
+.other-v7{
+  background:linear-gradient(145deg,#f5f7f9 0%,#e9edf1 100%)!important;
+  color:#59636e!important;
+}
+
+@media(max-width:360px){
+  .home-action-row-v7{gap:6px!important}
+  .market-action-v7{height:94px!important;border-radius:13px!important}
+  .market-action-icon-v7{left:10px!important;top:10px!important;width:28px!important;height:28px!important}
+  .resale-v7 .market-action-icon-v7 svg,
+  .official-v7 .market-action-icon-v7 svg{width:19px!important;height:19px!important}
+  .sell-v7 .market-action-icon-v7{left:9px!important;top:9px!important;width:31px!important;height:31px!important}
+  .sell-v7 .market-action-icon-v7 svg{width:19px!important;height:19px!important}
+  .market-action-text-v7{left:10px!important;bottom:9px!important}
+  .market-action-text-v7 b{font-size:12px!important}
+  .market-action-text-v7 small{font-size:7px!important}
+  .market-action-arrow-v7{right:7px!important;top:10px!important;width:10px!important;height:10px!important}
+  .category-grid-v7{gap:6px!important}
+  .category-tile-v7{height:80px!important;border-radius:13px!important}
+  .category-tile-v7 svg{width:23px!important;height:23px!important}
+  .category-grid-v7 b{font-size:8.8px!important}
+}
+
+
+/* ===== CATEGORY LABELS INSIDE v8.2 ===== */
+.category-grid-v7 button{
+  position:relative!important;
+}
+.category-tile-v7{
+  position:relative!important;
+  margin-bottom:0!important;
+  padding-bottom:20px!important;
+  box-sizing:border-box!important;
+}
+.category-grid-v7 button > b{
+  position:absolute!important;
+  left:4px!important;
+  right:4px!important;
+  bottom:9px!important;
+  z-index:3!important;
+  margin:0!important;
+  font-size:9.5px!important;
+  line-height:1!important;
+  font-weight:500!important;
+  text-align:center!important;
+  color:#111!important;
+  pointer-events:none!important;
+}
+.category-tile-v7 svg{
+  transform:translateY(-6px)!important;
+}
+@media(max-width:360px){
+  .category-grid-v7 button > b{
+    bottom:8px!important;
+    font-size:8.8px!important;
+  }
+  .category-tile-v7 svg{
+    transform:translateY(-5px)!important;
+  }
+}
+
 </style><script src="https://telegram.org/js/telegram-web-app.js"></script><script src="https://unpkg.com/lucide@latest"></script><style id="v2-final-overrides">
 /* Final cascade guard: legacy v1 styles must not override 2.0 critical geometry. */
 .overlay{z-index:1200!important}
@@ -5645,36 +6598,58 @@ button:active,.card:active,.settings-row-v2:active,.home-action-v2:active,.categ
 <section id="home" class="page active">
   <div class="home-approved-v7">
 
-    <div class="home-action-row-v7">
-      <button class="market-action-v7 resale-v7" onclick="openHomeCatalog('resale')">
-        <span class="market-action-icon-v7"><i data-lucide="repeat-2"></i></span>
-        <span class="market-action-text-v7">
-          <b>Ресейл</b>
-          <small>Покупай у людей</small>
-        </span>
-        <i class="market-action-arrow-v7" data-lucide="chevron-right"></i>
-      </button>
-
-      <button class="market-action-v7 official-v7" onclick="openHomeCatalog('official')">
-        <span class="market-action-icon-v7"><i data-lucide="badge-check"></i></span>
-        <span class="market-action-text-v7">
-          <b>От нас</b>
-          <small>Проверенные товары</small>
-        </span>
-        <i class="market-action-arrow-v7" data-lucide="chevron-right"></i>
-      </button>
-
-      <button class="market-action-v7 sell-v7" onclick="page('sell')">
-        <span class="market-action-icon-v7"><i data-lucide="plus"></i></span>
-        <span class="market-action-text-v7">
-          <b>Продать</b>
-          <small>Разместить вещь</small>
-        </span>
-        <i class="market-action-arrow-v7" data-lucide="chevron-right"></i>
-      </button>
-    </div>
-
     
+<div class="home-action-row-v7">
+  <button class="market-action-v7 resale-v7" onclick="openHomeCatalog('resale')">
+    <span class="market-action-icon-v7">
+      <svg viewBox="0 0 32 32" aria-hidden="true">
+        <path d="M25.8 11.3A10.5 10.5 0 0 0 7.4 8.7L4.8 11.4" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/>
+        <path d="M4.8 6.8v4.8h4.8" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M6.2 20.7A10.5 10.5 0 0 0 24.6 23.3l2.6-2.7" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/>
+        <path d="M27.2 25.2v-4.8h-4.8" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </span>
+    <span class="market-action-text-v7">
+      <b>Ресейл</b>
+      <small>Покупай у людей</small>
+    </span>
+    <svg class="market-action-arrow-v7" viewBox="0 0 20 20" aria-hidden="true">
+      <path d="m7 4 6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+  </button>
+
+  <button class="market-action-v7 official-v7" onclick="openHomeCatalog('official')">
+    <span class="market-action-icon-v7">
+      <svg viewBox="0 0 32 32" aria-hidden="true">
+        <path d="M16 3.8l3.2 2.1 3.8-.2 1.5 3.4 3.2 2-.8 3.7 1.5 3.4-2.8 2.6-.8 3.7-3.8.6-2.8 2.6-3.2-2.1-3.8.2-1.5-3.4-3.2-2 .8-3.7-1.5-3.4 2.8-2.6.8-3.7 3.8-.6L16 3.8Z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+        <path d="m11.8 16 2.8 2.8 5.8-6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </span>
+    <span class="market-action-text-v7">
+      <b>От нас</b>
+      <small>Проверенные товары</small>
+    </span>
+    <svg class="market-action-arrow-v7" viewBox="0 0 20 20" aria-hidden="true">
+      <path d="m7 4 6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+  </button>
+
+  <button class="market-action-v7 sell-v7" onclick="page('sell')">
+    <span class="market-action-icon-v7 sell-plus-v10">
+      <svg viewBox="0 0 32 32" aria-hidden="true">
+        <path d="M16 8v16M8 16h16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/>
+      </svg>
+    </span>
+    <span class="market-action-text-v7">
+      <b>Продать</b>
+      <small>Разместить вещь</small>
+    </span>
+    <svg class="market-action-arrow-v7" viewBox="0 0 20 20" aria-hidden="true">
+      <path d="m7 4 6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+  </button>
+</div>
+
 <div class="category-grid-v7">
   <button onclick="openHomeCategory('Одежда')">
     <span class="category-tile-v7 clothing-v7">
@@ -5935,7 +6910,7 @@ button:active,.card:active,.settings-row-v2:active,.home-action-v2:active,.categ
 </div>
 <div class="admin-tabs"><button class="admin-tab on" onclick="adminTab('moderation',this)">Модерация</button><button class="admin-tab" onclick="adminTab('orders',this)">Заказы</button><button class="admin-tab" onclick="adminTab('official',this)">Товары от нас</button><button class="admin-tab" onclick="adminTab('cleanup',this)">Очистка</button></div><div id="adminContent"></div></div></section>
 <section id="orders" class="page"><div class="section orders-premium-section"><div class="orders-head"><button id="ordersBack" class="back">←</button><div><h1>Мои заказы</h1><p>Покупки и статус доставки</p></div></div><div id="ordersList"></div></div></section></div>
-<nav><button class="nav active" data-page="home"><span class="icon"><i data-lucide="house"></i></span>Главная</button><button class="nav" data-page="catalog"><span class="icon"><i data-lucide="layout-grid"></i></span>Каталог</button><button class="nav sell" data-page="sell"><span class="icon"><i data-lucide="plus"></i></span>Продать</button><button class="nav" data-page="favorites"><span class="icon"><i data-lucide="heart"></i></span>Избранное</button><button class="nav" data-page="profile"><span class="icon"><i data-lucide="user"></i></span>Профиль</button></nav>
+<nav><button class="nav active" data-page="home"><span class="icon"><i data-lucide="house"></i></span>Главная</button><button class="nav" data-page="catalog"><span class="icon"><i data-lucide="layout-grid"></i></span>Каталог</button><button class="nav sell" data-page="sell"><span class="icon"><i data-lucide="plus"></i></span></button><button class="nav" data-page="favorites"><span class="icon"><i data-lucide="heart"></i></span>Избранное</button><button class="nav" data-page="profile"><span class="icon"><i data-lucide="user"></i></span>Профиль</button></nav>
 <div id="productView" class="overlay product-final-view product-v2-view"><div class="inner product-final-inner product-v2-inner">
 <div class="product-gallery-final product-gallery-v2"><button id="productBack" class="product-circle product-back-v2">←</button><button id="productFavBtnV2" class="product-circle product-fav-v2">♡</button><div id="bigPhoto" class="bigphoto product-bigphoto-final product-photo-v2"></div><div id="photoCounter" class="photo-counter" hidden></div></div>
 <div id="photoThumbs" class="photo-thumbs photo-thumbs-v2"></div>
