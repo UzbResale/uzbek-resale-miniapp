@@ -3479,7 +3479,7 @@ function applyMaintenanceState(d){
 async function checkServiceStatus(){
   try{
     /* Simple GET first: avoids Android WebView preflight for normal users. */
-    const r=await __uzrNativeFetch(MARKETPLACE_API+"/service-status",{cache:"no-store"});
+    const r=await __uzrNativeFetch(MARKETPLACE_API+"/service-status?_="+Date.now());
     const d=await r.json();
 
     if(r.ok&&d?.ok){
@@ -4496,8 +4496,8 @@ async function loadMarketplaceCatalog(){
   const catalogTimer=setTimeout(()=>catalogAbort.abort(),12000);
   let r;
   try{
-    r=await __uzrNativeFetch(MARKETPLACE_API+"/catalog",{
-      cache:"no-store",
+    const publicCatalogUrl=MARKETPLACE_API+"/catalog?_="+Date.now();
+    r=await __uzrNativeFetch(publicCatalogUrl,{
       signal:catalogAbort.signal
     });
   }finally{
