@@ -1082,6 +1082,209 @@ nav .nav-profile-v13 .nav-profile-avatar-v13{width:27px!important;height:27px!im
 }
 </style>
 
+
+<style id="product-card-v16-fix">
+/* ============================================================
+   PRODUCT CARD v16
+   - no favorite rerender jump
+   - compact mockup proportions
+   - fixed catalog badge text/size
+   ============================================================ */
+
+#homeGrid,
+#catalogGrid,
+#favoriteGrid,
+#viewedGrid{
+  align-items:start!important;
+}
+
+/* tighter shell */
+#home .product-card-v15,
+#catalog .product-card-v15,
+#favorites .product-card-v15,
+#viewed .product-card-v15{
+  overflow:hidden!important;
+  border-radius:17px!important;
+  border:1px solid #244352!important;
+  background:#0d2736!important;
+  box-shadow:none!important;
+}
+
+/* image proportion from approved card mockup */
+#home .product-card-v15 .photo,
+#catalog .product-card-v15 .photo,
+#favorites .product-card-v15 .photo,
+#viewed .product-card-v15 .photo{
+  width:100%!important;
+  height:auto!important;
+  aspect-ratio:1.12/1!important;
+  min-height:0!important;
+  max-height:none!important;
+  margin:0!important;
+  padding:0!important;
+  border-radius:16px 16px 0 0!important;
+  background:#29333a!important;
+}
+.product-card-v15 .photo img{
+  object-fit:cover!important;
+}
+
+/* BADGE: override old Catalog font-size:0 + pseudo-label rule */
+#home .product-card-v15 .product-badge-v15,
+#catalog .product-card-v15 .product-badge-v15,
+#favorites .product-card-v15 .product-badge-v15,
+#viewed .product-card-v15 .product-badge-v15{
+  position:absolute!important;
+  z-index:8!important;
+  left:9px!important;
+  top:9px!important;
+  width:auto!important;
+  min-width:0!important;
+  max-width:calc(100% - 58px)!important;
+  height:30px!important;
+  margin:0!important;
+  padding:0 10px!important;
+  border:0!important;
+  border-radius:9px!important;
+  display:inline-flex!important;
+  align-items:center!important;
+  justify-content:center!important;
+  color:#fff!important;
+  font-size:11px!important;
+  line-height:1!important;
+  font-weight:600!important;
+  white-space:nowrap!important;
+  box-shadow:0 4px 10px rgba(0,0,0,.14)!important;
+}
+#catalog .product-card-v15 .product-badge-v15::after,
+#home .product-card-v15 .product-badge-v15::after{
+  content:none!important;
+  display:none!important;
+}
+
+/* clean badge palette */
+.product-card-v15 .badge-resale{background:linear-gradient(180deg,#35a7ff,#187ee8)!important}
+.product-card-v15 .badge-official{background:linear-gradient(180deg,#ff9a28,#ea7600)!important}
+.product-card-v15 .badge-china{background:linear-gradient(180deg,#a359ff,#793ae1)!important}
+.product-card-v15 .badge-stock{background:linear-gradient(180deg,#32d876,#12b657)!important}
+.product-card-v15 .badge-soon{background:linear-gradient(180deg,#ff627b,#ef3658)!important}
+.product-card-v15 .badge-sold{background:linear-gradient(180deg,#9faab5,#7d8994)!important}
+
+/* heart is stable — no layout-affecting animation */
+.product-card-v15 .product-heart{
+  transition:color .12s ease,background .12s ease,transform .12s ease!important;
+}
+.product-card-v15 .product-heart:active{
+  transform:scale(.90)!important;
+}
+.product-card-v15 .product-heart.is-favorite{
+  color:#ff4763!important;
+}
+.favorite-removing-v16{
+  opacity:0!important;
+  transform:scale(.97)!important;
+  transition:opacity .12s ease,transform .12s ease!important;
+}
+
+/* compact body — fixes excess blank vertical space */
+#home .product-card-v15 .product-card-info-v15,
+#catalog .product-card-v15 .product-card-info-v15,
+#favorites .product-card-v15 .product-card-info-v15,
+#viewed .product-card-v15 .product-card-info-v15{
+  min-height:0!important;
+  height:auto!important;
+  padding:10px 11px 11px!important;
+  margin:0!important;
+  border:0!important;
+  background:#0d2736!important;
+}
+.product-card-v15 .name{
+  min-height:0!important;
+  height:auto!important;
+  margin:0!important;
+  color:#f5f8fa!important;
+  font-size:13.5px!important;
+  line-height:1.18!important;
+  font-weight:500!important;
+  white-space:nowrap!important;
+  overflow:hidden!important;
+  text-overflow:ellipsis!important;
+}
+.product-card-v15 .price{
+  min-height:0!important;
+  height:auto!important;
+  margin:5px 0 0!important;
+  color:#f7f9fb!important;
+  font-size:16.5px!important;
+  line-height:1.08!important;
+  font-weight:650!important;
+}
+.product-card-bottom-v16{
+  display:grid!important;
+  grid-template-columns:minmax(0,1fr) auto!important;
+  align-items:center!important;
+  gap:7px!important;
+  min-height:19px!important;
+  margin-top:7px!important;
+}
+.product-meta-v16{
+  min-width:0!important;
+  display:flex!important;
+  align-items:center!important;
+  gap:5px!important;
+  color:#8ca1b2!important;
+  font-size:10px!important;
+  line-height:1!important;
+  white-space:nowrap!important;
+  overflow:hidden!important;
+}
+.product-meta-v16 svg{
+  flex:0 0 14px!important;
+  width:14px!important;
+  height:14px!important;
+  stroke:#8ca1b2!important;
+}
+.product-meta-v16 span{
+  min-width:0!important;
+  overflow:hidden!important;
+  text-overflow:ellipsis!important;
+}
+.product-more-v16{
+  color:#8ca1b2!important;
+  font-size:13px!important;
+  line-height:1!important;
+  letter-spacing:1px!important;
+}
+
+/* Sold overlay remains centered */
+.product-card-v15 .sold-overlay-v15{
+  border-radius:16px 16px 0 0!important;
+}
+
+/* Sell city selector dark compatibility */
+#sell .sell-city-v16 select{
+  width:100%!important;
+}
+
+/* small phones */
+@media(max-width:390px){
+  #home .product-card-v15 .product-card-info-v15,
+  #catalog .product-card-v15 .product-card-info-v15,
+  #favorites .product-card-v15 .product-card-info-v15,
+  #viewed .product-card-v15 .product-card-info-v15{
+    padding:9px 9px 10px!important;
+  }
+  .product-card-v15 .name{font-size:12.5px!important}
+  .product-card-v15 .price{font-size:15.5px!important}
+  .product-card-v15 .product-badge-v15{
+    height:28px!important;
+    padding:0 9px!important;
+    font-size:10px!important;
+  }
+  .product-meta-v16{font-size:9.3px!important}
+}
+</style>
+
 </head><body><div class="app">
 <header id="appHeader" class="app-header-v2 dark-home-header-v10">
   <div class="dark-brand-row-v10">
@@ -1270,6 +1473,35 @@ nav .nav-profile-v13 .nav-profile-avatar-v13{width:27px!important;height:27px!im
         <div class="field"><label>Размер</label><input id="sellSize" maxlength="20" placeholder="M, 42, One Size..."><small class="field-limit">до 20 символов</small></div>
         <div class="field"><label>Состояние *</label><select id="sellCondition"><option>Новое</option><option>Отличное</option><option>Хорошее</option><option>Удовлетворительное</option></select></div>
       </div>
+
+      <div class="field sell-full sell-city-v16">
+        <label>Город *</label>
+        <select id="sellCity" required>
+          <option value="">Выберите город</option>
+          <option>Ташкент</option>
+          <option>Самарканд</option>
+          <option>Бухара</option>
+          <option>Андижан</option>
+          <option>Наманган</option>
+          <option>Фергана</option>
+          <option>Нукус</option>
+          <option>Карши</option>
+          <option>Ургенч</option>
+          <option>Джизак</option>
+          <option>Термез</option>
+          <option>Навои</option>
+          <option>Гулистан</option>
+          <option>Коканд</option>
+          <option>Маргилан</option>
+          <option>Чирчик</option>
+          <option>Ангрен</option>
+          <option>Алмалык</option>
+          <option>Бекабад</option>
+          <option>Шахрисабз</option>
+          <option>Хива</option>
+        </select>
+      </div>
+
       <div class="field sell-full"><label>Описание</label><textarea id="sellDescription" maxlength="500" rows="4" placeholder="Расскажите о вещи: особенности, дефекты (если есть), причина продажи"></textarea><small class="field-limit">до 500 символов</small></div>
     </div>
     <div class="sell-panel">
@@ -1651,6 +1883,7 @@ function card(p){
  const isFavorite=favs.includes(p.id);
  e.className="card product-card-v15"+(isSold?" is-sold-v15":"");
  e.dataset.badge=badge.key;
+ e.dataset.productId=String(p.id);
  e.innerHTML=`
   <div class="card-media product-card-media-v15">
     <div class="photo"><img src="${p.image}" alt="${escapeHtml(p.name)}" loading="lazy" onerror="this.style.display='none'"></div>
@@ -1661,21 +1894,71 @@ function card(p){
   <div class="card-info product-card-info-v15">
     <div class="name">${escapeHtml(p.name)}</div>
     <div class="price">${money(p.price)}</div>
-    <div class="meta product-meta-v15">${escapeHtml(productCardMetaV15(p))}</div>
+    <div class="product-card-bottom-v16">
+      <span class="product-meta-v16">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 10c0 5-8 11-8 11S4 15 4 10a8 8 0 1 1 16 0Z" fill="none" stroke="currentColor" stroke-width="1.8"/><circle cx="12" cy="10" r="2.5" fill="none" stroke="currentColor" stroke-width="1.8"/></svg>
+        <span>${escapeHtml(productCardMetaV15(p))}</span>
+      </span>
+      <span class="product-more-v16" aria-hidden="true">•••</span>
+    </div>
   </div>`;{
  const heart=e.querySelector(".product-heart");
  let favLock=0;
+
+ const syncFavoriteUIV16=(id,on)=>{
+   document.querySelectorAll(`.product-card-v15[data-product-id="${CSS.escape(String(id))}"] .product-heart`).forEach(btn=>{
+     btn.classList.toggle("is-favorite",on);
+     btn.textContent=on?"♥":"♡";
+     btn.setAttribute("aria-pressed",on?"true":"false");
+   });
+
+   const pf=$("productFavBtnV2");
+   if(selected&&String(selected.id)===String(id)&&pf){
+     pf.textContent=on?"♥":"♡";
+     pf.classList.toggle("is-favorite",on);
+   }
+
+   /* On Favorites page, remove only the affected card instead of rebuilding every grid. */
+   if(!on){
+     const fg=$("favoriteGrid");
+     if(fg){
+       fg.querySelectorAll(`.product-card-v15[data-product-id="${CSS.escape(String(id))}"]`).forEach(card=>{
+         card.classList.add("favorite-removing-v16");
+         setTimeout(()=>card.remove(),120);
+       });
+       setTimeout(()=>{
+         const remaining=fg.querySelectorAll(".product-card-v15").length;
+         const empty=$("favoritesEmpty");
+         fg.style.display=remaining?"grid":"none";
+         if(empty){empty.hidden=!!remaining;empty.style.display=remaining?"none":"flex"}
+       },140);
+     }
+   }else if(currentPageId()==="favorites"){
+     const fg=$("favoriteGrid");
+     if(fg&&!fg.querySelector(`.product-card-v15[data-product-id="${CSS.escape(String(id))}"]`)){
+       fg.appendChild(card(p));
+       fg.style.display="grid";
+       const empty=$("favoritesEmpty");if(empty){empty.hidden=true;empty.style.display="none"}
+       setTimeout(()=>window.lucide&&lucide.createIcons(),0);
+     }
+   }
+ };
+
  const doFav=x=>{
    x.preventDefault();x.stopPropagation();
    const now=Date.now();
-   if(now-favLock<350)return false;
+   if(now-favLock<300)return false;
    favLock=now;
-   favs=favs.includes(p.id)?favs.filter(i=>i!==p.id):[...favs,p.id]; saveFavsState();
-   render();
+
+   const on=!favs.includes(p.id);
+   favs=on?[...favs,p.id]:favs.filter(i=>i!==p.id);
+   saveFavsState();
+   syncFavoriteUIV16(p.id,on);
+   uzrHaptic("selection");
    return false;
  };
+
  heart.onclick=doFav;
- heart.ontouchend=doFav;
 }e.onclick=()=>{selected=p;rememberViewed(p.id);const pf=$("productFavBtnV2");if(pf){pf.textContent=favs.includes(p.id)?"♥":"♡";pf.classList.toggle("is-favorite",favs.includes(p.id))}
  const gallery=(p.images&&p.images.length?p.images:[p.image]).filter(Boolean);
  const showGalleryPhoto=(idx)=>{if(!gallery.length)return;idx=(idx+gallery.length)%gallery.length;$("bigPhoto").innerHTML=`<img src="${gallery[idx]}" alt="${p.name}">`;const pc=$("photoCounter");if(pc){pc.hidden=gallery.length<2;pc.textContent=(idx+1)+" / "+gallery.length}document.querySelectorAll("#photoThumbs button").forEach((b,i)=>b.classList.toggle("active",i===idx))};
@@ -2094,6 +2377,8 @@ $("sellSubmit").onclick=async()=>{
   if(!user.id){alert("Откройте магазин внутри Telegram");return}
   if(!files.length){alert("Добавьте хотя бы одну фотографию");return}
   if(!title){alert("Заполните название товара");$("sellName").focus();return}
+  const city=$("sellCity")?.value?.trim()||"";
+  if(!city){alert("Выберите город");$("sellCity")?.focus();return}
   if(!price){alert("Введите корректную цену цифрами");const priceInput=$("sellPrice");priceInput.disabled=false;priceInput.focus();priceInput.select();return}
 
   const btn=$("sellSubmit");
@@ -2120,6 +2405,7 @@ $("sellSubmit").onclick=async()=>{
         brand:$("sellBrand").value.trim(),
         size:$("sellSize").value.trim(),
         condition:$("sellCondition").value,
+        city,
         price,
         description:$("sellDescription").value.trim(),
         photos
@@ -2135,6 +2421,7 @@ $("sellSubmit").onclick=async()=>{
     }
 
     $("sellName").value="";$("sellBrand").value="";$("sellSize").value="";
+    if($("sellCity"))$("sellCity").value="";
     $("sellPrice").value="";$("sellDescription").value="";$("sellPhotos").value="";
     $("sellPreview").innerHTML="";
     const successText=$("listingSuccessText");
