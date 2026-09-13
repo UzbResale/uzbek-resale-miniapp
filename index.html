@@ -3091,6 +3091,140 @@ html.stable-nav-v22 .page.active{
 }
 </style>
 
+
+<style id="cards-v12-9-correct-order">
+/* ============================================================
+   v12.9 — Correct unified product-card order
+   Approved mockup order:
+   PRICE -> NAME -> META
+   Home / Catalog / Favorites / Viewed
+   ============================================================ */
+
+#home .product-card-v15 .product-card-info-v15,
+#catalog .product-card-v15 .product-card-info-v15,
+#favorites .product-card-v15 .product-card-info-v15,
+#viewed .product-card-v15 .product-card-info-v15{
+  display:flex!important;
+  flex-direction:column!important;
+  justify-content:flex-start!important;
+  min-height:82px!important;
+  height:82px!important;
+  padding:9px 10px 9px!important;
+}
+
+/* Price always first */
+#home .product-card-v15 .price,
+#catalog .product-card-v15 .price,
+#favorites .product-card-v15 .price,
+#viewed .product-card-v15 .price{
+  order:1!important;
+  display:block!important;
+  min-height:18px!important;
+  height:18px!important;
+  margin:0!important;
+  padding:0!important;
+  color:#2ea6ff!important;
+  -webkit-text-fill-color:#2ea6ff!important;
+  font-size:15.5px!important;
+  line-height:18px!important;
+  font-weight:650!important;
+  white-space:nowrap!important;
+  overflow:hidden!important;
+  text-overflow:ellipsis!important;
+}
+
+/* Name always second */
+#home .product-card-v15 .name,
+#catalog .product-card-v15 .name,
+#favorites .product-card-v15 .name,
+#viewed .product-card-v15 .name{
+  order:2!important;
+  display:block!important;
+  min-height:16px!important;
+  height:16px!important;
+  margin:3px 0 0!important;
+  padding:0!important;
+  color:#f6f8fa!important;
+  -webkit-text-fill-color:#f6f8fa!important;
+  font-size:12.5px!important;
+  line-height:16px!important;
+  font-weight:500!important;
+  white-space:nowrap!important;
+  overflow:hidden!important;
+  text-overflow:ellipsis!important;
+}
+
+/* Meta always last */
+#home .product-card-v15 .product-card-bottom-v16,
+#catalog .product-card-v15 .product-card-bottom-v16,
+#favorites .product-card-v15 .product-card-bottom-v16,
+#viewed .product-card-v15 .product-card-bottom-v16{
+  order:3!important;
+  margin-top:auto!important;
+  min-height:16px!important;
+  height:16px!important;
+  display:grid!important;
+  grid-template-columns:minmax(0,1fr) auto!important;
+  align-items:center!important;
+  gap:5px!important;
+}
+
+#home .product-card-v15 .product-meta-v16,
+#catalog .product-card-v15 .product-meta-v16,
+#favorites .product-card-v15 .product-meta-v16,
+#viewed .product-card-v15 .product-meta-v16{
+  min-width:0!important;
+  font-size:9.2px!important;
+  line-height:1!important;
+  white-space:nowrap!important;
+  overflow:hidden!important;
+}
+
+.product-card-v15 .product-meta-v16 span{
+  min-width:0!important;
+  overflow:hidden!important;
+  text-overflow:ellipsis!important;
+  white-space:nowrap!important;
+}
+
+/* Neutralize old Catalog-only ordering */
+#catalog .tg-catalog-grid-v14 .name{
+  order:2!important;
+}
+#catalog .tg-catalog-grid-v14 .price{
+  order:1!important;
+}
+#catalog .tg-catalog-grid-v14 .meta{
+  order:3!important;
+}
+
+/* Slightly tighter on narrow Telegram Desktop */
+@media(max-width:420px){
+  #home .product-card-v15 .product-card-info-v15,
+  #catalog .product-card-v15 .product-card-info-v15,
+  #favorites .product-card-v15 .product-card-info-v15,
+  #viewed .product-card-v15 .product-card-info-v15{
+    min-height:78px!important;
+    height:78px!important;
+    padding:8px 9px 8px!important;
+  }
+
+  #home .product-card-v15 .price,
+  #catalog .product-card-v15 .price,
+  #favorites .product-card-v15 .price,
+  #viewed .product-card-v15 .price{
+    font-size:15px!important;
+  }
+
+  #home .product-card-v15 .name,
+  #catalog .product-card-v15 .name,
+  #favorites .product-card-v15 .name,
+  #viewed .product-card-v15 .name{
+    font-size:12px!important;
+  }
+}
+</style>
+
 </head><body><div class="app">
 <header id="appHeader" class="app-header-v2 dark-home-header-v10">
   <div class="dark-brand-row-v10">
