@@ -3225,6 +3225,105 @@ html.stable-nav-v22 .page.active{
 }
 </style>
 
+
+<style id="cards-v13-media-lock">
+/* ============================================================
+   v13 — LOCK CARD PHOTO GEOMETRY
+   Fixes 1px / fractional-column drift between left and right cards.
+   The photo frame height is now viewport-based, not derived from
+   each individual card's fractional width.
+   ============================================================ */
+
+#home .product-card-v15 .product-card-media-v15,
+#catalog .product-card-v15 .product-card-media-v15,
+#favorites .product-card-v15 .product-card-media-v15,
+#viewed .product-card-v15 .product-card-media-v15{
+  position:relative!important;
+  width:100%!important;
+  height:clamp(148px,42vw,180px)!important;
+  min-height:clamp(148px,42vw,180px)!important;
+  max-height:clamp(148px,42vw,180px)!important;
+  overflow:hidden!important;
+  background:#28353d!important;
+}
+
+/* Photo wrapper fills the locked media box exactly */
+#home .product-card-v15 .photo,
+#catalog .product-card-v15 .photo,
+#favorites .product-card-v15 .photo,
+#viewed .product-card-v15 .photo{
+  position:absolute!important;
+  inset:0!important;
+  width:100%!important;
+  height:100%!important;
+  min-height:0!important;
+  max-height:none!important;
+  aspect-ratio:auto!important;
+  margin:0!important;
+  padding:0!important;
+  overflow:hidden!important;
+  border-radius:15px 15px 0 0!important;
+  background:#28353d!important;
+}
+
+/* Image itself cannot affect layout after decode/lazy-load */
+#home .product-card-v15 .photo img,
+#catalog .product-card-v15 .photo img,
+#favorites .product-card-v15 .photo img,
+#viewed .product-card-v15 .photo img{
+  position:absolute!important;
+  inset:0!important;
+  width:100%!important;
+  height:100%!important;
+  min-width:100%!important;
+  min-height:100%!important;
+  display:block!important;
+  object-fit:cover!important;
+  object-position:center center!important;
+  margin:0!important;
+  padding:0!important;
+  border:0!important;
+  transform:none!important;
+}
+
+/* Keep overlays pinned to the media frame, not the loaded image. */
+#home .product-card-v15 .product-badge-v15,
+#catalog .product-card-v15 .product-badge-v15,
+#favorites .product-card-v15 .product-badge-v15,
+#viewed .product-card-v15 .product-badge-v15,
+#home .product-card-v15 .product-heart,
+#catalog .product-card-v15 .product-heart,
+#favorites .product-card-v15 .product-heart,
+#viewed .product-card-v15 .product-heart{
+  position:absolute!important;
+  z-index:9!important;
+}
+
+/* Very narrow Telegram Desktop panel */
+@media(max-width:360px){
+  #home .product-card-v15 .product-card-media-v15,
+  #catalog .product-card-v15 .product-card-media-v15,
+  #favorites .product-card-v15 .product-card-media-v15,
+  #viewed .product-card-v15 .product-card-media-v15{
+    height:146px!important;
+    min-height:146px!important;
+    max-height:146px!important;
+  }
+}
+
+/* Normal phone widths */
+@media(min-width:361px) and (max-width:430px){
+  #home .product-card-v15 .product-card-media-v15,
+  #catalog .product-card-v15 .product-card-media-v15,
+  #favorites .product-card-v15 .product-card-media-v15,
+  #viewed .product-card-v15 .product-card-media-v15{
+    height:158px!important;
+    min-height:158px!important;
+    max-height:158px!important;
+  }
+}
+</style>
+
 </head><body><div class="app">
 <header id="appHeader" class="app-header-v2 dark-home-header-v10">
   <div class="dark-brand-row-v10">
