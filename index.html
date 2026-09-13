@@ -2631,8 +2631,19 @@ body.product-open-v19 nav{
 <script id="android-ui-stability-v21">
 (function(){
   try{
-    if(/Android/i.test(navigator.userAgent||"")){
+    const ua=navigator.userAgent||"";
+    const isIOS=/iPhone|iPad|iPod/i.test(ua);
+    const isAndroid=/Android/i.test(ua);
+
+    if(isAndroid){
       document.documentElement.classList.add("android-ui-v21");
+    }
+
+    /* Desktop/Web preview + Android:
+       use viewport units so appearance/disappearance of a vertical
+       scrollbar cannot shift the dock by half a scrollbar width. */
+    if(!isIOS){
+      document.documentElement.classList.add("stable-nav-v22");
     }
   }catch(_){}
 })();
@@ -2792,6 +2803,91 @@ html.android-ui-v21 #profile{
   .seller-mini-image-v20{
     height:110px!important;
   }
+}
+</style>
+
+
+<style id="nav-stability-v22">
+/* ============================================================
+   v12.2 — BOTTOM NAV STABILITY
+   Fix confirmed from supplied web recording:
+   dock center alternated by ~7px whenever the browser scrollbar
+   appeared/disappeared because legacy CSS used left:50%.
+   ============================================================ */
+
+/* Non-iOS only. iPhone layout stays exactly as before. */
+html.stable-nav-v22 nav{
+  left:50vw!important;
+  right:auto!important;
+  transform:translate3d(-50%,0,0)!important;
+
+  width:min(560px,100vw)!important;
+  max-width:560px!important;
+
+  transition:none!important;
+  animation:none!important;
+  will-change:auto!important;
+}
+
+html.stable-nav-v22 nav .nav,
+html.stable-nav-v22 nav .nav *,
+html.stable-nav-v22 nav .icon,
+html.stable-nav-v22 nav svg{
+  transition:none!important;
+  animation:none!important;
+}
+
+/* No visual scale/reposition on tap: haptic gives the feedback instead. */
+html.stable-nav-v22 nav .nav:active{
+  transform:none!important;
+}
+
+html.stable-nav-v22 nav .nav.sell .icon,
+html.stable-nav-v22 nav .nav.sell:active .icon{
+  transform:translate3d(0,-10px,0)!important;
+}
+
+/* Switching between normal and fixed pages must not animate the whole page. */
+html.stable-nav-v22 .page.active{
+  animation:none!important;
+  transition:none!important;
+}
+
+/* Desktop/browser preview: reserve scrollbar space so page content itself
+   does not recenter by half the scrollbar width either. */
+@media (hover:hover) and (pointer:fine){
+  html.stable-nav-v22{
+    scrollbar-gutter:stable!important;
+  }
+}
+
+/* Favorites still had a legacy white !important surface.
+   Normalize it to the current dark design while we are testing navigation. */
+#favorites.active{
+  background:#061823!important;
+  color:#f4f7fa!important;
+}
+#favorites .profile-page-top{
+  background:#061823!important;
+  border-bottom:1px solid #203e4f!important;
+}
+#favorites .profile-page-back{
+  background:#10283a!important;
+  border-color:#29495b!important;
+  color:#2ea6ff!important;
+}
+#favorites .profile-page-top-title{
+  color:#f5f8fa!important;
+}
+#favorites .favorites-empty-icon{
+  background:#10283a!important;
+  color:#2ea6ff!important;
+}
+#favorites .favorites-empty-state h1{
+  color:#f5f8fa!important;
+}
+#favorites .favorites-empty-state p{
+  color:#8196a8!important;
 }
 </style>
 
@@ -3308,8 +3404,8 @@ let telegramUser=null;
 let marketProducts=[];
 let catalogLoaded=false,catalogLoadError=false;
 
-let orderSending=false;const ORDERS_API="https://uzbek-resale-orders.amegakid.workers.dev";
-const MARKETPLACE_API="https://uzbek-resale-orders.amegakid.workers.dev";const $=id=>document.getElementById(id),money=n=>Number(n||0).toLocaleString("ru-RU")+" сум";
+let orderSending=false;const ORDERS_API=location.origin+"/api";
+const MARKETPLACE_API=location.origin+"/api";const $=id=>document.getElementById(id),money=n=>Number(n||0).toLocaleString("ru-RU")+" сум";
 function escapeHtml(v){return String(v??"").replace(/[&<>"']/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[m]))}
 
 let maintenanceState={maintenance:false,isAdmin:false,bypass:false};
