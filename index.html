@@ -2891,6 +2891,206 @@ html.stable-nav-v22 .page.active{
 }
 </style>
 
+
+<style id="cards-v12-8-tight-grid">
+/* ============================================================
+   v12.8 — Card alignment polish for Telegram Desktop / narrow UI
+   Keeps Pages/API/Worker untouched.
+   ============================================================ */
+
+/* consistent two-column grid */
+#homeGrid,
+#catalogGrid,
+#favoriteGrid,
+#viewedGrid{
+  display:grid!important;
+  grid-template-columns:repeat(2,minmax(0,1fr))!important;
+  gap:12px 10px!important;
+  align-items:start!important;
+}
+
+/* consistent card shell */
+#home .product-card-v15,
+#catalog .product-card-v15,
+#favorites .product-card-v15,
+#viewed .product-card-v15{
+  width:100%!important;
+  min-width:0!important;
+  height:auto!important;
+  border-radius:16px!important;
+  overflow:hidden!important;
+  background:#0d2736!important;
+  border:1px solid #244352!important;
+}
+
+/* fixed media geometry so cards don't drift */
+#home .product-card-v15 .photo,
+#catalog .product-card-v15 .photo,
+#favorites .product-card-v15 .photo,
+#viewed .product-card-v15 .photo{
+  width:100%!important;
+  aspect-ratio:1.08/1!important;
+  height:auto!important;
+  min-height:0!important;
+  max-height:none!important;
+  margin:0!important;
+  border-radius:15px 15px 0 0!important;
+  overflow:hidden!important;
+  background:#28353d!important;
+}
+.product-card-v15 .photo img{
+  width:100%!important;
+  height:100%!important;
+  object-fit:cover!important;
+  display:block!important;
+}
+
+/* body must be same height across rows */
+#home .product-card-v15 .product-card-info-v15,
+#catalog .product-card-v15 .product-card-info-v15,
+#favorites .product-card-v15 .product-card-info-v15,
+#viewed .product-card-v15 .product-card-info-v15{
+  min-height:88px!important;
+  height:88px!important;
+  padding:9px 10px 10px!important;
+  display:flex!important;
+  flex-direction:column!important;
+  justify-content:flex-start!important;
+  background:#0d2736!important;
+}
+
+/* same baseline for title */
+.product-card-v15 .name{
+  min-height:16px!important;
+  height:16px!important;
+  margin:0!important;
+  color:#f6f8fa!important;
+  font-size:12.5px!important;
+  line-height:16px!important;
+  font-weight:500!important;
+  white-space:nowrap!important;
+  overflow:hidden!important;
+  text-overflow:ellipsis!important;
+}
+
+/* same baseline for price */
+.product-card-v15 .price{
+  min-height:19px!important;
+  height:19px!important;
+  margin:3px 0 0!important;
+  color:#2ea6ff!important;
+  font-size:16px!important;
+  line-height:19px!important;
+  font-weight:650!important;
+  white-space:nowrap!important;
+  overflow:hidden!important;
+  text-overflow:ellipsis!important;
+}
+
+/* meta locked to one line at bottom */
+.product-card-v15 .product-card-bottom-v16{
+  margin-top:auto!important;
+  min-height:17px!important;
+  height:17px!important;
+  display:grid!important;
+  grid-template-columns:minmax(0,1fr) auto!important;
+  align-items:center!important;
+  gap:6px!important;
+}
+.product-card-v15 .product-meta-v16{
+  min-width:0!important;
+  display:flex!important;
+  align-items:center!important;
+  gap:4px!important;
+  color:#8ca1b2!important;
+  font-size:9.6px!important;
+  line-height:1!important;
+  white-space:nowrap!important;
+  overflow:hidden!important;
+}
+.product-card-v15 .product-meta-v16 svg{
+  width:12px!important;
+  height:12px!important;
+  flex:0 0 12px!important;
+}
+.product-card-v15 .product-meta-v16 span{
+  min-width:0!important;
+  overflow:hidden!important;
+  text-overflow:ellipsis!important;
+}
+.product-card-v15 .product-more-v16{
+  width:17px!important;
+  text-align:right!important;
+  color:#8ca1b2!important;
+  font-size:12px!important;
+}
+
+/* badge + heart remain visually centered */
+.product-card-v15 .product-badge-v15{
+  top:8px!important;
+  left:8px!important;
+  height:29px!important;
+  padding:0 10px!important;
+  border-radius:9px!important;
+  font-size:10.5px!important;
+}
+.product-card-v15 .product-heart{
+  top:8px!important;
+  right:8px!important;
+  width:38px!important;
+  height:38px!important;
+}
+
+/* narrower Telegram Desktop / Android widths */
+@media(max-width:420px){
+  #homeGrid,
+  #catalogGrid,
+  #favoriteGrid,
+  #viewedGrid{
+    gap:10px 8px!important;
+  }
+
+  #home .product-card-v15 .product-card-info-v15,
+  #catalog .product-card-v15 .product-card-info-v15,
+  #favorites .product-card-v15 .product-card-info-v15,
+  #viewed .product-card-v15 .product-card-info-v15{
+    min-height:84px!important;
+    height:84px!important;
+    padding:8px 9px 9px!important;
+  }
+
+  .product-card-v15 .name{
+    font-size:12px!important;
+  }
+
+  .product-card-v15 .price{
+    font-size:15px!important;
+  }
+
+  .product-card-v15 .product-meta-v16{
+    font-size:9px!important;
+  }
+}
+
+/* very narrow embedded desktop panel */
+@media(max-width:360px){
+  #homeGrid,
+  #catalogGrid,
+  #favoriteGrid,
+  #viewedGrid{
+    gap:9px 7px!important;
+  }
+  .product-card-v15 .product-heart{
+    width:35px!important;
+    height:35px!important;
+  }
+  .product-card-v15 .product-badge-v15{
+    height:27px!important;
+    font-size:10px!important;
+  }
+}
+</style>
+
 </head><body><div class="app">
 <header id="appHeader" class="app-header-v2 dark-home-header-v10">
   <div class="dark-brand-row-v10">
