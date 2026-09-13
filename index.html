@@ -2627,6 +2627,270 @@ body.product-open-v19 nav{
 }
 </style>
 
+
+<script id="android-ui-stability-v21">
+(function(){
+  try{
+    const ua=navigator.userAgent||"";
+    const isIOS=/iPhone|iPad|iPod/i.test(ua);
+    const isAndroid=/Android/i.test(ua);
+
+    if(isAndroid){
+      document.documentElement.classList.add("android-ui-v21");
+    }
+
+    /* Desktop/Web preview + Android:
+       use viewport units so appearance/disappearance of a vertical
+       scrollbar cannot shift the dock by half a scrollbar width. */
+    if(!isIOS){
+      document.documentElement.classList.add("stable-nav-v22");
+    }
+  }catch(_){}
+})();
+</script>
+
+
+<style id="v12-1-android-and-seller-fix">
+/* ============================================================
+   v12.1 — Android stability + seller mini-card cleanup
+   ============================================================ */
+
+/* ---------------- Android only ----------------
+   Lock the bottom dock to one exact geometry and remove
+   transition/active-page motion that can look like a jump.
+*/
+html.android-ui-v21,
+html.android-ui-v21 body{
+  min-height:100dvh!important;
+  background:#061823!important;
+}
+
+html.android-ui-v21 body .app{
+  min-height:100dvh!important;
+  padding-bottom:86px!important;
+}
+
+html.android-ui-v21 .page.active{
+  animation:none!important;
+  transition:none!important;
+  transform:none!important;
+}
+
+html.android-ui-v21 nav{
+  position:fixed!important;
+  left:50%!important;
+  right:auto!important;
+  bottom:0!important;
+  top:auto!important;
+
+  width:min(560px,100%)!important;
+  height:78px!important;
+  min-height:78px!important;
+  max-height:78px!important;
+
+  margin:0!important;
+  padding:7px 10px 8px!important;
+
+  transform:translate3d(-50%,0,0)!important;
+  transition:none!important;
+  animation:none!important;
+
+  border-radius:24px 24px 0 0!important;
+  background:rgba(7,24,35,.98)!important;
+  border-top:1px solid #274657!important;
+  box-shadow:0 -10px 28px rgba(0,0,0,.22)!important;
+
+  contain:layout paint style!important;
+  will-change:auto!important;
+}
+
+html.android-ui-v21 nav .nav,
+html.android-ui-v21 nav .nav .icon,
+html.android-ui-v21 nav .nav svg{
+  transition:none!important;
+  animation:none!important;
+}
+
+html.android-ui-v21 nav .nav.sell .icon{
+  transform:translate3d(0,-10px,0)!important;
+}
+
+html.android-ui-v21 nav .nav.sell:active .icon{
+  transform:translate3d(0,-10px,0) scale(.96)!important;
+}
+
+/* prevent page/footer content from visually pushing into dock */
+html.android-ui-v21 #home,
+html.android-ui-v21 #catalog,
+html.android-ui-v21 #favorites,
+html.android-ui-v21 #profile{
+  padding-bottom:92px!important;
+}
+
+/* ---------------- Seller mini cards ---------------- */
+.product-seller-listings-grid-v20{
+  gap:9px!important;
+}
+
+.seller-mini-card-v20{
+  flex:0 0 132px!important;
+  width:132px!important;
+  min-height:190px!important;
+  padding:0 0 10px!important;
+  border-radius:16px!important;
+  border:1px solid #244352!important;
+  background:#0d2837!important;
+  box-shadow:none!important;
+}
+
+.seller-mini-image-v20{
+  width:100%!important;
+  height:118px!important;
+  border-radius:15px 15px 0 0!important;
+  overflow:hidden!important;
+  background:#29343b!important;
+}
+
+.seller-mini-image-v20 img{
+  width:100%!important;
+  height:100%!important;
+  object-fit:cover!important;
+}
+
+.seller-mini-price-v20{
+  margin:9px 9px 0!important;
+  color:#2ea6ff!important;
+  -webkit-text-fill-color:#2ea6ff!important;
+  font-size:13px!important;
+  line-height:1.05!important;
+  font-weight:650!important;
+}
+
+.seller-mini-title-v20{
+  margin:5px 9px 0!important;
+  color:#eef4f8!important;
+  -webkit-text-fill-color:#eef4f8!important;
+  font-size:11px!important;
+  line-height:1.15!important;
+  font-weight:500!important;
+}
+
+.seller-mini-city-v21{
+  display:block!important;
+  margin:5px 9px 0!important;
+  color:#8196a8!important;
+  -webkit-text-fill-color:#8196a8!important;
+  font-size:9.5px!important;
+  line-height:1!important;
+  white-space:nowrap!important;
+  overflow:hidden!important;
+  text-overflow:ellipsis!important;
+}
+
+/* Product overlay always begins from its own top edge */
+#productView.open{
+  scroll-behavior:auto!important;
+  overscroll-behavior:contain!important;
+}
+
+/* Small Android phones */
+@media(max-width:390px){
+  .seller-mini-card-v20{
+    flex-basis:124px!important;
+    width:124px!important;
+    min-height:181px!important;
+  }
+  .seller-mini-image-v20{
+    height:110px!important;
+  }
+}
+</style>
+
+
+<style id="nav-stability-v22">
+/* ============================================================
+   v12.2 — BOTTOM NAV STABILITY
+   Fix confirmed from supplied web recording:
+   dock center alternated by ~7px whenever the browser scrollbar
+   appeared/disappeared because legacy CSS used left:50%.
+   ============================================================ */
+
+/* Non-iOS only. iPhone layout stays exactly as before. */
+html.stable-nav-v22 nav{
+  left:50vw!important;
+  right:auto!important;
+  transform:translate3d(-50%,0,0)!important;
+
+  width:min(560px,100vw)!important;
+  max-width:560px!important;
+
+  transition:none!important;
+  animation:none!important;
+  will-change:auto!important;
+}
+
+html.stable-nav-v22 nav .nav,
+html.stable-nav-v22 nav .nav *,
+html.stable-nav-v22 nav .icon,
+html.stable-nav-v22 nav svg{
+  transition:none!important;
+  animation:none!important;
+}
+
+/* No visual scale/reposition on tap: haptic gives the feedback instead. */
+html.stable-nav-v22 nav .nav:active{
+  transform:none!important;
+}
+
+html.stable-nav-v22 nav .nav.sell .icon,
+html.stable-nav-v22 nav .nav.sell:active .icon{
+  transform:translate3d(0,-10px,0)!important;
+}
+
+/* Switching between normal and fixed pages must not animate the whole page. */
+html.stable-nav-v22 .page.active{
+  animation:none!important;
+  transition:none!important;
+}
+
+/* Desktop/browser preview: reserve scrollbar space so page content itself
+   does not recenter by half the scrollbar width either. */
+@media (hover:hover) and (pointer:fine){
+  html.stable-nav-v22{
+    scrollbar-gutter:stable!important;
+  }
+}
+
+/* Favorites still had a legacy white !important surface.
+   Normalize it to the current dark design while we are testing navigation. */
+#favorites.active{
+  background:#061823!important;
+  color:#f4f7fa!important;
+}
+#favorites .profile-page-top{
+  background:#061823!important;
+  border-bottom:1px solid #203e4f!important;
+}
+#favorites .profile-page-back{
+  background:#10283a!important;
+  border-color:#29495b!important;
+  color:#2ea6ff!important;
+}
+#favorites .profile-page-top-title{
+  color:#f5f8fa!important;
+}
+#favorites .favorites-empty-icon{
+  background:#10283a!important;
+  color:#2ea6ff!important;
+}
+#favorites .favorites-empty-state h1{
+  color:#f5f8fa!important;
+}
+#favorites .favorites-empty-state p{
+  color:#8196a8!important;
+}
+</style>
+
 </head><body><div class="app">
 <header id="appHeader" class="app-header-v2 dark-home-header-v10">
   <div class="dark-brand-row-v10">
@@ -3278,6 +3542,7 @@ async function shareProductV18(p){
 function productSellerMiniCardV20(item){
   const title=escapeHtml(item.title||item.name||"Товар");
   const price=money(item.price||0);
+  const city=escapeHtml(item.city||item.location||"");
   const image=escapeHtml(
     item.image||
     item.images?.[0]?.image_url||
@@ -3289,6 +3554,7 @@ function productSellerMiniCardV20(item){
     <span class="seller-mini-image-v20">${image?`<img src="${image}" alt="${title}">`:""}</span>
     <span class="seller-mini-price-v20">${price}</span>
     <span class="seller-mini-title-v20">${title}</span>
+    ${city?`<span class="seller-mini-city-v21">${city}</span>`:""}
   </button>`;
 }
 
@@ -3304,8 +3570,20 @@ async function loadProductSellerListingsV20(p){
   let items=[];
 
   if(p?.ownerType==="official"){
+    const currentListingId=Number(
+      p.listingId||
+      String(p.id||"").replace(/^listing-/,"")||
+      0
+    );
+    const seen=new Set();
     items=products
-      .filter(x=>x.ownerType==="official"&&String(x.id)!==String(p.id))
+      .filter(x=>{
+        const id=Number(x.listingId||String(x.id||"").replace(/^listing-/,"")||0);
+        if(x.ownerType!=="official"||!id||id===currentListingId)return false;
+        if(seen.has(id))return false;
+        seen.add(id);
+        return true;
+      })
       .slice(0,8)
       .map(x=>({...x,title:x.name}));
     if(allBtn)allBtn.onclick=()=>openOfficialStore();
@@ -3314,8 +3592,23 @@ async function loadProductSellerListingsV20(p){
       const r=await fetch(MARKETPLACE_API+"/seller?telegramId="+encodeURIComponent(p.sellerTelegramId));
       const d=await r.json();
       if(r.ok&&d.ok){
+        const currentListingId=Number(
+          p.listingId||
+          String(p.id||"").replace(/^listing-/,"")||
+          0
+        );
+
+        const seen=new Set();
         items=(d.profile?.listings||[])
-          .filter(x=>Number(x.id)!==Number(p.listingId||0))
+          .filter(x=>{
+            const id=Number(x.id||x.listingId||0);
+            const owner=String(x.owner_type||x.ownerType||"user");
+            if(!id||id===currentListingId)return false;
+            if(owner==="official")return false;
+            if(seen.has(id))return false;
+            seen.add(id);
+            return true;
+          })
           .slice(0,8);
       }
     }catch(e){
@@ -3647,9 +3940,20 @@ function card(p){
 
  const pv=$("productView");
  if(pv){
-   pv.scrollTop=0;
    pv.classList.add("open");
    document.body.classList.add("product-open-v19");
+
+   const resetProductScrollV21=()=>{
+     pv.scrollTop=0;
+     try{pv.scrollTo({top:0,left:0,behavior:"auto"})}catch(_){pv.scrollTop=0}
+   };
+
+   resetProductScrollV21();
+   requestAnimationFrame(()=>{
+     resetProductScrollV21();
+     requestAnimationFrame(resetProductScrollV21);
+   });
+   setTimeout(resetProductScrollV21,60);
  }
  setTimeout(()=>window.lucide&&lucide.createIcons(),0);
 };return e}
