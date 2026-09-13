@@ -4012,7 +4012,7 @@ function card(p){
  setTimeout(()=>window.lucide&&lucide.createIcons(),0);
 };return e}
 
-function fill(id,list){const b=$(id);if(!b)return;b.innerHTML="";if(!catalogLoaded){b.innerHTML='<div class="skeleton-grid-v2"><div></div><div></div><div></div><div></div></div>';return}if(catalogLoadError){b.innerHTML='<div class="empty empty-load-v2">Не удалось загрузить товары.<br><button type="button" onclick="loadMarketplaceCatalog()">Повторить</button></div>';return}if(!list.length){b.innerHTML='<div class="empty">Здесь пока ничего нет</div>';return}list.forEach(p=>b.appendChild(card(p)))}
+function fill(id,list){const b=$(id);if(!b)return;b.innerHTML="";if(!catalogLoaded){b.innerHTML='<div class="skeleton-grid-v2"><div></div><div></div><div></div><div></div></div>';return}if(catalogLoadError){b.innerHTML='<div class="empty empty-load-v2">Не удалось загрузить товары.<br><small style="display:block;margin-top:6px;opacity:.75">Проверьте соединение и повторите.</small><button type="button" onclick="loadMarketplaceCatalog()">Повторить</button></div>';return}if(!list.length){b.innerHTML='<div class="empty">Здесь пока ничего нет</div>';return}list.forEach(p=>b.appendChild(card(p)))}
 
 function render(){const needle=String(q||"").toLowerCase();let list=products.filter(p=>(type==="Все"||p.type===type)&&(!ownerFilter||p.ownerType===ownerFilter)&&(category==="Все"||p.category===category)&&(!needle||[p.name,p.brand,p.category].some(v=>String(v||"").toLowerCase().includes(needle))));if(sortMode==="priceAsc")list=[...list].sort((a,b)=>a.price-b.price);if(sortMode==="priceDesc")list=[...list].sort((a,b)=>b.price-a.price);if(sortMode==="name")list=[...list].sort((a,b)=>a.name.localeCompare(b.name));fill("homeGrid",products.slice(0,4));fill("catalogGrid",list);
 const catalogResultCount=$("catalogResultCount");if(catalogResultCount)catalogResultCount.textContent=list.length+" "+(list.length===1?"товар":(list.length>=2&&list.length<=4?"товара":"товаров"));
@@ -4492,7 +4492,17 @@ renderAddresses();
 async function loadMarketplaceCatalog(){
  catalogLoaded=false;catalogLoadError=false;render();
  try{
-  let r=await __uzrNativeFetch(MARKETPLACE_API+"/catalog",{cache:"no-store"});
+  const catalogAbort=new AbortController();
+  const catalogTimer=setTimeout(()=>catalogAbort.abort(),12000);
+  let r;
+  try{
+    r=await __uzrNativeFetch(MARKETPLACE_API+"/catalog",{
+      cache:"no-store",
+      signal:catalogAbort.signal
+    });
+  }finally{
+    clearTimeout(catalogTimer);
+  }
 
   /* During maintenance an admin may need a signed retry. */
   if(r.status===503){
@@ -4961,8 +4971,18 @@ syncV2Settings();
 const initialHeader=$("appHeader");if(initialHeader)initialHeader.hidden=false;
 
 render();
+
+/* Catalog is public data. Start loading it immediately.
+   Service status is checked in parallel and may block the UI if maintenance is on.
+   This avoids Android/WebView waiting on a separate cross-origin status request. */
+loadMarketplaceCatalog();
+
 checkServiceStatus().then(state=>{
-  if(!state.maintenance||state.bypass)loadMarketplaceCatalog();
+  if(state.maintenance&&!state.bypass){
+    catalogLoaded=true;
+    catalogLoadError=false;
+    render();
+  }
 });
 setInterval(checkServiceStatus,30000);
 setTimeout(()=>window.lucide&&lucide.createIcons(),0);
