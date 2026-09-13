@@ -2891,23 +2891,6 @@ html.stable-nav-v22 .page.active{
 }
 </style>
 
-
-<style id="catalog-network-v23">
-/* Keep failure state dark and readable on Android/WebView. */
-.empty-load-v2{
-  color:#8196a8!important;
-}
-.empty-load-v2 button{
-  min-width:86px!important;
-  min-height:36px!important;
-  border:0!important;
-  border-radius:12px!important;
-  background:#249df2!important;
-  color:#fff!important;
-  -webkit-text-fill-color:#fff!important;
-}
-</style>
-
 </head><body><div class="app">
 <header id="appHeader" class="app-header-v2 dark-home-header-v10">
   <div class="dark-brand-row-v10">
@@ -3431,22 +3414,10 @@ let adminMaintenanceEnabled=false;
 // Send signed Telegram initData with every request to our Worker.
 // This allows the admin to keep testing while Maintenance Mode is active.
 const __uzrNativeFetch=window.fetch.bind(window);
-const __UZR_PUBLIC_GET_PATHS=new Set(["/catalog","/seller","/telegram-avatar","/service-status"]);
-
 window.fetch=(input,init={})=>{
   try{
     const rawUrl=typeof input==="string"?input:(input&&input.url?input.url:"");
     if(rawUrl.startsWith(MARKETPLACE_API)||rawUrl.startsWith(ORDERS_API)){
-      const parsed=new URL(rawUrl,location.href);
-      const method=String(init.method||"GET").toUpperCase();
-
-      /* Public read endpoints should remain simple GET requests.
-         Do NOT add X-Telegram-Init-Data here, otherwise Android
-         WebView must do an OPTIONS preflight for every catalog read. */
-      if(method==="GET"&&__UZR_PUBLIC_GET_PATHS.has(parsed.pathname)){
-        return __uzrNativeFetch(input,{...init});
-      }
-
       const headers=new Headers(init.headers||{});
       const initData=window.Telegram?.WebApp?.initData||"";
       if(initData&&!headers.has("X-Telegram-Init-Data")){
@@ -3454,9 +3425,7 @@ window.fetch=(input,init={})=>{
       }
       return __uzrNativeFetch(input,{...init,headers});
     }
-  }catch(e){
-    console.warn("Fetch wrapper fallback",e);
-  }
+  }catch(e){}
   return __uzrNativeFetch(input,init);
 };
 
@@ -3478,32 +3447,9 @@ function applyMaintenanceState(d){
 
 async function checkServiceStatus(){
   try{
-    /* Simple GET first: avoids Android WebView preflight for normal users. */
-    const r=await __uzrNativeFetch(MARKETPLACE_API+"/service-status?_="+Date.now());
+    const r=await fetch(MARKETPLACE_API+"/service-status",{cache:"no-store"});
     const d=await r.json();
-
-    if(r.ok&&d?.ok){
-      /* Only an authenticated admin needs the maintenance bypass answer. */
-      if(d.maintenance){
-        const initData=window.Telegram?.WebApp?.initData||"";
-        if(initData){
-          try{
-            const isAdmin=await refreshAdminAccess();
-            if(isAdmin){
-              const ar=await __uzrNativeFetch(MARKETPLACE_API+"/service-status",{
-                cache:"no-store",
-                headers:{"X-Telegram-Init-Data":initData}
-              });
-              const ad=await ar.json();
-              if(ar.ok&&ad?.ok)return applyMaintenanceState(ad);
-            }
-          }catch(e){
-            console.warn("Admin service status retry failed",e);
-          }
-        }
-      }
-      return applyMaintenanceState(d);
-    }
+    if(r.ok&&d?.ok)return applyMaintenanceState(d);
   }catch(e){
     console.warn("Service status check failed",e);
   }
@@ -4012,7 +3958,7 @@ function card(p){
  setTimeout(()=>window.lucide&&lucide.createIcons(),0);
 };return e}
 
-function fill(id,list){const b=$(id);if(!b)return;b.innerHTML="";if(!catalogLoaded){b.innerHTML='<div class="skeleton-grid-v2"><div></div><div></div><div></div><div></div></div>';return}if(catalogLoadError){b.innerHTML='<div class="empty empty-load-v2">Не удалось загрузить товары.<br><small style="display:block;margin-top:6px;opacity:.75">Проверьте соединение и повторите.</small><button type="button" onclick="loadMarketplaceCatalog()">Повторить</button></div>';return}if(!list.length){b.innerHTML='<div class="empty">Здесь пока ничего нет</div>';return}list.forEach(p=>b.appendChild(card(p)))}
+function fill(id,list){const b=$(id);if(!b)return;b.innerHTML="";if(!catalogLoaded){b.innerHTML='<div class="skeleton-grid-v2"><div></div><div></div><div></div><div></div></div>';return}if(catalogLoadError){b.innerHTML='<div class="empty empty-load-v2">Не удалось загрузить товары.<br><button type="button" onclick="loadMarketplaceCatalog()">Повторить</button></div>';return}if(!list.length){b.innerHTML='<div class="empty">Здесь пока ничего нет</div>';return}list.forEach(p=>b.appendChild(card(p)))}
 
 function render(){const needle=String(q||"").toLowerCase();let list=products.filter(p=>(type==="Все"||p.type===type)&&(!ownerFilter||p.ownerType===ownerFilter)&&(category==="Все"||p.category===category)&&(!needle||[p.name,p.brand,p.category].some(v=>String(v||"").toLowerCase().includes(needle))));if(sortMode==="priceAsc")list=[...list].sort((a,b)=>a.price-b.price);if(sortMode==="priceDesc")list=[...list].sort((a,b)=>b.price-a.price);if(sortMode==="name")list=[...list].sort((a,b)=>a.name.localeCompare(b.name));fill("homeGrid",products.slice(0,4));fill("catalogGrid",list);
 const catalogResultCount=$("catalogResultCount");if(catalogResultCount)catalogResultCount.textContent=list.length+" "+(list.length===1?"товар":(list.length>=2&&list.length<=4?"товара":"товаров"));
@@ -4492,43 +4438,8 @@ renderAddresses();
 async function loadMarketplaceCatalog(){
  catalogLoaded=false;catalogLoadError=false;render();
  try{
-  const catalogAbort=new AbortController();
-  const catalogTimer=setTimeout(()=>catalogAbort.abort(),12000);
-  let r;
-  try{
-    const publicCatalogUrl=MARKETPLACE_API+"/catalog?_="+Date.now();
-    r=await __uzrNativeFetch(publicCatalogUrl,{
-      signal:catalogAbort.signal
-    });
-  }finally{
-    clearTimeout(catalogTimer);
-  }
-
-  /* During maintenance an admin may need a signed retry. */
-  if(r.status===503){
-    const initData=window.Telegram?.WebApp?.initData||"";
-    if(initData){
-      try{
-        const admin=await refreshAdminAccess();
-        if(admin){
-          r=await __uzrNativeFetch(MARKETPLACE_API+"/catalog",{
-            cache:"no-store",
-            headers:{"X-Telegram-Init-Data":initData}
-          });
-        }
-      }catch(_){}
-    }
-  }
-
-  const raw=await r.text();
-  let d={};
-  try{d=raw?JSON.parse(raw):{}}catch(e){
-    throw new Error("CATALOG_BAD_RESPONSE_"+r.status);
-  }
-
-  if(!r.ok||!d.ok){
-    throw new Error((d&&d.error)||("CATALOG_HTTP_"+r.status));
-  }
+  const r=await fetch(MARKETPLACE_API+"/catalog"),d=await r.json();
+  if(!r.ok||!d.ok)throw new Error(d.error||"CATALOG_LOAD_FAILED");
   marketProducts=(d.listings||[]).map(x=>({
    id:"listing-"+x.id,listingId:x.id,name:x.title,price:Number(x.price||0),size:x.size||"—",
    condition:x.condition||"—",type:x.ownerType==="official"?(x.sourceType==="china"?"Под заказ":"В наличии"):"Ресейл",
@@ -4545,18 +4456,7 @@ async function loadMarketplaceCatalog(){
    });
    products.splice(0,products.length,...marketProducts);
    catalogLoaded=true;catalogLoadError=false;render();
- }catch(e){
-  catalogLoaded=true;
-  catalogLoadError=true;
-  render();
-  console.error("Marketplace catalog load failed",{
-    message:String(e?.message||e),
-    online:navigator.onLine,
-    ua:navigator.userAgent,
-    telegram:!!window.Telegram?.WebApp,
-    hasInitData:!!window.Telegram?.WebApp?.initData
-  });
-}
+ }catch(e){catalogLoaded=true;catalogLoadError=true;render();console.error("Marketplace catalog",e)}
 }
 async function deleteMyListing(id,title){
  if(!confirm("Удалить «"+title+"»? Фотографии тоже будут удалены."))return;
@@ -4971,18 +4871,8 @@ syncV2Settings();
 const initialHeader=$("appHeader");if(initialHeader)initialHeader.hidden=false;
 
 render();
-
-/* Catalog is public data. Start loading it immediately.
-   Service status is checked in parallel and may block the UI if maintenance is on.
-   This avoids Android/WebView waiting on a separate cross-origin status request. */
-loadMarketplaceCatalog();
-
 checkServiceStatus().then(state=>{
-  if(state.maintenance&&!state.bypass){
-    catalogLoaded=true;
-    catalogLoadError=false;
-    render();
-  }
+  if(!state.maintenance||state.bypass)loadMarketplaceCatalog();
 });
 setInterval(checkServiceStatus,30000);
 setTimeout(()=>window.lucide&&lucide.createIcons(),0);
