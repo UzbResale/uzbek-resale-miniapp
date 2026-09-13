@@ -4481,22 +4481,47 @@ async function copyCatalogDiagnosticV27(){
 
 async function loadMarketplaceCatalog(){
  catalogLoaded=false;catalogLoadError=false;window.catalogDiagnosticV27="";render();
+
+ const requestUrl=MARKETPLACE_API+"/catalog";
+ const origin=location.origin||"(no origin)";
+ const href=location.href||"";
+ const ua=navigator.userAgent||"";
+ const hasTelegram=!!window.Telegram?.WebApp;
+ const hasInitData=!!window.Telegram?.WebApp?.initData;
+
  try{
-  const requestUrl=MARKETPLACE_API+"/catalog";
   const started=Date.now();
   let r;
+
   try{
    r=await fetch(requestUrl);
   }catch(fetchError){
+   let noCorsProbe="not tested";
+   try{
+    const probe=await fetch(requestUrl+"?probe="+Date.now(),{
+      mode:"no-cors",
+      cache:"no-store"
+    });
+    noCorsProbe="REACHABLE (opaque response type="+String(probe.type||"opaque")+")";
+   }catch(probeError){
+    noCorsProbe="FAILED: "+String(probeError?.name||"Error")+": "+String(probeError?.message||probeError);
+   }
+
    window.catalogDiagnosticV27=[
     "NETWORK / FETCH ERROR",
     String(fetchError?.name||"Error")+": "+String(fetchError?.message||fetchError),
-    "URL: "+requestUrl,
+    "",
+    "NO-CORS PROBE: "+noCorsProbe,
+    "",
+    "API URL: "+requestUrl,
+    "location.origin: "+origin,
+    "location.href: "+href,
     "online: "+String(navigator.onLine),
-    "Telegram: "+String(!!window.Telegram?.WebApp),
-    "initData: "+String(!!window.Telegram?.WebApp?.initData),
-    "UA: "+String(navigator.userAgent||"")
+    "Telegram: "+String(hasTelegram),
+    "initData: "+String(hasInitData),
+    "UA: "+ua
    ].join("\n");
+
    throw fetchError;
   }
 
@@ -4519,11 +4544,14 @@ async function loadMarketplaceCatalog(){
     "ACAO: "+allowOrigin,
     parseError?("JSON parse: "+parseError):"",
     "body: "+(raw||"(empty)").slice(0,1200),
-    "URL: "+requestUrl,
+    "",
+    "API URL: "+requestUrl,
+    "location.origin: "+origin,
+    "location.href: "+href,
     "online: "+String(navigator.onLine),
-    "Telegram: "+String(!!window.Telegram?.WebApp),
-    "initData: "+String(!!window.Telegram?.WebApp?.initData),
-    "UA: "+String(navigator.userAgent||"")
+    "Telegram: "+String(hasTelegram),
+    "initData: "+String(hasInitData),
+    "UA: "+ua
    ].filter(Boolean).join("\n");
    throw new Error((d&&d.error)||("HTTP_"+status));
   }
@@ -4534,26 +4562,35 @@ async function loadMarketplaceCatalog(){
    category:x.category||"Другое",brand:x.brand||"",image:x.images&&x.images[0]?x.images[0].image_url:"",images:(x.images||[]).map(im=>im.image_url||im).filter(Boolean),
    ownerType:x.ownerType||"user",sourceType:x.sourceType||"",isPinned:!!x.isPinned,stockQty:Number(x.stockQty||1),status:x.status||"approved",cardBadge:x.cardBadge||x.badgeType||x.badge||"",city:x.city||x.location||"",createdAt:x.createdAt||x.created_at||"",updatedAt:x.updatedAt||x.updated_at||"",isFeatured:!!x.isFeatured,officialNote:x.officialNote||"",sellerTelegramId:String(x.sellerTelegramId||""),sellerName:x.sellerName||"Продавец",sellerUsername:x.sellerUsername||"",description:x.description||""
   }));
+
   marketProducts.sort((a,b)=>{
    const ap=(a.ownerType==="official"&&a.isPinned)?1:0;
    const bp=(b.ownerType==="official"&&b.isPinned)?1:0;
    if(ap!==bp)return bp-ap;
    return Number(b.listingId||0)-Number(a.listingId||0);
   });
+
   products.splice(0,products.length,...marketProducts);
   catalogLoaded=true;catalogLoadError=false;render();
+
  }catch(e){
   if(!window.catalogDiagnosticV27){
    window.catalogDiagnosticV27=[
     "CATALOG UNKNOWN ERROR",
     String(e?.name||"Error")+": "+String(e?.message||e),
+    "API URL: "+requestUrl,
+    "location.origin: "+origin,
+    "location.href: "+href,
     "online: "+String(navigator.onLine),
-    "Telegram: "+String(!!window.Telegram?.WebApp),
-    "initData: "+String(!!window.Telegram?.WebApp?.initData),
-    "UA: "+String(navigator.userAgent||"")
+    "Telegram: "+String(hasTelegram),
+    "initData: "+String(hasInitData),
+    "UA: "+ua
    ].join("\n");
   }
-  catalogLoaded=true;catalogLoadError=true;render();
+
+  catalogLoaded=true;
+  catalogLoadError=true;
+  render();
   console.error("Marketplace catalog diagnostic",window.catalogDiagnosticV27,e);
  }
 }
