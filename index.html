@@ -2631,19 +2631,8 @@ body.product-open-v19 nav{
 <script id="android-ui-stability-v21">
 (function(){
   try{
-    const ua=navigator.userAgent||"";
-    const isIOS=/iPhone|iPad|iPod/i.test(ua);
-    const isAndroid=/Android/i.test(ua);
-
-    if(isAndroid){
+    if(/Android/i.test(navigator.userAgent||"")){
       document.documentElement.classList.add("android-ui-v21");
-    }
-
-    /* Desktop/Web preview + Android:
-       use viewport units so appearance/disappearance of a vertical
-       scrollbar cannot shift the dock by half a scrollbar width. */
-    if(!isIOS){
-      document.documentElement.classList.add("stable-nav-v22");
     }
   }catch(_){}
 })();
@@ -2803,112 +2792,6 @@ html.android-ui-v21 #profile{
   .seller-mini-image-v20{
     height:110px!important;
   }
-}
-</style>
-
-
-<style id="nav-stability-v22">
-/* ============================================================
-   v12.2 — BOTTOM NAV STABILITY
-   Fix confirmed from supplied web recording:
-   dock center alternated by ~7px whenever the browser scrollbar
-   appeared/disappeared because legacy CSS used left:50%.
-   ============================================================ */
-
-/* Non-iOS only. iPhone layout stays exactly as before. */
-html.stable-nav-v22 nav{
-  left:50vw!important;
-  right:auto!important;
-  transform:translate3d(-50%,0,0)!important;
-
-  width:min(560px,100vw)!important;
-  max-width:560px!important;
-
-  transition:none!important;
-  animation:none!important;
-  will-change:auto!important;
-}
-
-html.stable-nav-v22 nav .nav,
-html.stable-nav-v22 nav .nav *,
-html.stable-nav-v22 nav .icon,
-html.stable-nav-v22 nav svg{
-  transition:none!important;
-  animation:none!important;
-}
-
-/* No visual scale/reposition on tap: haptic gives the feedback instead. */
-html.stable-nav-v22 nav .nav:active{
-  transform:none!important;
-}
-
-html.stable-nav-v22 nav .nav.sell .icon,
-html.stable-nav-v22 nav .nav.sell:active .icon{
-  transform:translate3d(0,-10px,0)!important;
-}
-
-/* Switching between normal and fixed pages must not animate the whole page. */
-html.stable-nav-v22 .page.active{
-  animation:none!important;
-  transition:none!important;
-}
-
-/* Desktop/browser preview: reserve scrollbar space so page content itself
-   does not recenter by half the scrollbar width either. */
-@media (hover:hover) and (pointer:fine){
-  html.stable-nav-v22{
-    scrollbar-gutter:stable!important;
-  }
-}
-
-/* Favorites still had a legacy white !important surface.
-   Normalize it to the current dark design while we are testing navigation. */
-#favorites.active{
-  background:#061823!important;
-  color:#f4f7fa!important;
-}
-#favorites .profile-page-top{
-  background:#061823!important;
-  border-bottom:1px solid #203e4f!important;
-}
-#favorites .profile-page-back{
-  background:#10283a!important;
-  border-color:#29495b!important;
-  color:#2ea6ff!important;
-}
-#favorites .profile-page-top-title{
-  color:#f5f8fa!important;
-}
-#favorites .favorites-empty-icon{
-  background:#10283a!important;
-  color:#2ea6ff!important;
-}
-#favorites .favorites-empty-state h1{
-  color:#f5f8fa!important;
-}
-#favorites .favorites-empty-state p{
-  color:#8196a8!important;
-}
-</style>
-
-
-<style id="catalog-diagnostic-v27">
-.diagnostic-v27{
- grid-column:1/-1!important;width:100%!important;max-width:520px!important;
- margin:0 auto!important;padding:18px 10px 105px!important;text-align:left!important;
-}
-.diagnostic-v27>b{display:block!important;text-align:center!important;color:#f4f7fa!important;font-size:14px!important}
-#catalogDiagnosticTextV27{
- width:100%!important;max-height:310px!important;margin:12px 0!important;padding:11px!important;
- overflow:auto!important;white-space:pre-wrap!important;word-break:break-word!important;
- border:1px solid #29495b!important;border-radius:13px!important;background:#0d2533!important;
- color:#b9cfdd!important;-webkit-text-fill-color:#b9cfdd!important;
- font:10.5px/1.45 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace!important;
-}
-.diagnostic-actions-v27{display:grid!important;grid-template-columns:1fr 1fr!important;gap:8px!important}
-.diagnostic-actions-v27 button{
- height:39px!important;border:0!important;border-radius:12px!important;background:#249df2!important;
- color:#fff!important;-webkit-text-fill-color:#fff!important;font-size:10.5px!important;
 }
 </style>
 
@@ -3979,18 +3862,7 @@ function card(p){
  setTimeout(()=>window.lucide&&lucide.createIcons(),0);
 };return e}
 
-function fill(id,list){const b=$(id);if(!b)return;b.innerHTML="";if(!catalogLoaded){b.innerHTML='<div class="skeleton-grid-v2"><div></div><div></div><div></div><div></div></div>';return}if(catalogLoadError){
- const diag=escapeHtml(window.catalogDiagnosticV27||"Нет диагностических данных");
- b.innerHTML=`<div class="empty empty-load-v2 diagnostic-v27">
-   <b>Не удалось загрузить товары</b>
-   <pre id="catalogDiagnosticTextV27">${diag}</pre>
-   <div class="diagnostic-actions-v27">
-    <button type="button" onclick="loadMarketplaceCatalog()">Повторить</button>
-    <button type="button" onclick="copyCatalogDiagnosticV27()">Копировать ошибку</button>
-   </div>
- </div>`;
- return
-}if(!list.length){b.innerHTML='<div class="empty">Здесь пока ничего нет</div>';return}list.forEach(p=>b.appendChild(card(p)))}
+function fill(id,list){const b=$(id);if(!b)return;b.innerHTML="";if(!catalogLoaded){b.innerHTML='<div class="skeleton-grid-v2"><div></div><div></div><div></div><div></div></div>';return}if(catalogLoadError){b.innerHTML='<div class="empty empty-load-v2">Не удалось загрузить товары.<br><button type="button" onclick="loadMarketplaceCatalog()">Повторить</button></div>';return}if(!list.length){b.innerHTML='<div class="empty">Здесь пока ничего нет</div>';return}list.forEach(p=>b.appendChild(card(p)))}
 
 function render(){const needle=String(q||"").toLowerCase();let list=products.filter(p=>(type==="Все"||p.type===type)&&(!ownerFilter||p.ownerType===ownerFilter)&&(category==="Все"||p.category===category)&&(!needle||[p.name,p.brand,p.category].some(v=>String(v||"").toLowerCase().includes(needle))));if(sortMode==="priceAsc")list=[...list].sort((a,b)=>a.price-b.price);if(sortMode==="priceDesc")list=[...list].sort((a,b)=>b.price-a.price);if(sortMode==="name")list=[...list].sort((a,b)=>a.name.localeCompare(b.name));fill("homeGrid",products.slice(0,4));fill("catalogGrid",list);
 const catalogResultCount=$("catalogResultCount");if(catalogResultCount)catalogResultCount.textContent=list.length+" "+(list.length===1?"товар":(list.length>=2&&list.length<=4?"товара":"товаров"));
@@ -4467,132 +4339,28 @@ $("supportTelegram").onclick=()=>{const tg=window.Telegram&&window.Telegram.WebA
 $("sellPhotos").onchange=e=>{const all=[...e.target.files],b=$("sellPreview");b.innerHTML="";if(all.length>6){alert("Максимум 6 фотографий");e.target.value="";return}if(all.some(f=>f.size>10*1024*1024)){alert("Фотография больше 10 MB");e.target.value="";return}const files=all.slice(0,6);files.forEach(f=>{const img=document.createElement("img");img.src=URL.createObjectURL(f);b.appendChild(img)})};
 renderAddresses();
 
-window.catalogDiagnosticV27="";
-
-async function copyCatalogDiagnosticV27(){
- const text=window.catalogDiagnosticV27||"Нет диагностических данных";
- try{
-  await navigator.clipboard.writeText(text);
-  alert("Ошибка скопирована");
- }catch(e){
-  alert(text);
- }
-}
-
 async function loadMarketplaceCatalog(){
- catalogLoaded=false;catalogLoadError=false;window.catalogDiagnosticV27="";render();
-
- const requestUrl=MARKETPLACE_API+"/catalog";
- const origin=location.origin||"(no origin)";
- const href=location.href||"";
- const ua=navigator.userAgent||"";
- const hasTelegram=!!window.Telegram?.WebApp;
- const hasInitData=!!window.Telegram?.WebApp?.initData;
-
+ catalogLoaded=false;catalogLoadError=false;render();
  try{
-  const started=Date.now();
-  let r;
-
-  try{
-   r=await fetch(requestUrl);
-  }catch(fetchError){
-   let noCorsProbe="not tested";
-   try{
-    const probe=await fetch(requestUrl+"?probe="+Date.now(),{
-      mode:"no-cors",
-      cache:"no-store"
-    });
-    noCorsProbe="REACHABLE (opaque response type="+String(probe.type||"opaque")+")";
-   }catch(probeError){
-    noCorsProbe="FAILED: "+String(probeError?.name||"Error")+": "+String(probeError?.message||probeError);
-   }
-
-   window.catalogDiagnosticV27=[
-    "NETWORK / FETCH ERROR",
-    String(fetchError?.name||"Error")+": "+String(fetchError?.message||fetchError),
-    "",
-    "NO-CORS PROBE: "+noCorsProbe,
-    "",
-    "API URL: "+requestUrl,
-    "location.origin: "+origin,
-    "location.href: "+href,
-    "online: "+String(navigator.onLine),
-    "Telegram: "+String(hasTelegram),
-    "initData: "+String(hasInitData),
-    "UA: "+ua
-   ].join("\n");
-
-   throw fetchError;
-  }
-
-  const status=r.status,statusText=r.statusText||"",responseType=r.type||"";
-  const elapsed=Date.now()-started;
-  const contentType=r.headers.get("content-type")||"";
-  const allowOrigin=r.headers.get("access-control-allow-origin")||"(not readable)";
-  const raw=await r.text();
-
-  let d=null,parseError="";
-  try{d=raw?JSON.parse(raw):{}}catch(e){parseError=String(e?.message||e)}
-
-  if(!r.ok||!d||!d.ok){
-   window.catalogDiagnosticV27=[
-    "CATALOG RESPONSE ERROR",
-    "HTTP: "+status+" "+statusText,
-    "type: "+responseType,
-    "time: "+elapsed+" ms",
-    "content-type: "+contentType,
-    "ACAO: "+allowOrigin,
-    parseError?("JSON parse: "+parseError):"",
-    "body: "+(raw||"(empty)").slice(0,1200),
-    "",
-    "API URL: "+requestUrl,
-    "location.origin: "+origin,
-    "location.href: "+href,
-    "online: "+String(navigator.onLine),
-    "Telegram: "+String(hasTelegram),
-    "initData: "+String(hasInitData),
-    "UA: "+ua
-   ].filter(Boolean).join("\n");
-   throw new Error((d&&d.error)||("HTTP_"+status));
-  }
-
+  const r=await fetch(MARKETPLACE_API+"/catalog"),d=await r.json();
+  if(!r.ok||!d.ok)throw new Error(d.error||"CATALOG_LOAD_FAILED");
   marketProducts=(d.listings||[]).map(x=>({
    id:"listing-"+x.id,listingId:x.id,name:x.title,price:Number(x.price||0),size:x.size||"—",
    condition:x.condition||"—",type:x.ownerType==="official"?(x.sourceType==="china"?"Под заказ":"В наличии"):"Ресейл",
    category:x.category||"Другое",brand:x.brand||"",image:x.images&&x.images[0]?x.images[0].image_url:"",images:(x.images||[]).map(im=>im.image_url||im).filter(Boolean),
    ownerType:x.ownerType||"user",sourceType:x.sourceType||"",isPinned:!!x.isPinned,stockQty:Number(x.stockQty||1),status:x.status||"approved",cardBadge:x.cardBadge||x.badgeType||x.badge||"",city:x.city||x.location||"",createdAt:x.createdAt||x.created_at||"",updatedAt:x.updatedAt||x.updated_at||"",isFeatured:!!x.isFeatured,officialNote:x.officialNote||"",sellerTelegramId:String(x.sellerTelegramId||""),sellerName:x.sellerName||"Продавец",sellerUsername:x.sellerUsername||"",description:x.description||""
   }));
-
-  marketProducts.sort((a,b)=>{
-   const ap=(a.ownerType==="official"&&a.isPinned)?1:0;
-   const bp=(b.ownerType==="official"&&b.isPinned)?1:0;
-   if(ap!==bp)return bp-ap;
-   return Number(b.listingId||0)-Number(a.listingId||0);
-  });
-
-  products.splice(0,products.length,...marketProducts);
-  catalogLoaded=true;catalogLoadError=false;render();
-
- }catch(e){
-  if(!window.catalogDiagnosticV27){
-   window.catalogDiagnosticV27=[
-    "CATALOG UNKNOWN ERROR",
-    String(e?.name||"Error")+": "+String(e?.message||e),
-    "API URL: "+requestUrl,
-    "location.origin: "+origin,
-    "location.href: "+href,
-    "online: "+String(navigator.onLine),
-    "Telegram: "+String(hasTelegram),
-    "initData: "+String(hasInitData),
-    "UA: "+ua
-   ].join("\n");
-  }
-
-  catalogLoaded=true;
-  catalogLoadError=true;
-  render();
-  console.error("Marketplace catalog diagnostic",window.catalogDiagnosticV27,e);
- }
+  // Client ranking: only explicitly pinned official items get priority.
+   // All unpinned items are ordered newest-first, regardless of owner.
+   marketProducts.sort((a,b)=>{
+     const ap=(a.ownerType==="official"&&a.isPinned)?1:0;
+     const bp=(b.ownerType==="official"&&b.isPinned)?1:0;
+     if(ap!==bp)return bp-ap;
+     return Number(b.listingId||0)-Number(a.listingId||0);
+   });
+   products.splice(0,products.length,...marketProducts);
+   catalogLoaded=true;catalogLoadError=false;render();
+ }catch(e){catalogLoaded=true;catalogLoadError=true;render();console.error("Marketplace catalog",e)}
 }
 async function deleteMyListing(id,title){
  if(!confirm("Удалить «"+title+"»? Фотографии тоже будут удалены."))return;
