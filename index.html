@@ -1285,6 +1285,261 @@ nav .nav-profile-v13 .nav-profile-avatar-v13{width:27px!important;height:27px!im
 }
 </style>
 
+
+<style id="product-card-v17-unify">
+/* ============================================================
+   PRODUCT CARD v17 — TRUE SINGLE VISUAL SYSTEM
+   Home / Catalog / Favorites / Viewed
+   ============================================================ */
+
+/* exact same grid behavior */
+#homeGrid,
+#catalogGrid,
+#favoriteGrid,
+#viewedGrid{
+  display:grid!important;
+  grid-template-columns:repeat(2,minmax(0,1fr))!important;
+  gap:14px 10px!important;
+  align-items:start!important;
+}
+
+/* exact same card shell */
+#home .product-card-v15,
+#catalog .product-card-v15,
+#favorites .product-card-v15,
+#viewed .product-card-v15{
+  width:100%!important;
+  min-width:0!important;
+  height:auto!important;
+  margin:0!important;
+  padding:0!important;
+  overflow:hidden!important;
+  border-radius:17px!important;
+  border:1px solid #244352!important;
+  background:#0d2736!important;
+  box-shadow:none!important;
+}
+
+/* exact same image block */
+#home .product-card-v15 .product-card-media-v15,
+#catalog .product-card-v15 .product-card-media-v15,
+#favorites .product-card-v15 .product-card-media-v15,
+#viewed .product-card-v15 .product-card-media-v15{
+  position:relative!important;
+  width:100%!important;
+  margin:0!important;
+  padding:0!important;
+  background:#29333a!important;
+}
+#home .product-card-v15 .photo,
+#catalog .product-card-v15 .photo,
+#favorites .product-card-v15 .photo,
+#viewed .product-card-v15 .photo{
+  width:100%!important;
+  height:auto!important;
+  aspect-ratio:1.12/1!important;
+  min-height:0!important;
+  max-height:none!important;
+  margin:0!important;
+  padding:0!important;
+  border:0!important;
+  border-radius:16px 16px 0 0!important;
+  overflow:hidden!important;
+  background:#29333a!important;
+}
+#home .product-card-v15 .photo img,
+#catalog .product-card-v15 .photo img,
+#favorites .product-card-v15 .photo img,
+#viewed .product-card-v15 .photo img{
+  width:100%!important;
+  height:100%!important;
+  display:block!important;
+  object-fit:cover!important;
+}
+
+/* identical heart: muted outline, red fill only when favorite */
+#home .product-card-v15 .product-heart,
+#catalog .product-card-v15 .product-heart,
+#favorites .product-card-v15 .product-heart,
+#viewed .product-card-v15 .product-heart{
+  position:absolute!important;
+  z-index:8!important;
+  top:9px!important;
+  right:9px!important;
+  width:38px!important;
+  height:38px!important;
+  margin:0!important;
+  padding:0!important;
+  border-radius:50%!important;
+  border:1px solid rgba(155,181,197,.18)!important;
+  background:rgba(29,42,51,.78)!important;
+  color:#a9becb!important;
+  display:flex!important;
+  align-items:center!important;
+  justify-content:center!important;
+  box-shadow:none!important;
+  backdrop-filter:blur(10px)!important;
+  -webkit-backdrop-filter:blur(10px)!important;
+}
+.product-card-v15 .product-heart svg{
+  width:22px!important;
+  height:22px!important;
+  overflow:visible!important;
+}
+.product-card-v15 .product-heart svg path{
+  fill:transparent!important;
+  stroke:currentColor!important;
+  stroke-width:1.8!important;
+  stroke-linecap:round!important;
+  stroke-linejoin:round!important;
+  transition:fill .12s ease,stroke .12s ease!important;
+}
+.product-card-v15 .product-heart.is-favorite{
+  color:#ff4964!important;
+  background:rgba(35,46,55,.90)!important;
+}
+.product-card-v15 .product-heart.is-favorite svg path{
+  fill:#ff4964!important;
+  stroke:#ff4964!important;
+}
+
+/* identical card body */
+#home .product-card-v15 .product-card-info-v15,
+#catalog .product-card-v15 .product-card-info-v15,
+#favorites .product-card-v15 .product-card-info-v15,
+#viewed .product-card-v15 .product-card-info-v15{
+  position:relative!important;
+  width:100%!important;
+  min-height:0!important;
+  height:auto!important;
+  margin:0!important;
+  padding:10px 11px 11px!important;
+  border:0!important;
+  background:#0d2736!important;
+  display:block!important;
+}
+
+/* identical typography/order */
+#home .product-card-v15 .name,
+#catalog .product-card-v15 .name,
+#favorites .product-card-v15 .name,
+#viewed .product-card-v15 .name{
+  display:block!important;
+  min-height:0!important;
+  height:auto!important;
+  margin:0!important;
+  padding:0!important;
+  color:#f5f8fa!important;
+  font-size:13.5px!important;
+  line-height:1.18!important;
+  font-weight:500!important;
+  white-space:nowrap!important;
+  overflow:hidden!important;
+  text-overflow:ellipsis!important;
+}
+#home .product-card-v15 .price,
+#catalog .product-card-v15 .price,
+#favorites .product-card-v15 .price,
+#viewed .product-card-v15 .price{
+  display:block!important;
+  min-height:0!important;
+  height:auto!important;
+  margin:5px 0 0!important;
+  padding:0!important;
+  color:#2ea6ff!important;
+  font-size:16.5px!important;
+  line-height:1.08!important;
+  font-weight:650!important;
+}
+#home .product-card-v15 .product-card-bottom-v16,
+#catalog .product-card-v15 .product-card-bottom-v16,
+#favorites .product-card-v15 .product-card-bottom-v16,
+#viewed .product-card-v15 .product-card-bottom-v16{
+  display:grid!important;
+  grid-template-columns:minmax(0,1fr) auto!important;
+  align-items:center!important;
+  gap:7px!important;
+  min-height:19px!important;
+  margin:7px 0 0!important;
+  padding:0!important;
+}
+#home .product-card-v15 .product-meta-v16,
+#catalog .product-card-v15 .product-meta-v16,
+#favorites .product-card-v15 .product-meta-v16,
+#viewed .product-card-v15 .product-meta-v16{
+  color:#8ca1b2!important;
+}
+.product-card-v15 .product-more-v16{
+  color:#8ca1b2!important;
+}
+
+/* badge stays identical in all four places */
+#home .product-card-v15 .product-badge-v15,
+#catalog .product-card-v15 .product-badge-v15,
+#favorites .product-card-v15 .product-badge-v15,
+#viewed .product-card-v15 .product-badge-v15{
+  position:absolute!important;
+  z-index:8!important;
+  left:9px!important;
+  top:9px!important;
+  width:auto!important;
+  height:30px!important;
+  margin:0!important;
+  padding:0 10px!important;
+  border-radius:9px!important;
+  border:0!important;
+  display:inline-flex!important;
+  align-items:center!important;
+  justify-content:center!important;
+  color:#fff!important;
+  font-size:11px!important;
+  line-height:1!important;
+  font-weight:600!important;
+  white-space:nowrap!important;
+}
+
+/* neutralize older catalog-only card rules */
+#catalog .tg-catalog-grid-v14 .product-card-v15 .name,
+#catalog .tg-catalog-grid-v14 .product-card-v15 .price,
+#catalog .tg-catalog-grid-v14 .product-card-v15 .meta,
+#catalog .tg-catalog-grid-v14 .product-card-v15 .card-info{
+  order:initial!important;
+}
+
+/* city row should never be replaced visually by brand */
+.product-meta-v16 span{
+  max-width:100%!important;
+}
+
+/* responsive */
+@media(max-width:390px){
+  #homeGrid,
+  #catalogGrid,
+  #favoriteGrid,
+  #viewedGrid{
+    gap:12px 8px!important;
+  }
+  #home .product-card-v15 .product-card-info-v15,
+  #catalog .product-card-v15 .product-card-info-v15,
+  #favorites .product-card-v15 .product-card-info-v15,
+  #viewed .product-card-v15 .product-card-info-v15{
+    padding:9px 9px 10px!important;
+  }
+  #home .product-card-v15 .name,
+  #catalog .product-card-v15 .name,
+  #favorites .product-card-v15 .name,
+  #viewed .product-card-v15 .name{
+    font-size:12.5px!important;
+  }
+  #home .product-card-v15 .price,
+  #catalog .product-card-v15 .price,
+  #favorites .product-card-v15 .price,
+  #viewed .product-card-v15 .price{
+    font-size:15.5px!important;
+  }
+}
+</style>
+
 </head><body><div class="app">
 <header id="appHeader" class="app-header-v2 dark-home-header-v10">
   <div class="dark-brand-row-v10">
@@ -1863,12 +2118,10 @@ function productCardBadgeV15(p){
 function productCardMetaV15(p){
   const parts=[];
   const city=String(p?.city||p?.location||"").trim();
-  const brand=String(p?.brand||"").trim();
   const size=String(p?.size||"").trim();
   const condition=String(p?.condition||"").trim();
 
-  if(city)parts.push(city);
-  else if(brand)parts.push(brand);
+  parts.push(city||"Город не указан");
 
   if(size&&size!=="—")parts.push("Размер: "+size);
   else if(condition&&condition!=="—")parts.push(condition);
@@ -1888,7 +2141,9 @@ function card(p){
   <div class="card-media product-card-media-v15">
     <div class="photo"><img src="${p.image}" alt="${escapeHtml(p.name)}" loading="lazy" onerror="this.style.display='none'"></div>
     <span class="badge product-badge-v15 badge-${badge.key}">${badge.label}</span>
-    <button type="button" class="product-heart ${isFavorite?"is-favorite":""}" aria-label="Избранное">${isFavorite?"♥":"♡"}</button>
+    <button type="button" class="product-heart ${isFavorite?"is-favorite":""}" aria-label="Избранное" aria-pressed="${isFavorite?"true":"false"}">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78L12 21.23l8.84-8.84a5.5 5.5 0 0 0 0-7.78Z"/></svg>
+    </button>
     ${isSold?'<div class="sold-overlay-v15"><span>Продано</span></div>':""}
   </div>
   <div class="card-info product-card-info-v15">
@@ -1908,7 +2163,6 @@ function card(p){
  const syncFavoriteUIV16=(id,on)=>{
    document.querySelectorAll(`.product-card-v15[data-product-id="${CSS.escape(String(id))}"] .product-heart`).forEach(btn=>{
      btn.classList.toggle("is-favorite",on);
-     btn.textContent=on?"♥":"♡";
      btn.setAttribute("aria-pressed",on?"true":"false");
    });
 
