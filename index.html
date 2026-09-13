@@ -811,6 +811,22 @@ nav .nav-profile-v13 .nav-profile-avatar-v13{width:27px!important;height:27px!im
 }
 </style>
 
+
+<style id="catalog-v14-2-header-fix">
+/* Catalog v14.2 — remove duplicate in-page title under Telegram native header */
+#catalog .tg-catalog-v14{
+  padding-top:12px!important;
+}
+#catalog .tg-catalog-search-row-v14{
+  margin-top:0!important;
+}
+
+/* Defensive: old duplicate header must never render if stale markup survives cache */
+#catalog .tg-catalog-head-v14{
+  display:none!important;
+}
+</style>
+
 </head><body><div class="app">
 <header id="appHeader" class="app-header-v2 dark-home-header-v10">
   <div class="dark-brand-row-v10">
@@ -907,18 +923,7 @@ nav .nav-profile-v13 .nav-profile-avatar-v13{width:27px!important;height:27px!im
 
 <section id="catalog" class="page">
   <div class="tg-catalog-v14">
-
-    <div class="tg-catalog-head-v14">
-      <div class="tg-catalog-head-title-v14">
-        <h1>УЗБЕКСКИЙ RE’SALE</h1>
-        <span>мини-приложение</span>
-      </div>
-      <button class="tg-catalog-more-v14" type="button" aria-label="Ещё">
-        <i data-lucide="ellipsis"></i>
-      </button>
-    </div>
-
-    <div class="tg-catalog-search-row-v14">
+<div class="tg-catalog-search-row-v14">
       <div class="tg-catalog-search-v14">
         <i data-lucide="search"></i>
         <input id="catalogSearchV14" placeholder="Поиск товаров, брендов, категорий..." autocomplete="off">
