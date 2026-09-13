@@ -2297,6 +2297,336 @@ body.product-open-v19 nav{
 }
 </style>
 
+
+<style id="product-v20-final">
+/* ============================================================
+   PRODUCT PAGE v20 — final dark cleanup + Sotish-like layout
+   ============================================================ */
+
+/* kill ALL old white product-specific surfaces */
+html body #productView,
+html body #productView .product-v18-inner,
+html body #productView .product-v18-body{
+  background:#061823!important;
+  color:#f4f7fa!important;
+}
+
+/* old legacy ID rules used TWO IDs, so override with two IDs + body */
+html body #productView #pSize,
+html body #productView #pCondition{
+  min-height:34px!important;
+  margin:0!important;
+  padding:0 13px!important;
+  border-radius:14px!important;
+  border:1px solid #29495b!important;
+  background:#0e2634!important;
+  color:#c8d6df!important;
+  -webkit-text-fill-color:#c8d6df!important;
+  box-shadow:none!important;
+  font-size:12px!important;
+  font-weight:500!important;
+  opacity:1!important;
+}
+html body #productView #pCondition.spec-new,
+html body #productView #pCondition.spec-excellent{
+  border-color:#187452!important;
+  background:#0d3328!important;
+  color:#3bda89!important;
+  -webkit-text-fill-color:#3bda89!important;
+}
+html body #productView #pCondition.spec-good{
+  border-color:#235b7e!important;
+  background:#0d2d42!important;
+  color:#42aaff!important;
+  -webkit-text-fill-color:#42aaff!important;
+}
+html body #productView #pCondition.spec-fair{
+  border-color:#735b31!important;
+  background:#30291d!important;
+  color:#e1ba6e!important;
+  -webkit-text-fill-color:#e1ba6e!important;
+}
+
+/* size options: no white under any old CSS */
+html body #productView #productSizeOptions button{
+  min-width:46px!important;
+  height:38px!important;
+  margin:0!important;
+  padding:0 13px!important;
+  border-radius:12px!important;
+  border:1px solid #315164!important;
+  background:#122d3d!important;
+  color:#dce8f0!important;
+  -webkit-text-fill-color:#dce8f0!important;
+  box-shadow:none!important;
+  font-size:12px!important;
+  font-weight:500!important;
+  opacity:1!important;
+}
+html body #productView #productSizeOptions button.active{
+  border-color:#2ea6ff!important;
+  background:linear-gradient(180deg,#35a7ff,#1788e8)!important;
+  color:#fff!important;
+  -webkit-text-fill-color:#fff!important;
+}
+
+/* all product panels remain dark */
+html body #productView .product-v18-panel,
+html body #productView .product-v18-seller-card,
+html body #productView .product-v18-size-picker{
+  background:#0e2634!important;
+  border-color:#29495b!important;
+  color:#f4f7fa!important;
+}
+
+/* description closer to Sotish: plain readable block */
+#productView .product-v20-description-panel{
+  padding:15px 16px!important;
+}
+#productView .product-v20-description-panel .product-v18-panel-title{
+  margin-bottom:12px!important;
+}
+#productView .product-v18-description{
+  margin:0!important;
+  color:#e0e8ee!important;
+  -webkit-text-fill-color:#e0e8ee!important;
+  font-size:14px!important;
+  line-height:1.48!important;
+  font-weight:400!important;
+}
+.product-published-v20{
+  margin-top:15px!important;
+  padding-top:12px!important;
+  border-top:1px solid rgba(125,151,168,.13)!important;
+  color:#7f96a8!important;
+  font-size:11px!important;
+}
+
+/* characteristics like a dark marketplace details table */
+#productView .product-v20-characteristics{
+  padding:12px 16px!important;
+}
+#productView .product-v20-characteristics .product-v18-meta>div{
+  min-height:42px!important;
+  grid-template-columns:40% 60%!important;
+}
+#productView .product-v20-characteristics .product-v18-meta span{
+  color:#8398aa!important;
+}
+#productView .product-v20-characteristics .product-v18-meta b{
+  color:#f2f6f9!important;
+  -webkit-text-fill-color:#f2f6f9!important;
+}
+
+/* inline seller listings */
+.product-seller-listings-v20{
+  margin-top:18px!important;
+}
+.product-seller-listings-v20[hidden]{
+  display:none!important;
+}
+.product-seller-listings-head-v20{
+  display:flex!important;
+  align-items:center!important;
+  justify-content:space-between!important;
+  gap:12px!important;
+  margin:0 2px 10px!important;
+}
+.product-seller-listings-head-v20>span{
+  color:#8398aa!important;
+  font-size:11px!important;
+  font-weight:600!important;
+  letter-spacing:.055em!important;
+  text-transform:uppercase!important;
+}
+#productSellerAllV20{
+  border:0!important;
+  background:transparent!important;
+  color:#2ea6ff!important;
+  -webkit-text-fill-color:#2ea6ff!important;
+  font-size:12px!important;
+  font-weight:500!important;
+}
+.product-seller-listings-grid-v20{
+  display:flex!important;
+  gap:10px!important;
+  overflow-x:auto!important;
+  padding:0 0 4px!important;
+  scrollbar-width:none!important;
+  scroll-snap-type:x proximity!important;
+}
+.product-seller-listings-grid-v20::-webkit-scrollbar{
+  display:none!important;
+}
+.seller-mini-card-v20{
+  flex:0 0 138px!important;
+  width:138px!important;
+  margin:0!important;
+  padding:0 0 10px!important;
+  overflow:hidden!important;
+  border-radius:16px!important;
+  border:1px solid #244352!important;
+  background:#0e2938!important;
+  color:#f4f7fa!important;
+  text-align:left!important;
+  box-shadow:none!important;
+  scroll-snap-align:start!important;
+}
+.seller-mini-image-v20{
+  width:100%!important;
+  height:116px!important;
+  display:block!important;
+  overflow:hidden!important;
+  background:#28343b!important;
+}
+.seller-mini-image-v20 img{
+  width:100%!important;
+  height:100%!important;
+  display:block!important;
+  object-fit:cover!important;
+}
+.seller-mini-price-v20{
+  display:block!important;
+  margin:9px 9px 0!important;
+  color:#2ea6ff!important;
+  -webkit-text-fill-color:#2ea6ff!important;
+  font-size:13px!important;
+  line-height:1.05!important;
+  font-weight:650!important;
+  white-space:nowrap!important;
+  overflow:hidden!important;
+  text-overflow:ellipsis!important;
+}
+.seller-mini-title-v20{
+  display:block!important;
+  margin:5px 9px 0!important;
+  color:#edf3f7!important;
+  -webkit-text-fill-color:#edf3f7!important;
+  font-size:11px!important;
+  line-height:1.15!important;
+  font-weight:400!important;
+  white-space:nowrap!important;
+  overflow:hidden!important;
+  text-overflow:ellipsis!important;
+}
+
+/* seller block keeps our "Написать" button */
+#productView .product-v18-seller-action{
+  background:transparent!important;
+  border:1px solid #168ff0!important;
+  color:#2ea6ff!important;
+  -webkit-text-fill-color:#2ea6ff!important;
+}
+
+/* make purchase controls smaller and less intrusive */
+#productView .product-v18-actions{
+  position:fixed!important;
+  z-index:1250!important;
+  left:50%!important;
+  bottom:78px!important;
+  transform:translateX(-50%)!important;
+  width:min(540px,calc(100% - 16px))!important;
+  margin:0!important;
+  padding:7px 8px!important;
+  display:grid!important;
+  grid-template-columns:1fr 1.08fr!important;
+  gap:8px!important;
+  border-radius:18px!important;
+  border:1px solid rgba(72,107,128,.16)!important;
+  background:rgba(7,24,35,.88)!important;
+  backdrop-filter:blur(16px)!important;
+  -webkit-backdrop-filter:blur(16px)!important;
+  box-shadow:0 -4px 18px rgba(0,0,0,.16)!important;
+}
+#productView #addBtn,
+#productView #buyBtn{
+  height:44px!important;
+  min-height:44px!important;
+  border-radius:14px!important;
+  font-size:13.5px!important;
+  font-weight:600!important;
+}
+#productView #addBtn{
+  border:1px solid #176c9f!important;
+  background:#0c4e77!important;
+  color:#edf6fb!important;
+  -webkit-text-fill-color:#edf6fb!important;
+}
+#productView #buyBtn{
+  border:1px solid #2caeff!important;
+  background:linear-gradient(180deg,#1aa7ff,#087ff0)!important;
+  color:#fff!important;
+  -webkit-text-fill-color:#fff!important;
+}
+
+/* bottom content must not hide behind smaller purchase bar */
+#productView .product-v18-inner{
+  padding-bottom:calc(172px + env(safe-area-inset-bottom))!important;
+}
+
+/* nav always wins and navigating closes product in JS */
+body.product-open-v19 nav{
+  z-index:1400!important;
+}
+
+/* Gallery controls less bulky */
+.product-gallery-arrow-v19{
+  width:34px!important;
+  height:34px!important;
+  background:rgba(8,28,39,.70)!important;
+}
+.product-gallery-arrow-v19 svg{
+  width:20px!important;
+  height:20px!important;
+}
+#productView .product-v18-dots{
+  gap:5px!important;
+}
+#productView .product-v18-dots button{
+  width:7px!important;
+  height:7px!important;
+  min-width:7px!important;
+}
+
+/* defensive white cleanup inside Product only */
+#productView button,
+#productView select,
+#productView input,
+#productView textarea{
+  -webkit-appearance:none!important;
+  appearance:none!important;
+}
+#productView .white,
+#productView .telegram-btn,
+#productView .seller-link{
+  background:#0e2634!important;
+  color:#dce8f0!important;
+  -webkit-text-fill-color:#dce8f0!important;
+  border-color:#29495b!important;
+}
+
+@media(max-width:390px){
+  #productView .product-v18-actions{
+    width:calc(100% - 12px)!important;
+    bottom:77px!important;
+    padding:6px!important;
+  }
+  #productView #addBtn,
+  #productView #buyBtn{
+    height:42px!important;
+    min-height:42px!important;
+    font-size:13px!important;
+  }
+  .seller-mini-card-v20{
+    flex-basis:126px!important;
+    width:126px!important;
+  }
+  .seller-mini-image-v20{
+    height:106px!important;
+  }
+}
+</style>
+
 </head><body><div class="app">
 <header id="appHeader" class="app-header-v2 dark-home-header-v10">
   <div class="dark-brand-row-v10">
@@ -2676,19 +3006,28 @@ body.product-open-v19 nav{
         <span id="pCondition"></span>
       </div>
 
-      <div class="product-v18-panel">
-        <div class="product-v18-panel-title">Характеристики</div>
-        <div id="productMeta" class="product-v18-meta"></div>
-      </div>
-
-      <div id="productDescriptionBlockV18" class="product-v18-panel">
+      <div id="productDescriptionBlockV18" class="product-v18-panel product-v20-description-panel">
         <div class="product-v18-panel-title">Описание</div>
         <p id="pDescriptionV18" class="product-v18-description"></p>
+        <div id="productPublishedV20" class="product-published-v20" hidden></div>
+      </div>
+
+      <div class="product-v18-panel product-v20-characteristics">
+        <div class="product-v18-panel-title">Характеристики</div>
+        <div id="productMeta" class="product-v18-meta"></div>
       </div>
 
       <div class="product-v18-seller-section">
         <div class="product-v18-panel-title">Продавец</div>
         <div id="productSeller"></div>
+      </div>
+
+      <div id="productSellerListingsV20" class="product-seller-listings-v20" hidden>
+        <div class="product-seller-listings-head-v20">
+          <span>Другие объявления продавца</span>
+          <button id="productSellerAllV20" type="button">Все</button>
+        </div>
+        <div id="productSellerListingsGridV20" class="product-seller-listings-grid-v20"></div>
       </div>
 
       <div class="product-actions-final product-v18-actions">
@@ -2933,6 +3272,75 @@ async function shareProductV18(p){
   }catch(e){
     alert(text);
   }
+}
+
+
+function productSellerMiniCardV20(item){
+  const title=escapeHtml(item.title||item.name||"Товар");
+  const price=money(item.price||0);
+  const image=escapeHtml(
+    item.image||
+    item.images?.[0]?.image_url||
+    item.images?.[0]?.url||
+    ""
+  );
+  const listingId=Number(item.listingId||item.id||0);
+  return `<button type="button" class="seller-mini-card-v20" data-listing-id="${listingId}">
+    <span class="seller-mini-image-v20">${image?`<img src="${image}" alt="${title}">`:""}</span>
+    <span class="seller-mini-price-v20">${price}</span>
+    <span class="seller-mini-title-v20">${title}</span>
+  </button>`;
+}
+
+async function loadProductSellerListingsV20(p){
+  const section=$("productSellerListingsV20");
+  const grid=$("productSellerListingsGridV20");
+  const allBtn=$("productSellerAllV20");
+  if(!section||!grid)return;
+
+  section.hidden=true;
+  grid.innerHTML="";
+
+  let items=[];
+
+  if(p?.ownerType==="official"){
+    items=products
+      .filter(x=>x.ownerType==="official"&&String(x.id)!==String(p.id))
+      .slice(0,8)
+      .map(x=>({...x,title:x.name}));
+    if(allBtn)allBtn.onclick=()=>openOfficialStore();
+  }else if(p?.sellerTelegramId){
+    try{
+      const r=await fetch(MARKETPLACE_API+"/seller?telegramId="+encodeURIComponent(p.sellerTelegramId));
+      const d=await r.json();
+      if(r.ok&&d.ok){
+        items=(d.profile?.listings||[])
+          .filter(x=>Number(x.id)!==Number(p.listingId||0))
+          .slice(0,8);
+      }
+    }catch(e){
+      console.warn("SELLER INLINE LISTINGS ERROR",e);
+    }
+    if(allBtn)allBtn.onclick=()=>goSellerProfile(p.sellerTelegramId);
+  }
+
+  if(!items.length)return;
+
+  grid.innerHTML=items.map(productSellerMiniCardV20).join("");
+  grid.querySelectorAll(".seller-mini-card-v20").forEach(btn=>{
+    btn.onclick=()=>{
+      const lid=Number(btn.dataset.listingId||0);
+      const found=products.find(x=>Number(x.listingId||0)===lid||Number(x.id||0)===lid);
+      if(found){
+        const tmp=card(found);
+        tmp.click();
+      }else{
+        openSellerListing(lid);
+      }
+    };
+  });
+
+  section.hidden=false;
 }
 
 function productCardBadgeV15(p){
@@ -3187,10 +3595,16 @@ function card(p){
 
  const descBlock=$("productDescriptionBlockV18");
  const desc=$("pDescriptionV18");
+ const publishedLine=$("productPublishedV20");
  if(descBlock&&desc){
    const text=String(p.description||"").trim();
    descBlock.hidden=!text;
    desc.textContent=text;
+   if(publishedLine){
+     const published=productDateV18(p.createdAt);
+     publishedLine.hidden=!published;
+     publishedLine.textContent=published?("Опубликовано "+published):"";
+   }
  }
 
  const sb=$("productSeller");
@@ -3221,6 +3635,8 @@ function card(p){
      sb.innerHTML="";
    }
  }
+
+ loadProductSellerListingsV20(p);
 
  const sold=badge.key==="sold"||String(p.status||"").toLowerCase()==="sold";
  const addBtn=$("addBtn"),buyBtn=$("buyBtn");
@@ -3553,6 +3969,11 @@ function currentPageId(){
   return el ? el.id : "home";
 }
 function page(id){
+  const productView=$("productView");
+  if(productView?.classList.contains("open")){
+    productView.classList.remove("open");
+    document.body.classList.remove("product-open-v19");
+  }
   const current=currentPageId();
   if(current && current!==id) pageHistory.push(current);
   navigatePage(id);
