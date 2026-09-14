@@ -3602,6 +3602,293 @@ body.product-open-v19 nav{
 }
 </style>
 
+
+<style id="product-v14-2-final-ui">
+/* ============================================================
+   PRODUCT PAGE v14.2 — clean final UI
+   - no decorative "streaks"/gradients on surfaces
+   - bigger cart/buy buttons inside one rounded transparent shell
+   - seller listings visually match main/catalog cards at smaller scale
+   ============================================================ */
+
+/* ---------- CLEAN TOP / GALLERY ---------- */
+#productView,
+#productView .product-v18-inner,
+#productView .product-v18-body,
+#productView .product-v18-gallery{
+  background:#061823!important;
+  background-image:none!important;
+}
+
+#productView .product-v18-gallery{
+  border:1px solid #244352!important;
+  box-shadow:none!important;
+}
+
+#productView .product-gallery-arrow-v19,
+#productView #productBack,
+#productView #productFav,
+#productView #productShare{
+  background:rgba(10,34,47,.88)!important;
+  background-image:none!important;
+  border:1px solid #2a4b5d!important;
+  box-shadow:none!important;
+}
+
+/* ---------- SELLER'S OTHER LISTINGS ----------
+   Same visual language as main/catalog cards, just smaller
+*/
+#productView .product-seller-listings-grid-v20{
+  display:flex!important;
+  gap:10px!important;
+  overflow-x:auto!important;
+  padding:0 0 4px!important;
+  scrollbar-width:none!important;
+}
+#productView .product-seller-listings-grid-v20::-webkit-scrollbar{
+  display:none!important;
+}
+
+#productView .seller-mini-card-v20{
+  flex:0 0 142px!important;
+  width:142px!important;
+  height:214px!important;
+  min-height:214px!important;
+
+  display:flex!important;
+  flex-direction:column!important;
+
+  margin:0!important;
+  padding:0!important;
+  overflow:hidden!important;
+
+  border:1px solid #244352!important;
+  border-radius:16px!important;
+  background:#0d2736!important;
+  background-image:none!important;
+  box-shadow:none!important;
+  text-align:left!important;
+}
+
+#productView .seller-mini-image-v20{
+  position:relative!important;
+  display:block!important;
+  width:100%!important;
+  height:134px!important;
+  min-height:134px!important;
+  max-height:134px!important;
+  overflow:hidden!important;
+
+  background:#f4f1ef!important;
+  border-radius:15px 15px 0 0!important;
+}
+
+#productView .seller-mini-image-v20 img{
+  width:100%!important;
+  height:100%!important;
+  display:block!important;
+  object-fit:cover!important;
+  object-position:center!important;
+}
+
+/* same PRICE -> NAME -> META order as approved cards */
+#productView .seller-mini-price-v20{
+  order:1!important;
+  display:block!important;
+  margin:9px 9px 0!important;
+
+  color:#2ea6ff!important;
+  -webkit-text-fill-color:#2ea6ff!important;
+
+  font-size:14px!important;
+  line-height:17px!important;
+  font-weight:700!important;
+
+  white-space:nowrap!important;
+  overflow:hidden!important;
+  text-overflow:ellipsis!important;
+}
+
+#productView .seller-mini-title-v20{
+  order:2!important;
+  display:block!important;
+  margin:3px 9px 0!important;
+
+  color:#f7f9fb!important;
+  -webkit-text-fill-color:#f7f9fb!important;
+
+  font-size:11.5px!important;
+  line-height:15px!important;
+  font-weight:500!important;
+
+  white-space:nowrap!important;
+  overflow:hidden!important;
+  text-overflow:ellipsis!important;
+}
+
+#productView .seller-mini-city-v21{
+  order:3!important;
+  display:block!important;
+  margin:auto 9px 9px!important;
+
+  color:#859bad!important;
+  -webkit-text-fill-color:#859bad!important;
+
+  font-size:9.5px!important;
+  line-height:12px!important;
+
+  white-space:nowrap!important;
+  overflow:hidden!important;
+  text-overflow:ellipsis!important;
+}
+
+/* ---------- PURCHASE BAR ----------
+   larger buttons in one rounded transparent rectangle
+*/
+#productView .product-v18-actions,
+#productView .product-actions-final.product-v18-actions{
+  position:fixed!important;
+  z-index:1250!important;
+
+  left:50%!important;
+  right:auto!important;
+  top:auto!important;
+  bottom:78px!important;
+  transform:translateX(-50%)!important;
+
+  width:min(548px,calc(100% - 12px))!important;
+  height:70px!important;
+  min-height:70px!important;
+
+  margin:0!important;
+  padding:8px!important;
+
+  display:grid!important;
+  grid-template-columns:1fr 1fr!important;
+  align-items:center!important;
+  gap:9px!important;
+
+  border:1px solid rgba(62,101,124,.42)!important;
+  border-radius:22px!important;
+
+  background:rgba(7,24,35,.72)!important;
+  background-image:none!important;
+
+  backdrop-filter:blur(16px)!important;
+  -webkit-backdrop-filter:blur(16px)!important;
+
+  box-shadow:0 8px 24px rgba(0,0,0,.20)!important;
+}
+
+/* bigger buttons */
+#productView #addBtn,
+#productView #buyBtn{
+  position:static!important;
+  width:100%!important;
+  height:52px!important;
+  min-height:52px!important;
+
+  margin:0!important;
+  padding:0 14px!important;
+
+  border-radius:16px!important;
+
+  font-size:14.5px!important;
+  line-height:1!important;
+  font-weight:650!important;
+
+  display:flex!important;
+  align-items:center!important;
+  justify-content:center!important;
+}
+
+#productView #addBtn{
+  color:#f3f8fb!important;
+  -webkit-text-fill-color:#f3f8fb!important;
+
+  background:rgba(20,73,103,.62)!important;
+  background-image:none!important;
+
+  border:1px solid #238ac8!important;
+  box-shadow:none!important;
+}
+
+#productView #buyBtn{
+  color:#fff!important;
+  -webkit-text-fill-color:#fff!important;
+
+  background:#149cff!important;
+  background-image:none!important;
+
+  border:1px solid #3bb3ff!important;
+  box-shadow:none!important;
+}
+
+/* press state only; no jumping */
+#productView #addBtn:active,
+#productView #buyBtn:active{
+  transform:none!important;
+  opacity:.88!important;
+}
+
+/* enough space so content is NEVER covered */
+#productView .product-v18-inner{
+  padding-bottom:calc(174px + env(safe-area-inset-bottom))!important;
+}
+
+/* bottom nav stays exactly where it is */
+body.product-open-v19 nav{
+  z-index:1400!important;
+}
+
+/* ---------- NARROW TELEGRAM DESKTOP / ANDROID ---------- */
+@media(max-width:390px){
+  #productView .seller-mini-card-v20{
+    flex-basis:130px!important;
+    width:130px!important;
+    height:198px!important;
+    min-height:198px!important;
+  }
+
+  #productView .seller-mini-image-v20{
+    height:122px!important;
+    min-height:122px!important;
+    max-height:122px!important;
+  }
+
+  #productView .seller-mini-price-v20{
+    font-size:13px!important;
+  }
+
+  #productView .seller-mini-title-v20{
+    font-size:11px!important;
+  }
+
+  #productView .product-v18-actions,
+  #productView .product-actions-final.product-v18-actions{
+    bottom:74px!important;
+    width:calc(100% - 8px)!important;
+    height:66px!important;
+    min-height:66px!important;
+    padding:7px!important;
+    gap:7px!important;
+    border-radius:20px!important;
+  }
+
+  #productView #addBtn,
+  #productView #buyBtn{
+    height:50px!important;
+    min-height:50px!important;
+    border-radius:15px!important;
+    font-size:14px!important;
+  }
+
+  #productView .product-v18-inner{
+    padding-bottom:calc(166px + env(safe-area-inset-bottom))!important;
+  }
+}
+</style>
+
 </head><body><div class="app">
 <header id="appHeader" class="app-header-v2 dark-home-header-v10">
   <div class="dark-brand-row-v10">
