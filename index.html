@@ -4158,6 +4158,326 @@ button[aria-label="Назад"]:active{
 }
 </style>
 
+
+<style id="cart-v14-5-dark-override">
+/* ============================================================
+   v14.5 — CART: remove legacy light theme + fix Back button
+   ============================================================ */
+
+/* The old cart CSS was still forcing white/light colors with !important.
+   This final override intentionally wins because it is appended last. */
+#cart,
+#cart.active{
+  background:#061823!important;
+  background-image:none!important;
+  color:#f4f7fa!important;
+  padding-bottom:88px!important;
+}
+
+#cart .cart-premium-section,
+#cart>.section{
+  padding:14px 12px 112px!important;
+  background:#061823!important;
+  background-image:none!important;
+}
+
+/* Header */
+#cart .cart-head{
+  display:flex!important;
+  align-items:center!important;
+  gap:11px!important;
+  margin:0 0 16px!important;
+}
+#cart .cart-head>div{min-width:0!important}
+#cart .cart-head h1{
+  margin:0!important;
+  color:#f6f8fa!important;
+  -webkit-text-fill-color:#f6f8fa!important;
+  font-size:24px!important;
+  line-height:1.05!important;
+  font-weight:700!important;
+  letter-spacing:-.02em!important;
+}
+#cart .cart-head p{
+  margin:5px 0 0!important;
+  color:#8398aa!important;
+  -webkit-text-fill-color:#8398aa!important;
+  font-size:10px!important;
+  line-height:1.2!important;
+}
+
+/* Exact Product-style back button */
+#cart .cart-back-v145{
+  width:42px!important;
+  height:42px!important;
+  min-width:42px!important;
+  min-height:42px!important;
+  max-width:42px!important;
+  max-height:42px!important;
+  flex:0 0 42px!important;
+
+  display:inline-flex!important;
+  align-items:center!important;
+  justify-content:center!important;
+
+  margin:0!important;
+  padding:0!important;
+
+  border:1px solid #2a4b5d!important;
+  border-radius:50%!important;
+
+  background:#0b2736!important;
+  background-image:none!important;
+
+  color:#f2f7fa!important;
+  -webkit-text-fill-color:#f2f7fa!important;
+
+  box-shadow:none!important;
+  transform:none!important;
+}
+#cart .cart-back-v145 svg{
+  width:19px!important;
+  height:19px!important;
+  stroke:currentColor!important;
+  stroke-width:2!important;
+  fill:none!important;
+}
+#cart .cart-back-v145:active{
+  opacity:.72!important;
+  transform:none!important;
+}
+
+/* Empty cart state — dark, no old white block */
+#cart #cartList:empty{
+  min-height:calc(100dvh - 300px)!important;
+}
+#cart .cart-empty,
+#cart .empty{
+  color:#8398aa!important;
+  -webkit-text-fill-color:#8398aa!important;
+}
+#cart .empty-icon,
+#cart .cart-empty-icon{
+  background:#0d2736!important;
+  color:#8fa5b5!important;
+  border:1px solid #244352!important;
+}
+
+/* Filled cart rows */
+#cartList{
+  display:flex!important;
+  flex-direction:column!important;
+  gap:10px!important;
+}
+#cartList .cartrow{
+  position:relative!important;
+  display:grid!important;
+  grid-template-columns:88px minmax(0,1fr) 34px!important;
+  align-items:center!important;
+  gap:11px!important;
+
+  min-height:112px!important;
+  margin:0!important;
+  padding:10px!important;
+
+  border:1px solid #244352!important;
+  border-radius:17px!important;
+  background:#0d2736!important;
+  background-image:none!important;
+  box-shadow:none!important;
+}
+#cartList .cartpic{
+  width:88px!important;
+  height:92px!important;
+  margin:0!important;
+  padding:0!important;
+  overflow:hidden!important;
+  border:0!important;
+  border-radius:13px!important;
+  background:#f4f1ef!important;
+}
+#cartList .cartpic img{
+  width:100%!important;
+  height:100%!important;
+  display:block!important;
+  object-fit:contain!important;
+  margin:0!important;
+  padding:5px!important;
+  box-sizing:border-box!important;
+}
+#cartList .grow{min-width:0!important}
+#cartList .grow b{
+  color:#f6f8fa!important;
+  -webkit-text-fill-color:#f6f8fa!important;
+  font-size:12.5px!important;
+  line-height:1.2!important;
+  font-weight:650!important;
+}
+#cartList .grow .meta,
+#cartList .meta{
+  color:#8ba0b1!important;
+  -webkit-text-fill-color:#8ba0b1!important;
+  font-size:9.5px!important;
+}
+#cartList .grow .price,
+#cartList .price{
+  color:#2ea6ff!important;
+  -webkit-text-fill-color:#2ea6ff!important;
+  font-size:15px!important;
+  font-weight:700!important;
+}
+#cartList .remove{
+  width:32px!important;
+  height:32px!important;
+  display:flex!important;
+  align-items:center!important;
+  justify-content:center!important;
+  padding:0!important;
+  border:1px solid #2a4b5d!important;
+  border-radius:50%!important;
+  background:#102c3c!important;
+  color:#f5f8fa!important;
+  -webkit-text-fill-color:#f5f8fa!important;
+}
+
+/* Cart total / checkout */
+#cartBottom{
+  margin-top:14px!important;
+  padding:14px!important;
+  border:1px solid #244352!important;
+  border-radius:18px!important;
+  background:#0d2736!important;
+  background-image:none!important;
+}
+#cart .cart-summary-label,
+#cart .cart-note{
+  color:#8398aa!important;
+  -webkit-text-fill-color:#8398aa!important;
+}
+#cart .total{
+  color:#f6f8fa!important;
+  -webkit-text-fill-color:#f6f8fa!important;
+}
+#cart .total span:last-child{
+  color:#2ea6ff!important;
+  -webkit-text-fill-color:#2ea6ff!important;
+}
+#cart #checkoutBtn{
+  min-height:50px!important;
+  border:1px solid #39b1ff!important;
+  border-radius:15px!important;
+  background:#149cff!important;
+  background-image:none!important;
+  color:#fff!important;
+  -webkit-text-fill-color:#fff!important;
+}
+
+/* Narrow Telegram Desktop */
+@media(max-width:390px){
+  #cart .cart-premium-section,
+  #cart>.section{
+    padding-left:8px!important;
+    padding-right:8px!important;
+  }
+  #cartList .cartrow{
+    grid-template-columns:80px minmax(0,1fr) 32px!important;
+    gap:9px!important;
+    padding:8px!important;
+  }
+  #cartList .cartpic{
+    width:80px!important;
+    height:84px!important;
+  }
+}
+</style>
+
+
+<style id="cart-v14-6-empty-state-fix">
+/* ============================================================
+   v14.6 — EMPTY CART STATE
+   Remove remaining light square and make empty state fully dark.
+   ============================================================ */
+
+#cart .cart-empty,
+#cart .empty,
+#cart .cart-empty-state,
+#cart .empty-state{
+  color:#8398aa!important;
+  -webkit-text-fill-color:#8398aa!important;
+  background:transparent!important;
+  background-image:none!important;
+}
+
+/* Catch every legacy empty-cart icon wrapper */
+#cart .empty-icon,
+#cart .cart-empty-icon,
+#cart .cart-empty .icon,
+#cart .empty .icon,
+#cart [class*="empty"][class*="icon"]{
+  width:64px!important;
+  height:64px!important;
+  min-width:64px!important;
+  min-height:64px!important;
+
+  display:flex!important;
+  align-items:center!important;
+  justify-content:center!important;
+
+  margin:0 auto 12px!important;
+  padding:0!important;
+
+  border:1px solid #244352!important;
+  border-radius:18px!important;
+
+  background:#0d2736!important;
+  background-image:none!important;
+
+  color:#7f97a8!important;
+  -webkit-text-fill-color:#7f97a8!important;
+
+  box-shadow:none!important;
+}
+
+/* If the legacy icon is an emoji/text inside the wrapper */
+#cart .empty-icon *,
+#cart .cart-empty-icon *,
+#cart .cart-empty .icon *,
+#cart .empty .icon *{
+  color:#7f97a8!important;
+  -webkit-text-fill-color:#7f97a8!important;
+  background:transparent!important;
+  background-image:none!important;
+}
+
+/* Center the empty state cleanly */
+#cart .cart-empty,
+#cart .empty,
+#cart .cart-empty-state,
+#cart .empty-state{
+  min-height:calc(100dvh - 300px)!important;
+  display:flex!important;
+  flex-direction:column!important;
+  align-items:center!important;
+  justify-content:center!important;
+  text-align:center!important;
+  gap:0!important;
+}
+
+/* Remove any pale pseudo-element left by old theme */
+#cart .cart-empty::before,
+#cart .cart-empty::after,
+#cart .empty::before,
+#cart .empty::after,
+#cart .empty-icon::before,
+#cart .empty-icon::after,
+#cart .cart-empty-icon::before,
+#cart .cart-empty-icon::after{
+  box-shadow:none!important;
+  background:transparent!important;
+  background-image:none!important;
+}
+</style>
+
 </head><body><div class="app">
 <header id="appHeader" class="app-header-v2 dark-home-header-v10">
   <div class="dark-brand-row-v10">
@@ -4395,7 +4715,7 @@ button[aria-label="Назад"]:active{
     </div>
     <div id="favoriteGrid" class="grid favorites-grid"></div>
   </div>
-</section><section id="cart" class="page"><div class="section cart-premium-section"><div class="cart-head"><button class="back" type="button" onclick="page('home')">←</button><div><h1>Корзина</h1><p>Ваши выбранные товары</p></div></div><div id="cartList"></div><div id="cartBottom" style="display:none"><div class="cart-summary-label">Сумма заказа</div><div class="total"><span>Итого</span><span id="total"></span></div><button id="checkoutBtn" class="btn black">Оформить заказ</button><div class="cart-note">Оплата и доставка подтверждаются после оформления.</div></div></div></section>
+</section><section id="cart" class="page"><div class="section cart-premium-section"><div class="cart-head"><button class="back cart-back-v145" type="button" onclick="page('home')" aria-label="Назад"><i data-lucide="chevron-left"></i></button><div><h1>Корзина</h1><p>Ваши выбранные товары</p></div></div><div id="cartList"></div><div id="cartBottom" style="display:none"><div class="cart-summary-label">Сумма заказа</div><div class="total"><span>Итого</span><span id="total"></span></div><button id="checkoutBtn" class="btn black">Оформить заказ</button><div class="cart-note">Оплата и доставка подтверждаются после оформления.</div></div></div></section>
 
 
 <section id="profile" class="page">
