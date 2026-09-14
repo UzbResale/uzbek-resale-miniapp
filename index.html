@@ -4031,6 +4031,133 @@ body.product-open-v19 nav{
 }
 </style>
 
+
+<style id="unified-back-buttons-v14-4">
+/* ============================================================
+   v14.4 — ONE BACK BUTTON STYLE EVERYWHERE
+   Matches Product Page: dark circular 42px button + thin teal border.
+   ============================================================ */
+
+:root{
+  --uzr-back-size:42px;
+  --uzr-back-bg:#0b2736;
+  --uzr-back-border:#2a4b5d;
+  --uzr-back-color:#f2f7fa;
+}
+
+/* All known back buttons across the Mini App */
+.back,
+.profile-page-back,
+.product-back-final,
+.official-store-back,
+.tg-settings-back-v13,
+#productBack,
+#checkoutBack,
+#orderDetailBack,
+#ordersBack,
+#officialStoreBack,
+#adminReviewView .back,
+#adminListingView .back,
+button[aria-label="Назад"]{
+  width:var(--uzr-back-size)!important;
+  height:var(--uzr-back-size)!important;
+  min-width:var(--uzr-back-size)!important;
+  min-height:var(--uzr-back-size)!important;
+  max-width:var(--uzr-back-size)!important;
+  max-height:var(--uzr-back-size)!important;
+  flex:0 0 var(--uzr-back-size)!important;
+
+  display:inline-flex!important;
+  align-items:center!important;
+  justify-content:center!important;
+
+  margin:0!important;
+  padding:0!important;
+
+  border:1px solid var(--uzr-back-border)!important;
+  border-radius:50%!important;
+
+  background:var(--uzr-back-bg)!important;
+  background-image:none!important;
+
+  color:var(--uzr-back-color)!important;
+  -webkit-text-fill-color:var(--uzr-back-color)!important;
+
+  box-shadow:none!important;
+  outline:none!important;
+
+  font-size:22px!important;
+  line-height:1!important;
+  font-weight:400!important;
+
+  transform:none!important;
+  transition:opacity .12s ease!important;
+
+  cursor:pointer!important;
+  -webkit-tap-highlight-color:transparent!important;
+}
+
+/* Keep icon itself neat and identical */
+.back svg,
+.profile-page-back svg,
+.product-back-final svg,
+.official-store-back svg,
+.tg-settings-back-v13 svg,
+#productBack svg,
+#checkoutBack svg,
+#orderDetailBack svg,
+#ordersBack svg,
+#officialStoreBack svg,
+button[aria-label="Назад"] svg{
+  width:19px!important;
+  height:19px!important;
+  min-width:19px!important;
+  min-height:19px!important;
+  stroke-width:2!important;
+  color:inherit!important;
+  stroke:currentColor!important;
+  fill:none!important;
+}
+
+/* If old pages use a text arrow instead of SVG */
+.back i,
+.profile-page-back i,
+.tg-settings-back-v13 i,
+#checkoutBack i,
+#orderDetailBack i,
+#ordersBack i{
+  font-size:20px!important;
+  line-height:1!important;
+}
+
+/* Same pressed feedback everywhere; no jumping/scaling */
+.back:active,
+.profile-page-back:active,
+.product-back-final:active,
+.official-store-back:active,
+.tg-settings-back-v13:active,
+#productBack:active,
+#checkoutBack:active,
+#orderDetailBack:active,
+#ordersBack:active,
+#officialStoreBack:active,
+button[aria-label="Назад"]:active{
+  opacity:.72!important;
+  transform:none!important;
+}
+
+/* Explicitly neutralize legacy light-page overrides */
+#checkoutView #checkoutBack,
+#ordersPage #ordersBack,
+#orderDetailView #orderDetailBack{
+  border-radius:50%!important;
+  background:var(--uzr-back-bg)!important;
+  border-color:var(--uzr-back-border)!important;
+  color:var(--uzr-back-color)!important;
+  -webkit-text-fill-color:var(--uzr-back-color)!important;
+}
+</style>
+
 </head><body><div class="app">
 <header id="appHeader" class="app-header-v2 dark-home-header-v10">
   <div class="dark-brand-row-v10">
