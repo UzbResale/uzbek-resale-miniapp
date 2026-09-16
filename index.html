@@ -5904,6 +5904,78 @@ body.official-store-open-v33 #officialStoreView{
 }
 </style>
 
+
+<style id="product-official-seller-v36">
+/* ============================================================
+   v36 — Product page official seller card proportions fix
+   ============================================================ */
+#productView .product-v18-seller-card.official{
+  grid-template-columns:52px minmax(0,1fr) auto!important;
+  min-height:76px!important;
+  padding:10px 12px!important;
+  gap:12px!important;
+  border-radius:18px!important;
+  align-items:center!important;
+}
+#productView .product-v18-seller-card.official .product-v18-seller-avatar{
+  width:52px!important;
+  height:52px!important;
+  background:#fff!important;
+  border:1px solid rgba(255,255,255,.08)!important;
+}
+#productView .product-v18-seller-card.official .product-v18-seller-copy{
+  gap:3px!important;
+}
+#productView .product-v18-seller-card.official .product-v18-seller-copy b{
+  font-size:15px!important;
+  line-height:1.12!important;
+  font-weight:700!important;
+  letter-spacing:-.01em!important;
+}
+#productView .product-v18-seller-card.official .product-v18-seller-copy span{
+  font-size:12px!important;
+  color:#8ea9bb!important;
+  line-height:1.15!important;
+}
+#productView .product-v18-seller-card.official .product-v18-verified{
+  margin-left:4px!important;
+  display:inline-flex!important;
+  align-items:center!important;
+  justify-content:center!important;
+}
+#productView .product-v18-seller-card.official .product-v18-verified .telegram-verified-svg{
+  width:17px!important;
+  height:17px!important;
+}
+#productView .product-v18-seller-card.official .product-v18-seller-action{
+  height:42px!important;
+  min-width:96px!important;
+  padding:0 16px!important;
+  border-radius:15px!important;
+  font-size:13px!important;
+  font-weight:700!important;
+}
+@media(max-width:390px){
+  #productView .product-v18-seller-card.official{
+    grid-template-columns:48px minmax(0,1fr) auto!important;
+    min-height:72px!important;
+    padding:10px!important;
+    gap:10px!important;
+  }
+  #productView .product-v18-seller-card.official .product-v18-seller-avatar{
+    width:48px!important;
+    height:48px!important;
+  }
+  #productView .product-v18-seller-card.official .product-v18-seller-copy b{font-size:14px!important;}
+  #productView .product-v18-seller-card.official .product-v18-seller-copy span{font-size:11px!important;}
+  #productView .product-v18-seller-card.official .product-v18-seller-action{
+    min-width:90px!important;
+    height:40px!important;
+    padding:0 14px!important;
+    font-size:12.5px!important;
+  }
+}
+</style>
 </head><body><div class="app">
 <header class="app-header-v2 dark-home-header-v10" id="appHeader">
 <div class="dark-brand-row-v10">
