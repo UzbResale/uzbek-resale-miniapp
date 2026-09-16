@@ -5380,6 +5380,160 @@ body .app > .page.active{
 }
 </style>
 
+
+<style id="seller-profile-v26-final">
+/* ============================================================
+   SELLER PROFILE v26 — Telegram Dark
+   New isolated component. Does not use legacy seller-profile-head/listing-card CSS.
+   ============================================================ */
+#sellerProfile,
+#sellerProfile.active{
+  background:#061823!important;
+  color:#f4f7fa!important;
+}
+#sellerProfile.active{
+  position:fixed!important;
+  z-index:44!important;
+  inset:0!important;
+  width:100%!important;
+  height:100dvh!important;
+  max-height:100dvh!important;
+  margin:0!important;
+  padding:0 0 88px!important;
+  overflow-y:auto!important;
+  overflow-x:hidden!important;
+  -webkit-overflow-scrolling:touch!important;
+  overscroll-behavior:contain!important;
+}
+#sellerProfileContent{
+  width:100%!important;
+  max-width:560px!important;
+  min-height:100%!important;
+  margin:0 auto!important;
+  padding:12px 14px calc(118px + env(safe-area-inset-bottom))!important;
+  box-sizing:border-box!important;
+  background:#061823!important;
+}
+.seller-v26-head{
+  display:flex!important;
+  align-items:center!important;
+  gap:12px!important;
+  min-height:54px!important;
+  margin:0 0 12px!important;
+}
+.seller-v26-back{
+  width:42px!important;height:42px!important;min-width:42px!important;flex:0 0 42px!important;
+  display:flex!important;align-items:center!important;justify-content:center!important;
+  margin:0!important;padding:0!important;border:1px solid #29495b!important;border-radius:50%!important;
+  background:#0e2634!important;color:#dce9f2!important;box-shadow:none!important;
+}
+.seller-v26-back svg{width:22px!important;height:22px!important;stroke:currentColor!important;stroke-width:1.9!important}
+.seller-v26-back:active{opacity:.72!important;transform:none!important}
+.seller-v26-head h1{margin:0!important;color:#f7f9fb!important;font-size:22px!important;line-height:1!important;font-weight:650!important;letter-spacing:-.02em!important}
+
+.seller-v26-hero{
+  padding:18px!important;
+  border:1px solid #244352!important;
+  border-radius:22px!important;
+  background:#0e2938!important;
+}
+.seller-v26-identity{
+  display:grid!important;
+  grid-template-columns:88px minmax(0,1fr)!important;
+  gap:15px!important;
+  align-items:center!important;
+}
+.seller-v26-avatar{
+  width:88px!important;height:88px!important;border-radius:50%!important;overflow:hidden!important;
+  display:flex!important;align-items:center!important;justify-content:center!important;
+  background:#17364a!important;border:1px solid #2b617e!important;color:#fff!important;
+  font-size:25px!important;font-weight:600!important;
+}
+.seller-v26-avatar img{width:100%!important;height:100%!important;display:block!important;object-fit:cover!important}
+.seller-v26-name{margin:0!important;color:#f8fafc!important;font-size:24px!important;line-height:1.05!important;font-weight:650!important;letter-spacing:-.025em!important;overflow-wrap:anywhere!important}
+.seller-v26-role{display:inline-flex!important;align-items:center!important;min-height:27px!important;margin-top:7px!important;padding:0 10px!important;border-radius:999px!important;background:#0c3c5b!important;color:#36adff!important;font-size:11px!important;font-weight:600!important}
+.seller-v26-location{display:flex!important;align-items:center!important;gap:6px!important;margin-top:9px!important;color:#9bb0bf!important;font-size:12px!important;line-height:1.2!important}
+.seller-v26-location svg{width:16px!important;height:16px!important;stroke:#8fa7b8!important;stroke-width:2!important}
+.seller-v26-about{margin:13px 0 0!important;color:#a7bac7!important;font-size:11.5px!important;line-height:1.45!important}
+
+.seller-v26-stats{
+  display:grid!important;grid-template-columns:1fr 1fr!important;overflow:hidden!important;
+  margin:17px 0 0!important;border:1px solid #244352!important;border-radius:17px!important;background:#0b2635!important;
+}
+.seller-v26-stat{min-height:70px!important;display:flex!important;flex-direction:column!important;align-items:center!important;justify-content:center!important;text-align:center!important}
+.seller-v26-stat+.seller-v26-stat{border-left:1px solid #244352!important}
+.seller-v26-stat b{color:#f7f9fb!important;font-size:22px!important;line-height:1!important;font-weight:700!important}
+.seller-v26-stat span{margin-top:5px!important;color:#8499aa!important;font-size:10px!important}
+
+.seller-v26-actions{display:grid!important;grid-template-columns:1fr 1fr!important;gap:9px!important;margin-top:12px!important}
+.seller-v26-action{
+  min-width:0!important;height:49px!important;display:flex!important;align-items:center!important;justify-content:center!important;gap:8px!important;
+  border-radius:14px!important;font-size:12px!important;font-weight:650!important;
+}
+.seller-v26-action svg{width:18px!important;height:18px!important;stroke-width:2!important}
+.seller-v26-action.primary{border:1px solid #2aaaff!important;background:linear-gradient(180deg,#20a9ff,#168ee8)!important;color:#fff!important}
+.seller-v26-action.secondary{border:1px solid #2b5267!important;background:#0e2a39!important;color:#e4eef4!important}
+.seller-v26-action.settings{grid-column:1/-1!important;border:1px solid #27495b!important;background:#102b3a!important;color:#e9f2f7!important}
+
+.seller-v26-products-head{display:flex!important;align-items:center!important;justify-content:space-between!important;gap:10px!important;margin:23px 2px 11px!important}
+.seller-v26-products-head h2{margin:0!important;color:#f5f8fa!important;font-size:20px!important;font-weight:650!important;letter-spacing:-.02em!important}
+.seller-v26-products-head span{color:#8298aa!important;font-size:11px!important}
+.seller-v26-grid{display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:13px 9px!important;margin:0!important;padding:0!important}
+#sellerProfile .seller-v26-grid .product-card-v15{width:100%!important;min-width:0!important}
+.seller-v26-empty{
+  grid-column:1/-1!important;min-height:260px!important;display:flex!important;flex-direction:column!important;align-items:center!important;justify-content:center!important;
+  padding:24px!important;border:1px solid #244352!important;border-radius:20px!important;background:#0e2938!important;text-align:center!important;
+}
+.seller-v26-empty-icon{width:68px!important;height:68px!important;display:flex!important;align-items:center!important;justify-content:center!important;margin-bottom:14px!important;border-radius:20px!important;background:#102e40!important;color:#7695aa!important}
+.seller-v26-empty-icon svg{width:31px!important;height:31px!important}
+.seller-v26-empty h3{margin:0!important;color:#f3f7fa!important;font-size:18px!important;font-weight:650!important}
+.seller-v26-empty p{max-width:260px!important;margin:7px 0 0!important;color:#8297a8!important;font-size:10.5px!important;line-height:1.45!important}
+
+/* Settings bottom sheet — own seller profile only */
+#sellerSettingsV26[hidden]{display:none!important}
+#sellerSettingsV26{
+  position:fixed!important;z-index:1800!important;inset:0!important;display:flex!important;align-items:flex-end!important;justify-content:center!important;
+  background:rgba(0,0,0,.48)!important;backdrop-filter:blur(7px)!important;-webkit-backdrop-filter:blur(7px)!important;
+}
+.seller-settings-sheet-v26{
+  width:100%!important;max-width:560px!important;max-height:min(82dvh,720px)!important;overflow-y:auto!important;
+  padding:9px 14px calc(20px + env(safe-area-inset-bottom))!important;border:1px solid #29495b!important;border-bottom:0!important;
+  border-radius:25px 25px 0 0!important;background:#0b202d!important;color:#f5f8fa!important;box-shadow:0 -18px 48px rgba(0,0,0,.34)!important;
+}
+.seller-settings-handle-v26{width:38px!important;height:5px!important;margin:0 auto 15px!important;border-radius:99px!important;background:#617585!important}
+.seller-settings-title-v26{display:flex!important;align-items:center!important;justify-content:space-between!important;gap:12px!important;margin:0 2px 15px!important}
+.seller-settings-title-v26 h2{margin:0!important;color:#f7f9fb!important;font-size:21px!important;font-weight:650!important}
+.seller-settings-close-v26{width:34px!important;height:34px!important;display:flex!important;align-items:center!important;justify-content:center!important;padding:0!important;border:0!important;border-radius:50%!important;background:#173242!important;color:#b8c8d3!important}
+.seller-settings-close-v26 svg{width:18px!important;height:18px!important}
+.seller-settings-group-v26{overflow:hidden!important;margin-bottom:12px!important;border:1px solid #244352!important;border-radius:18px!important;background:#102b3a!important}
+.seller-settings-field-v26{padding:13px!important;border-bottom:1px solid #244352!important}
+.seller-settings-field-v26:last-child{border-bottom:0!important}
+.seller-settings-field-v26 label{display:block!important;margin:0 0 7px!important;color:#dce7ee!important;font-size:11px!important;font-weight:600!important}
+.seller-settings-field-v26 select,.seller-settings-field-v26 textarea{width:100%!important;box-sizing:border-box!important;border:1px solid #315164!important;border-radius:13px!important;background:#0b2432!important;color:#f2f6f9!important;font:inherit!important;font-size:12px!important;outline:none!important}
+.seller-settings-field-v26 select{height:45px!important;padding:0 11px!important}
+.seller-settings-field-v26 textarea{min-height:92px!important;padding:11px!important;resize:none!important;line-height:1.4!important}
+.seller-settings-count-v26{display:block!important;margin-top:5px!important;color:#70889a!important;font-size:8.5px!important;text-align:right!important}
+.seller-settings-toggle-row-v26{min-height:58px!important;display:flex!important;align-items:center!important;justify-content:space-between!important;gap:12px!important;padding:0 13px!important}
+.seller-settings-toggle-copy-v26 b{display:block!important;color:#eef4f7!important;font-size:12px!important;font-weight:550!important}
+.seller-settings-toggle-copy-v26 small{display:block!important;margin-top:3px!important;color:#7f95a7!important;font-size:9px!important}
+.seller-switch-v26{position:relative!important;width:48px!important;height:29px!important;min-width:48px!important;padding:0!important;border:0!important;border-radius:999px!important;background:#344b5a!important}
+.seller-switch-v26:after{content:""!important;position:absolute!important;left:3px!important;top:3px!important;width:23px!important;height:23px!important;border-radius:50%!important;background:#fff!important;transition:left .15s ease!important}
+.seller-switch-v26.on{background:#249df2!important}.seller-switch-v26.on:after{left:22px!important}
+.seller-settings-info-v26{display:flex!important;align-items:flex-start!important;gap:9px!important;margin:0 0 12px!important;padding:11px 12px!important;border:1px solid #244352!important;border-radius:15px!important;background:#0e2938!important;color:#8fa5b5!important;font-size:9.5px!important;line-height:1.4!important}
+.seller-settings-info-v26 svg{width:17px!important;height:17px!important;flex:0 0 17px!important;color:#2ea6ff!important}
+.seller-settings-save-v26{width:100%!important;height:50px!important;border:0!important;border-radius:14px!important;background:linear-gradient(180deg,#20a9ff,#168ee8)!important;color:#fff!important;font-size:12.5px!important;font-weight:700!important}
+
+@media(max-width:390px){
+  #sellerProfileContent{padding-left:10px!important;padding-right:10px!important}
+  .seller-v26-hero{padding:15px!important}
+  .seller-v26-identity{grid-template-columns:78px minmax(0,1fr)!important;gap:12px!important}
+  .seller-v26-avatar{width:78px!important;height:78px!important}
+  .seller-v26-name{font-size:22px!important}
+  .seller-v26-action{font-size:11.5px!important}
+  .seller-v26-grid{gap:12px 8px!important}
+}
+</style>
+
 </head><body><div class="app">
 <header id="appHeader" class="app-header-v2 dark-home-header-v10">
   <div class="dark-brand-row-v10">
@@ -5739,7 +5893,20 @@ body .app > .page.active{
     </div>
   </div>
 </section>
-<section id="sellerProfile" class="page"><div class="section"><div class="simple-head"><button class="back" onclick="page('catalog')">←</button><h1>Продавец</h1></div><div id="sellerProfileContent"></div></div></section>
+<section id="sellerProfile" class="page"><div id="sellerProfileContent"></div></section>
+<div id="sellerSettingsV26" hidden onclick="if(event.target===this)closeSellerSettingsV26()">
+  <div class="seller-settings-sheet-v26" role="dialog" aria-modal="true" aria-labelledby="sellerSettingsTitleV26">
+    <div class="seller-settings-handle-v26"></div>
+    <div class="seller-settings-title-v26"><h2 id="sellerSettingsTitleV26">Настройки профиля продавца</h2><button class="seller-settings-close-v26" type="button" onclick="closeSellerSettingsV26()" aria-label="Закрыть"><i data-lucide="x"></i></button></div>
+    <div class="seller-settings-group-v26">
+      <div class="seller-settings-field-v26"><label for="sellerSettingsCityV26">Город</label><select id="sellerSettingsCityV26"></select></div>
+      <div class="seller-settings-field-v26"><label for="sellerSettingsAboutV26">О себе</label><textarea id="sellerSettingsAboutV26" maxlength="120" placeholder="Например: продаю вещи из личного гардероба"></textarea><small id="sellerSettingsAboutCountV26" class="seller-settings-count-v26">0 / 120</small></div>
+      <div class="seller-settings-toggle-row-v26"><div class="seller-settings-toggle-copy-v26"><b>Скрывать город</b><small>Город не будет показываться в профиле</small></div><button id="sellerSettingsHideCityV26" class="seller-switch-v26" type="button" aria-pressed="false"></button></div>
+    </div>
+    <div class="seller-settings-info-v26"><i data-lucide="info"></i><span>Фото профиля берётся напрямую из Telegram и не загружается в ImageKit.</span></div>
+    <button class="seller-settings-save-v26" type="button" onclick="saveSellerSettingsV26()">Сохранить</button>
+  </div>
+</div>
 <section id="faq" class="page"><div class="section"><div class="simple-head"><button class="back" onclick="page('profile')">←</button><h1>FAQ</h1></div><button class="btn black faq-support-top" onclick="openTelegramUsername('uzbclothelover')">Связаться с поддержкой</button><div class="faq-list">
 <div class="faq-item"><button class="faq-q">Как купить вещь?<span>＋</span></button><div class="faq-a">Откройте товар, нажмите «Купить», заполните данные и подтвердите заказ. Вы получите номер UR-xxxxxx.</div></div>
 <div class="faq-item"><button class="faq-q">Как продать вещь?<span>＋</span></button><div class="faq-a">Откройте «Продать», добавьте фотографии и информацию, затем отправьте объявление на модерацию.</div></div>
@@ -7204,53 +7371,137 @@ function messageSeller(username){
  const u=String(username||"").replace(/^@/,"");if(!u)return alert("У продавца нет публичного Telegram username");
  const tg=window.Telegram&&window.Telegram.WebApp;if(tg&&tg.openTelegramLink)tg.openTelegramLink("https://t.me/"+u);else window.open("https://t.me/"+u,"_blank");
 }
-async function openSellerProfile(id,fallbackName="",fallbackUsername=""){
- if(!id)return;
- document.querySelectorAll(".page").forEach(x=>x.classList.remove("active"));
- const target=$("sellerProfile");if(!target)return;target.classList.add("active");target.scrollTop=0;requestAnimationFrame(()=>{target.scrollTop=0;window.scrollTo(0,0)});
- document.querySelectorAll(".nav").forEach(x=>x.classList.remove("active"));
- const b=$("sellerProfileContent");b.innerHTML='<div class="empty">Загрузка...</div>';
- resetPageScroll(target);target.scrollTop=0;
- try{const r=await fetch(MARKETPLACE_API+"/seller?telegramId="+encodeURIComponent(id)),d=await r.json();if(!r.ok||!d.ok)throw new Error();
- const p=d.profile;
- if((!p.name||p.name==="Продавец")&&fallbackName)p.name=fallbackName;
- if(!p.username&&fallbackUsername)p.username=fallbackUsername;
- const ini=(p.name||"P").split(" ").map(x=>x[0]).join("").slice(0,2).toUpperCase();
- const items=(p.listings||[]).map(x=>'<div class="listing-card" style="cursor:pointer" onclick="openSellerListing('+x.id+')">'+(x.images&&x.images[0]?'<img src="'+x.images[0].image_url+'">':'')+'<div class="listing-info"><div class="listing-title">'+x.title+'</div><div class="meta">'+(x.brand||x.category)+'</div><div class="listing-price">'+money(x.price)+'</div></div><span class="arrow">›</span></div>').join("");
- b.innerHTML='<div class="seller-profile-head"><div class="seller-avatar">'+ini+'</div><h2>'+p.name+'</h2><div class="seller-sub">'+(p.username?"@"+p.username:"Telegram продавец")+'</div><div class="seller-stats"><div class="seller-stat"><b>'+p.activeCount+'</b><span>Объявлений</span></div><div class="seller-stat"><b>'+p.soldCount+'</b><span>Продано</span></div></div>'+(p.username?'<button class="btn black" onclick="messageSeller(\''+p.username+'\')">Написать в Telegram</button>':'')+'</div><h2>Товары продавца</h2>'+items;
- resetPageScroll(target);target.scrollTop=0;
- setTimeout(()=>{resetPageScroll(target);target.scrollTop=0},30);
- setTimeout(()=>window.lucide&&lucide.createIcons(),0);
- }catch(e){b.innerHTML='<div class="empty">Не удалось загрузить профиль</div>';resetPageScroll(target);target.scrollTop=0}
+let sellerProfileReturnV26="catalog";
+let sellerProfileStateV26=null;
+const UZR_SELLER_PROFILE_STORAGE_V26="uzr_seller_profile_v26";
+
+function sellerLocalKeyV26(id){return UZR_SELLER_PROFILE_STORAGE_V26+"::"+String(id||"")}
+function loadSellerLocalV26(id){
+  try{const v=JSON.parse(localStorage.getItem(sellerLocalKeyV26(id))||"{}");return {city:String(v.city||""),about:String(v.about||"").slice(0,120),hideCity:!!v.hideCity}}catch(e){return {city:"",about:"",hideCity:false}}
+}
+function saveSellerLocalV26(id,value){try{localStorage.setItem(sellerLocalKeyV26(id),JSON.stringify(value))}catch(e){}}
+function sellerInitialsV26(name){return String(name||"Продавец").split(/\s+/).filter(Boolean).map(x=>x[0]).join("").slice(0,2).toUpperCase()||"P"}
+function sellerProfileBackV26(){page(sellerProfileReturnV26||"catalog")}
+function sellerScrollProductsV26(){const el=$("sellerProductsV26");if(el)el.scrollIntoView({behavior:"smooth",block:"start"})}
+function sellerListingProductV26(x,profile){
+  const imgs=(x.images||[]).map(im=>im?.image_url||im).filter(Boolean);
+  return {
+    id:"listing-"+x.id,listingId:Number(x.id||0),name:x.title||"Товар",price:Number(x.price||0),size:x.size||"—",condition:x.condition||"—",
+    type:"Ресейл",category:x.category||"Другое",brand:x.brand||"",city:x.city||"",description:x.description||"",
+    image:imgs[0]||"",images:imgs,ownerType:"user",sourceType:x.source_type||x.sourceType||"",stockQty:Number(x.stock_qty||x.stockQty||1),
+    status:x.status||"approved",sellerTelegramId:String(profile.telegramId||x.seller_telegram_id||x.sellerTelegramId||""),sellerName:profile.name||x.seller_name||"Продавец",
+    sellerUsername:profile.username||x.seller_username||""
+  };
+}
+function sellerCityOptionsV26(selected){
+  const vals=[];const source=$("sellCity");
+  if(source){[...source.options].forEach(o=>{const v=String(o.value||o.textContent||"").trim();if(v&&!vals.includes(v))vals.push(v)})}
+  const current=String(selected||"");if(current&&!vals.includes(current))vals.unshift(current);
+  return '<option value="">Не указан</option>'+vals.map(v=>`<option value="${escapeHtml(v)}"${v===current?' selected':''}>${escapeHtml(v)}</option>`).join("");
+}
+function renderSellerProfileV26(profile,id,own=false,fallbackName="",fallbackUsername=""){
+  const b=$("sellerProfileContent");if(!b)return;
+  const p=profile||{};
+  const name=((!p.name||p.name==="Продавец")?fallbackName:p.name)||"Продавец";
+  const username=String(p.username||fallbackUsername||"").replace(/^@/,"");
+  const listings=Array.isArray(p.listings)?p.listings:[];
+  const cfg=loadSellerLocalV26(id);
+  const listingCity=String((listings.find(x=>String(x.city||"").trim())||{}).city||"");
+  const city=cfg.city||listingCity;
+  const showCity=!!city&&!cfg.hideCity;
+  const avatarUrl=id?`${MARKETPLACE_API}/telegram-avatar?telegramId=${encodeURIComponent(id)}`:"";
+  const ini=sellerInitialsV26(name);
+  const items=listings.map(x=>sellerListingProductV26(x,{...p,telegramId:id,name,username}));
+  const activeCount=Number(p.activeCount??items.length)||0;
+  const soldCount=Number(p.soldCount||0)||0;
+  const writeBtn=!own&&username?`<button class="seller-v26-action primary" type="button" onclick="messageSeller('${escapeHtml(username)}')"><i data-lucide="send"></i><span>Написать</span></button>`:"";
+  const allBtn=`<button class="seller-v26-action secondary" type="button" onclick="sellerScrollProductsV26()"><i data-lucide="shopping-bag"></i><span>Все товары</span></button>`;
+  const actions=own
+    ? `<div class="seller-v26-actions"><button class="seller-v26-action settings" type="button" onclick="openSellerSettingsV26('${escapeHtml(String(id))}')"><i data-lucide="settings"></i><span>Настроить профиль</span></button>${allBtn}</div>`
+    : `<div class="seller-v26-actions ${writeBtn?'':'single'}">${writeBtn}${allBtn}</div>`;
+  b.innerHTML=`
+    <div class="seller-v26-head"><button class="seller-v26-back" type="button" onclick="sellerProfileBackV26()" aria-label="Назад"><i data-lucide="chevron-left"></i></button><h1>${own?'Мой профиль продавца':'Профиль продавца'}</h1></div>
+    <section class="seller-v26-hero">
+      <div class="seller-v26-identity">
+        <div class="seller-v26-avatar">${avatarUrl?`<img src="${avatarUrl}" alt="" onerror="this.remove();this.parentElement.textContent='${escapeHtml(ini)}'">`:escapeHtml(ini)}</div>
+        <div><h2 class="seller-v26-name">${escapeHtml(name)}</h2><span class="seller-v26-role">Продавец</span>${showCity?`<div class="seller-v26-location"><i data-lucide="map-pin"></i><span>${escapeHtml(city)}</span></div>`:""}</div>
+      </div>
+      ${cfg.about?`<p class="seller-v26-about">${escapeHtml(cfg.about)}</p>`:""}
+      <div class="seller-v26-stats"><div class="seller-v26-stat"><b>${activeCount}</b><span>Объявлений</span></div><div class="seller-v26-stat"><b>${soldCount}</b><span>Продано</span></div></div>
+      ${actions}
+    </section>
+    <div id="sellerProductsV26" class="seller-v26-products-head"><h2>${own?'Мои товары':'Товары продавца'}</h2><span>${activeCount}</span></div>
+    <div id="sellerProductsGridV26" class="seller-v26-grid"></div>`;
+  const grid=$("sellerProductsGridV26");
+  if(grid){
+    if(items.length)items.forEach(item=>grid.appendChild(card(item)));
+    else grid.innerHTML=`<div class="seller-v26-empty"><div class="seller-v26-empty-icon"><i data-lucide="package-open"></i></div><h3>Пока нет товаров</h3><p>${own?'Опубликуйте первое объявление — оно появится здесь после модерации.':'У продавца сейчас нет активных объявлений.'}</p></div>`;
+  }
+  sellerProfileStateV26={id:String(id),own,name,username,city,about:cfg.about,hideCity:cfg.hideCity,profile:p};
+  resetPageScroll($("sellerProfile"));
+  setTimeout(()=>window.lucide&&lucide.createIcons(),0);
+}
+async function openSellerProfile(id,fallbackName="",fallbackUsername="",forceOwn=false){
+  if(!id)return;
+  const currentId=String(window.Telegram?.WebApp?.initDataUnsafe?.user?.id||telegramUser?.id||"");
+  const own=!!forceOwn||(currentId&&String(id)===currentId);
+  document.querySelectorAll(".page").forEach(x=>x.classList.remove("active"));
+  const target=$("sellerProfile");if(!target)return;target.classList.add("active");target.scrollTop=0;
+  document.querySelectorAll(".nav").forEach(x=>x.classList.toggle("active",x.dataset.page==="profile"));
+  const b=$("sellerProfileContent");b.innerHTML='<div class="seller-v26-empty"><div class="seller-v26-empty-icon"><i data-lucide="loader-circle"></i></div><h3>Загрузка...</h3></div>';
+  try{
+    const r=await fetch(MARKETPLACE_API+"/seller?telegramId="+encodeURIComponent(id)),d=await r.json();
+    if(!r.ok||!d.ok)throw new Error(d.error||"SELLER_LOAD_FAILED");
+    renderSellerProfileV26(d.profile||{},String(id),own,fallbackName,fallbackUsername);
+  }catch(e){
+    console.error("Seller profile",e);
+    const fallback={telegramId:String(id),name:fallbackName||"Продавец",username:fallbackUsername||"",activeCount:0,soldCount:0,listings:[]};
+    renderSellerProfileV26(fallback,String(id),own,fallbackName,fallbackUsername);
+  }
+  target.scrollTop=0;requestAnimationFrame(()=>{target.scrollTop=0;window.scrollTo(0,0)});
+}
+function goSellerProfile(id){
+  if(!id){alert("Не удалось определить продавца");return}
+  sellerProfileReturnV26=currentPageId()||"catalog";
+  const pv=$("productView");if(pv)pv.classList.remove("open");document.body.classList.remove("product-open-v19");
+  openSellerProfile(String(id));
 }
 function openOwnSellerProfile(){
- const tg=window.Telegram?.WebApp?.initDataUnsafe?.user||null;
- const profileNameText=($("profileName")?.textContent||"").trim();
- const profileUsernameText=($("profileUsername")?.textContent||"").trim();
- const profileIdText=($("profileId")?.textContent||"").trim();
- const id=String(tg?.id||telegramUser?.id||profileIdText||"");
- const name=([tg?.first_name,tg?.last_name].filter(Boolean).join(" ")||profileNameText||"Продавец").trim();
- const username=(tg?.username||telegramUser?.username||profileUsernameText.replace(/^@/,"")||"").trim();
- const app=document.querySelector(".app");
- const scroller=document.scrollingElement||document.documentElement;
- if(app)app.scrollTop=0;
- if(scroller)scroller.scrollTop=0;
- document.documentElement.scrollTop=0;document.body.scrollTop=0;window.scrollTo(0,0);
- document.querySelectorAll(".page").forEach(x=>x.classList.remove("active"));
- const target=$("sellerProfile");if(!target)return;
- target.scrollTop=0;
- target.classList.add("active");target.scrollTop=0;requestAnimationFrame(()=>{target.scrollTop=0;window.scrollTo(0,0)});
- document.querySelectorAll(".nav").forEach(x=>x.classList.remove("active"));
- requestAnimationFrame(()=>{if(app)app.scrollTop=0;target.scrollTop=0;if(scroller)scroller.scrollTop=0;window.scrollTo(0,0)});
- const b=$("sellerProfileContent");
- const ini=name.split(/\s+/).filter(Boolean).map(x=>x[0]).join("").slice(0,2).toUpperCase()||"P";
- const mine=products.filter(p=>p.ownerType!=="official" && id && String(p.sellerTelegramId||"")===id);
- const items=mine.map(p=>'<div class="listing-card" style="cursor:pointer" onclick="openSellerListing('+Number(p.listingId||0)+')">'+(p.image?'<img src="'+p.image+'">':'')+'<div class="listing-info"><div class="listing-title">'+p.name+'</div><div class="meta">'+(p.brand||p.category)+'</div><div class="listing-price">'+money(p.price)+'</div></div><span class="arrow">›</span></div>').join("");
- b.innerHTML='<div class="seller-profile-head"><div class="seller-avatar">'+ini+'</div><h2>'+name+'</h2><div class="seller-sub">'+(username?"@"+username:"Telegram продавец")+'</div><div class="seller-stats"><div class="seller-stat"><b>'+mine.length+'</b><span>Объявлений</span></div></div>'+(username?'<button class="btn black" onclick="messageSeller(\''+username+'\')">Написать в Telegram</button>':'')+'</div><h2>Мои товары</h2>'+(items||'<div class="empty">У вас пока нет опубликованных Ресейл-товаров</div>');
- resetPageScroll(target);target.scrollTop=0;
- setTimeout(()=>{resetPageScroll(target);target.scrollTop=0},30);
- setTimeout(()=>window.lucide&&lucide.createIcons(),0);
+  const tg=window.Telegram?.WebApp?.initDataUnsafe?.user||telegramUser||null;
+  const profileIdText=($("profileId")?.textContent||"").trim();
+  const id=String(tg?.id||profileIdText||"");
+  if(!id){alert("Откройте магазин внутри Telegram");return}
+  const name=([tg?.first_name,tg?.last_name].filter(Boolean).join(" ")||($("profileName")?.textContent||"").trim()||"Продавец").trim();
+  const username=String(tg?.username||telegramUser?.username||"").replace(/^@/,"");
+  sellerProfileReturnV26="profile";
+  openSellerProfile(id,name,username,true);
 }
+function openSellerSettingsV26(id){
+  if(!sellerProfileStateV26||String(sellerProfileStateV26.id)!==String(id))return;
+  const cfg=loadSellerLocalV26(id);
+  const city=$("sellerSettingsCityV26"),about=$("sellerSettingsAboutV26"),hide=$("sellerSettingsHideCityV26");
+  if(city)city.innerHTML=sellerCityOptionsV26(cfg.city||sellerProfileStateV26.city||"");
+  if(about){about.value=cfg.about||"";syncSellerAboutCountV26()}
+  if(hide){hide.classList.toggle("on",!!cfg.hideCity);hide.setAttribute("aria-pressed",cfg.hideCity?"true":"false")}
+  const sheet=$("sellerSettingsV26");if(sheet)sheet.hidden=false;
+  setTimeout(()=>window.lucide&&lucide.createIcons(),0);
+}
+function closeSellerSettingsV26(){const el=$("sellerSettingsV26");if(el)el.hidden=true}
+function syncSellerAboutCountV26(){const a=$("sellerSettingsAboutV26"),c=$("sellerSettingsAboutCountV26");if(c)c.textContent=String((a?.value||"").length)+" / 120"}
+function saveSellerSettingsV26(){
+  if(!sellerProfileStateV26?.id)return;
+  const city=String($("sellerSettingsCityV26")?.value||"").trim();
+  const about=String($("sellerSettingsAboutV26")?.value||"").trim().slice(0,120);
+  const hideCity=!!$("sellerSettingsHideCityV26")?.classList.contains("on");
+  saveSellerLocalV26(sellerProfileStateV26.id,{city,about,hideCity});
+  closeSellerSettingsV26();
+  renderSellerProfileV26(sellerProfileStateV26.profile,sellerProfileStateV26.id,true,sellerProfileStateV26.name,sellerProfileStateV26.username);
+  uzrHaptic("success");
+}
+setTimeout(()=>{
+  const h=$("sellerSettingsHideCityV26");if(h)h.onclick=()=>{const on=!h.classList.contains("on");h.classList.toggle("on",on);h.setAttribute("aria-pressed",on?"true":"false");uzrHaptic("selection")};
+  const a=$("sellerSettingsAboutV26");if(a)a.addEventListener("input",syncSellerAboutCountV26);
+},0);
 document.querySelectorAll(".faq-q").forEach(q=>q.onclick=()=>q.parentElement.classList.toggle("open"));
 
 function adminHeaders(){return{"Content-Type":"application/json","X-Telegram-Init-Data":String(window.Telegram?.WebApp?.initData||"")}}
