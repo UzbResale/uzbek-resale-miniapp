@@ -5976,6 +5976,105 @@ body.official-store-open-v33 #officialStoreView{
   }
 }
 </style>
+
+<style id="catalog-nav-v37-cleanup">
+/* v37 — top-level navigation cleanup */
+#catalog .tg-catalog-types-v14{
+  justify-content:flex-start!important;
+  gap:8px!important;
+  overflow:visible!important;
+}
+#catalog .tg-catalog-types-v14 .filter{
+  flex:0 0 auto!important;
+}
+</style>
+
+
+<style id="badges-v39-unified">
+/* ============================================================
+   v39 — ONE BADGE SYSTEM EVERYWHERE
+   Resale = blue; Pinned official = amber "От нас";
+   China = red-orange; In stock = green.
+   ============================================================ */
+:root{
+  --uzr-badge-resale-a:#35a7ff;
+  --uzr-badge-resale-b:#187ee8;
+  --uzr-badge-official-a:#ff9a28;
+  --uzr-badge-official-b:#ea7600;
+  --uzr-badge-china-a:#ff673d;
+  --uzr-badge-china-b:#e9411d;
+  --uzr-badge-stock-a:#32d876;
+  --uzr-badge-stock-b:#12b657;
+}
+
+/* Same geometry on Home / Catalog / Favorites / China / Official profile / Seller grids. */
+html body .product-card-v15 .product-badge-v15{
+  min-height:30px!important;
+  height:30px!important;
+  padding:0 11px!important;
+  border:0!important;
+  border-radius:9px!important;
+  display:inline-flex!important;
+  align-items:center!important;
+  justify-content:center!important;
+  color:#fff!important;
+  -webkit-text-fill-color:#fff!important;
+  font-size:11px!important;
+  line-height:1!important;
+  font-weight:700!important;
+  box-shadow:0 4px 10px rgba(0,0,0,.14)!important;
+}
+html body .product-card-v15 .product-badge-v15::after{content:none!important;}
+
+html body .product-card-v15 .badge-resale,
+#catalog .tg-catalog-grid-v14 .badge-resale{
+  background:linear-gradient(180deg,var(--uzr-badge-resale-a),var(--uzr-badge-resale-b))!important;
+}
+html body .product-card-v15 .badge-official,
+#catalog .tg-catalog-grid-v14 .badge-official{
+  background:linear-gradient(180deg,var(--uzr-badge-official-a),var(--uzr-badge-official-b))!important;
+}
+html body .product-card-v15 .badge-china,
+#catalog .tg-catalog-grid-v14 .badge-china,
+#catalog .tg-catalog-grid-v14 .badge-order{
+  background:linear-gradient(180deg,var(--uzr-badge-china-a),var(--uzr-badge-china-b))!important;
+}
+html body .product-card-v15 .badge-stock,
+#catalog .tg-catalog-grid-v14 .badge-stock{
+  background:linear-gradient(180deg,var(--uzr-badge-stock-a),var(--uzr-badge-stock-b))!important;
+}
+
+/* Product Page uses exactly the same palette. */
+#productView #pType.badge-resale,
+#productView .product-v18-badge.badge-resale{
+  background:linear-gradient(180deg,var(--uzr-badge-resale-a),var(--uzr-badge-resale-b))!important;
+}
+#productView #pType.badge-official,
+#productView .product-v18-badge.badge-official{
+  background:linear-gradient(180deg,var(--uzr-badge-official-a),var(--uzr-badge-official-b))!important;
+}
+#productView #pType.badge-china,
+#productView .product-v18-badge.badge-china{
+  background:linear-gradient(180deg,var(--uzr-badge-china-a),var(--uzr-badge-china-b))!important;
+}
+#productView #pType.badge-stock,
+#productView .product-v18-badge.badge-stock{
+  background:linear-gradient(180deg,var(--uzr-badge-stock-a),var(--uzr-badge-stock-b))!important;
+}
+
+/* Secondary availability is intentionally calmer, because it can sit beside "От нас". */
+#productView .product-v18-availability.china{
+  border-color:#a94327!important;
+  color:#ff9d82!important;
+  background:#3b1c16!important;
+}
+#productView .product-v18-availability.stock{
+  border-color:#187451!important;
+  color:#36d683!important;
+  background:#0d3328!important;
+}
+</style>
+
 </head><body><div class="app">
 <header class="app-header-v2 dark-home-header-v10" id="appHeader">
 <div class="dark-brand-row-v10">
@@ -6018,14 +6117,14 @@ body.official-store-open-v33 #officialStoreView{
 <span class="dark-action-copy-v10"><b>Ресейл</b><small>Покупай у людей</small></span>
 <i class="dark-action-chevron-v10" data-lucide="chevron-right"></i>
 </button>
-<button class="dark-action-v10 dark-official-v10" onclick="openOfficialStore()">
+<button class="dark-action-v10 dark-official-v10" onclick="page('china')">
 <span class="dark-action-icon-v10">
 <svg aria-hidden="true" viewbox="0 0 32 32">
 <path d="M16 4.4l3 1.8 3.5-.1 1.4 3.2 3 1.9-.7 3.4 1.4 3.2-2.6 2.4-.8 3.4-3.4.6-2.6 2.4-3-1.8-3.5.1-1.4-3.2-3-1.9.7-3.4-1.4-3.2 2.6-2.4.8-3.4 3.4-.6L16 4.4Z" fill="none" stroke="currentColor" stroke-linejoin="round" stroke-width="2"></path>
 <path d="m11.8 16 2.8 2.8 5.8-6" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2"></path>
 </svg>
 </span>
-<span class="dark-action-copy-v10"><b>От нас</b><small>Проверенные</small></span>
+<span class="dark-action-copy-v10"><b>От нас</b><small>Из Китая</small></span>
 <i class="dark-action-chevron-v10" data-lucide="chevron-right"></i>
 </button>
 <button class="dark-action-v10 dark-sell-v10" onclick="page('sell')">
@@ -6075,9 +6174,6 @@ body.official-store-open-v33 #officialStoreView{
 <div class="tg-catalog-types-v14" id="filters">
 <button class="filter active" data-type="Все">Все</button>
 <button class="filter" data-type="Ресейл">Ресейл</button>
-<button class="filter" data-owner="official">От нас</button>
-<button class="filter" data-type="Под заказ">Из Китая</button>
-<button class="filter" data-type="В наличии">В наличии</button>
 </div>
 <div class="tg-catalog-categories-v14" id="categoryFilters">
 <button class="category-chip" data-category="Одежда">
@@ -6340,7 +6436,7 @@ body.official-store-open-v33 #officialStoreView{
       <div>
         <span>UZBEK RE'SALE</span>
         <h1>Из Китая</h1>
-        <p>Только товары Uzbek Re'Sale, доступные под заказ из Китая.</p>
+        <p>Товары Uzbek Re'Sale: позиции из Китая и товары, которые уже есть в наличии.</p>
       </div>
       <span class="china-v32-count" id="chinaProductCountV32">0</span>
     </div>
@@ -6356,13 +6452,13 @@ body.official-store-open-v33 #officialStoreView{
     </button>
 
     <div class="china-v32-section-head">
-      <div><span>КАТАЛОГ</span><h2>Товары из Китая</h2></div>
+      <div><span>КАТАЛОГ</span><h2>Наши товары</h2></div>
     </div>
     <div id="chinaGridV32" class="china-v32-grid"></div>
     <div id="chinaEmptyV32" class="china-v32-empty" hidden>
       <span class="china-v32-empty-icon"><i data-lucide="package-search"></i></span>
       <h2>Пока нет товаров</h2>
-      <p>Когда мы добавим новые позиции из Китая, они появятся здесь.</p>
+      <p>Когда мы добавим новые товары из Китая или в наличии, они появятся здесь.</p>
       <button type="button" onclick="openOfficialStore()">Открыть профиль магазина</button>
     </div>
   </div>
@@ -7365,7 +7461,7 @@ const OFFICIAL_SUPPORT_USERNAME="uzbclothelover";
 const OFFICIAL_VERIFIED_SVG='<svg class="telegram-verified-svg" viewBox="0 0 24 24" aria-hidden="true"><path class="verified-badge-bg" d="M12 2.2l2.05 1.27 2.4-.13 1.14 2.12 2.2.93.29 2.39 1.5 1.88-.99 2.19.54 2.35-1.98 1.36-.72 2.3-2.38.42-1.73 1.65L12 21.8l-2.05-1.27-2.4.13-1.14-2.12-2.2-.93-.29-2.39-1.5-1.88.99-2.19-.54-2.35 1.98-1.36.72-2.3 2.38-.42L9.73 3.07 12 2.2Z"/><path class="verified-badge-check" d="m7.9 12.15 2.55 2.55 5.7-5.7"/></svg>';
 
 function chinaProductsV32(){
-  return products.filter(p=>p.ownerType==="official" && String(p.sourceType||"").toLowerCase()==="china");
+  return products.filter(p=>p.ownerType==="official");
 }
 function renderChinaPageV32(){
   const grid=$("chinaGridV32"),empty=$("chinaEmptyV32"),count=$("chinaProductCountV32"),logo=$("chinaOfficialLogoV32"),badge=document.querySelector("#china .china-v32-verified");
