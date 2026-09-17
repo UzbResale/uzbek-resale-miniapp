@@ -6210,6 +6210,627 @@ body.order-detail-open-v40 nav{z-index:1500!important;display:grid!important;vis
 }
 </style>
 
+
+<style id="checkout-v41-smart-dark">
+/* ============================================================
+   CHECKOUT v41 — Telegram Dark + structured inputs
+   ============================================================ */
+#checkoutView{
+  background:#061823!important;
+  color:#f4f7fa!important;
+}
+#checkoutView>.checkout-v41-inner{
+  width:100%!important;
+  max-width:600px!important;
+  min-height:100dvh!important;
+  margin:0 auto!important;
+  padding:14px 14px calc(34px + env(safe-area-inset-bottom))!important;
+  background:#061823!important;
+}
+#checkoutView .checkout-v41-topbar{
+  display:grid!important;
+  grid-template-columns:42px minmax(0,1fr) 42px!important;
+  align-items:center!important;
+  gap:10px!important;
+  margin-bottom:14px!important;
+}
+#checkoutView .checkout-v41-top-title{
+  color:#f5f8fa!important;
+  font-size:17px!important;
+  font-weight:700!important;
+  text-align:center!important;
+}
+#checkoutView .checkout-v41-top-spacer{width:42px;height:42px}
+#checkoutView .checkout-premium-back{
+  margin:0!important;
+  border:1px solid #29495b!important;
+  background:#0e2634!important;
+  color:#dce9f2!important;
+  box-shadow:none!important;
+}
+#checkoutView .checkout-heading{
+  margin:2px 2px 16px!important;
+}
+#checkoutView .checkout-heading>span{
+  margin-bottom:6px!important;
+  color:#6f8ca0!important;
+  font-size:8px!important;
+  font-weight:800!important;
+  letter-spacing:2.2px!important;
+}
+#checkoutView .checkout-heading h1{
+  margin:0!important;
+  color:#f6f8fa!important;
+  font-size:26px!important;
+  line-height:1.05!important;
+  font-weight:750!important;
+  letter-spacing:-.035em!important;
+}
+#checkoutView .checkout-heading p{
+  margin:7px 0 0!important;
+  color:#8196a8!important;
+  font-size:11px!important;
+  line-height:1.4!important;
+}
+#checkoutView .checkout-v41-section-title{
+  margin:16px 2px 8px!important;
+  color:#8aa0b1!important;
+  font-size:10px!important;
+  font-weight:700!important;
+  letter-spacing:.08em!important;
+  text-transform:uppercase!important;
+}
+#checkoutView .checkout-v41-summary,
+#checkoutView .checkout-panel{
+  padding:13px!important;
+  border:1px solid #244352!important;
+  border-radius:18px!important;
+  background:#0d2736!important;
+  box-shadow:none!important;
+}
+#checkoutView .checkout-v41-summary-head{
+  display:flex!important;
+  align-items:center!important;
+  justify-content:space-between!important;
+  gap:12px!important;
+  padding-bottom:10px!important;
+  border-bottom:1px solid rgba(127,152,169,.13)!important;
+}
+#checkoutView .checkout-v41-summary-head div{
+  display:flex!important;
+  flex-direction:column!important;
+  gap:3px!important;
+}
+#checkoutView .checkout-v41-summary-head span{
+  color:#7990a2!important;
+  font-size:8.5px!important;
+  letter-spacing:.12em!important;
+}
+#checkoutView .checkout-v41-summary-head b{
+  color:#f5f8fa!important;
+  font-size:14px!important;
+}
+#checkoutView .checkout-v41-summary-head button{
+  border:0!important;
+  background:transparent!important;
+  color:#2ea6ff!important;
+  font-size:11px!important;
+  font-weight:650!important;
+}
+#checkoutView .checkout-v41-items{
+  display:flex!important;
+  flex-direction:column!important;
+}
+#checkoutView .checkout-v41-item{
+  display:grid!important;
+  grid-template-columns:48px minmax(0,1fr) auto!important;
+  align-items:center!important;
+  gap:10px!important;
+  padding:10px 0!important;
+  border-bottom:1px solid rgba(127,152,169,.11)!important;
+}
+#checkoutView .checkout-v41-item>img,
+#checkoutView .checkout-v41-item-placeholder{
+  width:48px!important;
+  height:48px!important;
+  border-radius:11px!important;
+  object-fit:cover!important;
+  background:#102f40!important;
+}
+#checkoutView .checkout-v41-item-placeholder{
+  display:flex!important;
+  align-items:center!important;
+  justify-content:center!important;
+  color:#7f98aa!important;
+}
+#checkoutView .checkout-v41-item-placeholder svg{width:21px!important;height:21px!important}
+#checkoutView .checkout-v41-item-copy{
+  min-width:0!important;
+  display:flex!important;
+  flex-direction:column!important;
+  gap:4px!important;
+}
+#checkoutView .checkout-v41-item-copy b{
+  color:#f4f7fa!important;
+  font-size:11.5px!important;
+  font-weight:650!important;
+  white-space:nowrap!important;
+  overflow:hidden!important;
+  text-overflow:ellipsis!important;
+}
+#checkoutView .checkout-v41-item-copy small{
+  color:#7f96a8!important;
+  font-size:9.5px!important;
+}
+#checkoutView .checkout-v41-item>strong{
+  color:#ddecf5!important;
+  font-size:11px!important;
+  white-space:nowrap!important;
+}
+#checkoutView .checkout-v41-more{
+  padding:8px 0!important;
+  color:#8299aa!important;
+  font-size:10px!important;
+  text-align:center!important;
+  border-bottom:1px solid rgba(127,152,169,.11)!important;
+}
+#checkoutView .checkout-v41-summary-row{
+  display:flex!important;
+  align-items:center!important;
+  justify-content:space-between!important;
+  gap:14px!important;
+  padding-top:11px!important;
+  color:#8299aa!important;
+  font-size:10.5px!important;
+}
+#checkoutView .checkout-v41-summary-row b{
+  color:#e8f1f6!important;
+  font-size:11.5px!important;
+  text-align:right!important;
+}
+#checkoutView .checkout-v41-total{
+  margin-top:10px!important;
+  padding-top:12px!important;
+  border-top:1px solid #244352!important;
+  color:#f4f7fa!important;
+  font-size:13px!important;
+  font-weight:700!important;
+}
+#checkoutView .checkout-v41-total b{
+  color:#2ea6ff!important;
+  font-size:17px!important;
+}
+#checkoutView .checkout-panel .field{margin:0 0 13px!important}
+#checkoutView .checkout-panel .field:last-of-type{margin-bottom:10px!important}
+#checkoutView .field label{
+  display:flex!important;
+  align-items:center!important;
+  justify-content:space-between!important;
+  margin:0 0 6px!important;
+  color:#dce8ef!important;
+  font-size:10.5px!important;
+  font-weight:650!important;
+}
+#checkoutView .field label span{
+  color:#6f8799!important;
+  font-size:9px!important;
+  font-weight:400!important;
+}
+#checkoutView .field input,
+#checkoutView .field textarea,
+#checkoutView .field select{
+  width:100%!important;
+  min-height:50px!important;
+  box-sizing:border-box!important;
+  margin:0!important;
+  padding:0 13px!important;
+  border:1px solid #29495b!important;
+  border-radius:14px!important;
+  background:#102c3c!important;
+  color:#f4f7fa!important;
+  -webkit-text-fill-color:#f4f7fa!important;
+  font-size:16px!important;
+  outline:none!important;
+  box-shadow:none!important;
+}
+#checkoutView .field textarea{
+  min-height:82px!important;
+  padding:12px 13px!important;
+  resize:none!important;
+  line-height:1.35!important;
+}
+#checkoutView .field input::placeholder,
+#checkoutView .field textarea::placeholder{
+  color:#688092!important;
+  -webkit-text-fill-color:#688092!important;
+}
+#checkoutView .field input:focus,
+#checkoutView .field textarea:focus,
+#checkoutView .field select:focus{
+  border-color:#2c9de8!important;
+  box-shadow:0 0 0 2px rgba(46,166,255,.10)!important;
+}
+#checkoutView .checkout-phone-v41{
+  display:grid!important;
+  grid-template-columns:62px minmax(0,1fr)!important;
+  align-items:center!important;
+  border:1px solid #29495b!important;
+  border-radius:14px!important;
+  overflow:hidden!important;
+  background:#102c3c!important;
+}
+#checkoutView .checkout-phone-prefix-v41{
+  display:flex!important;
+  align-items:center!important;
+  justify-content:center!important;
+  min-height:50px!important;
+  border-right:1px solid #29495b!important;
+  color:#9fb4c3!important;
+  font-size:15px!important;
+  font-weight:600!important;
+}
+#checkoutView .checkout-phone-v41 input{
+  border:0!important;
+  border-radius:0!important;
+  background:transparent!important;
+}
+#checkoutView .checkout-phone-v41:focus-within{
+  border-color:#2c9de8!important;
+  box-shadow:0 0 0 2px rgba(46,166,255,.10)!important;
+}
+#checkoutView .checkout-select-wrap-v41{position:relative!important}
+#checkoutView .checkout-select-wrap-v41 select{
+  appearance:none!important;
+  -webkit-appearance:none!important;
+  padding-right:42px!important;
+}
+#checkoutView .checkout-select-wrap-v41 svg{
+  position:absolute!important;
+  right:13px!important;
+  top:50%!important;
+  width:18px!important;
+  height:18px!important;
+  transform:translateY(-50%)!important;
+  pointer-events:none!important;
+  stroke:#8198aa!important;
+}
+#checkoutView .checkout-field-hint{
+  margin-top:5px!important;
+  color:#6f8799!important;
+  font-size:8.8px!important;
+}
+#checkoutView .checkout-field-error{
+  min-height:0!important;
+  margin-top:5px!important;
+  color:#ff6672!important;
+  font-size:9.5px!important;
+}
+#checkoutView .checkout-invalid-v41{
+  border-color:#d94350!important;
+}
+#checkoutView .checkout-phone-v41:has(input.checkout-invalid-v41){
+  border-color:#d94350!important;
+}
+#checkoutView .checkout-comment-meta-v41{
+  margin-top:4px!important;
+  color:#667f91!important;
+  font-size:8.5px!important;
+  text-align:right!important;
+}
+#checkoutView .checkout-save-v41{
+  display:grid!important;
+  grid-template-columns:24px minmax(0,1fr)!important;
+  align-items:center!important;
+  gap:9px!important;
+  padding:10px 0 0!important;
+  cursor:pointer!important;
+}
+#checkoutView .checkout-save-v41>input{
+  position:absolute!important;
+  opacity:0!important;
+  pointer-events:none!important;
+}
+#checkoutView .checkout-save-box-v41{
+  width:22px!important;
+  height:22px!important;
+  border:1px solid #36586b!important;
+  border-radius:7px!important;
+  background:#102c3c!important;
+  display:flex!important;
+  align-items:center!important;
+  justify-content:center!important;
+}
+#checkoutView .checkout-save-box-v41 svg{
+  width:14px!important;
+  height:14px!important;
+  opacity:0!important;
+  stroke:#fff!important;
+}
+#checkoutView .checkout-save-v41>input:checked+.checkout-save-box-v41{
+  background:#2a9ff0!important;
+  border-color:#2a9ff0!important;
+}
+#checkoutView .checkout-save-v41>input:checked+.checkout-save-box-v41 svg{opacity:1!important}
+#checkoutView .checkout-save-v41>span:last-child{
+  display:flex!important;
+  flex-direction:column!important;
+  gap:3px!important;
+}
+#checkoutView .checkout-save-v41 b{
+  color:#dce8ef!important;
+  font-size:10px!important;
+}
+#checkoutView .checkout-save-v41 small{
+  color:#748c9e!important;
+  font-size:8.5px!important;
+  line-height:1.3!important;
+}
+#checkoutView .checkout-info{
+  display:flex!important;
+  align-items:flex-start!important;
+  gap:10px!important;
+  margin:11px 0!important;
+  padding:11px!important;
+  border:1px solid #244352!important;
+  border-radius:14px!important;
+  background:#0d2736!important;
+}
+#checkoutView .checkout-info-icon{
+  width:24px!important;
+  height:24px!important;
+  flex:0 0 24px!important;
+  display:flex!important;
+  align-items:center!important;
+  justify-content:center!important;
+  border-radius:50%!important;
+  background:#124f78!important;
+  color:#dceffc!important;
+  font-size:10px!important;
+  font-weight:800!important;
+}
+#checkoutView .checkout-info b{
+  display:block!important;
+  color:#dce8ef!important;
+  font-size:10px!important;
+}
+#checkoutView .checkout-info p{
+  margin:4px 0 0!important;
+  padding:0!important;
+  background:none!important;
+  color:#7d94a6!important;
+  font-size:9px!important;
+  line-height:1.4!important;
+}
+#checkoutView .checkout-form-error-v41{
+  margin:0 0 10px!important;
+  padding:10px 12px!important;
+  border:1px solid rgba(217,67,80,.5)!important;
+  border-radius:12px!important;
+  background:rgba(120,27,39,.18)!important;
+  color:#ff8790!important;
+  font-size:10px!important;
+  line-height:1.35!important;
+}
+#checkoutView .checkout-confirm-premium{
+  width:100%!important;
+  min-height:52px!important;
+  margin:0!important;
+  border:1px solid #39b1ff!important;
+  border-radius:15px!important;
+  background:#149cff!important;
+  color:#fff!important;
+  -webkit-text-fill-color:#fff!important;
+  box-shadow:none!important;
+  font-size:14px!important;
+  font-weight:700!important;
+}
+#checkoutView .checkout-confirm-premium:disabled{
+  opacity:.55!important;
+}
+#checkoutView .checkout-v41-secure{
+  display:flex!important;
+  align-items:center!important;
+  justify-content:center!important;
+  gap:6px!important;
+  margin-top:9px!important;
+  color:#657f91!important;
+  font-size:8.5px!important;
+  text-align:center!important;
+}
+#checkoutView .checkout-v41-secure svg{
+  width:14px!important;
+  height:14px!important;
+}
+#checkoutView .success-premium{
+  color:#f4f7fa!important;
+}
+@media(max-width:390px){
+  #checkoutView>.checkout-v41-inner{padding-left:10px!important;padding-right:10px!important}
+  #checkoutView .checkout-heading h1{font-size:24px!important}
+  #checkoutView .checkout-v41-item{grid-template-columns:44px minmax(0,1fr) auto!important;gap:8px!important}
+  #checkoutView .checkout-v41-item>img,
+  #checkoutView .checkout-v41-item-placeholder{width:44px!important;height:44px!important}
+}
+</style>
+
+
+<style id="checkout-success-v42-dark">
+/* ============================================================
+   CHECKOUT SUCCESS v42 — Telegram Dark
+   ============================================================ */
+#checkoutView .checkout-success-v42{
+  min-height:calc(100dvh - 28px)!important;
+  width:100%!important;
+  padding:22px 0 calc(28px + env(safe-area-inset-bottom))!important;
+  background:#061823!important;
+  color:#f4f7fa!important;
+  align-items:center!important;
+  justify-content:center!important;
+}
+#checkoutView .checkout-success-v42[style*="block"]{
+  display:flex!important;
+}
+#checkoutView .checkout-success-card-v42{
+  width:100%!important;
+  max-width:440px!important;
+  margin:auto!important;
+  padding:28px 18px 18px!important;
+  border:1px solid #29495b!important;
+  border-radius:24px!important;
+  background:#0d2938!important;
+  box-shadow:0 18px 50px rgba(0,0,0,.18)!important;
+  text-align:center!important;
+}
+#checkoutView .checkout-success-v42 .success-check{
+  width:90px!important;
+  height:90px!important;
+  margin:0 auto 18px!important;
+  display:flex!important;
+  align-items:center!important;
+  justify-content:center!important;
+  border:1px solid rgba(48,211,135,.34)!important;
+  border-radius:50%!important;
+  background:rgba(23,133,89,.18)!important;
+  box-shadow:0 0 0 12px rgba(41,197,125,.05)!important;
+  color:#36dc91!important;
+}
+#checkoutView .checkout-success-v42 .success-check svg{
+  width:48px!important;
+  height:48px!important;
+}
+#checkoutView .checkout-success-v42 .success-kicker{
+  margin:0 0 8px!important;
+  color:#7390a3!important;
+  font-size:8.5px!important;
+  font-weight:750!important;
+  letter-spacing:.22em!important;
+}
+#checkoutView .checkout-success-v42 h2{
+  margin:0!important;
+  color:#f7fafc!important;
+  font-size:26px!important;
+  line-height:1.08!important;
+  font-weight:760!important;
+  letter-spacing:-.035em!important;
+}
+#checkoutView .checkout-success-v42> .checkout-success-card-v42 > p{
+  max-width:330px!important;
+  margin:9px auto 18px!important;
+  padding:0!important;
+  background:none!important;
+  color:#8ba2b3!important;
+  font-size:11px!important;
+  line-height:1.5!important;
+}
+#checkoutView .checkout-success-v42 .success-info{
+  width:100%!important;
+  margin:0 0 14px!important;
+  padding:0 13px!important;
+  border:1px solid #244352!important;
+  border-radius:16px!important;
+  background:#102f40!important;
+  box-shadow:none!important;
+  text-align:left!important;
+}
+#checkoutView .checkout-success-v42 .success-info>div{
+  min-height:47px!important;
+  display:flex!important;
+  align-items:center!important;
+  justify-content:space-between!important;
+  gap:14px!important;
+  border-bottom:1px solid rgba(127,152,169,.13)!important;
+}
+#checkoutView .checkout-success-v42 .success-info>div:last-child{
+  border-bottom:0!important;
+}
+#checkoutView .checkout-success-v42 .success-info span{
+  color:#7f98aa!important;
+  font-size:10px!important;
+}
+#checkoutView .checkout-success-v42 .success-info b{
+  display:flex!important;
+  align-items:center!important;
+  gap:6px!important;
+  color:#e7f1f7!important;
+  font-size:10.5px!important;
+  font-weight:650!important;
+  text-align:right!important;
+}
+#checkoutView .checkout-success-dot-v42{
+  width:7px!important;
+  height:7px!important;
+  display:inline-block!important;
+  border-radius:50%!important;
+  background:#2ea6ff!important;
+  box-shadow:0 0 0 4px rgba(46,166,255,.10)!important;
+}
+#checkoutView .checkout-success-v42 .success-primary,
+#checkoutView .checkout-success-v42 .success-secondary{
+  width:100%!important;
+  min-height:52px!important;
+  margin:0!important;
+  border-radius:15px!important;
+  display:flex!important;
+  align-items:center!important;
+  justify-content:center!important;
+  gap:8px!important;
+  font-size:13px!important;
+  font-weight:700!important;
+  box-shadow:none!important;
+}
+#checkoutView .checkout-success-v42 .success-primary{
+  border:1px solid #39b1ff!important;
+  background:#149cff!important;
+  color:#fff!important;
+  -webkit-text-fill-color:#fff!important;
+}
+#checkoutView .checkout-success-v42 .success-secondary{
+  margin-top:9px!important;
+  border:1px solid #315468!important;
+  background:#102f40!important;
+  color:#dceaf2!important;
+  -webkit-text-fill-color:#dceaf2!important;
+}
+#checkoutView .checkout-success-v42 .success-primary svg,
+#checkoutView .checkout-success-v42 .success-secondary svg{
+  width:19px!important;
+  height:19px!important;
+}
+#checkoutView .checkout-success-note-v42{
+  display:flex!important;
+  align-items:flex-start!important;
+  justify-content:center!important;
+  gap:7px!important;
+  margin:13px 6px 0!important;
+  color:#698397!important;
+  font-size:9px!important;
+  line-height:1.4!important;
+}
+#checkoutView .checkout-success-note-v42 svg{
+  width:14px!important;
+  height:14px!important;
+  flex:0 0 14px!important;
+  margin-top:1px!important;
+}
+@media(max-width:390px){
+  #checkoutView .checkout-success-card-v42{
+    padding:24px 14px 15px!important;
+    border-radius:21px!important;
+  }
+  #checkoutView .checkout-success-v42 .success-check{
+    width:82px!important;
+    height:82px!important;
+  }
+  #checkoutView .checkout-success-v42 .success-check svg{
+    width:43px!important;
+    height:43px!important;
+  }
+  #checkoutView .checkout-success-v42 h2{
+    font-size:23px!important;
+  }
+}
+</style>
+
 </head><body><div class="app">
 <header class="app-header-v2 dark-home-header-v10" id="appHeader">
 <div class="dark-brand-row-v10">
@@ -6826,30 +7447,94 @@ body.order-detail-open-v40 nav{z-index:1500!important;display:grid!important;vis
     <div class="order-detail order-detail-v40-content" id="orderDetailContent"></div>
   </div>
 </div>
-<div class="overlay" id="checkoutView"><div class="inner checkout-premium-inner">
-<button class="back checkout-premium-back" id="checkoutBack">←</button>
+<div class="overlay" id="checkoutView"><div class="inner checkout-premium-inner checkout-v41-inner">
+<div class="checkout-v41-topbar">
+<button class="back checkout-premium-back" id="checkoutBack" type="button" aria-label="Назад"><i data-lucide="chevron-left"></i></button>
+<div class="checkout-v41-top-title">Оформление заказа</div>
+<span class="checkout-v41-top-spacer" aria-hidden="true"></span>
+</div>
 <div id="orderForm">
-<div class="checkout-heading"><span>UZBEK RE'SALE</span><h1>Оформление заказа</h1><p>Оставьте контактные данные для подтверждения покупки.</p></div>
+<div class="checkout-heading"><span>UZBEK RE'SALE</span><h1>Оформление заказа</h1><p>Проверьте заказ и оставьте данные для подтверждения.</p></div>
+
+<div class="checkout-v41-summary" id="checkoutSummaryV41"></div>
+
+<div class="checkout-v41-section-title">Контактные данные</div>
 <div class="checkout-panel">
-<div class="field"><label>Имя *</label><input id="buyerName" placeholder="Ваше имя"/></div>
-<div class="field"><label>Телефон *</label><input id="buyerPhone" placeholder="+998"/></div>
-<div class="field"><label>Город *</label><input id="buyerCity" placeholder="Например: Ташкент"/></div>
-<div class="field"><label>Комментарий</label><input id="buyerComment" placeholder="Комментарий к заказу"/></div>
+<div class="field">
+<label for="buyerName">Имя *</label>
+<input id="buyerName" autocomplete="name" maxlength="60" placeholder="Ваше имя"/>
+<div class="checkout-field-error" id="buyerNameErrorV41"></div>
 </div>
-<div class="checkout-info"><span class="checkout-info-icon">i</span><div><b>Подтверждение заказа</b><p>Оплата и доставка согласовываются вручную после оформления.</p></div></div>
+<div class="field">
+<label for="buyerPhone">Телефон *</label>
+<div class="checkout-phone-v41">
+<span class="checkout-phone-prefix-v41">+998</span>
+<input id="buyerPhone" type="tel" inputmode="numeric" pattern="[0-9]*" maxlength="9" autocomplete="tel-national" placeholder="901234567"/>
+</div>
+<div class="checkout-field-hint">Введите 9 цифр после +998</div>
+<div class="checkout-field-error" id="buyerPhoneErrorV41"></div>
+</div>
+<div class="field">
+<label for="buyerCity">Город *</label>
+<div class="checkout-select-wrap-v41">
+<select id="buyerCity" autocomplete="shipping address-level2">
+<option value="">Выберите город</option>
+<option>Ташкент</option>
+<option>Самарканд</option>
+<option>Бухара</option>
+<option>Андижан</option>
+<option>Наманган</option>
+<option>Фергана</option>
+<option>Коканд</option>
+<option>Маргилан</option>
+<option>Карши</option>
+<option>Нукус</option>
+<option>Ургенч</option>
+<option>Навои</option>
+<option>Джизак</option>
+<option>Гулистан</option>
+<option>Термез</option>
+<option>Чирчик</option>
+<option>Ангрен</option>
+<option>Бекабад</option>
+</select>
+<i data-lucide="chevron-down"></i>
+</div>
+<div class="checkout-field-error" id="buyerCityErrorV41"></div>
+</div>
+<div class="field">
+<label for="buyerComment">Комментарий <span>необязательно</span></label>
+<textarea id="buyerComment" maxlength="300" rows="3" placeholder="Например: удобное время для связи"></textarea>
+<div class="checkout-comment-meta-v41"><span id="buyerCommentCountV41">0</span>/300</div>
+</div>
+<label class="checkout-save-v41">
+<input id="checkoutSaveContactV41" type="checkbox" checked/>
+<span class="checkout-save-box-v41"><i data-lucide="check"></i></span>
+<span><b>Запомнить мои данные</b><small>Имя, телефон и город сохранятся на этом устройстве.</small></span>
+</label>
+</div>
+
+<div class="checkout-info"><span class="checkout-info-icon">i</span><div><b>Подтверждение заказа</b><p>После оформления продавец или Uzbek Re'Sale подтвердит заказ. Оплата и доставка согласовываются отдельно.</p></div></div>
+<div class="checkout-form-error-v41" id="checkoutFormErrorV41" hidden></div>
 <button class="btn black checkout-confirm-premium" id="confirmBtn">Подтвердить заказ</button>
+<div class="checkout-v41-secure"><i data-lucide="shield-check"></i><span>Цена и состав заказа будут повторно проверены при отправке.</span></div>
 </div>
-<div class="success success-premium" id="success" style="display:none">
-<div class="success-check"><span>✓</span></div>
+<div class="success success-premium checkout-success-v42" id="success" style="display:none">
+<div class="checkout-success-card-v42">
+<div class="success-check" aria-hidden="true">
+<svg viewBox="0 0 24 24"><path d="M5 12.5l4.2 4.2L19 7" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+</div>
 <div class="success-kicker">UZBEK RE'SALE</div>
-<h2>Заказ оформлен!</h2>
+<h2>Заказ оформлен</h2>
 <p id="successOrderText">Мы свяжемся с вами для подтверждения.</p>
 <div class="success-info">
-<div><span>Статус</span><b>Заказ создан</b></div>
+<div><span>Статус</span><b><i class="checkout-success-dot-v42"></i>Новый</b></div>
 <div><span>Что дальше</span><b>Подтверждение в Telegram</b></div>
 </div>
-<button class="btn success-primary" id="successOrdersBtn">Перейти в мои заказы</button>
-<button class="btn success-secondary" id="homeBtn">Продолжить покупки</button>
+<button class="btn success-primary" id="successOrdersBtn"><i data-lucide="package-check"></i><span>Перейти в мои заказы</span></button>
+<button class="btn success-secondary" id="homeBtn"><i data-lucide="shopping-bag"></i><span>Продолжить покупки</span></button>
+<div class="checkout-success-note-v42"><i data-lucide="bell"></i><span>Изменения статуса заказа появятся в разделе «Мои заказы».</span></div>
+</div>
 </div>
 </div></div><script>const products=[];
 
@@ -7550,7 +8235,62 @@ function openHomeCategory(cat){
  const search=$("search");if(search)search.value="";const cs=$("catalogSearchV14");if(cs)cs.value="";
  syncCatalogFilterUI();page("catalog");render();
 }
-function checkout(){if(!cart.length)return;$("orderForm").style.display="block";$("success").style.display="none";$("checkoutView").classList.add("open")}
+
+const UZR_CHECKOUT_CONTACT_STORAGE="uzr_checkout_contact_v1";
+
+function checkoutSellerLabelV41(p){
+  if(String(p?.ownerType||"").toLowerCase()==="official") return "Uzbek Re'Sale ✓";
+  const username=String(p?.sellerUsername||"").replace(/^@/,"").trim();
+  if(username) return "@"+username;
+  return String(p?.sellerName||"Продавец");
+}
+
+function renderCheckoutSummaryV41(){
+  const box=$("checkoutSummaryV41");
+  if(!box)return;
+  const total=cart.reduce((s,p)=>s+Number(p.price||0),0);
+  const sellers=[...new Set(cart.map(checkoutSellerLabelV41).filter(Boolean))];
+  const sellerText=sellers.length===1?sellers[0]:(sellers.length>1?`${sellers.length} продавца`:"—");
+  const rows=cart.slice(0,4).map(p=>{
+    const img=p.image?`<img src="${escapeHtml(p.image)}" alt="">`:`<div class="checkout-v41-item-placeholder"><i data-lucide="package"></i></div>`;
+    return `<div class="checkout-v41-item">${img}<div class="checkout-v41-item-copy"><b>${escapeHtml(p.name||"Товар")}</b><small>${p.size?`Размер: ${escapeHtml(p.size)}`:""}</small></div><strong>${money(Number(p.price||0))}</strong></div>`;
+  }).join("");
+  box.innerHTML=`
+    <div class="checkout-v41-summary-head"><div><span>ВАШ ЗАКАЗ</span><b>${cart.length} ${cart.length===1?"товар":"товара"}</b></div><button type="button" onclick="$('checkoutView').classList.remove('open');page('cart')">Изменить</button></div>
+    <div class="checkout-v41-items">${rows}</div>
+    ${cart.length>4?`<div class="checkout-v41-more">Ещё ${cart.length-4}</div>`:""}
+    <div class="checkout-v41-summary-row"><span>Продавец</span><b>${escapeHtml(sellerText)}</b></div>
+    <div class="checkout-v41-summary-row checkout-v41-total"><span>Итого</span><b>${money(total)}</b></div>`;
+  if(window.lucide) lucide.createIcons();
+}
+
+function checkoutLoadContactV41(){
+  let saved={};
+  try{saved=JSON.parse(localStorage.getItem(UZR_CHECKOUT_CONTACT_STORAGE)||"{}")||{}}catch(_){}
+  const tg=window.Telegram?.WebApp?.initDataUnsafe?.user||telegramUser||null;
+  const tgName=tg?[tg.first_name,tg.last_name].filter(Boolean).join(" ").trim():"";
+  if($("buyerName")&&!$("buyerName").value)$("buyerName").value=saved.name||tgName||"";
+  if($("buyerPhone")&&!$("buyerPhone").value)$("buyerPhone").value=String(saved.phoneDigits||"").replace(/\D/g,"").slice(-9);
+  if($("buyerCity")&&!$("buyerCity").value)$("buyerCity").value=saved.city||"";
+}
+
+function checkoutClearErrorsV41(){
+  ["buyerNameErrorV41","buyerPhoneErrorV41","buyerCityErrorV41"].forEach(id=>{const el=$(id);if(el)el.textContent=""});
+  const formErr=$("checkoutFormErrorV41");if(formErr){formErr.hidden=true;formErr.textContent=""}
+  ["buyerName","buyerPhone","buyerCity"].forEach(id=>$(id)?.classList.remove("checkout-invalid-v41"));
+}
+
+function checkout(){
+  if(!cart.length)return;
+  $("orderForm").style.display="block";
+  $("success").style.display="none";
+  checkoutClearErrorsV41();
+  renderCheckoutSummaryV41();
+  checkoutLoadContactV41();
+  const c=$("buyerComment");if(c&&$("buyerCommentCountV41"))$("buyerCommentCountV41").textContent=String(c.value.length);
+  $("checkoutView").classList.add("open");
+  if(window.lucide)lucide.createIcons();
+}
 
 document.querySelectorAll(".nav").forEach(x=>x.onclick=()=>page(x.dataset.page));
 
@@ -7692,23 +8432,61 @@ $("officialStoreAllBtnTop").onclick=()=>{closeOfficialStore();openHomeCatalog("o
 document.querySelectorAll("#officialStoreView .official-section-tab").forEach(btn=>btn.onclick=()=>setOfficialStoreTab(btn.dataset.tab));
 $("checkoutBtn").onclick=checkout;$("checkoutBack").onclick=()=>$("checkoutView").classList.remove("open");
 
+
+const buyerPhoneV41=$("buyerPhone");
+if(buyerPhoneV41){
+  buyerPhoneV41.addEventListener("input",()=>{
+    const digits=buyerPhoneV41.value.replace(/\D/g,"").slice(0,9);
+    if(buyerPhoneV41.value!==digits)buyerPhoneV41.value=digits;
+    $("buyerPhoneErrorV41").textContent="";
+    buyerPhoneV41.classList.remove("checkout-invalid-v41");
+  });
+}
+$("buyerName")?.addEventListener("input",()=>{$("buyerNameErrorV41").textContent="";$("buyerName").classList.remove("checkout-invalid-v41")});
+$("buyerCity")?.addEventListener("change",()=>{$("buyerCityErrorV41").textContent="";$("buyerCity").classList.remove("checkout-invalid-v41")});
+$("buyerComment")?.addEventListener("input",e=>{if($("buyerCommentCountV41"))$("buyerCommentCountV41").textContent=String(e.target.value.length)});
+
 $("confirmBtn").onclick=async()=>{
+
+ checkoutClearErrorsV41();
 
  const name=$("buyerName").value.trim();
 
- const phone=$("buyerPhone").value.trim();
+ const phoneDigits=$("buyerPhone").value.replace(/\D/g,"").slice(0,9);
+
+ const phone="+998"+phoneDigits;
 
  const city=$("buyerCity").value.trim();
 
  const comment=$("buyerComment").value.trim();
 
- if(!name){alert("Введите имя");return}
+ let checkoutValid=true;
+ if(name.length<2){
+   $("buyerNameErrorV41").textContent="Укажите имя";
+   $("buyerName").classList.add("checkout-invalid-v41");
+   checkoutValid=false;
+ }
+ if(!/^\d{9}$/.test(phoneDigits)){
+   $("buyerPhoneErrorV41").textContent="Нужно ввести ровно 9 цифр";
+   $("buyerPhone").classList.add("checkout-invalid-v41");
+   checkoutValid=false;
+ }
+ if(!city){
+   $("buyerCityErrorV41").textContent="Выберите город из списка";
+   $("buyerCity").classList.add("checkout-invalid-v41");
+   checkoutValid=false;
+ }
+ if(!cart.length){
+   const e=$("checkoutFormErrorV41");if(e){e.textContent="Корзина пуста";e.hidden=false}
+   checkoutValid=false;
+ }
+ if(!checkoutValid)return;
 
- if(!phone){alert("Введите телефон");return}
-
- if(!city){alert("Введите город");return}
-
- if(!cart.length){alert("Корзина пуста");return}
+ if($("checkoutSaveContactV41")?.checked){
+   try{localStorage.setItem(UZR_CHECKOUT_CONTACT_STORAGE,JSON.stringify({name,phoneDigits,city}))}catch(_){}
+ }else{
+   try{localStorage.removeItem(UZR_CHECKOUT_CONTACT_STORAGE)}catch(_){}
+ }
 
  if(orderSending)return;
 
@@ -7799,9 +8577,15 @@ $("confirmBtn").onclick=async()=>{
 
    }
 
+   try{document.activeElement?.blur()}catch(_){}
    $("orderForm").style.display="none";
 
-   $("success").style.display="block";const successText=$("successOrderText");if(successText&&result.orderNumber)successText.textContent=`Номер заказа: ${result.orderNumber}. Мы свяжемся с вами для подтверждения.`;
+   $("success").style.display="block";
+   const successText=$("successOrderText");
+   if(successText&&result.orderNumber)successText.textContent=`Заказ ${result.orderNumber} создан. Мы свяжемся с вами для подтверждения.`;
+   try{$("checkoutView").scrollTo({top:0,behavior:"smooth"})}catch(_){$("checkoutView").scrollTop=0}
+   try{uzrHaptic("success")}catch(_){}
+   if(window.lucide)lucide.createIcons();
 
    cart=[]; saveCartState();
 
@@ -7811,7 +8595,7 @@ $("confirmBtn").onclick=async()=>{
 
    console.error(error);
 
-   alert("Не удалось отправить заказ. Проверьте интернет и попробуйте ещё раз.");
+   const formErr=$("checkoutFormErrorV41");if(formErr){formErr.textContent="Не удалось отправить заказ. Проверьте интернет и попробуйте ещё раз.";formErr.hidden=false;}
 
  }finally{
 
@@ -7846,8 +8630,8 @@ function backPage(fallback="profile"){
   navigatePage(prev||fallback);
 };
 
-$("homeBtn").onclick=()=>{$("checkoutView").classList.remove("open");["buyerName","buyerPhone","buyerCity","buyerComment"].forEach(id=>$(id).value="");page("home")};
-$("successOrdersBtn").onclick=()=>{$("checkoutView").classList.remove("open");["buyerName","buyerPhone","buyerCity","buyerComment"].forEach(id=>$(id).value="");openMyOrders()};
+$("homeBtn").onclick=()=>{$("checkoutView").classList.remove("open");["buyerName","buyerPhone","buyerCity","buyerComment"].forEach(id=>{if($(id))$(id).value=""});page("home")};
+$("successOrdersBtn").onclick=()=>{$("checkoutView").classList.remove("open");["buyerName","buyerPhone","buyerCity","buyerComment"].forEach(id=>{if($(id))$(id).value=""});openMyOrders()};
 
 function openTelegramUsername(username){
   const u=String(username||"").replace(/^@/,"").trim();
