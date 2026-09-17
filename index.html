@@ -6075,6 +6075,141 @@ html body .product-card-v15 .badge-stock,
 }
 </style>
 
+
+<style id="orders-v40-telegram-dark">
+/* ============================================================
+   ORDERS v40 — Telegram Dark
+   Isolated final layer for My Orders + Order Detail.
+   ============================================================ */
+#orders,#orders.active{background:#061823!important;color:#f4f7fa!important;min-height:100dvh!important;padding:0!important;}
+#orders .orders-v40-shell{max-width:560px!important;margin:0 auto!important;padding:0 14px calc(118px + env(safe-area-inset-bottom))!important;}
+#orders .orders-v40-topbar{height:68px!important;display:grid!important;grid-template-columns:42px minmax(0,1fr) 42px!important;align-items:center!important;gap:8px!important;position:sticky!important;top:0!important;z-index:10!important;background:rgba(6,24,35,.94)!important;backdrop-filter:blur(18px)!important;-webkit-backdrop-filter:blur(18px)!important;}
+#orders .orders-v40-topbar h1{margin:0!important;text-align:center!important;color:#f6f8fa!important;font-size:21px!important;line-height:1!important;font-weight:700!important;letter-spacing:-.02em!important;}
+#orders .orders-v40-back,#orderDetailView .order-detail-v40-back{width:42px!important;height:42px!important;padding:0!important;border:0!important;background:transparent!important;color:#dce9f2!important;display:flex!important;align-items:center!important;justify-content:center!important;border-radius:50%!important;}
+#orders .orders-v40-back svg,#orderDetailView .order-detail-v40-back svg{width:27px!important;height:27px!important;stroke:currentColor!important;stroke-width:1.8!important;}
+#orders .orders-v40-topbar-spacer,#orderDetailView .order-detail-v40-topbar-spacer{width:42px!important;height:42px!important;}
+#orders .orders-v40-filters{display:flex!important;gap:8px!important;overflow-x:auto!important;scrollbar-width:none!important;padding:8px 0 15px!important;margin:0 -2px!important;}
+#orders .orders-v40-filters::-webkit-scrollbar{display:none!important;}
+#orders .orders-v40-filters button{height:39px!important;flex:0 0 auto!important;padding:0 15px!important;border:1px solid #244657!important;border-radius:14px!important;background:#0d2837!important;color:#bfd0db!important;font-size:12px!important;font-weight:600!important;white-space:nowrap!important;box-shadow:none!important;}
+#orders .orders-v40-filters button.active{border-color:#2ba9ff!important;background:linear-gradient(180deg,#2faeff 0%,#168ee8 100%)!important;color:#fff!important;}
+#orders .orders-v40-list{display:flex!important;flex-direction:column!important;gap:11px!important;padding-top:1px!important;}
+#orders .order-card-v40{width:100%!important;min-height:132px!important;padding:10px!important;display:grid!important;grid-template-columns:100px minmax(0,1fr) 24px!important;gap:11px!important;align-items:center!important;border:1px solid #244352!important;border-radius:19px!important;background:#0d2634!important;color:#f4f7fa!important;text-align:left!important;box-shadow:none!important;overflow:hidden!important;}
+#orders .order-card-v40:active{background:#102d3d!important;transform:scale(.988)!important;}
+#orders .order-card-photo-v40{width:100px!important;height:108px!important;border-radius:14px!important;overflow:hidden!important;background:#142d3a!important;display:flex!important;align-items:center!important;justify-content:center!important;color:#668293!important;}
+#orders .order-card-photo-v40 img{width:100%!important;height:100%!important;object-fit:cover!important;display:block!important;}
+#orders .order-card-photo-v40 svg{width:30px!important;height:30px!important;}
+#orders .order-card-main-v40{min-width:0!important;display:flex!important;flex-direction:column!important;align-self:stretch!important;justify-content:center!important;}
+#orders .order-card-head-v40{display:flex!important;align-items:center!important;justify-content:space-between!important;gap:8px!important;min-width:0!important;}
+#orders .order-card-head-v40>b{min-width:0!important;overflow:hidden!important;text-overflow:ellipsis!important;white-space:nowrap!important;color:#dbe8f0!important;font-size:13.5px!important;font-weight:650!important;letter-spacing:.005em!important;}
+#orders .order-card-date-v40{margin-top:3px!important;color:#7f9aad!important;font-size:10.5px!important;line-height:1.2!important;}
+#orders .order-card-name-v40{margin-top:8px!important;color:#f3f7f9!important;font-size:14px!important;font-weight:600!important;line-height:1.25!important;white-space:nowrap!important;overflow:hidden!important;text-overflow:ellipsis!important;}
+#orders .order-card-meta-v40{margin-top:4px!important;color:#8198a9!important;font-size:10.5px!important;white-space:nowrap!important;overflow:hidden!important;text-overflow:ellipsis!important;}
+#orders .order-card-bottom-v40{margin-top:7px!important;display:flex!important;align-items:center!important;gap:8px!important;}
+#orders .order-card-bottom-v40 strong{color:#f4f7fa!important;font-size:15px!important;font-weight:750!important;}
+#orders .order-card-bottom-v40 small{color:#6f8a9d!important;font-size:9.5px!important;}
+#orders .order-card-chevron-v40{display:flex!important;align-items:center!important;justify-content:center!important;color:#83a8be!important;}
+#orders .order-card-chevron-v40 svg{width:21px!important;height:21px!important;stroke-width:1.9!important;}
+#orders .order-status-v40{flex:0 0 auto!important;display:inline-flex!important;align-items:center!important;height:29px!important;padding:0 10px!important;border-radius:12px!important;font-size:10.5px!important;font-weight:700!important;white-space:nowrap!important;}
+#orders .order-status-v40.status-new{background:#168df0!important;color:#fff!important;}
+#orders .order-status-v40.status-confirmed{background:#079766!important;color:#fff!important;}
+#orders .order-status-v40.status-shipping{background:#f39a0a!important;color:#fff!important;}
+#orders .order-status-v40.status-completed{background:#405e70!important;color:#e8f0f5!important;}
+#orders .order-status-v40.status-cancelled{background:#cc3342!important;color:#fff!important;}
+#orders .orders-empty-v40{margin:48px auto 0!important;max-width:350px!important;padding:24px 18px!important;text-align:center!important;color:#8398aa!important;}
+#orders .orders-empty-v40.compact{margin-top:30px!important;}
+#orders .orders-empty-icon-v40{width:58px!important;height:58px!important;margin:0 auto 12px!important;border-radius:19px!important;border:1px solid #244657!important;background:#0d2837!important;color:#5f8196!important;display:flex!important;align-items:center!important;justify-content:center!important;}
+#orders .orders-empty-icon-v40 svg{width:27px!important;height:27px!important;}
+#orders .orders-empty-v40 b{display:block!important;color:#dce8ef!important;font-size:16px!important;font-weight:650!important;}
+#orders .orders-empty-v40 p{margin:7px auto 15px!important;max-width:280px!important;font-size:12px!important;line-height:1.45!important;}
+#orders .orders-empty-v40 button{height:42px!important;padding:0 16px!important;border:1px solid #2a9df0!important;border-radius:13px!important;background:#128ee8!important;color:#fff!important;font-size:12px!important;font-weight:650!important;}
+#orders .orders-loading-v40{display:flex!important;flex-direction:column!important;align-items:center!important;justify-content:center!important;gap:12px!important;padding:68px 10px!important;color:#8098a9!important;font-size:12px!important;}
+#orders .orders-loading-v40 span{width:26px!important;height:26px!important;border:2px solid #244657!important;border-top-color:#2da8ff!important;border-radius:50%!important;animation:orderV40spin .8s linear infinite!important;}
+@keyframes orderV40spin{to{transform:rotate(360deg)}}
+
+/* Order detail */
+#orderDetailView.order-detail-v40-view{position:fixed!important;inset:0!important;z-index:1350!important;background:#061823!important;background-image:none!important;color:#f4f7fa!important;overflow-y:auto!important;overscroll-behavior:contain!important;-webkit-overflow-scrolling:touch!important;}
+body.order-detail-open-v40 nav{z-index:1500!important;display:grid!important;visibility:visible!important;}
+#orderDetailView .order-detail-v40-inner{max-width:560px!important;min-height:100dvh!important;margin:0 auto!important;padding:0 14px calc(112px + env(safe-area-inset-bottom))!important;background:#061823!important;}
+#orderDetailView .order-detail-v40-topbar{height:68px!important;display:grid!important;grid-template-columns:42px minmax(0,1fr) 42px!important;align-items:center!important;gap:8px!important;position:sticky!important;top:0!important;z-index:8!important;background:rgba(6,24,35,.94)!important;backdrop-filter:blur(18px)!important;-webkit-backdrop-filter:blur(18px)!important;}
+#orderDetailView .order-detail-v40-title{text-align:center!important;color:#f5f8fa!important;font-size:18px!important;font-weight:700!important;white-space:nowrap!important;overflow:hidden!important;text-overflow:ellipsis!important;}
+#orderDetailView .order-detail-v40-content{padding:4px 0 0!important;color:#f4f7fa!important;}
+#orderDetailView .order-status-hero-v40{min-height:98px!important;padding:16px!important;border:1px solid #244352!important;border-radius:20px!important;background:#0d2634!important;display:flex!important;align-items:center!important;gap:13px!important;}
+#orderDetailView .order-status-hero-icon-v40{width:52px!important;height:52px!important;flex:0 0 52px!important;border-radius:50%!important;display:flex!important;align-items:center!important;justify-content:center!important;color:#fff!important;}
+#orderDetailView .order-status-hero-icon-v40 svg{width:25px!important;height:25px!important;stroke-width:1.9!important;}
+#orderDetailView .order-status-hero-v40.status-new .order-status-hero-icon-v40{background:#168df0!important;}
+#orderDetailView .order-status-hero-v40.status-confirmed .order-status-hero-icon-v40{background:#079766!important;}
+#orderDetailView .order-status-hero-v40.status-shipping .order-status-hero-icon-v40{background:#f39a0a!important;}
+#orderDetailView .order-status-hero-v40.status-completed .order-status-hero-icon-v40{background:#405e70!important;}
+#orderDetailView .order-status-hero-v40.status-cancelled .order-status-hero-icon-v40{background:#cc3342!important;}
+#orderDetailView .order-status-hero-v40 b{display:block!important;color:#f4f7fa!important;font-size:17px!important;font-weight:700!important;}
+#orderDetailView .order-status-hero-v40.status-new b{color:#43b4ff!important;}
+#orderDetailView .order-status-hero-v40.status-confirmed b{color:#3ed69d!important;}
+#orderDetailView .order-status-hero-v40.status-shipping b{color:#ffad24!important;}
+#orderDetailView .order-status-hero-v40.status-cancelled b{color:#ff6572!important;}
+#orderDetailView .order-status-hero-v40 p{margin:4px 0 0!important;color:#8199aa!important;font-size:11.5px!important;line-height:1.35!important;}
+#orderDetailView .order-panel-v40{margin-top:13px!important;padding:15px!important;border:1px solid #244352!important;border-radius:20px!important;background:#0d2634!important;color:#f4f7fa!important;}
+#orderDetailView .order-panel-title-v40{display:flex!important;align-items:center!important;justify-content:space-between!important;margin-bottom:9px!important;}
+#orderDetailView .order-panel-title-v40 h2{margin:0!important;color:#eef4f7!important;font-size:16px!important;font-weight:700!important;}
+#orderDetailView .order-progress-panel-v40{padding:17px 14px 14px!important;overflow:hidden!important;}
+#orderDetailView .order-progress-v40{display:grid!important;grid-template-columns:repeat(4,minmax(0,1fr))!important;gap:0!important;position:relative!important;}
+#orderDetailView .order-progress-v40::before{content:""!important;position:absolute!important;left:12.5%!important;right:12.5%!important;top:8px!important;height:3px!important;border-radius:3px!important;background:#274758!important;}
+#orderDetailView .order-progress-step-v40{position:relative!important;z-index:1!important;text-align:center!important;padding-top:27px!important;min-width:0!important;color:#7290a3!important;}
+#orderDetailView .order-progress-dot-v40{position:absolute!important;top:0!important;left:50%!important;transform:translateX(-50%)!important;width:18px!important;height:18px!important;border:5px solid #274758!important;border-radius:50%!important;background:#476777!important;box-shadow:0 0 0 2px #0d2634!important;}
+#orderDetailView .order-progress-step-v40.done .order-progress-dot-v40{border-color:#f39a0a!important;background:#ffd15a!important;}
+#orderDetailView .order-progress-step-v40.active .order-progress-dot-v40{box-shadow:0 0 0 3px rgba(243,154,10,.18)!important;}
+#orderDetailView .order-progress-step-v40 b{display:block!important;color:#a9bdca!important;font-size:9.8px!important;font-weight:650!important;white-space:nowrap!important;overflow:hidden!important;text-overflow:ellipsis!important;}
+#orderDetailView .order-progress-step-v40.done b{color:#dce7ed!important;}
+#orderDetailView .order-progress-step-v40 small{display:block!important;min-height:28px!important;margin-top:5px!important;color:#67869a!important;font-size:8.8px!important;line-height:1.3!important;}
+#orderDetailView .order-progress-step-v40.done small{color:#8ba4b4!important;}
+#orderDetailView .order-cancelled-history-v40{display:flex!important;flex-direction:column!important;gap:11px!important;}
+#orderDetailView .order-cancelled-row-v40{display:grid!important;grid-template-columns:14px 1fr!important;gap:10px!important;align-items:start!important;}
+#orderDetailView .order-cancelled-row-v40>span{width:10px!important;height:10px!important;margin-top:4px!important;border-radius:50%!important;background:#4a6677!important;}
+#orderDetailView .order-cancelled-row-v40.cancelled>span{background:#d44351!important;}
+#orderDetailView .order-cancelled-row-v40 b{display:block!important;color:#dce8ef!important;font-size:11.5px!important;}
+#orderDetailView .order-cancelled-row-v40 small{display:block!important;margin-top:2px!important;color:#7893a5!important;font-size:9.5px!important;}
+#orderDetailView .order-detail-items-v40{display:flex!important;flex-direction:column!important;}
+#orderDetailView .order-detail-item-v40{display:grid!important;grid-template-columns:74px minmax(0,1fr) auto!important;gap:11px!important;align-items:center!important;padding:10px 0!important;border-bottom:1px solid rgba(58,91,109,.43)!important;}
+#orderDetailView .order-detail-item-v40:last-child{border-bottom:0!important;padding-bottom:2px!important;}
+#orderDetailView .order-detail-item-photo-v40{width:74px!important;height:74px!important;border-radius:13px!important;overflow:hidden!important;background:#142d3a!important;display:flex!important;align-items:center!important;justify-content:center!important;color:#668293!important;}
+#orderDetailView .order-detail-item-photo-v40 img{width:100%!important;height:100%!important;object-fit:cover!important;display:block!important;}
+#orderDetailView .order-detail-item-photo-v40 svg{width:27px!important;height:27px!important;}
+#orderDetailView .order-detail-item-copy-v40{min-width:0!important;display:flex!important;flex-direction:column!important;gap:4px!important;}
+#orderDetailView .order-detail-item-copy-v40 b{color:#eef4f7!important;font-size:13px!important;font-weight:650!important;line-height:1.3!important;}
+#orderDetailView .order-detail-item-copy-v40 small{color:#7e98aa!important;font-size:10.5px!important;line-height:1.3!important;}
+#orderDetailView .order-detail-item-copy-v40 strong{color:#f4f7fa!important;font-size:13px!important;font-weight:750!important;}
+#orderDetailView .order-detail-item-qty-v40{color:#9cb1bf!important;font-size:11px!important;font-weight:650!important;}
+#orderDetailView .order-info-v40{padding-bottom:14px!important;}
+#orderDetailView .order-info-row-v40{min-height:39px!important;padding:9px 0!important;display:grid!important;grid-template-columns:118px minmax(0,1fr)!important;gap:12px!important;align-items:start!important;border-bottom:1px solid rgba(58,91,109,.33)!important;}
+#orderDetailView .order-info-row-v40:last-of-type{border-bottom:0!important;}
+#orderDetailView .order-info-row-v40>span{color:#7f9bad!important;font-size:11px!important;line-height:1.35!important;}
+#orderDetailView .order-info-row-v40>strong{color:#e1ebf1!important;text-align:right!important;font-size:11.5px!important;font-weight:600!important;line-height:1.4!important;word-break:break-word!important;}
+#orderDetailView .seller-row-v40 button{justify-self:end!important;min-width:0!important;max-width:100%!important;padding:0!important;border:0!important;background:transparent!important;color:#2da9ff!important;display:flex!important;align-items:center!important;gap:4px!important;font-size:11.5px!important;font-weight:650!important;text-align:right!important;}
+#orderDetailView .seller-row-v40 button>span{overflow:hidden!important;text-overflow:ellipsis!important;white-space:nowrap!important;}
+#orderDetailView .seller-row-v40 button>svg:not(.telegram-verified-svg){width:14px!important;height:14px!important;flex:0 0 14px!important;stroke-width:1.8!important;}
+#orderDetailView .seller-row-v40 .telegram-verified-svg{width:16px!important;height:16px!important;flex:0 0 16px!important;}
+#orderDetailView .seller-row-v40 .verified-badge-bg{fill:#2AABEE!important;stroke:none!important;}
+#orderDetailView .seller-row-v40 .verified-badge-check{fill:none!important;stroke:#fff!important;stroke-width:2.15!important;stroke-linecap:round!important;stroke-linejoin:round!important;}
+#orderDetailView .order-actions-v40{display:flex!important;flex-direction:column!important;gap:9px!important;padding-top:15px!important;}
+#orderDetailView .order-primary-action-v40,#orderDetailView .order-cancel-action-v40{width:100%!important;min-height:49px!important;padding:0 14px!important;border-radius:15px!important;display:flex!important;align-items:center!important;justify-content:center!important;gap:8px!important;font-size:12px!important;font-weight:700!important;}
+#orderDetailView .order-primary-action-v40{border:1px solid #25a9ff!important;background:linear-gradient(180deg,#2fafff 0%,#178fe8 100%)!important;color:#fff!important;}
+#orderDetailView .order-cancel-action-v40{border:1px solid #d83e4b!important;background:rgba(152,34,49,.12)!important;color:#ff5f6c!important;}
+#orderDetailView .order-primary-action-v40 svg,#orderDetailView .order-cancel-action-v40 svg{width:19px!important;height:19px!important;stroke-width:1.8!important;}
+#orderDetailView .order-detail-empty-v40{padding:22px 0!important;text-align:center!important;color:#7893a5!important;font-size:11px!important;}
+@media(max-width:390px){
+  #orders .orders-v40-shell,#orderDetailView .order-detail-v40-inner{padding-left:10px!important;padding-right:10px!important;}
+  #orders .order-card-v40{grid-template-columns:88px minmax(0,1fr) 20px!important;gap:9px!important;min-height:118px!important;padding:9px!important;border-radius:17px!important;}
+  #orders .order-card-photo-v40{width:88px!important;height:96px!important;border-radius:12px!important;}
+  #orders .order-card-head-v40>b{font-size:12.5px!important;}
+  #orders .order-status-v40{height:27px!important;padding:0 8px!important;font-size:9.5px!important;}
+  #orders .order-card-name-v40{font-size:13px!important;margin-top:6px!important;}
+  #orders .order-card-bottom-v40 strong{font-size:14px!important;}
+  #orderDetailView .order-panel-v40{padding:13px!important;border-radius:18px!important;}
+  #orderDetailView .order-info-row-v40{grid-template-columns:104px minmax(0,1fr)!important;gap:9px!important;}
+  #orderDetailView .order-progress-step-v40 b{font-size:9px!important;}
+  #orderDetailView .order-progress-step-v40 small{font-size:8px!important;}
+}
+</style>
+
 </head><body><div class="app">
 <header class="app-header-v2 dark-home-header-v10" id="appHeader">
 <div class="dark-brand-row-v10">
@@ -6472,7 +6607,23 @@ html body .product-card-v15 .badge-stock,
 <button disabled="" id="maintenanceAdminBtn" onclick="toggleMaintenanceMode()" type="button">Подождите...</button>
 </div>
 <div class="admin-tabs"><button class="admin-tab on" onclick="adminTab('moderation',this)">Модерация</button><button class="admin-tab" onclick="adminTab('orders',this)">Заказы</button><button class="admin-tab" onclick="adminTab('official',this)">Товары от нас</button><button class="admin-tab" onclick="adminTab('cleanup',this)">Очистка</button></div><div id="adminContent"></div></div></section>
-<section class="page" id="orders"><div class="section orders-premium-section"><div class="orders-head"><button class="back" id="ordersBack">←</button><div><h1>Мои заказы</h1><p>Покупки и статус доставки</p></div></div><div id="ordersList"></div></div></section></div>
+<section class="page" id="orders">
+<div class="orders-v40-shell">
+  <div class="orders-v40-topbar">
+    <button class="orders-v40-back" id="ordersBack" type="button" aria-label="Назад"><i data-lucide="chevron-left"></i></button>
+    <h1>Мои заказы</h1>
+    <span class="orders-v40-topbar-spacer" aria-hidden="true"></span>
+  </div>
+  <div class="orders-v40-filters" id="ordersFiltersV40" aria-label="Фильтр заказов">
+    <button class="active" data-order-filter="all" type="button">Все</button>
+    <button data-order-filter="new" type="button">Новые</button>
+    <button data-order-filter="shipping" type="button">В доставке</button>
+    <button data-order-filter="completed" type="button">Завершённые</button>
+    <button data-order-filter="cancelled" type="button">Отменённые</button>
+  </div>
+  <div class="orders-v40-list" id="ordersList"></div>
+</div>
+</section></div>
 <nav><button class="nav active" data-page="home"><span class="icon"><i data-lucide="house"></i></span>Главная</button><button class="nav" data-page="catalog"><span class="icon"><i data-lucide="layout-grid"></i></span>Каталог</button><button class="nav sell" data-page="sell"><span class="icon"><i data-lucide="plus"></i></span></button><button class="nav china-nav-v32" data-page="china"><span class="icon"><i data-lucide="plane"></i></span>Из Китая</button><button class="nav nav-profile-v13" data-page="profile"><span class="icon nav-profile-avatar-v13" id="navProfileAvatar"><i data-lucide="user"></i></span>Профиль</button></nav>
 <div class="overlay product-v18-view" id="productView">
 <div class="product-v18-inner">
@@ -6665,7 +6816,16 @@ html body .product-card-v15 .badge-stock,
 </div></div>
 <div class="overlay" id="adminReviewView"><div class="inner"><button class="back" onclick="$('adminReviewView').classList.remove('open')">←</button><div id="adminReviewContent"></div></div></div>
 <div class="overlay" id="adminListingView"><div class="inner"><button class="back" onclick="$('adminListingView').classList.remove('open')">←</button><div id="adminListingContent"></div></div></div>
-<div class="overlay" id="orderDetailView"><div class="inner"><button class="back" id="orderDetailBack">←</button><div class="order-detail" id="orderDetailContent"></div></div></div>
+<div class="overlay order-detail-v40-view" id="orderDetailView">
+  <div class="order-detail-v40-inner">
+    <div class="order-detail-v40-topbar">
+      <button class="order-detail-v40-back" id="orderDetailBack" type="button" aria-label="Назад"><i data-lucide="chevron-left"></i></button>
+      <div class="order-detail-v40-title" id="orderDetailTitleV40">Заказ</div>
+      <span class="order-detail-v40-topbar-spacer" aria-hidden="true"></span>
+    </div>
+    <div class="order-detail order-detail-v40-content" id="orderDetailContent"></div>
+  </div>
+</div>
 <div class="overlay" id="checkoutView"><div class="inner checkout-premium-inner">
 <button class="back checkout-premium-back" id="checkoutBack">←</button>
 <div id="orderForm">
@@ -7352,6 +7512,9 @@ function add(p){
 
 function resetPageScroll(target){const scroller=document.scrollingElement||document.documentElement;if(scroller)scroller.scrollTop=0;document.documentElement.scrollTop=0;document.body.scrollTop=0;window.scrollTo({top:0,left:0,behavior:"auto"});const app=document.querySelector(".app");if(app)app.scrollTop=0;if(target)target.scrollTop=0}
 function navigatePage(id){
+ const orderDetailV40=$("orderDetailView");
+ if(orderDetailV40)orderDetailV40.classList.remove("open");
+ document.body.classList.remove("order-detail-open-v40");
  if(id!=="sellerProfile"){document.body.classList.remove("seller-profile-open-v27","seller-settings-open-v27");const ss=$("sellerSettingsV26");if(ss)ss.hidden=true}
  document.querySelectorAll(".page").forEach(x=>x.classList.remove("active"));
  const target=$(id);if(!target){console.error("Unknown page:",id);return}
@@ -7697,56 +7860,250 @@ function openTelegramUsername(username){
 
 function orderStatus(s){return ({new:"Новый",confirmed:"Подтверждён",shipping:"В доставке",completed:"Завершён",cancelled:"Отменён"})[s]||s||"Новый"}
 
-function orderDate(v){if(!v)return "";const d=new Date(String(v).replace(" ","T")+"Z");return Number.isNaN(d.getTime())?v:d.toLocaleString("ru-RU",{day:"2-digit",month:"2-digit",year:"numeric",hour:"2-digit",minute:"2-digit"})}
-
-function renderOrders(a){
-  const b=$("ordersList");
-  if(!a.length){b.innerHTML='<div class="empty">У вас пока нет заказов</div>';return}
-  b.innerHTML="";
-  a.forEach(o=>{
-    const c=document.createElement("div");c.className="order-card";
-    const it=(Array.isArray(o.items)?o.items:[]).map(i=>{
-      const pp=products.find(p=>Number(p.listingId||0)===Number(i.listingId||0)||p.id===i.id||p.name===i.name);
-      const img=i.imageUrl||(pp&&pp.image)||"";
-      return `<div class="order-item order-item-stable">${img?`<img class="order-thumb" src="${img}" alt="">`:""}<div class="order-item-copy"><div class="order-item-name">${escapeHtml(i.name||"Товар")}</div><div class="meta">${i.size?"Размер: "+escapeHtml(i.size):""}</div>${(i.sellerUsername||i.sellerName)?`<div class="order-seller">Продавец: ${i.sellerUsername?"@"+escapeHtml(String(i.sellerUsername).replace(/^@/,"")):escapeHtml(i.sellerName||"—")}</div>`:""}<div class="price">${money(i.price)}</div></div></div>`
-    }).join("");
-    c.innerHTML=`<div class="order-top"><div class="order-number">${o.orderNumber||"Заказ"}</div><div class="order-status status-${o.status||"new"}">${orderStatus(o.status)}</div></div><div class="order-date">${orderDate(o.createdAt)}${o.updatedAt&&o.updatedAt!==o.createdAt?` · обновлён ${orderDate(o.updatedAt)}`:""}</div>${it}<div class="order-total"><span>Итого</span><span>${money(o.total)}</span></div>`;
-    c.onclick=()=>openOrderDetail(o);
-    b.appendChild(c)
-  })
+function orderDate(v){
+  if(!v)return "";
+  const d=new Date(String(v).replace(" ","T")+"Z");
+  return Number.isNaN(d.getTime())?String(v):d.toLocaleString("ru-RU",{day:"2-digit",month:"short",year:"numeric",hour:"2-digit",minute:"2-digit"}).replace(" г.","");
+}
+function orderShortDate(v){
+  if(!v)return "";
+  const d=new Date(String(v).replace(" ","T")+"Z");
+  return Number.isNaN(d.getTime())?String(v):d.toLocaleDateString("ru-RU",{day:"2-digit",month:"2-digit"})+"<br>"+d.toLocaleTimeString("ru-RU",{hour:"2-digit",minute:"2-digit"});
+}
+function normalizeOrderItemsV40(items){
+  let a=items;
+  if(typeof a==="string"){try{a=JSON.parse(a)}catch(_){a=[]}}
+  if(a&&!Array.isArray(a)&&typeof a==="object")a=Object.values(a);
+  return Array.isArray(a)?a:[];
+}
+function orderItemProductV40(i){
+  return products.find(p=>Number(p.listingId||0)===Number(i.listingId||i.listing_id||0)||p.id===i.id||p.name===i.name);
+}
+function orderItemImageV40(i){
+  const p=orderItemProductV40(i);
+  return i.imageUrl||i.image_url||(p&&p.image)||"";
+}
+function orderFilterMatchV40(o,filter){
+  const st=String(o.status||"new");
+  if(filter==="all")return true;
+  if(filter==="new")return st==="new"||st==="confirmed";
+  return st===filter;
+}
+function orderStatusIconV40(status){
+  const icons={
+    new:'<i data-lucide="package"></i>',
+    confirmed:'<i data-lucide="badge-check"></i>',
+    shipping:'<i data-lucide="truck"></i>',
+    completed:'<i data-lucide="circle-check"></i>',
+    cancelled:'<i data-lucide="circle-x"></i>'
+  };
+  return icons[status]||icons.new;
+}
+function orderStatusCopyV40(status){
+  return ({
+    new:"Заказ создан. Ожидает подтверждения.",
+    confirmed:"Заказ подтверждён. Готовим к отправке.",
+    shipping:"Ваш заказ в пути. Скоро будет у вас!",
+    completed:"Заказ завершён.",
+    cancelled:"Заказ отменён."
+  })[status]||"Следите за изменением статуса здесь.";
 }
 
+let myOrdersCacheV40=[];
+let myOrdersFilterV40="all";
+
+function renderOrders(a){
+  myOrdersCacheV40=Array.isArray(a)?a:[];
+  renderOrdersFilteredV40();
+}
+function renderOrdersFilteredV40(){
+  const b=$("ordersList");
+  if(!b)return;
+  const a=myOrdersCacheV40.filter(o=>orderFilterMatchV40(o,myOrdersFilterV40));
+  if(!myOrdersCacheV40.length){
+    b.innerHTML=`<div class="orders-empty-v40"><span class="orders-empty-icon-v40"><i data-lucide="package-open"></i></span><b>Заказов пока нет</b><p>После покупки здесь появятся ваши заказы и их статусы.</p><button type="button" onclick="page('catalog')">Перейти в каталог</button></div>`;
+    setTimeout(()=>window.lucide&&lucide.createIcons(),0);
+    return;
+  }
+  if(!a.length){
+    b.innerHTML=`<div class="orders-empty-v40 compact"><span class="orders-empty-icon-v40"><i data-lucide="inbox"></i></span><b>Здесь пока пусто</b><p>Заказов с таким статусом нет.</p></div>`;
+    setTimeout(()=>window.lucide&&lucide.createIcons(),0);
+    return;
+  }
+  b.innerHTML=a.map(o=>{
+    const items=normalizeOrderItemsV40(o.items);
+    const first=items[0]||{};
+    const img=orderItemImageV40(first);
+    const extra=Math.max(0,items.length-1);
+    const firstMeta=[first.size?`Размер: ${escapeHtml(String(first.size))}`:"",first.color?`Цвет: ${escapeHtml(String(first.color))}`:""].filter(Boolean).join(" · ");
+    return `<button class="order-card-v40" type="button" data-order-number="${escapeHtml(String(o.orderNumber||o.order_number||""))}">
+      <span class="order-card-photo-v40">${img?`<img src="${escapeHtml(img)}" alt="">`:'<i data-lucide="package"></i>'}</span>
+      <span class="order-card-main-v40">
+        <span class="order-card-head-v40"><b>${escapeHtml(String(o.orderNumber||o.order_number||"Заказ"))}</b><span class="order-status-v40 status-${escapeHtml(String(o.status||"new"))}">${orderStatus(o.status)}</span></span>
+        <span class="order-card-date-v40">${orderDate(o.createdAt||o.created_at)}</span>
+        <span class="order-card-name-v40">${escapeHtml(String(first.name||first.title||"Заказ"))}</span>
+        ${firstMeta?`<span class="order-card-meta-v40">${firstMeta}</span>`:""}
+        <span class="order-card-bottom-v40"><strong>${money(o.total||0)}</strong>${extra?`<small>+${extra} ${extra===1?"товар":"товара"}</small>`:""}</span>
+      </span>
+      <span class="order-card-chevron-v40"><i data-lucide="chevron-right"></i></span>
+    </button>`;
+  }).join("");
+  b.querySelectorAll(".order-card-v40").forEach((el,index)=>el.onclick=()=>openOrderDetail(a[index]));
+  setTimeout(()=>window.lucide&&lucide.createIcons(),0);
+}
+
+function setOrdersFilterV40(filter){
+  myOrdersFilterV40=filter||"all";
+  document.querySelectorAll("#ordersFiltersV40 [data-order-filter]").forEach(btn=>btn.classList.toggle("active",btn.dataset.orderFilter===myOrdersFilterV40));
+  renderOrdersFilteredV40();
+}
+
+document.querySelectorAll("#ordersFiltersV40 [data-order-filter]").forEach(btn=>{
+  btn.onclick=()=>setOrdersFilterV40(btn.dataset.orderFilter);
+});
+
 function historyLabel(status){
-  return {new:"Заказ создан",confirmed:"Подтверждён",shipping:"В доставке",completed:"Завершён",cancelled:"Отменён"}[status]||status
+  return {new:"Новый",confirmed:"Подтверждён",shipping:"В доставке",completed:"Завершён",cancelled:"Отменён"}[status]||status
 }
 function historyDate(v){
   if(!v)return "";
   const d=new Date(String(v).replace(" ","T")+"Z");
   if(isNaN(d))return String(v);
-  return d.toLocaleString("ru-RU",{day:"2-digit",month:"2-digit",year:"numeric",hour:"2-digit",minute:"2-digit"})
+  return d.toLocaleString("ru-RU",{day:"2-digit",month:"2-digit",hour:"2-digit",minute:"2-digit"})
+}
+function orderSellersV40(items){
+  const seen=new Set(), out=[];
+  normalizeOrderItemsV40(items).forEach(i=>{
+    const official=String(i.ownerType||i.owner_type||"").toLowerCase()==="official";
+    const username=String(i.sellerUsername||i.seller_username||"").replace(/^@/,"").trim();
+    const telegramId=String(i.sellerTelegramId||i.seller_telegram_id||"").trim();
+    const name=String(i.sellerName||i.seller_name||(official?"Uzbek Re'Sale":"Продавец")).trim();
+    const key=official?"official":(telegramId||username||name);
+    if(seen.has(key))return;
+    seen.add(key);out.push({official,username,telegramId,name});
+  });
+  return out.length?out:[{official:true,username:"uzbclothelover",telegramId:"",name:"Uzbek Re'Sale"}];
+}
+function orderSellerActionV40(username,telegramId,official){
+  const u=String(username||"").replace(/^@/,"").trim();
+  const id=String(telegramId||"").trim();
+  if(official){openTelegramUsername("uzbclothelover");return}
+  if(u){openTelegramUsername(u);return}
+  if(id){closeOrderDetailV40();goSellerProfile(id)}
+}
+function closeOrderDetailV40(){
+  const v=$("orderDetailView");if(v)v.classList.remove("open");
+  document.body.classList.remove("order-detail-open-v40");
+}
+function requestOrderCancelV40(orderNumber){
+  try{window.Telegram?.WebApp?.HapticFeedback?.impactOccurred?.("light")}catch(_){}
+  openTelegramUsername("uzbclothelover");
 }
 function openOrderDetail(o){
   const box=$("orderDetailContent");
-  const hist=Array.isArray(o.history)&&o.history.length?o.history:[{status:"new",created_at:o.createdAt},{status:o.status,created_at:o.updatedAt}].filter((x,i,a)=>i===0||x.status!==a[0].status);
+  const title=$("orderDetailTitleV40");
+  const orderNumber=String(o.orderNumber||o.order_number||"Заказ");
+  if(title)title.textContent="Заказ "+orderNumber.replace(/^Заказ\s*/i,"");
+  const itemsArr=normalizeOrderItemsV40(o.items);
+  const hist=Array.isArray(o.history)&&o.history.length?o.history:[{status:"new",created_at:o.createdAt||o.created_at},{status:o.status,created_at:o.updatedAt||o.updated_at}].filter((x,i,a)=>i===0||x.status!==a[0].status);
   const standard=["new","confirmed","shipping","completed"];
+  const hm={};hist.forEach(x=>hm[x.status]=x.created_at||x.createdAt);
+  const currentStatus=String(o.status||"new");
+  const currentIndex=standard.indexOf(currentStatus);
+
   let timeline="";
-  if(o.status==="cancelled"){
-    const done=new Set(hist.map(x=>x.status));
-    timeline=hist.map(x=>`<div class="timeline-step ${x.status==="cancelled"?"cancelled":"done"}"><span class="timeline-dot"></span><div class="timeline-label">${historyLabel(x.status)}</div><div class="timeline-date">${historyDate(x.created_at)}</div></div>`).join("");
+  if(currentStatus==="cancelled"){
+    timeline=`<div class="order-cancelled-history-v40">${hist.map(x=>`<div class="order-cancelled-row-v40 ${x.status==="cancelled"?"cancelled":""}"><span></span><div><b>${historyLabel(x.status)}</b>${x.created_at||x.createdAt?`<small>${historyDate(x.created_at||x.createdAt)}</small>`:""}</div></div>`).join("")}</div>`;
   }else{
-    const hm={};hist.forEach(x=>hm[x.status]=x.created_at);
-    timeline=standard.map(st=>`<div class="timeline-step ${hm[st]?"done":""}"><span class="timeline-dot"></span><div class="timeline-label">${historyLabel(st)}</div>${hm[st]?`<div class="timeline-date">${historyDate(hm[st])}</div>`:""}</div>`).join("");
+    timeline=`<div class="order-progress-v40">${standard.map((st,idx)=>{
+      const done=hm[st]||idx<=currentIndex;
+      const active=st===currentStatus;
+      return `<div class="order-progress-step-v40 ${done?"done":""} ${active?"active":""}"><span class="order-progress-dot-v40"></span><b>${historyLabel(st)}</b>${hm[st]?`<small>${orderShortDate(hm[st])}</small>`:"<small>—</small>"}</div>`;
+    }).join("")}</div>`;
   }
-  const items=(Array.isArray(o.items)?o.items:[]).map(i=>{const pp=products.find(p=>Number(p.listingId||0)===Number(i.listingId||0)||p.id===i.id||p.name===i.name);const img=i.imageUrl||(pp&&pp.image)||"";return `<div class="detail-item">${img?`<img src="${img}" alt="">`:""}<div class="grow"><b>${escapeHtml(i.name||"Товар")}</b><div class="meta">${i.size?"Размер: "+escapeHtml(i.size):""}</div>${(i.sellerUsername||i.sellerName)?`<div class="order-seller">Продавец: ${i.sellerUsername?"@"+escapeHtml(String(i.sellerUsername).replace(/^@/,"")):escapeHtml(i.sellerName||"—")}</div>`:""}<div class="price">${money(i.price)}</div></div></div>`}).join("");
-  const firstSeller=(Array.isArray(o.items)?o.items:[]).find(i=>i.sellerUsername||i.ownerType==="official");
-  const sellerUser=firstSeller?.ownerType==="official"?"uzbclothelover":String(firstSeller?.sellerUsername||"").replace(/^@/,"");
-  box.innerHTML=`<div class="detail-number">${o.orderNumber||"Заказ"}</div><div class="detail-status status-${o.status||"new"}">${orderStatus(o.status)}</div><div class="timeline"><div class="timeline-title">Статус заказа</div>${timeline}</div><div class="detail-items"><div class="timeline-title">Товары</div>${items}</div><div class="detail-box"><div class="detail-row"><span>Итого</span><span>${money(o.total)}</span></div><div class="detail-row"><span>Имя</span><span>${escapeHtml(o.customerName||"—")}</span></div><div class="detail-row"><span>Телефон</span><span>${escapeHtml(o.phone||"—")}</span></div><div class="detail-row"><span>Город</span><span>${escapeHtml(o.city||"—")}</span></div><div class="detail-row"><span>Комментарий</span><span>${escapeHtml(o.comment||"—")}</span></div></div>${sellerUser?`<button class="btn black order-contact-btn" onclick="openTelegramUsername('${sellerUser}')">💬 Написать продавцу</button>`:""}`;
-  $("orderDetailView").classList.add("open")
+
+  const items=itemsArr.map(i=>{
+    const img=orderItemImageV40(i);
+    const meta=[i.size?`Размер: ${escapeHtml(String(i.size))}`:"",i.color?`Цвет: ${escapeHtml(String(i.color))}`:""].filter(Boolean).join(" · ");
+    const qty=Number(i.qty||i.quantity||1);
+    return `<div class="order-detail-item-v40">
+      <span class="order-detail-item-photo-v40">${img?`<img src="${escapeHtml(img)}" alt="">`:'<i data-lucide="package"></i>'}</span>
+      <span class="order-detail-item-copy-v40"><b>${escapeHtml(String(i.name||i.title||"Товар"))}</b>${meta?`<small>${meta}</small>`:""}<strong>${money(i.price||0)}</strong></span>
+      <span class="order-detail-item-qty-v40">×${qty}</span>
+    </div>`;
+  }).join("");
+
+  const sellers=orderSellersV40(itemsArr);
+  const sellersHtml=sellers.map((s,idx)=>{
+    const display=s.official?'Uzbek Re\'Sale':(s.username?'@'+s.username:s.name||'Продавец');
+    const encodedUser=encodeURIComponent(s.username||"");
+    const encodedId=encodeURIComponent(s.telegramId||"");
+    const canOpen=s.official||s.username||s.telegramId;
+    return `<div class="order-info-row-v40 seller-row-v40"><span>${sellers.length>1?`Продавец ${idx+1}`:"Продавец"}</span>${canOpen?`<button type="button" onclick="orderSellerActionV40(decodeURIComponent('${encodedUser}'),decodeURIComponent('${encodedId}'),${s.official?'true':'false'})"><span>${escapeHtml(display)}</span>${s.official?OFFICIAL_VERIFIED_SVG:'<i data-lucide="external-link"></i>'}</button>`:`<strong>${escapeHtml(display)}</strong>`}</div>`;
+  }).join("");
+
+  const contactButtons=sellers.map(s=>{
+    const encodedUser=encodeURIComponent(s.username||"");
+    const encodedId=encodeURIComponent(s.telegramId||"");
+    if(s.official)return `<button class="order-primary-action-v40" type="button" onclick="orderSellerActionV40('', '', true)"><i data-lucide="message-circle"></i>Написать в поддержку</button>`;
+    if(s.username||s.telegramId)return `<button class="order-primary-action-v40" type="button" onclick="orderSellerActionV40(decodeURIComponent('${encodedUser}'),decodeURIComponent('${encodedId}'),false)"><i data-lucide="message-circle"></i>${s.username?`Написать @${escapeHtml(s.username)}`:"Открыть профиль продавца"}</button>`;
+    return "";
+  }).filter(Boolean).join("");
+
+  const canRequestCancel=currentStatus==="new"||currentStatus==="confirmed";
+  box.innerHTML=`
+    <section class="order-status-hero-v40 status-${escapeHtml(currentStatus)}">
+      <span class="order-status-hero-icon-v40">${orderStatusIconV40(currentStatus)}</span>
+      <div><b>${orderStatus(currentStatus)}</b><p>${orderStatusCopyV40(currentStatus)}</p></div>
+    </section>
+    <section class="order-panel-v40 order-progress-panel-v40">${timeline}</section>
+    <section class="order-panel-v40">
+      <div class="order-panel-title-v40"><h2>Товары (${itemsArr.length})</h2></div>
+      <div class="order-detail-items-v40">${items||'<div class="order-detail-empty-v40">Нет данных о товарах</div>'}</div>
+    </section>
+    <section class="order-panel-v40 order-info-v40">
+      <div class="order-panel-title-v40"><h2>Информация о заказе</h2></div>
+      <div class="order-info-row-v40"><span>Номер заказа</span><strong>${escapeHtml(orderNumber)}</strong></div>
+      <div class="order-info-row-v40"><span>Дата заказа</span><strong>${escapeHtml(orderDate(o.createdAt||o.created_at)||"—")}</strong></div>
+      ${sellersHtml}
+      <div class="order-info-row-v40"><span>Сумма</span><strong>${money(o.total||0)}</strong></div>
+      <div class="order-info-row-v40"><span>Доставка</span><strong>${escapeHtml(String(o.city||"—"))}</strong></div>
+      <div class="order-info-row-v40"><span>Получатель</span><strong>${escapeHtml(String(o.customerName||o.name||"—"))}</strong></div>
+      <div class="order-info-row-v40"><span>Телефон</span><strong>${escapeHtml(String(o.phone||"—"))}</strong></div>
+      ${o.comment?`<div class="order-info-row-v40 comment"><span>Комментарий</span><strong>${escapeHtml(String(o.comment))}</strong></div>`:""}
+      <div class="order-actions-v40">${contactButtons}${canRequestCancel?`<button class="order-cancel-action-v40" type="button" onclick="requestOrderCancelV40('${encodeURIComponent(orderNumber)}')"><i data-lucide="circle-x"></i>Запросить отмену заказа</button>`:""}</div>
+    </section>`;
+  $("orderDetailView").classList.add("open");
+  document.body.classList.add("order-detail-open-v40");
+  $("orderDetailView").scrollTop=0;
+  setTimeout(()=>window.lucide&&lucide.createIcons(),0);
 }
 
-async function openMyOrders(){page("orders");const b=$("ordersList");if(!telegramUser||!telegramUser.id){b.innerHTML='<div class="empty">Откройте приложение через Telegram, чтобы увидеть свои заказы.</div>';return}b.innerHTML='<div class="orders-loading">Загружаем заказы...</div>';try{const r=await fetch(`${ORDERS_API}/orders?telegramId=${encodeURIComponent(String(telegramUser.id))}`),j=await r.json();if(!r.ok||!j.ok)throw new Error(j.error||"Orders load failed");renderOrders(Array.isArray(j.orders)?j.orders:[])}catch(e){console.error(e);b.innerHTML='<div class="empty">Не удалось загрузить заказы. Попробуйте ещё раз.</div>'}}
+async function openMyOrders(){
+  page("orders");
+  myOrdersFilterV40="all";
+  document.querySelectorAll("#ordersFiltersV40 [data-order-filter]").forEach(btn=>btn.classList.toggle("active",btn.dataset.orderFilter==="all"));
+  const b=$("ordersList");
+  if(!telegramUser||!telegramUser.id){
+    myOrdersCacheV40=[];
+    b.innerHTML='<div class="orders-empty-v40"><span class="orders-empty-icon-v40"><i data-lucide="send"></i></span><b>Откройте через Telegram</b><p>Так мы сможем показать именно ваши заказы.</p></div>';
+    setTimeout(()=>window.lucide&&lucide.createIcons(),0);return;
+  }
+  b.innerHTML='<div class="orders-loading-v40"><span></span><b>Загружаем заказы...</b></div>';
+  try{
+    const r=await fetch(`${ORDERS_API}/orders?telegramId=${encodeURIComponent(String(telegramUser.id))}`),j=await r.json();
+    if(!r.ok||!j.ok)throw new Error(j.error||"Orders load failed");
+    renderOrders(Array.isArray(j.orders)?j.orders:[])
+  }catch(e){
+    console.error(e);myOrdersCacheV40=[];
+    b.innerHTML='<div class="orders-empty-v40 error"><span class="orders-empty-icon-v40"><i data-lucide="wifi-off"></i></span><b>Не удалось загрузить</b><p>Проверьте соединение и попробуйте ещё раз.</p><button type="button" onclick="openMyOrders()">Повторить</button></div>';
+    setTimeout(()=>window.lucide&&lucide.createIcons(),0);
+  }
+}
 
-$("myOrdersBtn").onclick=openMyOrders;$("ordersBack").onclick=()=>page("profile");$("orderDetailBack").onclick=()=>$("orderDetailView").classList.remove("open");
+$("myOrdersBtn").onclick=openMyOrders;
+$("ordersBack").onclick=()=>page("profile");
+$("orderDetailBack").onclick=closeOrderDetailV40;
 
 function fileToDataUrl(file){
   return new Promise((resolve,reject)=>{
