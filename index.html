@@ -6831,6 +6831,38 @@ body.order-detail-open-v40 nav{z-index:1500!important;display:grid!important;vis
 }
 </style>
 
+
+<style id="checkout-v43-reliability">
+#checkoutView .checkout-v43-topbar{
+  grid-template-columns:42px!important;
+  justify-content:start!important;
+  margin-bottom:8px!important;
+}
+#checkoutView .checkout-confirm-premium{
+  display:flex!important;
+  align-items:center!important;
+  justify-content:center!important;
+  gap:8px!important;
+}
+#checkoutView .checkout-spinner-v43{
+  width:16px!important;height:16px!important;display:inline-block!important;
+  border:2px solid rgba(255,255,255,.35)!important;border-top-color:#fff!important;
+  border-radius:50%!important;animation:checkoutSpinV43 .75s linear infinite!important;
+}
+@keyframes checkoutSpinV43{to{transform:rotate(360deg)}}
+#checkoutView .checkout-error-title-v43{
+  margin-bottom:4px!important;color:#ff9aa2!important;font-size:11px!important;font-weight:750!important;
+}
+#checkoutView .checkout-retry-v43{
+  width:100%!important;min-height:40px!important;margin-top:10px!important;
+  border:1px solid rgba(255,110,120,.45)!important;border-radius:11px!important;
+  background:rgba(160,38,50,.12)!important;color:#ff9aa2!important;
+  display:flex!important;align-items:center!important;justify-content:center!important;gap:7px!important;
+  font-size:10.5px!important;font-weight:700!important;
+}
+#checkoutView .checkout-retry-v43 svg{width:15px!important;height:15px!important}
+</style>
+
 </head><body><div class="app">
 <header class="app-header-v2 dark-home-header-v10" id="appHeader">
 <div class="dark-brand-row-v10">
@@ -7448,10 +7480,8 @@ body.order-detail-open-v40 nav{z-index:1500!important;display:grid!important;vis
   </div>
 </div>
 <div class="overlay" id="checkoutView"><div class="inner checkout-premium-inner checkout-v41-inner">
-<div class="checkout-v41-topbar">
+<div class="checkout-v41-topbar checkout-v43-topbar">
 <button class="back checkout-premium-back" id="checkoutBack" type="button" aria-label="Назад"><i data-lucide="chevron-left"></i></button>
-<div class="checkout-v41-top-title">Оформление заказа</div>
-<span class="checkout-v41-top-spacer" aria-hidden="true"></span>
 </div>
 <div id="orderForm">
 <div class="checkout-heading"><span>UZBEK RE'SALE</span><h1>Оформление заказа</h1><p>Проверьте заказ и оставьте данные для подтверждения.</p></div>
@@ -8446,6 +8476,23 @@ $("buyerName")?.addEventListener("input",()=>{$("buyerNameErrorV41").textContent
 $("buyerCity")?.addEventListener("change",()=>{$("buyerCityErrorV41").textContent="";$("buyerCity").classList.remove("checkout-invalid-v41")});
 $("buyerComment")?.addEventListener("input",e=>{if($("buyerCommentCountV41"))$("buyerCommentCountV41").textContent=String(e.target.value.length)});
 
+
+async function verifyCreatedOrderV43(orderNumber){
+  if(!orderNumber||!telegramUser?.id)return {verified:false};
+  for(let attempt=0;attempt<3;attempt++){
+    try{
+      const r=await fetch(`${ORDERS_API}/orders?telegramId=${encodeURIComponent(String(telegramUser.id))}`,{cache:"no-store"});
+      if(r.ok){
+        const d=await r.json().catch(()=>({}));
+        const list=Array.isArray(d.orders)?d.orders:[];
+        if(list.some(o=>String(o.orderNumber||o.order_number||"")===String(orderNumber)))return {verified:true};
+      }
+    }catch(_){}
+    if(attempt<2)await new Promise(resolve=>setTimeout(resolve,350*(attempt+1)));
+  }
+  return {verified:false};
+}
+
 $("confirmBtn").onclick=async()=>{
 
  checkoutClearErrorsV41();
@@ -8482,11 +8529,7 @@ $("confirmBtn").onclick=async()=>{
  }
  if(!checkoutValid)return;
 
- if($("checkoutSaveContactV41")?.checked){
-   try{localStorage.setItem(UZR_CHECKOUT_CONTACT_STORAGE,JSON.stringify({name,phoneDigits,city}))}catch(_){}
- }else{
-   try{localStorage.removeItem(UZR_CHECKOUT_CONTACT_STORAGE)}catch(_){}
- }
+ const shouldSaveCheckoutContact=!!$("checkoutSaveContactV41")?.checked;
 
  if(orderSending)return;
 
@@ -8495,8 +8538,8 @@ $("confirmBtn").onclick=async()=>{
  orderSending=true;
 
  btn.disabled=true;
-
- btn.textContent="Отправляем заказ...";
+ btn.innerHTML='<span class="checkout-spinner-v43"></span><span>Отправляем…</span>';
+ const oldFormErr=$("checkoutFormErrorV41");if(oldFormErr){oldFormErr.hidden=true;oldFormErr.innerHTML=""}
 
  const total=cart.reduce((s,p)=>s+p.price,0);
 
@@ -8559,30 +8602,52 @@ $("confirmBtn").onclick=async()=>{
 
  try{
 
-   const response=await fetch("https://uzbek-resale-orders.amegakid.workers.dev/",{
-
+   const response=await fetch(ORDERS_API,{
      method:"POST",
-
-     headers:{"Content-Type":"application/json"},
-
+     headers:{
+       "Content-Type":"application/json",
+       ...(window.Telegram?.WebApp?.initData?{"X-Telegram-Init-Data":window.Telegram.WebApp.initData}:{})
+     },
      body:JSON.stringify(payload)
-
    });
 
-   const result=await response.json().catch(()=>({ok:false}));
+   let result={};
+   try{result=await response.json()}catch(_){}
 
-   if(!response.ok||!result.ok){
-
-     throw new Error(result.error||"Order send failed");
-
+   if(!response.ok||result.ok===false){
+     const serverCode=String(result.error||result.code||"").trim();
+     const message=
+       response.status===401||response.status===403
+         ?"Не удалось подтвердить Telegram-сессию. Закройте Mini App, откройте снова и повторите заказ."
+       : response.status===409
+         ?"Один из товаров уже недоступен. Вернитесь в корзину и обновите заказ."
+       : response.status>=500
+         ?"Сервис заказов временно недоступен. Корзина и введённые данные сохранены — попробуйте ещё раз."
+       : serverCode
+         ?`Не удалось оформить заказ: ${serverCode}`
+         :"Не удалось оформить заказ. Корзина и введённые данные сохранены — попробуйте ещё раз.";
+     throw new Error(message);
    }
+
+   if(shouldSaveCheckoutContact){
+     try{localStorage.setItem(UZR_CHECKOUT_CONTACT_STORAGE,JSON.stringify({name,phoneDigits,city}))}catch(_){}
+   }else{
+     try{localStorage.removeItem(UZR_CHECKOUT_CONTACT_STORAGE)}catch(_){}
+   }
+
+   const createdOrderNumber=result.orderNumber||result.order_number||"";
+   const verification=await verifyCreatedOrderV43(createdOrderNumber);
 
    try{document.activeElement?.blur()}catch(_){}
    $("orderForm").style.display="none";
 
    $("success").style.display="block";
    const successText=$("successOrderText");
-   if(successText&&result.orderNumber)successText.textContent=`Заказ ${result.orderNumber} создан. Мы свяжемся с вами для подтверждения.`;
+   if(successText&&createdOrderNumber){
+     successText.textContent=verification.verified
+       ?`Заказ ${createdOrderNumber} создан и появился в «Моих заказах».`
+       :`Заказ ${createdOrderNumber} создан. Он может появиться в «Моих заказах» через несколько секунд.`;
+   }
    try{$("checkoutView").scrollTo({top:0,behavior:"smooth"})}catch(_){$("checkoutView").scrollTop=0}
    try{uzrHaptic("success")}catch(_){}
    if(window.lucide)lucide.createIcons();
@@ -8595,7 +8660,17 @@ $("confirmBtn").onclick=async()=>{
 
    console.error(error);
 
-   const formErr=$("checkoutFormErrorV41");if(formErr){formErr.textContent="Не удалось отправить заказ. Проверьте интернет и попробуйте ещё раз.";formErr.hidden=false;}
+   const formErr=$("checkoutFormErrorV41");
+   if(formErr){
+     formErr.innerHTML=`<div class="checkout-error-title-v43">Заказ не отправлен</div><div>${escapeHtml(String(error?.message||"Не удалось оформить заказ. Попробуйте ещё раз."))}</div><button type="button" class="checkout-retry-v43" id="checkoutRetryV43"><i data-lucide="refresh-cw"></i><span>Повторить отправку</span></button>`;
+     formErr.hidden=false;
+     setTimeout(()=>{
+       const retry=$("checkoutRetryV43");
+       if(retry)retry.onclick=()=>$("confirmBtn")?.click();
+       if(window.lucide)lucide.createIcons();
+     },0);
+     try{formErr.scrollIntoView({behavior:"smooth",block:"center"})}catch(_){}
+   }
 
  }finally{
 
@@ -8603,7 +8678,7 @@ $("confirmBtn").onclick=async()=>{
 
    btn.disabled=false;
 
-   btn.textContent="Подтвердить заказ";
+   btn.innerHTML="Подтвердить заказ";
 
  }
 
