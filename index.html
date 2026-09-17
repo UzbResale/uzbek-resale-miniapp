@@ -5318,14 +5318,8 @@ body .app > .page.active{
   font-size:0!important;
 }
 #orders #ordersBack::before{
-  content:"‹";
-  display:block;
-  color:#dce9f2!important;
-  font-family:-apple-system,BlinkMacSystemFont,"SF Pro Text","Segoe UI",sans-serif!important;
-  font-size:30px!important;
-  line-height:1!important;
-  font-weight:300!important;
-  transform:translateY(-1px)!important;
+  content:none!important;
+  display:none!important;
 }
 #orders #ordersBack:active{
   opacity:.72!important;
@@ -6966,6 +6960,21 @@ body.order-detail-open-v40 nav{z-index:1500!important;display:grid!important;vis
   #viewed .viewed-v46-info-copy small{max-width:190px!important}
   #viewed .viewed-v46-clear{min-width:82px!important;padding:0 9px!important}
   #viewed #viewedGrid{gap:10px 8px!important}
+}
+</style>
+
+
+<style id="orders-back-v47-hardfix">
+/* v47 — My Orders: keep exactly one back icon */
+#orders #ordersBack::before,
+#orders #ordersBack::after{
+  content:none!important;
+  display:none!important;
+}
+#orders #ordersBack>svg{
+  display:block!important;
+  width:19px!important;
+  height:19px!important;
 }
 </style>
 
