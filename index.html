@@ -7373,6 +7373,27 @@ body.order-detail-open-v40 nav{z-index:1500!important;display:grid!important;vis
 }
 </style>
 
+
+<style id="profile-version-v55">
+.tg-row-static-v55{
+  cursor:default!important;
+  grid-template-columns:34px minmax(0,1fr) max-content!important;
+}
+.tg-row-static-v55:active{background:var(--tgp-card)!important}
+.tg-row-value-v55{
+  justify-self:end!important;
+  align-self:center!important;
+  margin:0!important;
+  padding:0!important;
+  color:#8196a8!important;
+  font-size:12px!important;
+  line-height:1!important;
+  font-weight:700!important;
+  white-space:nowrap!important;
+  text-align:right!important;
+}
+</style>
+
 </head><body><div class="app">
 <header class="app-header-v2 dark-home-header-v10" id="appHeader">
 <div class="dark-brand-row-v10">
@@ -7684,7 +7705,7 @@ body.order-detail-open-v40 nav{z-index:1500!important;display:grid!important;vis
 <div class="tg-group-v13">
 <button class="tg-row-v13" onclick="page('faq')"><span class="tg-square-icon-v13 green"><i data-lucide="message-circle-more"></i></span><span class="tg-row-text-v13">FAQ и помощь</span><i class="tg-row-chevron-v13" data-lucide="chevron-right"></i></button>
 <button class="tg-row-v13" onclick="page('legalCenter')"><span class="tg-square-icon-v13 indigo"><i data-lucide="shield-check"></i></span><span class="tg-row-text-v13">Документы и безопасность</span><i class="tg-row-chevron-v13" data-lucide="chevron-right"></i></button>
-<button class="tg-row-v13" onclick="page('about')"><span class="tg-square-icon-v13 cyan"><i data-lucide="info"></i></span><span class="tg-row-text-v13">О приложении</span><i class="tg-row-chevron-v13" data-lucide="chevron-right"></i></button>
+<div class="tg-row-v13 tg-row-static-v55"><span class="tg-square-icon-v13 cyan"><i data-lucide="info"></i></span><span class="tg-row-text-v13">Версия приложения</span><span class="tg-row-value-v55">0.9.0 Beta</span></div>
 </div>
 <div class="tg-admin-group-v13"><button class="tg-row-v13" hidden="" id="adminPanelBtn" onclick="openAdminPanel()" style="display:none!important"><span class="tg-square-icon-v13 indigo"><i data-lucide="shield-check"></i></span><span class="tg-row-text-v13">Admin Panel</span><i class="tg-row-chevron-v13" data-lucide="chevron-right"></i></button></div>
 </div>
@@ -7795,14 +7816,6 @@ body.order-detail-open-v40 nav{z-index:1500!important;display:grid!important;vis
 <section class="page" id="addresses"><div class="section"><div class="simple-head"><button class="back" onclick="page('profile')">←</button><h1>Адреса доставки</h1></div><div class="list-card" id="addressList"></div><br/><button class="btn black" id="addAddressBtn">Добавить адрес</button></div></section>
 <section class="page" id="payments"><div class="section"><div class="simple-head"><button class="back" onclick="page('profile')">←</button><h1>Способы оплаты</h1></div><div class="list-card"><div class="list-row"><i data-lucide="banknote"></i><span>Оплата при подтверждении заказа</span></div><div class="list-row"><i data-lucide="credit-card"></i><span>Онлайн-оплата — скоро</span></div></div></div></section>
 <section class="page" id="support"><div class="section"><div class="simple-head"><button class="back" onclick="page('profile')">←</button><h1>Поддержка</h1></div><div class="list-card"><button class="list-row" id="supportTelegram" onclick="openTelegramUsername('uzbek_ceo')"><i data-lucide="send"></i><span>Написать в Telegram</span><span class="arrow">›</span></button></div></div></section>
-<section class="page" id="about"><div class="section"><div class="simple-head"><button class="back" onclick="page('profile')">←</button><h1>О нас</h1></div>
-<h2>УЗБЕКСКИЙ RE'SALE</h2>
-<p>Uzbek Re'Sale — Telegram-маркетплейс для покупки и продажи вещей в Узбекистане.</p>
-<p>Пользователи размещают товары с отметкой <b>♻ Ресейл</b>. Объявления проходят модерацию, после чего покупатель отправляет продавцу заявку на связь. Оплата, доставка и передача товара согласовываются напрямую между пользователями.</p>
-<p>Товары с отметкой <b>✓ От Uzbek Re'Sale</b> публикуются самой площадкой и обслуживаются отдельно от пользовательского Ресейл.</p>
-<p>Пользовательские заявки получают номер R-xxxxxx. Официальные покупки Uzbek Re'Sale получают номер UR-xxxxxx. Уведомления и связь сторон работают через Telegram-бота.</p>
-<p>Поддержка: <b>@uzbek_ceo</b></p>
-<div class="list-card"><button class="list-row" onclick="page('legalCenter')"><span>Документы и безопасность</span><span class="arrow">›</span></button></div></div></section>
 <section class="page legal-v53-page" id="legalCenter">
   <div class="legal-v53-shell">
     <div class="legal-v53-head">
@@ -9142,7 +9155,7 @@ function navigatePage(id){
  syncV2Settings();
  if(id==="china")renderChinaPageV32();
  if(id==="privacy"){target.scrollTop=0;requestAnimationFrame(()=>{target.scrollTop=0;window.scrollTo(0,0)})}
- const navId=["viewed","settingsPage","faq","support","about","legalCenter","legalDocument","legalSection","myProducts","sellerProfile","orders","contactRequest","contactRequests"].includes(id)?"profile":id;document.querySelectorAll(".nav").forEach(x=>x.classList.toggle("active",x.dataset.page===navId));
+ const navId=["viewed","settingsPage","faq","support","legalCenter","legalDocument","legalSection","myProducts","sellerProfile","orders","contactRequest","contactRequests"].includes(id)?"profile":id;document.querySelectorAll(".nav").forEach(x=>x.classList.toggle("active",x.dataset.page===navId));
  const app=document.querySelector(".app"),scroller=document.scrollingElement||document.documentElement;
  if(app)app.scrollTop=0;if(scroller)scroller.scrollTop=0;document.documentElement.scrollTop=0;document.body.scrollTop=0;window.scrollTo(0,0);target.scrollTop=0;
  requestAnimationFrame(()=>{if(app)app.scrollTop=0;if(scroller)scroller.scrollTop=0;target.scrollTop=0;window.scrollTo(0,0)});
