@@ -7143,13 +7143,12 @@ body.order-detail-open-v40 nav{z-index:1500!important;display:grid!important;vis
 
 
 <style id="resale-contact-v49-final">
-#profile .tg-row-note-v49{margin-left:auto!important;color:#6f899b!important;font-size:9px!important;white-space:nowrap!important}
-#profile .tg-row-count-v49{min-width:20px!important;height:20px!important;padding:0 6px!important;margin-left:auto!important;border-radius:999px!important;background:#159cf5!important;color:#fff!important;display:inline-flex!important;align-items:center!important;justify-content:center!important;font-size:9px!important;font-weight:750!important}
+#profile .tg-row-count-v49{position:absolute!important;right:38px!important;top:50%!important;transform:translateY(-50%)!important;min-width:20px!important;height:20px!important;padding:0 6px!important;border-radius:999px!important;background:#159cf5!important;color:#fff!important;display:inline-flex!important;align-items:center!important;justify-content:center!important;font-size:9px!important;font-weight:750!important}
 #profile .tg-row-count-v49[hidden]{display:none!important}
 #productView .product-v18-actions.resale-contact-v49{grid-template-columns:1fr!important}
 #productView .product-v18-actions.resale-contact-v49 #addBtn{display:none!important}
 #productView .product-v18-actions.resale-contact-v49 #buyBtn{width:100%!important;min-height:56px!important;background:linear-gradient(180deg,#1aa7ff,#087ff0)!important;border:1px solid #2caeff!important;color:#fff!important;font-size:15px!important;font-weight:720!important}
-#contactRequest,#contactRequest.active,#contactRequests,#contactRequests.active{min-height:100dvh!important;padding:0 0 102px!important;background:#061823!important;color:#f4f7fa!important}
+#contactRequest,#contactRequest.active,#contactRequests,#contactRequests.active{min-height:100dvh!important;padding:0 0 132px!important;background:#061823!important;color:#f4f7fa!important}
 #contactRequest .contact-request-v49-shell,#contactRequests .contact-requests-v49-shell{width:100%!important;max-width:560px!important;margin:0 auto!important;padding:14px 14px 28px!important}
 #contactRequest .contact-request-v49-topbar,#contactRequests .contact-requests-v49-topbar{display:grid!important;grid-template-columns:42px minmax(0,1fr) 42px!important;align-items:center!important;gap:10px!important;margin-bottom:16px!important}
 #contactRequest .contact-request-v49-topbar h1,#contactRequests .contact-requests-v49-topbar h1{margin:0!important;text-align:center!important;color:#f5f8fa!important;font-size:17px!important;font-weight:720!important}
@@ -7190,7 +7189,7 @@ body.order-detail-open-v40 nav{z-index:1500!important;display:grid!important;vis
 #contactRequest .contact-request-v49-submit svg{width:18px!important;height:18px!important}
 #contactRequest .contact-request-v49-legal-note{display:flex!important;align-items:flex-start!important;gap:7px!important;margin:10px 5px 0!important;color:#668093!important;font-size:8.7px!important;line-height:1.4!important}
 #contactRequest .contact-request-v49-legal-note svg{width:14px!important;height:14px!important;flex:0 0 14px!important;margin-top:1px!important;stroke:#3aaaff!important}
-#contactRequest .contact-request-success-v49{padding:34px 0 10px!important;text-align:center!important}
+#contactRequest .contact-request-success-v49{padding:30px 0 48px!important;text-align:center!important}
 #contactRequest .contact-request-success-v49[hidden]{display:none!important}
 #contactRequest .contact-request-success-icon-v49{width:86px!important;height:86px!important;margin:0 auto 16px!important;border-radius:50%!important;display:flex!important;align-items:center!important;justify-content:center!important;border:1px solid rgba(46,166,255,.42)!important;background:rgba(20,113,171,.18)!important;color:#2ea6ff!important;box-shadow:0 0 0 11px rgba(46,166,255,.05)!important}
 #contactRequest .contact-request-success-icon-v49 svg{width:43px!important;height:43px!important;stroke-width:2.4!important}
@@ -7231,6 +7230,48 @@ body.order-detail-open-v40 nav{z-index:1500!important;display:grid!important;vis
 #contactRequests .contact-requests-v49-disclaimer{display:flex!important;align-items:flex-start!important;gap:7px!important;margin:12px 4px 0!important;padding:10px 11px!important;border:1px solid #244352!important;border-radius:13px!important;background:#0c2431!important;color:#70899a!important;font-size:8.7px!important;line-height:1.4!important}
 #contactRequests .contact-requests-v49-disclaimer svg{width:14px!important;height:14px!important;flex:0 0 14px!important;margin-top:1px!important;stroke:#2ea6ff!important}
 @media(max-width:390px){#contactRequest .contact-request-v49-shell,#contactRequests .contact-requests-v49-shell{padding-left:10px!important;padding-right:10px!important}#contactRequest #contactRequestFormV49>h2{font-size:23px!important}#contactRequest .contact-request-product-card-v49,#contactRequestSuccessV49 .contact-request-product-card-v49{grid-template-columns:62px minmax(0,1fr)!important}#contactRequest .contact-request-product-photo-v49,#contactRequestSuccessV49 .contact-request-product-photo-v49{width:62px!important;height:62px!important}#contactRequests .contact-request-card-v49{grid-template-columns:80px minmax(0,1fr) 16px!important;gap:8px!important}#contactRequests .contact-request-card-photo-v49{width:80px!important;height:90px!important}}
+</style>
+
+
+<style id="contact-requests-v50-live-fixes">
+/* profile layout: keep original 3-column row geometry */
+#profile #myOrdersBtn,
+#profile #myContactRequestsBtnV49{
+  grid-template-columns:34px minmax(0,1fr) 16px!important;
+}
+#profile #myContactRequestsBtnV49 .tg-row-count-v49{
+  z-index:2!important;
+}
+
+/* contact submit/loading */
+#contactRequest .contact-request-v49-submit{
+  position:relative!important;
+  z-index:1!important;
+}
+#contactRequest .contact-request-spinner-v50{
+  width:16px!important;height:16px!important;border-radius:50%!important;
+  border:2px solid rgba(255,255,255,.34)!important;border-top-color:#fff!important;
+  animation:contactSpinV50 .75s linear infinite!important;
+}
+@keyframes contactSpinV50{to{transform:rotate(360deg)}}
+
+#contactRequests .contact-requests-loading-v50{
+  min-height:230px!important;
+  display:flex!important;flex-direction:column!important;align-items:center!important;justify-content:center!important;gap:10px!important;
+  color:#7891a3!important;
+}
+#contactRequests .contact-requests-loading-v50>span{
+  width:28px!important;height:28px!important;border-radius:50%!important;
+  border:3px solid #173c51!important;border-top-color:#2ea6ff!important;
+  animation:contactSpinV50 .8s linear infinite!important;
+}
+#contactRequests .contact-requests-loading-v50>b{font-size:10px!important;font-weight:600!important}
+
+/* ensure final buttons are fully scrollable above bottom navigation */
+#contactRequest .contact-request-v49-submit,
+#contactRequest .contact-request-success-secondary-v49{
+  scroll-margin-bottom:110px!important;
+}
 </style>
 
 </head><body><div class="app">
@@ -7529,7 +7570,7 @@ body.order-detail-open-v40 nav{z-index:1500!important;display:grid!important;vis
 </div>
 <div class="tg-section-title-v13">ПОКУПКИ И ПРОДАЖИ</div>
 <div class="tg-group-v13">
-<button class="tg-row-v13" id="myOrdersBtn"><span class="tg-square-icon-v13 blue"><i data-lucide="package"></i></span><span class="tg-row-text-v13">Мои заказы</span><span class="tg-row-note-v49">Uzbek Re'Sale</span><i class="tg-row-chevron-v13" data-lucide="chevron-right"></i></button>
+<button class="tg-row-v13" id="myOrdersBtn"><span class="tg-square-icon-v13 blue"><i data-lucide="package"></i></span><span class="tg-row-text-v13">Мои заказы</span><i class="tg-row-chevron-v13" data-lucide="chevron-right"></i></button>
 <button class="tg-row-v13" id="myContactRequestsBtnV49"><span class="tg-square-icon-v13 cyan"><i data-lucide="messages-square"></i></span><span class="tg-row-text-v13">Мои заявки</span><span class="tg-row-count-v49" id="contactRequestsCountV49" hidden>0</span><i class="tg-row-chevron-v13" data-lucide="chevron-right"></i></button>
 <button class="tg-row-v13" onclick="openMyListings()"><span class="tg-square-icon-v13 orange"><i data-lucide="shirt"></i></span><span class="tg-row-text-v13">Мои товары</span><i class="tg-row-chevron-v13" data-lucide="chevron-right"></i></button>
 <button class="tg-row-v13" onclick="openOwnSellerProfile()"><span class="tg-square-icon-v13 purple"><i data-lucide="store"></i></span><span class="tg-row-text-v13">Профиль продавца</span><i class="tg-row-chevron-v13" data-lucide="chevron-right"></i></button>
@@ -7820,7 +7861,7 @@ body.order-detail-open-v40 nav{z-index:1500!important;display:grid!important;vis
         <i class="faq-v48-chevron" data-lucide="chevron-down"></i>
       </button>
       <div class="faq-a faq-v48-a">
-        Откройте «Профиль» → «Мои товары», выберите объявление и используйте меню действий. Некоторые товары нельзя удалить во время активного заказа — это защищает историю сделки.
+        Откройте «Профиль» → «Мои товары», выберите объявление и используйте меню действий. Если по объявлению есть заявка на связь, сама заявка не резервирует товар. Управление объявлением остаётся у продавца.
       </div>
     </div>
 
@@ -9673,75 +9714,280 @@ $("ordersBack").onclick=()=>page("profile");
 $("orderDetailBack").onclick=closeOrderDetailV40;
 
 
-/* v49 FRONTEND-ONLY contact-request candidate. No D1/Worker contact_requests endpoint yet. */
+/* v50 LIVE contact-request flow. User-resale requests are stored in D1 and sent through Telegram bot. */
+const CONTACT_REQUESTS_API=MARKETPLACE_API+"/contact-requests";
 let contactRequestDraftV49=null;
 let contactRequestOriginPageV49="catalog";
 let contactRequestFilterV49="active";
-let contactRequestsDemoV49=[];
+let contactRequestsCacheV50=[];
+let contactRequestSendingV50=false;
+
 function contactRequestTelegramDisplayV49(){
   const u=telegramUser||window.Telegram?.WebApp?.initDataUnsafe?.user||null;
   const name=u?[u.first_name,u.last_name].filter(Boolean).join(" ").trim():"Telegram пользователь";
   const username=String(u?.username||"").replace(/^@/,"").trim();
   return {u,name:name||"Telegram пользователь",username};
 }
-function contactRequestSellerDisplayV49(p){const username=String(p?.sellerUsername||"").replace(/^@/,"").trim();return username?"@"+username:String(p?.sellerName||"Продавец")}
-function contactRequestProductMarkupV49(p){if(!p)return "";return `<div class="contact-request-product-card-v49"><span class="contact-request-product-photo-v49">${p.image?`<img src="${escapeHtml(p.image)}" alt="">`:'<i data-lucide="image"></i>'}</span><span class="contact-request-product-copy-v49"><b>${escapeHtml(p.name||"Товар")}</b><strong>${money(p.price||0)}</strong><small>Продавец: ${escapeHtml(contactRequestSellerDisplayV49(p))}</small></span></div>`}
+function contactRequestSellerDisplayV49(p){
+  const username=String(p?.sellerUsername||"").replace(/^@/,"").trim();
+  return username?"@"+username:String(p?.sellerName||"Продавец");
+}
+function contactRequestProductMarkupV49(p){
+  if(!p)return "";
+  return `<div class="contact-request-product-card-v49">
+    <span class="contact-request-product-photo-v49">${p.image?`<img src="${escapeHtml(p.image)}" alt="">`:'<i data-lucide="image"></i>'}</span>
+    <span class="contact-request-product-copy-v49">
+      <b>${escapeHtml(p.name||"Товар")}</b>
+      <strong>${money(p.price||0)}</strong>
+      <small>Продавец: ${escapeHtml(contactRequestSellerDisplayV49(p))}</small>
+    </span>
+  </div>`;
+}
 function openContactRequestV49(p){
   if(!p||String(p.ownerType||"").toLowerCase()==="official")return;
   contactRequestOriginPageV49=document.querySelector(".page.active")?.id||"catalog";
   contactRequestDraftV49=p;
-  $("productView")?.classList.remove("open");document.body.classList.remove("product-open-v19");
+  $("productView")?.classList.remove("open");
+  document.body.classList.remove("product-open-v19");
   if($("contactRequestProductV49"))$("contactRequestProductV49").innerHTML=contactRequestProductMarkupV49(p);
+
   const ident=contactRequestTelegramDisplayV49();
   if($("contactRequestAvatarV49"))$("contactRequestAvatarV49").textContent=(ident.name||"U").slice(0,1).toUpperCase();
   if($("contactRequestTelegramNameV49"))$("contactRequestTelegramNameV49").textContent=ident.username?"@"+ident.username:ident.name;
   if($("contactRequestTelegramUsernameV49"))$("contactRequestTelegramUsernameV49").textContent=ident.username?ident.name:"Telegram username не указан";
+
   if($("contactRequestMessageV49"))$("contactRequestMessageV49").value="";
   if($("contactRequestMessageCountV49"))$("contactRequestMessageCountV49").textContent="0";
-  if($("contactRequestErrorV49")){ $("contactRequestErrorV49").hidden=true;$("contactRequestErrorV49").textContent="" }
+  if($("contactRequestErrorV49")){$("contactRequestErrorV49").hidden=true;$("contactRequestErrorV49").textContent=""}
   if($("contactRequestFormV49"))$("contactRequestFormV49").hidden=false;
   if($("contactRequestSuccessV49"))$("contactRequestSuccessV49").hidden=true;
+
   const submit=$("contactRequestSubmitV49");
   const own=telegramUser?.id&&String(p.sellerTelegramId||"")===String(telegramUser.id);
-  if(submit){submit.disabled=!!own||!telegramUser?.id;submit.innerHTML=own?'<i data-lucide="circle-x"></i><span>Это ваше объявление</span>':(!telegramUser?.id?'<i data-lucide="send"></i><span>Откройте через Telegram</span>':'<i data-lucide="send"></i><span>Отправить заявку</span>')}
-  page("contactRequest");setTimeout(()=>window.lucide&&lucide.createIcons(),0);
+  if(submit){
+    submit.disabled=!!own||!telegramUser?.id;
+    submit.innerHTML=own
+      ?'<i data-lucide="circle-x"></i><span>Это ваше объявление</span>'
+      :(!telegramUser?.id
+        ?'<i data-lucide="send"></i><span>Откройте через Telegram</span>'
+        :'<i data-lucide="send"></i><span>Отправить заявку</span>');
+  }
+  page("contactRequest");
+  $("contactRequest")?.scrollTo?.({top:0,behavior:"auto"});
+  setTimeout(()=>window.lucide&&lucide.createIcons(),0);
 }
 function closeContactRequestV49(){page(contactRequestOriginPageV49||"catalog")}
-function contactRequestNumberV49(){return "R-"+String(contactRequestsDemoV49.length+1).padStart(6,"0")}
-function activeContactRequestForListingV49(p){return contactRequestsDemoV49.find(r=>String(r.productId)===String(p?.id)&&["sent","open"].includes(r.status))}
-function submitContactRequestV49(){
-  const p=contactRequestDraftV49,err=$("contactRequestErrorV49");if(err){err.hidden=true;err.textContent=""}if(!p)return;
-  if(!telegramUser?.id){if(err){err.hidden=false;err.textContent="Откройте Mini App через Telegram, чтобы отправить заявку."}return}
-  if(String(p.sellerTelegramId||"")===String(telegramUser.id)){if(err){err.hidden=false;err.textContent="Нельзя отправить заявку на собственное объявление."}return}
-  const duplicate=activeContactRequestForListingV49(p);if(duplicate){if(err){err.hidden=false;err.textContent=`У вас уже есть активная заявка ${duplicate.number} по этому товару.`}return}
-  const message=String($("contactRequestMessageV49")?.value||"").trim().slice(0,500),number=contactRequestNumberV49();
-  contactRequestsDemoV49.unshift({number,productId:p.id,listingId:p.listingId||null,productName:p.name||"Товар",image:p.image||"",price:Number(p.price||0),sellerName:p.sellerName||"Продавец",sellerUsername:p.sellerUsername||"",sellerTelegramId:String(p.sellerTelegramId||""),message,status:"sent",createdAt:new Date().toISOString()});
-  if($("contactRequestFormV49"))$("contactRequestFormV49").hidden=true;if($("contactRequestSuccessV49"))$("contactRequestSuccessV49").hidden=false;
-  if($("contactRequestNumberV49"))$("contactRequestNumberV49").textContent="№ "+number;
-  if($("contactRequestSuccessProductV49"))$("contactRequestSuccessProductV49").innerHTML=contactRequestProductMarkupV49(p);
-  syncContactRequestsCountV49();uzrHaptic("success");window.scrollTo(0,0);$("contactRequest")?.scrollTo?.({top:0,behavior:"auto"});setTimeout(()=>window.lucide&&lucide.createIcons(),0)
+
+function normalizeContactRequestV50(r){
+  return {
+    id:Number(r?.id||0),
+    number:String(r?.requestNumber||r?.request_number||""),
+    listingId:Number(r?.listingId||r?.listing_id||0),
+    productName:String(r?.productName||r?.listing_title||"Товар"),
+    image:String(r?.imageUrl||r?.image_url||""),
+    price:Number(r?.price||r?.listing_price||0),
+    sellerName:String(r?.sellerName||r?.seller_name||"Продавец"),
+    sellerUsername:String(r?.sellerUsername||r?.seller_username||""),
+    sellerTelegramId:String(r?.sellerTelegramId||r?.seller_telegram_id||""),
+    message:String(r?.message||""),
+    status:String(r?.status||"sent"),
+    createdAt:r?.createdAt||r?.created_at||"",
+    updatedAt:r?.updatedAt||r?.updated_at||""
+  };
+}
+async function loadContactRequestsV50({silent=false}={}){
+  if(!telegramUser?.id){
+    contactRequestsCacheV50=[];
+    syncContactRequestsCountV49();
+    return [];
+  }
+  try{
+    const r=await fetch(CONTACT_REQUESTS_API,{cache:"no-store"});
+    const j=await r.json().catch(()=>({}));
+    if(!r.ok||!j.ok)throw new Error(j.error||"CONTACT_REQUESTS_LOAD_FAILED");
+    contactRequestsCacheV50=(Array.isArray(j.requests)?j.requests:[]).map(normalizeContactRequestV50);
+    syncContactRequestsCountV49();
+    if(!silent)renderContactRequestsV49();
+    return contactRequestsCacheV50;
+  }catch(e){
+    console.error("Contact requests load:",e);
+    if(!silent)throw e;
+    return contactRequestsCacheV50;
+  }
+}
+async function submitContactRequestV49(){
+  const p=contactRequestDraftV49;
+  const err=$("contactRequestErrorV49");
+  const btn=$("contactRequestSubmitV49");
+  if(err){err.hidden=true;err.textContent=""}
+  if(!p||contactRequestSendingV50)return;
+
+  if(!telegramUser?.id){
+    if(err){err.hidden=false;err.textContent="Откройте Mini App через Telegram, чтобы отправить заявку."}
+    return;
+  }
+  if(String(p.sellerTelegramId||"")===String(telegramUser.id)){
+    if(err){err.hidden=false;err.textContent="Нельзя отправить заявку на собственное объявление."}
+    return;
+  }
+
+  const listingId=Number(p.listingId||String(p.id||"").replace(/^listing-/,"")||0);
+  if(!listingId){
+    if(err){err.hidden=false;err.textContent="Не удалось определить объявление. Обновите каталог и попробуйте снова."}
+    return;
+  }
+
+  const message=String($("contactRequestMessageV49")?.value||"").trim().slice(0,500);
+
+  contactRequestSendingV50=true;
+  if(btn){
+    btn.disabled=true;
+    btn.innerHTML='<span class="contact-request-spinner-v50"></span><span>Отправляем…</span>';
+  }
+
+  try{
+    const r=await fetch(CONTACT_REQUESTS_API,{
+      method:"POST",
+      headers:{"Content-Type":"application/json"},
+      body:JSON.stringify({listingId,message})
+    });
+    const j=await r.json().catch(()=>({}));
+
+    if(!r.ok||!j.ok){
+      if(j.error==="ACTIVE_REQUEST_EXISTS"){
+        const existing=j.request?.requestNumber||"";
+        throw new Error(existing?`У вас уже есть активная заявка ${existing} по этому товару.`:"У вас уже есть активная заявка по этому товару.");
+      }
+      if(j.error==="CANNOT_CONTACT_OWN_LISTING")throw new Error("Нельзя отправить заявку на собственное объявление.");
+      if(j.error==="LISTING_NOT_AVAILABLE")throw new Error("Объявление уже недоступно.");
+      if(j.error==="OFFICIAL_PRODUCT_USES_ORDER_FLOW")throw new Error("Этот товар оформляется через обычный заказ Uzbek Re'Sale.");
+      if(j.error==="RATE_LIMITED")throw new Error("Слишком много заявок. Попробуйте немного позже.");
+      throw new Error(j.message||j.error||"Не удалось отправить заявку.");
+    }
+
+    const created=normalizeContactRequestV50(j.request||{});
+    contactRequestsCacheV50=[created,...contactRequestsCacheV50.filter(x=>x.id!==created.id)];
+
+    if($("contactRequestFormV49"))$("contactRequestFormV49").hidden=true;
+    if($("contactRequestSuccessV49"))$("contactRequestSuccessV49").hidden=false;
+    if($("contactRequestNumberV49"))$("contactRequestNumberV49").textContent="№ "+(created.number||"R-—");
+    if($("contactRequestSuccessProductV49"))$("contactRequestSuccessProductV49").innerHTML=contactRequestProductMarkupV49(p);
+
+    syncContactRequestsCountV49();
+    uzrHaptic("success");
+    $("contactRequest")?.scrollTo?.({top:0,behavior:"auto"});
+    setTimeout(()=>window.lucide&&lucide.createIcons(),0);
+  }catch(e){
+    console.error(e);
+    if(err){err.hidden=false;err.textContent=String(e?.message||"Не удалось отправить заявку.")}
+    try{err?.scrollIntoView({behavior:"smooth",block:"center"})}catch(_){}
+    uzrHaptic("error");
+  }finally{
+    contactRequestSendingV50=false;
+    if(btn){
+      const own=telegramUser?.id&&String(p.sellerTelegramId||"")===String(telegramUser.id);
+      btn.disabled=!!own||!telegramUser?.id;
+      btn.innerHTML=own
+        ?'<i data-lucide="circle-x"></i><span>Это ваше объявление</span>'
+        :'<i data-lucide="send"></i><span>Отправить заявку</span>';
+      setTimeout(()=>window.lucide&&lucide.createIcons(),0);
+    }
+  }
 }
 function contactRequestStatusLabelV49(status){return ({sent:"Отправлена",open:"Связь открыта",closed:"Закрыта",cancelled:"Отменена"})[status]||status}
 function contactRequestStatusClassV49(status){return ["sent","open","closed","cancelled"].includes(status)?status:"sent"}
-function contactRequestDateV49(v){const d=new Date(v);if(isNaN(d))return "";return d.toLocaleString("ru-RU",{day:"2-digit",month:"short",year:"numeric",hour:"2-digit",minute:"2-digit"})}
-function syncContactRequestsCountV49(){const active=contactRequestsDemoV49.filter(r=>["sent","open"].includes(r.status)).length,closed=contactRequestsDemoV49.filter(r=>["closed","cancelled"].includes(r.status)).length;const badge=$("contactRequestsCountV49");if(badge){badge.hidden=!active;badge.textContent=String(active)}if($("contactRequestsActiveCountV49"))$("contactRequestsActiveCountV49").textContent=String(active);if($("contactRequestsClosedCountV49"))$("contactRequestsClosedCountV49").textContent=String(closed)}
-function openProductFromRequestV49(productId){const p=products.find(x=>String(x.id)===String(productId));if(!p)return;const temp=card(p);temp.click()}
-function renderContactRequestsV49(){
-  const list=$("contactRequestsListV49");if(!list)return;syncContactRequestsCountV49();
-  const items=contactRequestsDemoV49.filter(r=>contactRequestFilterV49==="active"?["sent","open"].includes(r.status):["closed","cancelled"].includes(r.status));
-  if(!items.length){list.innerHTML=`<div class="contact-requests-empty-v49"><span><i data-lucide="${contactRequestFilterV49==="active"?"messages-square":"archive"}"></i></span><b>${contactRequestFilterV49==="active"?"Активных заявок пока нет":"Закрытых заявок пока нет"}</b><p>${contactRequestFilterV49==="active"?"Откройте пользовательский товар и нажмите «Связаться с продавцом».":"Здесь будут закрытые и отменённые заявки."}</p>${contactRequestFilterV49==="active"?'<button type="button" onclick="page(\'catalog\')">Перейти в каталог</button>':""}</div>`;setTimeout(()=>window.lucide&&lucide.createIcons(),0);return}
-  list.innerHTML=items.map(r=>`<button class="contact-request-card-v49" type="button" onclick="openProductFromRequestV49('${escapeHtml(String(r.productId))}')"><span class="contact-request-card-photo-v49">${r.image?`<img src="${escapeHtml(r.image)}" alt="">`:'<i data-lucide="image"></i>'}</span><span class="contact-request-card-main-v49"><b>${escapeHtml(r.productName)}</b><strong>${money(r.price)}</strong><small>Продавец: ${escapeHtml(r.sellerUsername?"@"+String(r.sellerUsername).replace(/^@/,""):r.sellerName)}</small><small>${escapeHtml(contactRequestDateV49(r.createdAt))}</small><em class="request-status-v49 ${contactRequestStatusClassV49(r.status)}">${contactRequestStatusLabelV49(r.status)}</em></span><i class="contact-request-card-chevron-v49" data-lucide="chevron-right"></i></button>`).join("");setTimeout(()=>window.lucide&&lucide.createIcons(),0)
+function contactRequestDateV49(v){
+  const d=new Date(v);
+  if(isNaN(d))return "";
+  return d.toLocaleString("ru-RU",{day:"2-digit",month:"short",year:"numeric",hour:"2-digit",minute:"2-digit"});
 }
-function openMyContactRequestsV49(){contactRequestFilterV49="active";document.querySelectorAll("#contactRequests [data-request-filter]").forEach(b=>b.classList.toggle("active",b.dataset.requestFilter==="active"));page("contactRequests");renderContactRequestsV49()}
+function syncContactRequestsCountV49(){
+  const active=contactRequestsCacheV50.filter(r=>["sent","open"].includes(r.status)).length;
+  const closed=contactRequestsCacheV50.filter(r=>["closed","cancelled"].includes(r.status)).length;
+  const badge=$("contactRequestsCountV49");
+  if(badge){badge.hidden=!active;badge.textContent=String(active)}
+  if($("contactRequestsActiveCountV49"))$("contactRequestsActiveCountV49").textContent=String(active);
+  if($("contactRequestsClosedCountV49"))$("contactRequestsClosedCountV49").textContent=String(closed);
+}
+function openProductFromRequestV49(listingId){
+  const p=products.find(x=>Number(x.listingId||0)===Number(listingId));
+  if(!p)return;
+  const temp=card(p);
+  temp.click();
+}
+function renderContactRequestsV49(){
+  const list=$("contactRequestsListV49");
+  if(!list)return;
+  syncContactRequestsCountV49();
+
+  const items=contactRequestsCacheV50.filter(r=>
+    contactRequestFilterV49==="active"
+      ?["sent","open"].includes(r.status)
+      :["closed","cancelled"].includes(r.status)
+  );
+
+  if(!items.length){
+    list.innerHTML=`<div class="contact-requests-empty-v49">
+      <span><i data-lucide="${contactRequestFilterV49==="active"?"messages-square":"archive"}"></i></span>
+      <b>${contactRequestFilterV49==="active"?"Активных заявок пока нет":"Закрытых заявок пока нет"}</b>
+      <p>${contactRequestFilterV49==="active"?"Откройте пользовательский товар и нажмите «Связаться с продавцом».":"Здесь будут закрытые заявки."}</p>
+      ${contactRequestFilterV49==="active"?'<button type="button" onclick="page(\'catalog\')">Перейти в каталог</button>':""}
+    </div>`;
+    setTimeout(()=>window.lucide&&lucide.createIcons(),0);
+    return;
+  }
+
+  list.innerHTML=items.map(r=>`<button class="contact-request-card-v49" type="button" onclick="openProductFromRequestV49(${Number(r.listingId||0)})">
+    <span class="contact-request-card-photo-v49">${r.image?`<img src="${escapeHtml(r.image)}" alt="">`:'<i data-lucide="image"></i>'}</span>
+    <span class="contact-request-card-main-v49">
+      <b>${escapeHtml(r.productName)}</b>
+      <strong>${money(r.price)}</strong>
+      <small>Продавец: ${escapeHtml(r.sellerUsername?"@"+String(r.sellerUsername).replace(/^@/,""):r.sellerName)}</small>
+      <small>${escapeHtml(contactRequestDateV49(r.createdAt))}</small>
+      <em class="request-status-v49 ${contactRequestStatusClassV49(r.status)}">${contactRequestStatusLabelV49(r.status)}</em>
+    </span>
+    <i class="contact-request-card-chevron-v49" data-lucide="chevron-right"></i>
+  </button>`).join("");
+  setTimeout(()=>window.lucide&&lucide.createIcons(),0);
+}
+async function openMyContactRequestsV49(){
+  contactRequestFilterV49="active";
+  document.querySelectorAll("#contactRequests [data-request-filter]").forEach(b=>b.classList.toggle("active",b.dataset.requestFilter==="active"));
+  page("contactRequests");
+  const list=$("contactRequestsListV49");
+  if(list)list.innerHTML='<div class="contact-requests-loading-v50"><span></span><b>Загружаем заявки…</b></div>';
+  try{
+    await loadContactRequestsV50({silent:true});
+    renderContactRequestsV49();
+  }catch(e){
+    if(list)list.innerHTML='<div class="contact-requests-empty-v49"><span><i data-lucide="wifi-off"></i></span><b>Не удалось загрузить заявки</b><p>Проверьте соединение и попробуйте снова.</p><button type="button" onclick="openMyContactRequestsV49()">Повторить</button></div>';
+    setTimeout(()=>window.lucide&&lucide.createIcons(),0);
+  }
+}
+
 $("contactRequestBackV49")?.addEventListener("click",closeContactRequestV49);
 $("contactRequestSubmitV49")?.addEventListener("click",submitContactRequestV49);
 $("contactRequestGoRequestsV49")?.addEventListener("click",openMyContactRequestsV49);
 $("contactRequestGoCatalogV49")?.addEventListener("click",()=>page("catalog"));
 $("myContactRequestsBtnV49")?.addEventListener("click",openMyContactRequestsV49);
 $("contactRequestsBackV49")?.addEventListener("click",()=>page("profile"));
-$("contactRequestMessageV49")?.addEventListener("input",e=>{if($("contactRequestMessageCountV49"))$("contactRequestMessageCountV49").textContent=String(e.target.value.length)});
-document.querySelectorAll("#contactRequestChipsV49 [data-message]").forEach(btn=>btn.addEventListener("click",()=>{const field=$("contactRequestMessageV49");if(!field)return;field.value=btn.dataset.message||"";field.dispatchEvent(new Event("input"));field.focus();uzrHaptic("selection")}));
-document.querySelectorAll("#contactRequests [data-request-filter]").forEach(btn=>btn.addEventListener("click",()=>{contactRequestFilterV49=btn.dataset.requestFilter||"active";document.querySelectorAll("#contactRequests [data-request-filter]").forEach(b=>b.classList.toggle("active",b===btn));renderContactRequestsV49();uzrHaptic("selection")}));
+$("contactRequestMessageV49")?.addEventListener("input",e=>{
+  if($("contactRequestMessageCountV49"))$("contactRequestMessageCountV49").textContent=String(e.target.value.length);
+});
+document.querySelectorAll("#contactRequestChipsV49 [data-message]").forEach(btn=>btn.addEventListener("click",()=>{
+  const field=$("contactRequestMessageV49");
+  if(!field)return;
+  field.value=btn.dataset.message||"";
+  field.dispatchEvent(new Event("input"));
+  field.focus();
+  uzrHaptic("selection");
+}));
+document.querySelectorAll("#contactRequests [data-request-filter]").forEach(btn=>btn.addEventListener("click",()=>{
+  contactRequestFilterV49=btn.dataset.requestFilter||"active";
+  document.querySelectorAll("#contactRequests [data-request-filter]").forEach(b=>b.classList.toggle("active",b===btn));
+  renderContactRequestsV49();
+  uzrHaptic("selection");
+}));
 syncContactRequestsCountV49();
 
 function fileToDataUrl(file){
@@ -10479,6 +10725,7 @@ function initTelegram(){
     $("profileUsername").textContent = u.username ? "@"+u.username : "Telegram пользователь";
 
     $("profileId").textContent = String(u.id || "");
+    loadContactRequestsV50({silent:true}).catch(()=>{});
 
   }catch(e){
 
