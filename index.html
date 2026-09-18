@@ -5127,7 +5127,6 @@ button[aria-label="Назад"]:active{
 #myProducts .my-product-status-v25.pending{background:#4b3d09!important;color:#ffc928!important;-webkit-text-fill-color:#ffc928!important}
 #myProducts .my-product-status-v25.rejected{background:#4b1f2b!important;color:#ff6075!important;-webkit-text-fill-color:#ff6075!important}
 #myProducts .my-product-status-v25.sold,#myProducts .my-product-status-v25.deleted{background:#263843!important;color:#9aabb7!important;-webkit-text-fill-color:#9aabb7!important}
-#myProducts .my-product-status-v25.reserved{background:#123b58!important;color:#43b7ff!important;-webkit-text-fill-color:#43b7ff!important}
 #myProducts .my-product-title-v25{
   margin:0!important;color:#f5f8fa!important;-webkit-text-fill-color:#f5f8fa!important;font-size:15px!important;
   line-height:1.15!important;font-weight:600!important;white-space:nowrap!important;overflow:hidden!important;text-overflow:ellipsis!important;
@@ -7274,6 +7273,40 @@ body.order-detail-open-v40 nav{z-index:1500!important;display:grid!important;vis
 }
 </style>
 
+
+<style id="listing-lifecycle-v51-ui">
+#myProducts .my-product-status-v25.expired{
+  background:#263843!important;color:#9aabb7!important;-webkit-text-fill-color:#9aabb7!important;
+}
+#myProducts .my-product-lifecycle-v51{
+  margin-top:5px!important;
+  display:flex!important;align-items:center!important;gap:5px!important;
+  color:#78a7c2!important;font-size:9px!important;line-height:1.25!important;
+}
+#myProducts .my-product-lifecycle-v51 svg{
+  width:13px!important;height:13px!important;stroke:#2ea6ff!important;flex:0 0 13px!important;
+}
+#myProductActionsV25 .my-product-sheet-row-v25.success-v51{
+  color:#42d89a!important;
+}
+#myProductActionsV25 .my-product-sheet-row-v25.success-v51 .my-product-sheet-icon-v25{
+  color:#42d89a!important;
+}
+.lifecycle-admin-stats-v51{
+  display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;
+  gap:8px!important;margin:12px 0!important;
+}
+.lifecycle-admin-stats-v51>div{
+  padding:11px!important;border:1px solid #29495b!important;border-radius:14px!important;background:#0d2938!important;
+  display:flex!important;flex-direction:column!important;gap:3px!important;
+}
+.lifecycle-admin-stats-v51 b{color:#2ea6ff!important;font-size:18px!important}
+.lifecycle-admin-stats-v51 span{color:#8198aa!important;font-size:9px!important}
+.lifecycle-admin-note-v51{
+  margin-bottom:14px!important;padding:10px!important;border:1px solid #244352!important;border-radius:12px!important;background:#0c2431!important;
+}
+</style>
+
 </head><body><div class="app">
 <header class="app-header-v2 dark-home-header-v10" id="appHeader">
 <div class="dark-brand-row-v10">
@@ -7536,7 +7569,7 @@ body.order-detail-open-v40 nav{z-index:1500!important;display:grid!important;vis
       <div class="viewed-v46-empty-icon"><i data-lucide="eye"></i></div>
       <h2>История пока пуста</h2>
       <p>Открывайте товары в каталоге — последние 6 появятся здесь.</p>
-      <button type="button" onclick="page('catalog')">Перейти в каталог</button>
+      <button type="button" onclick="page('china')">Перейти в «Из Китая»</button>
     </div>
 
     <div class="grid viewed-v46-grid" id="viewedGrid"></div>
@@ -7559,7 +7592,7 @@ body.order-detail-open-v40 nav{z-index:1500!important;display:grid!important;vis
     </div>
   </div>
 </section>
-<section class="page" id="cart"><div class="section cart-premium-section"><div class="cart-head"><button aria-label="Назад" class="back cart-back-v145 product-v18-circle" onclick="page('home')" type="button"><i data-lucide="chevron-left"></i></button><div><h1>Корзина</h1><p>Ваши выбранные товары</p></div></div><div id="cartList"></div><div id="cartBottom" style="display:none"><div class="cart-summary-label">Сумма заказа</div><div class="total"><span>Итого</span><span id="total"></span></div><button class="btn black" id="checkoutBtn">Оформить заказ</button><div class="cart-note">Оплата и доставка подтверждаются после оформления.</div></div></div></section>
+<section class="page" id="cart"><div class="section cart-premium-section"><div class="cart-head"><button aria-label="Назад" class="back cart-back-v145 product-v18-circle" onclick="page('china')" type="button"><i data-lucide="chevron-left"></i></button><div><h1>Корзина</h1><p>Ваши выбранные товары</p></div></div><div id="cartList"></div><div id="cartBottom" style="display:none"><div class="cart-summary-label">Сумма заказа</div><div class="total"><span>Итого</span><span id="total"></span></div><button class="btn black" id="checkoutBtn">Оформить заказ</button><div class="cart-note">Оплата и доставка подтверждаются после оформления.</div></div></div></section>
 <section class="page" id="profile">
 <div class="tg-profile-v13">
 <div class="tg-profile-identity-v13">
@@ -7665,6 +7698,7 @@ body.order-detail-open-v40 nav{z-index:1500!important;display:grid!important;vis
 <button class="active" data-my-filter="all" type="button">Все <span id="myCountAllV25">0</span></button>
 <button data-my-filter="active" type="button">Активные <span id="myCountActiveV25">0</span></button>
 <button data-my-filter="pending" type="button">На модерации <span id="myCountPendingV25">0</span></button>
+<button data-my-filter="sold" type="button">Проданные <span id="myCountSoldV51">0</span></button>
 <button data-my-filter="removed" type="button">Снятые <span id="myCountRemovedV25">0</span></button>
 </div>
 <div class="my-products-list-v25" id="myListingsList"><div class="my-products-loading-v25">Загрузка...</div></div>
@@ -7676,6 +7710,9 @@ body.order-detail-open-v40 nav{z-index:1500!important;display:grid!important;vis
 <div class="my-product-sheet-handle-v25"></div>
 <div class="my-product-sheet-title-v25" id="myProductSheetTitleV25">Действия с товаром</div>
 <button class="my-product-sheet-row-v25" id="myProductOpenV25" type="button"><span class="my-product-sheet-icon-v25"><i data-lucide="external-link"></i></span><span>Открыть товар</span><i data-lucide="chevron-right"></i></button>
+<button class="my-product-sheet-row-v25 success-v51" id="myProductSoldV51" type="button"><span class="my-product-sheet-icon-v25"><i data-lucide="badge-check"></i></span><span>Отметить проданным</span></button>
+<button class="my-product-sheet-row-v25" id="myProductExtendV51" type="button"><span class="my-product-sheet-icon-v25"><i data-lucide="clock-3"></i></span><span>Продлить на 7 дней</span></button>
+<button class="my-product-sheet-row-v25 success-v51" id="myProductRestoreV51" type="button"><span class="my-product-sheet-icon-v25"><i data-lucide="rotate-ccw"></i></span><span>Вернуть в продажу</span></button>
 <button class="my-product-sheet-row-v25 danger" id="myProductDeleteV25" type="button"><span class="my-product-sheet-icon-v25"><i data-lucide="trash-2"></i></span><span>Удалить объявление</span></button>
 <button class="my-product-sheet-cancel-v25" onclick="closeMyProductActionsV25()" type="button">Отмена</button>
 </div>
@@ -7696,20 +7733,20 @@ body.order-detail-open-v40 nav{z-index:1500!important;display:grid!important;vis
 <section class="page" id="about"><div class="section"><div class="simple-head"><button class="back" onclick="page('profile')">←</button><h1>О нас</h1></div>
 <h2>УЗБЕКСКИЙ RE'SALE</h2>
 <p>Uzbek Re'Sale — Telegram-маркетплейс для покупки и продажи вещей в Узбекистане.</p>
-<p>Пользователи размещают товары с отметкой <b>♻ Ресейл</b>. Объявления проходят модерацию, после чего покупатель оформляет заказ, а продавец самостоятельно принимает его и ведёт статус сделки.</p>
+<p>Пользователи размещают товары с отметкой <b>♻ Ресейл</b>. Объявления проходят модерацию, после чего покупатель отправляет продавцу заявку на связь. Оплата, доставка и передача товара согласовываются напрямую между пользователями.</p>
 <p>Товары с отметкой <b>✓ От Uzbek Re'Sale</b> публикуются самой площадкой и обслуживаются отдельно от пользовательского Ресейл.</p>
-<p>Заказы получают номер UR-xxxxxx. Уведомления и связь сторон работают через Telegram-бота.</p>
+<p>Пользовательские заявки получают номер R-xxxxxx. Официальные покупки Uzbek Re'Sale получают номер UR-xxxxxx. Уведомления и связь сторон работают через Telegram-бота.</p>
 <p>Поддержка: <b>@uzbclothelover</b></p>
 <div class="list-card"><button class="list-row" onclick="page('rules')"><span>Правила использования</span><span class="arrow">›</span></button><button class="list-row" onclick="page('privacy')"><span>Политика конфиденциальности</span><span class="arrow">›</span></button></div></div></section>
 <section class="page" id="rules"><div class="section"><div class="simple-head"><button class="back" onclick="backPage('profile')">←</button><h1>Правила</h1></div>
-<h2>Ресейл между пользователями</h2><p>Используя бота или Mini App, размещая объявление или оформляя заказ, пользователь подтверждает ознакомление с правилами.</p>
+<h2>Ресейл между пользователями</h2><p>Используя бота или Mini App, размещая объявление, отправляя заявку на связь или оформляя официальный заказ Uzbek Re'Sale, пользователь подтверждает ознакомление с правилами.</p>
 <p>Товары с отметкой «Ресейл» размещаются независимыми пользователями. Продавец отвечает за достоверность описания, состояние, качество, подлинность, законность происхождения и передачу товара. Покупателю рекомендуется проверить товар до завершения сделки.</p>
 <h2>Ответственность</h2><p>Для пользовательских Ресейл-сделок Uzbek Re'Sale предоставляет техническую площадку и не является продавцом или стороной сделки. В пределах, допускаемых применимым законодательством, площадка не отвечает за убытки, возникшие непосредственно из действий пользователей.</p>
 <p>Администрация вправе модерировать и удалять объявления, ограничивать доступ и содействовать разрешению споров.</p>
 <h2>Товары от Uzbek Re'Sale</h2><p>Эти ограничения не применяются к товарам с отметкой «✓ От Uzbek Re'Sale»: для них действуют условия покупки у самой площадки.</p>
 <p>Поддержка: @uzbclothelover</p></div></section>
 <section class="page" id="privacy"><div class="section"><div class="simple-head"><button class="back" onclick="backPage('profile')">←</button><h1>Конфиденциальность</h1></div>
-<p>Для работы сервиса могут обрабатываться Telegram ID, имя, username, данные объявлений, заказов, доставки и переписки через бота, которые пользователь предоставляет сервису.</p>
+<p>Для работы сервиса могут обрабатываться Telegram ID, имя, username, данные объявлений, заявок на связь, официальных заказов Uzbek Re'Sale, доставки и переписки через бота, которые пользователь предоставляет сервису.</p>
 <p>Эти данные используются для работы объявлений, заказов, уведомлений, связи сторон, модерации и поддержки. Не публикуйте в объявлениях лишние персональные данные.</p>
 <p>По вопросам данных: @uzbclothelover</p></div></section>
 <section class="page" id="settingsPage">
@@ -9444,7 +9481,7 @@ $("viewedClearConfirmV46")?.addEventListener("click",()=>{
   uzrHaptic("success");
 });
 
-$("homeBtn").onclick=()=>{$("checkoutView").classList.remove("open");["buyerName","buyerPhone","buyerCity","buyerComment"].forEach(id=>{if($(id))$(id).value=""});page("home")};
+$("homeBtn").onclick=()=>{$("checkoutView").classList.remove("open");["buyerName","buyerPhone","buyerCity","buyerComment"].forEach(id=>{if($(id))$(id).value=""});page("china")};
 $("successOrdersBtn").onclick=()=>{$("checkoutView").classList.remove("open");["buyerName","buyerPhone","buyerCity","buyerComment"].forEach(id=>{if($(id))$(id).value=""});openMyOrders()};
 
 function openTelegramUsername(username){
@@ -10093,7 +10130,7 @@ async function loadMarketplaceCatalog(){
    id:"listing-"+x.id,listingId:x.id,name:x.title,price:Number(x.price||0),size:x.size||"—",
    condition:x.condition||"—",type:x.ownerType==="official"?(x.sourceType==="china"?"Под заказ":"В наличии"):"Ресейл",
    category:x.category||"Другое",brand:x.brand||"",image:x.images&&x.images[0]?x.images[0].image_url:"",images:(x.images||[]).map(im=>im.image_url||im).filter(Boolean),
-   ownerType:x.ownerType||"user",sourceType:x.sourceType||"",isPinned:!!x.isPinned,stockQty:Number(x.stockQty||1),status:x.status||"approved",cardBadge:x.cardBadge||x.badgeType||x.badge||"",city:x.city||x.location||"",createdAt:x.createdAt||x.created_at||"",updatedAt:x.updatedAt||x.updated_at||"",isFeatured:!!x.isFeatured,officialNote:x.officialNote||"",sellerTelegramId:String(x.sellerTelegramId||""),sellerName:x.sellerName||"Продавец",sellerUsername:x.sellerUsername||"",description:x.description||""
+   ownerType:x.ownerType||"user",sourceType:x.sourceType||"",isPinned:!!x.isPinned,stockQty:Number(x.stockQty||1),status:x.status||"approved",cardBadge:x.cardBadge||x.badgeType||x.badge||"",city:x.city||x.location||"",publishedAt:x.publishedAt||x.published_at||"",expiresAt:x.expiresAt||x.expires_at||"",soldAt:x.soldAt||x.sold_at||"",expiredAt:x.expiredAt||x.expired_at||"",imagesDeletedAt:x.imagesDeletedAt||x.images_deleted_at||"",purgedAt:x.purgedAt||x.purged_at||"",cleanupError:x.cleanupError||x.cleanup_error||"",createdAt:x.createdAt||x.created_at||"",updatedAt:x.updatedAt||x.updated_at||"",isFeatured:!!x.isFeatured,officialNote:x.officialNote||"",sellerTelegramId:String(x.sellerTelegramId||""),sellerName:x.sellerName||"Продавец",sellerUsername:x.sellerUsername||"",description:x.description||""
   }));
   // Client ranking: only explicitly pinned official items get priority.
    // All unpinned items are ordered newest-first, regardless of owner.
@@ -10111,23 +10148,28 @@ let myListingsAllV25=[];
 let myListingsFilterV25="all";
 let myProductActionTargetV25=null;
 
-function myProductStatusV25(status){
+function normalizeLegacyListingStatusV50(status){
   const s=String(status||"");
+  return s==="reserved"?"approved":s;
+}
+function myProductStatusV25(status){
+  const s=normalizeLegacyListingStatusV50(status);
   return {
     pending:{label:"На модерации",cls:"pending"},
     approved:{label:"Опубликован",cls:"approved"},
     rejected:{label:"Отклонено",cls:"rejected"},
     sold:{label:"Продано",cls:"sold"},
-    deleted:{label:"Снято",cls:"deleted"},
-    reserved:{label:"Зарезервирован",cls:"reserved"}
+    expired:{label:"Срок истёк",cls:"expired"},
+    deleted:{label:"Снято",cls:"deleted"}
   }[s]||{label:s||"—",cls:"deleted"};
 }
 function listingStatus(s){return myProductStatusV25(s).label}
 function myProductBucketV25(status){
-  const s=String(status||"");
+  const s=normalizeLegacyListingStatusV50(status);
   if(s==="pending")return "pending";
-  if(s==="approved"||s==="reserved")return "active";
-  if(["rejected","sold","deleted"].includes(s))return "removed";
+  if(s==="approved")return "active";
+  if(s==="sold")return "sold";
+  if(["rejected","expired","deleted"].includes(s))return "removed";
   return "removed";
 }
 function myProductDateV25(value){
@@ -10147,8 +10189,9 @@ function syncMyProductsCountsV25(){
   const all=myListingsAllV25.length;
   const active=myListingsAllV25.filter(x=>myProductBucketV25(x.status)==="active").length;
   const pending=myListingsAllV25.filter(x=>myProductBucketV25(x.status)==="pending").length;
+  const sold=myListingsAllV25.filter(x=>myProductBucketV25(x.status)==="sold").length;
   const removed=myListingsAllV25.filter(x=>myProductBucketV25(x.status)==="removed").length;
-  const vals={myCountAllV25:all,myCountActiveV25:active,myCountPendingV25:pending,myCountRemovedV25:removed};
+  const vals={myCountAllV25:all,myCountActiveV25:active,myCountPendingV25:pending,myCountSoldV51:sold,myCountRemovedV25:removed};
   Object.entries(vals).forEach(([id,v])=>{const el=$(id);if(el)el.textContent=String(v)});
   document.querySelectorAll('#myProductsFiltersV25 button[data-my-filter]').forEach(btn=>btn.classList.toggle('active',btn.dataset.myFilter===myListingsFilterV25));
 }
@@ -10157,6 +10200,36 @@ function myProductsEmptyV25(filter){
   const title=all?"Пока нет товаров":"Здесь пока пусто";
   const copy=all?"Разместите своё первое объявление и начните продавать.":"В этом разделе пока нет объявлений.";
   return `<div class="my-products-empty-v25"><div class="my-products-empty-icon-v25"><i data-lucide="package-open"></i></div><h2>${title}</h2><p>${copy}</p>${all?'<button type="button" onclick="page(\'sell\')">＋&nbsp;&nbsp;Продать товар</button>':''}</div>`;
+}
+
+function parseLifecycleDateV51(v){
+  if(!v)return null;
+  const raw=String(v);
+  const d=new Date(raw.includes("T")?raw:raw.replace(" ","T")+"Z");
+  return Number.isNaN(d.getTime())?null:d;
+}
+function lifecycleRemainingTextV51(target,prefix){
+  const d=parseLifecycleDateV51(target);
+  if(!d)return "";
+  const ms=d.getTime()-Date.now();
+  if(ms<=0)return prefix+" скоро";
+  const hours=Math.ceil(ms/3600000);
+  if(hours<24)return `${prefix} ${hours} ч.`;
+  const days=Math.ceil(hours/24);
+  return `${prefix} ${days} дн.`;
+}
+function myProductLifecycleTextV51(x){
+  const s=normalizeLegacyListingStatusV50(x?.status);
+  if(s==="approved"&&x?.expiresAt)return lifecycleRemainingTextV51(x.expiresAt,"До снятия:");
+  if(s==="sold"&&x?.soldAt){
+    const sold=parseLifecycleDateV51(x.soldAt);
+    if(!sold)return "";
+    const cleanup=new Date(sold.getTime()+5*24*3600000);
+    return lifecycleRemainingTextV51(cleanup.toISOString(),"Фото удалятся через");
+  }
+  if(s==="expired")return "Срок публикации завершён";
+  if(x?.cleanupError)return "Ошибка очистки фото — повторит система";
+  return "";
 }
 function renderMyListingsV25(){
   const box=$("myListingsList");if(!box)return;
@@ -10178,6 +10251,7 @@ function renderMyListingsV25(){
         <div class="my-product-meta-v25">${meta||"Без размера"}</div>
         <div class="my-product-price-v25">${money(x.price)}</div>
         ${date?`<div class="my-product-date-v25"><i data-lucide="clock-3"></i><span>${escapeHtml(date)}</span></div>`:""}
+        ${myProductLifecycleTextV51(x)?`<div class="my-product-lifecycle-v51"><i data-lucide="timer"></i><span>${escapeHtml(myProductLifecycleTextV51(x))}</span></div>`:""}
       </div>
       <button class="my-product-menu-v25" type="button" data-my-action-id="${Number(x.id)||0}" aria-label="Действия"><i data-lucide="more-vertical"></i></button>
       ${reason}
@@ -10199,6 +10273,23 @@ function openMyProductActionsV25(id){
     openBtn.hidden=!canOpen;
     openBtn.onclick=()=>{closeMyProductActionsV25();if(canOpen)openSellerListing(Number(myProductActionTargetV25.id))};
   }
+  const current=normalizeLegacyListingStatusV50(myProductActionTargetV25.status);
+  const soldBtn=$("myProductSoldV51");
+  const extendBtn=$("myProductExtendV51");
+  const restoreBtn=$("myProductRestoreV51");
+  if(soldBtn){
+    soldBtn.hidden=current!=="approved";
+    soldBtn.onclick=()=>myListingLifecycleActionV51(Number(myProductActionTargetV25.id),"sold");
+  }
+  if(extendBtn){
+    extendBtn.hidden=current!=="approved";
+    extendBtn.onclick=()=>myListingLifecycleActionV51(Number(myProductActionTargetV25.id),"extend");
+  }
+  if(restoreBtn){
+    const canRestore=["sold","expired","deleted"].includes(current)&&!myProductActionTargetV25.imagesDeletedAt&&!myProductActionTargetV25.purgedAt;
+    restoreBtn.hidden=!canRestore;
+    restoreBtn.onclick=()=>myListingLifecycleActionV51(Number(myProductActionTargetV25.id),"restore");
+  }
   const del=$("myProductDeleteV25");if(del)del.onclick=()=>openMyProductDeleteConfirmV25();
   if(sheet)sheet.hidden=false;
   setTimeout(()=>window.lucide&&lucide.createIcons(),0);
@@ -10213,6 +10304,38 @@ function openMyProductDeleteConfirmV25(){
   setTimeout(()=>window.lucide&&lucide.createIcons(),0);
 }
 function closeMyProductDeleteConfirmV25(){const el=$("myProductDeleteConfirmV25");if(el)el.hidden=true}
+
+async function myListingLifecycleActionV51(id,action){
+  const target=myListingsAllV25.find(x=>Number(x.id)===Number(id));
+  if(!target)return;
+  const labels={sold:"Отмечаем проданным…",restore:"Возвращаем…",extend:"Продлеваем…"};
+  closeMyProductActionsV25();
+  try{
+    const r=await fetch(MARKETPLACE_API+"/listings/lifecycle",{
+      method:"POST",
+      headers:{"Content-Type":"application/json"},
+      body:JSON.stringify({listingId:Number(id),action})
+    });
+    const d=await r.json().catch(()=>({}));
+    if(!r.ok||!d.ok){
+      const msg={
+        LISTING_NOT_ACTIVE:"Объявление уже не активно",
+        IMAGES_ALREADY_PURGED:"Фотографии уже удалены. Создайте новое объявление.",
+        NO_IMAGES_TO_RESTORE:"Фотографии уже удалены. Создайте новое объявление.",
+        RESTORE_NOT_ALLOWED:"Сейчас нельзя вернуть товар в продажу.",
+        RATE_LIMITED:"Слишком много действий. Попробуйте позже."
+      }[d.error]||d.message||d.error||"Не удалось выполнить действие";
+      throw new Error(msg);
+    }
+    await openMyListings();
+    await loadMarketplaceCatalog();
+    uzrHaptic("success");
+  }catch(e){
+    console.error("Listing lifecycle:",e);
+    alert(String(e?.message||"Не удалось выполнить действие"));
+  }
+}
+
 async function deleteMyListing(id,title){
   const u=window.Telegram?.WebApp?.initDataUnsafe?.user;
   if(!u){closeMyProductDeleteConfirmV25();return alert("Откройте через Telegram")}
@@ -10440,6 +10563,35 @@ async function refreshAdminAccess(){
  }
 }
 async function openAdminPanel(){if(!await refreshAdminAccess()){alert("Нет доступа к Admin Panel");return}page("adminPanel");loadAdmin()}
+
+function adminLifecycleInfoV51(x){
+  const now=Date.now();
+  const parse=v=>{if(!v)return null;const s=String(v);const d=new Date(s.includes("T")?s:s.replace(" ","T")+"Z");return Number.isNaN(d.getTime())?null:d};
+  const status=String(x?.status||"");
+  if(String(x?.owner_type||"")==="official")return "";
+  if(status==="approved"){
+    const e=parse(x.expires_at);
+    if(!e)return "Срок: ещё не назначен";
+    const h=Math.ceil((e-now)/3600000);
+    return h<=0?"Истекает сейчас":h<24?`До снятия: ${h} ч.`:`До снятия: ${Math.ceil(h/24)} дн.`;
+  }
+  if(status==="sold"){
+    const s=parse(x.sold_at);
+    if(!s)return "Продано";
+    const h=Math.ceil((s.getTime()+5*24*3600000-now)/3600000);
+    return h<=0?"Фото ждут очистки":h<24?`Фото удалятся через ${h} ч.`:`Фото удалятся через ${Math.ceil(h/24)} дн.`;
+  }
+  if(status==="expired")return x.images_deleted_at?"Срок истёк · фото очищены":"Срок истёк · cleanup ожидается";
+  if(x.cleanup_error)return "⚠ Cleanup error";
+  return "";
+}
+async function adminListingLifecycleV51(id,action){
+  try{
+    await adminFetch("/admin/listing-lifecycle",{method:"POST",body:JSON.stringify({id,action})});
+    await adminTab("cleanup",[...document.querySelectorAll(".admin-tab")].find(x=>x.textContent.trim()==="Очистка"));
+  }catch(e){alert("Ошибка: "+String(e.message||e))}
+}
+
 async function loadAdmin(){try{const d=await adminFetch("/admin/dashboard");$("adminStats").innerHTML=`<div class="admin-stat"><b>${d.stats.pending}</b><span>Модерация</span></div><div class="admin-stat"><b>${d.stats.orders}</b><span>Заказы</span></div><div class="admin-stat"><b>${d.stats.active}</b><span>Товары</span></div><div class="admin-stat"><b>${d.stats.users}</b><span>Продавцы</span></div>`;await refreshMaintenanceAdmin();adminTab("moderation")}catch(e){$("adminContent").innerHTML='<div class="empty">Нет доступа</div>'}}
 async function adminTab(tab,btn){
  document.querySelectorAll(".admin-tab").forEach(x=>x.classList.toggle("on",x===btn));
@@ -10468,9 +10620,13 @@ async function adminTab(tab,btn){
   if(tab==="cleanup"){
    const d=await adminFetch("/admin/listings");
    const all=Array.isArray(d.listings)?d.listings:[];
-   const trash=all.filter(x=>["deleted","rejected","sold"].includes(String(x.status||"")));
-   const active=all.filter(x=>!["deleted","rejected","sold"].includes(String(x.status||"")));
+   const trash=all.filter(x=>["deleted","rejected","sold","expired"].includes(String(x.status||"")));
+   const active=all.filter(x=>!["deleted","rejected","sold","expired"].includes(String(x.status||"")));
    const deletedCount=trash.filter(x=>x.status==="deleted").length;
+   const userActive=all.filter(x=>x.owner_type!=="official"&&x.status==="approved").length;
+   const expiringSoon=all.filter(x=>x.owner_type!=="official"&&x.status==="approved"&&x.expires_at&&((new Date(String(x.expires_at).replace(" ","T")+"Z")).getTime()-Date.now())<=86400000).length;
+   const soldCleanup=all.filter(x=>x.owner_type!=="official"&&x.status==="sold"&&!x.images_deleted_at).length;
+   const cleanupErrors=all.filter(x=>x.cleanup_error).length;
 
    c.innerHTML=`
     <div class="cleanup-v2-head">
@@ -10483,14 +10639,23 @@ async function adminTab(tab,btn){
       </button>
     </div>
 
-    <div class="cleanup-v2-section-title">Корзина · ${trash.length}</div>
+    <div class="lifecycle-admin-stats-v51">
+      <div><b>${userActive}</b><span>Активные Ресейл</span></div>
+      <div><b>${expiringSoon}</b><span>Истекают ≤24ч</span></div>
+      <div><b>${soldCleanup}</b><span>Продано · ждёт фото cleanup</span></div>
+      <div><b>${cleanupErrors}</b><span>Cleanup errors</span></div>
+    </div>
+    <div class="admin-mini lifecycle-admin-note-v51">Активное пользовательское объявление живёт 7 дней. Фото проданного товара удаляются через 5 дней. Для автоматической очистки нужен Cron Trigger Worker.</div>
+
+    <div class="cleanup-v2-section-title">Архив / очистка · ${trash.length}</div>
     ${trash.map(x=>`
       <div class="admin-card">
         <b>${x.owner_type==="official"?"✓":"♻"} #${x.id} ${escapeHtml(String(x.title||""))}</b>
         <div>${escapeHtml(String(x.status||""))} · ${escapeHtml(String(x.owner_type||""))}</div>
-        <div class="admin-mini">${money(x.price||0)}</div>
+        <div class="admin-mini">${money(x.price||0)}${adminLifecycleInfoV51(x)?` · ${escapeHtml(adminLifecycleInfoV51(x))}`:""}</div>
         <div class="admin-actions">
           <button onclick="adminOpenListing(${x.id})">Открыть</button>
+          ${x.owner_type!=="official"&&x.status==="sold"&&!x.images_deleted_at?`<button onclick="adminListingLifecycleV51(${x.id},'restore')">↩️ Вернуть</button>`:""}
           <button class="admin-danger" onclick="adminPermanentDeleteListing(${x.id},'${String(x.status||"").replace(/'/g,"")}')">
             🗑 Удалить навсегда
           </button>
@@ -10504,8 +10669,9 @@ async function adminTab(tab,btn){
         <div class="admin-card admin-clickable" onclick="adminOpenListing(${x.id})">
           <b>${x.owner_type==="official"?"✓":"♻"} #${x.id} ${escapeHtml(String(x.title||""))}</b>
           <div>${escapeHtml(String(x.status||""))} · ${escapeHtml(String(x.owner_type||""))}</div>
-          <div class="admin-mini">${money(x.price||0)}</div>
+          <div class="admin-mini">${money(x.price||0)}${adminLifecycleInfoV51(x)?` · ${escapeHtml(adminLifecycleInfoV51(x))}`:""}</div>
           <div class="admin-actions">
+            ${x.owner_type!=="official"&&x.status==="approved"?`<button onclick="event.stopPropagation();adminListingLifecycleV51(${x.id},'extend')">🕒 +7 дней</button><button onclick="event.stopPropagation();adminListingLifecycleV51(${x.id},'sold')">✅ Продано</button>`:""}
             <button class="admin-danger" onclick="event.stopPropagation();adminDeleteListing(${x.id})">🗑 Удалить товар + фото</button>
           </div>
         </div>`).join("")||'<div class="empty">Активных записей нет</div>'}
