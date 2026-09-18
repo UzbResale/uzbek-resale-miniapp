@@ -7569,7 +7569,7 @@ body.order-detail-open-v40 nav{z-index:1500!important;display:grid!important;vis
       <div class="viewed-v46-empty-icon"><i data-lucide="eye"></i></div>
       <h2>История пока пуста</h2>
       <p>Открывайте товары в каталоге — последние 6 появятся здесь.</p>
-      <button type="button" onclick="page('china')">Перейти в «Из Китая»</button>
+      <button type="button" onclick="page('catalog')">Перейти в каталог</button>
     </div>
 
     <div class="grid viewed-v46-grid" id="viewedGrid"></div>
@@ -7592,7 +7592,7 @@ body.order-detail-open-v40 nav{z-index:1500!important;display:grid!important;vis
     </div>
   </div>
 </section>
-<section class="page" id="cart"><div class="section cart-premium-section"><div class="cart-head"><button aria-label="Назад" class="back cart-back-v145 product-v18-circle" onclick="page('china')" type="button"><i data-lucide="chevron-left"></i></button><div><h1>Корзина</h1><p>Ваши выбранные товары</p></div></div><div id="cartList"></div><div id="cartBottom" style="display:none"><div class="cart-summary-label">Сумма заказа</div><div class="total"><span>Итого</span><span id="total"></span></div><button class="btn black" id="checkoutBtn">Оформить заказ</button><div class="cart-note">Оплата и доставка подтверждаются после оформления.</div></div></div></section>
+<section class="page" id="cart"><div class="section cart-premium-section"><div class="cart-head"><button aria-label="Назад" class="back cart-back-v145 product-v18-circle" onclick="backPage('home')" type="button"><i data-lucide="chevron-left"></i></button><div><h1>Корзина</h1><p>Ваши выбранные товары</p></div></div><div id="cartList"></div><div id="cartBottom" style="display:none"><div class="cart-summary-label">Сумма заказа</div><div class="total"><span>Итого</span><span id="total"></span></div><button class="btn black" id="checkoutBtn">Оформить заказ</button><div class="cart-note">Оплата и доставка подтверждаются после оформления.</div></div></div></section>
 <section class="page" id="profile">
 <div class="tg-profile-v13">
 <div class="tg-profile-identity-v13">
@@ -8947,7 +8947,7 @@ function renderCart(){
  const b=$("cartList");if(!b)return;
  b.innerHTML="";
  if(!cart.length){
-   b.innerHTML='<div class="cart-empty-v23"><div class="cart-empty-icon-v23"><i data-lucide="shopping-bag"></i></div><h2>Корзина пуста</h2><p>Добавьте понравившийся товар — он появится здесь.</p><button type="button" onclick="page(\'catalog\')">Перейти в каталог</button></div>';
+   b.innerHTML='<div class="cart-empty-v23"><div class="cart-empty-icon-v23"><i data-lucide="shopping-bag"></i></div><h2>Корзина пуста</h2><p>Добавьте понравившийся товар — он появится здесь.</p><button type="button" onclick="page(\'china\')">Перейти к покупкам</button></div>';
    $("cartBottom").style.display="none";
    setTimeout(()=>window.lucide&&lucide.createIcons(),0);
    return;
