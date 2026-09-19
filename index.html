@@ -10402,6 +10402,813 @@ html[data-uzr-theme="light"] body #orderDetailView :is(
 }
 </style>
 
+
+<style id="uzr-v78-full-light-flow-cleanup">
+/* ============================================================
+   v78 — FULL LIGHT FLOW CLEANUP
+   Covers:
+   - My Product action sheet
+   - Delete listing confirmation
+   - Contact request form + success
+   - Checkout form + success
+   - Listing submission success
+   - Seller profile settings
+   - Order detail (reassert)
+   - Product page (reassert)
+   Dark theme is untouched.
+   ============================================================ */
+
+/* ============================================================
+   A) MY PRODUCT ACTION SHEET
+   ============================================================ */
+html[data-uzr-theme="light"] body #myProductActionsV25 .my-product-sheet-backdrop-v25,
+html[data-uzr-theme="light"] body #myProductDeleteConfirmV25 .my-product-confirm-backdrop-v25{
+  background:rgba(29,44,55,.28)!important;
+  backdrop-filter:blur(7px)!important;
+  -webkit-backdrop-filter:blur(7px)!important;
+}
+
+html[data-uzr-theme="light"] body #myProductActionsV25 .my-product-sheet-panel-v25{
+  background:#ffffff!important;
+  background-color:#ffffff!important;
+  background-image:none!important;
+  border:1px solid #d2dee6!important;
+  color:#122431!important;
+  box-shadow:0 18px 48px rgba(28,48,62,.18)!important;
+}
+
+html[data-uzr-theme="light"] body #myProductActionsV25 .my-product-sheet-handle-v25{
+  background:#b4c2cb!important;
+}
+
+html[data-uzr-theme="light"] body #myProductActionsV25 .my-product-sheet-title-v25{
+  color:#6d818e!important;
+  -webkit-text-fill-color:#6d818e!important;
+}
+
+html[data-uzr-theme="light"] body #myProductActionsV25 .my-product-sheet-row-v25{
+  background:transparent!important;
+  border-bottom-color:#e7edf1!important;
+  color:#122431!important;
+  -webkit-text-fill-color:#122431!important;
+}
+
+html[data-uzr-theme="light"] body #myProductActionsV25 .my-product-sheet-row-v25.success-v51{
+  color:#159a67!important;
+  -webkit-text-fill-color:#159a67!important;
+}
+
+html[data-uzr-theme="light"] body #myProductActionsV25 .my-product-sheet-row-v25.danger{
+  color:#dc4253!important;
+  -webkit-text-fill-color:#dc4253!important;
+}
+
+html[data-uzr-theme="light"] body #myProductActionsV25 .my-product-sheet-icon-v25{
+  background:#eaf6ff!important;
+  color:#168fdc!important;
+}
+html[data-uzr-theme="light"] body #myProductActionsV25 .my-product-sheet-icon-v25 svg{
+  stroke:currentColor!important;
+}
+html[data-uzr-theme="light"] body #myProductActionsV25 .success-v51 .my-product-sheet-icon-v25{
+  background:#eaf9f3!important;
+  color:#159a67!important;
+}
+html[data-uzr-theme="light"] body #myProductActionsV25 .danger .my-product-sheet-icon-v25{
+  background:#fff0f2!important;
+  color:#dc4253!important;
+}
+
+html[data-uzr-theme="light"] body #myProductActionsV25 .my-product-sheet-cancel-v25{
+  background:#f8fafc!important;
+  background-color:#f8fafc!important;
+  background-image:none!important;
+  border:1px solid #d7e1e8!important;
+  color:#667b89!important;
+  -webkit-text-fill-color:#667b89!important;
+}
+
+/* ============================================================
+   B) DELETE LISTING CONFIRMATION
+   ============================================================ */
+html[data-uzr-theme="light"] body #myProductDeleteConfirmV25 .my-product-confirm-card-v25{
+  background:#ffffff!important;
+  background-color:#ffffff!important;
+  background-image:none!important;
+  border:1px solid #d2dee6!important;
+  color:#122431!important;
+  box-shadow:0 18px 48px rgba(28,48,62,.18)!important;
+}
+
+html[data-uzr-theme="light"] body #myProductDeleteConfirmV25 .my-product-confirm-icon-v25{
+  background:#fff0f2!important;
+  color:#dc4253!important;
+}
+
+html[data-uzr-theme="light"] body #myProductDeleteConfirmV25 .my-product-confirm-card-v25 h2{
+  color:#122431!important;
+  -webkit-text-fill-color:#122431!important;
+}
+html[data-uzr-theme="light"] body #myProductDeleteConfirmV25 .my-product-confirm-card-v25 p{
+  color:#667b89!important;
+  -webkit-text-fill-color:#667b89!important;
+}
+html[data-uzr-theme="light"] body #myProductDeleteConfirmV25 .my-product-confirm-danger-v25{
+  background:#dc4253!important;
+  color:#ffffff!important;
+  -webkit-text-fill-color:#ffffff!important;
+}
+html[data-uzr-theme="light"] body #myProductDeleteConfirmV25 .my-product-confirm-cancel-v25{
+  background:#f8fafc!important;
+  border:1px solid #d7e1e8!important;
+  color:#667b89!important;
+  -webkit-text-fill-color:#667b89!important;
+}
+
+/* ============================================================
+   C) CONTACT REQUEST — FORM
+   ============================================================ */
+html[data-uzr-theme="light"] body .app #contactRequest{
+  background:#f3f6fa!important;
+  color:#122431!important;
+}
+
+html[data-uzr-theme="light"] body .app #contactRequest .contact-request-v49-topbar h1{
+  color:#122431!important;
+  -webkit-text-fill-color:#122431!important;
+}
+
+html[data-uzr-theme="light"] body .app #contactRequest .contact-request-v49-kicker{
+  color:#6f8795!important;
+}
+
+html[data-uzr-theme="light"] body .app #contactRequest #contactRequestFormV49>h2{
+  color:#122431!important;
+  -webkit-text-fill-color:#122431!important;
+}
+
+html[data-uzr-theme="light"] body .app #contactRequest .contact-request-v49-intro{
+  color:#667b89!important;
+  -webkit-text-fill-color:#667b89!important;
+}
+
+html[data-uzr-theme="light"] body .app #contactRequest :is(
+  .contact-request-v49-product,
+  .contact-request-v49-identity,
+  .contact-request-v49-message
+){
+  background:#ffffff!important;
+  background-color:#ffffff!important;
+  background-image:none!important;
+  border:1px solid #d7e1e8!important;
+}
+
+html[data-uzr-theme="light"] body .app #contactRequest .contact-request-product-photo-v49,
+html[data-uzr-theme="light"] body .app #contactRequestSuccessV49 .contact-request-product-photo-v49{
+  background:#f2f5f7!important;
+  color:#78919f!important;
+}
+
+html[data-uzr-theme="light"] body .app #contactRequest .contact-request-product-copy-v49 b,
+html[data-uzr-theme="light"] body .app #contactRequestSuccessV49 .contact-request-product-copy-v49 b{
+  color:#122431!important;
+  -webkit-text-fill-color:#122431!important;
+}
+
+html[data-uzr-theme="light"] body .app #contactRequest .contact-request-product-copy-v49 strong,
+html[data-uzr-theme="light"] body .app #contactRequestSuccessV49 .contact-request-product-copy-v49 strong{
+  color:#179de8!important;
+  -webkit-text-fill-color:#179de8!important;
+}
+
+html[data-uzr-theme="light"] body .app #contactRequest .contact-request-product-copy-v49 small,
+html[data-uzr-theme="light"] body .app #contactRequestSuccessV49 .contact-request-product-copy-v49 small{
+  color:#667b89!important;
+  -webkit-text-fill-color:#667b89!important;
+}
+
+html[data-uzr-theme="light"] body .app #contactRequest .contact-request-v49-section-label{
+  color:#536b79!important;
+  -webkit-text-fill-color:#536b79!important;
+}
+
+html[data-uzr-theme="light"] body .app #contactRequest .contact-request-v49-identity-copy b{
+  color:#122431!important;
+  -webkit-text-fill-color:#122431!important;
+}
+html[data-uzr-theme="light"] body .app #contactRequest .contact-request-v49-identity-copy span{
+  color:#168fdc!important;
+  -webkit-text-fill-color:#168fdc!important;
+}
+
+html[data-uzr-theme="light"] body .app #contactRequest .contact-request-v49-message-head label{
+  color:#122431!important;
+  -webkit-text-fill-color:#122431!important;
+}
+html[data-uzr-theme="light"] body .app #contactRequest .contact-request-v49-message-head label span,
+html[data-uzr-theme="light"] body .app #contactRequest .contact-request-v49-message-head small{
+  color:#728794!important;
+  -webkit-text-fill-color:#728794!important;
+}
+
+html[data-uzr-theme="light"] body .app #contactRequest #contactRequestMessageV49{
+  background:#f8fafc!important;
+  background-color:#f8fafc!important;
+  background-image:none!important;
+  border:1px solid #d7e1e8!important;
+  color:#122431!important;
+  -webkit-text-fill-color:#122431!important;
+}
+html[data-uzr-theme="light"] body .app #contactRequest #contactRequestMessageV49::placeholder{
+  color:#82939f!important;
+  -webkit-text-fill-color:#82939f!important;
+}
+
+html[data-uzr-theme="light"] body .app #contactRequest .contact-request-v49-chips button{
+  background:#ffffff!important;
+  background-color:#ffffff!important;
+  background-image:none!important;
+  border:1px solid #cfdce5!important;
+  color:#526b79!important;
+  -webkit-text-fill-color:#526b79!important;
+}
+
+html[data-uzr-theme="light"] body .app #contactRequest .contact-request-v49-error{
+  background:#fff1f3!important;
+  border-color:#f0aab3!important;
+  color:#d64052!important;
+  -webkit-text-fill-color:#d64052!important;
+}
+
+html[data-uzr-theme="light"] body .app #contactRequest .contact-request-v49-legal-note{
+  color:#667b89!important;
+  -webkit-text-fill-color:#667b89!important;
+}
+html[data-uzr-theme="light"] body .app #contactRequest .contact-request-v49-legal-note svg{
+  stroke:#2ea6ff!important;
+}
+
+/* ============================================================
+   D) CONTACT REQUEST — SUCCESS
+   ============================================================ */
+html[data-uzr-theme="light"] body .app #contactRequestSuccessV49{
+  color:#122431!important;
+}
+
+html[data-uzr-theme="light"] body .app #contactRequestSuccessV49 .contact-request-success-icon-v49{
+  background:#eaf9f3!important;
+  color:#159a67!important;
+  border-color:#bdebd7!important;
+}
+
+html[data-uzr-theme="light"] body .app #contactRequestSuccessV49 .contact-request-success-kicker-v49{
+  color:#6f8795!important;
+}
+
+html[data-uzr-theme="light"] body .app #contactRequestSuccessV49 h2{
+  color:#122431!important;
+  -webkit-text-fill-color:#122431!important;
+}
+html[data-uzr-theme="light"] body .app #contactRequestSuccessV49>strong{
+  color:#179de8!important;
+  -webkit-text-fill-color:#179de8!important;
+}
+html[data-uzr-theme="light"] body .app #contactRequestSuccessV49>p{
+  color:#667b89!important;
+  -webkit-text-fill-color:#667b89!important;
+}
+
+html[data-uzr-theme="light"] body .app #contactRequestSuccessV49 .contact-request-success-product-v49{
+  background:#ffffff!important;
+  border:1px solid #d7e1e8!important;
+}
+
+html[data-uzr-theme="light"] body .app #contactRequestSuccessV49 .contact-request-success-primary-v49{
+  background:#2ea6ff!important;
+  border-color:#2ea6ff!important;
+  color:#ffffff!important;
+  -webkit-text-fill-color:#ffffff!important;
+}
+html[data-uzr-theme="light"] body .app #contactRequestSuccessV49 .contact-request-success-secondary-v49{
+  background:#ffffff!important;
+  background-color:#ffffff!important;
+  border:1px solid #b9dff5!important;
+  color:#168fdc!important;
+  -webkit-text-fill-color:#168fdc!important;
+}
+
+/* ============================================================
+   E) CHECKOUT — ORDER FORM
+   ============================================================ */
+html[data-uzr-theme="light"] body #checkoutView{
+  background:#f3f6fa!important;
+  background-color:#f3f6fa!important;
+}
+
+html[data-uzr-theme="light"] body #checkoutView .checkout-premium-inner{
+  background:#f3f6fa!important;
+  background-color:#f3f6fa!important;
+  color:#122431!important;
+}
+
+html[data-uzr-theme="light"] body #checkoutView .checkout-heading span,
+html[data-uzr-theme="light"] body #checkoutView .checkout-v41-section-title{
+  color:#6d818e!important;
+  -webkit-text-fill-color:#6d818e!important;
+}
+
+html[data-uzr-theme="light"] body #checkoutView .checkout-heading h1{
+  color:#122431!important;
+  -webkit-text-fill-color:#122431!important;
+}
+html[data-uzr-theme="light"] body #checkoutView .checkout-heading p{
+  color:#667b89!important;
+  -webkit-text-fill-color:#667b89!important;
+}
+
+html[data-uzr-theme="light"] body #checkoutView .checkout-v41-summary,
+html[data-uzr-theme="light"] body #checkoutView .checkout-panel{
+  background:#ffffff!important;
+  background-color:#ffffff!important;
+  background-image:none!important;
+  border:1px solid #d7e1e8!important;
+}
+
+html[data-uzr-theme="light"] body #checkoutView .checkout-v41-summary-head{
+  border-bottom-color:#e7edf1!important;
+}
+html[data-uzr-theme="light"] body #checkoutView .checkout-v41-summary-head span{
+  color:#6f8492!important;
+  -webkit-text-fill-color:#6f8492!important;
+}
+html[data-uzr-theme="light"] body #checkoutView .checkout-v41-summary-head b{
+  color:#122431!important;
+  -webkit-text-fill-color:#122431!important;
+}
+html[data-uzr-theme="light"] body #checkoutView .checkout-v41-summary-head button{
+  color:#168fdc!important;
+  -webkit-text-fill-color:#168fdc!important;
+}
+
+html[data-uzr-theme="light"] body #checkoutView .checkout-v41-item{
+  border-bottom-color:#e7edf1!important;
+}
+html[data-uzr-theme="light"] body #checkoutView .checkout-v41-item>img,
+html[data-uzr-theme="light"] body #checkoutView .checkout-v41-item-placeholder{
+  background:#f2f5f7!important;
+}
+html[data-uzr-theme="light"] body #checkoutView .checkout-v41-item-copy b{
+  color:#122431!important;
+  -webkit-text-fill-color:#122431!important;
+}
+html[data-uzr-theme="light"] body #checkoutView .checkout-v41-item-copy small,
+html[data-uzr-theme="light"] body #checkoutView .checkout-v41-more{
+  color:#667b89!important;
+  -webkit-text-fill-color:#667b89!important;
+}
+html[data-uzr-theme="light"] body #checkoutView .checkout-v41-item>strong{
+  color:#122431!important;
+  -webkit-text-fill-color:#122431!important;
+}
+
+html[data-uzr-theme="light"] body #checkoutView .checkout-v41-summary-row{
+  color:#667b89!important;
+  -webkit-text-fill-color:#667b89!important;
+}
+html[data-uzr-theme="light"] body #checkoutView .checkout-v41-summary-row b{
+  color:#122431!important;
+  -webkit-text-fill-color:#122431!important;
+}
+html[data-uzr-theme="light"] body #checkoutView .checkout-v41-total{
+  border-top-color:#d7e1e8!important;
+  color:#122431!important;
+}
+html[data-uzr-theme="light"] body #checkoutView .checkout-v41-total b{
+  color:#179de8!important;
+  -webkit-text-fill-color:#179de8!important;
+}
+
+html[data-uzr-theme="light"] body #checkoutView .field label{
+  color:#435b68!important;
+  -webkit-text-fill-color:#435b68!important;
+}
+html[data-uzr-theme="light"] body #checkoutView .field label span{
+  color:#728794!important;
+  -webkit-text-fill-color:#728794!important;
+}
+
+html[data-uzr-theme="light"] body #checkoutView .field :is(input,textarea,select){
+  background:#f8fafc!important;
+  background-color:#f8fafc!important;
+  background-image:none!important;
+  border:1px solid #d7e1e8!important;
+  color:#122431!important;
+  -webkit-text-fill-color:#122431!important;
+}
+html[data-uzr-theme="light"] body #checkoutView .field :is(input,textarea)::placeholder{
+  color:#82939f!important;
+  -webkit-text-fill-color:#82939f!important;
+}
+
+html[data-uzr-theme="light"] body #checkoutView .checkout-phone-v41{
+  background:#f8fafc!important;
+  border-color:#d7e1e8!important;
+}
+html[data-uzr-theme="light"] body #checkoutView .checkout-phone-prefix-v41{
+  border-right-color:#d7e1e8!important;
+  color:#526b79!important;
+  -webkit-text-fill-color:#526b79!important;
+}
+html[data-uzr-theme="light"] body #checkoutView .checkout-select-wrap-v41 svg{
+  stroke:#78909e!important;
+}
+
+html[data-uzr-theme="light"] body #checkoutView .checkout-field-hint,
+html[data-uzr-theme="light"] body #checkoutView .checkout-comment-meta-v41{
+  color:#728794!important;
+  -webkit-text-fill-color:#728794!important;
+}
+
+html[data-uzr-theme="light"] body #checkoutView .checkout-save-box-v41{
+  background:#ffffff!important;
+  border-color:#cddae2!important;
+}
+html[data-uzr-theme="light"] body #checkoutView .checkout-save-v41>input:checked+.checkout-save-box-v41{
+  background:#2ea6ff!important;
+  border-color:#2ea6ff!important;
+}
+html[data-uzr-theme="light"] body #checkoutView .checkout-save-v41 b{
+  color:#122431!important;
+  -webkit-text-fill-color:#122431!important;
+}
+html[data-uzr-theme="light"] body #checkoutView .checkout-save-v41 small{
+  color:#667b89!important;
+  -webkit-text-fill-color:#667b89!important;
+}
+
+html[data-uzr-theme="light"] body #checkoutView .checkout-info{
+  background:#eef8ff!important;
+  border-color:#c8e5f6!important;
+}
+html[data-uzr-theme="light"] body #checkoutView .checkout-info-icon{
+  background:#dff3ff!important;
+  color:#168fdc!important;
+}
+html[data-uzr-theme="light"] body #checkoutView .checkout-info b{
+  color:#17384b!important;
+  -webkit-text-fill-color:#17384b!important;
+}
+html[data-uzr-theme="light"] body #checkoutView .checkout-info p{
+  color:#607887!important;
+  -webkit-text-fill-color:#607887!important;
+}
+
+html[data-uzr-theme="light"] body #checkoutView .checkout-form-error-v41{
+  background:#fff1f3!important;
+  border-color:#f0aab3!important;
+  color:#d64052!important;
+  -webkit-text-fill-color:#d64052!important;
+}
+
+html[data-uzr-theme="light"] body #checkoutView #confirmBtn{
+  background:linear-gradient(180deg,#35b2ff,#168fe8)!important;
+  background-color:#2ea6ff!important;
+  border-color:#2ea6ff!important;
+  color:#ffffff!important;
+  -webkit-text-fill-color:#ffffff!important;
+}
+
+html[data-uzr-theme="light"] body #checkoutView .checkout-v41-secure{
+  color:#667b89!important;
+  -webkit-text-fill-color:#667b89!important;
+}
+html[data-uzr-theme="light"] body #checkoutView .checkout-v41-secure svg{
+  stroke:#6f90a2!important;
+}
+
+/* Checkout retry error */
+html[data-uzr-theme="light"] body #checkoutView .checkout-error-title-v43{
+  color:#d64052!important;
+  -webkit-text-fill-color:#d64052!important;
+}
+html[data-uzr-theme="light"] body #checkoutView .checkout-retry-v43{
+  background:#fff1f3!important;
+  border-color:#f0aab3!important;
+  color:#d64052!important;
+  -webkit-text-fill-color:#d64052!important;
+}
+
+/* ============================================================
+   F) CHECKOUT — SUCCESS CONFIRMATION
+   ============================================================ */
+html[data-uzr-theme="light"] body #checkoutView .checkout-success-v42{
+  background:#f3f6fa!important;
+  background-color:#f3f6fa!important;
+  color:#122431!important;
+}
+
+html[data-uzr-theme="light"] body #checkoutView .checkout-success-card-v42{
+  background:#ffffff!important;
+  background-color:#ffffff!important;
+  background-image:none!important;
+  border:1px solid #d7e1e8!important;
+  color:#122431!important;
+  box-shadow:0 14px 38px rgba(31,50,64,.09)!important;
+}
+
+html[data-uzr-theme="light"] body #checkoutView .checkout-success-v42 .success-check{
+  background:#eaf9f3!important;
+  border-color:#bdebd7!important;
+  color:#159a67!important;
+  box-shadow:0 0 0 10px rgba(21,154,103,.04)!important;
+}
+
+html[data-uzr-theme="light"] body #checkoutView .checkout-success-v42 .success-kicker{
+  color:#6f8795!important;
+}
+
+html[data-uzr-theme="light"] body #checkoutView .checkout-success-v42 h2{
+  color:#122431!important;
+  -webkit-text-fill-color:#122431!important;
+}
+html[data-uzr-theme="light"] body #checkoutView .checkout-success-v42>.checkout-success-card-v42>p{
+  color:#667b89!important;
+  -webkit-text-fill-color:#667b89!important;
+}
+
+html[data-uzr-theme="light"] body #checkoutView .checkout-success-v42 .success-info{
+  background:#f8fafc!important;
+  border-color:#d7e1e8!important;
+}
+html[data-uzr-theme="light"] body #checkoutView .checkout-success-v42 .success-info>div{
+  border-bottom-color:#e7edf1!important;
+}
+html[data-uzr-theme="light"] body #checkoutView .checkout-success-v42 .success-info span{
+  color:#667b89!important;
+  -webkit-text-fill-color:#667b89!important;
+}
+html[data-uzr-theme="light"] body #checkoutView .checkout-success-v42 .success-info b{
+  color:#122431!important;
+  -webkit-text-fill-color:#122431!important;
+}
+
+html[data-uzr-theme="light"] body #checkoutView .checkout-success-v42 .success-primary{
+  background:#2ea6ff!important;
+  border-color:#2ea6ff!important;
+  color:#ffffff!important;
+  -webkit-text-fill-color:#ffffff!important;
+}
+html[data-uzr-theme="light"] body #checkoutView .checkout-success-v42 .success-secondary{
+  background:#ffffff!important;
+  border-color:#b9dff5!important;
+  color:#168fdc!important;
+  -webkit-text-fill-color:#168fdc!important;
+}
+html[data-uzr-theme="light"] body #checkoutView .checkout-success-note-v42{
+  color:#667b89!important;
+  -webkit-text-fill-color:#667b89!important;
+}
+html[data-uzr-theme="light"] body #checkoutView .checkout-success-note-v42 svg{
+  stroke:#6f90a2!important;
+}
+
+/* ============================================================
+   G) SELL LISTING — FORM + SUBMIT SUCCESS
+   ============================================================ */
+html[data-uzr-theme="light"] body .app #sell{
+  background:#f3f6fa!important;
+}
+
+html[data-uzr-theme="light"] body .app #sell :is(
+  .sell-v34-head-copy h1,
+  .sell-panel-head h2
+){
+  color:#122431!important;
+  -webkit-text-fill-color:#122431!important;
+}
+
+html[data-uzr-theme="light"] body .app #sell :is(
+  .sell-v34-head-copy p,
+  .field-limit,
+  .sell-panel-head span
+){
+  color:#667b89!important;
+  -webkit-text-fill-color:#667b89!important;
+}
+
+html[data-uzr-theme="light"] body .app #sell .sell-panel{
+  background:#ffffff!important;
+  background-color:#ffffff!important;
+  background-image:none!important;
+  border-color:#d7e1e8!important;
+}
+
+html[data-uzr-theme="light"] body .app #sell .field label{
+  color:#435b68!important;
+  -webkit-text-fill-color:#435b68!important;
+}
+
+html[data-uzr-theme="light"] body .app #sell :is(input,textarea,select){
+  background:#f8fafc!important;
+  background-color:#f8fafc!important;
+  background-image:none!important;
+  border-color:#d7e1e8!important;
+  color:#122431!important;
+  -webkit-text-fill-color:#122431!important;
+}
+
+html[data-uzr-theme="light"] body .app #sell :is(input,textarea)::placeholder{
+  color:#82939f!important;
+  -webkit-text-fill-color:#82939f!important;
+}
+
+html[data-uzr-theme="light"] body .app #sell .uploadbox{
+  background:#f8fafc!important;
+  border-color:#a8c5d5!important;
+  color:#667b89!important;
+}
+html[data-uzr-theme="light"] body .app #sell .uploadbox strong{
+  color:#122431!important;
+  -webkit-text-fill-color:#122431!important;
+}
+html[data-uzr-theme="light"] body .app #sell .uploadbox svg{
+  stroke:#2ea6ff!important;
+}
+
+html[data-uzr-theme="light"] body .app #sell .sell-moderation-note{
+  background:#eef8ff!important;
+  border-color:#c8e5f6!important;
+  color:#607887!important;
+}
+html[data-uzr-theme="light"] body .app #sell .sell-moderation-note b{
+  color:#17384b!important;
+  -webkit-text-fill-color:#17384b!important;
+}
+
+html[data-uzr-theme="light"] body .app #sell #sellSubmit{
+  background:linear-gradient(180deg,#35b2ff,#168fe8)!important;
+  background-color:#2ea6ff!important;
+  color:#ffffff!important;
+  -webkit-text-fill-color:#ffffff!important;
+  border:0!important;
+}
+
+/* Listing success overlay */
+html[data-uzr-theme="light"] body #listingSuccessView,
+html[data-uzr-theme="light"] body #listingSuccessView.open{
+  background:rgba(29,44,55,.28)!important;
+  backdrop-filter:blur(8px)!important;
+  -webkit-backdrop-filter:blur(8px)!important;
+}
+
+html[data-uzr-theme="light"] body #listingSuccessView .listing-success-card{
+  background:#ffffff!important;
+  background-color:#ffffff!important;
+  background-image:none!important;
+  border:1px solid #d2dee6!important;
+  color:#122431!important;
+  box-shadow:0 18px 48px rgba(28,48,62,.18)!important;
+}
+
+html[data-uzr-theme="light"] body #listingSuccessView .listing-success-check{
+  background:#eaf9f3!important;
+  border-color:#bdebd7!important;
+  color:#159a67!important;
+  box-shadow:0 0 0 8px rgba(21,154,103,.04)!important;
+}
+
+html[data-uzr-theme="light"] body #listingSuccessView .listing-success-kicker{
+  color:#6f8795!important;
+}
+
+html[data-uzr-theme="light"] body #listingSuccessView .listing-success-card h2{
+  color:#122431!important;
+  -webkit-text-fill-color:#122431!important;
+}
+html[data-uzr-theme="light"] body #listingSuccessView .listing-success-card>p{
+  color:#667b89!important;
+  -webkit-text-fill-color:#667b89!important;
+}
+
+html[data-uzr-theme="light"] body #listingSuccessView .listing-success-note{
+  background:#f8fafc!important;
+  border-color:#d7e1e8!important;
+}
+html[data-uzr-theme="light"] body #listingSuccessView .listing-success-note span{
+  color:#667b89!important;
+  -webkit-text-fill-color:#667b89!important;
+}
+html[data-uzr-theme="light"] body #listingSuccessView .listing-success-note b{
+  color:#cc7a09!important;
+  -webkit-text-fill-color:#cc7a09!important;
+}
+
+html[data-uzr-theme="light"] body #listingSuccessView .listing-success-primary{
+  background:#2ea6ff!important;
+  border-color:#2ea6ff!important;
+  color:#ffffff!important;
+  -webkit-text-fill-color:#ffffff!important;
+}
+html[data-uzr-theme="light"] body #listingSuccessView .listing-success-secondary{
+  background:#ffffff!important;
+  border-color:#b9dff5!important;
+  color:#168fdc!important;
+  -webkit-text-fill-color:#168fdc!important;
+}
+
+/* ============================================================
+   H) SELLER SETTINGS — reassert final Light treatment
+   ============================================================ */
+html[data-uzr-theme="light"] body #sellerSettingsV26 .seller-settings-sheet-v26{
+  background:#ffffff!important;
+  border-color:#d2dee6!important;
+}
+html[data-uzr-theme="light"] body #sellerSettingsV26 .seller-settings-group-v26{
+  background:#ffffff!important;
+  border-color:#d7e1e8!important;
+}
+
+/* ============================================================
+   I) ORDER DETAIL — final no-dark guard
+   ============================================================ */
+html[data-uzr-theme="light"] body #orderDetailView :is(
+  .order-status-hero-v40,
+  .order-panel-v40
+){
+  background:#ffffff!important;
+  background-color:#ffffff!important;
+  background-image:none!important;
+  border-color:#d7e1e8!important;
+}
+
+html[data-uzr-theme="light"] body #orderDetailView .order-detail-v40-topbar{
+  background:rgba(243,246,250,.97)!important;
+  background-image:none!important;
+}
+
+/* ============================================================
+   J) PRODUCT PAGE — final no-dark guard
+   ============================================================ */
+html[data-uzr-theme="light"] body #productView :is(
+  .product-v18-gallery,
+  .product-v18-photo
+){
+  background:#eef3f6!important;
+  background-image:none!important;
+}
+html[data-uzr-theme="light"] body #productView .product-gallery-arrow-v19{
+  background:#ffffff!important;
+  background-image:none!important;
+  border-color:#cddae2!important;
+  color:#31586c!important;
+}
+html[data-uzr-theme="light"] body #productView .product-v18-counter{
+  background:#ffffff!important;
+  background-image:none!important;
+  border-color:#cddae2!important;
+  color:#526b79!important;
+}
+html[data-uzr-theme="light"] body #productView .product-v18-availability[hidden]{
+  display:none!important;
+}
+
+/* ============================================================
+   K) GENERIC USER CONFIRMATION GUARD
+   Prevent legacy .black button from leaking into reviewed Light flows
+   ============================================================ */
+html[data-uzr-theme="light"] body :is(
+  #sell,#checkoutView,#contactRequest,#listingSuccessView,
+  #myProductDeleteConfirmV25,#myProductActionsV25
+) .btn.black{
+  background:#2ea6ff!important;
+  background-color:#2ea6ff!important;
+  background-image:none!important;
+  border-color:#2ea6ff!important;
+  color:#ffffff!important;
+  -webkit-text-fill-color:#ffffff!important;
+}
+
+/* Destructive buttons remain destructive red */
+html[data-uzr-theme="light"] body #myProductDeleteConfirmV25 .my-product-confirm-danger-v25{
+  background:#dc4253!important;
+  border-color:#dc4253!important;
+}
+
+/* ============================================================
+   L) FIRST-RUN LEGAL ACCEPTANCE — audited/reasserted
+   ============================================================ */
+html[data-uzr-theme="light"] body #uzrConsentV58 .uzr-consent-card-v58,
+html[data-uzr-theme="light"] body #uzrConsentLegalV58{
+  background:#ffffff!important;
+  color:#122431!important;
+}
+html[data-uzr-theme="light"] body #uzrConsentV58 .uzr-consent-doc-v58,
+html[data-uzr-theme="light"] body #uzrConsentLegalV58 .uzr-consent-legal-section-v58{
+  background:#ffffff!important;
+  border-color:#d7e1e8!important;
+}
+</style>
+
 </head><body>
 <div id="uzrConsentV58" role="dialog" aria-modal="true" aria-labelledby="uzrConsentTitleV58">
   <div class="uzr-consent-card-v58">
@@ -10814,7 +11621,7 @@ html[data-uzr-theme="light"] body #orderDetailView :is(
       <div class="contact-request-success-icon-v49"><i data-lucide="check"></i></div>
       <div class="contact-request-success-kicker-v49">UZBEK RE'SALE</div>
       <h2>Заявка отправлена</h2><strong id="contactRequestNumberV49">№ R-000001</strong>
-      <p>Заявка добавлена в «Мои заявки». На следующем этапе подключим отправку продавцу через Telegram-бота.</p>
+      <p>Заявка добавлена в «Мои заявки». Продавец получит уведомление через Telegram-бота.</p>
       <div class="contact-request-success-product-v49" id="contactRequestSuccessProductV49"></div>
       <button class="contact-request-success-primary-v49" id="contactRequestGoRequestsV49" type="button"><i data-lucide="list"></i><span>Перейти в мои заявки</span></button>
       <button class="contact-request-success-secondary-v49" id="contactRequestGoCatalogV49" type="button"><i data-lucide="arrow-left"></i><span>Вернуться в каталог</span></button>
