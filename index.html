@@ -9968,6 +9968,440 @@ html[data-uzr-theme="light"] body .product-card-v15 .product-more-v16{
 }
 </style>
 
+
+<style id="uzr-v77-light-dark-cleanup">
+/* ============================================================
+   v77 — LIGHT THEME DARK-SURFACE CLEANUP
+   Dark theme is intentionally untouched.
+   ============================================================ */
+
+/* ------------------------------------------------------------
+   0) Hidden controls must really stay hidden.
+   Fixes the empty dark pill next to the product badge.
+   ------------------------------------------------------------ */
+#productView .product-v18-availability[hidden]{
+  display:none!important;
+}
+
+/* ------------------------------------------------------------
+   1) SELLER PROFILE SETTINGS — full Light implementation
+   ------------------------------------------------------------ */
+html[data-uzr-theme="light"] body #sellerSettingsV26{
+  background:rgba(27,43,54,.28)!important;
+  backdrop-filter:blur(8px)!important;
+  -webkit-backdrop-filter:blur(8px)!important;
+}
+
+html[data-uzr-theme="light"] body #sellerSettingsV26 .seller-settings-sheet-v26{
+  background:#ffffff!important;
+  background-color:#ffffff!important;
+  background-image:none!important;
+  color:#122431!important;
+  border:1px solid #d2dee6!important;
+  border-bottom:0!important;
+  box-shadow:0 -18px 48px rgba(28,48,62,.18)!important;
+}
+
+html[data-uzr-theme="light"] body #sellerSettingsV26 .seller-settings-handle-v26{
+  background:#b3c1ca!important;
+}
+
+html[data-uzr-theme="light"] body #sellerSettingsV26 .seller-settings-title-v26 h2{
+  color:#122431!important;
+  -webkit-text-fill-color:#122431!important;
+}
+
+html[data-uzr-theme="light"] body #sellerSettingsV26 .seller-settings-close-v26{
+  background:#eef3f7!important;
+  background-color:#eef3f7!important;
+  border:1px solid #dde6ec!important;
+  color:#31586c!important;
+}
+html[data-uzr-theme="light"] body #sellerSettingsV26 .seller-settings-close-v26 svg{
+  stroke:#31586c!important;
+}
+
+html[data-uzr-theme="light"] body #sellerSettingsV26 .seller-settings-group-v26{
+  background:#ffffff!important;
+  background-color:#ffffff!important;
+  border:1px solid #d7e1e8!important;
+}
+
+html[data-uzr-theme="light"] body #sellerSettingsV26 .seller-settings-field-v26{
+  border-bottom-color:#e7edf1!important;
+}
+
+html[data-uzr-theme="light"] body #sellerSettingsV26 .seller-settings-field-v26 label{
+  color:#435b68!important;
+  -webkit-text-fill-color:#435b68!important;
+}
+
+html[data-uzr-theme="light"] body #sellerSettingsV26 .seller-settings-field-v26 select,
+html[data-uzr-theme="light"] body #sellerSettingsV26 .seller-settings-field-v26 textarea{
+  background:#f8fafc!important;
+  background-color:#f8fafc!important;
+  background-image:none!important;
+  color:#122431!important;
+  -webkit-text-fill-color:#122431!important;
+  border:1px solid #d7e1e8!important;
+}
+
+html[data-uzr-theme="light"] body #sellerSettingsV26 .seller-settings-field-v26 textarea::placeholder{
+  color:#80929e!important;
+  -webkit-text-fill-color:#80929e!important;
+  opacity:1!important;
+}
+
+html[data-uzr-theme="light"] body #sellerSettingsV26 .seller-settings-count-v26{
+  color:#7c909d!important;
+}
+
+html[data-uzr-theme="light"] body #sellerSettingsV26 .seller-settings-toggle-copy-v26 b{
+  color:#122431!important;
+  -webkit-text-fill-color:#122431!important;
+}
+
+html[data-uzr-theme="light"] body #sellerSettingsV26 .seller-settings-toggle-copy-v26 small{
+  color:#6b808d!important;
+  -webkit-text-fill-color:#6b808d!important;
+}
+
+html[data-uzr-theme="light"] body #sellerSettingsV26 .seller-switch-v26{
+  background:#d4dfe6!important;
+  box-shadow:inset 0 0 0 1px #c9d6df!important;
+}
+html[data-uzr-theme="light"] body #sellerSettingsV26 .seller-switch-v26.on{
+  background:#2ea6ff!important;
+  box-shadow:none!important;
+}
+html[data-uzr-theme="light"] body #sellerSettingsV26 .seller-switch-v26:after{
+  background:#ffffff!important;
+  box-shadow:0 1px 4px rgba(25,45,58,.18)!important;
+}
+
+html[data-uzr-theme="light"] body #sellerSettingsV26 .seller-settings-info-v26{
+  background:#f8fafc!important;
+  background-color:#f8fafc!important;
+  border:1px solid #d7e1e8!important;
+  color:#667b89!important;
+}
+html[data-uzr-theme="light"] body #sellerSettingsV26 .seller-settings-info-v26 span{
+  color:#667b89!important;
+  -webkit-text-fill-color:#667b89!important;
+}
+html[data-uzr-theme="light"] body #sellerSettingsV26 .seller-settings-info-v26 svg{
+  stroke:#6f90a2!important;
+}
+
+html[data-uzr-theme="light"] body #sellerSettingsV26 .seller-settings-save-v26{
+  background:linear-gradient(180deg,#35b2ff,#168fe8)!important;
+  background-color:#2ea6ff!important;
+  color:#ffffff!important;
+  -webkit-text-fill-color:#ffffff!important;
+  border:0!important;
+}
+
+/* ------------------------------------------------------------
+   2) ORDER DETAIL — remove every dark panel in Light
+   ------------------------------------------------------------ */
+html[data-uzr-theme="light"] body #orderDetailView.order-detail-v40-view{
+  background:#f3f6fa!important;
+  background-color:#f3f6fa!important;
+  color:#122431!important;
+}
+
+html[data-uzr-theme="light"] body #orderDetailView .order-detail-v40-inner{
+  background:#f3f6fa!important;
+  background-color:#f3f6fa!important;
+}
+
+html[data-uzr-theme="light"] body #orderDetailView .order-detail-v40-topbar{
+  background:rgba(243,246,250,.97)!important;
+  background-color:rgba(243,246,250,.97)!important;
+  background-image:none!important;
+  border-bottom:1px solid #e1e8ed!important;
+}
+
+html[data-uzr-theme="light"] body #orderDetailView .order-detail-v40-title{
+  color:#122431!important;
+  -webkit-text-fill-color:#122431!important;
+}
+
+/* All major detail surfaces become white cards */
+html[data-uzr-theme="light"] body #orderDetailView :is(
+  .order-status-hero-v40,
+  .order-panel-v40
+){
+  background:#ffffff!important;
+  background-color:#ffffff!important;
+  background-image:none!important;
+  border:1px solid #d7e1e8!important;
+  color:#122431!important;
+  box-shadow:none!important;
+}
+
+html[data-uzr-theme="light"] body #orderDetailView .order-panel-title-v40 h2{
+  color:#122431!important;
+  -webkit-text-fill-color:#122431!important;
+}
+
+/* Status hero: colored icon, otherwise clean white card */
+html[data-uzr-theme="light"] body #orderDetailView .order-status-hero-v40 b{
+  color:#122431!important;
+  -webkit-text-fill-color:#122431!important;
+}
+html[data-uzr-theme="light"] body #orderDetailView .order-status-hero-v40.status-new b{
+  color:#168fdc!important;
+  -webkit-text-fill-color:#168fdc!important;
+}
+html[data-uzr-theme="light"] body #orderDetailView .order-status-hero-v40.status-confirmed b{
+  color:#11875b!important;
+  -webkit-text-fill-color:#11875b!important;
+}
+html[data-uzr-theme="light"] body #orderDetailView .order-status-hero-v40.status-shipping b{
+  color:#cc7a09!important;
+  -webkit-text-fill-color:#cc7a09!important;
+}
+html[data-uzr-theme="light"] body #orderDetailView .order-status-hero-v40.status-completed b{
+  color:#526b79!important;
+  -webkit-text-fill-color:#526b79!important;
+}
+html[data-uzr-theme="light"] body #orderDetailView .order-status-hero-v40.status-cancelled b{
+  color:#e03d50!important;
+  -webkit-text-fill-color:#e03d50!important;
+}
+html[data-uzr-theme="light"] body #orderDetailView .order-status-hero-v40 p{
+  color:#667b89!important;
+  -webkit-text-fill-color:#667b89!important;
+}
+
+/* Timeline */
+html[data-uzr-theme="light"] body #orderDetailView .order-progress-v40::before{
+  background:#dce5eb!important;
+}
+html[data-uzr-theme="light"] body #orderDetailView .order-progress-dot-v40{
+  border-color:#c9d6df!important;
+  background:#ffffff!important;
+  box-shadow:0 0 0 2px #ffffff!important;
+}
+html[data-uzr-theme="light"] body #orderDetailView .order-progress-step-v40.done .order-progress-dot-v40{
+  border-color:#f2a01f!important;
+  background:#ffd66a!important;
+}
+html[data-uzr-theme="light"] body #orderDetailView .order-progress-step-v40 b{
+  color:#657b89!important;
+  -webkit-text-fill-color:#657b89!important;
+}
+html[data-uzr-theme="light"] body #orderDetailView .order-progress-step-v40.done b{
+  color:#122431!important;
+  -webkit-text-fill-color:#122431!important;
+}
+html[data-uzr-theme="light"] body #orderDetailView .order-progress-step-v40 small,
+html[data-uzr-theme="light"] body #orderDetailView .order-progress-step-v40.done small{
+  color:#81939f!important;
+  -webkit-text-fill-color:#81939f!important;
+}
+
+/* Cancelled history */
+html[data-uzr-theme="light"] body #orderDetailView .order-cancelled-row-v40>span{
+  background:#9aacb7!important;
+}
+html[data-uzr-theme="light"] body #orderDetailView .order-cancelled-row-v40.cancelled>span{
+  background:#e03d50!important;
+}
+html[data-uzr-theme="light"] body #orderDetailView .order-cancelled-row-v40 b{
+  color:#122431!important;
+  -webkit-text-fill-color:#122431!important;
+}
+html[data-uzr-theme="light"] body #orderDetailView .order-cancelled-row-v40 small{
+  color:#667b89!important;
+  -webkit-text-fill-color:#667b89!important;
+}
+
+/* Item card rows */
+html[data-uzr-theme="light"] body #orderDetailView .order-detail-item-v40{
+  border-bottom-color:#e7edf1!important;
+}
+html[data-uzr-theme="light"] body #orderDetailView .order-detail-item-photo-v40{
+  background:#f2f5f7!important;
+  background-color:#f2f5f7!important;
+  color:#7c93a0!important;
+}
+html[data-uzr-theme="light"] body #orderDetailView .order-detail-item-copy-v40 b,
+html[data-uzr-theme="light"] body #orderDetailView .order-detail-item-copy-v40 strong{
+  color:#122431!important;
+  -webkit-text-fill-color:#122431!important;
+}
+html[data-uzr-theme="light"] body #orderDetailView .order-detail-item-copy-v40 small,
+html[data-uzr-theme="light"] body #orderDetailView .order-detail-item-qty-v40{
+  color:#667b89!important;
+  -webkit-text-fill-color:#667b89!important;
+}
+
+/* Information rows */
+html[data-uzr-theme="light"] body #orderDetailView .order-info-row-v40{
+  border-bottom-color:#e7edf1!important;
+}
+html[data-uzr-theme="light"] body #orderDetailView .order-info-row-v40>span{
+  color:#667b89!important;
+  -webkit-text-fill-color:#667b89!important;
+}
+html[data-uzr-theme="light"] body #orderDetailView .order-info-row-v40>strong{
+  color:#122431!important;
+  -webkit-text-fill-color:#122431!important;
+}
+html[data-uzr-theme="light"] body #orderDetailView .seller-row-v40 button{
+  background:transparent!important;
+  color:#168fdc!important;
+  -webkit-text-fill-color:#168fdc!important;
+}
+
+/* Order actions */
+html[data-uzr-theme="light"] body #orderDetailView .order-primary-action-v40{
+  background:linear-gradient(180deg,#35b2ff,#168fe8)!important;
+  color:#ffffff!important;
+  -webkit-text-fill-color:#ffffff!important;
+  border-color:#2ea6ff!important;
+}
+html[data-uzr-theme="light"] body #orderDetailView .order-cancel-action-v40{
+  background:#fff3f5!important;
+  background-color:#fff3f5!important;
+  border-color:#f0a8b1!important;
+  color:#d83e50!important;
+  -webkit-text-fill-color:#d83e50!important;
+}
+
+/* Back button is white in light order detail */
+html[data-uzr-theme="light"] body #orderDetailView #orderDetailBack.uzr-back-v69{
+  background:#ffffff!important;
+  background-color:#ffffff!important;
+  background-image:none!important;
+  border:1px solid #d2dee6!important;
+  color:#17384b!important;
+  box-shadow:0 3px 10px rgba(31,53,68,.07)!important;
+}
+html[data-uzr-theme="light"] body #orderDetailView #orderDetailBack.uzr-back-v69 svg{
+  stroke:#17384b!important;
+}
+
+/* ------------------------------------------------------------
+   3) PRODUCT PAGE — remove dark gallery controls / blank pill
+   ------------------------------------------------------------ */
+html[data-uzr-theme="light"] body #productView .product-v18-gallery{
+  background:#eef3f6!important;
+  background-color:#eef3f6!important;
+  background-image:none!important;
+  border-color:#d7e1e8!important;
+}
+
+html[data-uzr-theme="light"] body #productView .product-v18-photo{
+  background:#eef3f6!important;
+  background-color:#eef3f6!important;
+  background-image:none!important;
+}
+
+/* White carousel controls instead of dark circles */
+html[data-uzr-theme="light"] body #productView .product-gallery-arrow-v19{
+  background:rgba(255,255,255,.94)!important;
+  background-color:rgba(255,255,255,.94)!important;
+  background-image:none!important;
+  border:1px solid #cddae2!important;
+  color:#31586c!important;
+  box-shadow:0 2px 7px rgba(31,53,68,.07)!important;
+}
+html[data-uzr-theme="light"] body #productView .product-gallery-arrow-v19 svg{
+  stroke:#31586c!important;
+}
+
+/* Counter also becomes a light chip */
+html[data-uzr-theme="light"] body #productView .product-v18-counter{
+  background:rgba(255,255,255,.92)!important;
+  background-color:rgba(255,255,255,.92)!important;
+  border:1px solid #cddae2!important;
+  color:#526b79!important;
+  -webkit-text-fill-color:#526b79!important;
+  box-shadow:0 2px 7px rgba(31,53,68,.05)!important;
+}
+
+/* Light dots */
+html[data-uzr-theme="light"] body #productView .product-v18-dots button{
+  background:#aebdc7!important;
+}
+html[data-uzr-theme="light"] body #productView .product-v18-dots button.active{
+  background:#2ea6ff!important;
+}
+
+/* Product action circles stay white */
+html[data-uzr-theme="light"] body #productView :is(
+  #productBack,#productFavBtnV2,#productShareBtnV18
+){
+  background:#ffffff!important;
+  background-color:#ffffff!important;
+  background-image:none!important;
+  border:1px solid #cddae2!important;
+  color:#31586c!important;
+  box-shadow:0 2px 7px rgba(31,53,68,.06)!important;
+}
+html[data-uzr-theme="light"] body #productView :is(
+  #productBack,#productFavBtnV2,#productShareBtnV18
+) svg{
+  stroke:#31586c!important;
+}
+
+/* Own-product CTA is light blue, not a dark band */
+html[data-uzr-theme="light"] body #productView .product-v18-owner{
+  background:#eaf6ff!important;
+  background-color:#eaf6ff!important;
+  border-color:#b9dff5!important;
+  color:#168fdc!important;
+  -webkit-text-fill-color:#168fdc!important;
+}
+
+/* ------------------------------------------------------------
+   4) MY PRODUCTS — ensure zero dark menu/button leftovers
+   ------------------------------------------------------------ */
+html[data-uzr-theme="light"] body .app #myProducts .my-product-menu-v25{
+  background:#ffffff!important;
+  background-color:#ffffff!important;
+  background-image:none!important;
+  border:1px solid #cddae2!important;
+  color:#31586c!important;
+  box-shadow:0 2px 7px rgba(31,53,68,.05)!important;
+}
+html[data-uzr-theme="light"] body .app #myProducts .my-product-menu-v25 svg{
+  stroke:#31586c!important;
+}
+
+/* Explicitly keep status badge colored but never black */
+html[data-uzr-theme="light"] body .app #myProducts .my-product-status-v25{
+  color:#ffffff!important;
+  -webkit-text-fill-color:#ffffff!important;
+}
+html[data-uzr-theme="light"] body .app #myProducts .my-product-status-v25.published{
+  background:#0a9f63!important;
+  background-color:#0a9f63!important;
+}
+
+/* ------------------------------------------------------------
+   5) Broad audit guard for the reviewed overlays
+   ------------------------------------------------------------ */
+html[data-uzr-theme="light"] body :is(
+  #sellerSettingsV26,#orderDetailView,#productView
+) :is(.seller-settings-group-v26,.order-panel-v40,.product-v18-panel){
+  box-shadow:none!important;
+}
+
+/* Do not allow legacy dark backgrounds on these specific Light surfaces */
+html[data-uzr-theme="light"] body #sellerSettingsV26 :is(
+  .seller-settings-sheet-v26,.seller-settings-group-v26,.seller-settings-info-v26
+),
+html[data-uzr-theme="light"] body #orderDetailView :is(
+  .order-status-hero-v40,.order-panel-v40
+){
+  background-image:none!important;
+}
+</style>
+
 </head><body>
 <div id="uzrConsentV58" role="dialog" aria-modal="true" aria-labelledby="uzrConsentTitleV58">
   <div class="uzr-consent-card-v58">
