@@ -9538,6 +9538,436 @@ html[data-uzr-theme="light"] body .app #faq .faq-v48-faq-head h2{
 }
 </style>
 
+
+<style id="uzr-v76-targeted-consistency">
+/* ============================================================
+   v76 — targeted consistency
+   Fixes only the reported remaining inconsistencies.
+   ============================================================ */
+
+:root{
+  --v76-resale:#2ea6ff;
+  --v76-official:#ff8a1f;
+  --v76-china:#ff5a3d;
+  --v76-stock:#16b86a;
+  --v76-soon:#e6a23c;
+  --v76-sold:#8797a4;
+}
+
+/* ------------------------------------------------------------
+   ONE BADGE SYSTEM — every product surface
+   ------------------------------------------------------------ */
+html body :is(
+  .product-card-v15 .product-badge-v15,
+  #productView #pType.product-v18-badge,
+  #productView .product-v18-availability,
+  .seller-mini-card-v20 .seller-mini-badge-v76
+){
+  height:29px!important;
+  min-height:29px!important;
+  padding:0 10px!important;
+  border:0!important;
+  border-radius:9px!important;
+  display:inline-flex!important;
+  align-items:center!important;
+  justify-content:center!important;
+  color:#fff!important;
+  -webkit-text-fill-color:#fff!important;
+  font-size:10.5px!important;
+  line-height:1!important;
+  font-weight:700!important;
+  letter-spacing:0!important;
+  box-shadow:0 3px 8px rgba(15,44,61,.12)!important;
+}
+
+html body :is(
+  .product-card-v15 .badge-resale,
+  #productView .badge-resale,
+  .seller-mini-card-v20 .badge-resale
+){
+  background:var(--v76-resale)!important;
+  background-color:var(--v76-resale)!important;
+  background-image:none!important;
+}
+html body :is(
+  .product-card-v15 .badge-official,
+  #productView .badge-official,
+  .seller-mini-card-v20 .badge-official
+){
+  background:var(--v76-official)!important;
+  background-color:var(--v76-official)!important;
+  background-image:none!important;
+}
+html body :is(
+  .product-card-v15 .badge-china,
+  #productView .badge-china,
+  #productView .product-v18-availability.china,
+  .seller-mini-card-v20 .badge-china
+){
+  background:var(--v76-china)!important;
+  background-color:var(--v76-china)!important;
+  background-image:none!important;
+  color:#fff!important;
+  -webkit-text-fill-color:#fff!important;
+}
+html body :is(
+  .product-card-v15 .badge-stock,
+  #productView .badge-stock,
+  #productView .product-v18-availability.stock,
+  .seller-mini-card-v20 .badge-stock
+){
+  background:var(--v76-stock)!important;
+  background-color:var(--v76-stock)!important;
+  background-image:none!important;
+  color:#fff!important;
+  -webkit-text-fill-color:#fff!important;
+}
+html body :is(
+  .product-card-v15 .badge-soon,
+  #productView .badge-soon,
+  .seller-mini-card-v20 .badge-soon
+){
+  background:var(--v76-soon)!important;
+  background-color:var(--v76-soon)!important;
+  background-image:none!important;
+}
+html body :is(
+  .product-card-v15 .badge-sold,
+  #productView .badge-sold,
+  .seller-mini-card-v20 .badge-sold
+){
+  background:var(--v76-sold)!important;
+  background-color:var(--v76-sold)!important;
+  background-image:none!important;
+}
+
+/* Related seller mini-card gets same badge */
+.seller-mini-card-v20{
+  position:relative!important;
+}
+.seller-mini-card-v20 .seller-mini-badge-v76{
+  position:absolute!important;
+  top:8px!important;
+  left:8px!important;
+  z-index:3!important;
+  max-width:calc(100% - 16px)!important;
+}
+
+/* ------------------------------------------------------------
+   LIGHT PRODUCT CARDS — same typography/action system everywhere
+   ------------------------------------------------------------ */
+html[data-uzr-theme="light"] body :is(
+  #home,#catalog,#favorites,#viewed,#china,#sellerProfile,#officialStoreView
+) .product-card-v15{
+  background:#fff!important;
+  border:1px solid #d7e1e8!important;
+  color:#122431!important;
+}
+html[data-uzr-theme="light"] body :is(
+  #home,#catalog,#favorites,#viewed,#china,#sellerProfile,#officialStoreView
+) .product-card-v15 .name{
+  color:#122431!important;
+  -webkit-text-fill-color:#122431!important;
+  opacity:1!important;
+}
+html[data-uzr-theme="light"] body :is(
+  #home,#catalog,#favorites,#viewed,#china,#sellerProfile,#officialStoreView
+) .product-card-v15 .price{
+  color:#179de8!important;
+  -webkit-text-fill-color:#179de8!important;
+}
+html[data-uzr-theme="light"] body :is(
+  #home,#catalog,#favorites,#viewed,#china,#sellerProfile,#officialStoreView
+) .product-card-v15 .product-meta-v16{
+  color:#667b89!important;
+  -webkit-text-fill-color:#667b89!important;
+}
+
+/* Heart = white control, never black/navy in light */
+html[data-uzr-theme="light"] body .product-card-v15 .product-heart{
+  background:#fff!important;
+  background-color:#fff!important;
+  background-image:none!important;
+  border:1px solid #cddae2!important;
+  color:#31586c!important;
+  box-shadow:0 2px 7px rgba(31,53,68,.06)!important;
+}
+html[data-uzr-theme="light"] body .product-card-v15 .product-heart svg path{
+  stroke:#31586c!important;
+  fill:none!important;
+}
+html[data-uzr-theme="light"] body .product-card-v15 .product-heart.is-favorite{
+  background:#eef8ff!important;
+  border-color:#8fcff4!important;
+}
+html[data-uzr-theme="light"] body .product-card-v15 .product-heart.is-favorite svg path{
+  stroke:#168fdc!important;
+  fill:#dff3ff!important;
+}
+
+/* ------------------------------------------------------------
+   FAVORITES — black discover icon removed
+   ------------------------------------------------------------ */
+html[data-uzr-theme="light"] body .app #favorites .favorites-discover-card{
+  background:#fff!important;
+  border:1px solid #d7e1e8!important;
+  color:#122431!important;
+}
+html[data-uzr-theme="light"] body .app #favorites .favorites-discover-icon{
+  background:#eaf6ff!important;
+  background-color:#eaf6ff!important;
+  color:#168fdc!important;
+}
+html[data-uzr-theme="light"] body .app #favorites .favorites-discover-icon svg{
+  stroke:#168fdc!important;
+  color:#168fdc!important;
+}
+html[data-uzr-theme="light"] body .app #favorites .favorites-discover-copy b{
+  color:#122431!important;
+  -webkit-text-fill-color:#122431!important;
+}
+html[data-uzr-theme="light"] body .app #favorites .favorites-discover-copy small{
+  color:#667b89!important;
+  -webkit-text-fill-color:#667b89!important;
+}
+html[data-uzr-theme="light"] body .app #favorites .favorites-discover-chevron{
+  stroke:#81939f!important;
+}
+
+/* ------------------------------------------------------------
+   PRODUCT PAGE ACTIONS / SELLER / RELATED
+   ------------------------------------------------------------ */
+html[data-uzr-theme="light"] body #productView :is(
+  #productFavBtnV2,#productShareBtnV18
+){
+  background:#fff!important;
+  background-color:#fff!important;
+  background-image:none!important;
+  border:1px solid #cddae2!important;
+  color:#31586c!important;
+  box-shadow:0 2px 7px rgba(31,53,68,.06)!important;
+}
+html[data-uzr-theme="light"] body #productView :is(
+  #productFavBtnV2,#productShareBtnV18
+) svg{
+  stroke:#31586c!important;
+  color:#31586c!important;
+}
+html[data-uzr-theme="light"] body #productView #productFavBtnV2.is-favorite{
+  background:#eef8ff!important;
+  border-color:#8fcff4!important;
+  color:#168fdc!important;
+}
+html[data-uzr-theme="light"] body #productView #productFavBtnV2.is-favorite svg{
+  stroke:#168fdc!important;
+}
+
+/* seller card text can no longer inherit dark-white */
+html[data-uzr-theme="light"] body #productView .product-v18-seller-card{
+  background:#fff!important;
+  border:1px solid #d7e1e8!important;
+}
+html[data-uzr-theme="light"] body #productView .product-v18-seller-copy b{
+  color:#122431!important;
+  -webkit-text-fill-color:#122431!important;
+  opacity:1!important;
+}
+html[data-uzr-theme="light"] body #productView .product-v18-seller-copy>span,
+html[data-uzr-theme="light"] body #productView .product-seller-username-v76{
+  color:#168fdc!important;
+  -webkit-text-fill-color:#168fdc!important;
+  opacity:1!important;
+}
+html[data-uzr-theme="light"] body #productView .product-seller-location-v76{
+  color:#667b89!important;
+  -webkit-text-fill-color:#667b89!important;
+  font-size:10.5px!important;
+  line-height:1.15!important;
+  white-space:nowrap!important;
+  overflow:hidden!important;
+  text-overflow:ellipsis!important;
+}
+html[data-uzr-theme="light"] body #productView .product-v18-seller-action{
+  background:#fff!important;
+  border:1px solid #2ea6ff!important;
+  color:#168fdc!important;
+  -webkit-text-fill-color:#168fdc!important;
+}
+
+/* related cards */
+html[data-uzr-theme="light"] body #productView .seller-mini-card-v20{
+  background:#fff!important;
+  border:1px solid #d7e1e8!important;
+  color:#122431!important;
+}
+html[data-uzr-theme="light"] body #productView .seller-mini-title-v20{
+  color:#122431!important;
+  -webkit-text-fill-color:#122431!important;
+  opacity:1!important;
+}
+html[data-uzr-theme="light"] body #productView .seller-mini-price-v20{
+  color:#179de8!important;
+  -webkit-text-fill-color:#179de8!important;
+}
+html[data-uzr-theme="light"] body #productView .seller-mini-city-v21{
+  color:#667b89!important;
+  -webkit-text-fill-color:#667b89!important;
+}
+
+/* Lighter secondary CTA */
+html[data-uzr-theme="light"] body #productView .product-v18-actions{
+  background:rgba(255,255,255,.985)!important;
+  border:1px solid #d7e1e8!important;
+}
+html[data-uzr-theme="light"] body #productView .product-v18-cart{
+  background:#fff!important;
+  border:1.5px solid #2ea6ff!important;
+  color:#168fdc!important;
+  -webkit-text-fill-color:#168fdc!important;
+}
+html[data-uzr-theme="light"] body #productView .product-v18-buy{
+  background:#2ea6ff!important;
+  border-color:#2ea6ff!important;
+  color:#fff!important;
+  -webkit-text-fill-color:#fff!important;
+}
+
+/* ------------------------------------------------------------
+   MY PRODUCTS — remove the remaining black/navy controls
+   ------------------------------------------------------------ */
+html[data-uzr-theme="light"] body .app #myProducts .my-product-title-v25{
+  color:#122431!important;
+  -webkit-text-fill-color:#122431!important;
+  opacity:1!important;
+}
+html[data-uzr-theme="light"] body .app #myProducts .my-product-menu-v25{
+  background:#fff!important;
+  background-color:#fff!important;
+  background-image:none!important;
+  border:1px solid #cddae2!important;
+  color:#31586c!important;
+  box-shadow:0 2px 7px rgba(31,53,68,.05)!important;
+}
+html[data-uzr-theme="light"] body .app #myProducts .my-product-menu-v25 svg{
+  stroke:#31586c!important;
+  color:#31586c!important;
+}
+
+/* Filter counters become soft instead of dark navy */
+html[data-uzr-theme="light"] body .app #myProducts .my-products-filters-v25 button{
+  background:#fff!important;
+  border:1px solid #d7e1e8!important;
+  color:#667b89!important;
+}
+html[data-uzr-theme="light"] body .app #myProducts .my-products-filters-v25 button span{
+  background:#edf3f7!important;
+  color:#526b79!important;
+}
+html[data-uzr-theme="light"] body .app #myProducts .my-products-filters-v25 button.active{
+  background:#2ea6ff!important;
+  border-color:#2ea6ff!important;
+  color:#fff!important;
+}
+html[data-uzr-theme="light"] body .app #myProducts .my-products-filters-v25 button.active span{
+  background:#fff!important;
+  color:#168fdc!important;
+}
+
+/* ------------------------------------------------------------
+   SELLER PROFILE — username visible + light role/stat/actions
+   ------------------------------------------------------------ */
+html[data-uzr-theme="light"] body #sellerProfile .seller-v26-name{
+  color:#122431!important;
+  -webkit-text-fill-color:#122431!important;
+  opacity:1!important;
+}
+html[data-uzr-theme="light"] body #sellerProfile .seller-v26-username-v76{
+  margin-top:3px!important;
+  color:#168fdc!important;
+  -webkit-text-fill-color:#168fdc!important;
+  font-size:10.5px!important;
+  line-height:1.15!important;
+  font-weight:600!important;
+}
+html[data-uzr-theme="light"] body #sellerProfile .seller-v26-role{
+  margin-top:5px!important;
+  background:#eaf6ff!important;
+  color:#168fdc!important;
+  -webkit-text-fill-color:#168fdc!important;
+  border:1px solid #c7e5f8!important;
+}
+html[data-uzr-theme="light"] body #sellerProfile .seller-v26-stats{
+  background:#f8fafc!important;
+  border:1px solid #d7e1e8!important;
+}
+html[data-uzr-theme="light"] body #sellerProfile .seller-v26-stat b{
+  color:#122431!important;
+  -webkit-text-fill-color:#122431!important;
+}
+html[data-uzr-theme="light"] body #sellerProfile .seller-v26-stat span{
+  color:#667b89!important;
+  -webkit-text-fill-color:#667b89!important;
+}
+html[data-uzr-theme="light"] body #sellerProfile .seller-v26-action.secondary,
+html[data-uzr-theme="light"] body #sellerProfile .seller-v26-action.settings{
+  background:#fff!important;
+  border:1px solid #d7e1e8!important;
+  color:#31586c!important;
+  -webkit-text-fill-color:#31586c!important;
+}
+html[data-uzr-theme="light"] body #sellerProfile .seller-v26-action.secondary svg,
+html[data-uzr-theme="light"] body #sellerProfile .seller-v26-action.settings svg{
+  stroke:#31586c!important;
+}
+html[data-uzr-theme="light"] body #sellerProfile .seller-v26-action.primary{
+  background:#2ea6ff!important;
+  border-color:#2ea6ff!important;
+  color:#fff!important;
+  -webkit-text-fill-color:#fff!important;
+}
+
+/* ------------------------------------------------------------
+   MAIN PROFILE — all text tokens explicit
+   ------------------------------------------------------------ */
+html[data-uzr-theme="light"] body .app #profile .tg-profile-identity-v13 h1{
+  color:#122431!important;
+  -webkit-text-fill-color:#122431!important;
+}
+html[data-uzr-theme="light"] body .app #profile .tg-profile-identity-v13 #profileUsername{
+  color:#168fdc!important;
+  -webkit-text-fill-color:#168fdc!important;
+}
+html[data-uzr-theme="light"] body .app #profile .tg-section-title-v13{
+  color:#6d818e!important;
+  -webkit-text-fill-color:#6d818e!important;
+}
+html[data-uzr-theme="light"] body .app #profile .tg-row-text-v13{
+  color:#122431!important;
+  -webkit-text-fill-color:#122431!important;
+}
+html[data-uzr-theme="light"] body .app #profile .tg-row-value-v55{
+  color:#667b89!important;
+  -webkit-text-fill-color:#667b89!important;
+}
+html[data-uzr-theme="light"] body .app #profile .tg-row-chevron-v13{
+  stroke:#81939f!important;
+  color:#81939f!important;
+}
+html[data-uzr-theme="light"] body .app #profile .tg-row-count-v49{
+  background:#eaf6ff!important;
+  color:#168fdc!important;
+  -webkit-text-fill-color:#168fdc!important;
+}
+
+/* ------------------------------------------------------------
+   Product card "•••" and misc meta should never look black
+   ------------------------------------------------------------ */
+html[data-uzr-theme="light"] body .product-card-v15 .product-more-v16{
+  color:#81939f!important;
+  -webkit-text-fill-color:#81939f!important;
+}
+</style>
+
 </head><body>
 <div id="uzrConsentV58" role="dialog" aria-modal="true" aria-labelledby="uzrConsentTitleV58">
   <div class="uzr-consent-card-v58">
@@ -10789,7 +11219,21 @@ try{const v=JSON.parse(localStorage.getItem(UZR_CART_STORAGE)||"[]");if(Array.is
 const __uzrCartBeforeOfficialFilter=cart.length;
 cart=cart.filter(x=>String(x?.ownerType||"").toLowerCase()==="official");
 if(cart.length!==__uzrCartBeforeOfficialFilter)saveCartState();
-try{const v=JSON.parse(localStorage.getItem(UZR_FAVS_STORAGE)||"[]");if(Array.isArray(v))favs=v}catch(e){}
+try{
+  const v=JSON.parse(localStorage.getItem(UZR_FAVS_STORAGE)||"[]");
+  if(Array.isArray(v))favs=[...new Set(v.map(x=>String(x??"")).filter(Boolean))];
+}catch(e){}
+function favoriteKeyV76(id){return String(id??"")}
+function isFavoriteV76(id){return favs.includes(favoriteKeyV76(id))}
+function reconcileFavoritesV76(){
+  if(!catalogLoaded||catalogLoadError)return;
+  const known=new Set(products.map(p=>favoriteKeyV76(p.id)));
+  const next=favs.filter(id=>known.has(favoriteKeyV76(id)));
+  if(next.length!==favs.length){
+    favs=next;
+    saveFavsState();
+  }
+}
 /* Viewed products are intentionally memory-only:
    max 6 items; nothing is persisted to localStorage/sessionStorage. */
 let viewed=[];
@@ -10964,8 +11408,10 @@ function productSellerMiniCardV20(item){
     ""
   );
   const listingId=Number(item.listingId||item.id||0);
+  const badge=productCardBadgeV15(item);
   return `<button type="button" class="seller-mini-card-v20" data-listing-id="${listingId}">
     <span class="seller-mini-image-v20">${image?`<img src="${image}" alt="${title}">`:""}</span>
+    <span class="seller-mini-badge-v76 badge-${badge.key}">${escapeHtml(badge.label)}</span>
     <span class="seller-mini-price-v20">${price}</span>
     <span class="seller-mini-title-v20">${title}</span>
     ${city?`<span class="seller-mini-city-v21">${city}</span>`:""}
@@ -11102,7 +11548,7 @@ function card(p){
  const e=document.createElement("div");
  const badge=productCardBadgeV15(p);
  const isSold=badge.key==="sold";
- const isFavorite=favs.includes(p.id);
+ const isFavorite=isFavoriteV76(p.id);
  e.className="card product-card-v15"+(isSold?" is-sold-v15":"");
  e.dataset.badge=badge.key;
  e.dataset.productId=String(p.id);
@@ -11173,10 +11619,12 @@ function card(p){
    if(now-favLock<300)return false;
    favLock=now;
 
-   const on=!favs.includes(p.id);
-   favs=on?[...favs,p.id]:favs.filter(i=>i!==p.id);
+   const favKey=favoriteKeyV76(p.id);
+   const on=!isFavoriteV76(favKey);
+   favs=on?[...favs,favKey]:favs.filter(i=>favoriteKeyV76(i)!==favKey);
    saveFavsState();
    syncFavoriteUIV16(p.id,on);
+   render();
    uzrHaptic("selection");
    return false;
  };
@@ -11185,7 +11633,7 @@ function card(p){
 }e.onclick=()=>{
  selected=p;
  rememberViewed(p.id);
- setProductFavoriteButtonV18(favs.includes(p.id));
+ setProductFavoriteButtonV18(isFavoriteV76(p.id));
 
  const gallery=(p.images&&p.images.length?p.images:[p.image]).filter(Boolean).slice(0,6);
  let galleryIndex=0;
@@ -11327,14 +11775,17 @@ function card(p){
          <button type="button" class="product-v18-seller-action" onclick="event.stopPropagation();openOfficialSupport()">Написать</button>
        </div>`;
    }else if(p.listingId){
-     const ini=(p.sellerName||"P").split(" ").map(x=>x[0]).join("").slice(0,2).toUpperCase();
+     const sellerName=String(p.sellerName||"Продавец").trim()||"Продавец";
+     const sellerUsername=String(p.sellerUsername||"").replace(/^@/,"").trim();
+     const ini=sellerName.split(" ").map(x=>x[0]).join("").slice(0,2).toUpperCase();
      const avatarUrl=p.sellerTelegramId?`${MARKETPLACE_API}/telegram-avatar?telegramId=${encodeURIComponent(p.sellerTelegramId)}`:"";
      sb.innerHTML=`
        <div class="product-v18-seller-card" role="button" tabindex="0" onclick="goSellerProfile('${escapeHtml(p.sellerTelegramId)}')">
          <div class="product-v18-seller-avatar">${avatarUrl?`<img src="${avatarUrl}" alt="" onerror="this.remove();this.parentElement.textContent='${escapeHtml(ini)}'">`:escapeHtml(ini)}</div>
          <div class="product-v18-seller-copy">
-           <b>${escapeHtml(p.sellerUsername?"@"+p.sellerUsername:(p.sellerName||"Продавец"))}</b>
-           <span>${escapeHtml(p.city||"Telegram продавец")}</span>
+           <b>${escapeHtml(sellerName)}</b>
+           ${sellerUsername?`<span class="product-seller-username-v76">@${escapeHtml(sellerUsername)}</span>`:""}
+           <small class="product-seller-location-v76">${escapeHtml(p.city||"Telegram продавец")}</small>
          </div>
          <button type="button" class="product-v18-seller-action" onclick="event.stopPropagation();openContactRequestV49(selected)">Связаться</button>
        </div>`;
@@ -11382,7 +11833,8 @@ function fill(id,list){const b=$(id);if(!b)return;b.innerHTML="";if(!catalogLoad
 
 function render(){const needle=String(q||"").toLowerCase();let list=products.filter(p=>(type==="Все"||p.type===type)&&(!ownerFilter||p.ownerType===ownerFilter)&&(category==="Все"||p.category===category)&&(!needle||[p.name,p.brand,p.category].some(v=>String(v||"").toLowerCase().includes(needle))));if(sortMode==="priceAsc")list=[...list].sort((a,b)=>a.price-b.price);if(sortMode==="priceDesc")list=[...list].sort((a,b)=>b.price-a.price);if(sortMode==="name")list=[...list].sort((a,b)=>a.name.localeCompare(b.name));fill("homeGrid",products.slice(0,4));fill("catalogGrid",list);
 const catalogResultCount=$("catalogResultCount");if(catalogResultCount)catalogResultCount.textContent=list.length+" "+(list.length===1?"товар":(list.length>=2&&list.length<=4?"товара":"товаров"));
-const favoriteItems=products.filter(p=>favs.includes(p.id));
+reconcileFavoritesV76();
+const favoriteItems=products.filter(p=>isFavoriteV76(p.id));
 const favoriteGrid=$("favoriteGrid");
 if(favoriteGrid){
   favoriteGrid.innerHTML="";
@@ -11598,7 +12050,7 @@ syncCatalogSortLabelV14();
 const sortBtnV2=$("catalogSortBtnV2");if(sortBtnV2)sortBtnV2.onclick=()=>{const sh=$("sortSheetV2");if(sh)sh.hidden=!sh.hidden};
 const clearSearchV2=$("searchClearV2");if(clearSearchV2)clearSearchV2.onclick=()=>{const inp=$("search");if(inp){inp.value="";q="";clearSearchV2.hidden=true;render()}};
 const hs=$("hapticSwitch");if(hs)hs.onclick=()=>{const was=hapticEnabled;if(was)uzrHaptic("selection");hapticEnabled=!hapticEnabled;localStorage.setItem(UZR_HAPTIC_STORAGE,hapticEnabled?"1":"0");setSwitchState(hs,hapticEnabled);if(hapticEnabled)uzrHaptic("success")};
-const pfv=$("productFavBtnV2");if(pfv)pfv.onclick=()=>{if(!selected)return;const on=!favs.includes(selected.id);favs=on?[...favs,selected.id]:favs.filter(i=>i!==selected.id);saveFavsState();setProductFavoriteButtonV18(on);document.querySelectorAll(`.product-card-v15[data-product-id="${CSS.escape(String(selected.id))}"] .product-heart`).forEach(btn=>{btn.classList.toggle("is-favorite",on);btn.setAttribute("aria-pressed",on?"true":"false")});uzrHaptic("selection")};
+const pfv=$("productFavBtnV2");if(pfv)pfv.onclick=()=>{if(!selected)return;const key=favoriteKeyV76(selected.id);const on=!isFavoriteV76(key);favs=on?[...favs,key]:favs.filter(i=>favoriteKeyV76(i)!==key);saveFavsState();setProductFavoriteButtonV18(on);document.querySelectorAll(`.product-card-v15[data-product-id="${CSS.escape(String(selected.id))}"] .product-heart`).forEach(btn=>{btn.classList.toggle("is-favorite",on);btn.setAttribute("aria-pressed",on?"true":"false")});render();uzrHaptic("selection")};
 document.addEventListener("click",e=>{
  const el=e.target.closest("button,[role='button'],.card");
  if(!el||el.disabled||el===hs)return;
@@ -12926,7 +13378,7 @@ function renderSellerProfileV26(profile,id,own=false,fallbackName="",fallbackUse
     <section class="seller-v26-hero">
       <div class="seller-v26-identity">
         <div class="seller-v26-avatar">${avatarUrl?`<img src="${avatarUrl}" alt="" onerror="this.remove();this.parentElement.textContent='${escapeHtml(ini)}'">`:escapeHtml(ini)}</div>
-        <div><h2 class="seller-v26-name">${escapeHtml(name)}</h2><span class="seller-v26-role">Продавец</span>${showCity?`<div class="seller-v26-location"><i data-lucide="map-pin"></i><span>${escapeHtml(city)}</span></div>`:""}</div>
+        <div class="seller-v26-identity-copy-v76"><h2 class="seller-v26-name">${escapeHtml(name)}</h2>${username?`<div class="seller-v26-username-v76">@${escapeHtml(username)}</div>`:""}<span class="seller-v26-role">Продавец</span>${showCity?`<div class="seller-v26-location"><i data-lucide="map-pin"></i><span>${escapeHtml(city)}</span></div>`:""}</div>
       </div>
       ${cfg.about?`<p class="seller-v26-about">${escapeHtml(cfg.about)}</p>`:""}
       <div class="seller-v26-stats"><div class="seller-v26-stat"><b>${activeCount}</b><span>Объявлений</span></div><div class="seller-v26-stat"><b>${soldCount}</b><span>Продано</span></div></div>
