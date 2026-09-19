@@ -4006,131 +4006,6 @@ body.product-open-v19 nav{
   }
 }
 </style>
-<style id="unified-back-buttons-v14-4">
-/* ============================================================
-   v14.4 — ONE BACK BUTTON STYLE EVERYWHERE
-   Matches Product Page: dark circular 42px button + thin teal border.
-   ============================================================ */
-
-:root{
-  --uzr-back-size:42px;
-  --uzr-back-bg:#0b2736;
-  --uzr-back-border:#2a4b5d;
-  --uzr-back-color:#f2f7fa;
-}
-
-/* All known back buttons across the Mini App */
-.back,
-.profile-page-back,
-.product-back-final,
-.official-store-back,
-.tg-settings-back-v13,
-#productBack,
-#checkoutBack,
-#orderDetailBack,
-#ordersBack,
-#officialStoreBack,
-#adminReviewView .back,
-#adminListingView .back,
-button[aria-label="Назад"]{
-  width:var(--uzr-back-size)!important;
-  height:var(--uzr-back-size)!important;
-  min-width:var(--uzr-back-size)!important;
-  min-height:var(--uzr-back-size)!important;
-  max-width:var(--uzr-back-size)!important;
-  max-height:var(--uzr-back-size)!important;
-  flex:0 0 var(--uzr-back-size)!important;
-
-  display:inline-flex!important;
-  align-items:center!important;
-  justify-content:center!important;
-
-  margin:0!important;
-  padding:0!important;
-
-  border:1px solid var(--uzr-back-border)!important;
-  border-radius:50%!important;
-
-  background:var(--uzr-back-bg)!important;
-  background-image:none!important;
-
-  color:var(--uzr-back-color)!important;
-  -webkit-text-fill-color:var(--uzr-back-color)!important;
-
-  box-shadow:none!important;
-  outline:none!important;
-
-  font-size:22px!important;
-  line-height:1!important;
-  font-weight:400!important;
-
-  transform:none!important;
-  transition:opacity .12s ease!important;
-
-  cursor:pointer!important;
-  -webkit-tap-highlight-color:transparent!important;
-}
-
-/* Keep icon itself neat and identical */
-.back svg,
-.profile-page-back svg,
-.product-back-final svg,
-.official-store-back svg,
-.tg-settings-back-v13 svg,
-#productBack svg,
-#checkoutBack svg,
-#orderDetailBack svg,
-#ordersBack svg,
-#officialStoreBack svg,
-button[aria-label="Назад"] svg{
-  width:19px!important;
-  height:19px!important;
-  min-width:19px!important;
-  min-height:19px!important;
-  stroke-width:2!important;
-  color:inherit!important;
-  stroke:currentColor!important;
-  fill:none!important;
-}
-
-/* If old pages use a text arrow instead of SVG */
-.back i,
-.profile-page-back i,
-.tg-settings-back-v13 i,
-#checkoutBack i,
-#orderDetailBack i,
-#ordersBack i{
-  font-size:20px!important;
-  line-height:1!important;
-}
-
-/* Same pressed feedback everywhere; no jumping/scaling */
-.back:active,
-.profile-page-back:active,
-.product-back-final:active,
-.official-store-back:active,
-.tg-settings-back-v13:active,
-#productBack:active,
-#checkoutBack:active,
-#orderDetailBack:active,
-#ordersBack:active,
-#officialStoreBack:active,
-button[aria-label="Назад"]:active{
-  opacity:.72!important;
-  transform:none!important;
-}
-
-/* Explicitly neutralize legacy light-page overrides */
-#checkoutView #checkoutBack,
-#ordersPage #ordersBack,
-#orderDetailView #orderDetailBack{
-  border-radius:50%!important;
-  background:var(--uzr-back-bg)!important;
-  border-color:var(--uzr-back-border)!important;
-  color:var(--uzr-back-color)!important;
-  -webkit-text-fill-color:var(--uzr-back-color)!important;
-}
-</style>
 <style id="cart-v14-5-dark-override">
 /* ============================================================
    v14.5 — CART: remove legacy light theme + fix Back button
@@ -6975,21 +6850,6 @@ body.order-detail-open-v40 nav{z-index:1500!important;display:grid!important;vis
 </style>
 
 
-<style id="orders-back-v47-hardfix">
-/* v47 — My Orders: keep exactly one back icon */
-#orders #ordersBack::before,
-#orders #ordersBack::after{
-  content:none!important;
-  display:none!important;
-}
-#orders #ordersBack>svg{
-  display:block!important;
-  width:19px!important;
-  height:19px!important;
-}
-</style>
-
-
 <style id="faq-help-v48-final">
 /* ============================================================
    FAQ + HELP v48 — aligned with current Uzbek Re'Sale dark UI
@@ -7934,1329 +7794,1747 @@ body.uzr-consent-lock-v58{
 </style>
 
 
-<style id="uzr-light-theme-v65">
+
+
+
+<style id="uzr-v71-final-ui">
+/* ============================================================
+   v70 — FINAL LIGHT POLISH
+   The selectors are intentionally high-specificity so legacy
+   dark-theme rules cannot bleed into Light.
+   ============================================================ */
+
+:root{
+  --v70-blue:#2ea6ff;
+  --v70-blue-dark:#168fdc;
+}
+
+.app{
+  width:100%!important;
+  max-width:560px!important;
+  min-height:100dvh!important;
+  margin:0 auto!important;
+  overflow-x:hidden!important;
+}
+
+/* ---------- logo ---------- */
+.dark-brand-v10{
+  display:flex!important;
+  align-items:center!important;
+  overflow:hidden!important;
+}
+.dark-brand-v10 img.uzr-brand-logo-dark-v66,
+.dark-brand-v10 img.uzr-brand-logo-light-v66{
+  display:none!important;
+  width:158px!important;
+  max-width:52vw!important;
+  height:46px!important;
+  object-fit:contain!important;
+  object-position:left center!important;
+  opacity:1!important;
+  filter:none!important;
+}
+html:not([data-uzr-theme="light"]) .dark-brand-v10 img.uzr-brand-logo-dark-v66,
+html[data-uzr-theme="dark"] .dark-brand-v10 img.uzr-brand-logo-dark-v66{
+  display:block!important;
+}
+html[data-uzr-theme="light"] .dark-brand-v10 img.uzr-brand-logo-light-v66{
+  display:block!important;
+}
+
+/* ---------- + button ---------- */
+nav .nav.sell .icon{
+  background:linear-gradient(180deg,#31adfa,#218fdc)!important;
+  border:1px solid rgba(255,255,255,.20)!important;
+  color:#fff!important;
+  box-shadow:0 6px 16px rgba(25,142,220,.30),inset 0 1px 0 rgba(255,255,255,.24)!important;
+}
+nav .nav.sell .icon svg,
+nav .nav.sell .icon svg *{
+  stroke:#fff!important;
+  color:#fff!important;
+  fill:none!important;
+  opacity:1!important;
+}
+
+/* ---------- all back buttons: one geometry ---------- */
+button.uzr-back-v69{
+  width:42px!important;height:42px!important;
+  min-width:42px!important;min-height:42px!important;
+  max-width:42px!important;max-height:42px!important;
+  flex:0 0 42px!important;
+  padding:0!important;margin:0!important;
+  border-radius:50%!important;
+  display:inline-flex!important;
+  align-items:center!important;justify-content:center!important;
+  font-size:0!important;line-height:1!important;
+  background:#0d2b3a!important;
+  border:1px solid #294d61!important;
+  color:#eef6fb!important;
+  box-shadow:none!important;
+}
+button.uzr-back-v69 svg{
+  width:21px!important;height:21px!important;
+  stroke:currentColor!important;stroke-width:2!important;fill:none!important;
+}
+
+/* ============================================================
+   LIGHT TOKENS
+   ============================================================ */
 html[data-uzr-theme="light"]{
-  color-scheme:light;
+  color-scheme:light!important;
+  --v70-page:#f3f6fa;
+  --v70-card:#fff;
+  --v70-soft:#f8fafc;
+  --v70-soft-2:#eef4f8;
+  --v70-line:#d7e1e8;
+  --v70-line-strong:#c7d5de;
+  --v70-text:#122431;
+  --v70-muted:#667b89;
+  --v70-muted-2:#81939f;
 
-  --uzr-bg:#f2f5f8;
+  --uzr-bg:#f3f6fa!important;
+  --uzr-surface:#fff!important;
+  --uzr-surface-deep:#f7f9fb!important;
+  --uzr-surface-2:#fff!important;
+  --uzr-surface-3:#f8fafc!important;
+  --uzr-surface-4:#fff!important;
+  --uzr-surface-5:#f8fafc!important;
+  --uzr-border:#d7e1e8!important;
+  --uzr-border-strong:#c7d5de!important;
+  --uzr-border-soft:#e5ebf0!important;
+  --uzr-text:#122431!important;
+  --uzr-muted:#667b89!important;
+  --uzr-muted-2:#758a97!important;
+  --uzr-muted-3:#607480!important;
+  --uzr-muted-4:#81939f!important;
 
-  --uzr-surface:#ffffff;
-  --uzr-surface-deep:#f6f8fa;
-  --uzr-surface-2:#f8fafc;
-  --uzr-surface-3:#f1f5f8;
-  --uzr-surface-4:#ffffff;
-  --uzr-surface-5:#f7f9fb;
-
-  --uzr-border:#d9e1e7;
-  --uzr-border-strong:#cbd6df;
-  --uzr-border-soft:#e3e9ee;
-
-  --uzr-text:#14202b;
-  --uzr-muted:#6d7f8d;
-  --uzr-muted-2:#778895;
-  --uzr-muted-3:#657785;
-  --uzr-muted-4:#82919d;
-
-  --uzr-accent:#2ea6ff;
-  --uzr-accent-2:#2ca7ff;
+  --tgp-bg:#f3f6fa!important;
+  --tgp-card:#fff!important;
+  --tgp-line:#e5ebef!important;
+  --tgp-text:#122431!important;
+  --tgp-muted:#667b89!important;
 }
 
 html[data-uzr-theme="light"],
 html[data-uzr-theme="light"] body,
-html[data-uzr-theme="light"] .app,
-html[data-uzr-theme="light"] .page,
-html[data-uzr-theme="light"] .overlay,
-html[data-uzr-theme="light"] .inner{
-  background:var(--uzr-bg)!important;
-  color:var(--uzr-text)!important;
+html[data-uzr-theme="light"] body .app,
+html[data-uzr-theme="light"] body .app .page,
+html[data-uzr-theme="light"] body .overlay,
+html[data-uzr-theme="light"] body .inner{
+  background-color:var(--v70-page)!important;
+  color:var(--v70-text)!important;
 }
 
-html[data-uzr-theme="light"] #appHeader{
-  background:rgba(255,255,255,.96)!important;
-  color:var(--uzr-text)!important;
-  border-bottom-color:var(--uzr-border)!important;
+/* ---------- global header ---------- */
+html[data-uzr-theme="light"] body #appHeader,
+html[data-uzr-theme="light"] body .dark-home-header-v10{
+  background-color:rgba(255,255,255,.985)!important;
+  background-image:none!important;
+  border-bottom:1px solid var(--v70-line)!important;
+  box-shadow:0 2px 12px rgba(28,50,66,.04)!important;
+}
+html[data-uzr-theme="light"] body .dark-round-btn-v10,
+html[data-uzr-theme="light"] body .dark-filter-btn-v10{
+  background-color:#fff!important;
+  background-image:none!important;
+  border:1px solid var(--v70-line)!important;
+  color:#174057!important;
+  box-shadow:none!important;
+}
+html[data-uzr-theme="light"] body .dark-round-btn-v10 svg,
+html[data-uzr-theme="light"] body .dark-filter-btn-v10 svg{
+  stroke:#168fdc!important;
 }
 
-html[data-uzr-theme="light"] nav{
-  background:rgba(255,255,255,.97)!important;
-  border-top-color:var(--uzr-border)!important;
-  box-shadow:0 -8px 28px rgba(25,40,55,.08)!important;
+/* ---------- one back style in light, HIGH SPECIFICITY ---------- */
+html[data-uzr-theme="light"] body .app :is(
+  #sell,#favorites,#viewed,#cart,#contactRequest,#contactRequests,#myProducts,
+  #addresses,#payments,#support,#legalCenter,#legalDocument,#legalSection,
+  #settingsPage,#faq,#orders,#productView,#adminPanel
+) button.uzr-back-v69,
+html[data-uzr-theme="light"] body :is(
+  #officialStoreView,#orderDetailView,#checkoutView,#uzrConsentLegalV58,
+  #sellerProfile
+) button.uzr-back-v69{
+  width:42px!important;height:42px!important;
+  min-width:42px!important;min-height:42px!important;
+  max-width:42px!important;max-height:42px!important;
+  flex:0 0 42px!important;
+  background-color:#fff!important;
+  background-image:none!important;
+  border:1px solid #d2dee6!important;
+  color:#17384b!important;
+  -webkit-text-fill-color:#17384b!important;
+  box-shadow:0 3px 10px rgba(31,53,68,.07)!important;
 }
-html[data-uzr-theme="light"] nav .nav{color:#728393!important}
-html[data-uzr-theme="light"] nav .nav.active{color:#168fe7!important}
+html[data-uzr-theme="light"] body :is(
+  #officialStoreView,#orderDetailView,#checkoutView,#uzrConsentLegalV58,
+  #sellerProfile
+) button.uzr-back-v69 svg,
+html[data-uzr-theme="light"] body .app :is(
+  #sell,#favorites,#viewed,#cart,#contactRequest,#contactRequests,#myProducts,
+  #addresses,#payments,#support,#legalCenter,#legalDocument,#legalSection,
+  #settingsPage,#faq,#orders,#productView,#adminPanel
+) button.uzr-back-v69 svg{
+  stroke:#17384b!important;
+  color:#17384b!important;
+}
 
-html[data-uzr-theme="light"] :is(
-  .tg-group-v13,.tg-settings-group-v13,.legal-v53-card,.faq-v48-item,
-  .cart-dark-v10,.checkout-card-v41,.checkout-success-card-v42,
-  .contact-request-card-v49,.contact-requests-card-v49,
-  .my-products-card-v25,.seller-profile-card-v26,.order-card-v40,
-  .profilecard,.order-card,.sell-card-v24,.viewed-card-v46,
-  .uzr-consent-card-v58,.uzr-consent-docs-v58,
-  .uzr-consent-legal-section-v58,.uzr-consent-legal-meta-v58
+/* ---------- bottom navigation ---------- */
+html[data-uzr-theme="light"] body nav{
+  background-color:rgba(255,255,255,.985)!important;
+  background-image:none!important;
+  border-top:1px solid var(--v70-line)!important;
+  box-shadow:0 -7px 22px rgba(25,45,58,.08)!important;
+}
+html[data-uzr-theme="light"] body nav .nav{color:#7a8f9c!important}
+html[data-uzr-theme="light"] body nav .nav .icon svg{stroke:#7a8f9c!important}
+html[data-uzr-theme="light"] body nav .nav.active{color:#179de8!important}
+html[data-uzr-theme="light"] body nav .nav.active .icon svg{stroke:#179de8!important}
+html[data-uzr-theme="light"] body nav .nav.sell .icon svg,
+html[data-uzr-theme="light"] body nav .nav.sell .icon svg *{stroke:#fff!important}
+
+/* ---------- common fields ---------- */
+html[data-uzr-theme="light"] body :is(input,textarea,select,.search,.field input,.legal-v53-search){
+  background-color:#fff!important;
+  background-image:none!important;
+  color:var(--v70-text)!important;
+  -webkit-text-fill-color:var(--v70-text)!important;
+  border-color:var(--v70-line)!important;
+}
+html[data-uzr-theme="light"] body :is(input,textarea)::placeholder{
+  color:#81939f!important;opacity:1!important;
+}
+
+/* ============================================================
+   HOME
+   ============================================================ */
+html[data-uzr-theme="light"] body .app #home{
+  background-color:var(--v70-page)!important;
+}
+html[data-uzr-theme="light"] body .app #home .dark-search-v10{
+  background-color:#fff!important;
+  background-image:none!important;
+  border:1px solid var(--v70-line)!important;
+}
+html[data-uzr-theme="light"] body .app #home .dark-search-v10 input{
+  color:var(--v70-text)!important;
+  -webkit-text-fill-color:var(--v70-text)!important;
+}
+
+/* home category cards — force truly white */
+html[data-uzr-theme="light"] body .app #home .dark-categories-v10>button{
+  background-color:#fff!important;
+  background-image:none!important;
+  border:1px solid var(--v70-line)!important;
+  box-shadow:0 3px 10px rgba(31,50,64,.035)!important;
+  opacity:1!important;
+  color:#5d7d8d!important;
+}
+html[data-uzr-theme="light"] body .app #home .dark-categories-v10>button>span{
+  color:#5d7d8d!important;
+}
+html[data-uzr-theme="light"] body .app #home .dark-categories-v10>button svg{
+  stroke:#5d7d8d!important;
+}
+html[data-uzr-theme="light"] body .app #home .dark-categories-v10>button>b{
+  color:var(--v70-text)!important;
+  -webkit-text-fill-color:var(--v70-text)!important;
+  opacity:1!important;
+}
+html[data-uzr-theme="light"] body .app #home .dark-popular-head-v10 h2{
+  color:var(--v70-text)!important;
+  -webkit-text-fill-color:var(--v70-text)!important;
+}
+html[data-uzr-theme="light"] body .app #home .dark-popular-head-v10 button{
+  color:#168fdc!important;
+}
+
+/* ============================================================
+   PRODUCT CARDS
+   ============================================================ */
+html[data-uzr-theme="light"] body :is(
+  #home,#catalog,#favorites,#viewed,#china,#sellerProfile,#officialStoreView
+) .product-card-v15{
+  background-color:#fff!important;
+  background-image:none!important;
+  border:1px solid var(--v70-line)!important;
+  color:var(--v70-text)!important;
+  box-shadow:0 3px 12px rgba(31,50,64,.035)!important;
+}
+html[data-uzr-theme="light"] body :is(
+  #home,#catalog,#favorites,#viewed,#china,#sellerProfile,#officialStoreView
+) .product-card-v15 :is(.product-card-media-v15,.photo){
+  background-color:#f2f5f7!important;
+  background-image:none!important;
+}
+html[data-uzr-theme="light"] body :is(
+  #home,#catalog,#favorites,#viewed,#china,#sellerProfile,#officialStoreView
+) .product-card-v15 .product-card-info-v15{
+  background-color:#fff!important;
+}
+html[data-uzr-theme="light"] body :is(
+  #home,#catalog,#favorites,#viewed,#china,#sellerProfile,#officialStoreView
+) .product-card-v15 .name{
+  color:var(--v70-text)!important;
+  -webkit-text-fill-color:var(--v70-text)!important;
+  opacity:1!important;
+}
+html[data-uzr-theme="light"] body :is(
+  #home,#catalog,#favorites,#viewed,#china,#sellerProfile,#officialStoreView
+) .product-card-v15 .price{
+  color:#179de8!important;
+  -webkit-text-fill-color:#179de8!important;
+  opacity:1!important;
+}
+html[data-uzr-theme="light"] body :is(
+  #home,#catalog,#favorites,#viewed,#china,#sellerProfile,#officialStoreView
+) .product-card-v15 :is(.product-meta-v16,.product-meta-v15,.meta){
+  color:var(--v70-muted)!important;
+  -webkit-text-fill-color:var(--v70-muted)!important;
+  opacity:1!important;
+}
+html[data-uzr-theme="light"] body :is(
+  #home,#catalog,#favorites,#viewed,#china,#sellerProfile,#officialStoreView
+) .product-card-v15 .product-heart{
+  background-color:rgba(255,255,255,.96)!important;
+  border:1px solid #cfdbe3!important;
+  color:#516e7e!important;
+}
+html[data-uzr-theme="light"] body :is(
+  #home,#catalog,#favorites,#viewed,#china,#sellerProfile,#officialStoreView
+) .product-card-v15 .product-heart svg{stroke:#516e7e!important}
+
+/* ============================================================
+   CATALOG
+   ============================================================ */
+html[data-uzr-theme="light"] body .app #catalog{
+  background-color:var(--v70-page)!important;
+}
+html[data-uzr-theme="light"] body .app #catalog .tg-catalog-search-v14,
+html[data-uzr-theme="light"] body .app #catalog .tg-catalog-filter-v14{
+  background-color:#fff!important;
+  background-image:none!important;
+  border:1px solid var(--v70-line)!important;
+}
+html[data-uzr-theme="light"] body .app #catalog .tg-catalog-search-v14 input{
+  color:var(--v70-text)!important;
+  -webkit-text-fill-color:var(--v70-text)!important;
+}
+html[data-uzr-theme="light"] body .app #catalog .tg-catalog-types-v14 .filter{
+  background-color:#fff!important;
+  background-image:none!important;
+  border:1px solid var(--v70-line)!important;
+  color:var(--v70-text)!important;
+}
+html[data-uzr-theme="light"] body .app #catalog .tg-catalog-types-v14 .filter.active{
+  background-color:#2ea6ff!important;
+  color:#fff!important;
+  border-color:#2ea6ff!important;
+}
+
+/* catalog categories */
+html[data-uzr-theme="light"] body .app #catalog #categoryFilters>button.category-chip{
+  height:96px!important;
+  padding:0!important;
+  overflow:hidden!important;
+  background-color:#fff!important;
+  background-image:none!important;
+  border:1px solid var(--v70-line)!important;
+  border-radius:18px!important;
+  box-shadow:0 3px 10px rgba(31,50,64,.035)!important;
+}
+html[data-uzr-theme="light"] body .app #catalog #categoryFilters>button.category-chip>span{
+  width:100%!important;
+  height:55px!important;
+  min-height:55px!important;
+  display:flex!important;align-items:center!important;justify-content:center!important;
+  background-color:#eef5f9!important;
+  color:#5d7d8d!important;
+}
+html[data-uzr-theme="light"] body .app #catalog #categoryFilters>button.category-chip>span svg{
+  stroke:#5d7d8d!important;
+}
+html[data-uzr-theme="light"] body .app #catalog #categoryFilters>button.category-chip>b{
+  width:100%!important;
+  min-height:40px!important;
+  display:flex!important;align-items:center!important;justify-content:center!important;
+  background-color:#fff!important;
+  color:var(--v70-text)!important;
+  -webkit-text-fill-color:var(--v70-text)!important;
+}
+html[data-uzr-theme="light"] body .app #catalog #catalogSortTriggerV14{
+  background-color:#fff!important;
+  background-image:none!important;
+  border:1px solid var(--v70-line)!important;
+  color:var(--v70-text)!important;
+}
+
+/* sorting panel — super-specific so old dark rule cannot win */
+html[data-uzr-theme="light"] body .app #catalog div.tg-sort-panel-v14{
+  background-color:#fff!important;
+  background-image:none!important;
+  border-color:var(--v70-line)!important;
+  box-shadow:0 5px 16px rgba(31,50,64,.05)!important;
+}
+html[data-uzr-theme="light"] body .app #catalog div.tg-sort-panel-v14>span{
+  color:#6d818f!important;
+}
+html[data-uzr-theme="light"] body .app #catalog div.tg-sort-panel-v14>select{
+  background-color:#f8fafc!important;
+  background-image:none!important;
+  border-color:var(--v70-line)!important;
+  color:var(--v70-text)!important;
+  -webkit-text-fill-color:var(--v70-text)!important;
+}
+
+/* ============================================================
+   SETTINGS
+   ============================================================ */
+html[data-uzr-theme="light"] body .app #settingsPage{
+  background-color:var(--v70-page)!important;
+}
+html[data-uzr-theme="light"] body .app #settingsPage .tg-settings-head-v13 h1{
+  color:var(--v70-text)!important;
+  -webkit-text-fill-color:var(--v70-text)!important;
+}
+html[data-uzr-theme="light"] body .app #settingsPage .tg-settings-label-v13{
+  color:#6c818f!important;
+}
+html[data-uzr-theme="light"] body .app #settingsPage div.tg-settings-group-v13{
+  background-color:#fff!important;
+  background-image:none!important;
+  border-color:var(--v70-line)!important;
+}
+html[data-uzr-theme="light"] body .app #settingsPage .tg-settings-row-v13{
+  background-color:#fff!important;
+  background-image:none!important;
+  color:var(--v70-text)!important;
+}
+html[data-uzr-theme="light"] body .app #settingsPage .tg-settings-row-v13+.tg-settings-row-v13:before{
+  background-color:#e7edf1!important;
+}
+html[data-uzr-theme="light"] body .app #settingsPage .tg-settings-row-text-v13{
+  color:var(--v70-text)!important;
+  -webkit-text-fill-color:var(--v70-text)!important;
+}
+html[data-uzr-theme="light"] body .app #settingsPage .tg-settings-value-v13{
+  color:var(--v70-muted)!important;
+}
+
+/* settings modal */
+html[data-uzr-theme="light"] body .uzr-settings-choice-overlay-v61{
+  background-color:rgba(32,47,59,.30)!important;
+}
+html[data-uzr-theme="light"] body .uzr-settings-choice-sheet-v61{
+  background-color:#fff!important;
+  background-image:none!important;
+  border-color:var(--v70-line)!important;
+}
+html[data-uzr-theme="light"] body .uzr-settings-choice-list-v61,
+html[data-uzr-theme="light"] body .uzr-settings-choice-option-v61{
+  background-color:#fff!important;
+  border-color:var(--v70-line)!important;
+}
+html[data-uzr-theme="light"] body .uzr-settings-choice-head-v61 h2,
+html[data-uzr-theme="light"] body .uzr-settings-choice-option-copy-v61 b{
+  color:var(--v70-text)!important;
+}
+html[data-uzr-theme="light"] body .uzr-settings-choice-head-v61 p,
+html[data-uzr-theme="light"] body .uzr-settings-choice-option-copy-v61 small{
+  color:var(--v70-muted)!important;
+}
+html[data-uzr-theme="light"] body .uzr-settings-choice-option-v61.current{
+  background-color:#eef8ff!important;
+}
+
+/* ============================================================
+   FULL-SCREEN EMPTY STATES
+   ============================================================ */
+#favorites,
+#favorites.active{
+  width:100%!important;
+  min-height:100dvh!important;
+}
+#favorites .favorites-final-head,
+#favorites .favorites-final-body{
+  width:100%!important;
+  max-width:560px!important;
+  margin-left:auto!important;margin-right:auto!important;
+}
+#favorites .favorites-final-body{
+  min-height:calc(100dvh - 138px)!important;
+}
+#favorites .favorites-final-empty{
+  width:100%!important;
+  min-height:calc(100dvh - 255px)!important;
+  display:flex!important;
+  flex-direction:column!important;
+  align-items:center!important;
+  justify-content:center!important;
+  text-align:center!important;
+  background:transparent!important;
+  border:0!important;
+  border-radius:0!important;
+  box-shadow:none!important;
+  padding:28px 18px calc(120px + env(safe-area-inset-bottom))!important;
+}
+
+html[data-uzr-theme="light"] body .app :is(
+  #favorites .favorites-final-empty,
+  #viewed .viewed-v46-empty,
+  #cartList .cart-empty-v23,
+  #orders .orders-empty-v40,
+  #contactRequests .contact-requests-empty-v49,
+  #china .china-v32-empty
+) :is(h2,b){
+  color:var(--v70-text)!important;
+  -webkit-text-fill-color:var(--v70-text)!important;
+  opacity:1!important;
+}
+html[data-uzr-theme="light"] body .app :is(
+  #favorites .favorites-final-empty,
+  #viewed .viewed-v46-empty,
+  #cartList .cart-empty-v23,
+  #orders .orders-empty-v40,
+  #contactRequests .contact-requests-empty-v49,
+  #china .china-v32-empty
+) p{
+  color:var(--v70-muted)!important;
+  -webkit-text-fill-color:var(--v70-muted)!important;
+}
+
+/* favorite */
+html[data-uzr-theme="light"] body .app #favorites .favorites-final-title h1{
+  color:var(--v70-text)!important;
+  -webkit-text-fill-color:var(--v70-text)!important;
+}
+html[data-uzr-theme="light"] body .app #favorites .favorites-final-title p{
+  color:var(--v70-muted)!important;
+}
+html[data-uzr-theme="light"] body .app #favorites .favorites-final-empty-icon{
+  background-color:#fff!important;
+  border-color:var(--v70-line)!important;
+}
+html[data-uzr-theme="light"] body .app #favorites .favorites-final-empty-icon svg{
+  stroke:#2ea6ff!important;
+}
+
+/* viewed */
+html[data-uzr-theme="light"] body .app #viewed{
+  background-color:var(--v70-page)!important;
+}
+html[data-uzr-theme="light"] body .app #viewed .viewed-v46-title h1{
+  color:var(--v70-text)!important;
+  -webkit-text-fill-color:var(--v70-text)!important;
+}
+html[data-uzr-theme="light"] body .app #viewed .viewed-v46-title p,
+html[data-uzr-theme="light"] body .app #viewed .viewed-v46-count-row,
+html[data-uzr-theme="light"] body .app #viewed .viewed-v46-footnote{
+  color:var(--v70-muted)!important;
+}
+html[data-uzr-theme="light"] body .app #viewed .viewed-v46-empty{
+  min-height:calc(100dvh - 310px)!important;
+  background:transparent!important;
+  border:0!important;
+  box-shadow:none!important;
+}
+html[data-uzr-theme="light"] body .app #viewed .viewed-v46-info{
+  background-color:#fff!important;
+  border-color:var(--v70-line)!important;
+}
+html[data-uzr-theme="light"] body .app #viewed .viewed-v46-info b{
+  color:var(--v70-text)!important;
+}
+
+/* ============================================================
+   CART
+   ============================================================ */
+html[data-uzr-theme="light"] body .app #cart{
+  background-color:var(--v70-page)!important;
+}
+html[data-uzr-theme="light"] body .app #cart .cart-head h1{
+  color:var(--v70-text)!important;
+  -webkit-text-fill-color:var(--v70-text)!important;
+}
+html[data-uzr-theme="light"] body .app #cart .cart-head p{
+  color:var(--v70-muted)!important;
+}
+html[data-uzr-theme="light"] body .app #cartList .cart-empty-v23{
+  min-height:calc(100dvh - 255px)!important;
+  color:var(--v70-text)!important;
+}
+html[data-uzr-theme="light"] body .app #cartList .cart-empty-icon-v23{
+  background-color:#fff!important;
+  border-color:var(--v70-line)!important;
+  color:#7896a7!important;
+}
+html[data-uzr-theme="light"] body .app #cartList .cart-empty-icon-v23 svg{
+  stroke:#7896a7!important;
+}
+html[data-uzr-theme="light"] body .app #cartList .cartrow,
+html[data-uzr-theme="light"] body .app #cartBottom{
+  background-color:#fff!important;
+  border-color:var(--v70-line)!important;
+}
+
+/* ============================================================
+   CHINA
+   ============================================================ */
+html[data-uzr-theme="light"] body .app #china{
+  background-color:var(--v70-page)!important;
+}
+html[data-uzr-theme="light"] body .app #china .china-v32-head h1,
+html[data-uzr-theme="light"] body .app #china .china-v32-section-head h2{
+  color:var(--v70-text)!important;
+  -webkit-text-fill-color:var(--v70-text)!important;
+}
+html[data-uzr-theme="light"] body .app #china :is(
+  .china-v32-head p,.china-v32-head span,.china-v32-section-head span
 ){
-  background:var(--uzr-surface)!important;
-  border-color:var(--uzr-border)!important;
-  color:var(--uzr-text)!important;
+  color:var(--v70-muted)!important;
+}
+html[data-uzr-theme="light"] body .app #china .china-v32-official{
+  background-color:#fff!important;
+  border-color:var(--v70-line)!important;
+}
+html[data-uzr-theme="light"] body .app #china .china-v32-name-row b{
+  color:var(--v70-text)!important;
+}
+html[data-uzr-theme="light"] body .app #china .china-v32-empty{
+  background-color:#fff!important;
+  border-color:var(--v70-line)!important;
 }
 
-html[data-uzr-theme="light"] :is(
-  .tg-row-v13,.tg-settings-row-v13,.legal-v53-row,.legal-v53-contact,
-  .faq-v48-q,.faq-v48-a,.legal-v53-toc-row,.legal-v53-clause,
-  .uzr-settings-choice-option-v61,.uzr-consent-doc-v58
+/* ============================================================
+   OFFICIAL STORE
+   ============================================================ */
+html[data-uzr-theme="light"] body #officialStoreView,
+html[data-uzr-theme="light"] body #officialStoreView .official-store-inner{
+  background-color:var(--v70-page)!important;
+  color:var(--v70-text)!important;
+}
+html[data-uzr-theme="light"] body #officialStoreView .official-profile-card,
+html[data-uzr-theme="light"] body #officialStoreView .official-section-block{
+  background-color:#fff!important;
+  background-image:none!important;
+  border-color:var(--v70-line)!important;
+}
+html[data-uzr-theme="light"] body #officialStoreView .official-store-name-row h1,
+html[data-uzr-theme="light"] body #officialStoreView .official-section-heading h2{
+  color:var(--v70-text)!important;
+  -webkit-text-fill-color:var(--v70-text)!important;
+}
+html[data-uzr-theme="light"] body #officialStoreView :is(
+  .official-store-location,.official-store-description,.official-section-heading span
 ){
-  background:var(--uzr-surface)!important;
-  border-color:var(--uzr-border)!important;
-  color:var(--uzr-text)!important;
+  color:var(--v70-muted)!important;
+}
+html[data-uzr-theme="light"] body #officialStoreView .official-store-stats{
+  background-color:#f8fafc!important;
+  border-color:var(--v70-line)!important;
+}
+html[data-uzr-theme="light"] body #officialStoreView .official-section-tab{
+  background-color:#fff!important;
+  border-color:var(--v70-line)!important;
+  color:#4f6775!important;
+}
+html[data-uzr-theme="light"] body #officialStoreView .official-section-tab.is-active{
+  background-color:#2ea6ff!important;
+  border-color:#2ea6ff!important;
+  color:#fff!important;
+}
+html[data-uzr-theme="light"] body #officialStoreView .official-info-item{
+  background-color:#f8fafc!important;
+  border-color:var(--v70-line)!important;
+}
+html[data-uzr-theme="light"] body #officialStoreView .official-info-item b{
+  color:var(--v70-text)!important;
+}
+html[data-uzr-theme="light"] body #officialStoreView .official-info-item :is(p,ul,li){
+  color:var(--v70-muted)!important;
+}
+/* FAQ fix: actual dark background lives on details */
+html[data-uzr-theme="light"] body #officialStoreView .official-faq-item details{
+  background-color:#f8fafc!important;
+  background-image:none!important;
+  border-color:var(--v70-line)!important;
+}
+html[data-uzr-theme="light"] body #officialStoreView .official-faq-item summary{
+  background-color:#f8fafc!important;
+  color:var(--v70-text)!important;
+  -webkit-text-fill-color:var(--v70-text)!important;
+}
+html[data-uzr-theme="light"] body #officialStoreView .official-faq-answer{
+  background-color:#fff!important;
+  color:var(--v70-muted)!important;
+  -webkit-text-fill-color:var(--v70-muted)!important;
+  border-top-color:#e7edf1!important;
 }
 
-html[data-uzr-theme="light"] :is(
-  .tg-row-text-v13,.tg-settings-row-text-v13,.legal-v53-copy b,
-  .legal-v53-contact b,.legal-v53-toc-copy b,.legal-v53-section-title h2,
-  .faq-v48-question,.faq-v48-a,.title h2,.name,.price,
-  .uzr-settings-choice-option-copy-v61 b,
-  .uzr-consent-card-v58 h1,.uzr-consent-doc-copy-v58 b,
-  .uzr-consent-legal-head-v58 h2,.uzr-consent-legal-section-v58 h3,
-  .uzr-consent-legal-meta-v58 b,.uzr-consent-legal-clause-v58 b
+/* ============================================================
+   SELLER PROFILE
+   ============================================================ */
+html[data-uzr-theme="light"] body #sellerProfile,
+html[data-uzr-theme="light"] body #sellerProfileContent{
+  background-color:var(--v70-page)!important;
+}
+html[data-uzr-theme="light"] body #sellerProfile .seller-v26-hero{
+  background-color:#fff!important;
+  border-color:var(--v70-line)!important;
+}
+html[data-uzr-theme="light"] body #sellerProfile :is(
+  .seller-v26-head h1,.seller-v26-name,.seller-v26-products-head h2
 ){
-  color:var(--uzr-text)!important;
+  color:var(--v70-text)!important;
+  -webkit-text-fill-color:var(--v70-text)!important;
+}
+html[data-uzr-theme="light"] body #sellerProfile :is(
+  .seller-v26-location,.seller-v26-about,.seller-v26-products-head span
+){
+  color:var(--v70-muted)!important;
+}
+html[data-uzr-theme="light"] body #sellerProfile .seller-v26-stats{
+  background-color:#f8fafc!important;
+  border-color:var(--v70-line)!important;
+}
+html[data-uzr-theme="light"] body #sellerProfile .seller-v26-action{
+  background-color:#fff!important;
+  border-color:var(--v70-line)!important;
+  color:var(--v70-text)!important;
 }
 
-html[data-uzr-theme="light"] :is(
-  .tg-settings-value-v13,.tg-section-title-v13,.tg-settings-label-v13,
-  .legal-v53-copy small,.legal-v53-contact small,.legal-v53-toc-copy small,
-  .legal-v53-head p,.legal-v53-intro p,.legal-v53-mini-contact,
-  .section-subtitle-v45,.meta,
-  .uzr-settings-choice-head-v61 p,.uzr-settings-choice-option-copy-v61 small,
-  .uzr-consent-lead-v58,.uzr-consent-confirm-v58,
-  .uzr-consent-doc-copy-v58 small,.uzr-consent-brand-v58 small,
-  .uzr-consent-close-note-v58,.uzr-consent-legal-meta-v58 span,
-  .uzr-consent-legal-clause-v58
+/* ============================================================
+   PRODUCT PAGE
+   ============================================================ */
+html[data-uzr-theme="light"] body #productView{
+  background-color:var(--v70-page)!important;
+}
+html[data-uzr-theme="light"] body #productView :is(
+  .product-v18-photo,.product-v18-gallery
 ){
-  color:var(--uzr-muted)!important;
+  background-color:#eef3f6!important;
+}
+html[data-uzr-theme="light"] body #productView #pName{
+  color:var(--v70-text)!important;
+  -webkit-text-fill-color:var(--v70-text)!important;
+  opacity:1!important;
+}
+html[data-uzr-theme="light"] body #productView #pPrice{
+  color:#179de8!important;
+  -webkit-text-fill-color:#179de8!important;
+  opacity:1!important;
+}
+html[data-uzr-theme="light"] body #productView .product-v18-panel,
+html[data-uzr-theme="light"] body #productView :is(
+  .product-v18-seller-card,.seller-mini-card-v20
+){
+  background-color:#fff!important;
+  border-color:var(--v70-line)!important;
+}
+html[data-uzr-theme="light"] body #productView #pDescriptionV18,
+html[data-uzr-theme="light"] body #productView #productMeta>div>b{
+  color:var(--v70-text)!important;
+  -webkit-text-fill-color:var(--v70-text)!important;
+}
+html[data-uzr-theme="light"] body #productView #productMeta>div>span{
+  color:#5f7582!important;
+  -webkit-text-fill-color:#5f7582!important;
+}
+html[data-uzr-theme="light"] body #productView .product-v18-actions{
+  background-color:rgba(255,255,255,.985)!important;
+  border-color:#d4dfe6!important;
+}
+html[data-uzr-theme="light"] body #productView .product-v18-cart{
+  background-color:#fff!important;
+  border-color:#2b9fe9!important;
+  color:#187fc0!important;
+}
+html[data-uzr-theme="light"] body #productView .product-v18-buy{
+  background-color:#2ea6ff!important;
+  color:#fff!important;
+  border-color:#2ea6ff!important;
 }
 
-html[data-uzr-theme="light"] :is(
-  input,textarea,select,.search,.legal-v53-search,.field input,
-  .sell-form textarea,.sell-form select
+/* ============================================================
+   PROFILE / MY PRODUCTS / REQUESTS
+   ============================================================ */
+html[data-uzr-theme="light"] body .app #profile .tg-group-v13,
+html[data-uzr-theme="light"] body .app #profile .tg-row-v13{
+  background-color:#fff!important;
+  border-color:var(--v70-line)!important;
+}
+html[data-uzr-theme="light"] body .app #profile .tg-profile-identity-v13 h1,
+html[data-uzr-theme="light"] body .app #profile .tg-row-text-v13{
+  color:var(--v70-text)!important;
+  -webkit-text-fill-color:var(--v70-text)!important;
+}
+html[data-uzr-theme="light"] body .app #myProducts .my-product-card-v25,
+html[data-uzr-theme="light"] body .app #contactRequests .contact-request-card-v49,
+html[data-uzr-theme="light"] body .app #contactRequests .contact-requests-empty-v49{
+  background-color:#fff!important;
+  border-color:var(--v70-line)!important;
+  color:var(--v70-text)!important;
+}
+html[data-uzr-theme="light"] body .app #myProducts .my-products-filters-v25 button{
+  background-color:#fff!important;
+  border-color:var(--v70-line)!important;
+  color:#667b89!important;
+}
+html[data-uzr-theme="light"] body .app #myProducts .my-products-filters-v25 button.active{
+  background-color:#2ea6ff!important;
+  border-color:#2ea6ff!important;
+  color:#fff!important;
+}
+html[data-uzr-theme="light"] body .app #contactRequests .contact-requests-v49-tabs{
+  background-color:#fff!important;
+  border-color:var(--v70-line)!important;
+}
+html[data-uzr-theme="light"] body .app #contactRequests .contact-requests-v49-tabs button.active{
+  background-color:#eef8ff!important;
+  color:#168fdc!important;
+}
+
+/* ============================================================
+   ORDERS
+   ============================================================ */
+html[data-uzr-theme="light"] body .app #orders{
+  background-color:var(--v70-page)!important;
+}
+html[data-uzr-theme="light"] body .app #orders .orders-v40-topbar{
+  background-color:rgba(243,246,250,.96)!important;
+  background-image:none!important;
+}
+html[data-uzr-theme="light"] body .app #orders .orders-v40-topbar h1{
+  color:var(--v70-text)!important;
+  -webkit-text-fill-color:var(--v70-text)!important;
+}
+html[data-uzr-theme="light"] body .app #orders .orders-v40-filters button{
+  background-color:#fff!important;
+  background-image:none!important;
+  border-color:var(--v70-line)!important;
+  color:#627886!important;
+}
+html[data-uzr-theme="light"] body .app #orders .orders-v40-filters button.active{
+  background-color:#2ea6ff!important;
+  border-color:#2ea6ff!important;
+  color:#fff!important;
+}
+html[data-uzr-theme="light"] body .app #orders .order-card-v40{
+  background-color:#fff!important;
+  border-color:var(--v70-line)!important;
+  color:var(--v70-text)!important;
+}
+html[data-uzr-theme="light"] body .app #orders .order-card-head-v40>b,
+html[data-uzr-theme="light"] body .app #orders .order-card-name-v40{
+  color:var(--v70-text)!important;
+}
+html[data-uzr-theme="light"] body .app #orders :is(
+  .order-card-date-v40,.order-card-meta-v40
 ){
+  color:var(--v70-muted)!important;
+}
+html[data-uzr-theme="light"] body .app #orders .orders-empty-icon-v40{
+  background-color:#fff!important;
+  border-color:var(--v70-line)!important;
+  color:#6f8c9b!important;
+}
+
+/* ============================================================
+   FAQ
+   ============================================================ */
+html[data-uzr-theme="light"] body .app #faq{
+  background-color:var(--v70-page)!important;
+}
+html[data-uzr-theme="light"] body .app #faq :is(
+  .faq-v48-head-copy h1,.faq-v48-section-head h2,.faq-v48-question
+){
+  color:var(--v70-text)!important;
+  -webkit-text-fill-color:var(--v70-text)!important;
+}
+html[data-uzr-theme="light"] body .app #faq .faq-v48-head-copy p{
+  color:var(--v70-muted)!important;
+}
+html[data-uzr-theme="light"] body .app #faq :is(
+  .faq-v48-item,.faq-v48-q,.faq-v48-a,.faq-v48-help-card,
+  .faq-v59-contact-note,.faq-v60-resale-boundary
+){
+  background-color:#fff!important;
+  background-image:none!important;
+  border-color:var(--v70-line)!important;
+}
+html[data-uzr-theme="light"] body .app #faq .faq-v48-a{
+  color:#526874!important;
+}
+html[data-uzr-theme="light"] body .app #faq .faq-v48-help-card b{
+  color:var(--v70-text)!important;
+}
+html[data-uzr-theme="light"] body .app #faq .faq-v48-help-card small{
+  color:var(--v70-muted)!important;
+}
+
+/* ============================================================
+   LEGAL
+   ============================================================ */
+html[data-uzr-theme="light"] body .app :is(#legalCenter,#legalDocument,#legalSection){
+  background-color:var(--v70-page)!important;
+}
+html[data-uzr-theme="light"] body .app :is(
+  .legal-v53-intro,.legal-v53-card,.legal-v53-row,.legal-v53-toc-row,.legal-v53-clause
+){
+  background-color:#fff!important;
+  background-image:none!important;
+  border-color:var(--v70-line)!important;
+}
+html[data-uzr-theme="light"] body .app :is(
+  .legal-v53-head h1,.legal-v53-intro h2,.legal-v53-section-title h2,
+  .legal-v53-copy b,.legal-v53-toc-copy b,.legal-v53-clause b
+){
+  color:var(--v70-text)!important;
+  -webkit-text-fill-color:var(--v70-text)!important;
+}
+
+/* ============================================================
+   SELL
+   ============================================================ */
+html[data-uzr-theme="light"] body .app #sell{
+  background-color:var(--v70-page)!important;
+}
+html[data-uzr-theme="light"] body .app #sell .sell-panel{
+  background-color:#fff!important;
+  border-color:var(--v70-line)!important;
+}
+html[data-uzr-theme="light"] body .app #sell :is(input,textarea,select){
+  background-color:#f8fafc!important;
+  color:var(--v70-text)!important;
+  -webkit-text-fill-color:var(--v70-text)!important;
+  border-color:#dbe3e9!important;
+}
+html[data-uzr-theme="light"] body .app #sell .uploadbox{
+  background-color:#f8fafc!important;
+  border-color:#a8c5d5!important;
+}
+html[data-uzr-theme="light"] body .app #sell .sell-moderation-note{
+  background-color:#eef8ff!important;
+  background-image:none!important;
+  border-color:#b7dff7!important;
+  color:#506a78!important;
+}
+
+/* ============================================================
+   CONSENT
+   ============================================================ */
+html[data-uzr-theme="light"] body #uzrConsentV58,
+html[data-uzr-theme="light"] body #uzrConsentLegalV58{
+  background-color:var(--v70-page)!important;
+  color:var(--v70-text)!important;
+}
+html[data-uzr-theme="light"] body :is(
+  .uzr-consent-card-v58,.uzr-consent-docs-v58,.uzr-consent-doc-v58,
+  .uzr-consent-legal-meta-v58,.uzr-consent-legal-section-v58
+){
+  background-color:#fff!important;
+  border-color:var(--v70-line)!important;
+}
+html[data-uzr-theme="light"] body :is(
+  .uzr-consent-card-v58 h1,.uzr-consent-doc-copy-v58 b,.uzr-consent-legal-section-v58 h3
+){
+  color:var(--v70-text)!important;
+}
+
+/* small phone */
+@media(max-width:390px){
+  button.uzr-back-v69{
+    width:40px!important;height:40px!important;
+    min-width:40px!important;min-height:40px!important;
+    max-width:40px!important;max-height:40px!important;
+    flex-basis:40px!important;
+  }
+}
+
+
+/* ============================================================
+   v71 — LAST-PASS CONTRAST / SPECIFICITY FIXES
+   ============================================================ */
+
+/* stubborn internal Back buttons */
+html[data-uzr-theme="light"] body .app #orders #ordersBack.uzr-back-v69,
+html[data-uzr-theme="light"] body #productView #productBack.uzr-back-v69,
+html[data-uzr-theme="light"] body #checkoutView #checkoutBack.uzr-back-v69,
+html[data-uzr-theme="light"] body #adminReviewView button.uzr-back-v69,
+html[data-uzr-theme="light"] body #adminListingView button.uzr-back-v69{
+  width:42px!important;height:42px!important;
+  min-width:42px!important;min-height:42px!important;
+  max-width:42px!important;max-height:42px!important;
+  flex:0 0 42px!important;
   background:#fff!important;
-  color:var(--uzr-text)!important;
-  border-color:var(--uzr-border)!important;
+  background-color:#fff!important;
+  background-image:none!important;
+  border:1px solid #d2dee6!important;
+  color:#17384b!important;
+  -webkit-text-fill-color:#17384b!important;
+  box-shadow:0 3px 10px rgba(31,53,68,.07)!important;
 }
-html[data-uzr-theme="light"] :is(input,textarea)::placeholder{
-  color:#98a5b0!important;
-}
-
-html[data-uzr-theme="light"] .legal-v53-intro{
-  background:linear-gradient(145deg,#ffffff,#f5f8fb)!important;
-  border-color:var(--uzr-border)!important;
-}
-
-html[data-uzr-theme="light"] :is(
-  .legal-v53-note,.uzr-settings-note-v61,.faq-v59-contact-note,
-  .faq-v60-resale-boundary
-){
-  background:#f7f9fb!important;
-  border-color:var(--uzr-border)!important;
-  color:var(--uzr-muted)!important;
+html[data-uzr-theme="light"] body :is(
+  #orders #ordersBack,#productView #productBack,#checkoutView #checkoutBack,
+  #adminReviewView button.uzr-back-v69,#adminListingView button.uzr-back-v69
+) svg{
+  stroke:#17384b!important;
+  color:#17384b!important;
 }
 
-html[data-uzr-theme="light"] :is(
-  .product-v18-circle,.tg-settings-back-v13,.faq-v48-back
-){
+/* home categories: old rgba background cannot bleed through */
+html[data-uzr-theme="light"] body .app #home .dark-categories-v10>button{
   background:#fff!important;
-  border-color:var(--uzr-border)!important;
-  color:var(--uzr-text)!important;
+  background-color:#fff!important;
+  background-image:none!important;
+}
+html[data-uzr-theme="light"] body .app #home .dark-categories-v10>button::before,
+html[data-uzr-theme="light"] body .app #home .dark-categories-v10>button::after{
+  background:none!important;
+  background-color:transparent!important;
+  background-image:none!important;
 }
 
-/* Settings popup */
-html[data-uzr-theme="light"] .uzr-settings-choice-overlay-v61{
-  background:rgba(37,49,60,.32)!important;
-}
-html[data-uzr-theme="light"] .uzr-settings-choice-sheet-v61{
-  background:linear-gradient(180deg,#ffffff 0%,#f7f9fb 100%)!important;
-  border-color:var(--uzr-border-strong)!important;
-  box-shadow:0 22px 70px rgba(35,50,65,.18)!important;
-}
-html[data-uzr-theme="light"] .uzr-settings-choice-handle-v61{
-  background:#b4c0c9!important;
-}
-html[data-uzr-theme="light"] .uzr-settings-choice-head-v61 h2{
-  color:var(--uzr-text)!important;
-}
-html[data-uzr-theme="light"] .uzr-settings-choice-head-v61>button{
-  background:#edf2f6!important;
-  color:var(--uzr-text)!important;
-}
-html[data-uzr-theme="light"] .uzr-settings-choice-list-v61{
+/* catalog inactive pill + results count */
+html[data-uzr-theme="light"] body .app #catalog #filters>button.filter:not(.active){
   background:#fff!important;
-  border-color:var(--uzr-border)!important;
+  background-color:#fff!important;
+  background-image:none!important;
+  border-color:var(--v70-line)!important;
+  color:var(--v70-text)!important;
+  -webkit-text-fill-color:var(--v70-text)!important;
 }
-html[data-uzr-theme="light"] .uzr-settings-choice-option-v61.current{
-  background:#f1f8fd!important;
-}
-html[data-uzr-theme="light"] .uzr-settings-soon-v61{
-  background:#f5f7f9!important;
-  border-color:#d4dde4!important;
-  color:#7e8c98!important;
+html[data-uzr-theme="light"] body .app #catalog #catalogResultCount{
+  color:var(--v70-muted)!important;
+  -webkit-text-fill-color:var(--v70-muted)!important;
 }
 
-/* First-run consent */
-html[data-uzr-theme="light"] #uzrConsentV58,
-html[data-uzr-theme="light"] #uzrConsentLegalV58{
-  background:var(--uzr-bg)!important;
-  color:var(--uzr-text)!important;
+/* sorting panel — use ID to beat every old dark rule */
+html[data-uzr-theme="light"] body .app #catalog #sortSheetV2{
+  background:#fff!important;
+  background-color:#fff!important;
+  background-image:none!important;
+  border:1px solid var(--v70-line)!important;
+  box-shadow:0 5px 16px rgba(31,50,64,.05)!important;
 }
-html[data-uzr-theme="light"] .uzr-consent-card-v58{
-  background:linear-gradient(155deg,#ffffff 0%,#f5f8fb 100%)!important;
-  border-color:var(--uzr-border)!important;
-  box-shadow:0 24px 70px rgba(25,40,55,.16)!important;
+html[data-uzr-theme="light"] body .app #catalog #sortSheetV2>span{
+  color:#6d818f!important;
+  -webkit-text-fill-color:#6d818f!important;
 }
-html[data-uzr-theme="light"] .uzr-consent-logo-v58,
-html[data-uzr-theme="light"] .uzr-consent-doc-icon-v58{
+html[data-uzr-theme="light"] body .app #catalog #sortSheetV2>select{
+  background:#f8fafc!important;
+  background-color:#f8fafc!important;
+  background-image:none!important;
+  border-color:var(--v70-line)!important;
+  color:var(--v70-text)!important;
+  -webkit-text-fill-color:var(--v70-text)!important;
+}
+
+/* FAQ: all text inside white cards must be dark */
+html[data-uzr-theme="light"] body .app #faq .faq-v48-hero-icon{
+  background:#fff!important;
+  background-color:#fff!important;
+  border-color:var(--v70-line)!important;
+  color:#2ea6ff!important;
+}
+html[data-uzr-theme="light"] body .app #faq .faq-v48-q{
+  color:var(--v70-text)!important;
+  -webkit-text-fill-color:var(--v70-text)!important;
+}
+html[data-uzr-theme="light"] body .app #faq .faq-v48-a b,
+html[data-uzr-theme="light"] body .app #faq .faq-v48-a strong{
+  color:var(--v70-text)!important;
+  -webkit-text-fill-color:var(--v70-text)!important;
+}
+
+/* China */
+html[data-uzr-theme="light"] body .app #china #chinaProductCountV32{
+  background:#eef8ff!important;
+  background-color:#eef8ff!important;
+  border-color:#b9dff5!important;
+  color:#168fdc!important;
+  -webkit-text-fill-color:#168fdc!important;
+}
+html[data-uzr-theme="light"] body .app #china .china-v32-empty-icon{
+  background:#eef5f9!important;
+  background-color:#eef5f9!important;
+  color:#668594!important;
+}
+html[data-uzr-theme="light"] body .app #china .china-v32-empty button{
+  background:#fff!important;
+  background-color:#fff!important;
+  border-color:#2ea6ff!important;
+  color:#168fdc!important;
+  -webkit-text-fill-color:#168fdc!important;
+}
+html[data-uzr-theme="light"] body .app #china .china-v32-official,
+html[data-uzr-theme="light"] body .app #china .china-v32-official *{
+  -webkit-text-fill-color:initial;
+}
+html[data-uzr-theme="light"] body .app #china .china-v32-name-row,
+html[data-uzr-theme="light"] body .app #china .china-v32-name-row b{
+  color:var(--v70-text)!important;
+  -webkit-text-fill-color:var(--v70-text)!important;
+}
+
+/* Official Store stats/buttons */
+html[data-uzr-theme="light"] body #officialStoreView .official-store-stats b{
+  color:var(--v70-text)!important;
+  -webkit-text-fill-color:var(--v70-text)!important;
+}
+html[data-uzr-theme="light"] body #officialStoreView #officialSupportBtn{
+  background:#2ea6ff!important;
+  background-color:#2ea6ff!important;
+  background-image:none!important;
+  border-color:#2ea6ff!important;
+  color:#fff!important;
+  -webkit-text-fill-color:#fff!important;
+}
+html[data-uzr-theme="light"] body #officialStoreView #officialSupportBtn *{
+  color:#fff!important;
+  -webkit-text-fill-color:#fff!important;
+}
+html[data-uzr-theme="light"] body #officialStoreView #officialStoreAllBtn{
+  background:#fff!important;
+  background-color:#fff!important;
+  background-image:none!important;
+  border:1px solid #b9dff5!important;
+  color:#168fdc!important;
+  -webkit-text-fill-color:#168fdc!important;
+}
+html[data-uzr-theme="light"] body #officialStoreView #officialStoreAllBtn *{
+  color:#168fdc!important;
+  -webkit-text-fill-color:#168fdc!important;
+}
+
+/* cart total / action */
+html[data-uzr-theme="light"] body .app #cart #cartBottom .total,
+html[data-uzr-theme="light"] body .app #cart #cartBottom .total span{
+  color:var(--v70-text)!important;
+  -webkit-text-fill-color:var(--v70-text)!important;
+}
+html[data-uzr-theme="light"] body .app #cart #checkoutBtn{
+  background:#2ea6ff!important;
+  background-color:#2ea6ff!important;
+  background-image:none!important;
+  color:#fff!important;
+  -webkit-text-fill-color:#fff!important;
+}
+
+/* favorites discover card */
+html[data-uzr-theme="light"] body .app #favorites .favorites-discover-card{
+  background:#fff!important;
+  background-color:#fff!important;
+  border-color:var(--v70-line)!important;
+}
+html[data-uzr-theme="light"] body .app #favorites .favorites-discover-copy,
+html[data-uzr-theme="light"] body .app #favorites .favorites-discover-copy b{
+  color:var(--v70-text)!important;
+  -webkit-text-fill-color:var(--v70-text)!important;
+}
+html[data-uzr-theme="light"] body .app #favorites .favorites-discover-copy small{
+  color:var(--v70-muted)!important;
+  -webkit-text-fill-color:var(--v70-muted)!important;
+}
+
+/* Viewed: Clear button + confirmation sheet */
+html[data-uzr-theme="light"] body .app #viewed #viewedClearBtnV46{
+  background:#fff!important;
+  background-color:#fff!important;
+  border-color:#b9dff5!important;
+  color:#168fdc!important;
+  -webkit-text-fill-color:#168fdc!important;
+}
+html[data-uzr-theme="light"] body .app #viewed #viewedClearBtnV46 *{
+  color:#168fdc!important;
+  -webkit-text-fill-color:#168fdc!important;
+}
+html[data-uzr-theme="light"] body #viewedClearSheetV46 .viewed-v46-sheet{
+  background:#fff!important;
+  background-color:#fff!important;
+  border-color:var(--v70-line)!important;
+}
+html[data-uzr-theme="light"] body #viewedClearSheetV46 #viewedClearTitleV46{
+  color:var(--v70-text)!important;
+  -webkit-text-fill-color:var(--v70-text)!important;
+}
+html[data-uzr-theme="light"] body #viewedClearSheetV46 #viewedClearCancelV46{
+  background:#fff!important;
+  color:#168fdc!important;
+  -webkit-text-fill-color:#168fdc!important;
+  border-color:#b9dff5!important;
+}
+
+/* My Products title */
+html[data-uzr-theme="light"] body .app #myProducts .my-products-head-copy-v25 h1{
+  color:var(--v70-text)!important;
+  -webkit-text-fill-color:var(--v70-text)!important;
+}
+
+/* Sell form: all labels/headings readable */
+html[data-uzr-theme="light"] body .app #sell .sell-v34-head-copy h1,
+html[data-uzr-theme="light"] body .app #sell .sell-panel-head h2{
+  color:var(--v70-text)!important;
+  -webkit-text-fill-color:var(--v70-text)!important;
+}
+html[data-uzr-theme="light"] body .app #sell .field label{
+  color:#435b68!important;
+  -webkit-text-fill-color:#435b68!important;
+}
+html[data-uzr-theme="light"] body .app #sell .uploadbox strong{
+  color:var(--v70-text)!important;
+  -webkit-text-fill-color:var(--v70-text)!important;
+}
+html[data-uzr-theme="light"] body .app #sell .sell-moderation-note b{
+  color:#174d68!important;
+  -webkit-text-fill-color:#174d68!important;
+}
+html[data-uzr-theme="light"] body .app #sell #sellSubmit{
+  background:linear-gradient(180deg,#35b2ff,#168fe8)!important;
+  background-color:#2ea6ff!important;
+  color:#fff!important;
+  -webkit-text-fill-color:#fff!important;
+  border:0!important;
+}
+html[data-uzr-theme="light"] body .app #sell #sellSubmit *{
+  color:#fff!important;
+  -webkit-text-fill-color:#fff!important;
+}
+
+/* generic light CTA text stays white only on blue buttons */
+html[data-uzr-theme="light"] body .app :is(
+  #favorites .favorites-final-empty button,
+  #viewed .viewed-v46-empty button,
+  #cartList .cart-empty-v23 button,
+  #orders .orders-empty-v40 button,
+  #contactRequests .contact-requests-empty-v49 button
+){
+  background:#2ea6ff!important;
+  background-color:#2ea6ff!important;
+  color:#fff!important;
+  -webkit-text-fill-color:#fff!important;
+  border-color:#2ea6ff!important;
+}
+
+</style>
+
+
+<style id="uzr-v72-light-last-details">
+/* ============================================================
+   v72 — last visible details from real-device audit
+   ============================================================ */
+
+/* 1) MY REQUESTS — title and disclaimer must be readable in Light */
+html[data-uzr-theme="light"] body .app #contactRequests .contact-requests-v49-topbar h1{
+  color:#122431!important;
+  -webkit-text-fill-color:#122431!important;
+  opacity:1!important;
+}
+html[data-uzr-theme="light"] body .app #contactRequests .contact-requests-v49-disclaimer{
+  background:#ffffff!important;
+  background-color:#ffffff!important;
+  background-image:none!important;
+  border:1px solid #d7e1e8!important;
+  color:#536b79!important;
+  -webkit-text-fill-color:#536b79!important;
+  box-shadow:none!important;
+}
+html[data-uzr-theme="light"] body .app #contactRequests .contact-requests-v49-disclaimer svg{
+  stroke:#2ea6ff!important;
+  color:#2ea6ff!important;
+}
+html[data-uzr-theme="light"] body .app #contactRequests .contact-requests-v49-disclaimer span{
+  color:#536b79!important;
+  -webkit-text-fill-color:#536b79!important;
+}
+
+/* 2) VIEWED — make the info row softer and disabled Clear still legible */
+html[data-uzr-theme="light"] body .app #viewed .viewed-v46-info-icon{
   background:#eaf6ff!important;
-  border-color:#cfe8fa!important;
+  color:#168fdc!important;
 }
-html[data-uzr-theme="light"] .uzr-consent-legal-head-v58{
-  background:rgba(255,255,255,.97)!important;
-  border-bottom-color:var(--uzr-border)!important;
+html[data-uzr-theme="light"] body .app #viewed .viewed-v46-info-icon svg{
+  stroke:#168fdc!important;
 }
-html[data-uzr-theme="light"] .uzr-consent-legal-head-v58 button{
-  background:#fff!important;
-  border-color:var(--uzr-border)!important;
-  color:var(--uzr-text)!important;
+html[data-uzr-theme="light"] body .app #viewed .viewed-v46-clear{
+  background:#ffffff!important;
+  background-color:#ffffff!important;
+  border:1px solid #b9dff5!important;
+  color:#168fdc!important;
+  -webkit-text-fill-color:#168fdc!important;
+}
+html[data-uzr-theme="light"] body .app #viewed .viewed-v46-clear svg{
+  stroke:#168fdc!important;
+}
+html[data-uzr-theme="light"] body .app #viewed .viewed-v46-clear:disabled{
+  opacity:1!important;
+  background:#f7f9fb!important;
+  border-color:#dbe4ea!important;
+  color:#a1b0ba!important;
+  -webkit-text-fill-color:#a1b0ba!important;
+  pointer-events:none!important;
+}
+html[data-uzr-theme="light"] body .app #viewed .viewed-v46-clear:disabled svg{
+  stroke:#a1b0ba!important;
 }
 
-/* Global text safety for the most common legacy dark selectors */
-html[data-uzr-theme="light"] :is(
-  #profile,#settingsPage,#faq,#legalCenter,#legalDocument,#legalSection,
-  #cart,#checkout,#orders,#contactRequests,#myProducts,#viewed
-){
-  color:var(--uzr-text)!important;
+/* 3) FAQ — calmer header icon + no dark CTA at the bottom */
+html[data-uzr-theme="light"] body .app #faq .faq-v48-hero-icon{
+  width:54px!important;
+  height:54px!important;
+  min-width:54px!important;
+  border-radius:18px!important;
+  background:#ffffff!important;
+  border:1px solid #d7e1e8!important;
+  color:#2ea6ff!important;
+  box-shadow:0 3px 10px rgba(31,53,68,.045)!important;
+}
+html[data-uzr-theme="light"] body .app #faq .faq-v48-hero-icon svg{
+  width:26px!important;
+  height:26px!important;
+  stroke:#2ea6ff!important;
+}
+html[data-uzr-theme="light"] body .app #faq .faq-v48-urgent{
+  background:#ffffff!important;
+  background-color:#ffffff!important;
+  background-image:none!important;
+  border:1px solid #b9dff5!important;
+  color:#587180!important;
+  box-shadow:none!important;
+}
+html[data-uzr-theme="light"] body .app #faq .faq-v48-urgent-icon{
+  background:#eaf6ff!important;
+  color:#168fdc!important;
+}
+html[data-uzr-theme="light"] body .app #faq .faq-v48-urgent-icon svg{
+  stroke:#168fdc!important;
+}
+html[data-uzr-theme="light"] body .app #faq .faq-v48-urgent>span:nth-child(2){
+  color:#587180!important;
+  -webkit-text-fill-color:#587180!important;
+}
+html[data-uzr-theme="light"] body .app #faq .faq-v48-urgent b{
+  color:#168fdc!important;
+  -webkit-text-fill-color:#168fdc!important;
+}
+html[data-uzr-theme="light"] body .app #faq .faq-v48-urgent>svg{
+  stroke:#78919f!important;
 }
 
-/* Keep image/media areas dark only where the asset itself needs it */
-html[data-uzr-theme="light"] .image-wrap,
-html[data-uzr-theme="light"] .product-image-wrap{
-  background:#eef2f5!important;
+/* Support cards get one common white-card language */
+html[data-uzr-theme="light"] body .app #faq .faq-v48-help-card{
+  background:#ffffff!important;
+  background-color:#ffffff!important;
+  background-image:none!important;
+  border:1px solid #d7e1e8!important;
+  box-shadow:none!important;
+}
+html[data-uzr-theme="light"] body .app #faq .faq-v48-help-card b{
+  color:#122431!important;
+  -webkit-text-fill-color:#122431!important;
+}
+html[data-uzr-theme="light"] body .app #faq .faq-v48-help-card small{
+  color:#6a7f8c!important;
+  -webkit-text-fill-color:#6a7f8c!important;
+}
+
+/* 4) HOME CATEGORIES — all four icons use the same muted blue-gray */
+html[data-uzr-theme="light"] body .app #home .dark-categories-v10>button{
+  background:#ffffff!important;
+  background-color:#ffffff!important;
+  background-image:none!important;
+  border:1px solid #d7e1e8!important;
+  box-shadow:0 3px 10px rgba(31,50,64,.035)!important;
+}
+html[data-uzr-theme="light"] body .app #home .dark-categories-v10>button>span{
+  color:#668594!important;
+  background:transparent!important;
+}
+html[data-uzr-theme="light"] body .app #home .dark-categories-v10>button>span svg,
+html[data-uzr-theme="light"] body .app #home .dark-categories-v10 .dark-shoe-svg-v10 svg{
+  stroke:#668594!important;
+  color:#668594!important;
+}
+html[data-uzr-theme="light"] body .app #home .dark-categories-v10>button>b{
+  color:#122431!important;
+  -webkit-text-fill-color:#122431!important;
+  font-weight:600!important;
+}
+
+/* 5) Keep the unified Back control pristine on these reviewed screens */
+html[data-uzr-theme="light"] body .app :is(
+  #contactRequests,#viewed,#faq
+) button.uzr-back-v69{
+  width:42px!important;
+  height:42px!important;
+  min-width:42px!important;
+  min-height:42px!important;
+  max-width:42px!important;
+  max-height:42px!important;
+  background:#ffffff!important;
+  background-color:#ffffff!important;
+  background-image:none!important;
+  border:1px solid #d2dee6!important;
+  color:#17384b!important;
+  box-shadow:0 3px 10px rgba(31,53,68,.07)!important;
+}
+html[data-uzr-theme="light"] body .app :is(
+  #contactRequests,#viewed,#faq
+) button.uzr-back-v69 svg{
+  stroke:#17384b!important;
+  color:#17384b!important;
 }
 </style>
 
 
-<style id="uzr-v66-light-theme-full-fix">
+<style id="uzr-v73-micro-polish">
 /* ============================================================
-   UZBEK RE'SALE — v66 LIGHT THEME FINAL UI LAYER
-   Dark theme is untouched. Everything below is light-only.
+   v73 — micro polish only
+   Based on the final FAQ / Terms / Privacy screenshots.
    ============================================================ */
 
-html[data-uzr-theme="light"]{
-  color-scheme:light!important;
-
-  --uzr-bg:#f3f6fa!important;
-  --uzr-surface:#ffffff!important;
-  --uzr-surface-deep:#f7f9fb!important;
-  --uzr-surface-2:#ffffff!important;
-  --uzr-surface-3:#f7f9fb!important;
-  --uzr-surface-4:#ffffff!important;
-  --uzr-surface-5:#f7f9fb!important;
-
-  --uzr-border:#d8e1e8!important;
-  --uzr-border-strong:#cbd7df!important;
-  --uzr-border-soft:#e5ebf0!important;
-
-  --uzr-text:#13232f!important;
-  --uzr-muted:#687b89!important;
-  --uzr-muted-2:#778b99!important;
-  --uzr-muted-3:#607481!important;
-  --uzr-muted-4:#8494a0!important;
-
-  --uzr-accent:#2ea6ff!important;
-  --uzr-accent-2:#259be8!important;
-
-  --v66-page:#f3f6fa;
-  --v66-card:#ffffff;
-  --v66-soft:#eef3f7;
-  --v66-line:#d8e1e8;
-  --v66-text:#13232f;
-  --v66-muted:#687b89;
-  --v66-navy:#123f58;
-  --v66-blue:#2ea6ff;
+/* ---------- FAQ: slightly stronger readability ---------- */
+html[data-uzr-theme="light"] body .app #faq .faq-v60-resale-boundary,
+html[data-uzr-theme="light"] body .app #faq .faq-v59-contact-note{
+  padding:13px 14px!important;
+  color:#4f6674!important;
+  -webkit-text-fill-color:#4f6674!important;
+  line-height:1.5!important;
+}
+html[data-uzr-theme="light"] body .app #faq .faq-v60-resale-boundary span,
+html[data-uzr-theme="light"] body .app #faq .faq-v59-contact-note span{
+  color:#4f6674!important;
+  -webkit-text-fill-color:#4f6674!important;
+}
+html[data-uzr-theme="light"] body .app #faq .faq-v60-resale-boundary b{
+  color:#17313f!important;
+  -webkit-text-fill-color:#17313f!important;
 }
 
-/* page / app foundation */
-html[data-uzr-theme="light"],
-html[data-uzr-theme="light"] body,
-html[data-uzr-theme="light"] .app,
-html[data-uzr-theme="light"] .page,
-html[data-uzr-theme="light"] .overlay,
-html[data-uzr-theme="light"] .inner{
-  background:var(--v66-page)!important;
-  color:var(--v66-text)!important;
+/* help cards: equal visual rhythm */
+html[data-uzr-theme="light"] body .app #faq .faq-v48-help-card{
+  min-height:76px!important;
+  padding:12px 14px!important;
+  border-radius:16px!important;
+}
+html[data-uzr-theme="light"] body .app #faq .faq-v48-help-card.wide{
+  min-height:68px!important;
+}
+html[data-uzr-theme="light"] body .app #faq .faq-v48-help-icon{
+  width:42px!important;
+  height:42px!important;
+  min-width:42px!important;
+}
+html[data-uzr-theme="light"] body .app #faq .faq-v48-help-card b{
+  font-size:12.2px!important;
+}
+html[data-uzr-theme="light"] body .app #faq .faq-v48-help-card small{
+  margin-top:3px!important;
+  font-size:9.8px!important;
 }
 
-/* Theme-specific logo */
-.uzr-brand-logo-light-v66{display:none!important}
-html[data-uzr-theme="light"] .uzr-brand-logo-dark-v66{display:none!important}
-html[data-uzr-theme="light"] .uzr-brand-logo-light-v66{display:block!important}
-html[data-uzr-theme="light"] .dark-brand-v10 img{
-  filter:none!important;
-  opacity:1!important;
+/* direct contact row: same card language */
+html[data-uzr-theme="light"] body .app #faq .faq-v48-urgent{
+  min-height:58px!important;
+  padding:10px 13px!important;
+  border-radius:16px!important;
+}
+html[data-uzr-theme="light"] body .app #faq .faq-v48-urgent>span:nth-child(2){
+  font-size:10.2px!important;
+  line-height:1.35!important;
 }
 
-/* App header */
-html[data-uzr-theme="light"] #appHeader,
-html[data-uzr-theme="light"] .dark-home-header-v10{
-  background:rgba(255,255,255,.97)!important;
-  border-bottom:1px solid var(--v66-line)!important;
-  box-shadow:0 2px 12px rgba(28,50,66,.045)!important;
-}
-html[data-uzr-theme="light"] .dark-round-btn-v10{
-  background:#fff!important;
-  border:1px solid var(--v66-line)!important;
-  color:var(--v66-text)!important;
-  box-shadow:0 2px 7px rgba(33,54,70,.05)!important;
-}
-html[data-uzr-theme="light"] .dark-round-btn-v10 svg{
-  stroke:#17394e!important;
+/* ---------- LEGAL: compact and cleaner ---------- */
+#legalDocument .legal-v53-shell,
+#legalSection .legal-v53-shell{
+  padding-bottom:calc(118px + env(safe-area-inset-bottom))!important;
 }
 
-/* Bottom navigation stays clean and light */
-html[data-uzr-theme="light"] nav{
-  background:rgba(255,255,255,.985)!important;
-  border-top:1px solid var(--v66-line)!important;
-  box-shadow:0 -7px 22px rgba(28,50,66,.08)!important;
-}
-html[data-uzr-theme="light"] nav .nav{
-  color:#7a8f9d!important;
-}
-html[data-uzr-theme="light"] nav .nav .icon svg{
-  stroke:#7a8f9d!important;
-}
-html[data-uzr-theme="light"] nav .nav.active{
-  color:#169ce9!important;
-}
-html[data-uzr-theme="light"] nav .nav.active .icon svg{
-  stroke:#169ce9!important;
-}
-
-/* ------------------------------------------------------------
-   UNIVERSAL LIGHT BACK / ACTION BUTTONS
-   ------------------------------------------------------------ */
-html[data-uzr-theme="light"] :is(
-  .product-v18-circle,
-  .faq-v48-back,
-  .legal-v53-back,
-  .viewed-v46-back,
-  .contact-requests-v49-back,
-  .my-products-back-v25,
-  .orders-v40-back,
-  .sell-v34-back,
-  .favorites-final-back,
-  .order-detail-v40-back,
-  .seller-v26-back,
-  .contact-request-v49-back
-){
-  background:#ffffff!important;
-  border:1px solid #d4dfe6!important;
-  color:#17384d!important;
-  box-shadow:0 3px 10px rgba(30,51,66,.07)!important;
-}
-html[data-uzr-theme="light"] :is(
-  .product-v18-circle,
-  .faq-v48-back,
-  .legal-v53-back,
-  .viewed-v46-back,
-  .contact-requests-v49-back,
-  .my-products-back-v25,
-  .orders-v40-back,
-  .sell-v34-back,
-  .favorites-final-back,
-  .order-detail-v40-back,
-  .seller-v26-back,
-  .contact-request-v49-back
-) svg{
-  stroke:#17384d!important;
-}
-html[data-uzr-theme="light"] .product-v18-circle:active{
-  background:#eef4f8!important;
-  transform:scale(.96)!important;
-}
-
-/* ------------------------------------------------------------
-   GLOBAL READABILITY
-   ------------------------------------------------------------ */
-html[data-uzr-theme="light"] :is(
-  #faq,#legalCenter,#legalDocument,#legalSection,#viewed,#contactRequests,
-  #myProducts,#profile,#orders,#china,#sell,#favorites,#catalog,#productView,
-  #sellerProfile,#cart,#checkout,#contactRequest,#contactRequestSuccessV49
-) :is(h1,h2,h3,h4){
-  color:var(--v66-text)!important;
-}
-html[data-uzr-theme="light"] :is(
-  #faq,#legalCenter,#legalDocument,#legalSection,#viewed,#contactRequests,
-  #myProducts,#profile,#orders,#china,#sell,#favorites,#catalog,#productView,
-  #sellerProfile,#cart,#checkout,#contactRequest,#contactRequestSuccessV49
-) :is(p,small){
-  color:var(--v66-muted)!important;
-}
-
-/* ------------------------------------------------------------
-   HOME
-   ------------------------------------------------------------ */
-html[data-uzr-theme="light"] #home,
-html[data-uzr-theme="light"] .dark-home-page-v10{
-  background:var(--v66-page)!important;
-}
-html[data-uzr-theme="light"] .dark-search-v10{
-  background:#fff!important;
-  border:1px solid var(--v66-line)!important;
-  color:var(--v66-text)!important;
-  box-shadow:none!important;
-}
-html[data-uzr-theme="light"] .dark-search-v10 input{
-  color:var(--v66-text)!important;
-}
-html[data-uzr-theme="light"] .dark-search-v10 input::placeholder{
-  color:#8295a2!important;
-}
-html[data-uzr-theme="light"] .dark-filter-btn-v10{
-  background:#fff!important;
-  border:1px solid var(--v66-line)!important;
-  color:#17384d!important;
-}
-html[data-uzr-theme="light"] .dark-filter-btn-v10 svg{
-  stroke:#17384d!important;
-}
-html[data-uzr-theme="light"] .dark-categories-v10 button{
-  background:#fff!important;
-  border:1px solid var(--v66-line)!important;
-  color:var(--v66-text)!important;
-  box-shadow:0 3px 12px rgba(32,53,68,.04)!important;
-}
-html[data-uzr-theme="light"] .dark-categories-v10 button>span{
-  background:#eef5f9!important;
-  color:#507081!important;
-}
-html[data-uzr-theme="light"] .dark-categories-v10 button svg{
-  stroke:#557787!important;
-}
-html[data-uzr-theme="light"] .dark-categories-v10 button>b,
-html[data-uzr-theme="light"] .dark-popular-head-v10 :is(h2,b,span){
-  color:var(--v66-text)!important;
-}
-
-/* ------------------------------------------------------------
-   PRODUCT CARDS — HOME / CATALOG / FAVORITES / VIEWED / CHINA
-   ------------------------------------------------------------ */
-html[data-uzr-theme="light"] .product-card-v15{
-  background:#fff!important;
-  border:1px solid var(--v66-line)!important;
-  box-shadow:0 3px 12px rgba(30,50,64,.04)!important;
-}
-html[data-uzr-theme="light"] .product-card-v15 .product-card-media-v15,
-html[data-uzr-theme="light"] .product-card-v15 .photo{
-  background:#f3f6f8!important;
-}
-html[data-uzr-theme="light"] .product-card-v15 :is(
-  .name,.product-title-v2,.product-card-title-v16,.product-card-info-v15 b
-){
-  color:var(--v66-text)!important;
-  -webkit-text-fill-color:var(--v66-text)!important;
-}
-html[data-uzr-theme="light"] .product-card-v15 :is(
-  .meta,.product-meta-v15,.product-meta-v16
-){
-  color:var(--v66-muted)!important;
-  -webkit-text-fill-color:var(--v66-muted)!important;
-}
-html[data-uzr-theme="light"] .product-card-v15 .price{
-  color:#159ce8!important;
-  -webkit-text-fill-color:#159ce8!important;
-}
-html[data-uzr-theme="light"] .product-card-v15 .product-heart{
-  background:rgba(255,255,255,.94)!important;
-  border:1px solid rgba(194,206,215,.9)!important;
-  color:#526c7a!important;
-}
-html[data-uzr-theme="light"] .product-card-v15 .product-heart svg{
-  stroke:#526c7a!important;
-}
-
-/* ------------------------------------------------------------
-   CATALOG
-   ------------------------------------------------------------ */
-html[data-uzr-theme="light"] #catalog .tg-catalog-search-v14{
-  background:#fff!important;
-  border:1px solid var(--v66-line)!important;
-  box-shadow:0 2px 8px rgba(31,52,66,.035)!important;
-}
-html[data-uzr-theme="light"] #catalog .tg-catalog-search-v14>svg{
-  stroke:#66808f!important;
-}
-html[data-uzr-theme="light"] #catalog .tg-catalog-search-v14 input{
-  color:var(--v66-text)!important;
-}
-html[data-uzr-theme="light"] #catalog .tg-catalog-search-v14 input::placeholder{
-  color:#82939f!important;
-}
-html[data-uzr-theme="light"] #catalog .tg-catalog-filter-v14{
-  background:#fff!important;
-  border:1px solid var(--v66-line)!important;
-  color:#17384d!important;
-}
-html[data-uzr-theme="light"] #catalog .tg-catalog-filter-v14 svg{
-  stroke:#17384d!important;
-}
-html[data-uzr-theme="light"] #catalog .tg-catalog-types-v14 .filter{
-  background:#fff!important;
-  color:var(--v66-text)!important;
-  border:1px solid var(--v66-line)!important;
-}
-html[data-uzr-theme="light"] #catalog .tg-catalog-types-v14 .filter.active{
-  background:#2ea6ff!important;
-  border-color:#2ea6ff!important;
-  color:#fff!important;
-}
-html[data-uzr-theme="light"] #catalog .tg-catalog-categories-v14 .category-chip{
-  background:#fff!important;
-  border:1px solid var(--v66-line)!important;
-  color:var(--v66-text)!important;
-  box-shadow:none!important;
-}
-html[data-uzr-theme="light"] #catalog .tg-catalog-categories-v14 .category-chip span{
-  color:#607b8a!important;
-}
-html[data-uzr-theme="light"] #catalog .tg-catalog-categories-v14 .category-chip svg{
-  stroke:#607b8a!important;
-}
-html[data-uzr-theme="light"] #catalog .tg-catalog-categories-v14 .category-chip b{
-  color:var(--v66-text)!important;
-}
-html[data-uzr-theme="light"] #catalog .tg-catalog-categories-v14 .category-chip.active{
-  background:#eef8ff!important;
-  border-color:#86cef7!important;
-}
-html[data-uzr-theme="light"] #catalog .tg-catalog-toolbar-v14 p{
-  color:var(--v66-muted)!important;
-}
-html[data-uzr-theme="light"] #catalog .tg-catalog-toolbar-v14 button{
-  background:#fff!important;
-  border:1px solid var(--v66-line)!important;
-  color:var(--v66-text)!important;
-}
-html[data-uzr-theme="light"] #catalog .tg-sort-panel-v14{
-  background:#fff!important;
-  border:1px solid var(--v66-line)!important;
-  color:var(--v66-text)!important;
-}
-html[data-uzr-theme="light"] #catalog .tg-sort-panel-v14 select{
-  background:#f8fafc!important;
-  color:var(--v66-text)!important;
-  border-color:var(--v66-line)!important;
-}
-
-/* ------------------------------------------------------------
-   PROFILE
-   ------------------------------------------------------------ */
-html[data-uzr-theme="light"] #profile .tg-profile-v13{
-  background:var(--v66-page)!important;
-}
-html[data-uzr-theme="light"] #profile .tg-profile-identity-v13 h1{
-  color:var(--v66-text)!important;
-  -webkit-text-fill-color:var(--v66-text)!important;
-}
-html[data-uzr-theme="light"] #profile .tg-profile-identity-v13 p{
-  color:#4d9ed0!important;
-  -webkit-text-fill-color:#4d9ed0!important;
-}
-html[data-uzr-theme="light"] #profile .tg-section-title-v13{
-  color:#6d7f8b!important;
-}
-html[data-uzr-theme="light"] #profile .tg-group-v13{
-  background:#fff!important;
-  border:1px solid var(--v66-line)!important;
-  box-shadow:none!important;
-}
-html[data-uzr-theme="light"] #profile .tg-row-v13{
-  background:#fff!important;
-  border-color:#e6ebef!important;
-}
-html[data-uzr-theme="light"] #profile .tg-row-text-v13{
-  color:var(--v66-text)!important;
-  -webkit-text-fill-color:var(--v66-text)!important;
-}
-html[data-uzr-theme="light"] #profile .tg-row-chevron-v13{
-  stroke:#718793!important;
-}
-html[data-uzr-theme="light"] #profile .tg-row-value-v55{
-  color:var(--v66-muted)!important;
-}
-
-/* ------------------------------------------------------------
-   SETTINGS
-   ------------------------------------------------------------ */
-html[data-uzr-theme="light"] #settingsPage .tg-settings-head-v13 h1,
-html[data-uzr-theme="light"] #settingsPage .tg-settings-row-text-v13{
-  color:var(--v66-text)!important;
-  -webkit-text-fill-color:var(--v66-text)!important;
-}
-html[data-uzr-theme="light"] #settingsPage .tg-settings-label-v13,
-html[data-uzr-theme="light"] #settingsPage .tg-settings-value-v13{
-  color:var(--v66-muted)!important;
-}
-html[data-uzr-theme="light"] #settingsPage .tg-settings-group-v13{
-  background:#fff!important;
-  border:1px solid var(--v66-line)!important;
-}
-html[data-uzr-theme="light"] #settingsPage .tg-settings-row-v13{
-  background:#fff!important;
-  border-color:#e6ebef!important;
-}
-html[data-uzr-theme="light"] .uzr-settings-note-v61{
-  background:#fff!important;
-  border:1px solid var(--v66-line)!important;
-  color:var(--v66-muted)!important;
-}
-html[data-uzr-theme="light"] .uzr-settings-choice-overlay-v61{
-  background:rgba(33,48,61,.32)!important;
-}
-html[data-uzr-theme="light"] .uzr-settings-choice-sheet-v61{
-  background:#fff!important;
-  border-color:var(--v66-line)!important;
-  box-shadow:0 22px 60px rgba(31,48,60,.18)!important;
-}
-html[data-uzr-theme="light"] .uzr-settings-choice-handle-v61{
-  background:#b4c1ca!important;
-}
-html[data-uzr-theme="light"] .uzr-settings-choice-head-v61 h2{
-  color:var(--v66-text)!important;
-}
-html[data-uzr-theme="light"] .uzr-settings-choice-head-v61 p{
-  color:var(--v66-muted)!important;
-}
-html[data-uzr-theme="light"] .uzr-settings-choice-head-v61>button{
-  background:#eef3f7!important;
-  color:var(--v66-text)!important;
-}
-html[data-uzr-theme="light"] .uzr-settings-choice-list-v61{
-  background:#fff!important;
-  border-color:var(--v66-line)!important;
-}
-html[data-uzr-theme="light"] .uzr-settings-choice-option-v61{
-  background:#fff!important;
-  border-color:#e5ebef!important;
-}
-html[data-uzr-theme="light"] .uzr-settings-choice-option-v61.current{
-  background:#eef8ff!important;
-}
-html[data-uzr-theme="light"] .uzr-settings-choice-option-copy-v61 b{
-  color:var(--v66-text)!important;
-}
-html[data-uzr-theme="light"] .uzr-settings-choice-option-copy-v61 small{
-  color:var(--v66-muted)!important;
-}
-
-/* ------------------------------------------------------------
-   FAQ
-   ------------------------------------------------------------ */
-html[data-uzr-theme="light"] #faq .faq-v48-head-copy h1{
-  color:var(--v66-text)!important;
-  -webkit-text-fill-color:var(--v66-text)!important;
-}
-html[data-uzr-theme="light"] #faq .faq-v48-head-copy p{
-  color:var(--v66-muted)!important;
-}
-html[data-uzr-theme="light"] #faq .faq-v48-hero-icon{
-  background:#fff!important;
-  border:1px solid var(--v66-line)!important;
-  color:#2ea6ff!important;
-}
-html[data-uzr-theme="light"] #faq .faq-v48-hero-icon svg{
-  stroke:#2ea6ff!important;
-}
-html[data-uzr-theme="light"] #faq .faq-v48-section-head h2{
-  color:var(--v66-text)!important;
-}
-html[data-uzr-theme="light"] #faq .faq-v48-section-head button{
-  color:#159ce8!important;
-}
-html[data-uzr-theme="light"] #faq .faq-v48-item{
-  background:#fff!important;
-  border:1px solid var(--v66-line)!important;
-}
-html[data-uzr-theme="light"] #faq .faq-v48-q,
-html[data-uzr-theme="light"] #faq .faq-v48-a{
-  background:#fff!important;
-  border-color:#e5ebef!important;
-}
-html[data-uzr-theme="light"] #faq .faq-v48-question,
-html[data-uzr-theme="light"] #faq .faq-v48-a{
-  color:var(--v66-text)!important;
-  -webkit-text-fill-color:var(--v66-text)!important;
-}
-html[data-uzr-theme="light"] #faq .faq-v48-a :is(li,p,span){
-  color:#526673!important;
-}
-html[data-uzr-theme="light"] #faq .faq-v48-num{
-  background:#174d68!important;
-  color:#fff!important;
-}
-html[data-uzr-theme="light"] #faq .faq-v48-chevron{
-  stroke:#6c8493!important;
-}
-html[data-uzr-theme="light"] #faq .faq-v60-resale-boundary,
-html[data-uzr-theme="light"] #faq .faq-v59-contact-note{
-  background:#fff!important;
-  border:1px solid var(--v66-line)!important;
-  color:#526673!important;
-}
-html[data-uzr-theme="light"] #faq .faq-v60-resale-boundary b{
-  color:var(--v66-text)!important;
-}
-html[data-uzr-theme="light"] #faq .faq-v48-help-card{
-  background:#fff!important;
-  border:1px solid var(--v66-line)!important;
-  color:var(--v66-text)!important;
-  box-shadow:none!important;
-}
-html[data-uzr-theme="light"] #faq .faq-v48-help-card b{
-  color:var(--v66-text)!important;
-}
-html[data-uzr-theme="light"] #faq .faq-v48-help-card small{
-  color:var(--v66-muted)!important;
-}
-html[data-uzr-theme="light"] #faq .faq-v48-help-arrow{
-  stroke:#718793!important;
-}
-html[data-uzr-theme="light"] #faq .faq-v48-urgent{
-  background:#fff!important;
-  border:1px solid #b9dff5!important;
-  color:#168ed6!important;
-}
-html[data-uzr-theme="light"] #faq .faq-v48-urgent svg{
-  stroke:#168ed6!important;
-}
-
-/* ------------------------------------------------------------
-   LEGAL
-   ------------------------------------------------------------ */
-html[data-uzr-theme="light"] :is(#legalCenter,#legalDocument,#legalSection){
-  background:var(--v66-page)!important;
-}
-html[data-uzr-theme="light"] .legal-v53-head h1,
-html[data-uzr-theme="light"] .legal-v53-intro h2,
-html[data-uzr-theme="light"] .legal-v53-section-title h2,
-html[data-uzr-theme="light"] .legal-v53-copy b,
-html[data-uzr-theme="light"] .legal-v53-toc-copy b{
-  color:var(--v66-text)!important;
-}
-html[data-uzr-theme="light"] .legal-v53-head p,
-html[data-uzr-theme="light"] .legal-v53-intro p,
-html[data-uzr-theme="light"] .legal-v53-copy small,
-html[data-uzr-theme="light"] .legal-v53-toc-copy small{
-  color:var(--v66-muted)!important;
-}
-html[data-uzr-theme="light"] .legal-v53-intro,
-html[data-uzr-theme="light"] .legal-v53-card,
-html[data-uzr-theme="light"] .legal-v53-row,
-html[data-uzr-theme="light"] .legal-v53-toc-row,
-html[data-uzr-theme="light"] .legal-v53-clause{
-  background:#fff!important;
-  border-color:var(--v66-line)!important;
-}
-html[data-uzr-theme="light"] .legal-v53-search{
-  background:#fff!important;
-  border-color:var(--v66-line)!important;
-}
-html[data-uzr-theme="light"] .legal-v53-search input{
-  color:var(--v66-text)!important;
-}
-
-/* ------------------------------------------------------------
-   VIEWED + FAVORITES
-   ------------------------------------------------------------ */
-html[data-uzr-theme="light"] :is(#viewed,#favorites){
-  background:var(--v66-page)!important;
-}
-html[data-uzr-theme="light"] #viewed .viewed-v46-title h1,
-html[data-uzr-theme="light"] #favorites .favorites-final-title h1,
-html[data-uzr-theme="light"] #viewed .viewed-v46-empty h2,
-html[data-uzr-theme="light"] #favorites .favorites-final-empty h2{
-  color:var(--v66-text)!important;
-  -webkit-text-fill-color:var(--v66-text)!important;
-}
-html[data-uzr-theme="light"] #viewed .viewed-v46-title p,
-html[data-uzr-theme="light"] #favorites .favorites-final-title p,
-html[data-uzr-theme="light"] #viewed .viewed-v46-empty p,
-html[data-uzr-theme="light"] #favorites .favorites-final-empty p{
-  color:var(--v66-muted)!important;
-}
-html[data-uzr-theme="light"] #viewed .viewed-v46-info,
-html[data-uzr-theme="light"] #viewed .viewed-v46-footnote,
-html[data-uzr-theme="light"] #favorites .favorites-final-empty,
-html[data-uzr-theme="light"] #favorites .favorites-discover-card{
-  background:#fff!important;
-  border:1px solid var(--v66-line)!important;
-}
-html[data-uzr-theme="light"] #viewed .viewed-v46-info b,
-html[data-uzr-theme="light"] #favorites .favorites-discover-copy b{
-  color:var(--v66-text)!important;
-}
-html[data-uzr-theme="light"] #viewed .viewed-v46-info small,
-html[data-uzr-theme="light"] #viewed .viewed-v46-footnote,
-html[data-uzr-theme="light"] #favorites .favorites-discover-copy small{
-  color:var(--v66-muted)!important;
-}
-html[data-uzr-theme="light"] #viewed .viewed-v46-clear{
-  background:#fff!important;
-  border:1px solid #b9dff5!important;
-  color:#168ed6!important;
-}
-
-/* ------------------------------------------------------------
-   CONTACT REQUESTS
-   ------------------------------------------------------------ */
-html[data-uzr-theme="light"] #contactRequests .contact-requests-v49-topbar{
-  background:transparent!important;
-}
-html[data-uzr-theme="light"] #contactRequests .contact-requests-v49-topbar h1{
-  color:var(--v66-text)!important;
-  -webkit-text-fill-color:var(--v66-text)!important;
-}
-html[data-uzr-theme="light"] #contactRequests .contact-requests-v49-tabs{
-  background:#fff!important;
-  border:1px solid var(--v66-line)!important;
-}
-html[data-uzr-theme="light"] #contactRequests .contact-requests-v49-tabs button{
-  color:#6b7f8d!important;
-  background:transparent!important;
-}
-html[data-uzr-theme="light"] #contactRequests .contact-requests-v49-tabs button.active{
-  color:#168ed6!important;
-  background:#eef8ff!important;
-}
-html[data-uzr-theme="light"] #contactRequests .contact-requests-v49-tabs button span{
-  background:#e9eef2!important;
-  color:#47606f!important;
-}
-html[data-uzr-theme="light"] #contactRequests .contact-requests-v49-tabs button.active span{
-  background:#2ea6ff!important;
-  color:#fff!important;
-}
-html[data-uzr-theme="light"] #contactRequests .contact-request-card-v49{
-  background:#fff!important;
-  border:1px solid var(--v66-line)!important;
-  color:var(--v66-text)!important;
-  box-shadow:0 3px 12px rgba(31,50,64,.04)!important;
-}
-html[data-uzr-theme="light"] #contactRequests .contact-request-card-v49 :is(b,h2,strong){
-  color:var(--v66-text)!important;
-}
-html[data-uzr-theme="light"] #contactRequests .contact-request-card-v49 :is(small,p,.contact-request-card-main-v49){
-  color:var(--v66-muted)!important;
-}
-html[data-uzr-theme="light"] #contactRequests .contact-request-card-photo-v49{
-  background:#f2f5f8!important;
-}
-html[data-uzr-theme="light"] #contactRequests .contact-request-card-chevron-v49{
-  stroke:#718793!important;
-}
-html[data-uzr-theme="light"] #contactRequests .contact-requests-empty-v49{
-  background:#fff!important;
-  border:1px solid var(--v66-line)!important;
-  color:var(--v66-text)!important;
-}
-html[data-uzr-theme="light"] #contactRequests .contact-requests-empty-v49 :is(h2,b){
-  color:var(--v66-text)!important;
-}
-html[data-uzr-theme="light"] #contactRequests .contact-requests-empty-v49 p{
-  color:var(--v66-muted)!important;
-}
-html[data-uzr-theme="light"] #contactRequests .contact-requests-v49-disclaimer{
-  background:#fff!important;
-  border:1px solid var(--v66-line)!important;
-  color:#526673!important;
-}
-
-/* ------------------------------------------------------------
-   MY PRODUCTS
-   ------------------------------------------------------------ */
-html[data-uzr-theme="light"] #myProducts .my-products-head-copy-v25 h1{
-  color:var(--v66-text)!important;
-  -webkit-text-fill-color:var(--v66-text)!important;
-}
-html[data-uzr-theme="light"] #myProducts .my-products-head-copy-v25 p{
-  color:var(--v66-muted)!important;
-}
-html[data-uzr-theme="light"] #myProducts .my-products-filters-v25 button{
-  background:#fff!important;
-  border:1px solid var(--v66-line)!important;
+html[data-uzr-theme="light"] body .app #legalDocument .legal-v53-intro{
+  padding:16px!important;
+  margin-bottom:12px!important;
+  border-radius:18px!important;
+}
+html[data-uzr-theme="light"] body .app #legalDocument .legal-v53-intro h2{
+  margin:9px 0 6px!important;
+  font-size:22px!important;
+}
+html[data-uzr-theme="light"] body .app #legalDocument .legal-v53-intro p{
+  font-size:11.5px!important;
+  line-height:1.45!important;
   color:#667b89!important;
 }
-html[data-uzr-theme="light"] #myProducts .my-products-filters-v25 button.active{
-  background:#2ea6ff!important;
-  border-color:#2ea6ff!important;
-  color:#fff!important;
+html[data-uzr-theme="light"] body .app #legalDocument .legal-v53-meta{
+  gap:6px!important;
+  margin-top:10px!important;
 }
-html[data-uzr-theme="light"] #myProducts .my-product-card-v25{
+html[data-uzr-theme="light"] body .app #legalDocument .legal-v53-meta span{
+  padding:4px 8px!important;
+  font-size:9.2px!important;
+  color:#667b89!important;
+  border-color:#b9cad5!important;
   background:#fff!important;
-  border:1px solid var(--v66-line)!important;
-}
-html[data-uzr-theme="light"] #myProducts .my-product-title-v25,
-html[data-uzr-theme="light"] #myProducts .my-product-price-v25{
-  color:var(--v66-text)!important;
-  -webkit-text-fill-color:var(--v66-text)!important;
-}
-html[data-uzr-theme="light"] #myProducts .my-product-price-v25{
-  color:#179de8!important;
-  -webkit-text-fill-color:#179de8!important;
-}
-html[data-uzr-theme="light"] #myProducts :is(.my-product-meta-v25,.my-product-date-v25,.my-product-lifecycle-v51){
-  color:var(--v66-muted)!important;
-}
-html[data-uzr-theme="light"] #myProducts .my-product-menu-v25{
-  background:#fff!important;
-  border:1px solid var(--v66-line)!important;
-  color:#24475a!important;
-}
-html[data-uzr-theme="light"] #myProducts .my-product-menu-v25 svg{
-  stroke:#24475a!important;
-}
-html[data-uzr-theme="light"] #myProducts .my-products-empty-v25{
-  background:#fff!important;
-  border:1px solid var(--v66-line)!important;
 }
 
-/* ------------------------------------------------------------
-   ORDERS
-   ------------------------------------------------------------ */
-html[data-uzr-theme="light"] #orders .orders-v40-topbar{
-  background:transparent!important;
-  backdrop-filter:none!important;
-  -webkit-backdrop-filter:none!important;
+/* search compact */
+html[data-uzr-theme="light"] body .app #legalDocument .legal-v53-search{
+  height:44px!important;
+  margin-bottom:11px!important;
+  border-radius:14px!important;
 }
-html[data-uzr-theme="light"] #orders .orders-v40-topbar h1{
-  color:var(--v66-text)!important;
-  -webkit-text-fill-color:var(--v66-text)!important;
+
+/* legal rows slightly denser */
+html[data-uzr-theme="light"] body .app #legalDocument .legal-v53-toc-row{
+  min-height:58px!important;
+  padding:9px 12px!important;
 }
-html[data-uzr-theme="light"] #orders .orders-v40-filters button{
-  background:#fff!important;
-  border:1px solid var(--v66-line)!important;
-  color:#657a88!important;
+html[data-uzr-theme="light"] body .app #legalDocument .legal-v53-toc-copy b{
+  font-size:13px!important;
+  line-height:1.25!important;
 }
-html[data-uzr-theme="light"] #orders .orders-v40-filters button.active{
-  background:#2ea6ff!important;
-  border-color:#2ea6ff!important;
+html[data-uzr-theme="light"] body .app #legalDocument .legal-v53-toc-copy small{
+  font-size:10px!important;
+  margin-top:2px!important;
+}
+
+/* legal number badges: a touch softer */
+html[data-uzr-theme="light"] body .app #legalDocument .legal-v53-toc-num{
+  background:#164a65!important;
   color:#fff!important;
 }
-html[data-uzr-theme="light"] #orders .order-card-v40{
-  background:#fff!important;
-  border:1px solid var(--v66-line)!important;
-  color:var(--v66-text)!important;
-  box-shadow:0 3px 12px rgba(31,50,64,.045)!important;
+
+/* section body cards */
+html[data-uzr-theme="light"] body .app #legalSection .legal-v53-clause{
+  padding:12px 13px!important;
+  border-radius:14px!important;
+  line-height:1.55!important;
 }
-html[data-uzr-theme="light"] #orders .order-card-v40:active{
+html[data-uzr-theme="light"] body .app #legalSection .legal-v53-section-title{
+  margin-bottom:11px!important;
+}
+
+/* privacy / terms headings align identically */
+html[data-uzr-theme="light"] body .app :is(#legalDocument,#legalSection) .legal-v53-head{
+  padding-top:12px!important;
+  padding-bottom:12px!important;
+}
+
+/* one last safe spacing above bottom nav on FAQ */
+html[data-uzr-theme="light"] body .app #faq .faq-v48-shell{
+  padding-bottom:calc(118px + env(safe-area-inset-bottom))!important;
+}
+</style>
+
+
+<style id="uzr-v74-black-fix">
+/* ============================================================
+   v74 — black fix + official empty state + final light cleanup
+   ============================================================ */
+
+/* ---------- FAQ support area: make the last remaining dark text softer ---------- */
+html[data-uzr-theme="light"] body .app #faq .faq-v60-resale-boundary{
+  background:#ffffff!important;
+  border-color:#cfdee8!important;
+  color:#526878!important;
+  -webkit-text-fill-color:#526878!important;
+}
+html[data-uzr-theme="light"] body .app #faq .faq-v60-resale-boundary b,
+html[data-uzr-theme="light"] body .app #faq .faq-v59-contact-note b{
+  color:#1a3343!important;
+  -webkit-text-fill-color:#1a3343!important;
+}
+html[data-uzr-theme="light"] body .app #faq .faq-v48-help-card,
+html[data-uzr-theme="light"] body .app #faq .faq-v59-contact-note,
+html[data-uzr-theme="light"] body .app #faq .faq-v48-urgent{
+  border-color:#cfdee8!important;
+}
+
+/* ---------- LEGAL: remove remaining dark feel ---------- */
+html[data-uzr-theme="light"] body .app #legalDocument .legal-v53-intro{
+  background:#ffffff!important;
+  border-color:#cfdee8!important;
+}
+html[data-uzr-theme="light"] body .app #legalDocument .legal-v53-pill{
+  background:#eaf5fd!important;
+  color:#167fd8!important;
+}
+html[data-uzr-theme="light"] body .app #legalDocument .legal-v53-meta span{
+  background:#f7fbfe!important;
+  color:#6a7f8d!important;
+}
+html[data-uzr-theme="light"] body .app #legalDocument .legal-v53-toc-num,
+html[data-uzr-theme="light"] body .app #legalSection .legal-v53-section-title>span{
+  background:#163d58!important;
+  color:#ffffff!important;
+}
+html[data-uzr-theme="light"] body .app #legalSection .legal-v53-clause{
+  background:#ffffff!important;
+  border-color:#cfdee8!important;
+  color:#617785!important;
+  -webkit-text-fill-color:#617785!important;
+}
+html[data-uzr-theme="light"] body .app #legalSection .legal-v53-clause b{
+  color:#183243!important;
+  -webkit-text-fill-color:#183243!important;
+}
+html[data-uzr-theme="light"] body .app #legalSection .legal-v53-section-nav button:first-child{
+  background:#edf3f7!important;
+  color:#6d8291!important;
+  border-color:#d5e2ea!important;
+}
+html[data-uzr-theme="light"] body .app #legalSection .legal-v53-section-nav button:last-child{
+  background:#2d96ea!important;
+  border-color:#2d96ea!important;
+  color:#ffffff!important;
+}
+
+/* ---------- OFFICIAL STORE: lighten remaining dark accents ---------- */
+html[data-uzr-theme="light"] body #officialStoreView .official-store-subtitle{
+  background:#eaf5fd!important;
+  color:#167fd8!important;
+}
+html[data-uzr-theme="light"] body #officialStoreView .official-store-stats{
   background:#f8fbfd!important;
+  border-color:#cfdee8!important;
 }
-html[data-uzr-theme="light"] #orders .order-card-photo-v40{
-  background:#f2f5f8!important;
-  color:#7b929f!important;
+html[data-uzr-theme="light"] body #officialStoreView .official-store-stats>div+div{
+  border-left-color:#cfdee8!important;
 }
-html[data-uzr-theme="light"] #orders :is(
-  .order-card-head-v40>b,.order-card-name-v40,.order-card-main-v40
-){
-  color:var(--v66-text)!important;
+html[data-uzr-theme="light"] body #officialStoreView .official-store-stats b{
+  color:#173244!important;
 }
-html[data-uzr-theme="light"] #orders :is(
-  .order-card-date-v40,.order-card-meta-v40
-){
-  color:var(--v66-muted)!important;
+html[data-uzr-theme="light"] body #officialStoreView .official-store-stats span{
+  color:#6c8291!important;
 }
-html[data-uzr-theme="light"] #orders .order-card-chevron-v40{
-  stroke:#718793!important;
+html[data-uzr-theme="light"] body #officialStoreView .official-store-all-btn{
+  background:#ffffff!important;
+  color:#1783dc!important;
+  border-color:#b8d9ef!important;
 }
-html[data-uzr-theme="light"] #orderDetailView{
-  background:var(--v66-page)!important;
+html[data-uzr-theme="light"] body #officialStoreView .official-store-support-btn{
+  background:linear-gradient(180deg,#3aa7f7 0%,#2394ec 100%)!important;
+  border-color:#2394ec!important;
+  color:#fff!important;
 }
-html[data-uzr-theme="light"] #orderDetailView .order-detail-v40-topbar{
-  background:transparent!important;
+html[data-uzr-theme="light"] body #officialStoreView .official-store-support-btn svg,
+html[data-uzr-theme="light"] body #officialStoreView .official-store-all-btn svg{
+  stroke:currentColor!important;
 }
-html[data-uzr-theme="light"] #orderDetailView .order-detail-v40-title{
-  color:var(--v66-text)!important;
-}
-html[data-uzr-theme="light"] #orderDetailView :is(
-  .order-panel-v40,.order-info-v40,.order-status-hero-v40,
-  .order-detail-item-v40,.seller-row-v40
-){
-  background:#fff!important;
-  border-color:var(--v66-line)!important;
-  color:var(--v66-text)!important;
+html[data-uzr-theme="light"] body #officialStoreView .official-section-heading,
+html[data-uzr-theme="light"] body #officialStoreView .official-section-block{
+  background:#ffffff!important;
+  border-color:#cfdee8!important;
 }
 
-/* ------------------------------------------------------------
-   CHINA / OFFICIAL STORE
-   ------------------------------------------------------------ */
-html[data-uzr-theme="light"] #china .china-v32-head h1{
-  color:var(--v66-text)!important;
-  -webkit-text-fill-color:var(--v66-text)!important;
+/* official empty state for products */
+html[data-uzr-theme="light"] body #officialStoreView .official-empty-v74{
+  margin-top:10px!important;
+  background:#ffffff!important;
+  border:1px solid #cfdee8!important;
+  border-radius:18px!important;
+  padding:28px 18px!important;
+  text-align:center!important;
 }
-html[data-uzr-theme="light"] #china .china-v32-head p,
-html[data-uzr-theme="light"] #china .china-v32-head small{
-  color:var(--v66-muted)!important;
+html[data-uzr-theme="light"] body #officialStoreView .official-empty-v74-icon{
+  width:56px!important;height:56px!important;margin:0 auto 12px!important;
+  border-radius:18px!important;background:#eff6fb!important;color:#7c97a8!important;
+  display:flex!important;align-items:center!important;justify-content:center!important;
 }
-html[data-uzr-theme="light"] #china .china-v32-official{
-  background:#fff!important;
-  border:1px solid var(--v66-line)!important;
-  color:var(--v66-text)!important;
-  box-shadow:0 3px 12px rgba(31,50,64,.04)!important;
+html[data-uzr-theme="light"] body #officialStoreView .official-empty-v74-icon svg{
+  width:26px!important;height:26px!important;stroke:currentColor!important;
 }
-html[data-uzr-theme="light"] #china .china-v32-official-copy b,
-html[data-uzr-theme="light"] #china .china-v32-name-row{
-  color:var(--v66-text)!important;
+html[data-uzr-theme="light"] body #officialStoreView .official-empty-v74 h3{
+  margin:0 0 7px!important;font-size:19px!important;line-height:1.15!important;color:#173244!important;
 }
-html[data-uzr-theme="light"] #china .china-v32-official-copy :is(small,em){
-  color:var(--v66-muted)!important;
-}
-html[data-uzr-theme="light"] #china .china-v32-official>svg{
-  stroke:#718793!important;
-}
-html[data-uzr-theme="light"] #china .china-v32-section-head :is(h2,b,span){
-  color:var(--v66-text)!important;
+html[data-uzr-theme="light"] body #officialStoreView .official-empty-v74 p{
+  margin:0 auto!important;max-width:280px!important;font-size:12px!important;line-height:1.5!important;color:#6a7f8d!important;
 }
 
-/* ------------------------------------------------------------
-   SELL FORM
-   ------------------------------------------------------------ */
-html[data-uzr-theme="light"] #sell .sell-v34-head-copy h1{
-  color:var(--v66-text)!important;
-  -webkit-text-fill-color:var(--v66-text)!important;
+/* ---------- Global polish for any lingering black surfaces in LIGHT theme ---------- */
+html[data-uzr-theme="light"] body .app :is(.badge,.filter.active,.category-chip.active){
+  background:#163d58!important;
+  color:#fff!important;
 }
-html[data-uzr-theme="light"] #sell .sell-v34-head-copy p{
-  color:var(--v66-muted)!important;
+html[data-uzr-theme="light"] body .app .back.uzr-back-v69{
+  background:#ffffff!important;
+  border:1px solid #cfdee8!important;
+  color:#173244!important;
+  box-shadow:0 2px 6px rgba(23,50,68,.04)!important;
 }
-html[data-uzr-theme="light"] #sell .sell-panel{
-  background:#fff!important;
-  border:1px solid var(--v66-line)!important;
+html[data-uzr-theme="light"] body .app .back.uzr-back-v69 svg{
+  stroke:#173244!important;
+}
+</style>
+
+
+<style id="uzr-v75-light-faq-color-fix">
+/* ============================================================
+   v75 — light theme FAQ / support color normalization
+   Requested: softer colors in light theme.
+   ============================================================ */
+html[data-uzr-theme="light"] body .app #faq .faq-v48-num{
+  background:#e9f4fd!important;
+  color:#177fd8!important;
+  border:1px solid #c8dced!important;
   box-shadow:none!important;
 }
-html[data-uzr-theme="light"] #sell .sell-panel-head h2{
-  color:var(--v66-text)!important;
+html[data-uzr-theme="light"] body .app #faq .faq-v48-question{
+  color:#183244!important;
+  -webkit-text-fill-color:#183244!important;
 }
-html[data-uzr-theme="light"] #sell .sell-panel-head span,
-html[data-uzr-theme="light"] #sell .field-limit{
-  color:var(--v66-muted)!important;
+html[data-uzr-theme="light"] body .app #faq .faq-v48-chevron{
+  stroke:#8aa1af!important;
 }
-html[data-uzr-theme="light"] #sell .field label{
-  color:#405563!important;
+html[data-uzr-theme="light"] body .app #faq .faq-v48-item{
+  background:#ffffff!important;
+  border-color:#cfdee8!important;
 }
-html[data-uzr-theme="light"] #sell :is(input,textarea,select){
-  background:#f8fafc!important;
-  border:1px solid #dbe3e9!important;
-  color:var(--v66-text)!important;
-  -webkit-text-fill-color:var(--v66-text)!important;
+html[data-uzr-theme="light"] body .app #faq .faq-v48-item.open,
+html[data-uzr-theme="light"] body .app #faq .faq-v48-item.open .faq-v48-q,
+html[data-uzr-theme="light"] body .app #faq .faq-v48-a{
+  background:#f9fcfe!important;
+  border-color:#cfdee8!important;
 }
-html[data-uzr-theme="light"] #sell :is(input,textarea)::placeholder{
-  color:#7f919d!important;
-  opacity:1!important;
+html[data-uzr-theme="light"] body .app #faq .faq-v48-a{
+  color:#607887!important;
+  -webkit-text-fill-color:#607887!important;
 }
-html[data-uzr-theme="light"] #sell .uploadbox{
-  background:#f7fafc!important;
-  border:1.5px dashed #a8c4d5!important;
-  color:var(--v66-text)!important;
-}
-html[data-uzr-theme="light"] #sell .uploadbox svg{
-  stroke:#2ea6ff!important;
-}
-html[data-uzr-theme="light"] #sell .uploadbox :is(b,strong){
-  color:var(--v66-text)!important;
-}
-html[data-uzr-theme="light"] #sell .uploadbox :is(p,small,span){
-  color:var(--v66-muted)!important;
-}
-html[data-uzr-theme="light"] #sell .sell-moderation-note{
-  background:#eef8ff!important;
-  border:1px solid #b8dff5!important;
-  color:#466170!important;
-}
-html[data-uzr-theme="light"] #sell .sell-moderation-note b{
-  color:#174d68!important;
-}
-html[data-uzr-theme="light"] #sell .sell-moderation-note span{
-  color:#637b89!important;
-}
-html[data-uzr-theme="light"] #sell .sell-submit-premium{
-  background:linear-gradient(180deg,#35b2ff,#168fe8)!important;
-  color:#fff!important;
-  border:0!important;
+html[data-uzr-theme="light"] body .app #faq .faq-v48-a b{
+  color:#173244!important;
+  -webkit-text-fill-color:#173244!important;
 }
 
-/* ------------------------------------------------------------
-   SELLER PROFILE
-   ------------------------------------------------------------ */
-html[data-uzr-theme="light"] #sellerProfile,
-html[data-uzr-theme="light"] #sellerProfileContent{
-  background:var(--v66-page)!important;
+/* Support cards: softer icon chips */
+html[data-uzr-theme="light"] body .app #faq .faq-v48-help-card.blue .faq-v48-help-icon{
+  background:#eaf5fd!important;color:#177fd8!important;
 }
-html[data-uzr-theme="light"] #sellerProfile :is(
-  .seller-profile-head,.seller-v26-hero,.seller-profile-card-v26,
-  .seller-v26-about,.seller-v26-stats,.seller-v26-actions
-){
-  background:#fff!important;
-  border-color:var(--v66-line)!important;
-  color:var(--v66-text)!important;
+html[data-uzr-theme="light"] body .app #faq .faq-v48-help-card.red .faq-v48-help-icon{
+  background:#fff0f2!important;color:#ef5968!important;
 }
-html[data-uzr-theme="light"] #sellerProfile :is(
-  .seller-v26-name,.seller-profile-head h1,.seller-v26-stat b,.seller-stat b,
-  .listing-title,.listing-price
-){
-  color:var(--v66-text)!important;
-  -webkit-text-fill-color:var(--v66-text)!important;
+html[data-uzr-theme="light"] body .app #faq .faq-v48-help-card.green .faq-v48-help-icon{
+  background:#ebfaf4!important;color:#2ebc7a!important;
 }
-html[data-uzr-theme="light"] #sellerProfile :is(
-  .seller-v26-role,.seller-v26-location,.seller-v26-stat span,.seller-stat span,
-  .seller-v26-about p
-){
-  color:var(--v66-muted)!important;
+html[data-uzr-theme="light"] body .app #faq .faq-v48-help-card.violet .faq-v48-help-icon{
+  background:#f3efff!important;color:#9170ff!important;
 }
-html[data-uzr-theme="light"] #sellerProfile :is(
-  .seller-v26-action,.listing-card
-){
-  background:#fff!important;
-  border:1px solid var(--v66-line)!important;
-  color:var(--v66-text)!important;
+html[data-uzr-theme="light"] body .app #faq .faq-v48-help-card.amber .faq-v48-help-icon{
+  background:#fff6ea!important;color:#ec9b2f!important;
 }
-html[data-uzr-theme="light"] #sellerProfile .seller-v26-action svg{
-  stroke:#506d7c!important;
+html[data-uzr-theme="light"] body .app #faq .faq-v48-help-arrow{
+  stroke:#9bb0bd!important;
 }
-html[data-uzr-theme="light"] #sellerProfile .listing-card img{
-  background:#f3f6f8!important;
+html[data-uzr-theme="light"] body .app #faq .faq-v48-help-card:hover,
+html[data-uzr-theme="light"] body .app #faq .faq-v48-help-card:active{
+  border-color:#bfd8ea!important;
+  background:#fbfdff!important;
 }
 
-/* ------------------------------------------------------------
-   PRODUCT PAGE
-   ------------------------------------------------------------ */
-html[data-uzr-theme="light"] #productView{
-  background:var(--v66-page)!important;
-}
-html[data-uzr-theme="light"] #productView .product-v18-topbar{
-  background:transparent!important;
-}
-html[data-uzr-theme="light"] #productView .product-v18-gallery,
-html[data-uzr-theme="light"] #productView .product-v18-photo{
-  background:#edf2f5!important;
-}
-html[data-uzr-theme="light"] #productView .product-gallery-arrow-v19{
-  background:rgba(255,255,255,.94)!important;
-  border:1px solid #d2dde5!important;
-  color:#17384d!important;
-}
-html[data-uzr-theme="light"] #productView .product-gallery-arrow-v19 svg{
-  stroke:#17384d!important;
-}
-html[data-uzr-theme="light"] #productView .product-v18-heading h1{
-  color:var(--v66-text)!important;
-  -webkit-text-fill-color:var(--v66-text)!important;
-}
-html[data-uzr-theme="light"] #productView .product-v18-heading h2{
-  color:#159ce8!important;
-  -webkit-text-fill-color:#159ce8!important;
-}
-html[data-uzr-theme="light"] #productView .product-v18-quick span{
-  background:#fff!important;
-  border:1px solid var(--v66-line)!important;
-  color:#556b78!important;
-}
-html[data-uzr-theme="light"] #productView .product-v18-panel{
-  background:#fff!important;
-  border:1px solid var(--v66-line)!important;
-}
-html[data-uzr-theme="light"] #productView .product-v18-panel-title{
-  color:#50636f!important;
-}
-html[data-uzr-theme="light"] #productView .product-v18-description{
-  color:var(--v66-text)!important;
-  -webkit-text-fill-color:var(--v66-text)!important;
-}
-html[data-uzr-theme="light"] #productView .product-published-v20{
-  color:var(--v66-muted)!important;
-}
-html[data-uzr-theme="light"] #productView .product-v18-meta{
-  color:var(--v66-text)!important;
-}
-html[data-uzr-theme="light"] #productView .product-v18-meta span{
-  color:var(--v66-muted)!important;
-}
-html[data-uzr-theme="light"] #productView .product-v18-meta b{
-  color:var(--v66-text)!important;
-}
-html[data-uzr-theme="light"] #productView .product-v18-seller-card,
-html[data-uzr-theme="light"] #productView .seller-mini-card-v20{
-  background:#fff!important;
-  border:1px solid var(--v66-line)!important;
-  color:var(--v66-text)!important;
-}
-html[data-uzr-theme="light"] #productView .product-v18-seller-copy b,
-html[data-uzr-theme="light"] #productView .seller-mini-title-v20{
-  color:var(--v66-text)!important;
-}
-html[data-uzr-theme="light"] #productView .product-v18-seller-copy small,
-html[data-uzr-theme="light"] #productView .seller-mini-city-v21{
-  color:var(--v66-muted)!important;
-}
-html[data-uzr-theme="light"] #productView .product-v18-actions{
-  background:rgba(255,255,255,.97)!important;
-  border:1px solid #d5dfe6!important;
-  box-shadow:0 -4px 18px rgba(31,50,64,.12)!important;
-}
-html[data-uzr-theme="light"] #productView .product-v18-cart{
-  background:#fff!important;
-  border:1.5px solid #2b9fe9!important;
-  color:#187fc0!important;
-}
-html[data-uzr-theme="light"] #productView .product-v18-buy{
-  background:#2ea6ff!important;
-  border:1.5px solid #2ea6ff!important;
-  color:#fff!important;
-}
-
-/* ------------------------------------------------------------
-   FAVORITES EMPTY STATE
-   ------------------------------------------------------------ */
-html[data-uzr-theme="light"] #favorites .favorites-final-empty-icon{
-  background:#fff!important;
-  border:1px solid var(--v66-line)!important;
-}
-html[data-uzr-theme="light"] #favorites .favorites-final-empty-icon svg{
-  stroke:#2ea6ff!important;
-}
-html[data-uzr-theme="light"] #favorites .favorites-final-empty button,
-html[data-uzr-theme="light"] #viewed .viewed-v46-empty button,
-html[data-uzr-theme="light"] #contactRequests .contact-requests-empty-v49 button{
-  background:#2ea6ff!important;
-  color:#fff!important;
-  border:0!important;
-}
-
-/* ------------------------------------------------------------
-   CONTACT REQUEST CREATE / SUCCESS
-   ------------------------------------------------------------ */
-html[data-uzr-theme="light"] #contactRequest,
-html[data-uzr-theme="light"] #contactRequestSuccessV49{
-  background:var(--v66-page)!important;
-}
-html[data-uzr-theme="light"] #contactRequest :is(
-  .contact-request-v49-product,.contact-request-v49-identity,.contact-request-v49-legal-note
-),
-html[data-uzr-theme="light"] #contactRequestSuccessV49 :is(
-  .contact-request-success-v49,.contact-request-success-product-v49
-){
-  background:#fff!important;
-  border-color:var(--v66-line)!important;
-  color:var(--v66-text)!important;
-}
-html[data-uzr-theme="light"] #contactRequest .contact-request-v49-message{
-  background:#fff!important;
-  border-color:var(--v66-line)!important;
-  color:var(--v66-text)!important;
-}
-html[data-uzr-theme="light"] #contactRequest .contact-request-v49-message::placeholder{
-  color:#82939f!important;
-}
-
-/* ------------------------------------------------------------
-   CART / CHECKOUT
-   ------------------------------------------------------------ */
-html[data-uzr-theme="light"] #cart,
-html[data-uzr-theme="light"] #checkout{
-  background:var(--v66-page)!important;
-}
-html[data-uzr-theme="light"] #cart :is(.cart-dark-v10,.cartrow),
-html[data-uzr-theme="light"] #checkout :is(.checkout-card-v41,.checkout-success-card-v42){
-  background:#fff!important;
-  border-color:var(--v66-line)!important;
-  color:var(--v66-text)!important;
-}
-html[data-uzr-theme="light"] #checkout :is(input,textarea,select){
-  background:#f8fafc!important;
-  color:var(--v66-text)!important;
-  border-color:var(--v66-line)!important;
-}
-
-/* ------------------------------------------------------------
-   FIRST-RUN CONSENT
-   ------------------------------------------------------------ */
-html[data-uzr-theme="light"] #uzrConsentV58,
-html[data-uzr-theme="light"] #uzrConsentLegalV58{
-  background:var(--v66-page)!important;
-  color:var(--v66-text)!important;
-}
-html[data-uzr-theme="light"] .uzr-consent-card-v58{
-  background:#fff!important;
-  border:1px solid var(--v66-line)!important;
-  box-shadow:0 20px 55px rgba(31,49,61,.13)!important;
-}
-html[data-uzr-theme="light"] .uzr-consent-card-v58 h1,
-html[data-uzr-theme="light"] .uzr-consent-doc-copy-v58 b{
-  color:var(--v66-text)!important;
-}
-html[data-uzr-theme="light"] .uzr-consent-lead-v58,
-html[data-uzr-theme="light"] .uzr-consent-confirm-v58,
-html[data-uzr-theme="light"] .uzr-consent-doc-copy-v58 small{
-  color:var(--v66-muted)!important;
-}
-html[data-uzr-theme="light"] .uzr-consent-docs-v58,
-html[data-uzr-theme="light"] .uzr-consent-doc-v58,
-html[data-uzr-theme="light"] .uzr-consent-legal-meta-v58,
-html[data-uzr-theme="light"] .uzr-consent-legal-section-v58{
-  background:#fff!important;
-  border-color:var(--v66-line)!important;
-}
-html[data-uzr-theme="light"] .uzr-consent-legal-head-v58{
-  background:rgba(255,255,255,.98)!important;
-  border-color:var(--v66-line)!important;
-}
-html[data-uzr-theme="light"] .uzr-consent-legal-clause-v58{
-  color:#506672!important;
-  border-color:#e5ebef!important;
-}
-html[data-uzr-theme="light"] .uzr-consent-legal-clause-v58 b{
-  color:var(--v66-text)!important;
-}
-
-/* ------------------------------------------------------------
-   FINAL CONTRAST SAFETY
-   The old app has many historical dark CSS layers. These selectors
-   intentionally sit last to stop white-on-white leftovers.
-   ------------------------------------------------------------ */
-html[data-uzr-theme="light"] :is(
-  #faq,#legalCenter,#legalDocument,#legalSection,#viewed,#contactRequests,
-  #myProducts,#profile,#orders,#china,#sell,#favorites,#catalog,#productView,
-  #sellerProfile,#cart,#checkout,#contactRequest,#contactRequestSuccessV49
-) :is(
-  .title,.heading,.headline,.section-title,.panel-title
-){
-  color:var(--v66-text)!important;
-}
-
-html[data-uzr-theme="light"] :is(
-  #faq,#viewed,#contactRequests,#myProducts,#profile,#orders,#china,#sell,
-  #favorites,#productView,#sellerProfile
-) [style*="color:#fff"],
-html[data-uzr-theme="light"] :is(
-  #faq,#viewed,#contactRequests,#myProducts,#profile,#orders,#china,#sell,
-  #favorites,#productView,#sellerProfile
-) [style*="color: #fff"]{
-  color:var(--v66-text)!important;
-}
-
-/* Never override white text on intentionally colored badges / primary buttons */
-html[data-uzr-theme="light"] :is(
-  .badge,.product-v18-badge,.product-v18-availability,.my-product-status-v25,
-  .order-status-v40,.listing-status,.status-new,.status-confirmed,.status-shipping,
-  .status-completed,.status-cancelled,.sell-submit-premium,.product-v18-buy,
-  .uzr-consent-continue-v58,.filter.active
-){
-  -webkit-text-fill-color:initial!important;
+/* Slightly softer section heading tone in light theme */
+html[data-uzr-theme="light"] body .app #faq .faq-v48-help-head h2,
+html[data-uzr-theme="light"] body .app #faq .faq-v48-faq-head h2{
+  color:#173244!important;
 }
 </style>
 
@@ -9310,7 +9588,7 @@ html[data-uzr-theme="light"] :is(
 
 <div id="uzrConsentLegalV58" hidden role="dialog" aria-modal="true">
   <div class="uzr-consent-legal-head-v58">
-    <button type="button" aria-label="Назад" onclick="closeUzrConsentLegalV58()">
+    <button type="button" aria-label="Назад" onclick="closeUzrConsentLegalV58()" class="uzr-back-v69">
       <i data-lucide="chevron-left"></i>
     </button>
     <h2 id="uzrConsentLegalTitleV58">Документ</h2>
@@ -9463,7 +9741,7 @@ html[data-uzr-theme="light"] :is(
 </section>
 <section class="page" id="sell">
 <div class="sell-v34-head">
-  <button aria-label="Назад" class="sell-v34-back product-v18-circle" onclick="backPage('profile')" type="button"><i data-lucide="chevron-left"></i></button>
+  <button aria-label="Назад" class="sell-v34-back product-v18-circle uzr-back-v69" onclick="backPage('profile')" type="button"><i data-lucide="chevron-left"></i></button>
   <div class="sell-v34-head-copy"><h1>Продать вещь</h1><p>Добавьте фото и информацию — объявление отправится на модерацию.</p></div>
 </div>
 <div class="section sell-premium-section">
@@ -9525,7 +9803,7 @@ html[data-uzr-theme="light"] :is(
 </section>
 <section class="page" id="favorites">
 <div class="favorites-final-head">
-<button aria-label="Назад" class="favorites-final-back product-v18-circle" onclick="backPage('profile')" type="button"><i data-lucide="chevron-left"></i></button>
+<button aria-label="Назад" class="favorites-final-back product-v18-circle uzr-back-v69" onclick="backPage('profile')" type="button"><i data-lucide="chevron-left"></i></button>
 <div class="favorites-final-title">
 <h1>Избранное</h1>
 <p id="favoritesCountText">0 товаров</p>
@@ -9549,7 +9827,7 @@ html[data-uzr-theme="light"] :is(
 <section class="page viewed-v46-page" id="viewed">
   <div class="viewed-v46-shell">
     <div class="viewed-v46-head">
-      <button class="viewed-v46-back product-v18-circle" type="button" aria-label="Назад" onclick="backPage('profile')">
+      <button class="viewed-v46-back product-v18-circle uzr-back-v69" type="button" aria-label="Назад" onclick="backPage('profile')">
         <i data-lucide="chevron-left"></i>
       </button>
       <div class="viewed-v46-title">
@@ -9603,7 +9881,7 @@ html[data-uzr-theme="light"] :is(
     </div>
   </div>
 </section>
-<section class="page" id="cart"><div class="section cart-premium-section"><div class="cart-head"><button aria-label="Назад" class="back cart-back-v145 product-v18-circle" onclick="backPage('home')" type="button"><i data-lucide="chevron-left"></i></button><div><h1>Корзина</h1><p>Ваши выбранные товары</p></div></div><div id="cartList"></div><div id="cartBottom" style="display:none"><div class="cart-summary-label">Сумма заказа</div><div class="total"><span>Итого</span><span id="total"></span></div><button class="btn black" id="checkoutBtn">Оформить заказ</button><div class="cart-note">Оплата и доставка подтверждаются после оформления.</div></div></div></section>
+<section class="page" id="cart"><div class="section cart-premium-section"><div class="cart-head"><button aria-label="Назад" class="back cart-back-v145 product-v18-circle uzr-back-v69" onclick="backPage('home')" type="button"><i data-lucide="chevron-left"></i></button><div><h1>Корзина</h1><p>Ваши выбранные товары</p></div></div><div id="cartList"></div><div id="cartBottom" style="display:none"><div class="cart-summary-label">Сумма заказа</div><div class="total"><span>Итого</span><span id="total"></span></div><button class="btn black" id="checkoutBtn">Оформить заказ</button><div class="cart-note">Оплата и доставка подтверждаются после оформления.</div></div></div></section>
 <section class="page" id="profile">
 <div class="tg-profile-v13">
 <div class="tg-profile-identity-v13">
@@ -9638,7 +9916,7 @@ html[data-uzr-theme="light"] :is(
 <section class="page contact-request-v49-page" id="contactRequest">
   <div class="contact-request-v49-shell">
     <div class="contact-request-v49-topbar">
-      <button class="contact-request-v49-back product-v18-circle" id="contactRequestBackV49" type="button" aria-label="Назад"><i data-lucide="chevron-left"></i></button>
+      <button class="contact-request-v49-back product-v18-circle uzr-back-v69" id="contactRequestBackV49" type="button" aria-label="Назад"><i data-lucide="chevron-left"></i></button>
       <h1>Заявка на связь</h1><span></span>
     </div>
     <div id="contactRequestFormV49">
@@ -9683,7 +9961,7 @@ html[data-uzr-theme="light"] :is(
 <section class="page contact-requests-v49-page" id="contactRequests">
   <div class="contact-requests-v49-shell">
     <div class="contact-requests-v49-topbar">
-      <button class="contact-requests-v49-back product-v18-circle" id="contactRequestsBackV49" type="button" aria-label="Назад"><i data-lucide="chevron-left"></i></button>
+      <button class="contact-requests-v49-back product-v18-circle uzr-back-v69" id="contactRequestsBackV49" type="button" aria-label="Назад"><i data-lucide="chevron-left"></i></button>
       <h1>Мои заявки</h1><span></span>
     </div>
     <div class="contact-requests-v49-tabs">
@@ -9698,7 +9976,7 @@ html[data-uzr-theme="light"] :is(
 <section class="page" id="myProducts">
 <div class="my-products-v25">
 <div class="my-products-head-v25">
-<button aria-label="Назад" class="my-products-back-v25 product-v18-circle" onclick="page('profile')" type="button"><i data-lucide="chevron-left"></i></button>
+<button aria-label="Назад" class="my-products-back-v25 product-v18-circle uzr-back-v69" onclick="page('profile')" type="button"><i data-lucide="chevron-left"></i></button>
 <div class="my-products-head-copy-v25">
 <h1>Мои товары</h1>
 <p>Ваши объявления и их статусы</p>
@@ -9737,13 +10015,13 @@ html[data-uzr-theme="light"] :is(
 <button class="my-product-confirm-cancel-v25" onclick="closeMyProductDeleteConfirmV25()" type="button">Отмена</button>
 </div>
 </div>
-<section class="page" id="addresses"><div class="section"><div class="simple-head"><button class="back" onclick="page('profile')">←</button><h1>Адреса доставки</h1></div><div class="list-card" id="addressList"></div><br/><button class="btn black" id="addAddressBtn">Добавить адрес</button></div></section>
-<section class="page" id="payments"><div class="section"><div class="simple-head"><button class="back" onclick="page('profile')">←</button><h1>Способы оплаты</h1></div><div class="list-card"><div class="list-row"><i data-lucide="banknote"></i><span>Оплата при подтверждении заказа</span></div><div class="list-row"><i data-lucide="credit-card"></i><span>Онлайн-оплата — скоро</span></div></div></div></section>
-<section class="page" id="support"><div class="section"><div class="simple-head"><button class="back" onclick="page('profile')">←</button><h1>Поддержка</h1></div><div class="list-card"><button class="list-row" id="supportTelegram" onclick="openTelegramUsername('uzbek_ceo')"><i data-lucide="send"></i><span>Написать в Telegram</span><span class="arrow">›</span></button></div></div></section>
+<section class="page" id="addresses"><div class="section"><div class="simple-head"><button class="back uzr-back-v69" onclick="page('profile')" aria-label="Назад"><i data-lucide="chevron-left"></i></button><h1>Адреса доставки</h1></div><div class="list-card" id="addressList"></div><br/><button class="btn black" id="addAddressBtn">Добавить адрес</button></div></section>
+<section class="page" id="payments"><div class="section"><div class="simple-head"><button class="back uzr-back-v69" onclick="page('profile')" aria-label="Назад"><i data-lucide="chevron-left"></i></button><h1>Способы оплаты</h1></div><div class="list-card"><div class="list-row"><i data-lucide="banknote"></i><span>Оплата при подтверждении заказа</span></div><div class="list-row"><i data-lucide="credit-card"></i><span>Онлайн-оплата — скоро</span></div></div></div></section>
+<section class="page" id="support"><div class="section"><div class="simple-head"><button class="back uzr-back-v69" onclick="page('profile')" aria-label="Назад"><i data-lucide="chevron-left"></i></button><h1>Поддержка</h1></div><div class="list-card"><button class="list-row" id="supportTelegram" onclick="openTelegramUsername('uzbek_ceo')"><i data-lucide="send"></i><span>Написать в Telegram</span><span class="arrow">›</span></button></div></div></section>
 <section class="page legal-v53-page" id="legalCenter">
   <div class="legal-v53-shell">
     <div class="legal-v53-head">
-      <button class="product-v18-circle legal-v53-back" type="button" aria-label="Назад" onclick="backPage('profile')"><i data-lucide="chevron-left"></i></button>
+      <button class="product-v18-circle legal-v53-back uzr-back-v69" type="button" aria-label="Назад" onclick="backPage('profile')"><i data-lucide="chevron-left"></i></button>
       <div>
         <h1>Документы и безопасность</h1>
         <p>Соглашение, конфиденциальность и официальные каналы связи</p>
@@ -9789,7 +10067,7 @@ html[data-uzr-theme="light"] :is(
 <section class="page legal-v53-page" id="legalDocument">
   <div class="legal-v53-shell">
     <div class="legal-v53-head compact">
-      <button class="product-v18-circle legal-v53-back" type="button" aria-label="Назад" onclick="backPage('legalCenter')"><i data-lucide="chevron-left"></i></button>
+      <button class="product-v18-circle legal-v53-back uzr-back-v69" type="button" aria-label="Назад" onclick="backPage('legalCenter')"><i data-lucide="chevron-left"></i></button>
       <div><h1 id="legalDocTitleV53">Документ</h1><p id="legalDocMetaV53">Редакция 1.0</p></div>
     </div>
 
@@ -9819,7 +10097,7 @@ html[data-uzr-theme="light"] :is(
 <section class="page legal-v53-page" id="legalSection">
   <div class="legal-v53-shell">
     <div class="legal-v53-head compact">
-      <button class="product-v18-circle legal-v53-back" type="button" aria-label="Назад" onclick="backPage('legalDocument')"><i data-lucide="chevron-left"></i></button>
+      <button class="product-v18-circle legal-v53-back uzr-back-v69" type="button" aria-label="Назад" onclick="backPage('legalDocument')"><i data-lucide="chevron-left"></i></button>
       <div><h1 id="legalSectionDocTitleV53">Документ</h1><p id="legalSectionProgressV53">Раздел</p></div>
     </div>
 
@@ -9840,7 +10118,7 @@ html[data-uzr-theme="light"] :is(
 <section class="page" id="settingsPage">
 <div class="tg-settings-v13 uzr-settings-v61">
   <div class="tg-settings-head-v13">
-    <button aria-label="Назад" class="tg-settings-back-v13" onclick="backPage('profile')" type="button">
+    <button aria-label="Назад" class="tg-settings-back-v13 uzr-back-v69" onclick="backPage('profile')" type="button">
       <i data-lucide="chevron-left"></i>
     </button>
     <h1>Настройки</h1>
@@ -9914,7 +10192,7 @@ html[data-uzr-theme="light"] :is(
 <div class="faq-v48-shell">
 
   <div class="faq-v48-head">
-    <button class="faq-v48-back product-v18-circle" type="button" aria-label="Назад" onclick="backPage('profile')">
+    <button class="faq-v48-back product-v18-circle uzr-back-v69" type="button" aria-label="Назад" onclick="backPage('profile')">
       <i data-lucide="chevron-left"></i>
     </button>
     <div class="faq-v48-head-copy">
@@ -10183,7 +10461,7 @@ html[data-uzr-theme="light"] :is(
     </div>
   </div>
 </section>
-<section class="page" id="adminPanel"><div class="section admin-premium-section"><div class="simple-head admin-premium-head"><button class="back" onclick="backPage('profile')">←</button><div><span class="admin-kicker">UZBEK RE'SALE</span><h1>Admin Panel</h1><p>Управление маркетплейсом</p></div></div><div class="admin-grid" id="adminStats"></div>
+<section class="page" id="adminPanel"><div class="section admin-premium-section"><div class="simple-head admin-premium-head"><button class="back uzr-back-v69" onclick="backPage('profile')" aria-label="Назад"><i data-lucide="chevron-left"></i></button><div><span class="admin-kicker">UZBEK RE'SALE</span><h1>Admin Panel</h1><p>Управление маркетплейсом</p></div></div><div class="admin-grid" id="adminStats"></div>
 <div class="maintenance-admin-card" id="maintenanceAdminCard">
 <div class="maintenance-admin-info">
 <span class="maintenance-admin-dot checking" id="maintenanceAdminDot"></span>
@@ -10195,7 +10473,7 @@ html[data-uzr-theme="light"] :is(
 <section class="page" id="orders">
 <div class="orders-v40-shell">
   <div class="orders-v40-topbar">
-    <button class="orders-v40-back" id="ordersBack" type="button" aria-label="Назад"><i data-lucide="chevron-left"></i></button>
+    <button class="orders-v40-back uzr-back-v69" id="ordersBack" type="button" aria-label="Назад"><i data-lucide="chevron-left"></i></button>
     <h1>Мои заказы</h1>
     <span class="orders-v40-topbar-spacer" aria-hidden="true"></span>
   </div>
@@ -10213,7 +10491,7 @@ html[data-uzr-theme="light"] :is(
 <div class="overlay product-v18-view" id="productView">
 <div class="product-v18-inner">
 <div class="product-v18-topbar">
-<button aria-label="Назад" class="product-v18-circle" id="productBack" type="button">
+<button aria-label="Назад" class="product-v18-circle uzr-back-v69" id="productBack" type="button">
 <i data-lucide="chevron-left"></i>
 </button>
 <div class="product-v18-top-actions">
@@ -10301,7 +10579,7 @@ html[data-uzr-theme="light"] :is(
 <button class="btn listing-success-secondary" id="listingSuccessHomeBtn">На главную</button>
 </div></div>
 <div class="overlay official-store-view" id="officialStoreView"><div class="inner official-store-inner">
-<button aria-label="Назад" class="back official-store-back" id="officialStoreBack">←</button>
+<button aria-label="Назад" class="back official-store-back uzr-back-v69" id="officialStoreBack"><i data-lucide="chevron-left"></i></button>
 <div class="official-profile-shell">
 <section class="official-profile-card">
 <div class="official-profile-head">
@@ -10399,12 +10677,12 @@ html[data-uzr-theme="light"] :is(
 </section>
 </div>
 </div></div>
-<div class="overlay" id="adminReviewView"><div class="inner"><button class="back" onclick="$('adminReviewView').classList.remove('open')">←</button><div id="adminReviewContent"></div></div></div>
-<div class="overlay" id="adminListingView"><div class="inner"><button class="back" onclick="$('adminListingView').classList.remove('open')">←</button><div id="adminListingContent"></div></div></div>
+<div class="overlay" id="adminReviewView"><div class="inner"><button class="back uzr-back-v69" onclick="$('adminReviewView').classList.remove('open')" aria-label="Назад"><i data-lucide="chevron-left"></i></button><div id="adminReviewContent"></div></div></div>
+<div class="overlay" id="adminListingView"><div class="inner"><button class="back uzr-back-v69" onclick="$('adminListingView').classList.remove('open')" aria-label="Назад"><i data-lucide="chevron-left"></i></button><div id="adminListingContent"></div></div></div>
 <div class="overlay order-detail-v40-view" id="orderDetailView">
   <div class="order-detail-v40-inner">
     <div class="order-detail-v40-topbar">
-      <button class="order-detail-v40-back" id="orderDetailBack" type="button" aria-label="Назад"><i data-lucide="chevron-left"></i></button>
+      <button class="order-detail-v40-back uzr-back-v69" id="orderDetailBack" type="button" aria-label="Назад"><i data-lucide="chevron-left"></i></button>
       <div class="order-detail-v40-title" id="orderDetailTitleV40">Заказ</div>
       <span class="order-detail-v40-topbar-spacer" aria-hidden="true"></span>
     </div>
@@ -10413,7 +10691,7 @@ html[data-uzr-theme="light"] :is(
 </div>
 <div class="overlay" id="checkoutView"><div class="inner checkout-premium-inner checkout-v41-inner">
 <div class="checkout-v41-topbar checkout-v43-topbar">
-<button class="back checkout-premium-back" id="checkoutBack" type="button" aria-label="Назад"><i data-lucide="chevron-left"></i></button>
+<button class="back checkout-premium-back uzr-back-v69" id="checkoutBack" type="button" aria-label="Назад"><i data-lucide="chevron-left"></i></button>
 </div>
 <div id="orderForm">
 <div class="checkout-heading"><span>UZBEK RE'SALE</span><h1>Оформление заказа</h1><p>Проверьте заказ и оставьте данные для подтверждения.</p></div>
@@ -11388,7 +11666,11 @@ function openOfficialStore(){
   const items=officialProducts();
   if(count)count.textContent=String(items.length);
   g.innerHTML="";
-  items.forEach(p=>g.appendChild(card(p)));
+  if(items.length){
+    items.forEach(p=>g.appendChild(card(p)));
+  }else{
+    g.innerHTML=`<div class="official-empty-v74"><div class="official-empty-v74-icon"><i data-lucide="package-search"></i></div><h3>Пока нет товаров</h3><p>Когда команда добавит официальные позиции, они появятся здесь.</p></div>`;
+  }
   v.classList.add("open");
   document.body.classList.add("official-store-open-v33");
   v.scrollTop=0;
@@ -12640,7 +12922,7 @@ function renderSellerProfileV26(profile,id,own=false,fallbackName="",fallbackUse
     ? `<div class="seller-v26-actions own"><button class="seller-v26-action settings" type="button" onclick="openSellerSettingsV26('${escapeHtml(String(id))}')"><i data-lucide="settings"></i><span>Настроить профиль</span></button>${allBtn}</div>`
     : `<div class="seller-v26-actions ${writeBtn?'':'single'}">${writeBtn}${allBtn}</div>`;
   b.innerHTML=`
-    <div class="seller-v26-head"><button class="seller-v26-back" type="button" onclick="sellerProfileBackV26()" aria-label="Назад"><i data-lucide="chevron-left"></i></button><h1>${own?'Мой профиль продавца':'Профиль продавца'}</h1></div>
+    <div class="seller-v26-head"><button class="seller-v26-back uzr-back-v69" type="button" onclick="sellerProfileBackV26()" aria-label="Назад"><i data-lucide="chevron-left"></i></button><h1>${own?'Мой профиль продавца':'Профиль продавца'}</h1></div>
     <section class="seller-v26-hero">
       <div class="seller-v26-identity">
         <div class="seller-v26-avatar">${avatarUrl?`<img src="${avatarUrl}" alt="" onerror="this.remove();this.parentElement.textContent='${escapeHtml(ini)}'">`:escapeHtml(ini)}</div>
@@ -13432,15 +13714,6 @@ if(document.readyState==="loading"){
 }else{
   initUzrSettingsFoundationV61();
 }
-</script>
-
-
-<script id="uzr-theme-foundation-v64-marker">
-window.__UZR_THEME_FOUNDATION_V64__={
-  version:"v64",
-  activeTheme:"dark",
-  switchingEnabled:false
-};
 </script>
 
 
