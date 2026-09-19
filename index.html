@@ -11209,6 +11209,333 @@ html[data-uzr-theme="light"] body #uzrConsentLegalV58 .uzr-consent-legal-section
 }
 </style>
 
+
+<style id="uzr-v79-full-light-index-audit">
+/* ============================================================
+   v79 — FULL LIGHT INDEX AUDIT
+   Fixes:
+   - Cart item title + remove button
+   - Native SELECT / OPTION popup colors
+   - Remaining active user-facing dark fallbacks
+   - Legacy simple pages (addresses / payments / support)
+   Dark theme remains untouched.
+   ============================================================ */
+
+/* ------------------------------------------------------------
+   1) CART — remove final dark circle and invisible item title
+   ------------------------------------------------------------ */
+html[data-uzr-theme="light"] body .app #cart #cartList .cartrow{
+  background:#ffffff!important;
+  background-color:#ffffff!important;
+  border-color:#d7e1e8!important;
+}
+
+html[data-uzr-theme="light"] body .app #cart #cartList .grow b{
+  color:#122431!important;
+  -webkit-text-fill-color:#122431!important;
+  opacity:1!important;
+}
+
+html[data-uzr-theme="light"] body .app #cart #cartList .grow .meta{
+  color:#667b89!important;
+  -webkit-text-fill-color:#667b89!important;
+}
+
+html[data-uzr-theme="light"] body .app #cart #cartList .grow .price{
+  color:#179de8!important;
+  -webkit-text-fill-color:#179de8!important;
+}
+
+html[data-uzr-theme="light"] body .app #cart #cartList .remove{
+  width:38px!important;
+  height:38px!important;
+  min-width:38px!important;
+  background:#fff3f5!important;
+  background-color:#fff3f5!important;
+  background-image:none!important;
+  border:1px solid #efb7bf!important;
+  color:#d83f51!important;
+  -webkit-text-fill-color:#d83f51!important;
+  box-shadow:none!important;
+  font-size:23px!important;
+  font-weight:400!important;
+}
+
+html[data-uzr-theme="light"] body .app #cart #cartList .remove:active{
+  background:#ffe8ec!important;
+  opacity:1!important;
+}
+
+/* ------------------------------------------------------------
+   2) ALL NATIVE SELECT MENUS — readable Windows / Telegram Light
+   Fixes the city dropdown screenshot where unselected cities
+   became almost white on a light menu.
+   ------------------------------------------------------------ */
+html[data-uzr-theme="light"] body select,
+html[data-uzr-theme="light"] body select option,
+html[data-uzr-theme="light"] body select optgroup{
+  color-scheme:light!important;
+  color:#122431!important;
+  -webkit-text-fill-color:#122431!important;
+  background:#ffffff!important;
+  background-color:#ffffff!important;
+}
+
+html[data-uzr-theme="light"] body select option:checked{
+  color:#122431!important;
+  -webkit-text-fill-color:#122431!important;
+  background:#dceefb!important;
+  background-color:#dceefb!important;
+}
+
+html[data-uzr-theme="light"] body select option:disabled{
+  color:#8a9aa5!important;
+  -webkit-text-fill-color:#8a9aa5!important;
+}
+
+html[data-uzr-theme="light"] body :is(
+  #sell #sellCategory,
+  #sell #sellCondition,
+  #sell #sellCity,
+  #sellerSettingsV26 #sellerSettingsCityV26,
+  #checkoutView #buyerCity,
+  #catalog #sortSelect,
+  #adminContent #aoCondition,
+  #adminContent #aoSource
+){
+  color-scheme:light!important;
+  background:#f8fafc!important;
+  background-color:#f8fafc!important;
+  color:#122431!important;
+  -webkit-text-fill-color:#122431!important;
+  border-color:#d7e1e8!important;
+}
+
+/* ------------------------------------------------------------
+   3) CATALOG SEARCH CLEAR — no dark fallback in Light
+   ------------------------------------------------------------ */
+html[data-uzr-theme="light"] body .app #catalog #catalogSearchClearV14{
+  background:#eef4f8!important;
+  background-color:#eef4f8!important;
+  border:1px solid #d7e1e8!important;
+  color:#667b89!important;
+  box-shadow:none!important;
+}
+html[data-uzr-theme="light"] body .app #catalog #catalogSearchClearV14 svg{
+  stroke:#667b89!important;
+}
+
+/* ------------------------------------------------------------
+   4) PRODUCT CONDITION PILLS — pastel Light variants
+   ------------------------------------------------------------ */
+html[data-uzr-theme="light"] body #productView .product-v18-quick .spec-new,
+html[data-uzr-theme="light"] body #productView .product-v18-quick .spec-excellent{
+  background:#eaf9f3!important;
+  color:#128257!important;
+  -webkit-text-fill-color:#128257!important;
+  border:1px solid #bfe8d5!important;
+}
+
+html[data-uzr-theme="light"] body #productView .product-v18-quick .spec-good{
+  background:#eaf6ff!important;
+  color:#168fdc!important;
+  -webkit-text-fill-color:#168fdc!important;
+  border:1px solid #c5e5f8!important;
+}
+
+html[data-uzr-theme="light"] body #productView .product-v18-quick .spec-satisfactory{
+  background:#fff5e8!important;
+  color:#b46b0d!important;
+  -webkit-text-fill-color:#b46b0d!important;
+  border:1px solid #f0d3aa!important;
+}
+
+/* ------------------------------------------------------------
+   5) LIGHT FALLBACK AVATARS / EMPTY ICONS / MISSING IMAGES
+   ------------------------------------------------------------ */
+html[data-uzr-theme="light"] body .app #profile .tg-profile-avatar-v13,
+html[data-uzr-theme="light"] body #productView .product-v18-seller-avatar,
+html[data-uzr-theme="light"] body #sellerProfile .seller-v26-avatar{
+  background:#eaf6ff!important;
+  background-color:#eaf6ff!important;
+  color:#168fdc!important;
+  -webkit-text-fill-color:#168fdc!important;
+  border-color:#cfe4f2!important;
+}
+
+html[data-uzr-theme="light"] body #productView .seller-mini-image-v20{
+  background:#f2f5f7!important;
+  background-color:#f2f5f7!important;
+}
+
+html[data-uzr-theme="light"] body #sellerProfile .seller-v26-empty-icon{
+  background:#eef5f9!important;
+  background-color:#eef5f9!important;
+  color:#718c9b!important;
+}
+html[data-uzr-theme="light"] body #sellerProfile .seller-v26-empty-icon svg{
+  stroke:#718c9b!important;
+}
+
+/* ------------------------------------------------------------
+   6) LIGHT LOADING SKELETON — no dark flash before API loads
+   ------------------------------------------------------------ */
+html[data-uzr-theme="light"] body .app #homeGrid .skeleton-grid-v2>div{
+  background:linear-gradient(
+    90deg,
+    #eef3f6 25%,
+    #f8fafc 38%,
+    #eef3f6 62%
+  )!important;
+  background-size:400% 100%!important;
+}
+
+/* ------------------------------------------------------------
+   7) CONSENT ICONS — Light from first frame
+   ------------------------------------------------------------ */
+html[data-uzr-theme="light"] body #uzrConsentV58 .uzr-consent-logo-v58,
+html[data-uzr-theme="light"] body #uzrConsentV58 .uzr-consent-doc-icon-v58{
+  background:#eaf6ff!important;
+  background-color:#eaf6ff!important;
+  border-color:#cfe5f4!important;
+  color:#168fdc!important;
+}
+
+html[data-uzr-theme="light"] body #uzrConsentLegalV58 .uzr-consent-legal-head-v58 button{
+  background:#ffffff!important;
+  background-color:#ffffff!important;
+  border-color:#d2dee6!important;
+  color:#17384b!important;
+}
+html[data-uzr-theme="light"] body #uzrConsentLegalV58 .uzr-consent-legal-head-v58 button svg{
+  stroke:#17384b!important;
+}
+
+/* ------------------------------------------------------------
+   8) LEGACY SIMPLE USER PAGES — complete Light support
+   ------------------------------------------------------------ */
+html[data-uzr-theme="light"] body .app :is(#addresses,#payments,#support){
+  background:#f3f6fa!important;
+  color:#122431!important;
+}
+
+html[data-uzr-theme="light"] body .app :is(#addresses,#payments,#support) .simple-head h1{
+  color:#122431!important;
+  -webkit-text-fill-color:#122431!important;
+}
+
+html[data-uzr-theme="light"] body .app :is(#addresses,#payments,#support) .list-card{
+  background:#ffffff!important;
+  background-color:#ffffff!important;
+  border:1px solid #d7e1e8!important;
+  border-radius:16px!important;
+  overflow:hidden!important;
+}
+
+html[data-uzr-theme="light"] body .app :is(#addresses,#payments,#support) .list-row{
+  background:#ffffff!important;
+  background-color:#ffffff!important;
+  border-bottom:1px solid #e7edf1!important;
+  color:#122431!important;
+  -webkit-text-fill-color:#122431!important;
+}
+html[data-uzr-theme="light"] body .app :is(#addresses,#payments,#support) .list-row:last-child{
+  border-bottom:0!important;
+}
+
+html[data-uzr-theme="light"] body .app :is(#addresses,#payments,#support) .list-row svg{
+  stroke:#5f7b8a!important;
+}
+
+html[data-uzr-theme="light"] body .app #addresses #addAddressBtn{
+  background:#2ea6ff!important;
+  background-color:#2ea6ff!important;
+  background-image:none!important;
+  color:#ffffff!important;
+  -webkit-text-fill-color:#ffffff!important;
+  border-color:#2ea6ff!important;
+}
+
+/* ------------------------------------------------------------
+   9) OLD PHOTO COUNTER / GALLERY HINT FALLBACKS
+   ------------------------------------------------------------ */
+html[data-uzr-theme="light"] body .photo-counter,
+html[data-uzr-theme="light"] body .product-gallery-hint{
+  background:#ffffff!important;
+  background-color:#ffffff!important;
+  border:1px solid #cddae2!important;
+  color:#526b79!important;
+  -webkit-text-fill-color:#526b79!important;
+  box-shadow:0 2px 7px rgba(31,53,68,.05)!important;
+}
+
+/* ------------------------------------------------------------
+   10) OFF SWITCH — softer gray instead of dark navy
+   ------------------------------------------------------------ */
+html[data-uzr-theme="light"] body .tg-switch-v13.switch:not(.on){
+  background:#d5dfe6!important;
+  background-color:#d5dfe6!important;
+}
+html[data-uzr-theme="light"] body .tg-switch-v13.switch.on{
+  background:#2ea6ff!important;
+  background-color:#2ea6ff!important;
+}
+</style>
+
+
+<style id="uzr-v79-unmatched-light-closure">
+/* v79 audit closure — explicit Light rules for the final unmatched user-facing tokens */
+html[data-uzr-theme="light"] body .seller-avatar,
+html[data-uzr-theme="light"] body #productSeller .seller-avatar{
+  background:#eaf6ff!important;
+  background-color:#eaf6ff!important;
+  color:#168fdc!important;
+  -webkit-text-fill-color:#168fdc!important;
+  border-color:#cfe4f2!important;
+}
+
+html[data-uzr-theme="light"] body .home-categories button:active span{
+  background:#e7f5ff!important;
+  background-color:#e7f5ff!important;
+  color:#168fdc!important;
+}
+
+html[data-uzr-theme="light"] body .tg-row-v12{
+  background:#ffffff!important;
+  background-color:#ffffff!important;
+  border-color:#e7edf1!important;
+  color:#122431!important;
+}
+html[data-uzr-theme="light"] body .tg-row-v12:active{
+  background:#f4f8fb!important;
+  background-color:#f4f8fb!important;
+}
+
+html[data-uzr-theme="light"] body .tg-settings-back-v13,
+html[data-uzr-theme="light"] body .legal-v53-back{
+  background:#ffffff!important;
+  background-color:#ffffff!important;
+  background-image:none!important;
+  border-color:#d2dee6!important;
+  color:#17384b!important;
+  box-shadow:0 3px 10px rgba(31,53,68,.07)!important;
+}
+html[data-uzr-theme="light"] body .tg-settings-back-v13 svg,
+html[data-uzr-theme="light"] body .legal-v53-back svg{
+  stroke:#17384b!important;
+}
+
+html[data-uzr-theme="light"] body nav .nav-profile-v13 .nav-profile-avatar-v13{
+  background:#ffffff!important;
+  background-color:#ffffff!important;
+  border:1px solid #d2dee6!important;
+  color:#168fdc!important;
+}
+html[data-uzr-theme="light"] body nav .nav-profile-v13 .nav-profile-avatar-v13 svg{
+  stroke:#168fdc!important;
+}
+</style>
+
 </head><body>
 <div id="uzrConsentV58" role="dialog" aria-modal="true" aria-labelledby="uzrConsentTitleV58">
   <div class="uzr-consent-card-v58">
