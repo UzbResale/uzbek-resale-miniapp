@@ -7394,7 +7394,324 @@ body.order-detail-open-v40 nav{z-index:1500!important;display:grid!important;vis
 }
 </style>
 
-</head><body><div class="app">
+
+<style id="uzr-consent-v58-style">
+body.uzr-consent-lock-v58{
+  overflow:hidden!important;
+  overscroll-behavior:none!important;
+}
+#uzrConsentV58{
+  position:fixed!important;
+  inset:0!important;
+  z-index:2147483000!important;
+  display:flex!important;
+  align-items:center!important;
+  justify-content:center!important;
+  padding:
+    max(18px,env(safe-area-inset-top))
+    16px
+    max(18px,env(safe-area-inset-bottom))!important;
+  background:#061823!important;
+  color:#f4f7fa!important;
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif!important;
+}
+#uzrConsentV58[hidden]{display:none!important}
+.uzr-consent-card-v58{
+  width:min(100%,420px)!important;
+  border:1px solid #244352!important;
+  border-radius:24px!important;
+  background:linear-gradient(155deg,#0f2c3c 0%,#0a202c 100%)!important;
+  box-shadow:0 24px 70px rgba(0,0,0,.34)!important;
+  padding:22px 18px 18px!important;
+}
+.uzr-consent-brand-v58{
+  display:flex!important;
+  align-items:center!important;
+  gap:10px!important;
+  margin-bottom:18px!important;
+}
+.uzr-consent-logo-v58{
+  width:42px!important;
+  height:42px!important;
+  border-radius:13px!important;
+  display:grid!important;
+  place-items:center!important;
+  background:#123b55!important;
+  border:1px solid #2d5870!important;
+  color:#55b9ff!important;
+}
+.uzr-consent-logo-v58 svg{
+  width:22px!important;
+  height:22px!important;
+  stroke:currentColor!important;
+}
+.uzr-consent-brand-v58 b{
+  display:block!important;
+  font-size:15px!important;
+  line-height:1.15!important;
+  letter-spacing:.02em!important;
+}
+.uzr-consent-brand-v58 small{
+  display:block!important;
+  margin-top:3px!important;
+  color:#8196a8!important;
+  font-size:10.5px!important;
+}
+.uzr-consent-card-v58 h1{
+  margin:0 0 9px!important;
+  color:#f4f7fa!important;
+  font-size:24px!important;
+  line-height:1.12!important;
+  letter-spacing:-.025em!important;
+}
+.uzr-consent-lead-v58{
+  margin:0 0 16px!important;
+  color:#a6b8c4!important;
+  font-size:13px!important;
+  line-height:1.55!important;
+}
+.uzr-consent-docs-v58{
+  overflow:hidden!important;
+  border:1px solid #244352!important;
+  border-radius:16px!important;
+  background:#0e2938!important;
+  margin-bottom:16px!important;
+}
+.uzr-consent-doc-v58{
+  width:100%!important;
+  min-height:60px!important;
+  padding:0 13px!important;
+  border:0!important;
+  border-bottom:1px solid #244352!important;
+  background:transparent!important;
+  color:#f4f7fa!important;
+  display:grid!important;
+  grid-template-columns:34px 1fr 18px!important;
+  gap:10px!important;
+  align-items:center!important;
+  text-align:left!important;
+  cursor:pointer!important;
+}
+.uzr-consent-doc-v58:last-child{border-bottom:0!important}
+.uzr-consent-doc-v58:active{background:#123142!important}
+.uzr-consent-doc-icon-v58{
+  width:32px!important;
+  height:32px!important;
+  border-radius:10px!important;
+  background:#12384f!important;
+  display:grid!important;
+  place-items:center!important;
+  color:#65c1ff!important;
+}
+.uzr-consent-doc-icon-v58 svg{
+  width:17px!important;
+  height:17px!important;
+  stroke:currentColor!important;
+}
+.uzr-consent-doc-copy-v58 b{
+  display:block!important;
+  font-size:13px!important;
+  line-height:1.25!important;
+}
+.uzr-consent-doc-copy-v58 small{
+  display:block!important;
+  margin-top:3px!important;
+  color:#8196a8!important;
+  font-size:10.5px!important;
+}
+.uzr-consent-doc-v58>svg{
+  width:17px!important;
+  height:17px!important;
+  stroke:#6f8797!important;
+}
+.uzr-consent-confirm-v58{
+  margin:0 1px 14px!important;
+  color:#8196a8!important;
+  font-size:10.8px!important;
+  line-height:1.48!important;
+}
+.uzr-consent-confirm-v58 strong{color:#d9e5ec!important;font-weight:700!important}
+.uzr-consent-continue-v58{
+  width:100%!important;
+  height:50px!important;
+  border:0!important;
+  border-radius:15px!important;
+  background:linear-gradient(180deg,#32b1ff 0%,#188fe6 100%)!important;
+  color:#fff!important;
+  font-size:15px!important;
+  font-weight:800!important;
+  box-shadow:0 8px 24px rgba(25,145,232,.22)!important;
+  cursor:pointer!important;
+}
+.uzr-consent-continue-v58:active{transform:translateY(1px)!important}
+.uzr-consent-close-note-v58{
+  margin:11px 5px 0!important;
+  color:#657e8f!important;
+  text-align:center!important;
+  font-size:9.8px!important;
+  line-height:1.35!important;
+}
+
+/* Full legal reader opened from consent screen */
+#uzrConsentLegalV58{
+  position:fixed!important;
+  inset:0!important;
+  z-index:2147483010!important;
+  background:#061823!important;
+  color:#f4f7fa!important;
+  display:flex!important;
+  flex-direction:column!important;
+}
+#uzrConsentLegalV58[hidden]{display:none!important}
+.uzr-consent-legal-head-v58{
+  flex:0 0 auto!important;
+  min-height:64px!important;
+  display:grid!important;
+  grid-template-columns:42px 1fr 42px!important;
+  gap:10px!important;
+  align-items:center!important;
+  padding:
+    max(10px,env(safe-area-inset-top))
+    14px
+    10px!important;
+  border-bottom:1px solid #193a4b!important;
+  background:rgba(6,24,35,.97)!important;
+}
+.uzr-consent-legal-head-v58 button{
+  width:40px!important;
+  height:40px!important;
+  border:1px solid #29495b!important;
+  border-radius:50%!important;
+  background:#0b2534!important;
+  color:#f4f7fa!important;
+  display:grid!important;
+  place-items:center!important;
+}
+.uzr-consent-legal-head-v58 button svg{
+  width:20px!important;
+  height:20px!important;
+}
+.uzr-consent-legal-head-v58 h2{
+  margin:0!important;
+  text-align:center!important;
+  font-size:15px!important;
+  line-height:1.2!important;
+}
+.uzr-consent-legal-scroll-v58{
+  flex:1 1 auto!important;
+  overflow:auto!important;
+  -webkit-overflow-scrolling:touch!important;
+  padding:16px 14px calc(30px + env(safe-area-inset-bottom))!important;
+}
+.uzr-consent-legal-meta-v58{
+  margin-bottom:14px!important;
+  padding:14px!important;
+  border:1px solid #244352!important;
+  border-radius:16px!important;
+  background:#0d2837!important;
+}
+.uzr-consent-legal-meta-v58 b{
+  display:block!important;
+  font-size:16px!important;
+}
+.uzr-consent-legal-meta-v58 span{
+  display:block!important;
+  margin-top:4px!important;
+  color:#8196a8!important;
+  font-size:10.5px!important;
+}
+.uzr-consent-legal-section-v58{
+  margin:10px 0!important;
+  border:1px solid #244352!important;
+  border-radius:16px!important;
+  background:#0e2938!important;
+  overflow:hidden!important;
+}
+.uzr-consent-legal-section-v58 h3{
+  margin:0!important;
+  padding:13px 14px!important;
+  border-bottom:1px solid #244352!important;
+  color:#f4f7fa!important;
+  font-size:14px!important;
+  line-height:1.35!important;
+}
+.uzr-consent-legal-clause-v58{
+  padding:11px 14px!important;
+  border-bottom:1px solid rgba(36,67,82,.72)!important;
+  color:#b5c5ce!important;
+  font-size:11.5px!important;
+  line-height:1.58!important;
+}
+.uzr-consent-legal-clause-v58:last-child{border-bottom:0!important}
+.uzr-consent-legal-clause-v58 b{
+  color:#f4f7fa!important;
+  margin-right:5px!important;
+}
+@media(max-width:360px){
+  .uzr-consent-card-v58{padding:18px 14px 15px!important}
+  .uzr-consent-card-v58 h1{font-size:22px!important}
+}
+</style>
+
+</head><body>
+<div id="uzrConsentV58" role="dialog" aria-modal="true" aria-labelledby="uzrConsentTitleV58">
+  <div class="uzr-consent-card-v58">
+    <div class="uzr-consent-brand-v58">
+      <span class="uzr-consent-logo-v58"><i data-lucide="shield-check"></i></span>
+      <span><b>UZBEK RE'SALE</b><small>Telegram Mini App</small></span>
+    </div>
+
+    <h1 id="uzrConsentTitleV58">Добро пожаловать</h1>
+    <p class="uzr-consent-lead-v58">
+      Перед началом использования ознакомьтесь с условиями сервиса.
+    </p>
+
+    <div class="uzr-consent-docs-v58">
+      <button class="uzr-consent-doc-v58" type="button" onclick="openUzrConsentLegalV58('terms')">
+        <span class="uzr-consent-doc-icon-v58"><i data-lucide="file-signature"></i></span>
+        <span class="uzr-consent-doc-copy-v58">
+          <b>Пользовательское соглашение</b>
+          <small>Редакция 1.0</small>
+        </span>
+        <i data-lucide="chevron-right"></i>
+      </button>
+      <button class="uzr-consent-doc-v58" type="button" onclick="openUzrConsentLegalV58('privacy')">
+        <span class="uzr-consent-doc-icon-v58"><i data-lucide="lock-keyhole"></i></span>
+        <span class="uzr-consent-doc-copy-v58">
+          <b>Политика конфиденциальности</b>
+          <small>Редакция 1.0</small>
+        </span>
+        <i data-lucide="chevron-right"></i>
+      </button>
+    </div>
+
+    <p class="uzr-consent-confirm-v58">
+      Нажимая <strong>«Продолжить»</strong>, вы подтверждаете, что вам исполнилось
+      <strong>16 лет</strong>, принимаете Пользовательское соглашение и подтверждаете,
+      что ознакомились с Политикой конфиденциальности.
+    </p>
+
+    <button class="uzr-consent-continue-v58" type="button" onclick="acceptUzrLegalV58()">
+      Продолжить
+    </button>
+
+    <p class="uzr-consent-close-note-v58">
+      Если вы не согласны с условиями, закройте Mini App.
+    </p>
+  </div>
+</div>
+
+<div id="uzrConsentLegalV58" hidden role="dialog" aria-modal="true">
+  <div class="uzr-consent-legal-head-v58">
+    <button type="button" aria-label="Назад" onclick="closeUzrConsentLegalV58()">
+      <i data-lucide="chevron-left"></i>
+    </button>
+    <h2 id="uzrConsentLegalTitleV58">Документ</h2>
+    <span></span>
+  </div>
+  <div class="uzr-consent-legal-scroll-v58" id="uzrConsentLegalBodyV58"></div>
+</div>
+<div class="app">
 <header class="app-header-v2 dark-home-header-v10" id="appHeader">
 <div class="dark-brand-row-v10">
 <button aria-label="Главная" class="dark-brand-v10" onclick="page('home')">
@@ -11210,6 +11527,109 @@ function moveLegalSectionV53(delta){
 }
 
 document.getElementById("legalDocSearchV53")?.addEventListener("input",renderLegalTocV53);
+</script>
+
+
+<script id="uzr-consent-v58-script">
+const UZR_CONSENT_TERMS_VERSION_V58="1.0";
+const UZR_CONSENT_PRIVACY_VERSION_V58="1.0";
+const UZR_CONSENT_STORAGE_KEY_V58="uzr_legal_consent_v1";
+
+function readUzrConsentV58(){
+  try{
+    const raw=localStorage.getItem(UZR_CONSENT_STORAGE_KEY_V58);
+    return raw?JSON.parse(raw):null;
+  }catch(_){return null}
+}
+function hasUzrConsentV58(){
+  const value=readUzrConsentV58();
+  return !!(
+    value &&
+    value.termsVersion===UZR_CONSENT_TERMS_VERSION_V58 &&
+    value.privacyVersion===UZR_CONSENT_PRIVACY_VERSION_V58 &&
+    value.accepted===true
+  );
+}
+function showUzrConsentV58(){
+  const el=document.getElementById("uzrConsentV58");
+  if(!el)return;
+  el.hidden=false;
+  document.body.classList.add("uzr-consent-lock-v58");
+  setTimeout(()=>window.lucide&&lucide.createIcons(),0);
+}
+function hideUzrConsentV58(){
+  const el=document.getElementById("uzrConsentV58");
+  const doc=document.getElementById("uzrConsentLegalV58");
+  if(el)el.hidden=true;
+  if(doc)doc.hidden=true;
+  document.body.classList.remove("uzr-consent-lock-v58");
+}
+function acceptUzrLegalV58(){
+  const payload={
+    accepted:true,
+    termsVersion:UZR_CONSENT_TERMS_VERSION_V58,
+    privacyVersion:UZR_CONSENT_PRIVACY_VERSION_V58,
+    acceptedAt:new Date().toISOString()
+  };
+  try{localStorage.setItem(UZR_CONSENT_STORAGE_KEY_V58,JSON.stringify(payload))}catch(_){}
+  window.__uzrConsentAcceptedV58=payload;
+  try{window.Telegram?.WebApp?.HapticFeedback?.notificationOccurred?.("success")}catch(_){}
+  hideUzrConsentV58();
+}
+function uzrConsentEscapeV58(value){
+  return String(value??"")
+    .replaceAll("&","&amp;")
+    .replaceAll("<","&lt;")
+    .replaceAll(">","&gt;")
+    .replaceAll('"',"&quot;")
+    .replaceAll("'","&#039;");
+}
+function openUzrConsentLegalV58(kind){
+  const docs=typeof LEGAL_V53_DOCS!=="undefined"?LEGAL_V53_DOCS:null;
+  if(!docs||!docs[kind])return;
+  const title=kind==="privacy"?"Политика конфиденциальности":"Пользовательское соглашение";
+  const titleEl=document.getElementById("uzrConsentLegalTitleV58");
+  const body=document.getElementById("uzrConsentLegalBodyV58");
+  const overlay=document.getElementById("uzrConsentLegalV58");
+  if(!body||!overlay)return;
+
+  if(titleEl)titleEl.textContent=title;
+  body.innerHTML=
+    `<div class="uzr-consent-legal-meta-v58"><b>${uzrConsentEscapeV58(title)}</b><span>Редакция 1.0 · Республика Узбекистан</span></div>`+
+    docs[kind].map(section=>
+      `<section class="uzr-consent-legal-section-v58">
+        <h3>${uzrConsentEscapeV58(section.number+". "+section.title)}</h3>
+        ${section.items.map(item=>`<div class="uzr-consent-legal-clause-v58"><b>${uzrConsentEscapeV58(item[0])}</b>${uzrConsentEscapeV58(item[1])}</div>`).join("")}
+      </section>`
+    ).join("");
+  overlay.hidden=false;
+  body.scrollTop=0;
+  setTimeout(()=>window.lucide&&lucide.createIcons(),0);
+}
+function closeUzrConsentLegalV58(){
+  const el=document.getElementById("uzrConsentLegalV58");
+  if(el)el.hidden=true;
+}
+function initUzrConsentV58(){
+  if(hasUzrConsentV58()){
+    hideUzrConsentV58();
+  }else{
+    showUzrConsentV58();
+  }
+}
+
+/* Developer/test helper: call resetUzrLegalConsentV58() in console to see first-run screen again. */
+window.resetUzrLegalConsentV58=function(){
+  try{localStorage.removeItem(UZR_CONSENT_STORAGE_KEY_V58)}catch(_){}
+  location.reload();
+};
+window.getUzrLegalConsentV58=readUzrConsentV58;
+
+if(document.readyState==="loading"){
+  document.addEventListener("DOMContentLoaded",initUzrConsentV58,{once:true});
+}else{
+  initUzrConsentV58();
+}
 </script>
 
 </body></html>
