@@ -11536,6 +11536,67 @@ html[data-uzr-theme="light"] body nav .nav-profile-v13 .nav-profile-avatar-v13 s
 }
 </style>
 
+
+<style id="uzr-v80-favorite-no-reset">
+/* Favorite changes are local DOM updates — never a whole-page rebuild. */
+.product-card-v15 .product-heart{
+  transition:
+    background-color .16s ease,
+    border-color .16s ease,
+    transform .12s ease!important;
+}
+.product-card-v15 .product-heart:active{
+  transform:scale(.91)!important;
+}
+.product-card-v15 .product-heart.is-favorite{
+  animation:uzrFavoritePopV80 .18s ease-out!important;
+}
+@keyframes uzrFavoritePopV80{
+  0%{transform:scale(.88)}
+  65%{transform:scale(1.08)}
+  100%{transform:scale(1)}
+}
+
+#favoriteGrid .favorite-removing-v80{
+  opacity:0!important;
+  transform:scale(.96)!important;
+  transition:opacity .12s ease,transform .12s ease!important;
+}
+#favoriteGrid .favorite-added-v80{
+  opacity:0!important;
+  transform:scale(.97)!important;
+}
+#favoriteGrid .favorite-added-v80.favorite-added-ready-v80{
+  opacity:1!important;
+  transform:scale(1)!important;
+  transition:opacity .14s ease,transform .14s ease!important;
+}
+</style>
+
+
+<style id="uzr-consent-v82-route-fix-style">
+.uzr-consent-error-v82{
+  margin:9px 2px 0!important;
+  padding:9px 11px!important;
+  border-radius:12px!important;
+  border:1px solid rgba(255,94,109,.42)!important;
+  background:rgba(159,36,52,.15)!important;
+  color:#ff9aa4!important;
+  font-size:10.5px!important;
+  line-height:1.4!important;
+  text-align:left!important;
+}
+html[data-uzr-theme="light"] .uzr-consent-error-v82{
+  border-color:#f0aab3!important;
+  background:#fff1f3!important;
+  color:#d64052!important;
+}
+.uzr-consent-continue-v58:disabled{
+  opacity:.72!important;
+  cursor:wait!important;
+}
+</style>
+
 </head><body>
 <div id="uzrConsentV58" role="dialog" aria-modal="true" aria-labelledby="uzrConsentTitleV58">
   <div class="uzr-consent-card-v58">
@@ -11574,9 +11635,10 @@ html[data-uzr-theme="light"] body nav .nav-profile-v13 .nav-profile-avatar-v13 s
       что ознакомились с Политикой конфиденциальности.
     </p>
 
-    <button class="uzr-consent-continue-v58" type="button" onclick="acceptUzrLegalV58()">
+    <button class="uzr-consent-continue-v58" id="uzrConsentContinueV81" type="button" onclick="acceptUzrLegalV58()">
       Продолжить
     </button>
+    <div class="uzr-consent-error-v82" id="uzrConsentErrorV82" hidden></div>
 
     <p class="uzr-consent-close-note-v58">
       Если вы не согласны с условиями, закройте Mini App.
@@ -13143,43 +13205,6 @@ function card(p){
  const heart=e.querySelector(".product-heart");
  let favLock=0;
 
- const syncFavoriteUIV16=(id,on)=>{
-   document.querySelectorAll(`.product-card-v15[data-product-id="${CSS.escape(String(id))}"] .product-heart`).forEach(btn=>{
-     btn.classList.toggle("is-favorite",on);
-     btn.setAttribute("aria-pressed",on?"true":"false");
-   });
-
-   const pf=$("productFavBtnV2");
-   if(selected&&String(selected.id)===String(id)&&pf){
-     pf.textContent=on?"♥":"♡";
-     pf.classList.toggle("is-favorite",on);
-   }
-
-   /* On Favorites page, remove only the affected card instead of rebuilding every grid. */
-   if(!on){
-     const fg=$("favoriteGrid");
-     if(fg){
-       fg.querySelectorAll(`.product-card-v15[data-product-id="${CSS.escape(String(id))}"]`).forEach(card=>{
-         card.classList.add("favorite-removing-v16");
-         setTimeout(()=>card.remove(),120);
-       });
-       setTimeout(()=>{
-         const remaining=fg.querySelectorAll(".product-card-v15").length;
-         const empty=$("favoritesEmpty");
-         fg.style.display=remaining?"grid":"none";
-         if(empty){empty.hidden=!!remaining;empty.style.display=remaining?"none":"flex"}
-       },140);
-     }
-   }else if(currentPageId()==="favorites"){
-     const fg=$("favoriteGrid");
-     if(fg&&!fg.querySelector(`.product-card-v15[data-product-id="${CSS.escape(String(id))}"]`)){
-       fg.appendChild(card(p));
-       fg.style.display="grid";
-       const empty=$("favoritesEmpty");if(empty){empty.hidden=true;empty.style.display="none"}
-       setTimeout(()=>window.lucide&&lucide.createIcons(),0);
-     }
-   }
- };
 
  const doFav=x=>{
    x.preventDefault();x.stopPropagation();
@@ -13191,8 +13216,7 @@ function card(p){
    const on=!isFavoriteV76(favKey);
    favs=on?[...favs,favKey]:favs.filter(i=>favoriteKeyV76(i)!==favKey);
    saveFavsState();
-   syncFavoriteUIV16(p.id,on);
-   render();
+   syncFavoriteDomV80(p.id,on,p);
    uzrHaptic("selection");
    return false;
  };
@@ -13398,6 +13422,81 @@ function card(p){
 };return e}
 
 function fill(id,list){const b=$(id);if(!b)return;b.innerHTML="";if(!catalogLoaded){b.innerHTML='<div class="skeleton-grid-v2"><div></div><div></div><div></div><div></div></div>';return}if(catalogLoadError){b.innerHTML='<div class="empty empty-load-v2">Не удалось загрузить товары.<br><button type="button" onclick="loadMarketplaceCatalog()">Повторить</button></div>';return}if(!list.length){b.innerHTML='<div class="empty">Здесь пока ничего нет</div>';return}list.forEach(p=>b.appendChild(card(p)))}
+
+
+function favoriteCountLabelV80(n){
+  return n+" "+(n%10===1&&n%100!==11?"товар":([2,3,4].includes(n%10)&&![12,13,14].includes(n%100)?"товара":"товаров"));
+}
+
+function favoriteItemsV80(){
+  reconcileFavoritesV76();
+  return products.filter(p=>isFavoriteV76(p.id));
+}
+
+function syncFavoritesSummaryV80(){
+  const items=favoriteItemsV80();
+  const n=items.length;
+
+  const count=$("favoritesCountText");
+  if(count)count.textContent=favoriteCountLabelV80(n);
+
+  const empty=$("favoritesEmpty");
+  const grid=$("favoriteGrid");
+  const discover=$("favoritesDiscoverCard");
+
+  if(discover)discover.hidden=!n;
+
+  if(currentPageId()==="favorites"){
+    if(grid)grid.style.display=n?"grid":"none";
+    if(empty){
+      empty.hidden=!!n;
+      empty.style.display=n?"none":"flex";
+    }
+  }
+}
+
+function syncFavoriteDomV80(id,on,product){
+  const key=favoriteKeyV76(id);
+  const escaped=CSS.escape(String(id));
+
+  /* Update every visible copy of the same heart without rebuilding cards. */
+  document.querySelectorAll(`.product-card-v15[data-product-id="${escaped}"] .product-heart`).forEach(btn=>{
+    btn.classList.toggle("is-favorite",on);
+    btn.setAttribute("aria-pressed",on?"true":"false");
+  });
+
+  /* Product Page heart. */
+  if(selected&&favoriteKeyV76(selected.id)===key){
+    setProductFavoriteButtonV18(on);
+  }
+
+  const grid=$("favoriteGrid");
+
+  if(currentPageId()==="favorites"&&grid){
+    if(on){
+      if(!grid.querySelector(`.product-card-v15[data-product-id="${escaped}"]`)){
+        const p=product||products.find(x=>favoriteKeyV76(x.id)===key);
+        if(p){
+          const node=card(p);
+          node.classList.add("favorite-added-v80");
+          grid.appendChild(node);
+          requestAnimationFrame(()=>node.classList.add("favorite-added-ready-v80"));
+          setTimeout(()=>window.lucide&&lucide.createIcons(),0);
+        }
+      }
+      syncFavoritesSummaryV80();
+    }else{
+      const nodes=[...grid.querySelectorAll(`.product-card-v15[data-product-id="${escaped}"]`)];
+      nodes.forEach(node=>node.classList.add("favorite-removing-v80"));
+      setTimeout(()=>{
+        nodes.forEach(node=>node.remove());
+        syncFavoritesSummaryV80();
+      },130);
+    }
+  }else{
+    syncFavoritesSummaryV80();
+  }
+}
 
 function render(){const needle=String(q||"").toLowerCase();let list=products.filter(p=>(type==="Все"||p.type===type)&&(!ownerFilter||p.ownerType===ownerFilter)&&(category==="Все"||p.category===category)&&(!needle||[p.name,p.brand,p.category].some(v=>String(v||"").toLowerCase().includes(needle))));if(sortMode==="priceAsc")list=[...list].sort((a,b)=>a.price-b.price);if(sortMode==="priceDesc")list=[...list].sort((a,b)=>b.price-a.price);if(sortMode==="name")list=[...list].sort((a,b)=>a.name.localeCompare(b.name));fill("homeGrid",products.slice(0,4));fill("catalogGrid",list);
 const catalogResultCount=$("catalogResultCount");if(catalogResultCount)catalogResultCount.textContent=list.length+" "+(list.length===1?"товар":(list.length>=2&&list.length<=4?"товара":"товаров"));
@@ -13618,7 +13717,7 @@ syncCatalogSortLabelV14();
 const sortBtnV2=$("catalogSortBtnV2");if(sortBtnV2)sortBtnV2.onclick=()=>{const sh=$("sortSheetV2");if(sh)sh.hidden=!sh.hidden};
 const clearSearchV2=$("searchClearV2");if(clearSearchV2)clearSearchV2.onclick=()=>{const inp=$("search");if(inp){inp.value="";q="";clearSearchV2.hidden=true;render()}};
 const hs=$("hapticSwitch");if(hs)hs.onclick=()=>{const was=hapticEnabled;if(was)uzrHaptic("selection");hapticEnabled=!hapticEnabled;localStorage.setItem(UZR_HAPTIC_STORAGE,hapticEnabled?"1":"0");setSwitchState(hs,hapticEnabled);if(hapticEnabled)uzrHaptic("success")};
-const pfv=$("productFavBtnV2");if(pfv)pfv.onclick=()=>{if(!selected)return;const key=favoriteKeyV76(selected.id);const on=!isFavoriteV76(key);favs=on?[...favs,key]:favs.filter(i=>favoriteKeyV76(i)!==key);saveFavsState();setProductFavoriteButtonV18(on);document.querySelectorAll(`.product-card-v15[data-product-id="${CSS.escape(String(selected.id))}"] .product-heart`).forEach(btn=>{btn.classList.toggle("is-favorite",on);btn.setAttribute("aria-pressed",on?"true":"false")});render();uzrHaptic("selection")};
+const pfv=$("productFavBtnV2");if(pfv)pfv.onclick=()=>{if(!selected)return;const key=favoriteKeyV76(selected.id);const on=!isFavoriteV76(key);favs=on?[...favs,key]:favs.filter(i=>favoriteKeyV76(i)!==key);saveFavsState();setProductFavoriteButtonV18(on);syncFavoriteDomV80(selected.id,on,selected);uzrHaptic("selection")};
 document.addEventListener("click",e=>{
  const el=e.target.closest("button,[role='button'],.card");
  if(!el||el.disabled||el===hs)return;
@@ -15553,10 +15652,11 @@ document.getElementById("legalDocSearchV53")?.addEventListener("input",renderLeg
 </script>
 
 
-<script id="uzr-consent-v58-script">
+<script id="uzr-consent-v82-script">
 const UZR_CONSENT_TERMS_VERSION_V58="1.0";
 const UZR_CONSENT_PRIVACY_VERSION_V58="1.0";
 const UZR_CONSENT_STORAGE_KEY_V58="uzr_legal_consent_v1";
+const UZR_LEGAL_DIRECT_API_V82="https://uzbek-resale-orders.amegakid.workers.dev/legal/acceptance";
 
 function readUzrConsentV58(){
   try{
@@ -15564,6 +15664,14 @@ function readUzrConsentV58(){
     return raw?JSON.parse(raw):null;
   }catch(_){return null}
 }
+
+function writeUzrConsentV81(value){
+  try{
+    localStorage.setItem(UZR_CONSENT_STORAGE_KEY_V58,JSON.stringify(value));
+  }catch(_){}
+  window.__uzrConsentAcceptedV58=value;
+}
+
 function hasUzrConsentV58(){
   const value=readUzrConsentV58();
   return !!(
@@ -15573,6 +15681,18 @@ function hasUzrConsentV58(){
     value.accepted===true
   );
 }
+
+function currentUzrLegalLocaleV81(){
+  try{
+    const value=localStorage.getItem("uzr_language_pref_v1");
+    return ["ru","uz","en"].includes(value)?value:"ru";
+  }catch(_){return "ru"}
+}
+
+function hasTelegramAuthV81(){
+  return !!String(window.Telegram?.WebApp?.initData||"");
+}
+
 function showUzrConsentV58(){
   const el=document.getElementById("uzrConsentV58");
   if(!el)return;
@@ -15580,6 +15700,7 @@ function showUzrConsentV58(){
   document.body.classList.add("uzr-consent-lock-v58");
   setTimeout(()=>window.lucide&&lucide.createIcons(),0);
 }
+
 function hideUzrConsentV58(){
   const el=document.getElementById("uzrConsentV58");
   const doc=document.getElementById("uzrConsentLegalV58");
@@ -15587,18 +15708,208 @@ function hideUzrConsentV58(){
   if(doc)doc.hidden=true;
   document.body.classList.remove("uzr-consent-lock-v58");
 }
-function acceptUzrLegalV58(){
-  const payload={
+
+function setUzrConsentBusyV81(busy,label){
+  const btn=document.getElementById("uzrConsentContinueV81");
+  if(!btn)return;
+  btn.disabled=!!busy;
+  btn.textContent=label||(busy?"Сохраняем...":"Продолжить");
+}
+
+function legalInitDataV82(){
+  return String(window.Telegram?.WebApp?.initData||"");
+}
+
+function setUzrConsentErrorV82(message){
+  const el=document.getElementById("uzrConsentErrorV82");
+  if(!el)return;
+  el.textContent=String(message||"");
+  el.hidden=!message;
+}
+
+async function legalRequestV82(method,body){
+  const initData=legalInitDataV82();
+  if(!initData){
+    return {ok:false,auth:false,status:0,data:{error:"NO_TELEGRAM_INIT_DATA"}};
+  }
+
+  const urls=[
+    MARKETPLACE_API+"/legal/acceptance",
+    UZR_LEGAL_DIRECT_API_V82
+  ];
+
+  let last={
+    ok:false,
+    auth:true,
+    status:0,
+    data:{error:"LEGAL_REQUEST_FAILED"},
+    endpoint:null
+  };
+
+  for(const url of urls){
+    try{
+      const headers=new Headers();
+      headers.set("X-Telegram-Init-Data",initData);
+      if(body!==undefined)headers.set("Content-Type","application/json");
+
+      const response=await __uzrNativeFetch(url,{
+        method,
+        headers,
+        body:body===undefined?undefined:JSON.stringify(body),
+        cache:"no-store",
+        credentials:"omit"
+      });
+
+      let data={};
+      const contentType=response.headers.get("content-type")||"";
+      if(contentType.includes("application/json")){
+        try{data=await response.json()}catch(_){}
+      }else{
+        try{
+          const raw=await response.text();
+          data={error:"NON_JSON_RESPONSE",raw:raw.slice(0,160)};
+        }catch(_){}
+      }
+
+      const result={
+        ok:response.ok&&data?.ok!==false,
+        auth:response.status!==401,
+        status:response.status,
+        data,
+        endpoint:url
+      };
+
+      if(response.ok)return result;
+
+      if(
+        data?.error==="LEGAL_VERSION_MISMATCH" ||
+        data?.error==="AGE_CONFIRMATION_REQUIRED"
+      ){
+        return result;
+      }
+
+      last=result;
+    }catch(error){
+      last={
+        ok:false,
+        auth:true,
+        status:0,
+        data:{error:"NETWORK_ERROR",message:String(error?.message||error)},
+        endpoint:url
+      };
+    }
+  }
+
+  return last;
+}
+
+async function getServerLegalAcceptanceV81(){
+  const result=await legalRequestV82("GET");
+  if(result.ok){
+    result.ok=(result.data?.accepted===true||result.data?.accepted===false);
+  }
+  return result;
+}
+
+async function postServerLegalAcceptanceV81(){
+  const result=await legalRequestV82("POST",{
+    termsVersion:UZR_CONSENT_TERMS_VERSION_V58,
+    privacyVersion:UZR_CONSENT_PRIVACY_VERSION_V58,
+    age16Confirmed:true,
+    locale:currentUzrLegalLocaleV81()
+  });
+  result.ok=!!(result.ok&&result.data?.accepted===true);
+  return result;
+}
+
+function localAcceptancePayloadV81({acceptedAt,serverSynced=false,locale}={}){
+  return {
     accepted:true,
     termsVersion:UZR_CONSENT_TERMS_VERSION_V58,
     privacyVersion:UZR_CONSENT_PRIVACY_VERSION_V58,
-    acceptedAt:new Date().toISOString()
+    acceptedAt:acceptedAt||new Date().toISOString(),
+    serverSynced:!!serverSynced,
+    locale:locale||currentUzrLegalLocaleV81()
   };
-  try{localStorage.setItem(UZR_CONSENT_STORAGE_KEY_V58,JSON.stringify(payload))}catch(_){}
-  window.__uzrConsentAcceptedV58=payload;
-  try{window.Telegram?.WebApp?.HapticFeedback?.notificationOccurred?.("success")}catch(_){}
-  hideUzrConsentV58();
 }
+
+/*
+  Existing users may already have accepted v1.0 locally before D1 was added.
+  We preserve that explicit prior acceptance and sync the same versions to D1
+  on the next authenticated Telegram launch.
+*/
+async function syncLocalAcceptanceToServerV81(){
+  const local=readUzrConsentV58();
+  if(!hasUzrConsentV58()||local?.serverSynced===true||!hasTelegramAuthV81())return;
+
+  try{
+    const result=await postServerLegalAcceptanceV81();
+    if(result.ok){
+      writeUzrConsentV81(localAcceptancePayloadV81({
+        acceptedAt:result.data?.acceptedAt||local?.acceptedAt,
+        serverSynced:true,
+        locale:result.data?.locale||local?.locale
+      }));
+    }
+  }catch(error){
+    console.warn("LEGAL ACCEPTANCE BACKGROUND SYNC FAILED",error);
+  }
+}
+
+async function acceptUzrLegalV58(){
+  setUzrConsentBusyV81(true,"Сохраняем...");
+  setUzrConsentErrorV82("");
+
+  const local=localAcceptancePayloadV81({serverSynced:false});
+
+  /* Browser/preview fallback only. */
+  if(!hasTelegramAuthV81()){
+    writeUzrConsentV81(local);
+    setUzrConsentBusyV81(false,"Продолжить");
+    hideUzrConsentV58();
+    return;
+  }
+
+  try{
+    const result=await postServerLegalAcceptanceV81();
+
+    if(result.status===409&&result.data?.error==="LEGAL_VERSION_MISMATCH"){
+      try{localStorage.removeItem(UZR_CONSENT_STORAGE_KEY_V58)}catch(_){}
+      setUzrConsentBusyV81(false,"Обновите приложение");
+      setUzrConsentErrorV82("Версия документов изменилась. Обновите Mini App.");
+      showUzrConsentV58();
+      return;
+    }
+
+    if(!result.ok){
+      console.warn("LEGAL ACCEPTANCE SAVE FAILED",result);
+      const detail=result.data?.error||("HTTP "+String(result.status||""));
+      setUzrConsentBusyV81(false,"Повторить");
+      setUzrConsentErrorV82("Не удалось сохранить подтверждение. Повторите попытку. ("+detail+")");
+      showUzrConsentV58();
+      return;
+    }
+
+    writeUzrConsentV81(localAcceptancePayloadV81({
+      acceptedAt:result.data?.acceptedAt||local.acceptedAt,
+      serverSynced:true,
+      locale:result.data?.locale||local.locale
+    }));
+
+    try{
+      window.Telegram?.WebApp?.HapticFeedback?.notificationOccurred?.("success");
+    }catch(_){}
+
+    setUzrConsentBusyV81(false,"Продолжить");
+    hideUzrConsentV58();
+  }catch(error){
+    console.warn("LEGAL ACCEPTANCE SAVE ERROR",error);
+    setUzrConsentBusyV81(false,"Повторить");
+    setUzrConsentErrorV82("Не удалось связаться с сервером. Проверьте интернет и повторите.");
+    showUzrConsentV58();
+  }
+}
+
 function uzrConsentEscapeV58(value){
   return String(value??"")
     .replaceAll("&","&amp;")
@@ -15607,6 +15918,7 @@ function uzrConsentEscapeV58(value){
     .replaceAll('"',"&quot;")
     .replaceAll("'","&#039;");
 }
+
 function openUzrConsentLegalV58(kind){
   const docs=typeof LEGAL_V53_DOCS!=="undefined"?LEGAL_V53_DOCS:null;
   if(!docs||!docs[kind])return;
@@ -15629,29 +15941,65 @@ function openUzrConsentLegalV58(kind){
   body.scrollTop=0;
   setTimeout(()=>window.lucide&&lucide.createIcons(),0);
 }
+
 function closeUzrConsentLegalV58(){
   const el=document.getElementById("uzrConsentLegalV58");
   if(el)el.hidden=true;
 }
-function initUzrConsentV58(){
+
+async function initUzrConsentV81(){
+  /*
+    Same device: keep the app fast and sync the existing explicit acceptance.
+  */
   if(hasUzrConsentV58()){
     hideUzrConsentV58();
-  }else{
-    showUzrConsentV58();
+    syncLocalAcceptanceToServerV81();
+    return;
   }
+
+  /*
+    New Telegram browser/device:
+    try same-origin /api first, then direct Worker fallback.
+  */
+  if(hasTelegramAuthV81()){
+    try{
+      const result=await getServerLegalAcceptanceV81();
+
+      if(result.ok&&result.data?.accepted===true){
+        writeUzrConsentV81(localAcceptancePayloadV81({
+          acceptedAt:result.data?.acceptedAt,
+          serverSynced:true,
+          locale:result.data?.locale
+        }));
+        hideUzrConsentV58();
+        return;
+      }
+
+      if(!result.ok){
+        console.warn("LEGAL ACCEPTANCE CHECK FAILED",result);
+      }
+    }catch(error){
+      console.warn("LEGAL ACCEPTANCE CHECK ERROR",error);
+    }
+  }
+
+  setUzrConsentErrorV82("");
+  showUzrConsentV58();
 }
 
-/* Developer/test helper: call resetUzrLegalConsentV58() in console to see first-run screen again. */
+/* Developer helper: show first-run screen again locally without deleting D1 evidence. */
 window.resetUzrLegalConsentV58=function(){
   try{localStorage.removeItem(UZR_CONSENT_STORAGE_KEY_V58)}catch(_){}
-  location.reload();
+  showUzrConsentV58();
 };
+
 window.getUzrLegalConsentV58=readUzrConsentV58;
+window.syncUzrLegalConsentV81=syncLocalAcceptanceToServerV81;
 
 if(document.readyState==="loading"){
-  document.addEventListener("DOMContentLoaded",initUzrConsentV58,{once:true});
+  document.addEventListener("DOMContentLoaded",initUzrConsentV81,{once:true});
 }else{
-  initUzrConsentV58();
+  initUzrConsentV81();
 }
 </script>
 
