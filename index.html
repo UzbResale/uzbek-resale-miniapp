@@ -16025,7 +16025,7 @@ if(document.readyState==="loading"){
 
 
 
-<script id="uzr-i18n-v83-foundation">
+<script id="uzr-i18n-v85-safe-foundation">
 const UZR_I18N_PREF_KEY_V83="uzr_language_pref_v1";
 const UZR_I18N_SUPPORTED_V83=Object.freeze(["ru","uz"]);
 const UZR_I18N_FUTURE_V83=Object.freeze(["en"]);
@@ -16043,20 +16043,26 @@ const UZR_I18N_DICTIONARIES_V83=Object.freeze({
 const __uzrI18nTextSourceV83=new WeakMap();
 const __uzrI18nAttrSourceV83=new WeakMap();
 
+const UZR_I18N_ENGINE_VERSION_V85="v85-safe";
+let __uzrI18nObserverV83=null;
+let __uzrI18nApplyingV85=false;
+
 function normalizeUzrLocaleV83(locale){
   return UZR_I18N_SUPPORTED_V83.includes(locale)?locale:"ru";
 }
 
 function readUzrLanguageV83(){
   try{
-    return normalizeUzrLocaleV83(localStorage.getItem(UZR_I18N_PREF_KEY_V83)||"ru");
+    return normalizeUzrLocaleV83(
+      localStorage.getItem(UZR_I18N_PREF_KEY_V83)||"ru"
+    );
   }catch(_){
     return "ru";
   }
 }
 
 function uzrLanguageLabelV83(locale){
-  return locale==="uz"?"O'zbekcha":locale==="en"?"English":"Русский";
+  return locale==="uz"?"O‘zbekcha":locale==="en"?"English":"Русский";
 }
 
 function translateUzrSourceV83(source,locale=readUzrLanguageV83()){
@@ -16069,10 +16075,7 @@ function shouldSkipUzrI18nV83(node){
   const el=node?.nodeType===1?node:node?.parentElement;
   if(!el)return true;
 
-  /*
-    Never translate user/content data fields merely because their value
-    happens to equal an interface phrase.
-  */
+  /* Never translate user-entered/content data. */
   return !!el.closest([
     "script","style","noscript","code","pre",
     "[contenteditable='true']","[data-no-i18n]",
@@ -16096,21 +16099,30 @@ function translateUzrTextNodeV83(node,locale){
   if(!trimmed)return;
 
   let source=__uzrI18nTextSourceV83.get(node);
+
   if(source===undefined){
+    /*
+      Only Russian source strings are registered as sources.
+      This prevents an already-translated Uzbek string from becoming
+      a new source string after a re-render.
+    */
     if(!UZR_I18N_SOURCE_CATALOG_V83.has(trimmed))return;
     source=trimmed;
     __uzrI18nTextSourceV83.set(node,source);
   }
 
-  const translated=translateUzrSourceV83(source,locale);
-  if(translated===source){
-    if(trimmed!==source){
-      node.nodeValue=raw.replace(trimmed,source);
-    }
-    return;
-  }
+  const target=translateUzrSourceV83(source,locale);
 
-  node.nodeValue=raw.replace(trimmed,translated);
+  /*
+    CRITICAL v85 FIX:
+    Do not assign nodeValue when nothing actually changes.
+    v84 reassigned the same Uzbek value inside a characterData observer,
+    causing an endless MutationObserver loop / WebView freeze.
+  */
+  if(trimmed===target)return;
+
+  const next=raw.replace(trimmed,target);
+  if(next!==raw)node.nodeValue=next;
 }
 
 function translateUzrAttributesV83(el,locale){
@@ -16118,6 +16130,7 @@ function translateUzrAttributesV83(el,locale){
 
   const attrs=["placeholder","aria-label","title"];
   let saved=__uzrI18nAttrSourceV83.get(el);
+
   if(!saved){
     saved={};
     __uzrI18nAttrSourceV83.set(el,saved);
@@ -16128,98 +16141,132 @@ function translateUzrAttributesV83(el,locale){
     if(!current)return;
 
     if(saved[attr]===undefined){
-      if(!UZR_I18N_SOURCE_CATALOG_V83.has(current.trim()))return;
-      saved[attr]=current.trim();
+      const trimmed=current.trim();
+      if(!UZR_I18N_SOURCE_CATALOG_V83.has(trimmed))return;
+      saved[attr]=trimmed;
     }
 
-    el.setAttribute(attr,translateUzrSourceV83(saved[attr],locale));
+    const target=translateUzrSourceV83(saved[attr],locale);
+    if(current!==target)el.setAttribute(attr,target);
   });
 }
 
 function applyUzrI18nV83(root=document){
-  const locale=readUzrLanguageV83();
-  document.documentElement.lang=locale;
+  if(__uzrI18nApplyingV85)return;
 
-  const start=root?.nodeType?root:document;
-  if(start.nodeType===3){
-    translateUzrTextNodeV83(start,locale);
-    return;
-  }
+  __uzrI18nApplyingV85=true;
+  try{
+    const locale=readUzrLanguageV83();
+    document.documentElement.lang=locale;
 
-  if(start.nodeType===1){
-    translateUzrAttributesV83(start,locale);
-  }
+    const start=root?.nodeType?root:document;
 
-  const walker=document.createTreeWalker(
-    start,
-    NodeFilter.SHOW_ELEMENT|NodeFilter.SHOW_TEXT
-  );
+    if(start.nodeType===3){
+      translateUzrTextNodeV83(start,locale);
+      return;
+    }
 
-  let node;
-  while((node=walker.nextNode())){
-    if(node.nodeType===3)translateUzrTextNodeV83(node,locale);
-    else translateUzrAttributesV83(node,locale);
+    if(start.nodeType===1){
+      translateUzrAttributesV83(start,locale);
+    }
+
+    const walker=document.createTreeWalker(
+      start,
+      NodeFilter.SHOW_ELEMENT|NodeFilter.SHOW_TEXT
+    );
+
+    let node;
+    while((node=walker.nextNode())){
+      if(node.nodeType===3)translateUzrTextNodeV83(node,locale);
+      else translateUzrAttributesV83(node,locale);
+    }
+  }finally{
+    __uzrI18nApplyingV85=false;
   }
 }
 
 function setUzrLanguageV83(locale){
   const next=normalizeUzrLocaleV83(locale);
-  try{localStorage.setItem(UZR_I18N_PREF_KEY_V83,next)}catch(_){
-    /* storage is optional */
-  }
+
+  try{
+    localStorage.setItem(UZR_I18N_PREF_KEY_V83,next);
+  }catch(_){}
 
   applyUzrI18nV83(document);
 
   const value=document.getElementById("uzrLanguageValueV61");
   if(value)value.textContent=uzrLanguageLabelV83(next);
 
-  document.dispatchEvent(new CustomEvent("uzr:languagechange",{detail:{locale:next}}));
+  document.dispatchEvent(
+    new CustomEvent("uzr:languagechange",{detail:{locale:next}})
+  );
+
   return next;
 }
 
 function registerUzrDictionaryV83(locale,dictionary){
-  /*
-    Reserved API for v84/v85.
-    v83 deliberately refuses to activate locales that have not been QA-approved.
-  */
   if(!UZR_I18N_FUTURE_V83.includes(locale))return false;
   return !!dictionary&&typeof dictionary==="object";
 }
 
-let __uzrI18nObserverV83=null;
-function initUzrI18nV83(){
-  let locale=readUzrLanguageV83();
+function startUzrI18nObserverV85(){
+  if(__uzrI18nObserverV83)return;
 
-  /* v84 TEST: Russian and Uzbek are selectable. English remains disabled. */
-  locale=normalizeUzrLocaleV83(locale);
-  document.documentElement.lang=locale;
-  applyUzrI18nV83(document);
-
-  if(!__uzrI18nObserverV83){
-    __uzrI18nObserverV83=new MutationObserver(mutations=>{
-      const current=readUzrLanguageV83();
-      mutations.forEach(m=>{
-        if(m.type==="characterData"){
-          translateUzrTextNodeV83(m.target,current);
-          return;
+  __uzrI18nObserverV83=new MutationObserver(mutations=>{
+    /*
+      v85 deliberately observes ONLY inserted/replaced nodes.
+      It does NOT observe characterData.
+      This removes the recursion that froze v84.
+    */
+    mutations.forEach(m=>{
+      m.addedNodes.forEach(node=>{
+        if(node.nodeType===3){
+          translateUzrTextNodeV83(node,readUzrLanguageV83());
+        }else if(node.nodeType===1){
+          applyUzrI18nV83(node);
         }
-        m.addedNodes.forEach(node=>{
-          if(node.nodeType===3)translateUzrTextNodeV83(node,current);
-          else if(node.nodeType===1)applyUzrI18nV83(node);
-        });
       });
     });
+  });
 
-    __uzrI18nObserverV83.observe(document.documentElement,{
-      subtree:true,
-      childList:true,
-      characterData:true
-    });
+  __uzrI18nObserverV83.observe(document.documentElement,{
+    subtree:true,
+    childList:true
+  });
+}
+
+function fallbackUzrI18nToRussianV85(error){
+  console.error("UZR I18N SAFE FALLBACK",error);
+
+  try{
+    localStorage.setItem(UZR_I18N_PREF_KEY_V83,"ru");
+  }catch(_){}
+
+  document.documentElement.lang="ru";
+
+  /*
+    If switching failed after some nodes were translated, the stored
+    source map lets us restore already-known source strings to Russian.
+  */
+  try{
+    applyUzrI18nV83(document);
+  }catch(_){}
+}
+
+function initUzrI18nV83(){
+  try{
+    const locale=normalizeUzrLocaleV83(readUzrLanguageV83());
+    document.documentElement.lang=locale;
+
+    applyUzrI18nV83(document);
+    startUzrI18nObserverV85();
+  }catch(error){
+    fallbackUzrI18nToRussianV85(error);
   }
 }
 
 window.UzrI18nV83=Object.freeze({
-  version:"v83",
+  version:UZR_I18N_ENGINE_VERSION_V85,
   sourceLocale:"ru",
   supportedLocales:UZR_I18N_SUPPORTED_V83,
   futureLocales:UZR_I18N_FUTURE_V83,
@@ -16232,7 +16279,11 @@ window.UzrI18nV83=Object.freeze({
 });
 
 if(document.readyState==="loading"){
-  document.addEventListener("DOMContentLoaded",initUzrI18nV83,{once:true});
+  document.addEventListener(
+    "DOMContentLoaded",
+    initUzrI18nV83,
+    {once:true}
+  );
 }else{
   initUzrI18nV83();
 }
@@ -16390,7 +16441,7 @@ if(document.readyState==="loading"){
 </script>
 
 
-<script id="uzr-i18n-v84-test-dynamic">
+<script id="uzr-i18n-v85-test-dynamic">
 function uzrLocaleV84(){return window.UzrI18nV83?.getLocale?.()||"ru"}
 
 function uzrPluralProductsV84(n){
@@ -16403,8 +16454,15 @@ function uzrPluralProductsV84(n){
 document.addEventListener("uzr:languagechange",()=>{
   const count=document.getElementById("favoritesCountText");
   if(count){
-    const n=(window.favs||[]).length;
-    count.textContent=uzrPluralProductsV84(n);
+    let n=null;
+    try{
+      if(typeof favoriteItemsV80==="function"){
+        n=favoriteItemsV80().length;
+      }
+    }catch(_){}
+    if(Number.isInteger(n)){
+      count.textContent=uzrPluralProductsV84(n);
+    }
   }
 
   const langValue=document.getElementById("uzrLanguageValueV61");
@@ -16414,5 +16472,5 @@ document.addEventListener("uzr:languagechange",()=>{
 });
 </script>
 
-<div class="uzr-v84-test-badge">UZ TEST</div>
+<div class="uzr-v84-test-badge">UZ SAFE TEST</div>
 </body></html>
