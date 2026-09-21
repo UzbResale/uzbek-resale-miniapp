@@ -11598,23 +11598,17 @@ html[data-uzr-theme="light"] .uzr-consent-error-v82{
 </style>
 
 
-<style id="uzr-v84-test-preview-style">
-.uzr-v84-test-badge{
-  position:fixed;
-  right:8px;
-  top:calc(58px + env(safe-area-inset-top));
-  z-index:2147481000;
-  display:none;
-  padding:5px 8px;
-  border-radius:999px;
-  background:rgba(46,166,255,.92);
-  color:#fff;
-  font-size:9px;
-  font-weight:800;
-  letter-spacing:.04em;
-  pointer-events:none;
+
+<style id="uzr-v86-uzbek-core-css">
+html[lang="uz"] #cartList .meta:before{
+  content:"O‘lcham: "!important;
 }
-html[lang="uz"] .uzr-v84-test-badge{display:block}
+html[lang="uz"] .checkout-premium-inner:before{
+  content:"Tanlangan mahsulotlaringiz"!important;
+}
+html[lang="uz"] .some-empty-copy:before{
+  content:"Bu yerda hozircha hech narsa yo‘q"!important;
+}
 </style>
 
 </head><body>
@@ -12232,7 +12226,7 @@ html[lang="uz"] .uzr-v84-test-badge{display:block}
 
   <div class="uzr-settings-note-v61">
     <i data-lucide="shield-check"></i>
-    <span>Язык пока остаётся русским. Для интерфейса доступны тёмная и светлая темы.</span>
+    <span>Доступны русский и узбекский языки. English подключим отдельным этапом.</span>
   </div>
 </div>
 </section>
@@ -16025,7 +16019,7 @@ if(document.readyState==="loading"){
 
 
 
-<script id="uzr-i18n-v85-safe-foundation">
+<script id="uzr-i18n-v86-core-foundation">
 const UZR_I18N_PREF_KEY_V83="uzr_language_pref_v1";
 const UZR_I18N_SUPPORTED_V83=Object.freeze(["ru","uz"]);
 const UZR_I18N_FUTURE_V83=Object.freeze(["en"]);
@@ -16037,13 +16031,12 @@ const UZR_I18N_SOURCE_CATALOG_V83=new Set([", вы подтверждаете, �
 */
 const UZR_I18N_DICTIONARIES_V83=Object.freeze({
   ru:Object.freeze({}),
-  uz:Object.freeze({"Главная":"Bosh sahifa","Каталог":"Katalog","Из Китая":"Xitoydan","Профиль":"Profil","Назад":"Orqaga","Закрыть":"Yopish","Выберите":"Tanlang","Повторить":"Qayta urinish","Загрузка...":"Yuklanmoqda...","Загружаем товары...":"Mahsulotlar yuklanmoqda...","Не удалось загрузить товары.":"Mahsulotlarni yuklab bo‘lmadi.","Проверьте соединение и попробуйте снова.":"Internet aloqasini tekshirib, qayta urinib ko‘ring.","Ресейл":"Reseyl","От нас":"Bizdan","Продать":"Sotish","Одежда":"Kiyim","Обувь":"Poyabzal","Аксессуары":"Aksessuarlar","Другое":"Boshqa","Популярное":"Ommabop","Смотреть все":"Barchasini ko‘rish","Поиск товаров, брендов, категорий...":"Mahsulot, brend va toifalarni qidirish...","Все":"Barchasi","Сначала новые":"Avval yangilari","Сортировка":"Saralash","0 товаров":"0 ta mahsulot","1 товар":"1 ta mahsulot","В наличии":"Mavjud","Продано":"Sotilgan","Описание":"Tavsif","Характеристики":"Xususiyatlar","Бренд":"Brend","Размер":"O‘lcham","Категория":"Toifa","Город":"Shahar","Состояние":"Holati","Опубликовано":"E’lon qilingan","Продавец":"Sotuvchi","Официальный магазин":"Rasmiy do‘kon","Другие объявления продавца":"Sotuvchining boshqa e’lonlari","В корзину":"Savatga","Купить":"Sotib olish","Связаться с продавцом":"Sotuvchi bilan bog‘lanish","Это ваш товар":"Bu sizning mahsulotingiz","Новое":"Yangi","Отличное":"A’lo","Хорошее":"Yaxshi","Удовлетворительное":"Qoniqarli","Избранное":"Sevimlilar","Пока ничего нет":"Hozircha hech narsa yo‘q","Сохраняйте понравившиеся товары, чтобы быстро вернуться к ним позже.":"Yoqtirgan mahsulotlaringizni saqlang, keyin ularga tez qaytishingiz mumkin.","Перейти в каталог":"Katalogga o‘tish","Больше находок впереди":"Oldinda yana ko‘p topilmalar bor","Добавляйте товары в Избранное, чтобы не потерять их.":"Mahsulotlarni Sevimlilarga qo‘shing, shunda ularni yo‘qotmaysiz.","Просмотренные товары":"Ko‘rilgan mahsulotlar","Последние товары этой сессии":"Ushbu sessiyadagi so‘nggi mahsulotlar","Храним максимум 6 товаров":"Ko‘pi bilan 6 ta mahsulot saqlanadi","После закрытия Mini App история очищается автоматически.":"Mini App yopilgach, tarix avtomatik tozalanadi.","Очистить":"Tozalash","История пока пуста":"Tarix hozircha bo‘sh","Открывайте товары в каталоге — последние 6 появятся здесь.":"Katalogdagi mahsulotlarni oching — so‘nggi 6 tasi shu yerda ko‘rinadi.","Покупки и продажи":"Xarid va savdo","Мои заказы":"Buyurtmalarim","Мои заявки":"So‘rovlarim","Мои товары":"Mahsulotlarim","Профиль продавца":"Sotuvchi profili","Настройки":"Sozlamalar","Помощь":"Yordam","FAQ и помощь":"FAQ va yordam","Пользовательское соглашение":"Foydalanuvchi kelishuvi","Политика конфиденциальности":"Maxfiylik siyosati","Версия приложения":"Ilova versiyasi","Telegram пользователь":"Telegram foydalanuvchisi","ИНТЕРФЕЙС":"INTERFEYS","Язык":"Til","Русский":"Ruscha","Текущий язык приложения":"Ilovaning joriy tili","Тема":"Mavzu","Выберите оформление Mini App.":"Mini App ko‘rinishini tanlang.","Тёмная":"Qorong‘i","Тёмное оформление приложения":"Ilovaning qorong‘i ko‘rinishi","Светлая":"Yorug‘","Светлое оформление приложения":"Ilovaning yorug‘ ko‘rinishi","Виброотклик":"Vibrojavob","Язык пока остаётся русским. Для интерфейса доступны тёмная и светлая темы.":"Sinov rejimida o‘zbek tili yoqildi. Interfeys uchun qorong‘i va yorug‘ mavzular mavjud.","Ваши объявления и их статусы":"E’lonlaringiz va ularning holati","Активные":"Faol","На модерации":"Moderatsiyada","Проданные":"Sotilganlar","Опубликован":"E’lon qilingan","До снятия:":"Yakunlanishiga:","Действия с товаром":"Mahsulot amallari","Отметить проданным":"Sotilgan deb belgilash","Вернуть в продажу":"Qayta sotuvga chiqarish","Продлить ещё на 7 дней":"Yana 7 kunga uzaytirish","Удалить объявление":"E’lonni o‘chirish","Отмена":"Bekor qilish","Мой профиль продавца":"Sotuvchi profilim","Объявлений":"E’lonlar","Настроить профиль":"Profilni sozlash","Все товары":"Barcha mahsulotlar","Настройки профиля продавца":"Sotuvchi profili sozlamalari","О себе":"O‘zim haqimda","Скрывать город":"Shaharni yashirish","Город не будет показываться в профиле":"Shahar profilda ko‘rsatilmaydi","Сохранить":"Saqlash","Продать вещь":"Mahsulot sotish","Добавьте фото и информацию — объявление отправится на модерацию.":"Foto va ma’lumot qo‘shing — e’lon moderatsiyaga yuboriladi.","Фотографии":"Fotosuratlar","до 6 фото":"6 tagacha foto","Добавить фотографии":"Fotosurat qo‘shish","Нажмите, чтобы выбрать до 6 фото · максимум 10 МБ каждое":"6 tagacha foto tanlash uchun bosing · har biri 10 MB gacha","Информация о товаре":"Mahsulot haqida ma’lumot","Название товара *":"Mahsulot nomi *","Например: Nike Air Force 1":"Masalan: Nike Air Force 1","Категория *":"Toifa *","Например: Nike":"Masalan: Nike","Состояние *":"Holati *","Город *":"Shahar *","Выберите город":"Shaharni tanlang","Расскажите о вещи: особенности, дефекты (если есть), причина продажи":"Mahsulot haqida yozing: xususiyatlari, nuqsonlari (bo‘lsa), sotish sababi","Цена":"Narx","Цена, сум *":"Narx, so‘m *","Перед публикацией — модерация":"E’lon qilishdan oldin — moderatsiya","После одобрения товар появится в каталоге.":"Tasdiqlangandan so‘ng mahsulot katalogda paydo bo‘ladi.","Отправить на модерацию":"Moderatsiyaga yuborish","Ваш товар отправлен на модерацию.":"Mahsulotingiz moderatsiyaga yuborildi.","РЕСЕЙЛ МЕЖДУ ПОЛЬЗОВАТЕЛЯМИ":"FOYDALANUVCHILAR O‘RTASIDAGI RESEYL","Отправьте продавцу запрос на связь. Оплата, доставка и условия сделки согласовываются напрямую между вами.":"Sotuvchiga bog‘lanish so‘rovini yuboring. To‘lov, yetkazib berish va bitim shartlarini o‘zaro bevosita kelishasiz.","Ваш Telegram":"Sizning Telegram’ingiz","Ваш профиль увидит продавец":"Profilingizni sotuvchi ko‘radi","Сообщение":"Xabar","необязательно":"ixtiyoriy","Товар актуален?":"Mahsulot hali sotuvdami?","Больше фото?":"Ko‘proq foto bormi?","Какое состояние?":"Holati qanday?","Отправить заявку":"So‘rov yuborish","Uzbek Re'Sale не принимает оплату и не организует доставку пользовательского Ресейл. Условия сделки стороны согласовывают самостоятельно.":"Uzbek Re'Sale foydalanuvchi resayli uchun to‘lov qabul qilmaydi va yetkazib berishni tashkil etmaydi. Bitim shartlarini tomonlar o‘zlari kelishadilar.","Заявка отправлена":"So‘rov yuborildi","Заявка добавлена в «Мои заявки». Продавец получит уведомление через Telegram-бота.":"So‘rov «So‘rovlarim» bo‘limiga qo‘shildi. Sotuvchi Telegram-bot orqali bildirishnoma oladi.","Перейти в мои заявки":"So‘rovlarimga o‘tish","Вернуться в каталог":"Katalogga qaytish","Активных заявок пока нет":"Hozircha faol so‘rovlar yo‘q","Откройте пользовательский товар и нажмите «Связаться с продавцом».":"Foydalanuvchi mahsulotini ochib, «Sotuvchi bilan bog‘lanish» tugmasini bosing.","Закрытые":"Yopilgan","Закрыта":"Yopilgan","Заявка — это запрос на связь, а не заказ. Цена, оплата, доставка и передача товара согласовываются напрямую с продавцом.":"So‘rov — bu bog‘lanish so‘rovi, buyurtma emas. Narx, to‘lov, yetkazib berish va mahsulotni topshirish sotuvchi bilan bevosita kelishiladi.","Заказы":"Buyurtmalar","Новые":"Yangi","В доставке":"Yetkazilmoqda","Завершённые":"Yakunlangan","Отменённые":"Bekor qilingan","Заказ":"Buyurtma","Заказ оформлен":"Buyurtma rasmiylashtirildi","Оформить заказ":"Buyurtma berish","Ваши выбранные товары":"Tanlangan mahsulotlaringiz","Итого":"Jami","Сумма заказа":"Buyurtma summasi","Запомнить мои данные":"Ma’lumotlarimni eslab qolish","Введите адрес доставки":"Yetkazib berish manzilini kiriting","Введите 9 цифр после +998":"+998 dan keyin 9 ta raqam kiriting","Корзина":"Savat","Корзина пуста":"Savat bo‘sh","Добавьте понравившийся товар — он появится здесь.":"Yoqtirgan mahsulotni qo‘shing — u shu yerda paydo bo‘ladi.","Перейти к покупкам":"Xaridga o‘tish","UZBEK RE'SALE":"UZBEK RE'SALE","Наши товары":"Mahsulotlarimiz","Официальный профиль":"Rasmiy profil","Открыть профиль":"Profilni ochish","Пока нет товаров":"Hozircha mahsulotlar yo‘q","Когда мы добавим новые товары из Китая или в наличии, они появятся здесь.":"Xitoydan yoki mavjud yangi mahsulotlar qo‘shilganda, ular shu yerda ko‘rinadi.","Открыть профиль магазина":"Do‘kon profilini ochish","Товары":"Mahsulotlar","О нас":"Biz haqimizda","Доставка":"Yetkazib berish","FAQ":"FAQ","Коротко о Ресейл, заявках R-XXXXXX, официальных заказах UR-XXXXXX и поддержке.":"Reseyl, R-XXXXXX so‘rovlari, UR-XXXXXX rasmiy buyurtmalari va yordam haqida qisqacha.","Часто задаваемые вопросы":"Ko‘p beriladigan savollar","Развернуть все":"Barchasini ochish","Нужна помощь?":"Yordam kerakmi?","Поддержка":"Yordam","Проблема с заказом":"Buyurtma bilan muammo","Техническая проблема с заявкой":"So‘rov bilan texnik muammo","Проблема с объявлением":"E’lon bilan muammo","E-mail":"E-mail","Написать напрямую:":"To‘g‘ridan-to‘g‘ri yozish:","Добро пожаловать":"Xush kelibsiz","Перед началом использования ознакомьтесь с условиями сервиса.":"Foydalanishni boshlashdan oldin xizmat shartlari bilan tanishing.","Редакция 1.0":"1.0-tahrir","Продолжить":"Davom etish","Если вы не согласны с условиями, закройте Mini App.":"Agar shartlarga rozi bo‘lmasangiz, Mini App’ni yoping.","Общие положения":"Umumiy qoidalar","Термины и определения":"Atamalar va ta’riflar","Документы и безопасность":"Hujjatlar va xavfsizlik","Найти раздел...":"Bo‘limni qidirish...","Следующий":"Keyingi","К содержанию":"Mundarijaga","Не указан":"Ko‘rsatilmagan","Город не указан":"Shahar ko‘rsatilmagan","до 20 символов":"20 ta belgigacha","до 30 символов":"30 ta belgigacha","до 60 символов":"60 ta belgigacha","до 500 символов":"500 ta belgigacha"})
+  uz:Object.freeze({"Главная":"Bosh sahifa","Каталог":"Katalog","Из Китая":"Xitoydan","Профиль":"Profil","Назад":"Orqaga","Закрыть":"Yopish","Выберите":"Tanlang","Повторить":"Qayta urinish","Загрузка...":"Yuklanmoqda...","Загружаем товары...":"Mahsulotlar yuklanmoqda...","Не удалось загрузить товары.":"Mahsulotlarni yuklab bo‘lmadi.","Проверьте соединение и попробуйте снова.":"Internet aloqasini tekshirib, qayta urinib ko‘ring.","Ресейл":"Reseyl","От нас":"Bizdan","Продать":"Sotish","Одежда":"Kiyim","Обувь":"Poyabzal","Аксессуары":"Aksessuarlar","Другое":"Boshqa","Популярное":"Ommabop","Смотреть все":"Barchasini ko‘rish","Поиск товаров, брендов, категорий...":"Mahsulot, brend va toifalarni qidirish...","Все":"Barchasi","Сначала новые":"Avval yangilari","Сортировка":"Saralash","0 товаров":"0 ta mahsulot","1 товар":"1 ta mahsulot","В наличии":"Mavjud","Продано":"Sotilgan","Описание":"Tavsif","Характеристики":"Xususiyatlar","Бренд":"Brend","Размер":"O‘lcham","Категория":"Toifa","Город":"Shahar","Состояние":"Holati","Опубликовано":"E’lon qilingan","Продавец":"Sotuvchi","Официальный магазин":"Rasmiy do‘kon","Другие объявления продавца":"Sotuvchining boshqa e’lonlari","В корзину":"Savatga","Купить":"Sotib olish","Связаться с продавцом":"Sotuvchi bilan bog‘lanish","Это ваш товар":"Bu sizning mahsulotingiz","Новое":"Yangi","Отличное":"A’lo","Хорошее":"Yaxshi","Удовлетворительное":"Qoniqarli","Избранное":"Sevimlilar","Пока ничего нет":"Hozircha hech narsa yo‘q","Сохраняйте понравившиеся товары, чтобы быстро вернуться к ним позже.":"Yoqtirgan mahsulotlaringizni saqlang, keyin ularga tez qaytishingiz mumkin.","Перейти в каталог":"Katalogga o‘tish","Больше находок впереди":"Oldinda yana ko‘p topilmalar bor","Добавляйте товары в Избранное, чтобы не потерять их.":"Mahsulotlarni Sevimlilarga qo‘shing, shunda ularni yo‘qotmaysiz.","Просмотренные товары":"Ko‘rilgan mahsulotlar","Последние товары этой сессии":"Ushbu sessiyadagi so‘nggi mahsulotlar","Храним максимум 6 товаров":"Ko‘pi bilan 6 ta mahsulot saqlanadi","После закрытия Mini App история очищается автоматически.":"Mini App yopilgach, tarix avtomatik tozalanadi.","Очистить":"Tozalash","История пока пуста":"Tarix hozircha bo‘sh","Открывайте товары в каталоге — последние 6 появятся здесь.":"Katalogdagi mahsulotlarni oching — so‘nggi 6 tasi shu yerda ko‘rinadi.","Покупки и продажи":"Xarid va savdo","Мои заказы":"Buyurtmalarim","Мои заявки":"So‘rovlarim","Мои товары":"Mahsulotlarim","Профиль продавца":"Sotuvchi profili","Настройки":"Sozlamalar","Помощь":"Yordam","FAQ и помощь":"FAQ va yordam","Версия приложения":"Ilova versiyasi","Telegram пользователь":"Telegram foydalanuvchisi","ИНТЕРФЕЙС":"INTERFEYS","Язык":"Til","Русский":"Ruscha","Текущий язык приложения":"Ilovaning joriy tili","Тема":"Mavzu","Выберите оформление Mini App.":"Mini App ko‘rinishini tanlang.","Тёмная":"Qorong‘i","Тёмное оформление приложения":"Ilovaning qorong‘i ko‘rinishi","Светлая":"Yorug‘","Светлое оформление приложения":"Ilovaning yorug‘ ko‘rinishi","Виброотклик":"Vibrojavob","Язык пока остаётся русским. Для интерфейса доступны тёмная и светлая темы.":"Sinov rejimida o‘zbek tili yoqildi. Interfeys uchun qorong‘i va yorug‘ mavzular mavjud.","Ваши объявления и их статусы":"E’lonlaringiz va ularning holati","Активные":"Faol","На модерации":"Moderatsiyada","Проданные":"Sotilganlar","Опубликован":"E’lon qilingan","До снятия:":"Yakunlanishiga:","Действия с товаром":"Mahsulot amallari","Отметить проданным":"Sotilgan deb belgilash","Вернуть в продажу":"Qayta sotuvga chiqarish","Продлить ещё на 7 дней":"Yana 7 kunga uzaytirish","Удалить объявление":"E’lonni o‘chirish","Отмена":"Bekor qilish","Мой профиль продавца":"Sotuvchi profilim","Объявлений":"E’lonlar","Настроить профиль":"Profilni sozlash","Все товары":"Barcha mahsulotlar","Настройки профиля продавца":"Sotuvchi profili sozlamalari","О себе":"O‘zim haqimda","Скрывать город":"Shaharni yashirish","Город не будет показываться в профиле":"Shahar profilda ko‘rsatilmaydi","Сохранить":"Saqlash","Продать вещь":"Mahsulot sotish","Добавьте фото и информацию — объявление отправится на модерацию.":"Foto va ma’lumot qo‘shing — e’lon moderatsiyaga yuboriladi.","Фотографии":"Fotosuratlar","до 6 фото":"6 tagacha foto","Добавить фотографии":"Fotosurat qo‘shish","Нажмите, чтобы выбрать до 6 фото · максимум 10 МБ каждое":"6 tagacha foto tanlash uchun bosing · har biri 10 MB gacha","Информация о товаре":"Mahsulot haqida ma’lumot","Название товара *":"Mahsulot nomi *","Например: Nike Air Force 1":"Masalan: Nike Air Force 1","Категория *":"Toifa *","Например: Nike":"Masalan: Nike","Состояние *":"Holati *","Город *":"Shahar *","Выберите город":"Shaharni tanlang","Расскажите о вещи: особенности, дефекты (если есть), причина продажи":"Mahsulot haqida yozing: xususiyatlari, nuqsonlari (bo‘lsa), sotish sababi","Цена":"Narx","Цена, сум *":"Narx, so‘m *","Перед публикацией — модерация":"E’lon qilishdan oldin — moderatsiya","После одобрения товар появится в каталоге.":"Tasdiqlangandan so‘ng mahsulot katalogda paydo bo‘ladi.","Отправить на модерацию":"Moderatsiyaga yuborish","Ваш товар отправлен на модерацию.":"Mahsulotingiz moderatsiyaga yuborildi.","РЕСЕЙЛ МЕЖДУ ПОЛЬЗОВАТЕЛЯМИ":"FOYDALANUVCHILAR O‘RTASIDAGI RESEYL","Отправьте продавцу запрос на связь. Оплата, доставка и условия сделки согласовываются напрямую между вами.":"Sotuvchiga bog‘lanish so‘rovini yuboring. To‘lov, yetkazib berish va bitim shartlarini o‘zaro bevosita kelishasiz.","Ваш Telegram":"Sizning Telegram’ingiz","Ваш профиль увидит продавец":"Profilingizni sotuvchi ko‘radi","Сообщение":"Xabar","необязательно":"ixtiyoriy","Товар актуален?":"Mahsulot hali sotuvdami?","Больше фото?":"Ko‘proq foto bormi?","Какое состояние?":"Holati qanday?","Отправить заявку":"So‘rov yuborish","Uzbek Re'Sale не принимает оплату и не организует доставку пользовательского Ресейл. Условия сделки стороны согласовывают самостоятельно.":"Uzbek Re'Sale foydalanuvchi resayli uchun to‘lov qabul qilmaydi va yetkazib berishni tashkil etmaydi. Bitim shartlarini tomonlar o‘zlari kelishadilar.","Заявка отправлена":"So‘rov yuborildi","Заявка добавлена в «Мои заявки». Продавец получит уведомление через Telegram-бота.":"So‘rov «So‘rovlarim» bo‘limiga qo‘shildi. Sotuvchi Telegram-bot orqali bildirishnoma oladi.","Перейти в мои заявки":"So‘rovlarimga o‘tish","Вернуться в каталог":"Katalogga qaytish","Активных заявок пока нет":"Hozircha faol so‘rovlar yo‘q","Откройте пользовательский товар и нажмите «Связаться с продавцом».":"Foydalanuvchi mahsulotini ochib, «Sotuvchi bilan bog‘lanish» tugmasini bosing.","Закрытые":"Yopilgan","Закрыта":"Yopilgan","Заявка — это запрос на связь, а не заказ. Цена, оплата, доставка и передача товара согласовываются напрямую с продавцом.":"So‘rov — bu bog‘lanish so‘rovi, buyurtma emas. Narx, to‘lov, yetkazib berish va mahsulotni topshirish sotuvchi bilan bevosita kelishiladi.","Заказы":"Buyurtmalar","Новые":"Yangi","В доставке":"Yetkazilmoqda","Завершённые":"Yakunlangan","Отменённые":"Bekor qilingan","Заказ":"Buyurtma","Заказ оформлен":"Buyurtma rasmiylashtirildi","Оформить заказ":"Buyurtma berish","Ваши выбранные товары":"Tanlangan mahsulotlaringiz","Итого":"Jami","Сумма заказа":"Buyurtma summasi","Запомнить мои данные":"Ma’lumotlarimni eslab qolish","Введите адрес доставки":"Yetkazib berish manzilini kiriting","Введите 9 цифр после +998":"+998 dan keyin 9 ta raqam kiriting","Корзина":"Savat","Корзина пуста":"Savat bo‘sh","Добавьте понравившийся товар — он появится здесь.":"Yoqtirgan mahsulotni qo‘shing — u shu yerda paydo bo‘ladi.","Перейти к покупкам":"Xaridga o‘tish","UZBEK RE'SALE":"UZBEK RE'SALE","Наши товары":"Mahsulotlarimiz","Официальный профиль":"Rasmiy profil","Открыть профиль":"Profilni ochish","Пока нет товаров":"Hozircha mahsulotlar yo‘q","Когда мы добавим новые товары из Китая или в наличии, они появятся здесь.":"Xitoydan yoki mavjud yangi mahsulotlar qo‘shilganda, ular shu yerda ko‘rinadi.","Открыть профиль магазина":"Do‘kon profilini ochish","Товары":"Mahsulotlar","О нас":"Biz haqimizda","Доставка":"Yetkazib berish","FAQ":"FAQ","Коротко о Ресейл, заявках R-XXXXXX, официальных заказах UR-XXXXXX и поддержке.":"Reseyl, R-XXXXXX so‘rovlari, UR-XXXXXX rasmiy buyurtmalari va yordam haqida qisqacha.","Часто задаваемые вопросы":"Ko‘p beriladigan savollar","Развернуть все":"Barchasini ochish","Нужна помощь?":"Yordam kerakmi?","Поддержка":"Yordam","Проблема с заказом":"Buyurtma bilan muammo","Техническая проблема с заявкой":"So‘rov bilan texnik muammo","Проблема с объявлением":"E’lon bilan muammo","E-mail":"E-mail","Написать напрямую:":"To‘g‘ridan-to‘g‘ri yozish:","Продолжить":"Davom etish","Не указан":"Ko‘rsatilmagan","Город не указан":"Shahar ko‘rsatilmagan","до 20 символов":"20 ta belgigacha","до 30 символов":"30 ta belgigacha","до 60 символов":"60 ta belgigacha","до 500 символов":"500 ta belgigacha","Удалить":"O‘chirish","Подождите...":"Kuting...","Ошибка загрузки":"Yuklash xatosi","Не удалось выполнить действие":"Amalni bajarib bo‘lmadi","Сохраняем...":"Saqlanmoqda...","Создание...":"Yaratilmoqda...","Продолжить покупки":"Xaridni davom ettirish","На главную":"Bosh sahifaga","Открыть товар":"Mahsulotni ochish","Покупай у людей":"Odamlardan xarid qiling","Разместить вещь":"Mahsulot joylash","Поиск вещей, брендов и категорий":"Mahsulot, brend va toifalarni qidirish","Сначала дешевле":"Avval arzonlari","Сначала дороже":"Avval qimmatlari","По названию":"Nomi bo‘yicha","Фильтры":"Filtrlar","Фильтры и сортировка":"Filtr va saralash","Размер:":"O‘lcham:","Цвет:":"Rang:","Наличие":"Mavjudligi","Под заказ":"Buyurtma asosida","ПРОДАВЕЦ":"SOTUVCHI","Написать":"Yozish","Поделиться":"Ulashish","Предыдущее фото":"Oldingi foto","Следующее фото":"Keyingi foto","Добавляйте товары в избранное, чтобы не потерять их.":"Mahsulotlarni Sevimlilarga qo‘shing, shunda ularni yo‘qotmaysiz.","Очистить историю":"Tarixni tozalash","Очистить историю?":"Tarix tozalansinmi?","Все просмотренные товары этой сессии будут удалены.":"Ushbu sessiyadagi barcha ko‘rilgan mahsulotlar o‘chiriladi.","ПОКУПКИ И ПРОДАЖИ":"XARID VA SAVDO","НАСТРОЙКИ":"SOZLAMALAR","ПОМОЩЬ":"YORDAM","Снятые":"Olib tashlanganlar","Отклонено":"Rad etilgan","Срок истёк":"Muddati tugagan","Снято":"Olib tashlangan","Без названия":"Nomsiz","Без размера":"O‘lcham ko‘rsatilmagan","Причина:":"Sabab:","Здесь пока пусто":"Bu bo‘lim hozircha bo‘sh","Разместите своё первое объявление и начните продавать.":"Birinchi e’loningizni joylang va sotishni boshlang.","В этом разделе пока нет объявлений.":"Bu bo‘limda hozircha e’lonlar yo‘q.","Продать товар":"Mahsulot sotish","Продлить на 7 дней":"7 kunga uzaytirish","Удалить объявление?":"E’lon o‘chirilsinmi?","Товар и его фотографии будут удалены.":"Mahsulot va uning fotosuratlari o‘chiriladi.","Срок публикации завершён":"E’lon muddati tugadi","Истекает сейчас":"Hozir tugamoqda","Срок: ещё не назначен":"Muddat hali belgilanmagan","Фото ждут очистки":"Fotosuratlar o‘chirilishini kutmoqda","Фотографии уже удалены. Создайте новое объявление.":"Fotosuratlar allaqachon o‘chirilgan. Yangi e’lon yarating.","Фото профиля берётся напрямую из Telegram и не загружается в ImageKit.":"Profil rasmi Telegram’dan olinadi va ImageKit’ga yuklanmaydi.","Например: продаю вещи из личного гардероба":"Masalan: shaxsiy garderobimdagi kiyimlarni sotaman","Нажмите, чтобы выбрать до 6 фото · максимум 10 MB каждое":"6 tagacha foto tanlash uchun bosing · har biri 10 MB gacha","Отправляем на модерацию...":"Moderatsiyaga yuborilmoqda...","Добавьте хотя бы одну фотографию":"Kamida bitta fotosurat qo‘shing","Заполните название товара":"Mahsulot nomini kiriting","Заполните название, категорию и цену":"Nom, toifa va narxni kiriting","Введите корректную цену цифрами":"Narxni raqam bilan to‘g‘ri kiriting","Максимум 6 фотографий":"Ko‘pi bilan 6 ta fotosurat","Можно загрузить максимум 6 фотографий":"Ko‘pi bilan 6 ta fotosurat yuklash mumkin","Каждая фотография должна быть не больше 10 MB":"Har bir fotosurat 10 MB dan katta bo‘lmasligi kerak","Перейти в мои товары":"Mahsulotlarimga o‘tish","Заявка на связь":"Bog‘lanish so‘rovi","Подходит ли размер?":"O‘lchami mos keladimi?","Например: Здравствуйте, товар ещё актуален?":"Masalan: Assalomu alaykum, mahsulot hali sotuvdami?","При желании добавьте короткое сообщение.":"Xohlasangiz, qisqa xabar qo‘shing.","Закрытых заявок пока нет":"Hozircha yopilgan so‘rovlar yo‘q","Здесь будут закрытые заявки.":"Yopilgan so‘rovlar shu yerda ko‘rinadi.","Отправлена":"Yuborilgan","Связь открыта":"Aloqa ochiq","Отменена":"Bekor qilingan","Оплата и доставка подтверждаются после оформления.":"To‘lov va yetkazib berish buyurtmadan keyin tasdiqlanadi.","Оформление заказа":"Buyurtmani rasmiylashtirish","ВАШ ЗАКАЗ":"SIZNING BUYURTMANGIZ","Изменить":"O‘zgartirish","Доставка и контакт":"Yetkazib berish va aloqa","Имя *":"Ism *","Ваше имя":"Ismingiz","Телефон *":"Telefon *","Комментарий":"Izoh","Например: удобное время для связи":"Masalan: bog‘lanish uchun qulay vaqt","Имя, телефон и город сохранятся на этом устройстве.":"Ism, telefon va shahar ushbu qurilmada saqlanadi.","Подтверждение заказа":"Buyurtmani tasdiqlash","После оформления продавец или Uzbek Re'Sale подтвердит заказ. Оплата и доставка согласовываются отдельно.":"Rasmiylashtirgandan so‘ng sotuvchi yoki Uzbek Re'Sale buyurtmani tasdiqlaydi. To‘lov va yetkazib berish alohida kelishiladi.","Подтвердить заказ":"Buyurtmani tasdiqlash","Мы свяжемся с вами для подтверждения.":"Tasdiqlash uchun siz bilan bog‘lanamiz.","Статус":"Holat","Что дальше":"Keyingi qadam","Перейти в мои заказы":"Buyurtmalarimga o‘tish","Новый":"Yangi","Подтверждён":"Tasdiqlangan","Завершён":"Yakunlangan","Отменён":"Bekor qilingan","Продавец:":"Sotuvchi:","Написать в поддержку":"Yordamga yozish","КАТАЛОГ":"KATALOG","Официальный профиль · Ташкент":"Rasmiy profil · Toshkent","Товары Uzbek Re'Sale: позиции из Китая и товары, которые уже есть в наличии.":"Uzbek Re'Sale mahsulotlari: Xitoydan pozitsiyalar va hozir mavjud mahsulotlar.","Свернуть все":"Barchasini yopish","Укажите UR-XXXXXX":"UR-XXXXXX raqamini ko‘rsating","R-XXXXXX · бот, открытие или закрытие":"R-XXXXXX · bot, ochish yoki yopish","Модерация, срок или удаление":"Moderatsiya, muddat yoki o‘chirish","По пользовательскому Ресейл:":"Foydalanuvchi resayli bo‘yicha:","Чем пользовательский Ресейл отличается от товаров Uzbek Re'Sale?":"Foydalanuvchi resayli Uzbek Re'Sale mahsulotlaridan nimasi bilan farq qiladi?","Как купить товар Ресейл?":"Reseyl mahsulotini qanday xarid qilish mumkin?","Что означает заявка R-XXXXXX?":"R-XXXXXX so‘rovi nimani anglatadi?","Как работает связь через Telegram-бота?":"Telegram-bot orqali aloqa qanday ishlaydi?","Что делает команда /stop?":"/stop buyrug‘i nima qiladi?","Что делать, если продавец не отвечает?":"Sotuvchi javob bermasa nima qilish kerak?","Сколько действует пользовательское объявление?":"Foydalanuvchi e’loni qancha vaqt amal qiladi?","Что происходит после «Отметить проданным»?":"«Sotilgan deb belgilash»dan keyin nima bo‘ladi?","Как удалить своё объявление?":"O‘z e’lonimni qanday o‘chirish mumkin?","Почему объявление не публикуется сразу?":"Nega e’lon darhol chop etilmaydi?","Как оформить официальный товар Uzbek Re'Sale?":"Uzbek Re'Sale rasmiy mahsulotini qanday buyurtma qilish mumkin?","Как отменить официальный заказ?":"Rasmiy buyurtmani qanday bekor qilish mumkin?","Что означают «От нас», «Из Китая» и «В наличии»?":"«Bizdan», «Xitoydan» va «Mavjud» nimani anglatadi?","Что делать при подозрении на мошенничество в пользовательском Ресейл?":"Foydalanuvchi resaylida firibgarlikdan shubhalansangiz nima qilish kerak?","Официальные товары Uzbek Re'Sale":"Uzbek Re'Sale rasmiy mahsulotlari","— объявление обычного пользователя. Uzbek Re'Sale только помогает разместить объявление и связать покупателя с продавцом. Оплата, доставка и передача товара согласовываются между пользователями напрямую.":"— oddiy foydalanuvchi e’loni. Uzbek Re'Sale faqat e’lon joylash va sotuvchi bilan bog‘lanishga yordam beradi. To‘lov, yetkazib berish va mahsulotni topshirish foydalanuvchilar o‘rtasida bevosita kelishiladi.","оформляются через корзину и создают заказ формата":"savat orqali rasmiylashtiriladi va quyidagi formatdagi buyurtma yaratiladi:","Откройте товар с отметкой «Ресейл».":"«Reseyl» belgili mahsulotni oching.","Нажмите «Связаться с продавцом».":"«Sotuvchi bilan bog‘lanish» tugmasini bosing.","После отправки создаётся заявка":"Yuborilgach, so‘rov yaratiladi","и появляется в разделе «Мои заявки».":"va «So‘rovlarim» bo‘limida ko‘rinadi.","Дальше цена, оплата, доставка и передача товара согласовываются с продавцом напрямую.":"Keyin narx, to‘lov, yetkazib berish va mahsulotni topshirish sotuvchi bilan bevosita kelishiladi.","R-XXXXXX — это только заявка на связь.":"R-XXXXXX — faqat bog‘lanish uchun so‘rov.","Она не является заказом, оплатой или резервом товара и не обязывает покупателя купить товар, а продавца — продать его. Один покупатель не может создать вторую активную заявку на то же объявление, но разные покупатели могут обращаться к одному продавцу.":"U buyurtma, to‘lov yoki mahsulotni band qilish hisoblanmaydi va foydalanuvchini mahsulotni xarid qilishga, sotuvchini esa uni sotishga majbur qilmaydi. Bir foydalanuvchi ayni e’lon uchun ikkinchi faol so‘rov yarata olmaydi, ammo turli foydalanuvchilar bir sotuvchiga murojaat qilishi mumkin.","После создания заявки продавец получает уведомление в Telegram. Покупатель и продавец могут открыть связь через кнопки в сообщениях бота. Бот передаёт сообщения между участниками заявки, не раскрывая дополнительных данных сверх того, что предусмотрено сервисом.":"So‘rov yaratilgach, sotuvchi Telegram’da bildirishnoma oladi. Foydalanuvchi va sotuvchi bot xabarlaridagi tugmalar orqali aloqani ochishi mumkin. Bot xizmat uchun zarur bo‘lganidan ortiqcha ma’lumotni oshkor qilmasdan xabarlarni uzatadi.","Команда":"Buyruq","останавливает текущую переписку через бота, но":"botdagi joriy yozishmani to‘xtatadi, ammo","не закрывает саму заявку R-XXXXXX":"R-XXXXXX so‘rovining o‘zini yopmaydi","Заявка остаётся активной, пока её не закроют или пока объявление остаётся доступным. Можно повторно открыть связь через обычную кнопку «Связаться», если текущий чат был остановлен через /stop. Если продавец не отвечает длительное время, вы можете закрыть заявку и выбрать другой товар. Не отправляйте деньги, если условия сделки вам не понятны.":"So‘rov yopilmaguncha yoki e’lon mavjud bo‘lib turguncha faol qoladi. Agar chat /stop orqali to‘xtatilgan bo‘lsa, oddiy «Bog‘lanish» tugmasi orqali aloqani qayta ochish mumkin. Sotuvchi uzoq vaqt javob bermasa, so‘rovni yopib boshqa mahsulotni tanlashingiz mumkin. Bitim shartlari tushunarsiz bo‘lsa, pul yubormang.","После публикации объявление действует":"E’lon chop etilgach, quyidagi muddat amal qiladi:","7 дней":"7 kun","5 дней":"5 kun","Откройте":"Oching","Профиль → Мои товары":"Profil → Mahsulotlarim","Пользовательские объявления проходят модерацию. После проверки объявление публикуется либо продавец получает уведомление об отклонении с причиной. Модерация не является гарантией качества или подлинности товара.":"Foydalanuvchi e’lonlari moderatsiyadan o‘tadi. Tekshiruvdan so‘ng e’lon chop etiladi yoki sotuvchi rad etish sababi ko‘rsatilgan bildirishnoma oladi. Moderatsiya mahsulot sifati yoki haqiqiyligiga kafolat bermaydi.","Официальный товар можно добавить в корзину и оформить через Checkout. После оформления создаётся заказ формата":"Rasmiy mahsulotni savatga qo‘shib, Checkout orqali rasmiylashtirish mumkin. Shundan so‘ng quyidagi formatdagi buyurtma yaratiladi:","Если встроенная онлайн-оплата не используется, способ оплаты, наличие и доставка подтверждаются отдельно после оформления заказа.":"Ichki onlayn to‘lov ishlatilmasa, to‘lov usuli, mavjudligi va yetkazib berish buyurtmadan keyin alohida tasdiqlanadi.","Если заказ":"Agar buyurtma","ещё не завершён, откройте его в «Мои заказы». Если нужна помощь с отменой, напишите в поддержку и обязательно укажите номер заказа. Заявка":"hali yakunlanmagan bo‘lsa, uni «Buyurtmalarim» bo‘limida oching. Bekor qilish bo‘yicha yordam kerak bo‘lsa, yordam xizmatiga yozing va buyurtma raqamini ko‘rsating. So‘rov","к официальным заказам не относится и закрывается отдельно в разделе «Мои заявки».":"rasmiy buyurtmalarga tegishli emas va «So‘rovlarim» bo‘limida alohida yopiladi.","— официальный товар Uzbek Re'Sale.":"— Uzbek Re'Sale rasmiy mahsuloti.","обозначает направление или происхождение товара.":"mahsulot yo‘nalishi yoki kelib chiqishini bildiradi.","означает, что товар доступен сейчас.":"mahsulot hozir mavjudligini bildiradi.","Не отправляйте деньги, если не уверены в сделке. Никому не передавайте пароль Telegram, SMS-коды, резервные коды, CVV/CVC или другие секретные данные. Прекратите общение, сохраните переписку и подтверждающие материалы и, при необходимости, обратитесь в компетентные органы. Uzbek Re'Sale не рассматривает финансовые споры, возвраты денег, доставку или передачу товара между пользователями Ресейл.":"Bitimga ishonchingiz komil bo‘lmasa, pul yubormang. Telegram paroli, SMS-kodlar, zaxira kodlar, CVV/CVC yoki boshqa maxfiy ma’lumotlarni hech kimga bermang. Muloqotni to‘xtating, yozishmalar va tasdiqlovchi materiallarni saqlang va zarur bo‘lsa vakolatli organlarga murojaat qiling. Uzbek Re'Sale foydalanuvchi resaylidagi moliyaviy nizolar, pulni qaytarish, yetkazib berish yoki mahsulotni topshirishni ko‘rib chiqmaydi.","Uzbek Re'Sale предоставляет площадку и связь. Условия сделки, оплата, доставка, возврат и передача товара — договорённость между покупателем и продавцом.":"Uzbek Re'Sale platforma va aloqa imkonini beradi. Bitim shartlari, to‘lov, yetkazib berish, qaytarish va mahsulotni topshirish foydalanuvchi bilan sotuvchi o‘rtasida kelishiladi.","Поддержка помогает только с работой сервиса: заявками R-XXXXXX, ботом, объявлениями и официальными заказами UR-XXXXXX. Споры по оплате, доставке, качеству и передаче пользовательских товаров стороны решают самостоятельно. Не отправляйте пароли, SMS-коды или данные банковской карты.":"Yordam xizmati faqat servis ishlashi bo‘yicha yordam beradi: R-XXXXXX so‘rovlari, bot, e’lonlar va UR-XXXXXX rasmiy buyurtmalar. Foydalanuvchi mahsulotlari bo‘yicha to‘lov, yetkazib berish, sifat va topshirish masalalarini tomonlar mustaqil hal qiladi. Parol, SMS-kod yoki bank karta ma’lumotlarini yubormang.","Ташкент":"Toshkent","Самарканд":"Samarqand","Андижан":"Andijon","Бухара":"Buxoro","Фергана":"Farg‘ona","Наманган":"Namangan","Нукус":"Nukus","Карши":"Qarshi","Ургенч":"Urganch","Джизак":"Jizzax","Навои":"Navoiy","Гулистан":"Guliston","Термез":"Termiz","Коканд":"Qo‘qon","Маргилан":"Marg‘ilon","Чирчик":"Chirchiq","Алмалык":"Olmaliq","Ангрен":"Angren","Бекабад":"Bekobod","Шахрисабз":"Shahrisabz","Хива":"Xiva","Доступны русский и узбекский языки. English подключим отдельным этапом.":"Rus va o‘zbek tillari mavjud. English alohida bosqichda qo‘shiladi."})
 });
-
 const __uzrI18nTextSourceV83=new WeakMap();
 const __uzrI18nAttrSourceV83=new WeakMap();
 
-const UZR_I18N_ENGINE_VERSION_V85="v85-safe";
+const UZR_I18N_ENGINE_VERSION_V85="v86-core-uz";
 let __uzrI18nObserverV83=null;
 let __uzrI18nApplyingV85=false;
 
@@ -16065,10 +16058,69 @@ function uzrLanguageLabelV83(locale){
   return locale==="uz"?"O‘zbekcha":locale==="en"?"English":"Русский";
 }
 
+
+function translateUzrDynamicSourceV86(source,locale){
+  const original=String(source??"");
+  if(locale!=="uz")return original;
+
+  let s=original;
+
+  /* Currency / counts / quantities */
+  s=s.replace(/^(\d[\d\s]*)\s+сум$/u,"$1 so‘m");
+  s=s.replace(/\b(\d+)\s+шт\./gu,"$1 dona");
+  s=s.replace(/^\+(\d+)\s+(?:товар|товара|товаров)$/u,"+$1 ta mahsulot");
+  s=s.replace(/^(\d+)\s+(?:товар|товара|товаров)$/u,"$1 ta mahsulot");
+
+  /* Common composite metadata */
+  s=s.replace(/Город не указан/gu,"Shahar ko‘rsatilmagan");
+  s=s.replace(/Размер:\s*/gu,"O‘lcham: ");
+  s=s.replace(/Цвет:\s*/gu,"Rang: ");
+  s=s.replace(/Продавец:\s*/gu,"Sotuvchi: ");
+  s=s.replace(/Цена:\s*/gu,"Narx: ");
+  s=s.replace(/В наличии/gu,"Mavjud");
+  s=s.replace(/Под заказ/gu,"Buyurtma asosida");
+
+  /* Listing lifecycle */
+  s=s.replace(/^До снятия:\s*(\d+)\s*ч\.$/u,"Olib tashlanishiga: $1 soat");
+  s=s.replace(/^До снятия:\s*(\d+)\s*дн\.$/u,"Olib tashlanishiga: $1 kun");
+  s=s.replace(/^До снятия:\s*скоро$/u,"Tez orada olib tashlanadi");
+  s=s.replace(/^Фото удалятся через\s*(\d+)\s*ч\.$/u,"Fotosuratlar $1 soatdan keyin o‘chiriladi");
+  s=s.replace(/^Фото удалятся через\s*(\d+)\s*дн\.$/u,"Fotosuratlar $1 kundan keyin o‘chiriladi");
+  s=s.replace(/^Фото удалятся через\s*скоро$/u,"Fotosuratlar tez orada o‘chiriladi");
+
+  /* Relative dates */
+  s=s.replace(/^Сегодня,\s*/u,"Bugun, ");
+  s=s.replace(/^Вчера,\s*/u,"Kecha, ");
+
+  /* Russian short month names coming from ru-RU date formatting */
+  const months=[
+    ["янв.","yan."],["февр.","fev."],["мар.","mar."],["апр.","apr."],
+    ["мая","may"],["май","may"],["июн.","iyun"],["июл.","iyul"],
+    ["авг.","avg."],["сент.","sen."],["окт.","okt."],["нояб.","noy."],["дек.","dek."]
+  ];
+  months.forEach(([ru,uz])=>{s=s.replaceAll(ru,uz)});
+  s=s.replace(/\sг\.,/gu,",");
+  s=s.replace(/\sг\.$/gu,"");
+
+  /* Dynamic request/order labels */
+  s=s.replace(/^Заявка\s+(R-\d+)/u,"So‘rov $1");
+  s=s.replace(/^Заказ\s+(UR-\d+)/u,"Buyurtma $1");
+
+  /* Dynamic reason / stock strings */
+  s=s.replace(/^Причина:\s*/u,"Sabab: ");
+  s=s.replace(/^Остаток:\s*/u,"Qoldiq: ");
+
+  return s;
+}
+
 function translateUzrSourceV83(source,locale=readUzrLanguageV83()){
   const src=String(source??"");
   if(locale==="ru")return src;
-  return UZR_I18N_DICTIONARIES_V83[locale]?.[src]??src;
+
+  const exact=UZR_I18N_DICTIONARIES_V83[locale]?.[src];
+  if(exact!==undefined)return exact;
+
+  return translateUzrDynamicSourceV86(src,locale);
 }
 
 function shouldSkipUzrI18nV83(node){
@@ -16087,7 +16139,17 @@ function shouldSkipUzrI18nV83(node){
     ".order-card-name-v40",
     ".contact-request-product-copy-v49 b",
     ".product-v18-seller-copy b",
-    ".seller-mini-title-v20"
+    ".seller-mini-title-v20",
+    ".seller-v26-about",
+    "#officialStoreView",
+    "#legalCenter",
+    "#legalDocument",
+    "#legalSection",
+    "#uzrConsentV58",
+    "#uzrConsentLegalV58",
+    "#adminPanel",
+    "#adminReviewView",
+    "#adminListingView"
   ].join(","));
 }
 
@@ -16106,7 +16168,14 @@ function translateUzrTextNodeV83(node,locale){
       This prevents an already-translated Uzbek string from becoming
       a new source string after a re-render.
     */
-    if(!UZR_I18N_SOURCE_CATALOG_V83.has(trimmed))return;
+    const dict=UZR_I18N_DICTIONARIES_V83[locale]||{};
+    const exactKnown=UZR_I18N_SOURCE_CATALOG_V83.has(trimmed) ||
+      Object.prototype.hasOwnProperty.call(dict,trimmed);
+    const dynamicTarget=translateUzrDynamicSourceV86(trimmed,locale);
+    const dynamicKnown=locale==="uz"&&dynamicTarget!==trimmed;
+
+    if(!exactKnown&&!dynamicKnown)return;
+
     source=trimmed;
     __uzrI18nTextSourceV83.set(node,source);
   }
@@ -16142,7 +16211,11 @@ function translateUzrAttributesV83(el,locale){
 
     if(saved[attr]===undefined){
       const trimmed=current.trim();
-      if(!UZR_I18N_SOURCE_CATALOG_V83.has(trimmed))return;
+      const dict=UZR_I18N_DICTIONARIES_V83[locale]||{};
+      if(
+        !UZR_I18N_SOURCE_CATALOG_V83.has(trimmed) &&
+        !Object.prototype.hasOwnProperty.call(dict,trimmed)
+      )return;
       saved[attr]=trimmed;
     }
 
@@ -16326,21 +16399,33 @@ function openUzrSettingsChoiceV61(kind){
 
   if(kind==="language"){
     const current=window.UzrI18nV83?.getLocale?.()||"ru";
-    title.textContent=window.UzrI18nV83?.text?.("Язык",current)||"Язык";
-    subtitle.textContent=current==="uz"
-      ?"Mini App interfeysi uchun tilni tanlang."
+    const uzMode=current==="uz";
+
+    title.textContent=uzMode?"Til":"Язык";
+    subtitle.textContent=uzMode
+      ?"Mini App interfeysi tilini tanlang."
       :"Выберите язык интерфейса Mini App.";
+
     list.innerHTML=`
       <button class="uzr-settings-choice-option-v61 ${current==="ru"?"current":""}" type="button" onclick="setUzrLanguagePreviewV84('ru')">
-        <span class="uzr-settings-choice-option-copy-v61"><b>Русский</b><small>Русский интерфейс</small></span>
+        <span class="uzr-settings-choice-option-copy-v61">
+          <b>Русский</b>
+          <small>${uzMode?"Rus tilidagi interfeys":"Русский интерфейс"}</small>
+        </span>
         <span class="uzr-settings-choice-check-v61"></span>
       </button>
       <button class="uzr-settings-choice-option-v61 ${current==="uz"?"current":""}" type="button" onclick="setUzrLanguagePreviewV84('uz')">
-        <span class="uzr-settings-choice-option-copy-v61"><b>O‘zbekcha</b><small>O‘zbek tilidagi interfeys</small></span>
+        <span class="uzr-settings-choice-option-copy-v61">
+          <b>O‘zbekcha</b>
+          <small>${uzMode?"O‘zbek tilidagi interfeys":"Узбекский интерфейс"}</small>
+        </span>
         <span class="uzr-settings-choice-check-v61"></span>
       </button>
       <button class="uzr-settings-choice-option-v61" type="button" disabled>
-        <span class="uzr-settings-choice-option-copy-v61"><b>English</b><small>Keyingi bosqichda</small></span>
+        <span class="uzr-settings-choice-option-copy-v61">
+          <b>English</b>
+          <small>${uzMode?"Keyingi bosqichda":"На следующем этапе"}</small>
+        </span>
         <span class="uzr-settings-soon-v61">SOON</span>
       </button>`;
   }else{
@@ -16441,7 +16526,7 @@ if(document.readyState==="loading"){
 </script>
 
 
-<script id="uzr-i18n-v85-test-dynamic">
+<script id="uzr-i18n-v86-core-dynamic">
 function uzrLocaleV84(){return window.UzrI18nV83?.getLocale?.()||"ru"}
 
 function uzrPluralProductsV84(n){
@@ -16472,5 +16557,4 @@ document.addEventListener("uzr:languagechange",()=>{
 });
 </script>
 
-<div class="uzr-v84-test-badge">UZ SAFE TEST</div>
 </body></html>
