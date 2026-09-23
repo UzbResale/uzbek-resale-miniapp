@@ -11827,6 +11827,75 @@ html[lang="uz"] .some-empty-copy:before{
 }
 </style>
 
+
+<style id="uzr-v88-clean-start-admin">
+.clean-start-v88{
+  margin:14px 0 18px!important;
+  padding:15px!important;
+  border:1px solid rgba(255,75,92,.36)!important;
+  border-radius:18px!important;
+  background:linear-gradient(180deg,rgba(116,25,36,.18),rgba(65,20,28,.10))!important;
+}
+.clean-start-v88-head{
+  display:flex!important;
+  align-items:flex-start!important;
+  justify-content:space-between!important;
+  gap:12px!important;
+}
+.clean-start-v88-head>div{display:flex!important;flex-direction:column!important;gap:3px!important}
+.clean-start-v88-head small{color:#ff8290!important;font-size:9px!important;letter-spacing:.08em!important;font-weight:800!important}
+.clean-start-v88-head b{color:#fff!important;font-size:20px!important}
+.clean-start-v88-head>span{
+  padding:5px 8px!important;border-radius:8px!important;
+  background:rgba(255,75,92,.16)!important;color:#ff8290!important;
+  font-size:9px!important;font-weight:850!important
+}
+.clean-start-v88>p{margin:10px 0!important;color:#9fb2bd!important;font-size:11px!important;line-height:1.45!important}
+.clean-start-v88>p strong{color:#fff!important}
+.clean-start-preview-btn-v88{
+  width:100%!important;min-height:43px!important;border-radius:12px!important;
+  border:1px solid #36586b!important;background:#123448!important;color:#dce8ee!important;font-weight:750!important
+}
+.clean-start-preview-v88{margin-top:12px!important}
+.clean-start-counts-v88{display:grid!important;grid-template-columns:1fr 1fr!important;gap:7px!important}
+.clean-start-counts-v88>div{
+  padding:9px 10px!important;border-radius:11px!important;background:#0b2736!important;
+  border:1px solid #284b5f!important;display:flex!important;justify-content:space-between!important;gap:8px!important
+}
+.clean-start-counts-v88 span{color:#8098a7!important;font-size:10px!important}
+.clean-start-counts-v88 b{color:#fff!important}
+.clean-start-preserve-v88{
+  margin:10px 0!important;padding:10px!important;border-radius:11px!important;
+  background:rgba(40,159,111,.10)!important;border:1px solid rgba(40,159,111,.26)!important;
+  color:#8fb2a2!important;font-size:10px!important;line-height:1.4!important
+}
+.clean-start-preserve-v88 b{color:#4fd394!important}
+.clean-start-confirm-label-v88{display:block!important;margin:10px 0 6px!important;color:#c1d0d8!important;font-size:10px!important}
+.clean-start-confirm-label-v88 code{display:block!important;margin-top:5px!important;color:#ff8793!important;font-size:9px!important;word-break:break-all!important}
+.clean-start-confirm-v88{
+  width:100%!important;min-height:44px!important;border-radius:11px!important;
+  border:1px solid #6b3440!important;background:#091f2c!important;color:#fff!important;
+  padding:10px 11px!important;font-size:10px!important
+}
+.clean-start-execute-v88{
+  width:100%!important;min-height:48px!important;margin-top:9px!important;border:0!important;
+  border-radius:13px!important;background:#d9364a!important;color:#fff!important;font-weight:850!important
+}
+.clean-start-execute-v88:disabled{opacity:.36!important}
+.clean-start-note-v88{margin-top:8px!important;line-height:1.4!important}
+.clean-start-success-v88{
+  padding:12px!important;border-radius:12px!important;background:rgba(25,169,102,.12)!important;
+  border:1px solid rgba(25,169,102,.28)!important;display:flex!important;flex-direction:column!important;gap:4px!important
+}
+.clean-start-success-v88 b{color:#50d795!important}
+.clean-start-success-v88 span,.clean-start-success-v88 small{color:#9ab5a8!important}
+.clean-start-error-v88{
+  margin-top:9px!important;padding:10px!important;border-radius:10px!important;
+  background:rgba(217,54,74,.13)!important;color:#ff8b97!important;font-size:10px!important
+}
+@media(max-width:390px){.clean-start-counts-v88{grid-template-columns:1fr!important}}
+</style>
+
 </head><body>
 <div id="uzrConsentV58" role="dialog" aria-modal="true" aria-labelledby="uzrConsentTitleV58">
   <div class="uzr-consent-card-v58">
@@ -15560,6 +15629,19 @@ async function adminTab(tab,btn){
     </div>
     <div class="admin-mini lifecycle-admin-note-v51">Активное пользовательское объявление живёт 7 дней. Фото проданного товара удаляются через 5 дней. Для автоматической очистки нужен Cron Trigger Worker.</div>
 
+    <div class="clean-start-v88">
+      <div class="clean-start-v88-head">
+        <div>
+          <small>ФИНАЛЬНАЯ ОЧИСТКА ПЕРЕД ЗАПУСКОМ</small>
+          <b>Чистый старт</b>
+        </div>
+        <span>ADMIN ONLY</span>
+      </div>
+      <p>Удаляет <strong>все тестовые объявления, фото, R-заявки, чаты и UR-заказы</strong>. Legal Acceptance и системные настройки сохраняются.</p>
+      <button class="clean-start-preview-btn-v88" type="button" onclick="adminCleanStartPreviewV88()">Проверить объём удаления</button>
+      <div id="cleanStartPreviewV88" class="clean-start-preview-v88" hidden></div>
+    </div>
+
     <div class="cleanup-v2-section-title">Архив / очистка · ${trash.length}</div>
     ${trash.map(x=>`
       <div class="admin-card">
@@ -15592,6 +15674,134 @@ async function adminTab(tab,btn){
   }
  }catch(e){c.innerHTML='<div class="empty">Ошибка загрузки: '+String(e.message||e)+'</div>'}
 }
+
+const CLEAN_START_CONFIRM_V88="DELETE_ALL_MARKETPLACE_TEST_DATA";
+
+function cleanStartCountRowV88(label,value){
+  return `<div><span>${escapeHtml(label)}</span><b>${Number(value||0)}</b></div>`;
+}
+
+async function adminCleanStartPreviewV88(){
+  const host=$("cleanStartPreviewV88");
+  if(!host)return;
+  host.hidden=false;
+  host.innerHTML='<div class="empty">Проверяем данные...</div>';
+
+  try{
+    const d=await adminFetch("/admin/clean-start",{
+      method:"POST",
+      body:JSON.stringify({dryRun:true})
+    });
+    const c=d.counts||{};
+
+    host.innerHTML=`
+      <div class="clean-start-counts-v88">
+        ${cleanStartCountRowV88("Объявления",c.listings)}
+        ${cleanStartCountRowV88("Фото в D1",c.listing_images)}
+        ${cleanStartCountRowV88("UR-заказы",c.orders)}
+        ${cleanStartCountRowV88("История статусов",c.order_status_history)}
+        ${cleanStartCountRowV88("R-заявки",c.contact_requests)}
+        ${cleanStartCountRowV88("R-чаты",c.contact_chat_sessions)}
+        ${cleanStartCountRowV88("UR-чаты",c.chat_sessions)}
+      </div>
+      <div class="clean-start-preserve-v88">
+        <b>Сохраняем:</b> Legal Acceptance · настройки сервиса · schema · secrets · Cron
+      </div>
+      <label class="clean-start-confirm-label-v88">
+        Для удаления введите:
+        <code>${CLEAN_START_CONFIRM_V88}</code>
+      </label>
+      <input id="cleanStartConfirmInputV88"
+        class="clean-start-confirm-v88"
+        autocomplete="off"
+        spellcheck="false"
+        placeholder="${CLEAN_START_CONFIRM_V88}"
+        oninput="adminCleanStartConfirmSyncV88()">
+      <button id="cleanStartExecuteBtnV88"
+        class="clean-start-execute-v88"
+        type="button"
+        disabled
+        onclick="adminExecuteCleanStartV88()">
+        🧨 Удалить ВСЕ тестовые данные
+      </button>
+      <div class="admin-mini clean-start-note-v88">
+        Сначала удаляются файлы ImageKit. Если ImageKit даст ошибку, D1-заказы и объявления не стираются.
+      </div>`;
+  }catch(e){
+    host.innerHTML='<div class="empty">Ошибка проверки: '+escapeHtml(String(e.message||e))+'</div>';
+  }
+}
+
+function adminCleanStartConfirmSyncV88(){
+  const input=$("cleanStartConfirmInputV88");
+  const btn=$("cleanStartExecuteBtnV88");
+  if(!input||!btn)return;
+  btn.disabled=String(input.value||"")!==CLEAN_START_CONFIRM_V88;
+}
+
+function clearLocalMarketplaceTestStateV88(){
+  try{
+    localStorage.removeItem(UZR_CART_STORAGE);
+    localStorage.removeItem(UZR_FAVS_STORAGE);
+    localStorage.removeItem(UZR_CHECKOUT_CONTACT_STORAGE);
+    localStorage.removeItem("uzr_addresses");
+
+    const prefix=String(UZR_SELLER_PROFILE_STORAGE_V26||"uzr_seller_profile_v26")+"::";
+    const keys=[];
+    for(let i=0;i<localStorage.length;i++){
+      const key=localStorage.key(i);
+      if(key&&key.startsWith(prefix))keys.push(key);
+    }
+    keys.forEach(key=>localStorage.removeItem(key));
+  }catch(_){}
+
+  cart=[];
+  favs=[];
+  viewed=[];
+  selected=null;
+  render();
+}
+
+async function adminExecuteCleanStartV88(){
+  const input=$("cleanStartConfirmInputV88");
+  const btn=$("cleanStartExecuteBtnV88");
+  const host=$("cleanStartPreviewV88");
+  if(!input||!btn||!host)return;
+  if(String(input.value||"")!==CLEAN_START_CONFIRM_V88)return;
+
+  btn.disabled=true;
+  btn.textContent="Удаляем ImageKit и D1...";
+
+  try{
+    const d=await adminFetch("/admin/clean-start",{
+      method:"POST",
+      body:JSON.stringify({confirm:CLEAN_START_CONFIRM_V88})
+    });
+
+    clearLocalMarketplaceTestStateV88();
+
+    host.innerHTML=`
+      <div class="clean-start-success-v88">
+        <b>✓ CLEAN START завершён</b>
+        <span>ImageKit удалено: ${Number(d.deletedImages||0)}</span>
+        <span>Объявления после очистки: ${Number(d.countsAfter?.listings||0)}</span>
+        <span>Заказы после очистки: ${Number(d.countsAfter?.orders||0)}</span>
+        <span>R-заявки после очистки: ${Number(d.countsAfter?.contact_requests||0)}</span>
+        <small>Legal Acceptance и системная конфигурация сохранены.</small>
+      </div>`;
+
+    await loadMarketplaceCatalog();
+    await loadAdmin();
+  }catch(e){
+    btn.disabled=false;
+    btn.textContent="🧨 Удалить ВСЕ тестовые данные";
+    host.insertAdjacentHTML(
+      "beforeend",
+      `<div class="clean-start-error-v88">Ошибка: ${escapeHtml(String(e.message||e))}</div>`
+    );
+  }
+}
+
 async function adminModerate(id,action){
  let reason="";
  if(action==="reject"){
