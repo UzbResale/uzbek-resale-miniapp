@@ -12109,6 +12109,23 @@ body.admin-v89-open .app{
 .admin-v89-order-items,.admin-v89-request-message{
   padding:9px 10px!important;border-radius:11px!important;background:#0a2230!important;color:#8fa5b1!important;font-size:9px!important;line-height:1.4!important
 }
+/* v106 — open listing from UR/Admin + status-aware order actions */
+.admin-v106-order-items{display:flex!important;flex-direction:column!important;gap:6px!important;margin-top:10px!important}
+.admin-v106-order-item-link{width:100%!important;display:grid!important;grid-template-columns:38px minmax(0,1fr) auto 16px!important;gap:8px!important;align-items:center!important;padding:7px!important;border:1px solid #234b60!important;border-radius:11px!important;background:#0a2230!important;color:inherit!important;text-align:left!important;cursor:pointer!important}
+.admin-v106-order-item-link:hover,.admin-v106-order-item-link:active{background:#0e2c3c!important;border-color:#32708f!important}
+.admin-v106-order-item-link.is-static{cursor:default!important}
+.admin-v106-order-item-link img,.admin-v106-order-item-placeholder{width:38px!important;height:38px!important;border-radius:9px!important;object-fit:cover!important;background:#102f40!important;display:grid!important;place-items:center!important;color:#6c91a4!important}
+.admin-v106-order-item-placeholder svg{width:17px!important;height:17px!important}
+.admin-v106-order-item-copy{display:flex!important;flex-direction:column!important;gap:2px!important;min-width:0!important}
+.admin-v106-order-item-copy b{color:#eaf3f7!important;font-size:9.5px!important;white-space:nowrap!important;overflow:hidden!important;text-overflow:ellipsis!important}
+.admin-v106-order-item-copy small{color:#718c9a!important;font-size:8px!important}
+.admin-v106-order-item-link strong{color:#42b8fa!important;font-size:9px!important;white-space:nowrap!important}
+.admin-v106-order-item-link>svg{width:15px!important;height:15px!important;color:#658797!important}
+.admin-v106-order-final{display:flex!important;align-items:center!important;gap:7px!important;margin-top:10px!important;padding:9px 10px!important;border-radius:10px!important;background:#0a2230!important;color:#7f9aa7!important;font-size:8.5px!important;font-weight:750!important}
+.admin-v106-order-final svg{width:15px!important;height:15px!important}
+.admin-v106-official-open{cursor:pointer!important;border-radius:12px!important;transition:background .15s ease!important}
+.admin-v106-official-open:hover,.admin-v106-official-open:active{background:rgba(64,174,236,.05)!important}
+.admin-v106-listing-head{margin-bottom:10px!important}.admin-v106-listing-head small{display:block!important;color:#6392a8!important;font-size:9px!important;font-weight:800!important;letter-spacing:.08em!important;margin-bottom:4px!important}.admin-v106-listing-head h1{margin:0!important}
 .admin-v89-actions{
   display:flex!important;gap:6px!important;flex-wrap:wrap!important;margin-top:10px!important
 }
@@ -16694,26 +16711,40 @@ function adminRenderOrdersV89(filter=adminOrdersFilterV89){
     if(items&&!Array.isArray(items)&&typeof items==="object")items=Object.values(items);
     if(!Array.isArray(items))items=[];
 
-    const names=items.slice(0,2).map(i=>escapeHtml(i.name||i.title||"Товар")).join(" · ");
-    const more=items.length>2?` +${items.length-2}`:"";
+    const status=String(o.status||"new");
+    const itemRows=items.map(i=>{
+      const listingId=Number(i.listingId||i.listing_id||0);
+      const name=escapeHtml(i.name||i.title||"Товар");
+      const size=i.size?`<small>Размер: ${escapeHtml(String(i.size))}</small>`:"";
+      const price=Number(i.price||0)>0?`<strong>${money(i.price)}</strong>`:"";
+      const image=String(i.imageUrl||i.image_url||"");
+      const body=`${image?`<img src="${escapeHtml(image)}" alt="">`:`<span class="admin-v106-order-item-placeholder"><i data-lucide="package"></i></span>`}<span class="admin-v106-order-item-copy"><b>${name}</b>${size}</span>${price}<i data-lucide="chevron-right"></i>`;
+      return listingId
+        ? `<button type="button" class="admin-v106-order-item-link" onclick="adminOpenListing(${listingId})">${body}</button>`
+        : `<div class="admin-v106-order-item-link is-static">${body}</div>`;
+    }).join("");
+
+    let actions="";
+    if(status==="new"){
+      actions=`<button onclick="adminOrderStatus(${o.id},'confirmed')">Подтвердить</button><button class="danger" onclick="adminOrderStatus(${o.id},'cancelled')">Отменить</button>`;
+    }else if(status==="confirmed"){
+      actions=`<button onclick="adminOrderStatus(${o.id},'shipping')">В доставку</button><button class="danger" onclick="adminOrderStatus(${o.id},'cancelled')">Отменить</button>`;
+    }else if(status==="shipping"){
+      actions=`<button onclick="adminOrderStatus(${o.id},'completed')">Завершить</button><button class="danger" onclick="adminOrderStatus(${o.id},'cancelled')">Отменить</button>`;
+    }
 
     return `<article class="admin-v89-order-card">
       <div class="admin-v89-card-top">
         <div><small>${adminV89Date(o.created_at)}</small><b>${escapeHtml(o.order_number||("UR-"+o.id))}</b></div>
-        <span class="admin-v89-status status-${escapeHtml(String(o.status||"new"))}">${escapeHtml(adminV89StatusLabel(o.status))}</span>
+        <span class="admin-v89-status status-${escapeHtml(status)}">${escapeHtml(adminV89StatusLabel(status))}</span>
       </div>
       <div class="admin-v89-order-customer">
         <span><i data-lucide="user"></i></span>
         <div><b>${escapeHtml(o.name||"Без имени")}</b><small>${escapeHtml(o.phone||"")} ${o.city?"· "+escapeHtml(o.city):""}</small></div>
         <strong>${money(o.total||0)}</strong>
       </div>
-      ${names?`<div class="admin-v89-order-items">${names}${more}</div>`:""}
-      <div class="admin-v89-actions">
-        <button onclick="adminOrderStatus(${o.id},'confirmed')">Подтвердить</button>
-        <button onclick="adminOrderStatus(${o.id},'shipping')">В доставку</button>
-        <button onclick="adminOrderStatus(${o.id},'completed')">Завершить</button>
-        <button class="danger" onclick="adminOrderStatus(${o.id},'cancelled')">Отменить</button>
-      </div>
+      ${itemRows?`<div class="admin-v106-order-items">${itemRows}</div>`:""}
+      ${actions?`<div class="admin-v89-actions">${actions}</div>`:`<div class="admin-v106-order-final"><i data-lucide="check-circle-2"></i><span>${status==="completed"?"Заказ завершён":"Заказ отменён"}</span></div>`}
     </article>`;
   }).join("")||'<div class="admin-v89-empty"><i data-lucide="shopping-bag"></i><b>Заказов нет</b><small>Здесь появятся официальные UR-заказы.</small></div>';
 
@@ -17288,7 +17319,7 @@ function adminRenderOfficialListV89(){
     const source=x.source_type==="china"?"Из Китая":"В наличии";
 
     return `<article class="admin-v89-official-card">
-      <div class="admin-v89-official-main">
+      <div class="admin-v89-official-main admin-v106-official-open" role="button" tabindex="0" onclick="adminOpenListing(${x.id})" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();adminOpenListing(${x.id})}">
         ${image?`<img src="${escapeHtml(image)}" alt="">`:`<span class="admin-v89-product-placeholder"><i data-lucide="image"></i></span>`}
         <div class="admin-v89-official-copy">
           <div class="admin-v89-official-badges">
@@ -17305,6 +17336,7 @@ function adminRenderOfficialListV89(){
         <span class="admin-v89-state ${status}">${status==="approved"?"В продаже":status}</span>
       </div>
       <div class="admin-v89-actions">
+        <button onclick="adminOpenListing(${x.id})"><i data-lucide="eye"></i> Открыть</button>
         <button onclick="adminEditOfficial(${x.id})"><i data-lucide="square-pen"></i> Редактировать</button>
         <button onclick="adminOpenDiscountEditorV87(${x.id})"><i data-lucide="badge-percent"></i> Скидка</button>
         <button onclick="adminTogglePin(${x.id},${x.is_pinned?0:1})"><i data-lucide="pin"></i> ${x.is_pinned?"Открепить":"Закрепить"}</button>
@@ -17554,7 +17586,7 @@ async function adminOpenListing(id){
  try{
   const d=await adminFetch("/admin/listing-detail?id="+encodeURIComponent(id));
   const x=d.listing,imgs=x.images||[];
-  $("adminListingContent").innerHTML=`<h1>${x.title}</h1>${imgs.length?`<div class="admin-detail-images">${imgs.map(i=>`<img src="${i.image_url}">`).join("")}</div>`:""}<p><b>${money(x.price||0)}</b></p><div class="product-details"><span>Тип</span><span>${x.owner_type==="official"?"✓ Uzbek Re'Sale":"♻ Ресейл"}</span><span>Статус</span><span>${x.status}</span><span>Категория</span><span>${x.category||"—"}</span><span>Бренд</span><span>${x.brand||"—"}</span><span>Размер</span><span>${x.size||"—"}</span><span>Состояние</span><span>${x.condition||"—"}</span>${x.owner_type==="official"?`<span>Остаток</span><span>${x.stock_qty||0}</span>`:""}<span>Продавец</span><span>${x.seller_name||"—"}</span></div>${x.description?`<p>${x.description}</p>`:""}<button class="btn white admin-danger" onclick="adminDeleteListing(${x.id})">🗑 Удалить объявление</button>`;
+  $("adminListingContent").innerHTML=`<div class="admin-v106-listing-head"><small>#${Number(x.id||0)} · ${x.owner_type==="official"?"OFFICIAL":"RE'SALE"}</small><h1>${escapeHtml(x.title||"Товар")}</h1></div>${imgs.length?`<div class="admin-detail-images">${imgs.map(i=>`<img src="${escapeHtml(i.image_url||"")}">`).join("")}</div>`:""}<p><b>${money(x.price||0)}</b></p><div class="product-details"><span>Тип</span><span>${x.owner_type==="official"?"✓ Uzbek Re'Sale":"♻ Ресейл"}</span><span>Статус</span><span>${escapeHtml(String(x.status||"—"))}</span><span>Категория</span><span>${escapeHtml(x.category||"—")}</span><span>Бренд</span><span>${escapeHtml(x.brand||"—")}</span><span>Размер</span><span>${escapeHtml(x.size||"—")}</span><span>Состояние</span><span>${escapeHtml(x.condition||"—")}</span>${x.owner_type==="official"?`<span>Источник</span><span>${x.source_type==="china"?"Из Китая":"В наличии"}</span><span>Остаток</span><span>${Number(x.stock_qty||0)}</span>`:""}<span>Продавец</span><span>${escapeHtml(x.seller_name||"—")}</span></div>${x.description?`<p>${escapeHtml(x.description)}</p>`:""}<button class="btn white admin-danger" onclick="adminDeleteListing(${x.id})">🗑 Удалить объявление</button>`;
   $("adminListingView").classList.add("open");
  }catch(e){alert("Не удалось открыть объявление: "+String(e.message||e))}
 }
