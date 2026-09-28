@@ -16131,7 +16131,7 @@ async function loadMarketplaceCatalog(){
    size:x.size||"—",
    condition:x.condition||"—",type:x.ownerType==="official"?(x.sourceType==="china"?"Под заказ":"В наличии"):"Ресейл",
    category:x.category||"Другое",brand:x.brand||"",image:x.images&&x.images[0]?x.images[0].image_url:"",images:(x.images||[]).map(im=>im.image_url||im).filter(Boolean),
-   ownerType:x.ownerType||"user",sourceType:x.sourceType||"",isPinned:!!x.isPinned,stockQty:Number(x.stockQty||1),status:x.status||"approved",cardBadge:x.cardBadge||x.badgeType||x.badge||"",city:x.city||x.location||"",publishedAt:x.publishedAt||x.published_at||"",expiresAt:x.expiresAt||x.expires_at||"",soldAt:x.soldAt||x.sold_at||"",expiredAt:x.expiredAt||x.expired_at||"",imagesDeletedAt:x.imagesDeletedAt||x.images_deleted_at||"",purgedAt:x.purgedAt||x.purged_at||"",cleanupError:x.cleanupError||x.cleanup_error||"",createdAt:x.createdAt||x.created_at||"",updatedAt:x.updatedAt||x.updated_at||"",isFeatured:!!x.isFeatured,officialNote:x.officialNote||"",sellerTelegramId:String(x.sellerTelegramId||""),sellerName:x.sellerName||"Продавец",sellerUsername:x.sellerUsername||"",description:x.description||""
+   ownerType:x.ownerType||"user",sourceType:x.sourceType||"",isPinned:!!x.isPinned,pinnedAt:String(x.pinnedAt||x.pinned_at||""),stockQty:Number(x.stockQty||1),status:x.status||"approved",cardBadge:x.cardBadge||x.badgeType||x.badge||"",city:x.city||x.location||"",publishedAt:x.publishedAt||x.published_at||"",expiresAt:x.expiresAt||x.expires_at||"",soldAt:x.soldAt||x.sold_at||"",expiredAt:x.expiredAt||x.expired_at||"",imagesDeletedAt:x.imagesDeletedAt||x.images_deleted_at||"",purgedAt:x.purgedAt||x.purged_at||"",cleanupError:x.cleanupError||x.cleanup_error||"",createdAt:x.createdAt||x.created_at||"",updatedAt:x.updatedAt||x.updated_at||"",isFeatured:!!x.isFeatured,officialNote:x.officialNote||"",sellerTelegramId:String(x.sellerTelegramId||""),sellerName:x.sellerName||"Продавец",sellerUsername:x.sellerUsername||"",description:x.description||""
   }));
   // Keep persisted official cart prices synchronized with current server discount.
   if(cart.length){
@@ -16162,14 +16162,20 @@ async function loadMarketplaceCatalog(){
     if(changed)saveCartState();
   }
 
-  // Client ranking: only explicitly pinned official items get priority.
-   // All unpinned items are ordered newest-first, regardless of owner.
-   marketProducts.sort((a,b)=>{
-     const ap=(a.ownerType==="official"&&a.isPinned)?1:0;
-     const bp=(b.ownerType==="official"&&b.isPinned)?1:0;
-     if(ap!==bp)return bp-ap;
-     return Number(b.listingId||0)-Number(a.listingId||0);
-   });
+  // RELEASE 1 — HOME PIN PRIORITY:
+  // pinned official items always lead; among pinned items, the most recently
+  // (re)pinned item is first. This controls products.slice(0,4) on Home.
+  marketProducts.sort((a,b)=>{
+    const ap=(a.ownerType==="official"&&a.isPinned)?1:0;
+    const bp=(b.ownerType==="official"&&b.isPinned)?1:0;
+    if(ap!==bp)return bp-ap;
+    if(ap&&bp){
+      const at=Date.parse(String(a.pinnedAt||a.updatedAt||a.createdAt||""))||0;
+      const bt=Date.parse(String(b.pinnedAt||b.updatedAt||b.createdAt||""))||0;
+      if(at!==bt)return bt-at;
+    }
+    return Number(b.listingId||0)-Number(a.listingId||0);
+  });
    products.splice(0,products.length,...marketProducts);
    catalogLoaded=true;catalogLoadError=false;render();
    try{openChannelStartListingV107()}catch(e){console.warn("Channel deep link",e)}
