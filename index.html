@@ -14749,15 +14749,17 @@ function card(p){
      const sellerUsername=String(p.sellerUsername||"").replace(/^@/,"").trim();
      const ini=sellerName.split(" ").map(x=>x[0]).join("").slice(0,2).toUpperCase();
      const avatarUrl=p.sellerTelegramId?`${MARKETPLACE_API}/telegram-avatar?telegramId=${encodeURIComponent(p.sellerTelegramId)}`:"";
+     const currentTelegramId=String(window.Telegram?.WebApp?.initDataUnsafe?.user?.id||telegramUser?.id||"");
+     const ownSellerCard=!!currentTelegramId&&String(p.sellerTelegramId||"")===currentTelegramId;
      sb.innerHTML=`
        <div class="product-v18-seller-card" role="button" tabindex="0" onclick="goSellerProfile('${escapeHtml(p.sellerTelegramId)}')">
          <div class="product-v18-seller-avatar">${avatarUrl?`<img src="${avatarUrl}" alt="" onerror="this.remove();this.parentElement.textContent='${escapeHtml(ini)}'">`:escapeHtml(ini)}</div>
          <div class="product-v18-seller-copy">
            <b>${escapeHtml(sellerName)}</b>
            ${sellerUsername?`<span class="product-seller-username-v76">@${escapeHtml(sellerUsername)}</span>`:""}
-           <small class="product-seller-location-v76">${escapeHtml(p.city||"Telegram продавец")}</small>
+           <small class="product-seller-location-v76">${ownSellerCard?"Ваш профиль продавца":escapeHtml(p.city||"Telegram продавец")}</small>
          </div>
-         <button type="button" class="product-v18-seller-action" onclick="event.stopPropagation();openContactRequestV49(selected)">Связаться</button>
+         ${ownSellerCard?`<span class="product-v18-seller-action" aria-hidden="true">Ваш товар</span>`:`<button type="button" class="product-v18-seller-action" onclick="event.stopPropagation();openContactRequestV49(selected)">Связаться</button>`}
        </div>`;
    }else{
      sb.innerHTML="";
