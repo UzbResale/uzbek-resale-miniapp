@@ -19768,7 +19768,30 @@ applyLegalChromeV102=function(){__applyLegalOld110();const uz=currentLegalLocale
 document.addEventListener("uzr:languagechange",applyLegalChromeV102);
 applyLegalChromeV102();
 </script>
-<span class="sr110-stage" data-no-i18n>TEST · 1.1.0 AUDIT2</span>
+<span class="sr110-stage" data-no-i18n>TEST · 1.1.0 AUDIT3 UI</span>
+<style id="uzr-audit3-admin-photo-viewer">
+#sr110Panel .sr113-photo-openable{cursor:zoom-in!important;position:relative!important}
+#sr110Panel .sr113-photo-openable .sr113-photo-zoom{position:absolute!important;right:6px!important;bottom:6px!important;width:25px!important;height:25px!important;border-radius:9px!important;display:flex!important;align-items:center!important;justify-content:center!important;background:rgba(4,20,30,.76)!important;color:#fff!important;font-size:15px!important;pointer-events:none!important}
+#sr110Panel .sr113-viewer{position:fixed!important;inset:0!important;z-index:9998!important;display:flex!important;flex-direction:column!important;background:rgba(2,11,17,.98)!important;color:#fff!important;padding:calc(12px + env(safe-area-inset-top)) 12px calc(12px + env(safe-area-inset-bottom))!important;box-sizing:border-box!important}
+#sr110Panel .sr113-viewer-top{height:48px!important;display:flex!important;align-items:center!important;justify-content:space-between!important;gap:12px!important;padding:0 4px 8px!important}
+#sr110Panel .sr113-viewer-top b{font-size:16px!important;color:#f5f8fa!important}
+#sr110Panel .sr113-viewer-top button{width:40px!important;height:40px!important;border:1px solid #315466!important;border-radius:14px!important;background:#0d2634!important;color:#fff!important;font-size:25px!important;line-height:1!important}
+#sr110Panel .sr113-viewer-stage{position:relative!important;flex:1 1 auto!important;min-height:0!important;display:flex!important;align-items:center!important;justify-content:center!important;overflow:hidden!important;border-radius:18px!important;background:#071a25!important;border:1px solid #1f4051!important}
+#sr110Panel .sr113-viewer-stage>img{width:100%!important;height:100%!important;object-fit:contain!important;display:block!important;padding:8px!important;box-sizing:border-box!important}
+#sr110Panel .sr113-viewer-stage>[data-sr113-empty]{color:#8fa8b8!important;font-size:12px!important}
+#sr110Panel .sr113-viewer-arrow{position:absolute!important;top:50%!important;transform:translateY(-50%)!important;z-index:3!important;width:43px!important;height:43px!important;border:1px solid rgba(255,255,255,.20)!important;border-radius:50%!important;background:rgba(4,20,30,.72)!important;color:#fff!important;font-size:29px!important;line-height:1!important;backdrop-filter:blur(7px)!important}
+#sr110Panel .sr113-viewer-arrow.prev{left:10px!important}#sr110Panel .sr113-viewer-arrow.next{right:10px!important}
+#sr110Panel .sr113-viewer-count{position:absolute!important;right:12px!important;bottom:12px!important;z-index:3!important;min-width:45px!important;padding:6px 9px!important;border-radius:999px!important;background:rgba(4,20,30,.78)!important;color:#fff!important;font-size:10px!important;text-align:center!important}
+#sr110Panel .sr113-viewer-thumbs{flex:0 0 auto!important;display:flex!important;gap:8px!important;overflow-x:auto!important;padding:10px 2px 0!important;scrollbar-width:none!important}#sr110Panel .sr113-viewer-thumbs::-webkit-scrollbar{display:none!important}
+#sr110Panel .sr113-viewer-thumbs button{width:62px!important;height:62px!important;flex:0 0 62px!important;padding:0!important;overflow:hidden!important;border:1px solid #2c4c5c!important;border-radius:12px!important;background:#0d2634!important;color:#8fa8b8!important}
+#sr110Panel .sr113-viewer-thumbs button.on{border:2px solid #28aaff!important;box-shadow:0 0 0 2px rgba(40,170,255,.15)!important}
+#sr110Panel .sr113-viewer-thumbs img{width:100%!important;height:100%!important;object-fit:cover!important;display:block!important}
+html[data-uzr-theme="light"] #sr110Panel .sr113-viewer{background:rgba(245,248,250,.99)!important;color:#102431!important}
+html[data-uzr-theme="light"] #sr110Panel .sr113-viewer-top b{color:#102431!important}
+html[data-uzr-theme="light"] #sr110Panel .sr113-viewer-top button{background:#fff!important;color:#214255!important;border-color:#cddbe3!important}
+html[data-uzr-theme="light"] #sr110Panel .sr113-viewer-stage{background:#eef3f6!important;border-color:#d4e0e6!important}
+html[data-uzr-theme="light"] #sr110Panel .sr113-viewer-thumbs button{background:#fff!important;border-color:#cddbe3!important}
+</style>
 <script id="uzr-search-v110-script">
 /* 1.1.0 RC1 UI extension. All new UI scoped; legacy cards and navigation retained. */
 (()=>{
@@ -19855,7 +19878,7 @@ function view(title,html,back=null){
   root.scrollTop=0;icons();hydratePhotos();
 }
 function close(){sr111ClearMedia();root.hidden=true;root.classList.remove('sr111-success','open');document.body.style.overflow=state.oldOverflow;}
-function photoStrip(images){return `<div class="sr110-photos">${images.map(x=>`<div class="sr110-photo"><img data-sr-image="${esc(x.id)}" alt="${esc(t('photos'))}"></div>`).join('')}</div>`}
+function photoStrip(images,viewerKind=""){return `<div class="sr110-photos">${images.map((x,i)=>`<div class="sr110-photo${viewerKind?' sr113-photo-openable':''}"${viewerKind?` data-sr-action="photoViewer" data-kind="${esc(viewerKind)}" data-index="${i}"`:''}><img data-sr-image="${esc(x.id)}" alt="${esc(t('photos'))}">${viewerKind?'<span class="sr113-photo-zoom" aria-hidden="true">⌕</span>':''}</div>`).join('')}</div>`}
 // PHOTO DIAG1: show the HTTP/error stage previously swallowed by the photo catch.
 let sr110MediaGeneration=0;
 const sr110SafeCode=value=>/^[A-Z0-9_-]{1,80}$/.test(String(value||''))?String(value):'UNKNOWN';
@@ -19934,7 +19957,37 @@ function drawDetail(){
  const r=state.request;state.view='detail';
  const admin=state.admin,offer=r.offer,closed=['deleted','cancelled','rejected','expired'].includes(r.status);
  const refs=r.images.filter(x=>x.kind==='reference'),offs=r.images.filter(x=>x.kind==='offer');
- view(r.number,`<div class="sr110-summary"><span class="sr110-state">${esc(t(r.status))}</span><span class="sr110-note">${esc(date(r.createdAt))}</span></div><div class="sr110-card"><h3>${esc(r.title||r.number)}</h3>${photoStrip(refs)}${r.link?`<a class="sr110-link" href="${esc(r.link)}" target="_blank" rel="noopener noreferrer">${esc(t('link'))} ↗</a>`:''}${row(t('size'),r.size)}${row(t('color'),r.color)}${row(t('quantity'),r.quantity)}${r.budget?row(t('budget'),sum(r.budget)):''}${r.comment?`<p class="sr110-note">${esc(r.comment)}</p>`:''}${admin?row(t('customer'),r.username?'@'+r.username:r.name+' · '+t('noUsername')):''}${admin&&r.username?`<button type="button" class="sr110-btn secondary" data-sr-action="message">Написать клиенту</button>`:''}</div>${offer?`<div class="sr110-card"><h3>${esc(t('offer'))}</h3>${photoStrip(offs)}<h3>${esc(offer.title)}</h3>${row(t('price'),sum(offer.priceUzs))}${offer.sizes.length?row(t('size'),offer.sizes.join(', ')):''}${offer.colors.length?row(t('color'),offer.colors.join(', ')):''}${offer.estimatedGrams?row(t('weight'),offer.estimatedGrams/1000+' '+t('kg')):''}${offer.comment?`<p class="sr110-note">${esc(offer.comment)}</p>`:''}<p class="sr110-note">${esc(t('privateOffer'))}</p>${!admin&&r.status==='offered'?button('checkout',t('buy')):''}</div>`:!closed?`<p class="sr110-note">${esc(t('waiting'))}</p>`:''}${r.reason?`<div class="sr110-card">${row(t('reason'),r.reason)}</div>`:''}${r.orderId?`<div class="sr110-actions">${button('order',t('orderView'))}${button('orderCargo',t('cargo'),'secondary')}</div>`:`<div class="sr110-actions">${admin&&!closed?`${r.status==='new'?button('searching',t('startSearch')):''}${button('offer',t(offer?'editOffer':'sendOffer'),'secondary')}${button('rejected',t('reject'),'secondary')}`:''}${!admin&&!closed?button('cancelled',t('cancel'),'secondary'):''}${r.status!=='deleted'?button('deleted',t('remove'),'danger'):''}</div>`}${r.history.length?`<h3 style="margin-top:24px">${esc(t('history'))}</h3><ol class="sr110-history">${r.history.map(x=>`<li>${esc(t(x.event))} · ${esc(date(x.created_at))}</li>`).join('')}</ol>`:''}`,()=>listRequests(state.admin));
+ view(r.number,`<div class="sr110-summary"><span class="sr110-state">${esc(t(r.status))}</span><span class="sr110-note">${esc(date(r.createdAt))}</span></div><div class="sr110-card"><h3>${esc(r.title||r.number)}</h3>${photoStrip(refs,admin?'reference':'')}${r.link?`<a class="sr110-link" href="${esc(r.link)}" target="_blank" rel="noopener noreferrer">${esc(t('link'))} ↗</a>`:''}${row(t('size'),r.size)}${row(t('color'),r.color)}${row(t('quantity'),r.quantity)}${r.budget?row(t('budget'),sum(r.budget)):''}${r.comment?`<p class="sr110-note">${esc(r.comment)}</p>`:''}${admin?row(t('customer'),r.username?'@'+r.username:r.name+' · '+t('noUsername')):''}${admin&&r.username?`<button type="button" class="sr110-btn secondary" data-sr-action="message">Написать клиенту</button>`:''}</div>${offer?`<div class="sr110-card"><h3>${esc(t('offer'))}</h3>${photoStrip(offs,admin?'offer':'')}<h3>${esc(offer.title)}</h3>${row(t('price'),sum(offer.priceUzs))}${offer.sizes.length?row(t('size'),offer.sizes.join(', ')):''}${offer.colors.length?row(t('color'),offer.colors.join(', ')):''}${offer.estimatedGrams?row(t('weight'),offer.estimatedGrams/1000+' '+t('kg')):''}${offer.comment?`<p class="sr110-note">${esc(offer.comment)}</p>`:''}<p class="sr110-note">${esc(t('privateOffer'))}</p>${!admin&&r.status==='offered'?button('checkout',t('buy')):''}</div>`:!closed?`<p class="sr110-note">${esc(t('waiting'))}</p>`:''}${r.reason?`<div class="sr110-card">${row(t('reason'),r.reason)}</div>`:''}${r.orderId?`<div class="sr110-actions">${button('order',t('orderView'))}${button('orderCargo',t('cargo'),'secondary')}</div>`:`<div class="sr110-actions">${admin&&!closed?`${r.status==='new'?button('searching',t('startSearch')):''}${button('offer',t(offer?'editOffer':'sendOffer'),'secondary')}${button('rejected',t('reject'),'secondary')}`:''}${!admin&&!closed?button('cancelled',t('cancel'),'secondary'):''}${r.status!=='deleted'?button('deleted',t('remove'),'danger'):''}</div>`}${r.history.length?`<h3 style="margin-top:24px">${esc(t('history'))}</h3><ol class="sr110-history">${r.history.map(x=>`<li>${esc(t(x.event))} · ${esc(date(x.created_at))}</li>`).join('')}</ol>`:''}`,()=>listRequests(state.admin));
+}
+function sr113ViewerItems(kind){
+ return (state.request?.images||[]).filter(x=>x.kind===kind);
+}
+function sr113LoadedSrc(id){
+ const nodes=[...root.querySelectorAll('[data-sr-image]')];
+ const hit=nodes.find(x=>String(x.dataset.srImage||'')===String(id||'')&&x.src);
+ return hit?.src||'';
+}
+function sr113CloseViewer(){root.querySelector('[data-sr113-viewer]')?.remove();state.mediaViewer=null;}
+function sr113OpenViewer(kind,index=0){
+ if(!state.admin)return;
+ const items=sr113ViewerItems(kind);if(!items.length)return;
+ state.mediaViewer={kind,index:Math.max(0,Math.min(Number(index)||0,items.length-1))};
+ let box=root.querySelector('[data-sr113-viewer]');
+ if(!box){
+   box=document.createElement('div');box.className='sr113-viewer';box.dataset.sr113Viewer='';box.innerHTML=`<div class="sr113-viewer-top"><b>Просмотр фото</b><button type="button" data-sr-action="viewerClose" aria-label="Закрыть">×</button></div><div class="sr113-viewer-stage"><button type="button" class="sr113-viewer-arrow prev" data-sr-action="viewerPrev" aria-label="Предыдущее">‹</button><img data-sr113-main alt="Фото заявки"><span data-sr113-empty>Загрузка…</span><button type="button" class="sr113-viewer-arrow next" data-sr-action="viewerNext" aria-label="Следующее">›</button><span class="sr113-viewer-count" data-sr113-count></span></div><div class="sr113-viewer-thumbs" data-sr113-thumbs></div>`;
+   root.appendChild(box);
+ }
+ sr113RenderViewer();
+}
+function sr113RenderViewer(){
+ const v=state.mediaViewer,box=root.querySelector('[data-sr113-viewer]');if(!v||!box)return;
+ const items=sr113ViewerItems(v.kind);if(!items.length)return sr113CloseViewer();
+ v.index=(v.index+items.length)%items.length;const current=items[v.index];
+ const main=box.querySelector('[data-sr113-main]'),empty=box.querySelector('[data-sr113-empty]'),count=box.querySelector('[data-sr113-count]');
+ const src=sr113LoadedSrc(current.id);if(src){main.src=src;main.hidden=false;empty.hidden=true}else{main.removeAttribute('src');main.hidden=true;empty.hidden=false;empty.textContent='Фото ещё загружается…'}
+ count.textContent=(v.index+1)+' / '+items.length;
+ box.querySelector('.sr113-viewer-arrow.prev').hidden=items.length<2;box.querySelector('.sr113-viewer-arrow.next').hidden=items.length<2;
+ const thumbs=box.querySelector('[data-sr113-thumbs]');thumbs.innerHTML=items.map((x,i)=>{const u=sr113LoadedSrc(x.id);return `<button type="button" data-sr-action="viewerThumb" data-index="${i}" class="${i===v.index?'on':''}" aria-label="Фото ${i+1}">${u?`<img src="${esc(u)}" alt="">`:'<span>…</span>'}</button>`}).join('');
 }
 async function action(kind){
  const r=state.request;let reason='';
@@ -20070,11 +20123,23 @@ root.addEventListener('click',e=>{
  if(a==='docs'){openDocs(false);return}
  if(a==='docTab'){drawDocs(b.dataset.kind);return}
  if(a==='offer')return offerForm();if(a==='message'){openTelegramUsername(state.request.username);return}
+ if(a==='photoViewer')return sr113OpenViewer(String(b.dataset.kind||''),Number(b.dataset.index||0));
+ if(a==='viewerClose')return sr113CloseViewer();
+ if(a==='viewerPrev'){if(state.mediaViewer){state.mediaViewer.index--;sr113RenderViewer()}return}
+ if(a==='viewerNext'){if(state.mediaViewer){state.mediaViewer.index++;sr113RenderViewer()}return}
+ if(a==='viewerThumb'){if(state.mediaViewer){state.mediaViewer.index=Number(b.dataset.index||0);sr113RenderViewer()}return}
  const actions={submit:sendRequest,mine:()=>listRequests(false),more:()=>listRequests(state.admin,true),detail:()=>detail(Number(b.dataset.id)),searching:()=>action('searching'),rejected:()=>action('rejected'),cancelled:()=>action('cancelled'),deleted:()=>action('deleted'),saveOffer,checkout:privateCheckout,convert,cargoSettings,saveCargo,cleanup,runCleanup:async()=>{await api('/admin/cleanup',{});await cleanup()},resetTests:resetSearchTests,order:()=>openOrder(state.request.orderId),orderCargo:()=>orderCargo(state.request.orderId,state.admin),saveWeight:async()=>{const d=formData();await api('/orders/'+state.orderCargo.orderId+'/cargo',{actualGrams:Math.round(Number(d.actualKg)*1000),previousCalculatedAt:state.orderCargo.calculatedAt});await orderCargo(state.orderCargo.orderId,state.orderCargoAdmin)}};
  if(actions[a])run(actions[a]);
 });
 window.UzrSearch110={newRequest,list:admin=>run(()=>listRequests(!!admin)),cargoSettings:()=>run(cargoSettings),orderCargo:(id,admin)=>run(()=>orderCargo(id,admin)),mountCheckout,checkoutPayload,checkoutError,appendOrderCargo,errorMessage:code=>D[code]?t(code):t('genericError'),close};
 document.addEventListener('uzr:languagechange',()=>{translateStatic();if(!root.hidden){if(state.view==='detail')drawDetail();else if(state.view==='list')drawList();}});
+const sr113MediaBlobCache=new Map();
+function sr113RememberBlob(id,blob){
+ const key=String(id||'');if(!key||!blob)return;
+ if(sr113MediaBlobCache.has(key))sr113MediaBlobCache.delete(key);
+ sr113MediaBlobCache.set(key,blob);
+ while(sr113MediaBlobCache.size>20)sr113MediaBlobCache.delete(sr113MediaBlobCache.keys().next().value);
+}
 let sr111MediaController=null;
 function sr111ClearMedia(){
   ++sr110MediaGeneration;
@@ -20111,6 +20176,8 @@ async function sr111HydratePhotos(){
   for(let i=0;i<els.length;i+=3){if(signal.aborted)break;
     await Promise.all(els.slice(i,i+3).map(async(img,j)=>{
       const index=i+j+1;if(!current(img))return;sr110PhotoLabel(img,uz?'Yuklanmoqda…':'Загрузка…');let http=0,phase='request';
+      const mediaId=String(img.dataset.srImage||''),cached=sr113MediaBlobCache.get(mediaId);
+      if(cached){phase='decode';const cachedURL=URL.createObjectURL(cached);state.blobURLs.push(cachedURL);try{await sr111PhotoDecode(img,cachedURL);if(current(img))sr110PhotoLabel(img,'');return}catch(_){sr113MediaBlobCache.delete(mediaId)}}
       const controller=new AbortController(),abort=()=>controller.abort();signal.addEventListener('abort',abort,{once:true});const timer=setTimeout(abort,25000);
       try{
         const r=await fetch(apiBase()+'/v110/images/'+encodeURIComponent(img.dataset.srImage),{headers:{'X-Telegram-Init-Data':currentTelegramInitDataV108()},cache:'no-store',signal:controller.signal});http=r.status;
@@ -20122,7 +20189,7 @@ async function sr111HydratePhotos(){
         phase='body';const type=(r.headers.get('Content-Type')||'').split(';')[0].trim();
         if(!['image/jpeg','image/png','image/webp'].includes(type)){await r.body?.cancel();record(img,index,http,'NOT_IMAGE_RESPONSE');return}
         const blob=await r.blob();if(!current(img))return;if(!blob.size||blob.size>6*1024*1024){record(img,index,http,'INVALID_IMAGE_SIZE');return}
-        phase='decode';const blobURL=URL.createObjectURL(blob);state.blobURLs.push(blobURL);
+        sr113RememberBlob(mediaId,blob);phase='decode';const blobURL=URL.createObjectURL(blob);state.blobURLs.push(blobURL);
         try{await sr111PhotoDecode(img,blobURL)}catch(e){
           if(!current(img))return;
           // Private bytes have already passed server authorization. This in-memory fallback
