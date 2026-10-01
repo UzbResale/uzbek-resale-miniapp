@@ -12995,6 +12995,19 @@ html[data-uzr-theme="light"] body #faq #sr110Faq .faq-v48-a{color:#5f7583!import
 #sr110Panel .sr110-btn{font-family:inherit!important}
 #sr110Panel .sr110-bar{border-bottom:1px solid var(--sr-border)!important}
 </style>
+
+<style id="sr110-ui4-success-match">
+.sr110-premium-card{width:min(100%,420px)!important;max-width:420px!important;margin:auto!important;padding:24px 18px 18px!important;border:1px solid #294d61!important;border-radius:24px!important;background:linear-gradient(180deg,#102d3d 0%,#0b2230 100%)!important;color:#f5f8fb!important;box-shadow:0 22px 60px rgba(0,0,0,.42)!important;text-align:center!important}
+.sr110-premium-check{width:68px!important;height:68px!important;margin:0 auto 15px!important;border-radius:50%!important;background:rgba(33,200,120,.14)!important;border:1px solid rgba(48,214,134,.32)!important;color:#32d583!important;box-shadow:0 0 0 8px rgba(50,213,131,.045)!important;font-size:34px!important}
+.sr110-premium-kicker{margin:0 0 6px!important;color:#7892a4!important;font-size:9px!important;font-weight:700!important;letter-spacing:.16em!important;text-transform:uppercase!important}
+.sr110-premium-card h2{margin:0!important;color:#f7fafc!important;font-size:23px!important;line-height:1.08!important;font-weight:760!important;letter-spacing:-.025em!important}
+.sr110-premium-card>p{max-width:320px!important;margin:9px auto 17px!important;color:#8da3b3!important;font-size:12px!important;line-height:1.45!important}
+.sr110-request-ticket{min-height:48px!important;margin:0 0 13px!important;padding:0 13px!important;border:1px solid var(--uzr-border-strong)!important;border-radius:15px!important;background:#0a2432!important}
+.sr110-reset-card{margin-top:18px!important;border-color:rgba(220,66,83,.42)!important}
+html[data-uzr-theme="light"] .sr110-premium-card{background:#fff!important;color:#173243!important;border-color:#d7e1e8!important;box-shadow:0 12px 32px rgba(29,62,82,.08)!important}
+html[data-uzr-theme="light"] .sr110-premium-card h2{color:#173243!important}
+html[data-uzr-theme="light"] .sr110-request-ticket{background:#f5f9fc!important;border-color:#d7e1e8!important}
+</style>
 </head><body>
 <div id="uzrConsentV58" hidden role="dialog" aria-modal="true" aria-labelledby="uzrConsentTitleV58">
   <div class="uzr-consent-card-v58">
@@ -19549,7 +19562,7 @@ applyLegalChromeV102=function(){__applyLegalOld110();const uz=currentLegalLocale
 document.addEventListener("uzr:languagechange",applyLegalChromeV102);
 applyLegalChromeV102();
 </script>
-<span class="sr110-stage" data-no-i18n>TEST · 1.1.0 RC1</span>
+<span class="sr110-stage" data-no-i18n>TEST · 1.1.0 UI4</span>
 <script id="uzr-search-v110-script">
 /* 1.1.0 RC1 UI extension. All new UI scoped; legacy cards and navigation retained. */
 (()=>{
@@ -19578,7 +19591,7 @@ const D={
  createdOrder:['Заказ создан','Buyurtma yaratildi'],orderView:['Открыть UR-заказ','UR-buyurtmani ochish'],history:['История','Tarix'],photoDeleted:['Фотографии очищены','Fotosuratlar o‘chirilgan'],
  cargoSettings:['Настройки карго','Kargo sozlamalari'],save:['Сохранить','Saqlash'],saved:['Сохранено','Saqlandi'],rate:['USD за 1 кг','1 kg uchun USD'],minDays:['Срок от, дней','Muddat, kamida kun'],maxDays:['Срок до, дней','Muddat, ko‘pi bilan kun'],enabled:['Тариф включён','Tarif yoqilgan'],nameRu:['Название RU','RU nomi'],nameUz:['Название UZ','UZ nomi'],
  actual:['Фактический вес из Китая, кг','Xitoydan kelgan yukning haqiqiy vazni, kg'],calc:['Рассчитать и уведомить','Hisoblash va xabar berish'],cargoTotal:['Итог карго','Kargo summasi'],notWeighed:['Будет рассчитано после взвешивания','Vazn o‘lchangach hisoblanadi'],fixedRate:['Тариф зафиксирован при заказе','Tarif buyurtmada saqlangan'],
- cleanup:['Очистка C-фото','C-rasmlarni tozalash'],cleanupRun:['Повторить ожидающие удаления','Kutilayotgan o‘chirishlarni takrorlash'],pendingPhotos:['Фото ожидают удаления','O‘chirishni kutayotgan rasmlar'],pendingNotices:['Уведомления ожидают доставки','Yuborishni kutayotgan xabarlar'],
+ cleanup:['Очистка C-фото','C-rasmlarni tozalash'],cleanupRun:['Повторить ожидающие удаления','Kutilayotgan o‘chirishlarni takrorlash'],pendingPhotos:['Фото ожидают удаления','O‘chirishni kutayotgan rasmlar'],pendingNotices:['Уведомления ожидают доставки','Yuborishni kutayotgan xabarlar'],resetTests:['Полностью очистить тестовые C-заявки','Test C-so‘rovlarini to‘liq tozalash'],resetTestsNote:['Удалит все C-заявки, их историю и фото и вернёт счётчик к C-000001. Доступно только админу при техработах.','Barcha C-so‘rovlar, tarix va rasmlarni o‘chiradi va hisoblagichni C-000001 ga qaytaradi. Faqat texnik ishlar vaqtida admin uchun.'],
  all:['Все','Barchasi'],active:['Активные','Faol'],closed:['Закрытые','Yopilgan'],waiting:['Мы сообщим, когда найдём подходящий вариант.','Mos variant topilganda sizga xabar beramiz.'],
  genericError:['Не удалось выполнить действие. Данные формы сохранены — попробуйте снова.','Amal bajarilmadi. Shakldagi ma’lumotlar saqlandi — qayta urinib ko‘ring.'],
  PHOTO_OR_LINK_REQUIRED:['Добавьте фото или ссылку.','Foto yoki havola qo‘shing.'],TITLE_REQUIRED:['Укажите, что ищете.','Nimani qidirayotganingizni kiriting.'],MAX_5_PHOTOS:['Можно добавить до 5 фото.','5 tagacha foto qo‘shish mumkin.'],PHOTO_TOO_LARGE:['Фото слишком большое. Попробуйте другой снимок.','Rasm juda katta. Boshqa suratni tanlang.'],INVALID_PHOTO:['Используйте JPEG, PNG или WebP.','JPEG, PNG yoki WebP formatidan foydalaning.'],
@@ -19711,7 +19724,13 @@ async function cargoSettings(){
  view(t('cargoSettings'),`<p class="sr110-note">Цены и сроки с мокапов не применены. Введите реальные условия. Изменения не пересчитывают старые заказы.</p><form>${config.options.map(o=>`<div class="sr110-card" data-cargo-code="${o.code}"><h3>${esc(o.nameRu)}</h3><div class="sr110-two">${input(o.code+'_ru',t('nameRu'),o.nameRu,'maxlength="32"')}${input(o.code+'_uz',t('nameUz'),o.nameUz,'maxlength="32"')}</div>${input(o.code+'_rate',t('rate'),o.rateCents?o.rateCents/100:'','type="number" min="0.01" step="0.01"')}<div class="sr110-two">${input(o.code+'_min',t('minDays'),o.minDays||'','type="number" min="1" max="365"')}${input(o.code+'_max',t('maxDays'),o.maxDays||'','type="number" min="1" max="365"')}</div><label class="sr110-check"><input type="checkbox" name="${o.code}_enabled" ${o.enabled?'checked':''}><span>${esc(t('enabled'))}</span></label><label class="sr110-check"><input type="radio" name="recommended" value="${o.code}" ${o.recommended?'checked':''}><span>${esc(t('recommended'))}</span></label></div>`).join('')}${button('saveCargo',t('save'))}</form>`,()=>listRequests(true));
 }
 async function saveCargo(){const b=formData();const options=state.cargo.options.map(o=>({...o,nameRu:b[o.code+'_ru'],nameUz:b[o.code+'_uz'],rateCents:b[o.code+'_rate']?Math.round(Number(b[o.code+'_rate'])*100):null,minDays:b[o.code+'_min']?Number(b[o.code+'_min']):null,maxDays:b[o.code+'_max']?Number(b[o.code+'_max']):null,enabled:!!b[o.code+'_enabled'],recommended:b.recommended===o.code}));await api('/admin/cargo-options',{revision:state.cargo.revision,options});await cargoSettings();const e=root.querySelector('[data-sr-error]');e.style.color='var(--sr-accent)';e.textContent=t('saved')}
-async function cleanup(){state.view='cleanup';const d=await api('/admin/cleanup');view(t('cleanup'),`<div class="sr110-card">${row(t('pendingPhotos'),String(d.pendingPhotos))}${row(t('pendingNotices'),String(d.pendingNotifications))}<p class="sr110-note">Удаление вручную — сразу. Отклонённые и отменённые — через 7 дней. Неактивные 30 дней запросы закрываются. Фото UR-заказа — через 30 дней после завершения/отмены. Активный заказ защищён.</p></div>${button('runCleanup',t('cleanupRun'))}`,()=>listRequests(true))}
+async function cleanup(){state.view='cleanup';const d=await api('/admin/cleanup');view(t('cleanup'),`<div class="sr110-card">${row(t('pendingPhotos'),String(d.pendingPhotos))}${row(t('pendingNotices'),String(d.pendingNotifications))}<p class="sr110-note">Удаление вручную — сразу. Отклонённые и отменённые — через 7 дней. Неактивные 30 дней запросы закрываются. Фото UR-заказа — через 30 дней после завершения/отмены. Активный заказ защищён.</p></div>${button('runCleanup',t('cleanupRun'))}<div class="sr110-card sr110-reset-card"><h3>${esc(t('resetTests'))}</h3><p class="sr110-note">${esc(t('resetTestsNote'))}</p>${button('resetTests',t('resetTests'),'danger')}</div>`,()=>listRequests(true))}
+async function resetSearchTests(){
+ const ok=window.confirm(t('resetTestsNote'));if(!ok)return;
+ const ok2=window.confirm(locale()==='uz'?'Bu amalni bekor qilib bo‘lmaydi. Davom etilsinmi?':'Это действие нельзя отменить. Продолжить?');if(!ok2)return;
+ await api('/admin/reset-search-tests',{confirm:'RESET_C_REQUESTS'});
+ state.list=[];state.next=null;state.request=null;await listRequests(true);
+}
 async function orderCargo(id,admin=false){
  const d=await api('/orders/'+id+'/cargo');state.view='orderCargo';state.orderCargo=d;state.orderCargoAdmin=admin;
  const c=d.cargo;
@@ -19806,7 +19825,7 @@ root.addEventListener('click',e=>{
  if(a==='docs'){openDocs(false);return}
  if(a==='docTab'){drawDocs(b.dataset.kind);return}
  if(a==='offer')return offerForm();if(a==='message'){openTelegramUsername(state.request.username);return}
- const actions={submit:sendRequest,mine:()=>listRequests(false),more:()=>listRequests(state.admin,true),detail:()=>detail(Number(b.dataset.id)),searching:()=>action('searching'),rejected:()=>action('rejected'),cancelled:()=>action('cancelled'),deleted:()=>action('deleted'),saveOffer,checkout:privateCheckout,convert,cargoSettings,saveCargo,cleanup,runCleanup:async()=>{await api('/admin/cleanup',{});await cleanup()},order:()=>openOrder(state.request.orderId),orderCargo:()=>orderCargo(state.request.orderId,state.admin),saveWeight:async()=>{const d=formData();await api('/orders/'+state.orderCargo.orderId+'/cargo',{actualGrams:Math.round(Number(d.actualKg)*1000),previousCalculatedAt:state.orderCargo.calculatedAt});await orderCargo(state.orderCargo.orderId,state.orderCargoAdmin)}};
+ const actions={submit:sendRequest,mine:()=>listRequests(false),more:()=>listRequests(state.admin,true),detail:()=>detail(Number(b.dataset.id)),searching:()=>action('searching'),rejected:()=>action('rejected'),cancelled:()=>action('cancelled'),deleted:()=>action('deleted'),saveOffer,checkout:privateCheckout,convert,cargoSettings,saveCargo,cleanup,runCleanup:async()=>{await api('/admin/cleanup',{});await cleanup()},resetTests:resetSearchTests,order:()=>openOrder(state.request.orderId),orderCargo:()=>orderCargo(state.request.orderId,state.admin),saveWeight:async()=>{const d=formData();await api('/orders/'+state.orderCargo.orderId+'/cargo',{actualGrams:Math.round(Number(d.actualKg)*1000),previousCalculatedAt:state.orderCargo.calculatedAt});await orderCargo(state.orderCargo.orderId,state.orderCargoAdmin)}};
  if(actions[a])run(actions[a]);
 });
 window.UzrSearch110={newRequest,list:admin=>run(()=>listRequests(!!admin)),cargoSettings:()=>run(cargoSettings),orderCargo:(id,admin)=>run(()=>orderCargo(id,admin)),mountCheckout,checkoutPayload,checkoutError,appendOrderCargo,errorMessage:code=>D[code]?t(code):t('genericError'),close};
