@@ -13022,7 +13022,7 @@ html[data-uzr-theme="light"] .sr110-request-ticket{background:#f5f9fc!important;
 .sr110-root .sr110-media-diagnostics p{margin:7px 0;color:var(--sr-muted)}
 .sr110-root .sr110-media-diagnostics .sr110-btn{margin-top:8px;min-height:42px}
 </style>
-<style id="uzr-audit1-scoped">#sr110Panel.sr111-success,#sr110Panel.sr111-success.open{
+<style id="uzr-audit2-scoped">#sr110Panel.sr111-success,#sr110Panel.sr111-success.open{
   position:fixed!important;
   z-index:2600!important;
   inset:0!important;
@@ -19768,7 +19768,7 @@ applyLegalChromeV102=function(){__applyLegalOld110();const uz=currentLegalLocale
 document.addEventListener("uzr:languagechange",applyLegalChromeV102);
 applyLegalChromeV102();
 </script>
-<span class="sr110-stage" data-no-i18n>TEST · 1.1.0 AUDIT1</span>
+<span class="sr110-stage" data-no-i18n>TEST · 1.1.0 AUDIT2</span>
 <script id="uzr-search-v110-script">
 /* 1.1.0 RC1 UI extension. All new UI scoped; legacy cards and navigation retained. */
 (()=>{
@@ -19783,7 +19783,7 @@ const D={
  MAINTENANCE_REQUIRED:['Полная очистка разрешена только при включённых техработах.','To‘liq tozalash faqat texnik ishlar yoqilganda mumkin.'],
  ORDER_HAS_NO_CARGO:['В этом заказе нет сохранённого тарифа карго.','Bu buyurtmada saqlangan kargo tarifi yo‘q.'],
  
- API_VERSION_MISMATCH:['Index и Worker разных версий. Установите оба файла AUDIT1 и заново откройте Mini App.','Index va Worker versiyalari farq qiladi. Ikkala AUDIT1 faylini o‘rnating va Mini App’ni qayta oching.'],
+ API_VERSION_MISMATCH:['Index и Worker разных версий. Установите оба файла AUDIT2 и заново откройте Mini App.','Index va Worker versiyalari farq qiladi. Ikkala AUDIT2 faylini o‘rnating va Mini App’ni qayta oching.'],
  SEARCH_RESET_IN_PROGRESS:['Идёт очистка C-запросов. Завершите её в админке.','C-so‘rovlari tozalanmoqda. Jarayonni admin panelda yakunlang.'],
  RESET_CHANGED_OR_BUSY:['Очистка уже выполняется или данные изменились. Подождите и повторите.','Tozalash bajarilmoqda yoki ma’lumotlar o‘zgardi. Kutib, qayta urinib ko‘ring.'],
  RESET_REAL_REQUESTS_BLOCKED:['Есть запросы обычных пользователей. Полный тестовый сброс запрещён.','Oddiy foydalanuvchilar so‘rovlari mavjud. To‘liq test tozalash taqiqlangan.'],
@@ -19871,7 +19871,7 @@ function sr110PhotoReport(issues,generation){
   if(!issues.length)return;
   const uz=locale()==='uz';
   const box=document.createElement('section');box.dataset.srMediaDiagnostics='';box.className='sr110-media-diagnostics';box.setAttribute('role','status');
-  const title=document.createElement('b');title.textContent=uz?'Foto diagnostikasi · AUDIT1':'Диагностика фото · AUDIT1';box.appendChild(title);
+  const title=document.createElement('b');title.textContent=uz?'Foto diagnostikasi · AUDIT2':'Диагностика фото · AUDIT2';box.appendChild(title);
   for(const issue of issues.sort((a,b)=>a.index-b.index)){
     const line=document.createElement('p');
     line.textContent=(uz?'Foto ':'Фото ')+issue.index+' · '+(issue.http?'HTTP '+issue.http:(uz?'HTTP javobi yo‘q':'Нет HTTP-ответа'))+' · '+issue.code;
@@ -20085,7 +20085,7 @@ async function sr111ApiCompatible(){
   if(!state.apiCheck)state.apiCheck=(async()=>{
     const r=await fetch(apiBase()+'/v110/meta',{cache:'no-store'});let d;
     try{d=await r.json()}catch{throw Error('API_VERSION_MISMATCH')}
-    if(!r.ok||d?.build!=='1.1.0-audit1')throw Error('API_VERSION_MISMATCH');
+    if(!r.ok||d?.build!=='1.1.0-audit2')throw Error('API_VERSION_MISMATCH');
     return d;
   })().catch(e=>{state.apiCheck=null;throw e});
   return state.apiCheck;
@@ -20115,7 +20115,7 @@ async function sr111HydratePhotos(){
       try{
         const r=await fetch(apiBase()+'/v110/images/'+encodeURIComponent(img.dataset.srImage),{headers:{'X-Telegram-Init-Data':currentTelegramInitDataV108()},cache:'no-store',signal:controller.signal});http=r.status;
         if(!r.ok){const d=await r.json().catch(()=>({})),diag=d?.diagnostic;
-          const stage=/^[a-z-]{1,32}$/.test(diag?.stage||'')?diag.stage:'',build=diag?.build==='media-audit1'?'media-audit1':'';
+          const stage=/^[a-z-]{1,32}$/.test(diag?.stage||'')?diag.stage:'',build=diag?.build==='media-audit2'?'media-audit2':'';
           const upstream=Number.isInteger(diag?.upstreamStatus)&&diag.upstreamStatus>=100&&diag.upstreamStatus<=599?diag.upstreamStatus:0;
           record(img,index,http,diag?.code||d?.error||'HTTP_ERROR',{stage,build,upstream});return;
         }
