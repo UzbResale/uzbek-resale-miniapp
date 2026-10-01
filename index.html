@@ -13008,6 +13008,11 @@ html[data-uzr-theme="light"] .sr110-premium-card{background:#fff!important;color
 html[data-uzr-theme="light"] .sr110-premium-card h2{color:#173243!important}
 html[data-uzr-theme="light"] .sr110-request-ticket{background:#f5f9fc!important;border-color:#d7e1e8!important}
 </style>
+
+<style id="uzr-search-v110-ui5-success-check">
+#sr110Panel .sr110-premium-check{width:68px!important;height:68px!important;margin:0 auto 15px!important;display:flex!important;align-items:center!important;justify-content:center!important;border-radius:50%!important;background:rgba(33,200,120,.14)!important;border:1px solid rgba(48,214,134,.32)!important;color:#32d583!important;box-shadow:0 0 0 8px rgba(50,213,131,.045)!important;font-size:0!important}
+#sr110Panel .sr110-premium-check svg{width:34px!important;height:34px!important;display:block!important;stroke:currentColor!important}
+</style>
 </head><body>
 <div id="uzrConsentV58" hidden role="dialog" aria-modal="true" aria-labelledby="uzrConsentTitleV58">
   <div class="uzr-consent-card-v58">
@@ -19562,7 +19567,7 @@ applyLegalChromeV102=function(){__applyLegalOld110();const uz=currentLegalLocale
 document.addEventListener("uzr:languagechange",applyLegalChromeV102);
 applyLegalChromeV102();
 </script>
-<span class="sr110-stage" data-no-i18n>TEST · 1.1.0 UI4</span>
+<span class="sr110-stage" data-no-i18n>TEST · 1.1.0 UI5</span>
 <script id="uzr-search-v110-script">
 /* 1.1.0 RC1 UI extension. All new UI scoped; legacy cards and navigation retained. */
 (()=>{
@@ -19671,7 +19676,7 @@ async function sendRequest(){
   const u=await auth();const photos=[];for(const p of state.photos)photos.push(await compress(p));
   let d;try{d=await api('/search',{...b,photos,clientRequestId:state.formKey,consent:consentPayload(),locale:locale()})}catch(e){if(['PRIVATE_UPLOAD_FAILED','REQUEST_DELETED'].includes(e.message))state.formKey=crypto.randomUUID();throw e}
   state.request=d.request;clearPhotoDraft();state.view='success';
-  view(t('sent'),`<div class="sr110-success sr110-premium-success"><div class="sr110-premium-card"><div class="sr110-premium-check">✓</div><div class="sr110-premium-kicker">UZBEK RE'SALE</div><h2>${esc(t('sent'))}</h2><p class="sr110-note">${esc(t('sentSub'))}</p><div class="sr110-request-ticket"><div><small>${esc(t('number'))}</small><b>${esc(d.request.number)}</b></div><span class="sr110-state">${esc(t('new'))}</span></div><div class="sr110-actions">${button('mine',t('toMine'))}${button('close',t('toHome'),'secondary')}</div></div></div>`);
+  view(t('sent'),`<div class="sr110-success sr110-premium-success"><div class="sr110-premium-card"><div class="sr110-premium-check" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12.5l4.2 4.2L19 7" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="sr110-premium-kicker">UZBEK RE'SALE</div><h2>${esc(t('sent'))}</h2><p class="sr110-note">${esc(t('sentSub'))}</p><div class="sr110-request-ticket"><div><small>${esc(t('number'))}</small><b>${esc(d.request.number)}</b></div><span class="sr110-state">${esc(t('new'))}</span></div><div class="sr110-actions">${button('mine',t('toMine'))}${button('close',t('toHome'),'secondary')}</div></div></div>`);
 }
 async function listRequests(admin=false,more=false){
  state.admin=admin;state.view='list';
