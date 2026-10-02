@@ -16514,13 +16514,9 @@ function pinnedOrderV119(a,b,place){
 }
 function homeOfficialProductsV119(){return products.filter(p=>officialItemV119(p)&&availableItemV119(p)&&p.pinHome===true).sort((a,b)=>pinnedOrderV119(a,b,'home'))}
 function renderHomePinsV119(){
-  const box=$('homeOfficialPinsV119'),grid=$('homeOfficialPinsGridV119');if(!box||!grid)return;
-  const items=homeOfficialProductsV119();box.hidden=!items.length;grid.replaceChildren();
-  for(const p of items)grid.appendChild(card(p));
-  const uz=localStorage.getItem('uzr_language_pref_v1')==='uz';
-  $('homePinsTitleV119').textContent=uz?"Uzbek Re’Sale’dan":"От Uzbek Re’Sale";
-  $('homePinsLabelV119').textContent=uz?'Mahkamlangan':'Закреплено';
-  $('homePinsAllV119').textContent=uz?'Barcha mahsulotlar':'Все товары';
+  const box=$('homeOfficialPinsV119'),grid=$('homeOfficialPinsGridV119');
+  if(grid)grid.replaceChildren();
+  if(box)box.hidden=true;
 }
 function pinTargetsForRowV119(x){return [Number(x?.pin_home||0)===1?'home':null,Number(x?.is_pinned||0)===1?'china':null].filter(Boolean)}
 function pinSelectValueV119(x){const a=pinTargetsForRowV119(x);return a.length===2?'both':a[0]||'none'}
@@ -16531,7 +16527,7 @@ function readPinTargetsV119(id){
 }
 function pinPlacementFieldV119(id,x={}){
   const current=pinSelectValueV119(x);
-  return `<div class="admin-v89-field uzr-pin-placement-v119" data-no-i18n><label for="${id}">Где закрепить товар</label><select id="${id}">${[['none','Не закреплять'],['home','На Главной'],['china','В «Из Китая»'],['both','На Главной и в «Из Китая»']].map(([value,label])=>`<option value="${value}" ${current===value?'selected':''}>${label}</option>`).join('')}</select><p>Без закрепления — только в «Из Китая» и официальном профиле. На Главной закреплённые товары идут отдельным блоком, не в Ресейл.</p></div>`;
+  return `<div class="admin-v89-field uzr-pin-placement-v119" data-no-i18n><label for="${id}">Где закрепить товар</label><select id="${id}">${[['none','Не закреплять'],['home','На Главной'],['china','В «Из Китая»'],['both','На Главной и в «Из Китая»']].map(([value,label])=>`<option value="${value}" ${current===value?'selected':''}>${label}</option>`).join('')}</select><p>Без закрепления — только в «Из Китая» и официальном профиле. При закреплении «На Главной» товар становится первым в «Популярном»; обычные товары Uzbek Re’Sale туда не попадают.</p></div>`;
 }
 async function adminChoosePinV119(id){
   await adminEditOfficial(id);
@@ -16539,7 +16535,7 @@ async function adminChoosePinV119(id){
   el.closest('.uzr-pin-placement-v119').scrollIntoView({block:'center'});el.focus({preventScroll:true});
 }
 
-function render(){const needle=String(q||"").toLowerCase();let list=resaleProductsV119().filter(p=>(type==="Все"||p.type===type)&&(!ownerFilter||p.ownerType===ownerFilter)&&(category==="Все"||p.category===category)&&(!needle||[p.name,p.brand,p.category].some(v=>String(v||"").toLowerCase().includes(needle))));if(sortMode==="priceAsc")list=[...list].sort((a,b)=>a.price-b.price);if(sortMode==="priceDesc")list=[...list].sort((a,b)=>b.price-a.price);if(sortMode==="name")list=[...list].sort((a,b)=>a.name.localeCompare(b.name));fill("homeGrid",resaleProductsV119().slice(0,4));renderHomePinsV119();fill("catalogGrid",list);
+function render(){const needle=String(q||"").toLowerCase();let list=resaleProductsV119().filter(p=>(type==="Все"||p.type===type)&&(!ownerFilter||p.ownerType===ownerFilter)&&(category==="Все"||p.category===category)&&(!needle||[p.name,p.brand,p.category].some(v=>String(v||"").toLowerCase().includes(needle))));if(sortMode==="priceAsc")list=[...list].sort((a,b)=>a.price-b.price);if(sortMode==="priceDesc")list=[...list].sort((a,b)=>b.price-a.price);if(sortMode==="name")list=[...list].sort((a,b)=>a.name.localeCompare(b.name));const homePinned=homeOfficialProductsV119();fill("homeGrid",[...homePinned,...resaleProductsV119()].slice(0,4));const homePinsBox=$("homeOfficialPinsV119");if(homePinsBox)homePinsBox.hidden=true;const categoryBox=$("categoryFilters");if(categoryBox){categoryBox.hidden=false;categoryBox.style.display="grid";}fill("catalogGrid",list);
 const catalogResultCount=$("catalogResultCount");if(catalogResultCount)catalogResultCount.textContent=list.length+" "+(list.length===1?"товар":(list.length>=2&&list.length<=4?"товара":"товаров"));
 reconcileFavoritesV76();
 const favoriteItems=products.filter(p=>isFavoriteV76(p.id));
@@ -17184,9 +17180,24 @@ function orderItemProductV40(i){
   return products.find(p=>Number(p.listingId||0)===Number(i.listingId||i.listing_id||0)||p.id===i.id||p.name===i.name);
 }
 function orderItemImageV40(i){
-  if(i?.privateSearchImage)return ""; // Private media lives behind authenticated search detail.
+  if(i?.privateSearchImage)return "";
   const p=orderItemProductV40(i);
   return i.imageUrl||i.image_url||(p&&p.image)||"";
+}
+const uzrPrivateOrderMediaCacheV120=new Map();
+async function uzrPrivateOrderMediaUrlV120(id){
+  const mediaId=String(id||'');if(!mediaId)return '';
+  const userId=String(currentTelegramIdV108()||'');const key=userId+'|'+mediaId;
+  if(uzrPrivateOrderMediaCacheV120.has(key))return uzrPrivateOrderMediaCacheV120.get(key);
+  const r=await fetch(window.uzrApiBaseV110()+'/search/media/'+encodeURIComponent(mediaId),{cache:'no-store'});
+  if(!r.ok||!String(r.headers.get('Content-Type')||'').startsWith('image/'))throw Error('PRIVATE_ORDER_IMAGE_FAILED');
+  const url=URL.createObjectURL(await r.blob());uzrPrivateOrderMediaCacheV120.set(key,url);
+  while(uzrPrivateOrderMediaCacheV120.size>16){const k=uzrPrivateOrderMediaCacheV120.keys().next().value;URL.revokeObjectURL(uzrPrivateOrderMediaCacheV120.get(k));uzrPrivateOrderMediaCacheV120.delete(k)}
+  return url;
+}
+async function hydratePrivateOrderMediaV120(scope=document){
+  const nodes=[...scope.querySelectorAll('img[data-private-order-media]:not([data-private-loaded])')];
+  await Promise.all(nodes.map(async img=>{img.dataset.privateLoaded='1';try{img.src=await uzrPrivateOrderMediaUrlV120(img.dataset.privateOrderMedia)}catch{img.hidden=true}}));
 }
 function orderFilterMatchV40(o,filter){
   const st=String(o.status||"new");
@@ -17252,7 +17263,7 @@ function renderOrdersFilteredV40(){
     const extra=Math.max(0,items.length-1);
     const firstMeta=[first.size?`Размер: ${escapeHtml(String(first.size))}`:"",first.color?`Цвет: ${escapeHtml(String(first.color))}`:""].filter(Boolean).join(" · ");
     return `<button class="order-card-v40" type="button" data-order-number="${escapeHtml(String(o.orderNumber||o.order_number||""))}">
-      <span class="order-card-photo-v40">${img?`<img src="${escapeHtml(img)}" alt="">`:'<i data-lucide="package"></i>'}</span>
+      <span class="order-card-photo-v40">${img?`<img src="${escapeHtml(img)}" alt="">`:first.privateSearchImageId?`<img data-private-order-media="${escapeHtml(String(first.privateSearchImageId))}" alt="">`:'<i data-lucide="package"></i>'}</span>
       <span class="order-card-main-v40">
         <span class="order-card-head-v40"><b>${escapeHtml(String(o.orderNumber||o.order_number||"Заказ"))}</b><span class="order-status-v40 status-${escapeHtml(String(o.status||"new"))}">${orderStatus(o.status)}</span></span>
         <span class="order-card-date-v40">${orderDate(o.createdAt||o.created_at)}</span>
@@ -17264,6 +17275,7 @@ function renderOrdersFilteredV40(){
     </button>`;
   }).join("");
   b.querySelectorAll(".order-card-v40").forEach((el,index)=>el.onclick=()=>openOrderDetail(a[index]));
+  hydratePrivateOrderMediaV120(b);
   setTimeout(()=>window.lucide&&lucide.createIcons(),0);
 }
 
@@ -17342,7 +17354,7 @@ function openOrderDetail(o){
     const meta=[i.size?`Размер: ${escapeHtml(String(i.size))}`:"",i.color?`Цвет: ${escapeHtml(String(i.color))}`:""].filter(Boolean).join(" · ");
     const qty=Number(i.qty||i.quantity||1);
     return `<div class="order-detail-item-v40">
-      <span class="order-detail-item-photo-v40">${img?`<img src="${escapeHtml(img)}" alt="">`:'<i data-lucide="package"></i>'}</span>
+      <span class="order-detail-item-photo-v40">${img?`<img src="${escapeHtml(img)}" alt="">`:i.privateSearchImageId?`<img data-private-order-media="${escapeHtml(String(i.privateSearchImageId))}" alt="">`:'<i data-lucide="package"></i>'}</span>
       <span class="order-detail-item-copy-v40"><b>${escapeHtml(String(i.name||i.title||"Товар"))}</b>${meta?`<small>${meta}</small>`:""}<strong>${money(i.price||0)}</strong></span>
       <span class="order-detail-item-qty-v40">×${qty}</span>
     </div>`;
@@ -17389,6 +17401,7 @@ function openOrderDetail(o){
       <div class="order-actions-v40">${contactButtons}${canRequestCancel?`<button class="order-cancel-action-v40" type="button" onclick="requestOrderCancelV40('${encodeURIComponent(orderNumber)}')"><i data-lucide="circle-x"></i>Запросить отмену заказа</button>`:""}</div>
     </section>`;
   window.UzrSearch110?.appendOrderCargo(o);
+  hydratePrivateOrderMediaV120($("orderDetailContent"));
   $("orderDetailView").classList.add("open");
   document.body.classList.add("order-detail-open-v40");
   $("orderDetailView").scrollTop=0;
@@ -18583,7 +18596,8 @@ function adminRenderOrdersV89(filter=adminOrdersFilterV89){
       const size=i.size?`<small>Размер: ${escapeHtml(String(i.size))}</small>`:"";
       const price=Number(i.price||0)>0?`<strong>${money(i.price)}</strong>`:"";
       const image=String(i.imageUrl||i.image_url||"");
-      const body=`${image?`<img src="${escapeHtml(image)}" alt="">`:`<span class="admin-v106-order-item-placeholder"><i data-lucide="package"></i></span>`}<span class="admin-v106-order-item-copy"><b>${name}</b>${size}</span>${price}<i data-lucide="chevron-right"></i>`;
+      const privateId=String(i.privateSearchImageId||"");
+      const body=`${image?`<img src="${escapeHtml(image)}" alt="">`:privateId?`<img data-private-order-media="${escapeHtml(privateId)}" alt="">`:`<span class="admin-v106-order-item-placeholder"><i data-lucide="package"></i></span>`}<span class="admin-v106-order-item-copy"><b>${name}</b>${size}</span>${price}<i data-lucide="chevron-right"></i>`;
       return listingId
         ? `<button type="button" class="admin-v106-order-item-link" onclick="adminOpenListing(${listingId})">${body}</button>`
         : `<div class="admin-v106-order-item-link is-static">${body}</div>`;
@@ -18614,6 +18628,7 @@ function adminRenderOrdersV89(filter=adminOrdersFilterV89){
     </article>`;
   }).join("")||'<div class="admin-v89-empty"><i data-lucide="shopping-bag"></i><b>Заказов нет</b><small>Здесь появятся официальные UR-заказы.</small></div>';
 
+  hydratePrivateOrderMediaV120(host);
   window.lucide?.createIcons();
 }
 
@@ -20906,7 +20921,7 @@ applyLegalChromeV102=function(){__applyLegalOld110();const uz=currentLegalLocale
 document.addEventListener("uzr:languagechange",applyLegalChromeV102);
 applyLegalChromeV102();
 </script>
-<span class="sr110-stage" data-no-i18n>TEST · 1.1 · R9</span>
+<span class="sr110-stage" data-no-i18n>TEST · 1.1 · R10</span>
 <style id="uzr-audit3-admin-photo-viewer">
 #sr110Panel .sr113-photo-openable{cursor:zoom-in!important;position:relative!important}
 #sr110Panel .sr113-photo-openable .sr113-photo-zoom{position:absolute!important;right:6px!important;bottom:6px!important;width:25px!important;height:25px!important;border-radius:9px!important;display:flex!important;align-items:center!important;justify-content:center!important;background:rgba(4,20,30,.76)!important;color:#fff!important;font-size:15px!important;pointer-events:none!important}
@@ -21227,7 +21242,7 @@ async function cargoSettings(refresh=false){
  if(!refresh)state.cargoSettingsBack=sr118CaptureOrigin();
  state.admin=true;state.view='loading';view(t('cargoSettings'),`<div class="sr110-loading">${esc(t('loading'))}</div>`,state.cargoSettingsBack||close);const screen=state.screenVersion;const config=await api('/admin/cargo-options');if(root.hidden||screen!==state.screenVersion)return;state.view='cargoSettings';state.cargo=config;
  const enabledCount=config.options.filter(o=>o.enabled).length;
- view(t('cargoSettings'),`<div class="sr114-cargo-summary"><b>${locale()==='uz'?'Faol tariflar':'Активные тарифы'}: ${enabledCount}/3</b><small>${locale()==='uz'?'Faqat yoqilgan tariflar buyurtmada ko‘rinadi.':'В заказе показываются только включённые тарифы.'}</small></div><p class="sr110-note">${locale()==='uz'?'Har bir yoqilgan tarif uchun narx va muddatni to‘liq kiriting. O‘chirilgan tarif saqlashga xalaqit bermaydi.':'Для каждого включённого тарифа полностью заполните цену и оба срока. Выключенный тариф сохранению не мешает.'}</p><form>${config.options.map(o=>`<div class="sr110-card sr114-cargo-setting ${o.enabled?'':'sr114-cargo-setting-off'}" data-cargo-code="${o.code}"><div class="sr114-cargo-head"><h3>${esc(o.nameRu)}</h3><span>${o.enabled?(locale()==='uz'?'Yoqilgan':'Включён'):(locale()==='uz'?'O‘chirilgan':'Выключен')}</span></div><label class="sr110-check sr114-cargo-toggle"><input type="checkbox" name="${o.code}_enabled" ${o.enabled?'checked':''}><span>${esc(t('enabled'))}</span></label><div class="sr110-two">${input(o.code+'_ru',t('nameRu'),o.nameRu,'maxlength="32"')}${input(o.code+'_uz',t('nameUz'),o.nameUz,'maxlength="32"')}</div>${input(o.code+'_rate',t('rate'),o.rateCents?o.rateCents/100:'','type="number" min="0.01" step="0.01"')}<div class="sr110-two">${input(o.code+'_min',t('minDays'),o.minDays||'','type="number" min="1" max="365"')}${input(o.code+'_max',t('maxDays'),o.maxDays||'','type="number" min="1" max="365"')}</div><label class="sr110-check"><input type="radio" name="recommended" value="${o.code}" ${o.enabled&&o.recommended?'checked':''} ${o.enabled?'':'disabled'}><span>${esc(t('recommended'))}</span></label><div class="sr114-card-error" data-cargo-error="${o.code}"></div></div>`).join('')}${button('saveCargo',t('save'))}</form>`,state.cargoSettingsBack||close);
+ view(t('cargoSettings'),`<div class="sr114-cargo-summary"><b>${locale()==='uz'?'Faol tariflar':'Активные тарифы'}: ${enabledCount}/3</b><small>${locale()==='uz'?'Faqat yoqilgan tariflar buyurtmada ko‘rinadi.':'В заказе показываются только включённые тарифы.'}</small></div><form class="sr120-cargo-form">${config.options.map(o=>`<div class="sr110-card sr114-cargo-setting sr120-cargo-card ${o.enabled?'':'sr114-cargo-setting-off'}" data-cargo-code="${o.code}"><div class="sr120-cargo-top"><div><h3>${esc(o.nameRu)}</h3><small>${o.enabled?(locale()==='uz'?'Yoqilgan':'Включён'):(locale()==='uz'?'O‘chirilgan':'Выключен')}</small></div><label class="sr120-toggle"><input type="checkbox" name="${o.code}_enabled" ${o.enabled?'checked':''}><span>${esc(t('enabled'))}</span></label></div><div class="sr110-two sr120-cargo-names">${input(o.code+'_ru',t('nameRu'),o.nameRu,'maxlength="32"')}${input(o.code+'_uz',t('nameUz'),o.nameUz,'maxlength="32"')}</div><div class="sr120-cargo-metrics">${input(o.code+'_rate',t('rate'),o.rateCents?o.rateCents/100:'','type="number" min="0.01" step="0.01"')}${input(o.code+'_min',t('minDays'),o.minDays||'','type="number" min="1" max="365"')}${input(o.code+'_max',t('maxDays'),o.maxDays||'','type="number" min="1" max="365"')}</div><label class="sr120-recommended"><input type="radio" name="recommended" value="${o.code}" ${o.enabled&&o.recommended?'checked':''} ${o.enabled?'':'disabled'}><span>${esc(t('recommended'))}</span></label><div class="sr114-card-error" data-cargo-error="${o.code}"></div></div>`).join('')}<div class="sr120-cargo-save">${button('saveCargo',t('save'))}</div></form>`,state.cargoSettingsBack||close);
 }
 async function saveCargo(){
  const screen=state.screenVersion;
@@ -21386,7 +21401,7 @@ async function sr111ApiCompatible(){
   if(!state.apiCheck)state.apiCheck=(async()=>{
     const r=await fetch(apiBase()+'/v110/meta',{cache:'no-store',signal:AbortSignal.timeout(15000)});let d;
     try{d=await r.json()}catch{throw Error('API_VERSION_MISMATCH')}
-    if(!r.ok||d?.build!=='1.1-review9')throw Error('API_VERSION_MISMATCH');
+    if(!r.ok||d?.build!=='1.1-review10')throw Error('API_VERSION_MISMATCH');
     return d;
   })().catch(e=>{state.apiCheck=null;if(['AbortError','TimeoutError'].includes(e.name))throw Error('REQUEST_TIMEOUT');throw e;});
   return state.apiCheck;
@@ -21512,4 +21527,39 @@ setTimeout(async()=>{
 })();
 
 </script>
+
+<style id="uzr-review10-compact-ui">
+/* REVIEW10: compact only the new search/cargo surfaces; legacy product/card screens stay untouched. */
+#homeOfficialPinsV119{display:none!important}
+#catalog #categoryFilters{display:grid!important;visibility:visible!important;opacity:1!important}
+#sr110Panel:not(.sr111-success):not(.sr118-checkout) .sr110-card{padding:10px!important;margin-bottom:9px!important;border-radius:15px!important}
+#sr110Panel:not(.sr111-success):not(.sr118-checkout) .sr110-card h3{margin-bottom:7px!important;font-size:14px!important}
+#sr110Panel:not(.sr111-success):not(.sr118-checkout) .sr110-row{min-height:32px!important;padding:5px 0!important;font-size:10.5px!important}
+#sr110Panel:not(.sr111-success):not(.sr118-checkout) .sr110-note{margin:5px 0 8px!important;line-height:1.4!important}
+#sr110Panel:not(.sr111-success):not(.sr118-checkout) .sr110-summary{margin-bottom:8px!important}
+#sr110Panel:not(.sr111-success):not(.sr118-checkout) .sr110-photos{margin:6px 0 9px!important}
+#sr110Panel:not(.sr111-success):not(.sr118-checkout) .sr110-photo{width:66px!important;height:76px!important;flex-basis:66px!important;border-radius:10px!important}
+#sr110Panel:not(.sr111-success):not(.sr118-checkout) .sr110-actions{grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:7px!important;margin-top:10px!important}
+#sr110Panel:not(.sr111-success):not(.sr118-checkout) .sr110-actions:has(> :only-child){grid-template-columns:1fr!important}
+#sr110Panel:not(.sr111-success):not(.sr118-checkout) .sr110-actions> :last-child:nth-child(odd){grid-column:1/-1!important}
+#sr110Panel:not(.sr111-success):not(.sr118-checkout) .sr110-btn{min-height:41px!important;padding:8px 10px!important;border-radius:12px!important;font-size:11px!important}
+#sr110Panel .sr110-history{margin-top:8px!important;line-height:1.45!important;padding-left:16px!important}
+#sr110Panel .sr120-cargo-form{display:grid!important;gap:8px!important}
+#sr110Panel .sr120-cargo-card{padding:10px!important;margin:0!important}
+#sr110Panel .sr120-cargo-top{display:flex!important;align-items:center!important;justify-content:space-between!important;gap:10px!important;margin-bottom:8px!important}
+#sr110Panel .sr120-cargo-top h3{margin:0!important;font-size:14px!important}
+#sr110Panel .sr120-cargo-top small{display:block!important;margin-top:2px!important;font-size:9px!important;color:var(--uzr-muted)!important}
+#sr110Panel .sr120-toggle{display:flex!important;align-items:center!important;gap:6px!important;font-size:9px!important;color:var(--uzr-muted)!important;white-space:nowrap!important}
+#sr110Panel .sr120-toggle input{width:17px!important;height:17px!important;accent-color:var(--uzr-accent)!important}
+#sr110Panel .sr120-cargo-names{gap:6px!important}
+#sr110Panel .sr120-cargo-metrics{display:grid!important;grid-template-columns:1.12fr .8fr .8fr!important;gap:5px!important}
+#sr110Panel .sr120-cargo-card .sr110-field{margin-bottom:7px!important}
+#sr110Panel .sr120-cargo-card .sr110-field>span{font-size:8px!important;line-height:1.05!important;margin-bottom:3px!important;min-height:16px!important}
+#sr110Panel .sr120-cargo-card .sr110-field input{height:36px!important;min-height:36px!important;padding:0 7px!important;font-size:10.5px!important}
+#sr110Panel .sr120-recommended{display:flex!important;align-items:center!important;gap:6px!important;margin:2px 0 0!important;font-size:9px!important;color:var(--uzr-muted)!important}
+#sr110Panel .sr120-recommended input{width:16px!important;height:16px!important;accent-color:var(--uzr-accent)!important}
+#sr110Panel .sr120-cargo-save{position:sticky!important;bottom:6px!important;z-index:3!important;padding-top:3px!important;background:linear-gradient(180deg,transparent,var(--uzr-bg) 30%)!important}
+#sr110Panel .sr114-cargo-summary{margin-bottom:8px!important;padding:9px 10px!important}
+#sr110Panel .sr114-cargo-summary small{font-size:9px!important}
+</style>
 </body></html>
