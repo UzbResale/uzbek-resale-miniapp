@@ -17136,7 +17136,7 @@ function openTelegramUsername(username){
 
 function openTelegramIdentityV124(username,telegramId){
   const u=String(username||"").replace(/^@/,"").trim();
-  if(u){openTelegramUsername(u);return;}
+  if(/^[A-Za-z0-9_]{5,32}$/.test(u)){openTelegramUsername(u);return;}
   const id=String(telegramId||"").trim();
   if(!/^\d{4,20}$/.test(id))return;
   const url="tg://user?id="+encodeURIComponent(id);
@@ -17189,15 +17189,23 @@ document.addEventListener('error',e=>{
  img.hidden=true;if(!wrap.querySelector('[data-order-missing-v121]')){const placeholder=document.createElement('span');placeholder.dataset.orderMissingV121='';placeholder.className='admin-v106-order-item-placeholder';placeholder.innerHTML='<i data-lucide="package"></i>';img.after(placeholder);window.lucide?.createIcons();}
 },true);
 document.addEventListener('load',e=>{const img=e.target;if(img instanceof HTMLImageElement&&img.naturalWidth&&img.closest('#orders,#orderDetailView,#adminPanel')){img.parentElement?.querySelector('[data-order-missing-v121]')?.remove();}},true);
-const uzrPrivateOrderMediaCacheV120=new Map();
-document.addEventListener('visibilitychange',()=>{if(document.hidden){for(const entry of uzrPrivateOrderMediaCacheV120.values())URL.revokeObjectURL(entry.url);uzrPrivateOrderMediaCacheV120.clear();document.querySelectorAll('[data-private-order-media]').forEach(x=>{delete x.dataset.privateLoaded;});}else hydratePrivateOrderMediaV120(document);});
+const uzrPrivateOrderMediaCacheV120=new Map();let uzrPrivateOrderMediaEpochV126=0;
+function clearPrivateOrderMediaV120(){
+ ++uzrPrivateOrderMediaEpochV126;
+ for(const x of uzrPrivateOrderMediaCacheV120.values())URL.revokeObjectURL(x.url);
+ uzrPrivateOrderMediaCacheV120.clear();
+ document.querySelectorAll('img[data-private-order-media]').forEach(x=>{delete x.dataset.privateLoaded;x.removeAttribute('src');x.hidden=true;});
+}
+
+document.addEventListener('visibilitychange',()=>{if(document.hidden){clearPrivateOrderMediaV120();}else hydratePrivateOrderMediaV120(document);});
 async function uzrPrivateOrderMediaUrlV120(id){
-  const mediaId=String(id||'');if(!mediaId)return '';
+  const mediaId=String(id||'');if(!mediaId)return '';const mediaEpoch=uzrPrivateOrderMediaEpochV126;
   const userId=String(currentTelegramIdV108()||'');const key=userId+'|'+mediaId;
   const cached=uzrPrivateOrderMediaCacheV120.get(key);if(cached&&Date.now()-cached.at<60000)return cached.url;if(cached){URL.revokeObjectURL(cached.url);uzrPrivateOrderMediaCacheV120.delete(key);}
   const r=await fetch(window.uzrApiBaseV110()+'/v110/images/'+encodeURIComponent(mediaId),{cache:'no-store'});
   if(!r.ok||!String(r.headers.get('Content-Type')||'').startsWith('image/'))throw Error('PRIVATE_ORDER_IMAGE_FAILED');
-  const url=URL.createObjectURL(await r.blob());uzrPrivateOrderMediaCacheV120.set(key,{url,at:Date.now()});
+  const blob=await r.blob();if(mediaEpoch!==uzrPrivateOrderMediaEpochV126||userId!==String(currentTelegramIdV108()||'')||!blob.size||blob.size>6*1024*1024)throw Error('PRIVATE_ORDER_IMAGE_STALE');
+  const url=URL.createObjectURL(blob);uzrPrivateOrderMediaCacheV120.set(key,{url,at:Date.now()});
   while(uzrPrivateOrderMediaCacheV120.size>16){const k=uzrPrivateOrderMediaCacheV120.keys().next().value;URL.revokeObjectURL(uzrPrivateOrderMediaCacheV120.get(k).url);uzrPrivateOrderMediaCacheV120.delete(k)}
   return url;
 }
@@ -20916,8 +20924,8 @@ legalTextV102=function(){
  t.termsMeta=uz?"1.2-tahrir · 14 bo‘lim":"Редакция 1.2 · 14 разделов";
  t.privacyMeta=uz?"1.3-tahrir · 15 bo‘lim":"Редакция 1.3 · 15 разделов";
  t.offerMeta=uz?"1.1-tahrir · 11 bo‘lim":"Редакция 1.1 · 11 разделов";
- t.accepted=uz?"01.10.2026 · test loyihasi":"01.10.2026 · тестовый проект";
- t.acceptedPill=uz?"TEST LOYIHASI":"ТЕСТОВЫЙ ПРОЕКТ";
+ t.accepted=uz?"02.10.2026 tahriri":"Редакция от 02.10.2026";
+ t.acceptedPill=uz?"HUJJAT TAHRIRI":"РЕДАКЦИЯ ДОКУМЕНТА";
  return t;
 };
 legalDocConfigV53=function(){const t=legalTextV102(),kind=legalV53Kind,uz=currentLegalLocaleV102()==="uz";return {
@@ -20931,7 +20939,7 @@ applyLegalChromeV102=function(){__applyLegalOld110();const uz=currentLegalLocale
 document.addEventListener("uzr:languagechange",applyLegalChromeV102);
 applyLegalChromeV102();
 </script>
-<span class="sr110-stage" data-no-i18n>TEST · 1.1 · R15</span>
+
 <style id="uzr-audit3-admin-photo-viewer">
 #sr110Panel .sr113-photo-openable{cursor:zoom-in!important;position:relative!important}
 #sr110Panel .sr113-photo-openable .sr113-photo-zoom{position:absolute!important;right:6px!important;bottom:6px!important;width:25px!important;height:25px!important;border-radius:9px!important;display:flex!important;align-items:center!important;justify-content:center!important;background:rgba(4,20,30,.76)!important;color:#fff!important;font-size:15px!important;pointer-events:none!important}
@@ -20991,14 +20999,14 @@ DELETE_CONFIRMATION_REQUIRED:['Подтвердите удаление этой 
  MAINTENANCE_REQUIRED:['Полная очистка разрешена только при включённых техработах.','To‘liq tozalash faqat texnik ishlar yoqilganda mumkin.'],
  ORDER_HAS_NO_CARGO:['В этом заказе нет сохранённого тарифа карго.','Bu buyurtmada saqlangan kargo tarifi yo‘q.'],
  
- API_VERSION_MISMATCH:['Index и Worker разных версий. Установите index и Worker REVIEW13 и заново откройте Mini App.','Index va Worker versiyalari farq qiladi. REVIEW14 index va Worker fayllarini o‘rnating va Mini App’ni qayta oching.'],
+ API_VERSION_MISMATCH:['Index и Worker разных версий. Установите согласованные index и Worker 1.1 и заново откройте Mini App.','Index va Worker versiyalari farq qiladi. 1.1 index va Worker fayllarini o‘rnating va Mini App’ni qayta oching.'],
  SEARCH_RESET_IN_PROGRESS:['Идёт очистка C-запросов. Завершите её в админке.','C-so‘rovlari tozalanmoqda. Jarayonni admin panelda yakunlang.'],
  RESET_CHANGED_OR_BUSY:['Очистка уже выполняется или данные изменились. Подождите и повторите.','Tozalash bajarilmoqda yoki ma’lumotlar o‘zgardi. Kutib, qayta urinib ko‘ring.'],
  RESET_REAL_REQUESTS_BLOCKED:['Есть запросы обычных пользователей. Полный тестовый сброс запрещён.','Oddiy foydalanuvchilar so‘rovlari mavjud. To‘liq test tozalash taqiqlangan.'],
  RESET_LINKED_ORDERS_BLOCKED:['Есть связанные UR-заказы. Сброс заблокирован.','Bog‘langan UR-buyurtmalar mavjud. Tozalash bloklangan.'],
  RESET_MEDIA_PENDING:['Фото ещё очищаются. Сброс не завершён. Повторите после завершения очистки.','Fotosuratlar hali tozalanmoqda. Tozalash tugagach qayta urinib ko‘ring.'],
  ORDER_CLOSED:['Завершённый или отменённый заказ нельзя пересчитывать.','Yakunlangan yoki bekor qilingan buyurtmani qayta hisoblab bo‘lmaydi.'],
- LINK_EXPIRED:['Ссылка относится к прежним тестовым запросам. Откройте «Мои запросы».','Havola eski test so‘rovlariga tegishli. «Qidiruv so‘rovlarim»ni oching.'],
+ LINK_EXPIRED:['Ссылка относится к запросам до сброса счётчика. Откройте «Мои запросы».','Havola hisoblagich tiklanishidan oldingi so‘rovlarga tegishli. «Qidiruv so‘rovlarim»ni oching.'],
 
  find:['Найти товар','Mahsulotni topish'], banner:['Не нашли нужный товар?','Kerakli mahsulotni topmadingizmi?'], bannerSub:['Пришлите фото или ссылку — найдём вариант в Китае.','Foto yoki havola yuboring — Xitoydan mos variant topamiz.'],
  mine:['Мои запросы','Qidiruv so‘rovlarim'], requests:['Запросы на поиск','Qidiruv so‘rovlari'], back:['Назад','Orqaga'],close:['Закрыть','Yopish'],
@@ -21089,24 +21097,10 @@ function sr110PhotoLabel(img,message){
   label.textContent=message;label.hidden=!message;img.style.visibility=message?'hidden':'';
 }
 function sr110PhotoReport(issues,generation){
-  if(generation!==sr110MediaGeneration||root.hidden)return;
-  root.querySelector('[data-sr-media-diagnostics]')?.remove();
-  if(!issues.length)return;
-  const uz=locale()==='uz';
-  const box=document.createElement('section');box.dataset.srMediaDiagnostics='';box.className='sr110-media-diagnostics';box.setAttribute('role','status');
-  const title=document.createElement('b');title.textContent=uz?'Foto diagnostikasi · AUDIT2':'Диагностика фото · AUDIT2';box.appendChild(title);
-  for(const issue of issues.sort((a,b)=>a.index-b.index)){
-    const line=document.createElement('p');
-    line.textContent=(uz?'Foto ':'Фото ')+issue.index+' · '+(issue.http?'HTTP '+issue.http:(uz?'HTTP javobi yo‘q':'Нет HTTP-ответа'))+' · '+issue.code;
-    if(issue.stage)line.textContent+=' · '+issue.stage;
-    if(issue.upstream)line.textContent+=' · ImageKit HTTP '+issue.upstream;
-    if(issue.build)line.textContent+=' · Worker '+issue.build;
-    box.appendChild(line);
-  }
-  const note=document.createElement('p');note.textContent=uz?'Bu kod xato bosqichini ko‘rsatadi. So‘rovni o‘chirmang.':'Этот код показывает этап сбоя. Заявку удалять не нужно.';box.appendChild(note);
-  const btn=document.createElement('button');btn.type='button';btn.className='sr110-btn secondary';btn.textContent=uz?'Fotoni qayta yuklash':'Повторить загрузку фото';
-  btn.onclick=e=>{e.preventDefault();e.stopPropagation();sr118ClearCache();hydratePhotos()};box.appendChild(btn);
-  (root.querySelector('.sr110-shell')||root).appendChild(box);
+ if(generation!==sr110MediaGeneration||root.hidden)return;root.querySelector('[data-sr-media-diagnostics]')?.remove();if(!issues.length)return;
+ const box=document.createElement('section');box.dataset.srMediaDiagnostics='';box.className='sr110-media-diagnostics';box.setAttribute('role','status');
+ const p=document.createElement('p');p.textContent=locale()==='uz'?'Rasm yuklanmadi. So‘rov saqlangan — qayta urinib ko‘ring.':'Не удалось загрузить фото. Запрос сохранён — попробуйте ещё раз.';box.appendChild(p);
+ const b=document.createElement('button');b.type='button';b.className='sr110-btn secondary';b.textContent=locale()==='uz'?'Qayta urinish':'Повторить';b.onclick=e=>{e.preventDefault();sr118ClearCache();hydratePhotos();};box.appendChild(b);(root.querySelector('.sr110-shell')||root).appendChild(box);
 }
 async function hydratePhotos(){return sr111HydratePhotos()}
 function photoInput(){return `<label class="sr110-upload">${icon('image-plus')}<span>${esc(t('addPhotos'))}</span><input type="file" name="photos" accept="image/jpeg,image/png,image/webp,image/heic,image/heif" multiple></label><div id="sr110PhotoPreviews" class="sr110-photos"></div>`}
@@ -21245,13 +21239,72 @@ async function saveCargo(){
  for(const o of options){const code=validateCargoOptionClient(o);if(code){const el=root.querySelector(`[data-cargo-error="${CSS.escape(o.code)}"]`);if(el)el.textContent=(locale()==='uz'?`${cargoLabel(o)}: narx va ikki muddatni kiriting.`:`${cargoLabel(o)}: заполните цену и оба срока.`);focusCargoCard(o.code);throw Error(code)}}
  await api('/admin/cargo-options',{revision:state.cargo.revision,options});if(root.hidden||screen!==state.screenVersion)return;await cargoSettings(true);const e=root.querySelector('[data-sr-error]');e.style.color='var(--sr-accent)';e.textContent=t('saved')
 }
-async function cleanup(){const back=state.view==='cleanup'?state.returnFn:sr118CaptureOrigin();state.view='loading';view(t('cleanup'),`<div class="sr110-loading">${esc(t('loading'))}</div>`,back);const screen=state.screenVersion;const d=await api('/admin/cleanup');if(root.hidden||screen!==state.screenVersion)return;state.view='cleanup';view(t('cleanup'),`<div class="sr110-card">${row(t('pendingPhotos'),String(d.pendingPhotos))}${row(t('pendingNotices'),String(d.pendingNotifications))}<p class="sr110-note">Удаление вручную — сразу. Отклонённые и отменённые — через 7 дней. Неактивные 30 дней запросы закрываются. Фото UR-заказа — через 30 дней после завершения/отмены. Активный заказ защищён.</p></div>${button('runCleanup',t('cleanupRun'))}<div class="sr110-card sr110-reset-card"><h3>${esc(t('resetTests'))}</h3><p class="sr110-note">${esc(t('resetTestsNote'))}</p>${button('resetTests',t('resetTests'),'danger')}</div>`,back)}
-async function resetSearchTests(){
- const ok=window.confirm(t('resetTestsNote'));if(!ok)return;
- const ok2=window.confirm(locale()==='uz'?'Bu amalni bekor qilib bo‘lmaydi. Davom etilsinmi?':'Это действие нельзя отменить. Продолжить?');if(!ok2)return;
- const screen=state.screenVersion;await api('/admin/reset-search-tests',{confirm:'RESET_C_REQUESTS'});sr118ClearCache();if(root.hidden||screen!==state.screenVersion)return;
- state.list=[];state.next=null;state.request=null;await listRequests(true);
+// Release cleanup UI. All destructive actions require a server preview and explicit confirmation.
+Object.assign(D,{RESET_PREVIEW_CHANGED:['Список изменился. Откройте проверку сброса заново.','Ro‘yxat o‘zgardi. Tiklash tekshiruvini qayta oching.'],RESET_ACTIVE_ORDERS_BLOCKED:['Сначала завершите или отмените активные UR-заказы.','Avval faol UR-buyurtmalarni yakunlang yoki bekor qiling.'],RESET_JOB_CHANGED:['Откройте очистку заново и нажмите «Продолжить».','Tozalashni qayta oching va davom ettiring.'],ORDER_STILL_ACTIVE:['Активный заказ удалять нельзя.','Faol buyurtmani o‘chirib bo‘lmaydi.'],RESET_CONFIRMATION_REQUIRED:['Введите RESET C точно как указано.','RESET C ni aynan ko‘rsatilgandek yozing.']});
+const sr126Words={
+ cleanup:['Очистка данных','Ma’lumotlarni tozalash'],retry:['Повторить очистку фото','Rasmlarni qayta tozalash'],
+ rules:['Фото закрытых C — через 7 дней. Фото завершённых или отменённых C→UR — через 30 дней. Ручное удаление запускает очистку сразу. Активные UR защищены.','Yopilgan C rasmlari 7 kundan, yakunlangan yoki bekor qilingan C→UR rasmlari 30 kundan keyin tozalanadi. Qo‘lda o‘chirish darhol tozalashni boshlaydi. Faol UR himoyalangan.'],
+ reset:['Очистить C-запросы и сбросить счётчик','C-so‘rovlarni tozalash va hisoblagichni tiklash'],
+ resetNote:['Удаляет все C-запросы и их фото, затем следующий номер будет C-000001. Завершённые и отменённые UR сохраняются без связи со старым C. Активный UR или незавершённая загрузка блокируют сброс. Только при техработах.','Barcha C-so‘rovlar va rasmlarini o‘chiradi, keyingi raqam C-000001 bo‘ladi. Yakunlangan va bekor qilingan UR eski C bilan bog‘lanmasdan saqlanadi. Faol UR yoki tugamagan yuklash tiklashni to‘xtatadi. Faqat texnik ishlar vaqtida.'],
+ prepare:['Проверить перед сбросом','Tiklashdan oldin tekshirish'],confirm:['Подтвердить удаление','O‘chirishni tasdiqlash'],
+ type:['Для подтверждения введите RESET C','Tasdiqlash uchun RESET C yozing'],requests:['C-запросов','C-so‘rovlar'],photos:['Фотографий','Rasmlar'],
+ next:['Следующий номер','Keyingi raqam'],closed:['Закрытые UR сохранятся','Yopilgan UR saqlanadi'],
+ blocked:['Сброс пока недоступен. Завершите или отмените активные заказы, дождитесь загрузок и включите техработы.','Tiklash hozir mavjud emas. Faol buyurtmalarni yakunlang yoki bekor qiling, yuklashlar tugashini kuting va texnik ishlarni yoqing.'],
+ pending:['Удаление подтверждено. Часть фото ещё ожидает очистки. Продолжите — повторного заказа или сброса не будет.','O‘chirish tasdiqlandi. Ayrim rasmlar hali tozalanmoqda. Davom eting — buyurtma yoki tiklash takrorlanmaydi.'],
+ continue:['Продолжить очистку','Tozalashni davom ettirish'],done:['C-запросы и фото очищены. Счётчик: 0. Следующий запрос — C-000001.','C-so‘rovlar va rasmlar tozalandi. Hisoblagich: 0. Keyingi so‘rov — C-000001.'],
+ deleteUR:['Удалить закрытый UR-заказ','Yopilgan UR-buyurtmani o‘chirish'],
+ removeNote:['Заказ исчезнет из списков. Связанный C-запрос и его приватные фото будут удалены. Фотографии обычных товаров каталога не удаляются: они могут использоваться другими заказами. Действие необратимо.','Buyurtma ro‘yxatlardan yo‘qoladi. Bog‘langan C-so‘rov va shaxsiy rasmlari o‘chiriladi. Oddiy katalog mahsulotlari rasmlari o‘chirilmaydi: ular boshqa buyurtmalarda ishlatilishi mumkin. Amalni bekor qilib bo‘lmaydi.'],
+ removed:['Заказ удалён из списков.','Buyurtma ro‘yxatlardan o‘chirildi.'],noNumber:['Подтверждение не совпало.','Tasdiqlash mos kelmadi.']
+};
+function sr126t(k){return (sr126Words[k]||[k,k])[locale()==='uz'?1:0];}
+async function cleanup(){
+ const back=state.view==='cleanup'?state.returnFn:sr118CaptureOrigin();state.view='loading';view(sr126t('cleanup'),`<p>${esc(t('loading'))}</p>`,back);const seq=state.screenVersion;
+ const d=await api('/admin/cleanup');if(root.hidden||seq!==state.screenVersion)return;
+ state.view='cleanup';view(sr126t('cleanup'),`<section class="sr110-card">${row(t('pendingPhotos'),d.pendingPhotos)}${row(t('pendingNotices'),d.pendingNotifications)}<p class="sr110-note">${esc(sr126t('rules'))}</p>${button('runCleanup',sr126t('retry'),'secondary')}</section><section class="sr110-card"><h3>${esc(sr126t('reset'))}</h3><p class="sr110-note">${esc(sr126t('resetNote'))}</p>${button('resetTests',sr126t('prepare'),'danger')}</section>`,back);
 }
+async function resetSearchTests(){
+ const back=state.view==='resetC'?state.resetC?.back:sr118CaptureOrigin();state.view='loading';view(sr126t('reset'),`<p>${esc(t('loading'))}</p>`,back);const seq=state.screenVersion;
+ const d=await api('/admin/reset-search-tests');if(root.hidden||seq!==state.screenVersion)return;
+ state.resetC={p:d.preview,back};sr126DrawReset();
+}
+function sr126DrawReset(){
+ const {p,back}=state.resetC;state.view='resetC';const can=p.canReset||p.jobId;
+ view(sr126t('reset'),`<section class="sr110-card">${row(sr126t('requests'),p.requests)}${row(sr126t('photos'),p.photos)}${row(sr126t('closed'),p.closedOrders)}${row(sr126t('next'),p.nextRequest)}<p class="sr110-note">${esc(sr126t('resetNote'))}</p>${p.activeOrders?.length?`<p class="sr110-error">${esc(p.activeOrders.join(', '))}</p>`:''}${can?'':`<p class="sr110-error">${esc(sr126t('blocked'))}</p>`}</section>${can?`<form id="sr126ResetForm"><section class="sr110-card">${p.jobId?`<p class="sr110-note">${esc(sr126t('pending'))}</p>`:`<label class="sr110-field"><span>${esc(sr126t('type'))}</span><input name="resetConfirmation" autocomplete="off" maxlength="7" placeholder="RESET C"></label>`}${button('resetCConfirm',sr126t(p.jobId?'continue':'confirm'),'danger')}</section></form>`:''}${button('resetCBack',t('back'),'secondary')}`,back);
+}
+async function sr126ConfirmReset(){
+ const {p,back}=state.resetC;if(!p.jobId&&String(formData().resetConfirmation||'').trim()!=='RESET C')throw Error('RESET_CONFIRMATION_REQUIRED');
+ const seq=state.screenVersion,d=await api('/admin/reset-search-tests',{confirm:'RESET_C_REQUESTS',token:p.token,jobId:p.jobId});
+ sr118ClearCache();try{clearPrivateOrderMediaV120();}catch(_){}
+ if(root.hidden||seq!==state.screenVersion)return;
+ if(!d.reset){await resetSearchTests();return;}
+ state.request=null;state.list=[];state.adminCList=null;state.next=null;state.resetC=null;state.view='resetDone';
+ view(sr126t('cleanup'),`<section class="sr110-card"><h3>${esc(sr126t('done'))}</h3></section>${button('cleanup',sr126t('cleanup'),'secondary')}`,back);
+}
+async function sr126RemoveUR(){
+ const back=sr123CaptureOrigin(),id=state.adminCOrder.id;state.view='loading';view(sr126t('deleteUR'),`<p>${esc(t('loading'))}</p>`,back);const seq=state.screenVersion;
+ const d=await api('/admin/orders/'+id+'/delete-preview');if(root.hidden||seq!==state.screenVersion)return;
+ state.removeUR={p:d.preview,back};state.view='removeUR';
+ view(sr126t('deleteUR'),`<section class="sr110-card"><h3>${esc(d.preview.number)}</h3>${row(sr126t('photos'),d.preview.photos)}<p class="sr110-note">${esc(sr126t('removeNote'))}</p></section><div class="sr123-confirm-buttons">${button('removeURConfirm',sr126t('confirm'),'danger')}${button('removeURBack',t('back'),'secondary')}</div>`,back);
+}
+async function sr126ConfirmRemoveUR(){
+ const {p}=state.removeUR,seq=state.screenVersion;
+ const d=await api('/admin/orders/'+p.id+'/delete',{token:p.token,confirm:p.confirm});sr118ClearCache();
+ try{clearPrivateOrderMediaV120();}catch(_){}
+ if(root.hidden||seq!==state.screenVersion)return;
+ state.request=null;state.adminCOrder=null;state.adminCList=null;state.removeUR=null;
+ state.view='removedUR';view(sr126t('deleteUR'),`<section class="sr110-card"><h3>${esc(sr126t('removed'))}</h3>${d.cleanupPending?`<p class="sr110-note">${esc(sr126t('pending'))}</p>`:''}</section>${button('afterRemoveUR',locale()==='uz'?'UR-buyurtmalar':'UR-заказы')}`,async()=>{close();page('adminPanel');await adminTab('orders');});
+}
+function sr126HandleAction(a){
+ if(a==='resetCConfirm'){run(sr126ConfirmReset);return true;}
+ if(a==='resetCBack'){run(state.resetC.back);return true;}
+ if(a==='removeUR'){run(sr126RemoveUR);return true;}
+ if(a==='removeURConfirm'){run(sr126ConfirmRemoveUR);return true;}
+ if(a==='removeURBack'){run(state.removeUR.back);return true;}
+ if(a==='afterRemoveUR'){run(async()=>{close();page('adminPanel');await adminTab('orders');});return true;}
+ return false;
+}
+root.addEventListener('submit',e=>{if(e.target.id==='sr126ResetForm'){e.preventDefault();run(sr126ConfirmReset);}});
+
 async function orderCargo(id,admin=false,source=''){
  const origin=source||(!root.hidden&&state.view==='detail'?'request':admin?'adminOrders':'userOrder');
  const requestBack=origin==='request'?(state.view==='orderCargo'?state.orderCargoRequestBack:sr118CaptureOrigin()):null;
@@ -21331,7 +21384,7 @@ function restoreDocs(){
 function drawDocs(kind){
  const uz=locale()==='uz',titles=uz?{terms:'Kelishuv',privacy:'Maxfiylik',offer:'Oferta'}:{terms:'Соглашение',privacy:'Конфиденциальность',offer:'Оферта'};
  const docs=legalDocsV102()[kind]||[];
- state.view='docs';view(t('docs'),`<p class="sr110-note">${uz?'Test loyihasi · 01.10.2026':'Тестовый проект · 01.10.2026'}</p><div class="sr110-tabs">${Object.entries(titles).map(([k,v])=>`<button type="button" data-sr-action="docTab" data-kind="${k}" class="${k===kind?'on':''}">${esc(v)}</button>`).join('')}</div>${docs.map(sec=>`<details class="sr110-card"><summary>${esc(sec.number+'. '+sec.title)}</summary>${sec.items.map(x=>`<p class="sr110-note"><b>${esc(x[0])}</b> ${esc(x[1])}</p>`).join('')}</details>`).join('')}`,restoreDocs);
+ state.view='docs';view(t('docs'),`<p class="sr110-note">${uz?'Hujjatlar · 1.1':'Документы · 1.1'}</p><div class="sr110-tabs">${Object.entries(titles).map(([k,v])=>`<button type="button" data-sr-action="docTab" data-kind="${k}" class="${k===kind?'on':''}">${esc(v)}</button>`).join('')}</div>${docs.map(sec=>`<details class="sr110-card"><summary>${esc(sec.number+'. '+sec.title)}</summary>${sec.items.map(x=>`<p class="sr110-note"><b>${esc(x[0])}</b> ${esc(x[1])}</p>`).join('')}</details>`).join('')}`,restoreDocs);
  state.view='docs';
 }
 
@@ -21348,6 +21401,7 @@ root.addEventListener('change',e=>{
 root.addEventListener('click',e=>{
  const b=e.target.closest('[data-sr-action]');if(!b)return;const a=b.dataset.srAction;
  if(a==='viewerClose')return sr113CloseViewer();if(a==='close')return close();if(a==='back')return sr118GoBack();if(state.busy)return;
+ if(sr126HandleAction(a))return;
  if(a.startsWith('ac')&&sr123HandleAction(a,b))return;
  if(a==='new')return newRequest();if(a==='filter')return run(()=>listRequests(state.admin,false,b.dataset.filter));
  if(a==='removePhoto'){const i=Number(b.dataset.index);URL.revokeObjectURL(state.photoURLs[i]);state.photoURLs.splice(i,1);state.photos.splice(i,1);return previewDraft()}
@@ -21381,7 +21435,7 @@ async function sr111ApiCompatible(){
   if(!state.apiCheck)state.apiCheck=(async()=>{
     const r=await fetch(apiBase()+'/v110/meta',{cache:'no-store',signal:AbortSignal.timeout(15000)});let d;
     try{d=await r.json()}catch{throw Error('API_VERSION_MISMATCH')}
-    if(!r.ok||d?.build!=='1.1-review15')throw Error('API_VERSION_MISMATCH');
+    if(!r.ok||d?.build!=='1.1.0-release')throw Error('API_VERSION_MISMATCH');
     return d;
   })().catch(e=>{state.apiCheck=null;if(['AbortError','TimeoutError'].includes(e.name))throw Error('REQUEST_TIMEOUT');throw e;});
   return state.apiCheck;
@@ -21500,7 +21554,7 @@ function sr123DrawList(){
  ${notice?`<p class="sr123-notice" role="status">${esc(notice)}</p>`:''}
  <div class="sr123-list">${a.rows.map(r=>`<article class="sr123-list-card" data-sr-action="acDetail" data-id="${r.id}" role="button" tabindex="0" aria-label="${esc(t('open')+' '+r.number)}">
  <div class="sr123-list-photo">${r.images?.length?photoStrip(r.images.slice(0,1)):`<span>${icon('image')}</span>`}</div><div class="sr123-list-copy"><div class="sr123-list-top"><span>${esc(r.number)}</span>${sr123Badge(r.status)}</div><h3>${esc(r.title||r.offer?.title||r.number)}</h3><p>${esc(r.username?'@'+r.username:r.name||r.telegramId)}</p><small>${esc(date(r.createdAt))}${r.orderId?' · UR-'+String(r.orderId).padStart(6,'0'):''}</small></div>
- ${r.adminArchivedAt
+ ${r.adminArchivedAt&&r.orderId&&!['completed','cancelled'].includes(String(r.linkedOrderStatus||''))
  ? `<button type="button" class="sr123-icon-delete" data-sr-action="acRestore" data-id="${r.id}" aria-label="${esc(sr123t('restore'))}">${icon('rotate-ccw')}</button>`
  : r.status==='uploading'
    ? `<button type="button" class="sr123-icon-delete" disabled aria-label="${esc(sr123t('cannotUpload'))}">${icon('loader-circle')}</button>`
@@ -21532,7 +21586,7 @@ function sr123DrawDetail(){
  ${r.reason?`<p class="sr123-reason"><b>${esc(t('reason'))}</b> ${esc(r.reason)}</p>`:''}
  ${open?`<div class="sr123-primary-actions">${r.status==='new'?button('searching',t('startSearch')):''}${button('offer',t(o?'editOffer':'sendOffer'),r.status==='new'?'secondary':'')}${button('acReject',t('reject'),'secondary')}</div>`:''}
  <div class="sr123-delete-row">${
- r.adminArchivedAt?button('acRestore',sr123t('restore'),'secondary'):
+ r.adminArchivedAt&&r.orderId&&!['completed','cancelled'].includes(String(r.linkedOrder?.status||''))?button('acRestore',sr123t('restore'),'secondary'):
  r.status==='uploading'?`<p class="sr110-note">${esc(sr123t('cannotUpload'))}</p>`:
  r.orderId&&!['completed','cancelled'].includes(String(r.linkedOrder?.status||''))?`<p class="sr110-note sr125-order-lock">${esc(sr123t('activeOrderKeep'))}</p>`:
  `${r.orderId?`<p class="sr110-note">${esc(sr123t('terminalDeleteNote'))}</p>`:''}${button('acDelete',sr123t('delete'),'danger')}`
@@ -21593,6 +21647,7 @@ function sr123DrawOrder(){
  <section class="sr110-card">${row(t('name'),o.customerName)}${row(t('phone'),o.phone)}${row(t('city'),o.city)}${o.comment?`<p class="sr123-comment">${esc(o.comment)}</p>`:''}${o.sourceRequestId?row(t('number'),'C-'+String(o.sourceRequestId).padStart(6,'0')):''}
  <div class="sr124-telegram-card"><div><small>${esc(sr123t('telegram'))}</small><b>${esc(o.telegramUsername?'@'+o.telegramUsername:(o.telegramName||o.customerName||'—'))}</b><span>ID ${esc(o.telegramId||'—')}</span></div><div class="sr124-telegram-actions"><button type="button" data-sr-action="acTelegram">${icon('send')}<span>${esc(sr123t('openTelegram'))}</span></button><button type="button" data-sr-action="acCopyTelegram">${icon('copy')}<span>${esc(sr123t('copyId'))}</span></button></div></div></section>
  ${c?`<section class="sr110-card">${row(t('cargoChoose'),locale()==='uz'?c.nameUz:c.nameRu)}${row(t('rate'),'$'+(c.rateCents/100).toFixed(2))}${button('acOrderCargo',t('cargo'),'secondary')}</section>`:''}
+ ${['completed','cancelled'].includes(o.status)?`<div class="sr123-delete-row">${button('removeUR',sr126t('deleteUR'),'danger')}</div>`:''}
  <div class="sr123-primary-actions">${(statuses[o.status]||[]).map(([status,label])=>`<button type="button" data-sr-action="acOrderStatus" data-status="${status}" class="sr110-btn ${status==='cancelled'?'danger':''}">${esc(sr123t(label))}</button>`).join('')}</div>`,state.adminCOrderBack||close);
  hydratePrivateOrderMediaV120(root);
 }
@@ -22179,4 +22234,5 @@ html[data-uzr-theme="light"] #sr110Panel .sr124-telegram-actions button{backgrou
 #sr110Panel[data-workspace="adminC"] .sr125-order-lock{padding:10px 12px;border:1px solid rgba(79,141,173,.28);border-radius:12px;background:rgba(31,91,119,.10)}
 </style>
 
+<style id="uzr-release-cleanup">#sr110Panel #sr126ResetForm input{width:100%;box-sizing:border-box;border:1px solid var(--sr-line);border-radius:12px;background:var(--sr-surface);color:var(--sr-text);padding:12px;font:inherit}#sr110Panel .sr123-confirm-buttons{gap:10px}#sr110Panel .sr123-delete-row{margin-top:10px}</style>
 </body></html>
