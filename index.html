@@ -15281,7 +15281,7 @@ html[data-uzr-theme="light"] #adminPanel .uzr-pin-placement-v119 p{color:#667b89
 
       <div class="admin-v89-section-label">Управление</div>
       <div class="admin-v89-menu-grid">
-<button type="button" onclick="UzrSearch110.list(true)"><span class="admin-v89-menu-icon blue"><i data-lucide="search"></i></span><span><b>Запросы на поиск</b><small>C-заявки · приватные фото · найденный товар</small></span><i data-lucide="chevron-right"></i></button>
+<button type="button" onclick="UzrSearch110.adminList()"><span class="admin-v89-menu-icon blue"><i data-lucide="search"></i></span><span><b>Запросы на поиск</b><small>C-заявки · приватные фото · найденный товар</small></span><i data-lucide="chevron-right"></i></button>
 <button type="button" onclick="UzrSearch110.cargoSettings()"><span class="admin-v89-menu-icon green"><i data-lucide="plane"></i></span><span><b>Три варианта карго</b><small>Тарифы и сроки · снимок условий в заказе</small></span><i data-lucide="chevron-right"></i></button>
         <button type="button" onclick="adminTab('official')">
           <span class="admin-v89-menu-icon blue"><i data-lucide="package-open"></i></span>
@@ -20908,7 +20908,7 @@ applyLegalChromeV102=function(){__applyLegalOld110();const uz=currentLegalLocale
 document.addEventListener("uzr:languagechange",applyLegalChromeV102);
 applyLegalChromeV102();
 </script>
-<span class="sr110-stage" data-no-i18n>TEST · 1.1 · R11</span>
+<span class="sr110-stage" data-no-i18n>TEST · 1.1 · R13</span>
 <style id="uzr-audit3-admin-photo-viewer">
 #sr110Panel .sr113-photo-openable{cursor:zoom-in!important;position:relative!important}
 #sr110Panel .sr113-photo-openable .sr113-photo-zoom{position:absolute!important;right:6px!important;bottom:6px!important;width:25px!important;height:25px!important;border-radius:9px!important;display:flex!important;align-items:center!important;justify-content:center!important;background:rgba(4,20,30,.76)!important;color:#fff!important;font-size:15px!important;pointer-events:none!important}
@@ -20937,8 +20937,9 @@ html[data-uzr-theme="light"] #sr110Panel .sr113-viewer-thumbs button{background:
 (()=>{
 'use strict';
 const root=document.createElement('section');root.id='sr110Panel';root.className='sr110-root';root.hidden=true;root.setAttribute('data-no-i18n','');document.body.appendChild(root);
-const state={admin:false,request:null,view:'',photos:[],photoURLs:[],blobURLs:[],busy:false,returnFn:null,oldOverflow:'',cargo:null,checkoutCargo:null,checkoutCode:'',list:[],next:null,formKey:null};
+const state={workspace:'userC',navigationEpoch:0,admin:false,request:null,view:'',photos:[],photoURLs:[],blobURLs:[],busy:false,returnFn:null,oldOverflow:'',cargo:null,checkoutCargo:null,checkoutCode:'',list:[],next:null,formKey:null};
 const D={
+DELETE_CONFIRMATION_REQUIRED:['Подтвердите удаление этой заявки в открывшемся окне.','Ushbu so‘rovni o‘chirishni ochilgan oynada tasdiqlang.'],
 "productDetails":["О товаре", "Mahsulot haqida"],
 "contactDetails":["Контактные данные", "Aloqa ma’lumotlari"],
 "checkoutSub":["Проверьте товар, доставку и контактные данные.", "Mahsulot, yetkazib berish va aloqa ma’lumotlarini tekshiring."],
@@ -20967,7 +20968,7 @@ const D={
  MAINTENANCE_REQUIRED:['Полная очистка разрешена только при включённых техработах.','To‘liq tozalash faqat texnik ishlar yoqilganda mumkin.'],
  ORDER_HAS_NO_CARGO:['В этом заказе нет сохранённого тарифа карго.','Bu buyurtmada saqlangan kargo tarifi yo‘q.'],
  
- API_VERSION_MISMATCH:['Index и Worker разных версий. Установите index и Worker REVIEW8 и заново откройте Mini App.','Index va Worker versiyalari farq qiladi. REVIEW8 index va Worker fayllarini o‘rnating va Mini App’ni qayta oching.'],
+ API_VERSION_MISMATCH:['Index и Worker разных версий. Установите index и Worker REVIEW13 и заново откройте Mini App.','Index va Worker versiyalari farq qiladi. REVIEW13 index va Worker fayllarini o‘rnating va Mini App’ni qayta oching.'],
  SEARCH_RESET_IN_PROGRESS:['Идёт очистка C-запросов. Завершите её в админке.','C-so‘rovlari tozalanmoqda. Jarayonni admin panelda yakunlang.'],
  RESET_CHANGED_OR_BUSY:['Очистка уже выполняется или данные изменились. Подождите и повторите.','Tozalash bajarilmoqda yoki ma’lumotlar o‘zgardi. Kutib, qayta urinib ko‘ring.'],
  RESET_REAL_REQUESTS_BLOCKED:['Есть запросы обычных пользователей. Полный тестовый сброс запрещён.','Oddiy foydalanuvchilar so‘rovlari mavjud. To‘liq test tozalash taqiqlangan.'],
@@ -21040,17 +21041,17 @@ function view(title,html,back=null){
   if(root.hidden){state.oldOverflow=document.body.style.overflow;document.body.style.overflow='hidden';}
   sr111ClearMedia();state.mediaViewer=null;state.returnFn=back;root.hidden=false;
   state.screenVersion=(state.screenVersion||0)+1;
-  root.dataset.view=state.view;root.dataset.role=state.admin?'admin':'user';
+  root.dataset.view=state.view;root.dataset.role=state.admin?'admin':'user';root.dataset.workspace=state.workspace||'userC';
   root.classList.toggle('sr111-success',state.view==='success');root.classList.toggle('open',state.view==='success');
   root.classList.toggle('sr118-checkout',state.view==='checkout'||state.view==='orderSuccess');
   root.classList.toggle('sr118-order-result',state.view==='orderSuccess');
   root.classList.toggle('sr118-searchform',state.view==='new'||state.view==='offer');
-  root.innerHTML=`<div class="sr110-shell"><header class="sr110-bar"><button type="button" class="uzr-back-v69" aria-label="${esc(t('back'))}" data-sr-action="back"><svg class="lucide lucide-chevron-left" xmlns="http://www.w3.org/2000/svg" width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m15 18-6-6 6-6"></path></svg></button><h2>${esc(title)}</h2><button type="button" class="sr118-close" aria-label="${esc(t('close'))}" data-sr-action="close">${icon('x')}</button></header>${html}<div class="sr110-error" role="alert" data-sr-error></div></div>`;
+  root.innerHTML=`<div class="sr110-shell"><header class="sr110-bar"><button type="button" class="uzr-back-v69" aria-label="${esc(t('back'))}" data-sr-action="back"><svg class="lucide lucide-chevron-left" xmlns="http://www.w3.org/2000/svg" width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m15 18-6-6 6-6"></path></svg></button>${state.workspace==='adminC'?`<div class="sr123-bar-title"><small>ADMIN · C</small><h2>${esc(title)}</h2></div>`:`<h2>${esc(title)}</h2>`}<button type="button" class="sr118-close" aria-label="${esc(t('close'))}" data-sr-action="close">${icon('x')}</button></header>${html}<div class="sr110-error" role="alert" data-sr-error></div></div>`;
   root.scrollTop=0;sr118SyncBack(true);icons();hydratePhotos();
 }
 function close(){
   sr111ClearMedia();sr118ClearCache();state.screenVersion=(state.screenVersion||0)+1;
-  state.mediaViewer=null;savedDoc=null;root.hidden=true;
+  state.mediaViewer=null;savedDoc=null;root.hidden=true;state.workspace='userC';
   root.classList.remove('sr111-success','open','sr118-checkout','sr118-order-result','sr118-searchform');
   root.replaceChildren();document.body.style.overflow=state.oldOverflow;sr118SyncBack(false);
 }
@@ -21110,7 +21111,7 @@ async function run(fn){
   finally{state.busy=false;buttons.forEach((b,i)=>{if(b.isConnected)b.disabled=disabled[i];});}
 }
 function newRequest(){
-  if(state.busy)return;state.admin=false;state.view='new';clearPhotoDraft();state.formKey=crypto.randomUUID();
+  if(state.busy)return;sr123MarkNavigation();state.workspace='userC';state.admin=false;state.view='new';clearPhotoDraft();state.formKey=crypto.randomUUID();
   view(t('find'),`<div class="sr110-privacy">${icon('lock-keyhole')}${esc(t('privacy'))}</div><form id="sr110NewForm"><section class="sell-panel sr110-card"><div class="sell-panel-head"><h2>${esc(t('photos'))}</h2><span>${locale()==='uz'?'5 tagacha':'До 5 фото'}</span></div>${photoInput()}<p class="form-note sr110-note">${esc(t('photoHint'))}</p>${input('link',t('link')+' · '+t('optional'),'','type="url" placeholder="https://…" maxlength="2048"')}</section><section class="sell-panel sr110-card"><div class="sell-panel-head"><h2>${esc(t('productDetails'))}</h2></div>${input('title',t('title'),'','placeholder="'+esc(t('titlePh'))+'" maxlength="80" required')}<div class="sell-two sr110-two">${input('size',t('size'),'','maxlength="40"')}${input('color',t('color'),'','maxlength="40"')}</div><div class="sell-two sr110-two">${input('quantity',t('quantity'),1,'type="number" inputmode="numeric" min="1" max="20" step="1" required')}${input('budget',t('budget')+' · '+t('optional'),'','type="number" inputmode="numeric" min="1" max="999999999" step="1"')}</div><label class="sr110-field field"><span>${esc(t('comment'))} · ${esc(t('optional'))}</span><textarea name="comment" maxlength="500" rows="3"></textarea></label></section>${consent()}${button('submit',t('submit'))}</form>`);
 }
 async function sendRequest(){
@@ -21121,6 +21122,7 @@ async function sendRequest(){
   view(t('sent'),`<div class="sr110-success sr110-premium-success"><div class="listing-success-card"><button type="button" class="listing-success-exit-v95 uzr-back-v69" data-sr-action="close" aria-label="${esc(t('back'))}">${icon('chevron-left')}</button><div class="listing-success-check" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12.5l4.2 4.2L19 7" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="listing-success-kicker">UZBEK RE'SALE</div><h2>${esc(t('sent'))}</h2><p class="sr110-note">${esc(t('sentSub'))}</p><div class="sr110-request-ticket"><div><small>${esc(t('number'))}</small><b>${esc(d.request.number)}</b></div><span class="sr110-state">${esc(t('new'))}</span></div><div class="sr110-actions"><button type="button" class="btn listing-success-primary" data-sr-action="mine">${esc(t('toMine'))}</button><button type="button" class="btn listing-success-secondary" data-sr-action="home">${esc(t('toHome'))}</button></div></div></div>`);
 }
 async function listRequests(admin=false,more=false,filter=null){
+ if(admin)return sr123List(more,filter);state.workspace='userC';
  state.admin=admin;state.view='list';if(filter!==null)state.listFilter=filter;else if(!more)state.listFilter='all';
  if(!more)view(admin?t('requests'):t('mine'),`<div class="sr110-loading">${esc(t('loading'))}</div>`);
  const query='?filter='+encodeURIComponent(state.listFilter||'all')+(more&&state.next?'&before='+state.next:'');
@@ -21133,12 +21135,13 @@ function drawList(filter=state.listFilter||'all'){
  view(admin?t('requests'):t('mine'),`${admin?`<div class="sr110-two" style="margin-bottom:14px">${button('cargoSettings',t('cargoSettings'),'secondary')}${button('cleanup',t('cleanup'),'secondary')}</div>`:`<div class="sr110-privacy">${icon('lock-keyhole')}${esc(t('privacy'))}</div>`}<div class="sr110-two" style="grid-template-columns:1fr 1fr 1fr;margin-bottom:14px">${['all','active','closed'].map(k=>`<button type="button" data-sr-action="filter" data-filter="${k}" aria-pressed="${filter===k}" class="sr110-btn secondary ${filter===k?'sr111-active':''}">${esc(t(k))}</button>`).join('')}</div>${rows.length?rows.map(r=>`<article class="sr110-card sr110-list-card" data-sr-action="detail" data-id="${r.id}"><div class="sr110-list-main"><div class="sr110-list-thumb">${r.images?.length?photoStrip(r.images.slice(0,1)):`<span class="sr110-list-thumb-empty">${icon('image')}</span>`}</div><div class="sr110-list-copy"><div class="sr110-list-top"><b>${esc(r.number)}</b><span class="sr110-state">${esc(t(r.status))}</span></div><h3>${esc(r.title||r.offer?.title||r.number)}</h3><div class="sr110-list-meta">${[r.size,r.color,r.quantity?String(r.quantity)+' '+(locale()==='uz'?'dona':'шт.'):''].filter(Boolean).map(esc).join(' · ')}${admin&&r.username?`<br>@${esc(r.username)}`:admin&&r.name?`<br>${esc(r.name)}`:''}<br>${esc(date(r.createdAt))}</div></div><span class="sr110-list-chevron">›</span></div></article>`).join(''):`<div class="sr110-success"><h3>${esc(t('empty'))}</h3><p class="sr110-note">${esc(t('emptySub'))}</p></div>`}${state.next?button('more',t('more'),'secondary'):''}${!admin?`<div class="sr110-actions">${button('new',t('find'))}</div>`:''}`);
 }
 async function detail(id,linkQuery=''){
- const back=sr118CaptureOrigin();state.view='loading';
+ state.workspace='userC';state.admin=false;const back=sr118CaptureOrigin();state.view='loading';
  view(t('requests'),`<div class="sr110-loading">${esc(t('loading'))}</div>`,back);const screen=state.screenVersion;
  const d=await api('/search/'+id+linkQuery);if(root.hidden||screen!==state.screenVersion)return;
  state.request=d.request;state.requestBack=back;drawDetail();
 }
 function drawDetail(){
+ if(state.workspace==='adminC')return sr123DrawDetail();
  const r=state.request;if(!r)return close();state.view='detail';
  const admin=state.admin,owner=sr121IsOwner(),offer=r.offer,closed=['deleted','cancelled','rejected','expired'].includes(r.status);
  const refs=r.images.filter(x=>x.kind==='reference'),offs=r.images.filter(x=>x.kind==='offer');
@@ -21178,17 +21181,17 @@ async function action(kind){
  if(kind==='deleted'&&!confirm(t('deleteConfirm')))return;
  if(kind==='cancelled'&&!confirm(t('cancelConfirm')))return;
  if(kind==='rejected'){reason=prompt(t('reasonPrompt'))||'';if(!reason.trim())return;}
- const screen=state.screenVersion;await api('/search/'+r.id+'/action',{action:kind,reason});
+ const screen=state.screenVersion;await api((state.workspace==='adminC'?'/admin/search/':'/search/')+r.id+'/action',{action:kind,reason});
  if(kind==='deleted')sr118PurgeRequestMedia(r);
  if(root.hidden||screen!==state.screenVersion)return;
  if(kind==='deleted')await listRequests(state.admin,false,state.listFilter||'all');
- else {const d=await api('/search/'+r.id);if(root.hidden||screen!==state.screenVersion)return;state.request=d.request;drawDetail();}
+ else {const d=await api((state.workspace==='adminC'?'/admin/search/':'/search/')+r.id);if(root.hidden||screen!==state.screenVersion)return;state.request=d.request;drawDetail();}
 }
 function offerForm(){
  clearPhotoDraft();state.view='offer';const r=state.request,o=r.offer||{};
  view(t('sendOffer'),`<form><div class="sr110-card"><h3>${esc(r.number)} · ${esc(r.title)}</h3>${photoInput()}${o.title?`<p class="sr110-note">${esc(t('keepPhotos'))}</p>`:''}${input('title',t('offerTitle'),o.title||r.title,'maxlength="100" required')}${input('priceUzs',t('price'),o.priceUzs||'','type="number" min="1" step="1" required')}<div class="sr110-two">${input('sizes',t('sizes'),(o.sizes||[]).join(', '))}${input('colors',t('colors'),(o.colors||[]).join(', '))}</div>${input('weight',t('weight'),o.estimatedGrams?o.estimatedGrams/1000:'','type="number" min="0.001" step="0.001"')}<label class="sr110-field"><span>${esc(t('comment'))}</span><textarea name="comment" maxlength="500">${esc(o.comment||'')}</textarea></label></div>${button('saveOffer',t('sendOffer'))}</form>`,drawDetail);
 }
-async function saveOffer(){if(!sr118ValidateForm())return;const screen=state.screenVersion;const b=formData(),photos=[];for(const p of state.photos)photos.push(await compress(p));await api('/search/'+state.request.id+'/offer',{...b,estimatedGrams:b.weight?Math.round(Number(b.weight)*1000):null,revision:state.request.offerRevision,photos});sr118PurgeRequestMedia(state.request);clearPhotoDraft();if(root.hidden||screen!==state.screenVersion)return;const d=await api('/search/'+state.request.id);if(root.hidden||screen!==state.screenVersion)return;state.request=d.request;drawDetail()}
+async function saveOffer(){if(!sr118ValidateForm())return;const screen=state.screenVersion;const b=formData(),photos=[];for(const p of state.photos)photos.push(await compress(p));await api((state.workspace==='adminC'?'/admin/search/':'/search/')+state.request.id+'/offer',{...b,estimatedGrams:b.weight?Math.round(Number(b.weight)*1000):null,revision:state.request.offerRevision,photos});sr118PurgeRequestMedia(state.request);clearPhotoDraft();if(root.hidden||screen!==state.screenVersion)return;const d=await api((state.workspace==='adminC'?'/admin/search/':'/search/')+state.request.id);if(root.hidden||screen!==state.screenVersion)return;state.request=d.request;drawDetail()}
 function cargoChoices(config,name='cargoCode',selected=''){
  const active=(config.options||[]).filter(o=>o.enabled);
  return active.map(o=>`<label class="sr110-cargo"><input type="radio" name="${name}" value="${esc(o.code)}" ${selected===o.code?'checked':''}><div><b>${esc(locale()==='uz'?o.nameUz:o.nameRu)}${o.recommended?`<em>${esc(t('recommended'))}</em>`:''}</b><small>${esc(`${o.minDays}–${o.maxDays} ${t('days')}`)}</small></div><strong>$${(o.rateCents/100).toFixed(2)}/${esc(t('kg'))}</strong></label>`).join('')+`<p class="sr110-note">${esc(t('cargoHint'))}</p>${!active.length?`<div class="sr110-error" role="status">${esc(t('noCargo'))}</div>`:''}`;
@@ -21243,7 +21246,7 @@ async function orderCargo(id,admin=false,source=''){
 
  view(d.orderNumber,`<div class="sr110-card"><h3>${esc(t('cargo'))}</h3>${c?`${row(t('cargoChoose'),locale()==='uz'?c.nameUz:c.nameRu)}${row(t('rate'),'$'+(c.rateCents/100).toFixed(2))}${row(t('actual'),d.actualGrams?d.actualGrams/1000+' '+t('kg'):'—')}${row(t('cargoTotal'),d.totalCents!=null?'$'+(d.totalCents/100).toFixed(2):t('notWeighed'))}<p class="sr110-note">${esc(t('fixedRate'))}</p>`:`<p class="sr110-note">${esc(t('notWeighed'))}</p>`}</div>${c&&admin&&!['completed','cancelled'].includes(d.status)?`<form><div class="sr110-card">${input('actualKg',t('actual'),d.actualGrams?d.actualGrams/1000:'','type="number" min="0.001" max="1000" step="0.001"')}${button('saveWeight',t('calc'))}</div></form>`:''}`,back);
 }
-async function openOrder(id){return sr121OpenOrder(id);}
+async function openOrder(id){return state.workspace==='adminC'?sr123Order(id):sr121OpenOrder(id);}
 async function mountCheckout(){return sr121MountCheckout();}
 function checkoutPayload(){
  const host=document.getElementById('sr110CargoCheckout');if(!host?.querySelector('[name=consent]')?.checked)throw Error('CONSENT_REQUIRED');
@@ -21309,7 +21312,7 @@ function drawDocs(kind){
  state.view='docs';
 }
 
-root.addEventListener('submit',e=>{e.preventDefault();if(e.target.id==='sr110NewForm')run(sendRequest);else if(e.target.id==='sr118CheckoutForm')run(convert)});
+root.addEventListener('submit',e=>{e.preventDefault();if(e.target.id==='sr123Search'){run(()=>sr123List(false,null,String(new FormData(e.target).get('adminSearch')||'').trim()));return;}if(e.target.id==='sr123RejectForm'){run(sr123ConfirmReject);return;}if(e.target.id==='sr110NewForm')run(sendRequest);else if(e.target.id==='sr118CheckoutForm')run(convert)});
 root.addEventListener('change',e=>{
  if(state.view==='cargoSettings'&&/_enabled$/.test(e.target.name||'')){
   const card=e.target.closest('[data-cargo-code]'),on=e.target.checked;if(card){card.classList.toggle('sr114-cargo-setting-off',!on);const label=card.querySelector('.sr114-cargo-head>span');if(label)label.textContent=locale()==='uz'?(on?'Yoqilgan':'O‘chirilgan'):(on?'Включён':'Выключен');const radio=card.querySelector('[name=recommended]');if(radio){radio.disabled=!on;if(!on)radio.checked=false;}card.querySelector('[data-cargo-error]').textContent='';}
@@ -21322,6 +21325,7 @@ root.addEventListener('change',e=>{
 root.addEventListener('click',e=>{
  const b=e.target.closest('[data-sr-action]');if(!b)return;const a=b.dataset.srAction;
  if(a==='viewerClose')return sr113CloseViewer();if(a==='close')return close();if(a==='back')return sr118GoBack();if(state.busy)return;
+ if(a.startsWith('ac')&&sr123HandleAction(a,b))return;
  if(a==='new')return newRequest();if(a==='filter')return run(()=>listRequests(state.admin,false,b.dataset.filter));
  if(a==='removePhoto'){const i=Number(b.dataset.index);URL.revokeObjectURL(state.photoURLs[i]);state.photoURLs.splice(i,1);state.photos.splice(i,1);return previewDraft()}
  if(a==='docs'){openDocs(false);return}
@@ -21335,8 +21339,8 @@ root.addEventListener('click',e=>{
  const actions={home:()=>{close();page('home')},shopping:()=>{close();page('china')},orders:()=>{close();return openMyOrders()},submit:sendRequest,mine:()=>listRequests(false),more:()=>listRequests(state.admin,true),detail:()=>detail(Number(b.dataset.id)),searching:()=>action('searching'),rejected:()=>action('rejected'),cancelled:()=>action('cancelled'),deleted:()=>action('deleted'),saveOffer,checkout:privateCheckout,convert,cargoSettings,saveCargo,cleanup,runCleanup:async()=>{await api('/admin/cleanup',{});await cleanup()},resetTests:resetSearchTests,order:()=>openOrder(state.request.orderId),orderCargo:()=>orderCargo(state.request.orderId,state.admin,'request'),saveWeight:async()=>{if(!sr118ValidateForm())return;const d=formData(),screen=state.screenVersion,order=state.orderCargo,admin=state.orderCargoAdmin,source=state.orderCargoSource;await api('/orders/'+order.orderId+'/cargo',{actualGrams:Math.round(Number(d.actualKg)*1000),previousCalculatedAt:order.calculatedAt});if(root.hidden||screen!==state.screenVersion)return;await orderCargo(order.orderId,admin,source)}};
  if(actions[a])run(actions[a]);
 });
-window.UzrSearch110={newRequest,list:admin=>run(()=>listRequests(!!admin)),cargoSettings:()=>run(cargoSettings),orderCargo:(id,admin)=>run(()=>orderCargo(id,admin,admin?'adminOrders':'userOrder')),mountCheckout,checkoutPayload,checkoutError,appendOrderCargo,errorMessage:code=>D[code]?t(code):t('genericError'),close};
-document.addEventListener('uzr:languagechange',()=>{translateStatic();if(!root.hidden){if(state.view==='detail')drawDetail();else if(state.view==='list')drawList();else if(state.view==='orderSuccess'&&state.lastOrderResult)sr118OrderSuccess(state.lastOrderResult);}});
+window.UzrSearch110={newRequest,adminList:sr123AdminEnter,list:admin=>{sr123MarkNavigation();return admin?sr123AdminEnter():run(()=>listRequests(false));},cargoSettings:()=>run(cargoSettings),orderCargo:(id,admin)=>run(()=>orderCargo(id,admin,admin?'adminOrders':'userOrder')),mountCheckout,checkoutPayload,checkoutError,appendOrderCargo,errorMessage:code=>D[code]?t(code):t('genericError'),close};
+document.addEventListener('uzr:languagechange',()=>{translateStatic();if(!root.hidden){if(state.view==='adminCList')sr123DrawList();else if(state.view==='adminCDetail')sr123DrawDetail();else if(state.view==='adminCOrder')sr123DrawOrder();else if(state.view==='adminCDelete')sr123DrawDelete();else if(state.view==='detail')drawDetail();else if(state.view==='list')drawList();else if(state.view==='orderSuccess'&&state.lastOrderResult)sr118OrderSuccess(state.lastOrderResult);}});
 const sr113MediaBlobCache=new Map();
 function sr113RememberBlob(id,blob){
  if(!id||!blob||blob.size>6*1024*1024)return;
@@ -21354,7 +21358,7 @@ async function sr111ApiCompatible(){
   if(!state.apiCheck)state.apiCheck=(async()=>{
     const r=await fetch(apiBase()+'/v110/meta',{cache:'no-store',signal:AbortSignal.timeout(15000)});let d;
     try{d=await r.json()}catch{throw Error('API_VERSION_MISMATCH')}
-    if(!r.ok||d?.build!=='1.1-review11')throw Error('API_VERSION_MISMATCH');
+    if(!r.ok||d?.build!=='1.1-review13')throw Error('API_VERSION_MISMATCH');
     return d;
   })().catch(e=>{state.apiCheck=null;if(['AbortError','TimeoutError'].includes(e.name))throw Error('REQUEST_TIMEOUT');throw e;});
   return state.apiCheck;
@@ -21408,8 +21412,173 @@ async function sr111HydratePhotos(){
   }
 }
 
+// REVIEW13 administrator-only C workspace. Explicit routes, never role-based customer redirects.
+const sr123Words={
+ title:['C-запросы','C-so‘rovlar'],subtitle:['Поиск товара · управление','Mahsulot qidirish · boshqaruv'],
+ search:['Номер C, товар или клиент','C raqami, mahsulot yoki mijoz'],find:['Найти','Qidirish'],
+ work:['В работе','Jarayonda'],converted:['С заказом','Buyurtmali'],archived:['Архив','Arxiv'],
+ archive:['Убрать в архив','Arxivga ko‘chirish'],restore:['Вернуть в список','Ro‘yxatga qaytarish'],
+ customer:['Клиент','Mijoz'],reference:['Запрос клиента','Mijoz so‘rovi'],offer:['Предложение клиенту','Mijozga taklif'],
+ parameters:['Параметры','Xususiyatlar'],linked:['Связанный UR-заказ','Bog‘langan UR-buyurtma'],
+ none:['По этому фильтру запросов нет','Bu filtr bo‘yicha so‘rovlar yo‘q'],noneSub:['Смените фильтр или поисковый запрос.','Filtrni yoki qidiruv so‘zini o‘zgartiring.'],
+ deleteTitle:['Удалить C-запрос?','C-so‘rov o‘chirilsinmi?'],archiveTitle:['Убрать C-запрос в архив?','C-so‘rov arxivga ko‘chirilsinmi?'],
+ deleteNote:['Запрос исчезнет у клиента и в админке. Его фотографии удалятся из ImageKit; при сбое очистка повторится автоматически. Восстановить удалённые фото нельзя.','So‘rov mijoz va admin ro‘yxatidan yo‘qoladi. Rasmlar ImageKit’dan o‘chiriladi; xato bo‘lsa tozalash avtomatik takrorlanadi. O‘chirilgan rasmlarni tiklab bo‘lmaydi.'],
+ archiveNote:['По запросу уже создан UR-заказ. В архив переносится только строка в админском списке C. Сам заказ, запрос клиента и нужные ему фото сохраняются. Отмена заказа — отдельное действие.','So‘rov bo‘yicha UR-buyurtma yaratilgan. Faqat adminning C-ro‘yxatidagi yozuv arxivga o‘tadi. Buyurtma, mijoz so‘rovi va kerakli rasmlar saqlanadi. Buyurtmani bekor qilish — alohida amal.'],
+ untouched:['Другие C/R-заявки, товары и UR-заказы не затрагиваются.','Boshqa C/R-so‘rovlar, mahsulotlar va UR-buyurtmalarga ta’sir qilmaydi.'],
+ cancel:['Не удалять','O‘chirmaslik'],back:['Назад','Orqaga'],delete:['Удалить запрос','So‘rovni o‘chirish'],
+ photos:['Фотографий','Rasmlar'],deleted:['Запрос удалён. Фотографии очищены.','So‘rov o‘chirildi. Rasmlar tozalandi.'],
+ pending:['Запрос удалён из списков. Очистка фото ещё выполняется; повторять удаление не нужно.','So‘rov ro‘yxatlardan o‘chirildi. Rasmlar hali tozalanmoqda; qayta o‘chirish kerak emas.'],
+ archivedDone:['Запрос убран в архив админки. UR-заказ и фото сохранены.','So‘rov admin arxiviga ko‘chirildi. UR-buyurtma va rasmlar saqlandi.'],
+ restored:['Запрос возвращён в список.','So‘rov ro‘yxatga qaytarildi.'],
+ activeOrder:['Заказ и его фото защищены','Buyurtma va rasmlari himoyalangan'],
+ refresh:['Обновить','Yangilash'],total:['Итого','Jami'],newOrder:['Новый','Yangi'],confirmed:['Подтверждён','Tasdiqlangan'],
+ shipping:['В доставке','Yetkazilmoqda'],completed:['Завершён','Yakunlangan'],cancelled:['Отменён','Bekor qilingan'],
+ confirm:['Подтвердить','Tasdiqlash'],ship:['В доставку','Yetkazishga'],complete:['Завершить','Yakunlash'],
+ cancelOrder:['Отменить заказ','Buyurtmani bekor qilish'],cancelOrderCheck:['Отменить этот UR-заказ? Это изменит статус заказа и уведомит покупателя.','Ushbu UR-buyurtma bekor qilinsinmi? Holat o‘zgaradi va xaridorga xabar yuboriladi.'],
+ contact:['Связаться с клиентом','Mijoz bilan bog‘lanish'],reason:['Причина отклонения','Rad etish sababi'],
+ reasonHint:['Кратко объясните причину клиенту','Mijoz uchun sababni qisqacha tushuntiring'],
+ rejectTitle:['Отклонить запрос','So‘rovni rad etish'],sentOffer:['Найденный товар','Topilgan mahsulot'],
+ listBack:['К списку C-запросов','C-so‘rovlar ro‘yxatiga'],requestBack:['К запросу','So‘rovga'],
+ deleteConfirmed:['Да, удалить запрос','Ha, so‘rovni o‘chirish'],cannotUpload:['Дождитесь окончания загрузки','Yuklash tugashini kuting']
+};
+function sr123t(k){return sr123Words[k]?.[locale()==='uz'?1:0]||t(k);}
+function sr123Select(){state.admin=true;state.workspace='adminC';}
+function sr123MarkNavigation(){state.navigationEpoch=(state.navigationEpoch||0)+1;}
+function sr123AdminEnter(){if(state.busy)return;sr123MarkNavigation();sr123Select();return run(()=>sr123List(false,'all',''));}
+function sr123Badge(status){return `<span class="sr123-badge status-${esc(status)}">${esc(t(status))}</span>`;}
+function sr123Fields(fields){return `<div class="sr123-fields">${fields.filter(x=>x[1]!==undefined&&x[1]!==null&&x[1]!=='').map(([k,v])=>`<div><span>${esc(k)}</span><b>${esc(v)}</b></div>`).join('')}</div>`;}
+function sr123ListSnapshot(){const a=state.adminCList||{rows:[],counts:{},filter:'all',q:'',next:null};return {...a,rows:[...a.rows],counts:{...a.counts},scroll:root.scrollTop};}
+function sr123CaptureOrigin(){
+ const kind=state.view,scroll=root.scrollTop,request=state.request,back=state.adminCDetailBack,order=state.adminCOrder,orderBack=state.adminCOrderBack;
+ const list=sr123ListSnapshot();
+ if(kind==='adminCList')return async()=>{sr123Select();await sr123List(false,list.filter,list.q);let pages=0;while(!root.hidden&&state.adminCList.rows.length<list.rows.length&&state.adminCList.next&&pages++<20)await sr123List(true);if(!root.hidden)root.scrollTop=scroll;};
+ if(kind==='adminCDetail')return async()=>{sr123Select();await sr123Detail(request.id,back);if(!root.hidden)root.scrollTop=scroll;};
+ if(kind==='adminCOrder')return async()=>{sr123Select();await sr123Order(order.id,orderBack);if(!root.hidden)root.scrollTop=scroll;};
+ return back||(()=>{close();});
+}
+async function sr123List(more=false,filter=null,q=null){
+ sr123Select();const old=state.adminCList||{filter:'all',q:'',rows:[],counts:{},next:null};
+ const f=filter??old.filter,needle=q??old.q;
+ state.view='adminCLoading';view(sr123t('title'),`<div class="sr110-loading">${esc(t('loading'))}</div>`,close);const screen=state.screenVersion;
+ const d=await api('/admin/search?filter='+encodeURIComponent(f)+'&q='+encodeURIComponent(needle)+(more&&old.next?'&before='+old.next:''));
+ if(root.hidden||screen!==state.screenVersion||state.workspace!=='adminC')return;
+ state.adminCList={filter:f,q:needle,rows:more?[...old.rows,...d.requests]:d.requests,counts:d.counts||{},next:d.nextBefore};
+ sr123DrawList();
+}
+function sr123DrawList(){
+ sr123Select();state.view='adminCList';const a=state.adminCList;const notice=state.adminCNotice||'';state.adminCNotice='';
+ const filters=[['all',t('all')],['new',t('new')],['work',sr123t('work')],['converted',sr123t('converted')],['closed',t('closed')],['archived',sr123t('archived')]];
+ view(sr123t('title'),`<p class="sr123-subtitle">${esc(sr123t('subtitle'))}</p><div class="sr123-tools">${button('cargoSettings',t('cargoSettings'),'secondary')}${button('cleanup',t('cleanup'),'secondary')}</div>
+ <form id="sr123Search" class="sr123-search"><label><span class="sr123-sr-only">${esc(sr123t('search'))}</span>${icon('search')}<input name="adminSearch" maxlength="100" value="${esc(a.q)}" placeholder="${esc(sr123t('search'))}" autocomplete="off"></label><button type="submit" aria-label="${esc(sr123t('find'))}">${icon('arrow-right')}</button></form>
+ <div class="sr123-tabs" role="group" aria-label="${esc(t('all'))}">${filters.map(([k,label])=>`<button type="button" data-sr-action="acFilter" data-filter="${k}" aria-pressed="${k===a.filter}" class="${k===a.filter?'on':''}">${esc(label)}<span>${Number(a.counts[k]||0)}</span></button>`).join('')}</div>
+ ${notice?`<p class="sr123-notice" role="status">${esc(notice)}</p>`:''}
+ <div class="sr123-list">${a.rows.map(r=>`<article class="sr123-list-card" data-sr-action="acDetail" data-id="${r.id}" role="button" tabindex="0" aria-label="${esc(t('open')+' '+r.number)}">
+ <div class="sr123-list-photo">${r.images?.length?photoStrip(r.images.slice(0,1)):`<span>${icon('image')}</span>`}</div><div class="sr123-list-copy"><div class="sr123-list-top"><span>${esc(r.number)}</span>${sr123Badge(r.status)}</div><h3>${esc(r.title||r.offer?.title||r.number)}</h3><p>${esc(r.username?'@'+r.username:r.name||r.telegramId)}</p><small>${esc(date(r.createdAt))}${r.orderId?' · UR-'+String(r.orderId).padStart(6,'0'):''}</small></div>
+ <button type="button" class="sr123-icon-delete" data-sr-action="${r.adminArchivedAt?'acRestore':'acDelete'}" data-id="${r.id}" ${r.status==='uploading'?'disabled':''} aria-label="${esc(r.adminArchivedAt?sr123t('restore'):r.orderId?sr123t('archive'):sr123t('delete'))}">${icon(r.adminArchivedAt?'rotate-ccw':r.orderId?'archive':'trash-2')}</button></article>`).join('')||`<div class="sr123-empty">${icon('search')}<h3>${esc(sr123t('none'))}</h3><p>${esc(sr123t('noneSub'))}</p></div>`}</div>
+ ${a.next?button('acMore',t('more'),'secondary'):''}`,close);
+ const active=root.querySelector('.sr123-tabs .on');if(active)active.scrollIntoView({block:'nearest',inline:'nearest'});
+}
+async function sr123Detail(id,back=null){
+ const returnTo=back||sr123CaptureOrigin();sr123Select();state.view='adminCLoading';
+ view(sr123t('title'),`<div class="sr110-loading">${esc(t('loading'))}</div>`,returnTo);const screen=state.screenVersion;
+ const d=await api('/admin/search/'+id);if(root.hidden||screen!==state.screenVersion||state.workspace!=='adminC')return;
+ state.request=d.request;state.adminCDetailBack=returnTo;state.requestBack=returnTo;sr123DrawDetail();
+}
+function sr123DrawDetail(){
+ sr123Select();const r=state.request;if(!r)return close();state.view='adminCDetail';
+ const refs=(r.images||[]).filter(x=>x.kind==='reference'),offs=(r.images||[]).filter(x=>x.kind==='offer'),o=r.offer;
+ const open=['new','searching','offered'].includes(r.status)&&!r.orderId;
+ const description=[r.size&&t('size')+': '+r.size,r.color&&t('color')+': '+r.color].filter(Boolean).join(' · ');
+ const history=(r.history||[]).slice().reverse();
+ view(r.number,`<div class="sr123-detail-state">${sr123Badge(r.status)}<span>${esc(date(r.createdAt))}</span>${r.adminArchivedAt?`<b>${esc(sr123t('archived'))}</b>`:''}</div>
+ <section class="sr123-client"><span class="sr123-client-icon">${icon('user-round')}</span><div><small>${esc(sr123t('customer'))}</small><b>${esc(r.name||r.telegramId)}</b><span>${esc(r.username?'@'+r.username:t('noUsername'))} · ID ${esc(r.telegramId)}</span></div>${r.username?`<button type="button" data-sr-action="message" class="sr123-client-contact" aria-label="${esc(sr123t('contact'))}">${icon('send')}</button>`:''}</section>
+ <section class="sr110-card sr123-detail-card"><h3>${esc(sr123t('reference'))}</h3><div class="sr123-product-overview">${refs.length?photoStrip(refs,'reference'):`<span class="sr123-no-photo">${icon('image-off')}</span>`}<div><b>${esc(r.title||r.number)}</b><p>${esc(description)}</p></div></div>
+ ${sr123Fields([[t('quantity'),r.quantity],[t('budget'),r.budget?sum(r.budget):'—']])}${r.comment?`<p class="sr123-comment">${esc(r.comment)}</p>`:''}${r.link?`<a class="sr110-link" href="${esc(r.link)}" target="_blank" rel="noopener noreferrer">${esc(t('link'))} ↗</a>`:''}</section>
+ ${o?`<section class="sr110-card sr123-detail-card"><div class="sr123-card-heading"><h3>${esc(sr123t('offer'))}</h3><b>${sum(o.priceUzs)}</b></div><div class="sr123-product-overview">${photoStrip(offs,'offer')}<div><b>${esc(o.title)}</b><p>${esc([...(o.sizes||[]),...(o.colors||[])].join(' · '))}</p></div></div>${o.estimatedGrams?sr123Fields([[t('weight'),o.estimatedGrams/1000+' '+t('kg')]]):''}${o.comment?`<p class="sr123-comment">${esc(o.comment)}</p>`:''}</section>`:''}
+ ${r.orderId?`<section class="sr110-card sr123-order-link"><div><small>${esc(sr123t('linked'))}</small><b>UR-${String(r.orderId).padStart(6,'0')}</b>${r.linkedOrder?`<span>${esc(sr123t(r.linkedOrder.status==='new'?'newOrder':r.linkedOrder.status))}</span>`:''}</div><div class="sr123-tools">${button('acOrder',t('orderView'))}${button('orderCargo',t('cargo'),'secondary')}</div></section>`:''}
+ ${r.reason?`<p class="sr123-reason"><b>${esc(t('reason'))}</b> ${esc(r.reason)}</p>`:''}
+ ${open?`<div class="sr123-primary-actions">${r.status==='new'?button('searching',t('startSearch')):''}${button('offer',t(o?'editOffer':'sendOffer'),r.status==='new'?'secondary':'')}${button('acReject',t('reject'),'secondary')}</div>`:''}
+ <div class="sr123-delete-row">${r.adminArchivedAt?button('acRestore',sr123t('restore'),'secondary'):r.status!=='uploading'?button('acDelete',r.orderId?sr123t('archive'):sr123t('delete'),r.orderId?'secondary':'danger'):`<p class="sr110-note">${esc(sr123t('cannotUpload'))}</p>`}</div>
+ ${history.length?`<details class="sr123-history"><summary>${icon('history')}<span>${esc(t('history'))}</span><b>${history.length}</b>${icon('chevron-down')}</summary><ol>${history.map(x=>`<li><b>${esc(t(x.event))}</b><span>${esc(date(x.created_at))}</span></li>`).join('')}</ol></details>`:''}`,
+ state.adminCDetailBack||(()=>sr123List()));
+}
+async function sr123Delete(id){
+ const back=sr123CaptureOrigin();sr123Select();state.view='adminCLoading';view(sr123t('deleteTitle'),`<div class="sr110-loading">${esc(t('loading'))}</div>`,back);const screen=state.screenVersion;
+ const d=await api('/admin/search/'+id+'/delete-preview');if(root.hidden||screen!==state.screenVersion||state.workspace!=='adminC')return;
+ state.adminCDelete={preview:d.preview,back};sr123DrawDelete();
+}
+function sr123DrawDelete(){
+ sr123Select();state.view='adminCDelete';const {preview:p,back}=state.adminCDelete,archived=p.mode==='archive';
+ view(sr123t(archived?'archiveTitle':'deleteTitle'),`<section class="sr110-card sr123-confirm"><div class="sr123-confirm-icon ${archived?'archive':''}">${icon(archived?'archive':'trash-2')}</div><h3>${esc(p.number)}</h3><b>${esc(p.title)}</b><p>${esc(sr123t(archived?'archiveNote':'deleteNote'))}</p>${sr123Fields([[sr123t('photos'),p.photos],...(p.orderId?[[sr123t('linked'),'UR-'+String(p.orderId).padStart(6,'0')]]:[])])}<p class="sr110-note">${esc(sr123t('untouched'))}</p></section><div class="sr123-confirm-buttons">${button('acConfirmDelete',sr123t(archived?'archive':'deleteConfirmed'),archived?'':'danger')}${button('acCancelDelete',sr123t(archived?'back':'cancel'),'secondary')}</div>`,back);
+}
+async function sr123ConfirmDelete(){
+ const pending=state.adminCDelete;if(!pending)return;const p=pending.preview;const screen=state.screenVersion;
+ const d=await api('/admin/search/'+p.id+'/delete',{identity:p.identity,token:p.token,confirm:p.confirm});
+ if(d.deleted){const cached=state.adminCList?.rows?.find(r=>r.id===p.id)||(state.request?.id===p.id?state.request:null);if(cached)sr118PurgeRequestMedia(cached);}
+ if(root.hidden||screen!==state.screenVersion||state.workspace!=='adminC')return;
+ state.adminCDelete=null;state.adminCNotice=sr123t(d.archived?'archivedDone':d.cleanupPending?'pending':'deleted');await sr123List(false);
+}
+async function sr123Restore(id){
+ const screen=state.screenVersion;await api('/admin/search/'+id+'/restore',{});
+ if(root.hidden||screen!==state.screenVersion||state.workspace!=='adminC')return;
+ state.adminCNotice=sr123t('restored');await sr123List(false);
+}
+function sr123Reject(){
+ const back=sr123CaptureOrigin();state.adminCRejectBack=back;sr123Select();state.view='adminCReject';
+ view(sr123t('rejectTitle'),`<form id="sr123RejectForm"><section class="sr110-card"><h3>${esc(state.request.number)}</h3><label class="sr110-field"><span>${esc(sr123t('reason'))}</span><textarea name="reason" maxlength="300" required rows="3" placeholder="${esc(sr123t('reasonHint'))}"></textarea></label></section><div class="sr123-confirm-buttons">${button('acConfirmReject',t('reject'),'danger')}${button('acCancelReject',sr123t('back'),'secondary')}</div></form>`,back);
+}
+async function sr123ConfirmReject(){
+ const reason=String(formData().reason||'').trim();if(!reason)throw Error('REASON_REQUIRED');const screen=state.screenVersion,id=state.request.id;
+ await api('/admin/search/'+id+'/action',{action:'rejected',reason});if(root.hidden||screen!==state.screenVersion)return;
+ await sr123Detail(id,state.adminCDetailBack);
+}
+async function sr123Order(id,back=null){
+ const returnTo=back||sr123CaptureOrigin();sr123Select();state.view='adminCLoading';view(sr123t('linked'),`<div class="sr110-loading">${esc(t('loading'))}</div>`,returnTo);const screen=state.screenVersion;
+ const d=await api('/admin/orders/'+id+'/detail');if(root.hidden||screen!==state.screenVersion||state.workspace!=='adminC')return;
+ state.adminCOrder=d.order;state.adminCOrderBack=returnTo;sr123DrawOrder();
+}
+function sr123DrawOrder(){
+ sr123Select();state.view='adminCOrder';const o=state.adminCOrder,c=o.cargoSnapshot;
+ const statuses={new:[['confirmed','confirm'],['cancelled','cancelOrder']],confirmed:[['shipping','ship'],['cancelled','cancelOrder']],shipping:[['completed','complete'],['cancelled','cancelOrder']]};
+ const items=o.items||[],first=items[0]||{},picture=first.privateSearchImageId?`<img data-private-order-media="${esc(first.privateSearchImageId)}" alt="">`:first.imageUrl?`<img src="${esc(first.imageUrl)}" alt="">`:icon('package');
+ view(o.orderNumber,`<div class="sr123-detail-state"><span class="sr123-badge status-${esc(o.status)}">${esc(sr123t(o.status==='new'?'newOrder':o.status))}</span><span>${esc(date(o.createdAt))}</span></div>
+ <section class="sr110-card"><div class="sr123-order-item"><span class="sr123-order-photo">${picture}</span><div><h3>${esc(first.name||o.orderNumber)}</h3><p>${esc([first.size,first.color].filter(Boolean).join(' · '))}</p><span>${esc(t('quantity'))}: ${items.length}</span></div><b>${sum(o.total)}</b></div></section>
+ <section class="sr110-card">${row(t('name'),o.customerName)}${row(t('phone'),o.phone)}${row(t('city'),o.city)}${o.comment?`<p class="sr123-comment">${esc(o.comment)}</p>`:''}${o.sourceRequestId?row(t('number'),'C-'+String(o.sourceRequestId).padStart(6,'0')):''}</section>
+ ${c?`<section class="sr110-card">${row(t('cargoChoose'),locale()==='uz'?c.nameUz:c.nameRu)}${row(t('rate'),'$'+(c.rateCents/100).toFixed(2))}${button('acOrderCargo',t('cargo'),'secondary')}</section>`:''}
+ <div class="sr123-primary-actions">${(statuses[o.status]||[]).map(([status,label])=>`<button type="button" data-sr-action="acOrderStatus" data-status="${status}" class="sr110-btn ${status==='cancelled'?'danger':''}">${esc(sr123t(label))}</button>`).join('')}</div>`,state.adminCOrderBack||close);
+ hydratePrivateOrderMediaV120(root);
+}
+async function sr123OrderStatus(status){
+ const o=state.adminCOrder;if(!o)return;
+ if(status==='cancelled'&&!window.confirm(sr123t('cancelOrderCheck')))return;
+ const screen=state.screenVersion;await adminFetch('/admin/order-status',{method:'POST',body:JSON.stringify({id:o.id,status})});
+ if(root.hidden||screen!==state.screenVersion||state.workspace!=='adminC')return;
+ await sr123Order(o.id,state.adminCOrderBack);
+}
+function sr123HandleAction(a,b){
+ const id=Number(b.dataset.id||state.request?.id||0);
+ if(a==='acDetail'){run(()=>sr123Detail(id));return true;}
+ if(a==='acDelete'){run(()=>sr123Delete(id));return true;}
+ if(a==='acRestore'){run(()=>sr123Restore(id));return true;}
+ if(a==='acFilter'){run(()=>sr123List(false,b.dataset.filter));return true;}
+ if(a==='acMore'){run(()=>sr123List(true));return true;}
+ if(a==='acConfirmDelete'){run(sr123ConfirmDelete);return true;}
+ if(a==='acCancelDelete'){run(state.adminCDelete.back);return true;}
+ if(a==='acReject'){sr123Reject();return true;}
+ if(a==='acConfirmReject'){run(sr123ConfirmReject);return true;}
+ if(a==='acCancelReject'){run(state.adminCRejectBack);return true;}
+ if(a==='acOrder'){run(()=>sr123Order(state.request.orderId));return true;}
+ if(a==='acOrderStatus'){run(()=>sr123OrderStatus(b.dataset.status));return true;}
+ if(a==='acOrderCargo'){run(()=>orderCargo(state.adminCOrder.id,true,'request'));return true;}
+ return false;
+}
+root.addEventListener('keydown',e=>{
+ const card=e.target.closest('.sr123-list-card');if(card&&e.target===card&&['Enter',' '].includes(e.key)){e.preventDefault();if(!state.busy)run(()=>sr123Detail(Number(card.dataset.id)));}
+});
+
 // REVIEW8 navigation, component, validation and media helpers (local build input).
 function sr118CaptureOrigin(){
+  if(!root.hidden&&state.workspace==='adminC')return sr123CaptureOrigin();
   if(root.hidden)return ()=>close();
   const kind=state.view,admin=!!state.admin,scroll=root.scrollTop,filter=state.listFilter||'all';
   const request=state.request,back=state.returnFn;
@@ -21509,6 +21678,7 @@ function sr121ApplyCheckoutChrome(){
  const name=host.querySelector('label[for=buyerName]');if(name)name.textContent=t('name');
  const phone=host.querySelector('label[for=buyerPhone]');if(phone)phone.textContent=t('phone');
  const city=host.querySelector('label[for=buyerCity]');if(city)city.textContent=t('city');
+ const commentBox=host.querySelector('#buyerComment');if(commentBox)commentBox.placeholder=uz?'Masalan: bog‘lanish uchun qulay vaqt':'Например: удобное время для связи';
  const save=host.querySelector('.checkout-save-v41 b');if(save)save.textContent=uz?'Ma’lumotlarimni eslab qolish':'Запомнить мои данные';
  const note=host.querySelector('.checkout-save-v41 small');if(note)note.textContent=uz?'Faqat shu qurilmada saqlanadi.':'Сохраняются только на этом устройстве.';
  const confirm=host.querySelector('#confirmBtn');if(confirm&&!sr121Checkout?.busy)confirm.textContent=t('confirmOrder');
@@ -21571,9 +21741,10 @@ async function sr121SubmitSearch(){
  function hostInvalid(){document.querySelector('#checkoutView .checkout-invalid-v41')?.scrollIntoView({block:'center'});}
 }
 async function sr121OpenOrder(id){
+ state.workspace='userC';const navigationEpoch=state.navigationEpoch;
  const seq=(state.orderOpenSeq||0)+1;state.orderOpenSeq=seq;close();state.admin=false;
  // A notification opens one exact, authorized order; being an admin never selects Admin Panel.
- await openMyOrders();const d=await api('/orders/'+Number(id)+'/detail');if(seq!==state.orderOpenSeq)return;
+ await openMyOrders();if(navigationEpoch!==state.navigationEpoch)return;const d=await api('/orders/'+Number(id)+'/detail');if(seq!==state.orderOpenSeq||navigationEpoch!==state.navigationEpoch)return;
  openOrderDetail(d.order);if(d.order.viewerIsOwner===false)document.querySelector('#orderDetailContent .order-cancel-action-v40')?.remove();
 }
 function sr121IsOwner(){return String(state.request?.telegramId||'')===String(currentTelegramUserV108()?.id||'');}
@@ -21586,12 +21757,13 @@ document.addEventListener('uzr:languagechange',()=>{sr121ApplyCheckoutChrome();}
 
 translateStatic();
 // Deep links contain only identifiers; access is always checked by the Worker.
+const sr123StartupEpoch=state.navigationEpoch;const sr123StartupScreen=state.screenVersion||0;
 setTimeout(async()=>{
  const param=channelStartParamV107();const m=/^(search|order)_(\d+)(?:_g([a-f0-9]{16}))?$/.exec(param);if(!m)return;
  try{
-  await auth();state.admin=false;state.request=null;state.requestBack=null;page('home');
+  await auth();if(state.navigationEpoch!==sr123StartupEpoch||(state.screenVersion||0)!==sr123StartupScreen)return;state.workspace='userC';state.admin=false;state.request=null;state.requestBack=null;page('home');
   if(m[1]==='search')await detail(Number(m[2]),'?link=1'+(m[3]?'&generation='+m[3]:''));else await sr121OpenOrder(Number(m[2]));
- }catch(e){view(t('requests'),'');error(e)}
+ }catch(e){if(state.navigationEpoch!==sr123StartupEpoch||(state.screenVersion||0)!==sr123StartupScreen)return;view(t('requests'),'');error(e)}
 },200);
 })();
 
@@ -21728,6 +21900,71 @@ html body #checkoutView #confirmBtn{background:linear-gradient(145deg,#149af4,#0
 html body #checkoutView .checkout-panel .sr121-contact-grid>.field{margin-bottom:0!important}
 
 </style>
+
+<style id="uzr-review12-checkout-polish">
+/* REVIEW12 — final checkout polish only. Admin layout is intentionally untouched. */
+html body #checkoutView .sr121-comment{
+  margin:8px 0 10px!important;padding:0!important;border:0!important;background:transparent!important;
+}
+html body #checkoutView .sr121-comment>summary{
+  min-height:44px!important;padding:0 12px!important;border:1px solid var(--uzr-border)!important;
+  border-radius:13px!important;background:var(--uzr-surface-4)!important;color:var(--uzr-text)!important;
+  display:grid!important;grid-template-columns:28px 1fr 20px!important;align-items:center!important;gap:8px!important;
+  font-size:12px!important;font-weight:700!important;box-shadow:none!important;
+}
+html body #checkoutView .sr121-comment>summary:before{
+  content:'+'!important;width:26px!important;height:26px!important;border-radius:9px!important;
+  display:flex!important;align-items:center!important;justify-content:center!important;
+  background:rgba(32,166,255,.12)!important;color:var(--uzr-accent)!important;font-size:18px!important;font-weight:500!important;
+}
+html body #checkoutView .sr121-comment[open]>summary:before{content:'−'!important}
+html body #checkoutView .sr121-comment>summary:after{
+  content:'›'!important;position:static!important;justify-self:end!important;font-size:22px!important;line-height:1!important;
+  transform:rotate(90deg)!important;transition:transform .16s ease!important;color:var(--uzr-muted)!important;
+}
+html body #checkoutView .sr121-comment[open]>summary:after{transform:rotate(-90deg)!important}
+html body #checkoutView .sr121-comment textarea{
+  display:block!important;width:100%!important;min-height:78px!important;max-height:130px!important;margin:8px 0 0!important;
+  padding:11px 12px!important;border:1px solid var(--uzr-border)!important;border-radius:13px!important;
+  background:var(--uzr-surface-4)!important;color:var(--uzr-text)!important;font:inherit!important;font-size:12px!important;
+  line-height:1.45!important;resize:vertical!important;outline:none!important;box-shadow:none!important;
+}
+html body #checkoutView .sr121-comment textarea:focus{border-color:var(--uzr-accent)!important;box-shadow:0 0 0 2px rgba(32,166,255,.08)!important}
+html body #checkoutView .sr121-comment .checkout-comment-meta-v41{margin:4px 4px 0!important;font-size:9px!important;color:var(--uzr-muted)!important;text-align:right!important}
+html body #checkoutView #confirmBtn{
+  min-height:50px!important;height:50px!important;border-radius:15px!important;margin-top:7px!important;
+  display:flex!important;align-items:center!important;justify-content:center!important;gap:8px!important;
+  background:radial-gradient(150px 90px at 18% 0%,rgba(88,195,255,.48),transparent 70%),linear-gradient(145deg,#149af4 0%,#087bdd 55%,#0268ca 100%)!important;
+  border:1px solid rgba(48,177,255,.30)!important;box-shadow:0 7px 18px rgba(6,105,201,.16)!important;
+  color:#fff!important;-webkit-text-fill-color:#fff!important;font-size:13px!important;font-weight:800!important;letter-spacing:0!important;
+}
+html body #checkoutView #confirmBtn:active{transform:translateY(1px)!important;filter:brightness(.96)!important}
+html body #checkoutView #confirmBtn:disabled{transform:none!important;box-shadow:none!important;opacity:.56!important}
+html body #checkoutView .checkout-success-v42 .success-primary,
+html body #checkoutView .checkout-success-v42 .success-secondary{
+  min-height:50px!important;height:50px!important;border-radius:15px!important;padding:0 13px!important;
+  display:flex!important;align-items:center!important;justify-content:center!important;gap:8px!important;
+  font-size:12px!important;font-weight:800!important;line-height:1.1!important;
+}
+html body #checkoutView .checkout-success-v42 .success-primary{
+  background:linear-gradient(145deg,#149af4,#087bdd 55%,#0268ca)!important;border:1px solid rgba(48,177,255,.30)!important;
+  box-shadow:0 6px 16px rgba(6,105,201,.14)!important;color:#fff!important;-webkit-text-fill-color:#fff!important;
+}
+html body #checkoutView .checkout-success-v42 .success-secondary{
+  background:var(--uzr-surface-4)!important;border:1px solid var(--uzr-border)!important;color:var(--uzr-text)!important;-webkit-text-fill-color:var(--uzr-text)!important;
+  box-shadow:none!important;
+}
+html body #checkoutView .sr121-terms>summary{color:var(--uzr-text)!important;font-weight:650!important}
+html[data-uzr-theme="light"] body #checkoutView .sr121-comment>summary,
+html[data-uzr-theme="light"] body #checkoutView .sr121-comment textarea,
+html[data-uzr-theme="light"] body #checkoutView .checkout-success-v42 .success-secondary{
+  background:#fff!important;border-color:#d7e1e8!important;color:#17384b!important;-webkit-text-fill-color:#17384b!important;
+}
+@media(max-width:340px){
+ html body #checkoutView .sr121-comment>summary{grid-template-columns:26px 1fr 18px!important;padding:0 9px!important}
+ html body #checkoutView .checkout-success-v42 .success-primary,html body #checkoutView .checkout-success-v42 .success-secondary{font-size:11px!important}
+}
+</style>
 <script id="uzr-review11-official-cleanup">
 // REVIEW11: official-only cleanup UI. Nothing is removed until preview + explicit confirmation.
 (()=>{
@@ -21772,4 +22009,102 @@ window.UzrOfficialCleanup121={open};document.addEventListener('keydown',e=>{if(e
 })();
 
 </script>
+<style id="uzr-review13-admin-c">
+/* REVIEW13: only administrator C-workspace. Existing customer/catalog/checkout styles untouched. */
+#sr110Panel[data-workspace="adminC"] .sr110-bar{margin-bottom:12px!important;}
+#sr110Panel[data-workspace="adminC"] .sr123-bar-title{flex:1;min-width:0;}
+#sr110Panel[data-workspace="adminC"] .sr123-bar-title small{display:block;color:var(--sr-accent);font-size:9px;letter-spacing:1px;font-weight:750;margin-bottom:3px;}
+#sr110Panel[data-workspace="adminC"] .sr123-bar-title h2{font-size:17px;}
+#sr110Panel[data-workspace="adminC"] :is(.sr123-subtitle,.sr123-list-copy p,.sr123-list-copy small,.sr123-detail-state>span:not(.sr123-badge)){color:var(--sr-muted);font-size:11px;line-height:1.4;}
+#sr110Panel[data-workspace="adminC"] .sr123-subtitle{margin:0 0 12px;}
+#sr110Panel[data-workspace="adminC"] .sr123-tools{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;margin-bottom:10px;}
+#sr110Panel[data-workspace="adminC"] .sr123-search{display:flex;gap:8px;margin:12px 0;}
+#sr110Panel[data-workspace="adminC"] .sr123-search label{display:flex;align-items:center;gap:8px;flex:1;min-width:0;border:1px solid var(--sr-border);background:var(--sr-panel);border-radius:13px;padding:0 10px;}
+#sr110Panel[data-workspace="adminC"] .sr123-search label>svg{width:18px;height:18px;color:var(--sr-muted);flex:none;}
+#sr110Panel[data-workspace="adminC"] .sr123-search input{width:100%;min-width:0;border:0!important;outline:0;background:transparent!important;color:var(--sr-text);font:inherit;font-size:12px;padding:0;height:44px;}
+#sr110Panel[data-workspace="adminC"] .sr123-search button{width:44px;min-height:44px;flex:none;border-radius:13px;border:1px solid var(--sr-border);background:var(--sr-soft);color:var(--sr-accent);display:grid;place-items:center;}
+#sr110Panel[data-workspace="adminC"] .sr123-search button svg{width:20px;height:20px;}
+#sr110Panel[data-workspace="adminC"] .sr123-tabs{display:flex;gap:7px;overflow-x:auto;scrollbar-width:none;padding:0 0 10px;margin-bottom:3px;}
+#sr110Panel[data-workspace="adminC"] .sr123-tabs::-webkit-scrollbar{display:none;}
+#sr110Panel[data-workspace="adminC"] .sr123-tabs button{display:flex;align-items:center;gap:6px;flex:none;border:1px solid var(--sr-border);border-radius:12px;background:var(--sr-panel);color:var(--sr-text);padding:10px;font-size:11px;min-height:40px;}
+#sr110Panel[data-workspace="adminC"] .sr123-tabs button.on{border-color:var(--sr-accent);background:var(--sr-soft);color:var(--sr-accent);}
+#sr110Panel[data-workspace="adminC"] .sr123-tabs button span{font-size:10px;opacity:.85;}
+#sr110Panel[data-workspace="adminC"] .sr123-list{display:grid;gap:9px;}
+#sr110Panel[data-workspace="adminC"] .sr123-list-card{display:grid;grid-template-columns:64px minmax(0,1fr) 32px;gap:10px;align-items:center;border:1px solid var(--sr-border);border-radius:16px;padding:11px;background:var(--sr-panel);cursor:pointer;}
+#sr110Panel[data-workspace="adminC"] .sr123-list-photo{width:64px;height:72px;background:var(--sr-input);border-radius:11px;overflow:hidden;display:grid;place-items:center;color:var(--sr-muted);}
+#sr110Panel[data-workspace="adminC"] .sr123-list-photo .sr110-photos{margin:0!important;}
+#sr110Panel[data-workspace="adminC"] .sr123-list-photo .sr110-photo{width:64px!important;height:72px!important;flex-basis:64px!important;border:0!important;}
+#sr110Panel[data-workspace="adminC"] .sr123-list-copy{min-width:0;}
+#sr110Panel[data-workspace="adminC"] .sr123-list-top{display:flex;gap:5px;align-items:center;justify-content:space-between;flex-wrap:wrap;margin-bottom:5px;}
+#sr110Panel[data-workspace="adminC"] .sr123-list-top>span:first-child{font-size:10px;color:var(--sr-muted);}
+#sr110Panel[data-workspace="adminC"] .sr123-list-copy h3{font-size:13px;line-height:1.25;margin:0 0 4px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;color:var(--sr-text);}
+#sr110Panel[data-workspace="adminC"] .sr123-list-copy p{margin:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+#sr110Panel[data-workspace="adminC"] .sr123-list-copy small{font-size:9px;}
+#sr110Panel[data-workspace="adminC"] .sr123-icon-delete{border:0;background:transparent;color:var(--sr-muted);width:32px;min-height:44px;padding:6px;display:grid;place-items:center;border-radius:10px;}
+#sr110Panel[data-workspace="adminC"] .sr123-icon-delete[data-sr-action="acDelete"]:hover{color:#ec7182;background:rgba(221,49,75,.08);}
+#sr110Panel[data-workspace="adminC"] .sr123-icon-delete:disabled{opacity:.4;}
+#sr110Panel[data-workspace="adminC"] .sr123-icon-delete svg{width:18px;height:18px;}
+#sr110Panel[data-workspace="adminC"] .sr123-badge{display:inline-flex;align-items:center;white-space:nowrap;border-radius:8px;padding:5px 7px;font-size:9px;font-weight:600;background:var(--sr-soft)!important;color:var(--sr-accent)!important;}
+#sr110Panel[data-workspace="adminC"] .sr123-badge:is(.status-converted,.status-completed){background:rgba(23,181,120,.12)!important;color:#26be87!important;}
+#sr110Panel[data-workspace="adminC"] .sr123-badge:is(.status-cancelled,.status-rejected,.status-expired){background:rgba(226,98,120,.10)!important;color:#ec8b98!important;}
+html[data-uzr-theme="light"] #sr110Panel[data-workspace="adminC"] .sr123-badge:is(.status-converted,.status-completed){color:#167c56!important;}
+html[data-uzr-theme="light"] #sr110Panel[data-workspace="adminC"] .sr123-badge:is(.status-cancelled,.status-rejected,.status-expired){color:#b93853!important;}
+#sr110Panel[data-workspace="adminC"] .sr123-detail-state{display:flex;align-items:center;justify-content:space-between;gap:7px;margin-bottom:10px;}
+#sr110Panel[data-workspace="adminC"] .sr123-detail-state>b{font-size:10px;color:var(--sr-muted);}
+#sr110Panel[data-workspace="adminC"] .sr123-client{display:flex;gap:10px;align-items:center;padding:11px;border:1px solid var(--sr-border);border-radius:15px;background:var(--sr-soft);margin-bottom:10px;}
+#sr110Panel[data-workspace="adminC"] .sr123-client-icon{display:grid;place-items:center;color:var(--sr-accent);width:32px;flex:none;}
+#sr110Panel[data-workspace="adminC"] .sr123-client>div{display:grid;gap:3px;min-width:0;flex:1;}
+#sr110Panel[data-workspace="adminC"] .sr123-client :is(small,span:not(.sr123-client-icon)){font-size:10px;color:var(--sr-muted);overflow-wrap:anywhere;}
+#sr110Panel[data-workspace="adminC"] .sr123-client b{font-size:13px;overflow-wrap:anywhere;}
+#sr110Panel[data-workspace="adminC"] .sr123-client-contact{width:38px;height:38px;flex:none;border:1px solid var(--sr-border);border-radius:11px;background:var(--sr-panel);color:var(--sr-accent);display:grid;place-items:center;}
+#sr110Panel[data-workspace="adminC"] .sr123-client-contact svg{width:18px;height:18px;}
+#sr110Panel[data-workspace="adminC"] .sr123-product-overview{display:flex;gap:10px;align-items:center;margin:2px 0 9px;}
+#sr110Panel[data-workspace="adminC"] .sr123-product-overview .sr110-photos{flex:0 1 auto;max-width:50%;overflow-x:auto;}
+#sr110Panel[data-workspace="adminC"] .sr123-product-overview>div:last-child{flex:1;min-width:0;}
+#sr110Panel[data-workspace="adminC"] .sr123-product-overview b{font-size:13px;overflow-wrap:anywhere;}
+#sr110Panel[data-workspace="adminC"] .sr123-product-overview p{font-size:11px;color:var(--sr-muted);margin:6px 0;line-height:1.45;overflow-wrap:anywhere;}
+#sr110Panel[data-workspace="adminC"] .sr123-card-heading{display:flex;gap:8px;align-items:baseline;justify-content:space-between;}
+#sr110Panel[data-workspace="adminC"] .sr123-card-heading>b{color:var(--sr-accent);font-size:13px;white-space:nowrap;}
+#sr110Panel[data-workspace="adminC"] .sr123-fields{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));border-top:1px solid var(--sr-border);padding-top:8px;gap:10px;}
+#sr110Panel[data-workspace="adminC"] .sr123-fields>div{display:grid;gap:4px;min-width:0;}
+#sr110Panel[data-workspace="adminC"] .sr123-fields span{font-size:10px;color:var(--sr-muted);}
+#sr110Panel[data-workspace="adminC"] .sr123-fields b{font-size:12px;overflow-wrap:anywhere;}
+#sr110Panel[data-workspace="adminC"] .sr123-comment{font-size:11px;line-height:1.5;color:var(--sr-muted);margin:9px 0 2px;white-space:pre-wrap;overflow-wrap:anywhere;}
+#sr110Panel[data-workspace="adminC"] .sr123-order-link>div:first-child{display:flex;align-items:center;gap:7px;flex-wrap:wrap;margin:0 0 10px;}
+#sr110Panel[data-workspace="adminC"] .sr123-order-link small{width:100%;color:var(--sr-muted);font-size:10px;}
+#sr110Panel[data-workspace="adminC"] .sr123-order-link b{font-size:14px;}
+#sr110Panel[data-workspace="adminC"] .sr123-order-link span{color:var(--sr-muted);font-size:10px;}
+#sr110Panel[data-workspace="adminC"] .sr123-order-link .sr123-tools{margin:0;}
+#sr110Panel[data-workspace="adminC"] :is(.sr123-primary-actions,.sr123-confirm-buttons){display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;margin:10px 0;}
+#sr110Panel[data-workspace="adminC"] .sr123-primary-actions>:first-child:nth-last-child(3){grid-column:1/-1;}
+#sr110Panel[data-workspace="adminC"] .sr123-delete-row{margin:10px 0 12px;}
+#sr110Panel[data-workspace="adminC"] .sr123-history{border:1px solid var(--sr-border);border-radius:14px;background:var(--sr-panel);padding:10px;}
+#sr110Panel[data-workspace="adminC"] .sr123-history summary{display:flex;align-items:center;gap:7px;cursor:pointer;font-size:12px;list-style:none;min-height:24px;}
+#sr110Panel[data-workspace="adminC"] .sr123-history summary::-webkit-details-marker{display:none;}
+#sr110Panel[data-workspace="adminC"] .sr123-history summary span{flex:1;}
+#sr110Panel[data-workspace="adminC"] .sr123-history summary :is(svg,b){width:16px;height:16px;color:var(--sr-muted);font-size:10px;}
+#sr110Panel[data-workspace="adminC"] .sr123-history ol{list-style:none;padding:0;margin:10px 0 0;}
+#sr110Panel[data-workspace="adminC"] .sr123-history li{display:flex;justify-content:space-between;gap:6px;border-top:1px solid var(--sr-border);padding:8px 0;font-size:10px;}
+#sr110Panel[data-workspace="adminC"] .sr123-history li span{color:var(--sr-muted);}
+#sr110Panel[data-workspace="adminC"] :is(.sr123-notice,.sr123-reason){font-size:12px;line-height:1.5;padding:12px;border-radius:13px;background:var(--sr-soft);color:var(--sr-text);overflow-wrap:anywhere;}
+#sr110Panel[data-workspace="adminC"] .sr123-confirm{text-align:left;padding:16px!important;}
+#sr110Panel[data-workspace="adminC"] .sr123-confirm-icon{display:grid;place-items:center;width:46px;height:46px;border-radius:15px;background:rgba(224,78,106,.10);color:#ee6d83;margin-bottom:12px;}
+#sr110Panel[data-workspace="adminC"] .sr123-confirm-icon.archive{background:var(--sr-soft);color:var(--sr-accent);}
+#sr110Panel[data-workspace="adminC"] .sr123-confirm>p{font-size:12px;line-height:1.6;color:var(--sr-muted);}
+#sr110Panel[data-workspace="adminC"] .sr123-confirm>b{font-size:13px;overflow-wrap:anywhere;}
+#sr110Panel[data-workspace="adminC"] .sr123-confirm-buttons{grid-template-columns:1fr;}
+#sr110Panel[data-workspace="adminC"] .sr123-empty{display:grid;justify-items:center;text-align:center;gap:10px;padding:38px 10px;color:var(--sr-muted);}
+#sr110Panel[data-workspace="adminC"] .sr123-empty h3{font-size:14px;margin:0;color:var(--sr-text);}
+#sr110Panel[data-workspace="adminC"] .sr123-empty p{font-size:11px;margin:0;}
+#sr110Panel[data-workspace="adminC"] .sr123-order-item{display:flex;align-items:center;gap:10px;}
+#sr110Panel[data-workspace="adminC"] .sr123-order-item>div{min-width:0;flex:1;}
+#sr110Panel[data-workspace="adminC"] .sr123-order-item>div :is(p,span){font-size:11px;color:var(--sr-muted);margin:5px 0;overflow-wrap:anywhere;}
+#sr110Panel[data-workspace="adminC"] .sr123-order-item>b{font-size:12px;color:var(--sr-accent);}
+#sr110Panel[data-workspace="adminC"] .sr123-order-photo{display:grid;place-items:center;width:58px;height:64px;flex:none;overflow:hidden;border-radius:10px;background:var(--sr-input);color:var(--sr-muted);}
+#sr110Panel[data-workspace="adminC"] .sr123-order-photo img{width:100%;height:100%;object-fit:contain;}
+#sr110Panel[data-workspace="adminC"] .sr123-sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;}
+#sr110Panel[data-workspace="adminC"] :focus-visible{outline:2px solid var(--sr-accent);outline-offset:2px;}
+@media(max-width:340px){#sr110Panel[data-workspace="adminC"] .sr123-list-card{grid-template-columns:56px minmax(0,1fr) 28px;gap:8px;padding:9px;}#sr110Panel[data-workspace="adminC"] .sr123-list-photo{width:56px;}#sr110Panel[data-workspace="adminC"] .sr123-card-heading{flex-wrap:wrap;}}
+
+</style>
 </body></html>
