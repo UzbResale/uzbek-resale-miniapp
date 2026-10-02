@@ -17134,6 +17134,29 @@ function openTelegramUsername(username){
   window.location.href=url;
 }
 
+function openTelegramIdentityV124(username,telegramId){
+  const u=String(username||"").replace(/^@/,"").trim();
+  if(u){openTelegramUsername(u);return;}
+  const id=String(telegramId||"").trim();
+  if(!/^\d{4,20}$/.test(id))return;
+  const url="tg://user?id="+encodeURIComponent(id);
+  try{
+    const a=document.createElement("a");
+    a.href=url;a.style.display="none";document.body.appendChild(a);a.click();a.remove();
+  }catch(_){
+    try{window.location.href=url}catch(__){}
+  }
+}
+async function copyTelegramIdV124(telegramId){
+  const id=String(telegramId||"").trim();
+  if(!id)return false;
+  try{await navigator.clipboard.writeText(id);return true}catch(_){}
+  try{
+    const ta=document.createElement("textarea");ta.value=id;ta.style.position="fixed";ta.style.opacity="0";
+    document.body.appendChild(ta);ta.select();const ok=document.execCommand("copy");ta.remove();return !!ok;
+  }catch(_){return false}
+}
+
 function orderStatus(s){return ({new:"Новый",confirmed:"Подтверждён",shipping:"В доставке",completed:"Завершён",cancelled:"Отменён"})[s]||s||"Новый"}
 
 function orderDate(v){
@@ -18586,13 +18609,13 @@ function adminRenderOrdersV89(filter=adminOrdersFilterV89){
         : `<div class="admin-v106-order-item-link is-static">${body}</div>`;
     }).join("");
 
-    let actions="";
+    let actions=`<button onclick="UzrSearch110.adminOrder(${o.id})"><i data-lucide="eye"></i> Открыть заказ</button>`;
     if(status==="new"){
-      actions=`<button onclick="adminOrderStatus(${o.id},'confirmed')">Подтвердить</button><button class="danger" onclick="adminOrderStatus(${o.id},'cancelled')">Отменить</button>`;
+      actions+=`<button onclick="adminOrderStatus(${o.id},'confirmed')">Подтвердить</button><button class="danger" onclick="adminOrderStatus(${o.id},'cancelled')">Отменить</button>`;
     }else if(status==="confirmed"){
-      actions=`<button onclick="adminOrderStatus(${o.id},'shipping')">В доставку</button><button class="danger" onclick="adminOrderStatus(${o.id},'cancelled')">Отменить</button>`;
+      actions+=`<button onclick="adminOrderStatus(${o.id},'shipping')">В доставку</button><button class="danger" onclick="adminOrderStatus(${o.id},'cancelled')">Отменить</button>`;
     }else if(status==="shipping"){
-      actions=`<button onclick="adminOrderStatus(${o.id},'completed')">Завершить</button><button class="danger" onclick="adminOrderStatus(${o.id},'cancelled')">Отменить</button>`;
+      actions+=`<button onclick="adminOrderStatus(${o.id},'completed')">Завершить</button><button class="danger" onclick="adminOrderStatus(${o.id},'cancelled')">Отменить</button>`;
     }
 
     if(o.cargo_snapshot)actions+=`<button onclick="UzrSearch110.orderCargo(${o.id},true)">Карго / вес</button>`;
@@ -18603,7 +18626,7 @@ function adminRenderOrdersV89(filter=adminOrdersFilterV89){
       </div>
       <div class="admin-v89-order-customer">
         <span><i data-lucide="user"></i></span>
-        <div><b>${escapeHtml(o.name||"Без имени")}</b><small>${escapeHtml(o.phone||"")} ${o.city?"· "+escapeHtml(o.city):""}</small></div>
+        <div><b>${escapeHtml(o.name||"Без имени")}</b><small>${escapeHtml(o.phone||"")} ${o.city?"· "+escapeHtml(o.city):""}</small><small class="admin-v124-telegram">${escapeHtml(o.telegram_username?"@"+o.telegram_username:("ID "+String(o.telegram_id||"—")))}</small></div>
         <strong>${money(o.total||0)}</strong>
       </div>
       ${itemRows?`<div class="admin-v106-order-items">${itemRows}</div>`:""}
@@ -20908,7 +20931,7 @@ applyLegalChromeV102=function(){__applyLegalOld110();const uz=currentLegalLocale
 document.addEventListener("uzr:languagechange",applyLegalChromeV102);
 applyLegalChromeV102();
 </script>
-<span class="sr110-stage" data-no-i18n>TEST · 1.1 · R13</span>
+<span class="sr110-stage" data-no-i18n>TEST · 1.1 · R15</span>
 <style id="uzr-audit3-admin-photo-viewer">
 #sr110Panel .sr113-photo-openable{cursor:zoom-in!important;position:relative!important}
 #sr110Panel .sr113-photo-openable .sr113-photo-zoom{position:absolute!important;right:6px!important;bottom:6px!important;width:25px!important;height:25px!important;border-radius:9px!important;display:flex!important;align-items:center!important;justify-content:center!important;background:rgba(4,20,30,.76)!important;color:#fff!important;font-size:15px!important;pointer-events:none!important}
@@ -20968,7 +20991,7 @@ DELETE_CONFIRMATION_REQUIRED:['Подтвердите удаление этой 
  MAINTENANCE_REQUIRED:['Полная очистка разрешена только при включённых техработах.','To‘liq tozalash faqat texnik ishlar yoqilganda mumkin.'],
  ORDER_HAS_NO_CARGO:['В этом заказе нет сохранённого тарифа карго.','Bu buyurtmada saqlangan kargo tarifi yo‘q.'],
  
- API_VERSION_MISMATCH:['Index и Worker разных версий. Установите index и Worker REVIEW13 и заново откройте Mini App.','Index va Worker versiyalari farq qiladi. REVIEW13 index va Worker fayllarini o‘rnating va Mini App’ni qayta oching.'],
+ API_VERSION_MISMATCH:['Index и Worker разных версий. Установите index и Worker REVIEW13 и заново откройте Mini App.','Index va Worker versiyalari farq qiladi. REVIEW14 index va Worker fayllarini o‘rnating va Mini App’ni qayta oching.'],
  SEARCH_RESET_IN_PROGRESS:['Идёт очистка C-запросов. Завершите её в админке.','C-so‘rovlari tozalanmoqda. Jarayonni admin panelda yakunlang.'],
  RESET_CHANGED_OR_BUSY:['Очистка уже выполняется или данные изменились. Подождите и повторите.','Tozalash bajarilmoqda yoki ma’lumotlar o‘zgardi. Kutib, qayta urinib ko‘ring.'],
  RESET_REAL_REQUESTS_BLOCKED:['Есть запросы обычных пользователей. Полный тестовый сброс запрещён.','Oddiy foydalanuvchilar so‘rovlari mavjud. To‘liq test tozalash taqiqlangan.'],
@@ -21339,7 +21362,7 @@ root.addEventListener('click',e=>{
  const actions={home:()=>{close();page('home')},shopping:()=>{close();page('china')},orders:()=>{close();return openMyOrders()},submit:sendRequest,mine:()=>listRequests(false),more:()=>listRequests(state.admin,true),detail:()=>detail(Number(b.dataset.id)),searching:()=>action('searching'),rejected:()=>action('rejected'),cancelled:()=>action('cancelled'),deleted:()=>action('deleted'),saveOffer,checkout:privateCheckout,convert,cargoSettings,saveCargo,cleanup,runCleanup:async()=>{await api('/admin/cleanup',{});await cleanup()},resetTests:resetSearchTests,order:()=>openOrder(state.request.orderId),orderCargo:()=>orderCargo(state.request.orderId,state.admin,'request'),saveWeight:async()=>{if(!sr118ValidateForm())return;const d=formData(),screen=state.screenVersion,order=state.orderCargo,admin=state.orderCargoAdmin,source=state.orderCargoSource;await api('/orders/'+order.orderId+'/cargo',{actualGrams:Math.round(Number(d.actualKg)*1000),previousCalculatedAt:order.calculatedAt});if(root.hidden||screen!==state.screenVersion)return;await orderCargo(order.orderId,admin,source)}};
  if(actions[a])run(actions[a]);
 });
-window.UzrSearch110={newRequest,adminList:sr123AdminEnter,list:admin=>{sr123MarkNavigation();return admin?sr123AdminEnter():run(()=>listRequests(false));},cargoSettings:()=>run(cargoSettings),orderCargo:(id,admin)=>run(()=>orderCargo(id,admin,admin?'adminOrders':'userOrder')),mountCheckout,checkoutPayload,checkoutError,appendOrderCargo,errorMessage:code=>D[code]?t(code):t('genericError'),close};
+window.UzrSearch110={newRequest,adminList:sr123AdminEnter,adminOrder:id=>run(()=>sr124AdminOrderFromList(Number(id))),list:admin=>{sr123MarkNavigation();return admin?sr123AdminEnter():run(()=>listRequests(false));},cargoSettings:()=>run(cargoSettings),orderCargo:(id,admin)=>run(()=>orderCargo(id,admin,admin?'adminOrders':'userOrder')),mountCheckout,checkoutPayload,checkoutError,appendOrderCargo,errorMessage:code=>D[code]?t(code):t('genericError'),close};
 document.addEventListener('uzr:languagechange',()=>{translateStatic();if(!root.hidden){if(state.view==='adminCList')sr123DrawList();else if(state.view==='adminCDetail')sr123DrawDetail();else if(state.view==='adminCOrder')sr123DrawOrder();else if(state.view==='adminCDelete')sr123DrawDelete();else if(state.view==='detail')drawDetail();else if(state.view==='list')drawList();else if(state.view==='orderSuccess'&&state.lastOrderResult)sr118OrderSuccess(state.lastOrderResult);}});
 const sr113MediaBlobCache=new Map();
 function sr113RememberBlob(id,blob){
@@ -21358,7 +21381,7 @@ async function sr111ApiCompatible(){
   if(!state.apiCheck)state.apiCheck=(async()=>{
     const r=await fetch(apiBase()+'/v110/meta',{cache:'no-store',signal:AbortSignal.timeout(15000)});let d;
     try{d=await r.json()}catch{throw Error('API_VERSION_MISMATCH')}
-    if(!r.ok||d?.build!=='1.1-review13')throw Error('API_VERSION_MISMATCH');
+    if(!r.ok||d?.build!=='1.1-review15')throw Error('API_VERSION_MISMATCH');
     return d;
   })().catch(e=>{state.apiCheck=null;if(['AbortError','TimeoutError'].includes(e.name))throw Error('REQUEST_TIMEOUT');throw e;});
   return state.apiCheck;
@@ -21412,13 +21435,14 @@ async function sr111HydratePhotos(){
   }
 }
 
-// REVIEW13 administrator-only C workspace. Explicit routes, never role-based customer redirects.
+// REVIEW14: REVIEW13 admin C workspace + explicit admin UR drill-down and Telegram identity controls.
 const sr123Words={
  title:['C-запросы','C-so‘rovlar'],subtitle:['Поиск товара · управление','Mahsulot qidirish · boshqaruv'],
  search:['Номер C, товар или клиент','C raqami, mahsulot yoki mijoz'],find:['Найти','Qidirish'],
  work:['В работе','Jarayonda'],converted:['С заказом','Buyurtmali'],archived:['Архив','Arxiv'],
  archive:['Убрать в архив','Arxivga ko‘chirish'],restore:['Вернуть в список','Ro‘yxatga qaytarish'],
  customer:['Клиент','Mijoz'],reference:['Запрос клиента','Mijoz so‘rovi'],offer:['Предложение клиенту','Mijozga taklif'],
+ telegram:['Telegram','Telegram'],openTelegram:['Открыть Telegram','Telegram’ni ochish'],copyId:['Скопировать ID','ID ni nusxalash'],idCopied:['ID скопирован','ID nusxalandi'],
  parameters:['Параметры','Xususiyatlar'],linked:['Связанный UR-заказ','Bog‘langan UR-buyurtma'],
  none:['По этому фильтру запросов нет','Bu filtr bo‘yicha so‘rovlar yo‘q'],noneSub:['Смените фильтр или поисковый запрос.','Filtrni yoki qidiruv so‘zini o‘zgartiring.'],
  deleteTitle:['Удалить C-запрос?','C-so‘rov o‘chirilsinmi?'],archiveTitle:['Убрать C-запрос в архив?','C-so‘rov arxivga ko‘chirilsinmi?'],
@@ -21429,6 +21453,8 @@ const sr123Words={
  photos:['Фотографий','Rasmlar'],deleted:['Запрос удалён. Фотографии очищены.','So‘rov o‘chirildi. Rasmlar tozalandi.'],
  pending:['Запрос удалён из списков. Очистка фото ещё выполняется; повторять удаление не нужно.','So‘rov ro‘yxatlardan o‘chirildi. Rasmlar hali tozalanmoqda; qayta o‘chirish kerak emas.'],
  archivedDone:['Запрос убран в архив админки. UR-заказ и фото сохранены.','So‘rov admin arxiviga ko‘chirildi. UR-buyurtma va rasmlar saqlandi.'],
+ activeOrderKeep:['UR-заказ ещё в процессе — C-заявка остаётся до завершения или отмены заказа.','UR-buyurtma hali jarayonda — C-so‘rov buyurtma yakunlanmaguncha yoki bekor qilinmaguncha qoladi.'],
+ terminalDeleteNote:['UR уже завершён или отменён. C-заявку и её фото можно удалить сразу; сам UR и его история сохранятся.','UR allaqachon yakunlangan yoki bekor qilingan. C-so‘rov va rasmlarini darhol o‘chirish mumkin; UR va uning tarixi saqlanadi.'],
  restored:['Запрос возвращён в список.','So‘rov ro‘yxatga qaytarildi.'],
  activeOrder:['Заказ и его фото защищены','Buyurtma va rasmlari himoyalangan'],
  refresh:['Обновить','Yangilash'],total:['Итого','Jami'],newOrder:['Новый','Yangi'],confirmed:['Подтверждён','Tasdiqlangan'],
@@ -21474,7 +21500,14 @@ function sr123DrawList(){
  ${notice?`<p class="sr123-notice" role="status">${esc(notice)}</p>`:''}
  <div class="sr123-list">${a.rows.map(r=>`<article class="sr123-list-card" data-sr-action="acDetail" data-id="${r.id}" role="button" tabindex="0" aria-label="${esc(t('open')+' '+r.number)}">
  <div class="sr123-list-photo">${r.images?.length?photoStrip(r.images.slice(0,1)):`<span>${icon('image')}</span>`}</div><div class="sr123-list-copy"><div class="sr123-list-top"><span>${esc(r.number)}</span>${sr123Badge(r.status)}</div><h3>${esc(r.title||r.offer?.title||r.number)}</h3><p>${esc(r.username?'@'+r.username:r.name||r.telegramId)}</p><small>${esc(date(r.createdAt))}${r.orderId?' · UR-'+String(r.orderId).padStart(6,'0'):''}</small></div>
- <button type="button" class="sr123-icon-delete" data-sr-action="${r.adminArchivedAt?'acRestore':'acDelete'}" data-id="${r.id}" ${r.status==='uploading'?'disabled':''} aria-label="${esc(r.adminArchivedAt?sr123t('restore'):r.orderId?sr123t('archive'):sr123t('delete'))}">${icon(r.adminArchivedAt?'rotate-ccw':r.orderId?'archive':'trash-2')}</button></article>`).join('')||`<div class="sr123-empty">${icon('search')}<h3>${esc(sr123t('none'))}</h3><p>${esc(sr123t('noneSub'))}</p></div>`}</div>
+ ${r.adminArchivedAt
+ ? `<button type="button" class="sr123-icon-delete" data-sr-action="acRestore" data-id="${r.id}" aria-label="${esc(sr123t('restore'))}">${icon('rotate-ccw')}</button>`
+ : r.status==='uploading'
+   ? `<button type="button" class="sr123-icon-delete" disabled aria-label="${esc(sr123t('cannotUpload'))}">${icon('loader-circle')}</button>`
+   : (!r.orderId||['completed','cancelled'].includes(String(r.linkedOrderStatus||'')))
+     ? `<button type="button" class="sr123-icon-delete" data-sr-action="acDelete" data-id="${r.id}" aria-label="${esc(sr123t('delete'))}">${icon('trash-2')}</button>`
+     : `<span class="sr123-icon-lock" title="${esc(sr123t('activeOrderKeep'))}">${icon('lock-keyhole')}</span>`
+}</article>`).join('')||`<div class="sr123-empty">${icon('search')}<h3>${esc(sr123t('none'))}</h3><p>${esc(sr123t('noneSub'))}</p></div>`}</div>
  ${a.next?button('acMore',t('more'),'secondary'):''}`,close);
  const active=root.querySelector('.sr123-tabs .on');if(active)active.scrollIntoView({block:'nearest',inline:'nearest'});
 }
@@ -21498,7 +21531,12 @@ function sr123DrawDetail(){
  ${r.orderId?`<section class="sr110-card sr123-order-link"><div><small>${esc(sr123t('linked'))}</small><b>UR-${String(r.orderId).padStart(6,'0')}</b>${r.linkedOrder?`<span>${esc(sr123t(r.linkedOrder.status==='new'?'newOrder':r.linkedOrder.status))}</span>`:''}</div><div class="sr123-tools">${button('acOrder',t('orderView'))}${button('orderCargo',t('cargo'),'secondary')}</div></section>`:''}
  ${r.reason?`<p class="sr123-reason"><b>${esc(t('reason'))}</b> ${esc(r.reason)}</p>`:''}
  ${open?`<div class="sr123-primary-actions">${r.status==='new'?button('searching',t('startSearch')):''}${button('offer',t(o?'editOffer':'sendOffer'),r.status==='new'?'secondary':'')}${button('acReject',t('reject'),'secondary')}</div>`:''}
- <div class="sr123-delete-row">${r.adminArchivedAt?button('acRestore',sr123t('restore'),'secondary'):r.status!=='uploading'?button('acDelete',r.orderId?sr123t('archive'):sr123t('delete'),r.orderId?'secondary':'danger'):`<p class="sr110-note">${esc(sr123t('cannotUpload'))}</p>`}</div>
+ <div class="sr123-delete-row">${
+ r.adminArchivedAt?button('acRestore',sr123t('restore'),'secondary'):
+ r.status==='uploading'?`<p class="sr110-note">${esc(sr123t('cannotUpload'))}</p>`:
+ r.orderId&&!['completed','cancelled'].includes(String(r.linkedOrder?.status||''))?`<p class="sr110-note sr125-order-lock">${esc(sr123t('activeOrderKeep'))}</p>`:
+ `${r.orderId?`<p class="sr110-note">${esc(sr123t('terminalDeleteNote'))}</p>`:''}${button('acDelete',sr123t('delete'),'danger')}`
+}</div>
  ${history.length?`<details class="sr123-history"><summary>${icon('history')}<span>${esc(t('history'))}</span><b>${history.length}</b>${icon('chevron-down')}</summary><ol>${history.map(x=>`<li><b>${esc(t(x.event))}</b><span>${esc(date(x.created_at))}</span></li>`).join('')}</ol></details>`:''}`,
  state.adminCDetailBack||(()=>sr123List()));
 }
@@ -21508,15 +21546,15 @@ async function sr123Delete(id){
  state.adminCDelete={preview:d.preview,back};sr123DrawDelete();
 }
 function sr123DrawDelete(){
- sr123Select();state.view='adminCDelete';const {preview:p,back}=state.adminCDelete,archived=p.mode==='archive';
- view(sr123t(archived?'archiveTitle':'deleteTitle'),`<section class="sr110-card sr123-confirm"><div class="sr123-confirm-icon ${archived?'archive':''}">${icon(archived?'archive':'trash-2')}</div><h3>${esc(p.number)}</h3><b>${esc(p.title)}</b><p>${esc(sr123t(archived?'archiveNote':'deleteNote'))}</p>${sr123Fields([[sr123t('photos'),p.photos],...(p.orderId?[[sr123t('linked'),'UR-'+String(p.orderId).padStart(6,'0')]]:[])])}<p class="sr110-note">${esc(sr123t('untouched'))}</p></section><div class="sr123-confirm-buttons">${button('acConfirmDelete',sr123t(archived?'archive':'deleteConfirmed'),archived?'':'danger')}${button('acCancelDelete',sr123t(archived?'back':'cancel'),'secondary')}</div>`,back);
+ sr123Select();state.view='adminCDelete';const {preview:p,back}=state.adminCDelete;
+ view(sr123t('deleteTitle'),`<section class="sr110-card sr123-confirm"><div class="sr123-confirm-icon">${icon('trash-2')}</div><h3>${esc(p.number)}</h3><b>${esc(p.title)}</b><p>${esc(sr123t('deleteNote'))}</p>${sr123Fields([[sr123t('photos'),p.photos],...(p.orderId?[[sr123t('linked'),'UR-'+String(p.orderId).padStart(6,'0')]]:[])])}${p.orderId?`<p class="sr110-note">${esc(sr123t('terminalDeleteNote'))}</p>`:''}<p class="sr110-note">${esc(sr123t('untouched'))}</p></section><div class="sr123-confirm-buttons">${button('acConfirmDelete',sr123t('deleteConfirmed'),'danger')}${button('acCancelDelete',sr123t('cancel'),'secondary')}</div>`,back);
 }
 async function sr123ConfirmDelete(){
  const pending=state.adminCDelete;if(!pending)return;const p=pending.preview;const screen=state.screenVersion;
  const d=await api('/admin/search/'+p.id+'/delete',{identity:p.identity,token:p.token,confirm:p.confirm});
  if(d.deleted){const cached=state.adminCList?.rows?.find(r=>r.id===p.id)||(state.request?.id===p.id?state.request:null);if(cached)sr118PurgeRequestMedia(cached);}
  if(root.hidden||screen!==state.screenVersion||state.workspace!=='adminC')return;
- state.adminCDelete=null;state.adminCNotice=sr123t(d.archived?'archivedDone':d.cleanupPending?'pending':'deleted');await sr123List(false);
+ state.adminCDelete=null;state.adminCNotice=sr123t(d.cleanupPending?'pending':'deleted');await sr123List(false);
 }
 async function sr123Restore(id){
  const screen=state.screenVersion;await api('/admin/search/'+id+'/restore',{});
@@ -21532,6 +21570,15 @@ async function sr123ConfirmReject(){
  await api('/admin/search/'+id+'/action',{action:'rejected',reason});if(root.hidden||screen!==state.screenVersion)return;
  await sr123Detail(id,state.adminCDetailBack);
 }
+async function sr124AdminOrderFromList(id){
+ const content=$("adminContent"),scroll=content?.scrollTop||0,filter=adminOrdersFilterV89;
+ const back=async()=>{
+   close();state.workspace='';state.admin=false;
+   page('adminPanel');await adminTab('orders');adminRenderOrdersV89(filter);
+   requestAnimationFrame(()=>{const c=$("adminContent");if(c)c.scrollTop=scroll;});
+ };
+ await sr123Order(id,back);
+}
 async function sr123Order(id,back=null){
  const returnTo=back||sr123CaptureOrigin();sr123Select();state.view='adminCLoading';view(sr123t('linked'),`<div class="sr110-loading">${esc(t('loading'))}</div>`,returnTo);const screen=state.screenVersion;
  const d=await api('/admin/orders/'+id+'/detail');if(root.hidden||screen!==state.screenVersion||state.workspace!=='adminC')return;
@@ -21543,7 +21590,8 @@ function sr123DrawOrder(){
  const items=o.items||[],first=items[0]||{},picture=first.privateSearchImageId?`<img data-private-order-media="${esc(first.privateSearchImageId)}" alt="">`:first.imageUrl?`<img src="${esc(first.imageUrl)}" alt="">`:icon('package');
  view(o.orderNumber,`<div class="sr123-detail-state"><span class="sr123-badge status-${esc(o.status)}">${esc(sr123t(o.status==='new'?'newOrder':o.status))}</span><span>${esc(date(o.createdAt))}</span></div>
  <section class="sr110-card"><div class="sr123-order-item"><span class="sr123-order-photo">${picture}</span><div><h3>${esc(first.name||o.orderNumber)}</h3><p>${esc([first.size,first.color].filter(Boolean).join(' · '))}</p><span>${esc(t('quantity'))}: ${items.length}</span></div><b>${sum(o.total)}</b></div></section>
- <section class="sr110-card">${row(t('name'),o.customerName)}${row(t('phone'),o.phone)}${row(t('city'),o.city)}${o.comment?`<p class="sr123-comment">${esc(o.comment)}</p>`:''}${o.sourceRequestId?row(t('number'),'C-'+String(o.sourceRequestId).padStart(6,'0')):''}</section>
+ <section class="sr110-card">${row(t('name'),o.customerName)}${row(t('phone'),o.phone)}${row(t('city'),o.city)}${o.comment?`<p class="sr123-comment">${esc(o.comment)}</p>`:''}${o.sourceRequestId?row(t('number'),'C-'+String(o.sourceRequestId).padStart(6,'0')):''}
+ <div class="sr124-telegram-card"><div><small>${esc(sr123t('telegram'))}</small><b>${esc(o.telegramUsername?'@'+o.telegramUsername:(o.telegramName||o.customerName||'—'))}</b><span>ID ${esc(o.telegramId||'—')}</span></div><div class="sr124-telegram-actions"><button type="button" data-sr-action="acTelegram">${icon('send')}<span>${esc(sr123t('openTelegram'))}</span></button><button type="button" data-sr-action="acCopyTelegram">${icon('copy')}<span>${esc(sr123t('copyId'))}</span></button></div></div></section>
  ${c?`<section class="sr110-card">${row(t('cargoChoose'),locale()==='uz'?c.nameUz:c.nameRu)}${row(t('rate'),'$'+(c.rateCents/100).toFixed(2))}${button('acOrderCargo',t('cargo'),'secondary')}</section>`:''}
  <div class="sr123-primary-actions">${(statuses[o.status]||[]).map(([status,label])=>`<button type="button" data-sr-action="acOrderStatus" data-status="${status}" class="sr110-btn ${status==='cancelled'?'danger':''}">${esc(sr123t(label))}</button>`).join('')}</div>`,state.adminCOrderBack||close);
  hydratePrivateOrderMediaV120(root);
@@ -21570,6 +21618,8 @@ function sr123HandleAction(a,b){
  if(a==='acOrder'){run(()=>sr123Order(state.request.orderId));return true;}
  if(a==='acOrderStatus'){run(()=>sr123OrderStatus(b.dataset.status));return true;}
  if(a==='acOrderCargo'){run(()=>orderCargo(state.adminCOrder.id,true,'request'));return true;}
+ if(a==='acTelegram'){const o=state.adminCOrder;if(o)openTelegramIdentityV124(o.telegramUsername,o.telegramId);return true;}
+ if(a==='acCopyTelegram'){const o=state.adminCOrder;if(o)copyTelegramIdV124(o.telegramId).then(ok=>{state.adminCNotice=ok?sr123t('idCopied'):'';});return true;}
  return false;
 }
 root.addEventListener('keydown',e=>{
@@ -22107,4 +22157,26 @@ html[data-uzr-theme="light"] #sr110Panel[data-workspace="adminC"] .sr123-badge:i
 @media(max-width:340px){#sr110Panel[data-workspace="adminC"] .sr123-list-card{grid-template-columns:56px minmax(0,1fr) 28px;gap:8px;padding:9px;}#sr110Panel[data-workspace="adminC"] .sr123-list-photo{width:56px;}#sr110Panel[data-workspace="adminC"] .sr123-card-heading{flex-wrap:wrap;}}
 
 </style>
+
+<style id="uzr-review14-admin-ur-telegram">
+.admin-v124-telegram{display:block!important;margin-top:3px!important;color:#5f8da6!important;font-size:10px!important}
+#sr110Panel .sr124-telegram-card{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-top:12px;padding-top:12px;border-top:1px solid var(--sr-line)}
+#sr110Panel .sr124-telegram-card>div:first-child{min-width:0;display:flex;flex-direction:column;gap:3px}
+#sr110Panel .sr124-telegram-card small{color:var(--sr-muted);font-size:10px}
+#sr110Panel .sr124-telegram-card b{font-size:13px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+#sr110Panel .sr124-telegram-card span{font-size:10px;color:var(--sr-muted)}
+#sr110Panel .sr124-telegram-actions{display:flex;gap:7px;flex-wrap:wrap;justify-content:flex-end}
+#sr110Panel .sr124-telegram-actions button{min-height:36px;border-radius:12px;border:1px solid var(--sr-line);background:var(--sr-surface);color:var(--sr-accent);padding:0 10px;display:flex;align-items:center;gap:6px;font-weight:700;font-size:11px}
+#sr110Panel .sr124-telegram-actions svg{width:15px;height:15px}
+html[data-uzr-theme="light"] #sr110Panel .sr124-telegram-actions button{background:#fff;border-color:#cfe0ea;color:#168fdc}
+@media(max-width:360px){#sr110Panel .sr124-telegram-card{align-items:flex-start;flex-direction:column}.sr124-telegram-actions{width:100%;justify-content:flex-start!important}}
+</style>
+
+
+<style id="uzr-review15-terminal-c-delete">
+#sr110Panel[data-workspace="adminC"] .sr123-icon-lock{width:32px;min-height:44px;display:grid;place-items:center;color:var(--sr-muted);opacity:.72}
+#sr110Panel[data-workspace="adminC"] .sr123-icon-lock svg{width:17px;height:17px}
+#sr110Panel[data-workspace="adminC"] .sr125-order-lock{padding:10px 12px;border:1px solid rgba(79,141,173,.28);border-radius:12px;background:rgba(31,91,119,.10)}
+</style>
+
 </body></html>
