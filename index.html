@@ -1,3 +1,4 @@
+<!-- REVIEW11: shared v1 checkout, intent-driven links, official-only cleanup -->
 <!-- REVIEW9: separate resale and official placements; based on exact REVIEW8 -->
 <!DOCTYPE html>
 <!-- UZBEK RE'SALE 1.1.0 PROD MAINTENANCE TEST — production API; ordinary users remain blocked while maintenance is ON. -->
@@ -15590,33 +15591,19 @@ html[data-uzr-theme="light"] #adminPanel .uzr-pin-placement-v119 p{color:#667b89
 </div>
 <div class="overlay" id="checkoutView"><div class="inner checkout-premium-inner checkout-v41-inner">
 <div class="checkout-v41-topbar checkout-v43-topbar">
-<button class="back checkout-premium-back uzr-back-v69" id="checkoutBack" type="button" aria-label="Назад"><i data-lucide="chevron-left"></i></button>
+<button class="back checkout-premium-back uzr-back-v69" id="checkoutBack" type="button" aria-label="Назад"><i data-lucide="chevron-left"></i></button><div class="sr121-heading" data-no-i18n><span>UZBEK RE’SALE</span><h1 data-sr121-top-title>Оформление заказа</h1></div>
 </div>
 <div id="orderForm">
-<div class="checkout-heading"><span>UZBEK RE'SALE</span><h1>Оформление заказа</h1><p>Проверьте заказ и оставьте данные для подтверждения.</p></div>
+
 
 <div class="checkout-v41-summary" id="checkoutSummaryV41"></div>
 
 <div class="checkout-v41-section-title">Контактные данные</div>
-<div class="checkout-panel">
-<div class="field">
-<label for="buyerName">Имя *</label>
-<input id="buyerName" autocomplete="name" maxlength="60" placeholder="Ваше имя"/>
-<div class="checkout-field-error" id="buyerNameErrorV41"></div>
-</div>
-<div class="field">
-<label for="buyerPhone">Телефон *</label>
-<div class="checkout-phone-v41">
-<span class="checkout-phone-prefix-v41">+998</span>
-<input id="buyerPhone" type="tel" inputmode="numeric" pattern="[0-9]*" maxlength="9" autocomplete="tel-national" placeholder="901234567"/>
-</div>
-<div class="checkout-field-hint">Введите 9 цифр после +998</div>
-<div class="checkout-field-error" id="buyerPhoneErrorV41"></div>
-</div>
-<div class="field">
-<label for="buyerCity">Город *</label>
-<div class="checkout-select-wrap-v41">
-<select id="buyerCity" autocomplete="shipping address-level2">
+<div class="checkout-panel sr121-contact-panel">
+<div class="sr121-contact-grid">
+<div class="field"><label for="buyerName">Имя</label><input id="buyerName" autocomplete="name" maxlength="60" placeholder="Ваше имя"><div class="checkout-field-error" id="buyerNameErrorV41"></div></div>
+<div class="field"><label for="buyerPhone">Телефон</label><div class="checkout-phone-v41"><span class="checkout-phone-prefix-v41">+998</span><input id="buyerPhone" type="tel" inputmode="numeric" autocomplete="tel-national" maxlength="9" pattern="[0-9]*" placeholder="901234567"></div><div class="checkout-field-error" id="buyerPhoneErrorV41"></div></div>
+<div class="field"><label for="buyerCity">Город</label><div class="checkout-select-wrap-v41"><select id="buyerCity" autocomplete="shipping address-level2">
 <option value="">Выберите город</option>
 <option>Ташкент</option>
 <option>Самарканд</option>
@@ -15636,26 +15623,13 @@ html[data-uzr-theme="light"] #adminPanel .uzr-pin-placement-v119 p{color:#667b89
 <option>Чирчик</option>
 <option>Ангрен</option>
 <option>Бекабад</option>
-</select>
-<i data-lucide="chevron-down"></i>
+</select><i data-lucide="chevron-down"></i></div><div class="checkout-field-error" id="buyerCityErrorV41"></div></div>
 </div>
-<div class="checkout-field-error" id="buyerCityErrorV41"></div>
+<details class="sr121-comment"><summary><span data-sr121-comment-label data-no-i18n>Добавить комментарий</span></summary><textarea id="buyerComment" maxlength="300" rows="3" placeholder="Например: удобное время для связи"></textarea><div class="checkout-comment-meta-v41"><span id="buyerCommentCountV41">0</span>/300</div></details>
+<label class="checkout-save-v41"><input id="checkoutSaveContactV41" type="checkbox" checked><span class="checkout-save-box-v41"><i data-lucide="check"></i></span><span><b>Запомнить мои данные</b><small>Сохраняются только на этом устройстве.</small></span></label>
 </div>
-<div class="field">
-<label for="buyerComment">Комментарий <span>необязательно</span></label>
-<textarea id="buyerComment" maxlength="300" rows="3" placeholder="Например: удобное время для связи"></textarea>
-<div class="checkout-comment-meta-v41"><span id="buyerCommentCountV41">0</span>/300</div>
-</div>
-<label class="checkout-save-v41">
-<input id="checkoutSaveContactV41" type="checkbox" checked/>
-<span class="checkout-save-box-v41"><i data-lucide="check"></i></span>
-<span><b>Запомнить мои данные</b><small>Имя, телефон и город сохранятся на этом устройстве.</small></span>
-</label>
-</div>
-
-<div class="checkout-info"><span class="checkout-info-icon">i</span><div><b>Подтверждение заказа</b><p><span data-no-i18n data-sr-copy="cargoCheckout">После оформления Uzbek Re'Sale подтвердит наличие и условия. Для товара «Из Китая» действует 50% предоплата. Карго выбирается ниже, оплачивается отдельно и рассчитывается по фактическому весу. Выбранный тариф сохраняется в заказе.</span></p></div></div>
-<div class="checkout-info"><span class="checkout-info-icon"><i data-lucide="file-signature"></i></span><div><b>Условия официальной покупки</b><p>Перед оплатой ознакомьтесь с Публичной офертой в разделе «Документы и безопасность». Обязательные права потребителя сохраняются.</p></div></div>
 <section class="sr110-inline" id="sr110CargoCheckout" data-no-i18n hidden></section>
+<details class="sr121-terms"><summary><span data-sr121-conditions-label data-no-i18n>Условия покупки</span></summary><p data-sr121-terms-copy data-no-i18n></p><p><button type="button" data-sr121-docs data-sr-label="docs">Документы</button></p></details>
 <div class="checkout-form-error-v41" id="checkoutFormErrorV41" hidden></div>
 <button class="btn black checkout-confirm-premium" id="confirmBtn">Подтвердить заказ</button>
 <div class="checkout-v41-secure"><i data-lucide="shield-check"></i><span>Цена и состав заказа будут повторно проверены при отправке.</span></div>
@@ -16704,6 +16678,7 @@ function checkoutClearErrorsV41(){
 
 function checkout(){
   if(!cart.length)return;
+  window.UzrSharedCheckout121?.prepareRegular();
   window.UzrSearch110?.mountCheckout();
   $("orderForm").style.display="block";
   $("success").style.display="none";
@@ -16893,6 +16868,7 @@ async function verifyCreatedOrderV43(orderNumber){
 }
 
 $("confirmBtn").onclick=async()=>{
+ if(window.UzrSharedCheckout121?.isSearch())return window.UzrSharedCheckout121.submitSearch();
 
  checkoutClearErrorsV41();
 
@@ -17184,20 +17160,27 @@ function orderItemImageV40(i){
   const p=orderItemProductV40(i);
   return i.imageUrl||i.image_url||(p&&p.image)||"";
 }
+document.addEventListener('error',e=>{
+ const img=e.target;if(!(img instanceof HTMLImageElement))return;
+ const wrap=img.closest('#orders .order-card-photo-v40,#orderDetailView .order-detail-item-photo-v40,#adminPanel .admin-v106-order-item-link');if(!wrap)return;
+ img.hidden=true;if(!wrap.querySelector('[data-order-missing-v121]')){const placeholder=document.createElement('span');placeholder.dataset.orderMissingV121='';placeholder.className='admin-v106-order-item-placeholder';placeholder.innerHTML='<i data-lucide="package"></i>';img.after(placeholder);window.lucide?.createIcons();}
+},true);
+document.addEventListener('load',e=>{const img=e.target;if(img instanceof HTMLImageElement&&img.naturalWidth&&img.closest('#orders,#orderDetailView,#adminPanel')){img.parentElement?.querySelector('[data-order-missing-v121]')?.remove();}},true);
 const uzrPrivateOrderMediaCacheV120=new Map();
+document.addEventListener('visibilitychange',()=>{if(document.hidden){for(const entry of uzrPrivateOrderMediaCacheV120.values())URL.revokeObjectURL(entry.url);uzrPrivateOrderMediaCacheV120.clear();document.querySelectorAll('[data-private-order-media]').forEach(x=>{delete x.dataset.privateLoaded;});}else hydratePrivateOrderMediaV120(document);});
 async function uzrPrivateOrderMediaUrlV120(id){
   const mediaId=String(id||'');if(!mediaId)return '';
   const userId=String(currentTelegramIdV108()||'');const key=userId+'|'+mediaId;
-  if(uzrPrivateOrderMediaCacheV120.has(key))return uzrPrivateOrderMediaCacheV120.get(key);
-  const r=await fetch(window.uzrApiBaseV110()+'/search/media/'+encodeURIComponent(mediaId),{cache:'no-store'});
+  const cached=uzrPrivateOrderMediaCacheV120.get(key);if(cached&&Date.now()-cached.at<60000)return cached.url;if(cached){URL.revokeObjectURL(cached.url);uzrPrivateOrderMediaCacheV120.delete(key);}
+  const r=await fetch(window.uzrApiBaseV110()+'/v110/images/'+encodeURIComponent(mediaId),{cache:'no-store'});
   if(!r.ok||!String(r.headers.get('Content-Type')||'').startsWith('image/'))throw Error('PRIVATE_ORDER_IMAGE_FAILED');
-  const url=URL.createObjectURL(await r.blob());uzrPrivateOrderMediaCacheV120.set(key,url);
-  while(uzrPrivateOrderMediaCacheV120.size>16){const k=uzrPrivateOrderMediaCacheV120.keys().next().value;URL.revokeObjectURL(uzrPrivateOrderMediaCacheV120.get(k));uzrPrivateOrderMediaCacheV120.delete(k)}
+  const url=URL.createObjectURL(await r.blob());uzrPrivateOrderMediaCacheV120.set(key,{url,at:Date.now()});
+  while(uzrPrivateOrderMediaCacheV120.size>16){const k=uzrPrivateOrderMediaCacheV120.keys().next().value;URL.revokeObjectURL(uzrPrivateOrderMediaCacheV120.get(k).url);uzrPrivateOrderMediaCacheV120.delete(k)}
   return url;
 }
 async function hydratePrivateOrderMediaV120(scope=document){
   const nodes=[...scope.querySelectorAll('img[data-private-order-media]:not([data-private-loaded])')];
-  await Promise.all(nodes.map(async img=>{img.dataset.privateLoaded='1';try{img.src=await uzrPrivateOrderMediaUrlV120(img.dataset.privateOrderMedia)}catch{img.hidden=true}}));
+  await Promise.all(nodes.map(async img=>{img.dataset.privateLoaded='1';try{img.src=await uzrPrivateOrderMediaUrlV120(img.dataset.privateOrderMedia);img.hidden=false;}catch{img.hidden=true;delete img.dataset.privateLoaded;}}));
 }
 function orderFilterMatchV40(o,filter){
   const st=String(o.status||"new");
@@ -19202,6 +19185,10 @@ function adminOfficialFilteredV89(){
 function adminRenderOfficialListV89(){
   const host=$("officialList");
   if(!host)return;
+  let tools=document.getElementById('officialCleanupToolsV121');
+  if(!tools){tools=document.createElement('div');tools.id='officialCleanupToolsV121';tools.className='oc121-launch';tools.setAttribute('data-no-i18n','');host.before(tools);}
+  const uz=localStorage.getItem('uzr_language_pref_v1')==='uz';
+  tools.innerHTML='<span>'+ (uz?'Rasmiy katalog':'Официальный каталог')+'</span><button type="button" onclick="UzrOfficialCleanup121.open()">'+(uz?'Tanlash / tozalash':'Выбрать / очистить')+'</button>';
 
   const rows=adminOfficialFilteredV89();
   host.innerHTML=rows.map(x=>{
@@ -19243,7 +19230,7 @@ function adminRenderOfficialListV89(){
 
 async function loadOfficialList(){
   const d=await adminFetch("/admin/listings?owner=official");
-  adminOfficialCacheV89=Array.isArray(d.listings)?d.listings:[];
+  adminOfficialCacheV89=Array.isArray(d.listings)?d.listings.filter(x=>x.status!=='deleted'&&!x.purged_at):[];
   adminRenderOfficialListV89();
 }
 
@@ -20921,7 +20908,7 @@ applyLegalChromeV102=function(){__applyLegalOld110();const uz=currentLegalLocale
 document.addEventListener("uzr:languagechange",applyLegalChromeV102);
 applyLegalChromeV102();
 </script>
-<span class="sr110-stage" data-no-i18n>TEST · 1.1 · R10</span>
+<span class="sr110-stage" data-no-i18n>TEST · 1.1 · R11</span>
 <style id="uzr-audit3-admin-photo-viewer">
 #sr110Panel .sr113-photo-openable{cursor:zoom-in!important;position:relative!important}
 #sr110Panel .sr113-photo-openable .sr113-photo-zoom{position:absolute!important;right:6px!important;bottom:6px!important;width:25px!important;height:25px!important;border-radius:9px!important;display:flex!important;align-items:center!important;justify-content:center!important;background:rgba(4,20,30,.76)!important;color:#fff!important;font-size:15px!important;pointer-events:none!important}
@@ -21153,9 +21140,9 @@ async function detail(id,linkQuery=''){
 }
 function drawDetail(){
  const r=state.request;if(!r)return close();state.view='detail';
- const admin=state.admin,offer=r.offer,closed=['deleted','cancelled','rejected','expired'].includes(r.status);
+ const admin=state.admin,owner=sr121IsOwner(),offer=r.offer,closed=['deleted','cancelled','rejected','expired'].includes(r.status);
  const refs=r.images.filter(x=>x.kind==='reference'),offs=r.images.filter(x=>x.kind==='offer');
- view(r.number,`<div class="sr110-summary"><span class="sr110-state">${esc(t(r.status))}</span><span class="sr110-note">${esc(date(r.createdAt))}</span></div><div class="sr110-card"><h3>${esc(r.title||r.number)}</h3>${refs.length?photoStrip(refs,admin?'reference':''):`<p class="sr110-note">${esc(t(r.photosDeletedAt?'photoDeleted':'noPhotos'))}</p>`}${r.link?`<a class="sr110-link" href="${esc(r.link)}" target="_blank" rel="noopener noreferrer">${esc(t('link'))} ↗</a>`:''}${row(t('size'),r.size)}${row(t('color'),r.color)}${row(t('quantity'),r.quantity)}${r.budget?row(t('budget'),sum(r.budget)):''}${r.comment?`<p class="sr110-note">${esc(r.comment)}</p>`:''}${admin?row(t('customer'),r.username?'@'+r.username:r.name+' · '+t('noUsername')):''}${admin&&r.username?`<button type="button" class="sr110-btn secondary" data-sr-action="message">${esc(t('messageCustomer'))}</button>`:''}</div>${offer?`<div class="sr110-card"><h3>${esc(t('offer'))}</h3>${photoStrip(offs,admin?'offer':'')}<h3>${esc(offer.title)}</h3>${row(t('price'),sum(offer.priceUzs))}${offer.sizes.length?row(t('size'),offer.sizes.join(', ')):''}${offer.colors.length?row(t('color'),offer.colors.join(', ')):''}${offer.estimatedGrams?row(t('weight'),offer.estimatedGrams/1000+' '+t('kg')):''}${offer.comment?`<p class="sr110-note">${esc(offer.comment)}</p>`:''}<p class="sr110-note">${esc(t('privateOffer'))}</p>${!admin&&r.status==='offered'?button('checkout',t('buy')):''}</div>`:!closed?`<p class="sr110-note">${esc(t('waiting'))}</p>`:''}${r.reason?`<div class="sr110-card">${row(t('reason'),r.reason)}</div>`:''}${r.orderId?`<div class="sr110-actions">${button('order',t('orderView'))}${button('orderCargo',t('cargo'),'secondary')}</div>`:`<div class="sr110-actions">${admin&&!closed?`${r.status==='new'?button('searching',t('startSearch')):''}${button('offer',t(offer?'editOffer':'sendOffer'),'secondary')}${button('rejected',t('reject'),'secondary')}`:''}${!admin&&!closed?button('cancelled',t('cancel'),'secondary'):''}${r.status!=='deleted'?button('deleted',t('remove'),'danger'):''}</div>`}${r.history.length?`<h3 style="margin-top:24px">${esc(t('history'))}</h3><ol class="sr110-history">${r.history.map(x=>`<li>${esc(t(x.event))} · ${esc(date(x.created_at))}</li>`).join('')}</ol>`:''}`,state.requestBack||(()=>listRequests(state.admin,false,state.listFilter||'all')));
+ view(r.number,`<div class="sr110-summary"><span class="sr110-state">${esc(t(r.status))}</span><span class="sr110-note">${esc(date(r.createdAt))}</span></div><div class="sr110-card"><h3>${esc(r.title||r.number)}</h3>${refs.length?photoStrip(refs,'reference'):`<p class="sr110-note">${esc(t(r.photosDeletedAt?'photoDeleted':'noPhotos'))}</p>`}${r.link?`<a class="sr110-link" href="${esc(r.link)}" target="_blank" rel="noopener noreferrer">${esc(t('link'))} ↗</a>`:''}${row(t('size'),r.size)}${row(t('color'),r.color)}${row(t('quantity'),r.quantity)}${r.budget?row(t('budget'),sum(r.budget)):''}${r.comment?`<p class="sr110-note">${esc(r.comment)}</p>`:''}${admin?row(t('customer'),r.username?'@'+r.username:r.name+' · '+t('noUsername')):''}${admin&&r.username?`<button type="button" class="sr110-btn secondary" data-sr-action="message">${esc(t('messageCustomer'))}</button>`:''}</div>${offer?`<div class="sr110-card"><h3>${esc(t('offer'))}</h3>${photoStrip(offs,'offer')}<h3>${esc(offer.title)}</h3>${row(t('price'),sum(offer.priceUzs))}${offer.sizes.length?row(t('size'),offer.sizes.join(', ')):''}${offer.colors.length?row(t('color'),offer.colors.join(', ')):''}${offer.estimatedGrams?row(t('weight'),offer.estimatedGrams/1000+' '+t('kg')):''}${offer.comment?`<p class="sr110-note">${esc(offer.comment)}</p>`:''}<p class="sr110-note">${esc(t('privateOffer'))}</p>${!admin&&owner&&r.status==='offered'?button('checkout',t('buy')):''}</div>`:!closed?`<p class="sr110-note">${esc(t('waiting'))}</p>`:''}${r.reason?`<div class="sr110-card">${row(t('reason'),r.reason)}</div>`:''}${r.orderId?`<div class="sr110-actions">${button('order',t('orderView'))}${button('orderCargo',t('cargo'),'secondary')}</div>`:`<div class="sr110-actions">${admin&&!closed?`${r.status==='new'?button('searching',t('startSearch')):''}${button('offer',t(offer?'editOffer':'sendOffer'),'secondary')}${button('rejected',t('reject'),'secondary')}`:''}${!admin&&owner&&!closed?button('cancelled',t('cancel'),'secondary'):''}${(admin||owner)&&r.status!=='deleted'?button('deleted',t('remove'),'danger'):''}</div>`}${r.history.length?`<h3 style="margin-top:24px">${esc(t('history'))}</h3><ol class="sr110-history">${r.history.map(x=>`<li>${esc(t(x.event))} · ${esc(date(x.created_at))}</li>`).join('')}</ol>`:''}`,state.requestBack||(()=>listRequests(state.admin,false,state.listFilter||'all')));
 }
 function sr113ViewerItems(kind){
  return (state.request?.images||[]).filter(x=>x.kind===kind);
@@ -21167,7 +21154,6 @@ function sr113LoadedSrc(id){
 }
 function sr113CloseViewer(){root.querySelector('[data-sr113-viewer]')?.remove();state.mediaViewer=null;}
 function sr113OpenViewer(kind,index=0){
- if(!state.admin)return;
  const items=sr113ViewerItems(kind);if(!items.length)return;
  state.mediaViewer={kind,index:Math.max(0,Math.min(Number(index)||0,items.length-1))};
  let box=root.querySelector('[data-sr113-viewer]');
@@ -21208,27 +21194,8 @@ function cargoChoices(config,name='cargoCode',selected=''){
  return active.map(o=>`<label class="sr110-cargo"><input type="radio" name="${name}" value="${esc(o.code)}" ${selected===o.code?'checked':''}><div><b>${esc(locale()==='uz'?o.nameUz:o.nameRu)}${o.recommended?`<em>${esc(t('recommended'))}</em>`:''}</b><small>${esc(`${o.minDays}–${o.maxDays} ${t('days')}`)}</small></div><strong>$${(o.rateCents/100).toFixed(2)}/${esc(t('kg'))}</strong></label>`).join('')+`<p class="sr110-note">${esc(t('cargoHint'))}</p>${!active.length?`<div class="sr110-error" role="status">${esc(t('noCargo'))}</div>`:''}`;
 }
 function optionsHTML(a,label){return `<option value="">${esc(t('choose'))}</option>`+a.map(v=>`<option value="${esc(v)}">${esc(v)}</option>`).join('')}
-async function privateCheckout(){
- const r=state.request;if(!r?.offer||r.orderId)return;
- const previous=sr118CaptureOrigin();state.view='loading';view(t('checkout'),`<div class="sr110-loading">${esc(t('loading'))}</div>`,previous);
- const screen=state.screenVersion,config=await api('/cargo-options');if(root.hidden||screen!==state.screenVersion)return;
- state.cargo=config;state.view='checkout';const o=r.offer,user=currentTelegramUserV108();
- let contact={};try{contact=JSON.parse(localStorage.getItem(UZR_CHECKOUT_CONTACT_STORAGE)||'{}')||{};}catch(_){}
- const name=contact.name||[user?.first_name,user?.last_name].filter(Boolean).join(' '),storedDigits=String(contact.phoneDigits||'').replace(/\D/g,''),phone=storedDigits?'+998'+storedDigits.slice(-9):'+998';
- const cities=[...document.querySelectorAll('#sellCity option')].map(o=>({value:o.value,label:o.textContent})).filter(o=>o.value&&!/Выберите|Tanlang/.test(o.value));
- const uz=locale()==='uz';
- view(t('checkout'),`<div class="checkout-heading"><span>UZBEK RE'SALE</span><h1>${esc(t('checkout'))}</h1><p>${esc(t('checkoutSub'))}</p></div><form class="sr118-order-form" id="sr118CheckoutForm"><div class="checkout-v41-summary"><div class="checkout-v41-summary-head"><div><span>${esc(r.number)}</span><b>${esc(o.title)}</b></div></div><div class="sr118-checkout-product">${photoStrip(r.images.filter(x=>x.kind==='offer').slice(0,1))}<div>${row(t('quantity'),r.quantity)}${row(t('total'),sum(o.priceUzs*r.quantity))}</div></div><div class="sr110-two">${o.sizes.length?`<label class="sr110-field field"><span>${esc(t('size'))}</span><select name="size" required>${optionsHTML(o.sizes)}</select></label>`:''}${o.colors.length?`<label class="sr110-field field"><span>${esc(t('color'))}</span><select name="color" required>${optionsHTML(o.colors)}</select></label>`:''}</div></div><div class="checkout-v41-section-title">${esc(t('cargoChoose'))}</div><div class="checkout-panel">${cargoChoices(config)}</div><div class="checkout-v41-section-title">${esc(t('contactDetails'))}</div><div class="checkout-panel">${input('name',t('name'),name,'autocomplete="name" maxlength="100" minlength="2" required')}${input('phone',t('phone'),phone,'type="tel" inputmode="tel" autocomplete="tel" maxlength="25" required')}<label class="sr110-field field"><span>${esc(t('city'))}</span><select name="city" required><option value="">${esc(t('choose'))}</option>${cities.map(x=>`<option value="${esc(x.value)}" ${contact.city===x.value?'selected':''}>${esc(x.label)}</option>`).join('')}</select></label><label class="sr110-field field"><span>${esc(t('comment'))} · ${esc(t('optional'))}</span><textarea name="comment" rows="3" maxlength="300"></textarea></label></div><div class="checkout-info"><span class="checkout-info-icon">${icon('info')}</span><div><b>${esc(t('confirmation'))}</b><p>${esc(t('prepay'))}</p></div></div>${consent(true)}<button type="button" class="btn checkout-confirm-premium" data-sr-action="convert" ${config.options.some(x=>x.enabled)?'':'disabled'}>${esc(t('confirmOrder'))}</button><div class="checkout-v41-secure">${icon('shield-check')}<span>${esc(t('verifyAtCheckout'))}</span></div></form>`,previous);
-}
-async function convert(){
- if(!sr118ValidateForm())return;
- const b=formData();if(!b.consent)throw Error('CONSENT_REQUIRED');if(!b.cargoCode)throw Error('CARGO_REQUIRED');
- const phone=String(b.phone||'').replace(/[\s()-]/g,'');if(!/^\+998\d{9}$/.test(phone)||String(b.name||'').trim().length<2||!b.city)throw Error('CONTACT_FIELDS_REQUIRED');
- const screen=state.screenVersion,r=state.request;
- const d=await api('/search/'+r.id+'/convert',{...b,phone,offerRevision:r.offerRevision,cargoRevision:state.cargo.revision,consent:consentPayload(),locale:locale()});
- r.orderId=d.orderId;r.status='converted';
- if(root.hidden||screen!==state.screenVersion)return;
- sr118OrderSuccess(d);
-}
+async function privateCheckout(){return sr121PrivateCheckout();}
+async function convert(){return sr121SubmitSearch();}
 function cargoLabel(o){return locale()==='uz'?(o.nameUz||o.nameRu||o.code):(o.nameRu||o.nameUz||o.code)}
 function cargoFieldErrorCode(code){return 'CARGO_FIELDS_REQUIRED_'+String(code||'').toUpperCase()}
 function validateCargoOptionClient(o){
@@ -21271,30 +21238,16 @@ async function orderCargo(id,admin=false,source=''){
    // The original admin/user screen is still beneath this overlay. Closing preserves
    // its filter, selected order and scroll position; no route guessed from stale C state.
    if(sourceAtOpen==='adminOrders'||sourceAtOpen==='userOrder'){close();return;}
-   close();if(admin){page('adminPanel');await adminTab('orders');}else await openMyOrders();
+   close();await openMyOrders();
  };
 
  view(d.orderNumber,`<div class="sr110-card"><h3>${esc(t('cargo'))}</h3>${c?`${row(t('cargoChoose'),locale()==='uz'?c.nameUz:c.nameRu)}${row(t('rate'),'$'+(c.rateCents/100).toFixed(2))}${row(t('actual'),d.actualGrams?d.actualGrams/1000+' '+t('kg'):'—')}${row(t('cargoTotal'),d.totalCents!=null?'$'+(d.totalCents/100).toFixed(2):t('notWeighed'))}<p class="sr110-note">${esc(t('fixedRate'))}</p>`:`<p class="sr110-note">${esc(t('notWeighed'))}</p>`}</div>${c&&admin&&!['completed','cancelled'].includes(d.status)?`<form><div class="sr110-card">${input('actualKg',t('actual'),d.actualGrams?d.actualGrams/1000:'','type="number" min="0.001" max="1000" step="0.001"')}${button('saveWeight',t('calc'))}</div></form>`:''}`,back);
 }
-async function openOrder(id){close();if(state.admin){page('adminPanel');await adminTab('orders');return}await openMyOrders();const o=myOrdersCacheV40.find(x=>Number(x.id)===Number(id));if(o)openOrderDetail(o)}
-async function mountCheckout(){
- const host=document.getElementById('sr110CargoCheckout');if(!host)return;
- const generation=(state.checkoutGeneration||0)+1;state.checkoutGeneration=generation;
- const needs=cart.some(p=>p.ownerType==='official'&&(p.sourceType==='china'||p.type==='Под заказ'));
- state.checkoutCode='';state.checkoutCargo=null;host.hidden=false;
- host.innerHTML=`<div class="sr110-card">${needs?`<h3>${esc(t('cargoChoose'))}</h3><div data-cargo-loading>${esc(t('loading'))}</div>`:''}${consent(true)}</div>`;
- host.querySelector('[data-sr-action="docs"]')?.addEventListener('click',()=>openDocs(true));
- if(!needs)return;
- const loading=host.querySelector('[data-cargo-loading]');
- const current=()=>state.checkoutGeneration===generation&&loading?.isConnected&&host.contains(loading);
- try{const d=await api('/cargo-options');if(!current())return;state.checkoutCargo=d;
- loading.innerHTML=cargoChoices(d,'regularCargoCode')+`<p class="sr110-note">${esc(t('cargoMixed'))}</p>`;
- host.querySelectorAll('[name=regularCargoCode]').forEach(x=>x.addEventListener('change',()=>{if(current())state.checkoutCode=x.value}));
- }catch(e){if(current())loading.innerHTML=`<p class="sr110-error">${esc(D[e.message]?t(e.message):t('configError'))}</p>`}
-}
+async function openOrder(id){return sr121OpenOrder(id);}
+async function mountCheckout(){return sr121MountCheckout();}
 function checkoutPayload(){
  const host=document.getElementById('sr110CargoCheckout');if(!host?.querySelector('[name=consent]')?.checked)throw Error('CONSENT_REQUIRED');
- const needs=cart.some(p=>p.ownerType==='official'&&(p.sourceType==='china'||p.type==='Под заказ'));
+ const needs=sr121NeedsCargo();
  if(needs&&(!state.checkoutCode||!state.checkoutCargo))throw Error('CARGO_REQUIRED');
  return {cargoCode:needs?state.checkoutCode:null,cargoRevision:needs?state.checkoutCargo.revision:null,consent:consentPayload(),locale:locale()};
 }
@@ -21401,7 +21354,7 @@ async function sr111ApiCompatible(){
   if(!state.apiCheck)state.apiCheck=(async()=>{
     const r=await fetch(apiBase()+'/v110/meta',{cache:'no-store',signal:AbortSignal.timeout(15000)});let d;
     try{d=await r.json()}catch{throw Error('API_VERSION_MISMATCH')}
-    if(!r.ok||d?.build!=='1.1-review10')throw Error('API_VERSION_MISMATCH');
+    if(!r.ok||d?.build!=='1.1-review11')throw Error('API_VERSION_MISMATCH');
     return d;
   })().catch(e=>{state.apiCheck=null;if(['AbortError','TimeoutError'].includes(e.name))throw Error('REQUEST_TIMEOUT');throw e;});
   return state.apiCheck;
@@ -21489,7 +21442,7 @@ function sr118CachedBlob(id){
   if(Date.now()-entry.at>60000){sr113MediaBlobCache.delete(key);return null;}
   sr113MediaBlobCache.delete(key);sr113MediaBlobCache.set(key,entry);return entry.blob;
 }
-function sr118PurgeRequestMedia(r){for(const x of r?.images||[])sr113MediaBlobCache.delete(sr118CacheKey(x.id));}
+function sr118PurgeRequestMedia(r){for(const x of r?.images||[]){sr113MediaBlobCache.delete(sr118CacheKey(x.id));const key=String(currentTelegramIdV108())+'|'+x.id;const old=uzrPrivateOrderMediaCacheV120.get(key);if(old){URL.revokeObjectURL(old.url);uzrPrivateOrderMediaCacheV120.delete(key);}}}
 function sr118ValidateForm(){
   const form=root.querySelector('form');
   if(!form)return false;
@@ -21515,13 +21468,129 @@ document.addEventListener('visibilitychange',()=>{
  else if(!root.hidden)hydratePhotos();
 });
 
+// REVIEW11 uses the ONE existing v1 checkout DOM, not a parallel C-checkout template.
+let sr121Checkout=null;
+const sr121Words={
+ conditions:['Условия покупки','Xarid shartlari'],comment:['Добавить комментарий','Izoh qo‘shish'],optional:['необязательно','ixtiyoriy'],
+ intro:['Проверьте товар и контактные данные.','Mahsulot va aloqa ma’lumotlarini tekshiring.'],
+ stockNote:['Заказ подтвердим в Telegram. Онлайн-оплата здесь не списывается.','Buyurtma Telegram orqali tasdiqlanadi. Bu yerda onlayn to‘lov yechilmaydi.'],
+ chinaNote:['Предоплата — 50% товара. Карго отдельно, по фактическому весу.','Mahsulot uchun 50% oldindan to‘lov. Kargo alohida, haqiqiy vazn bo‘yicha.'],
+ legalNote:['Принимаю Соглашение, Политику и Оферту. Мне исполнилось 16 лет.','Kelishuv, Maxfiylik siyosati va Ofertani qabul qilaman. Men 16 yoshga to‘lganman.'],
+ cargoAccept:['Выбранный тариф и отдельная оплата карго согласованы.','Tanlangan tarif va kargoning alohida to‘lovi qabul qilindi.'],
+ readonly:['Просмотр запроса. Управление — только в разделе администрирования.','So‘rovni ko‘rish. Boshqaruv faqat administrator bo‘limida.'],
+ orderMissing:['Заказ недоступен или удалён.','Buyurtma mavjud emas yoki o‘chirilgan.']
+};
+function sr121Text(k){return sr121Words[k]?.[locale()==='uz'?1:0]||k;}
+function sr121NeedsCargo(){return sr121Checkout?.kind==='search'||cart.some(p=>p.ownerType==='official'&&(p.sourceType==='china'||p.type==='Под заказ'));}
+function sr121CheckoutCurrent(ctx){return sr121Checkout===ctx&&document.getElementById('checkoutView')?.classList.contains('open');}
+function sr121BackButton(on){
+ const bb=window.Telegram?.WebApp?.BackButton;if(!bb)return;
+ try{if(on&&!sr121BackButton.active){sr121BackButton.previous=!!bb.isVisible;bb.onClick(sr121CheckoutBack);bb.show();sr121BackButton.active=true;}
+ else if(!on&&sr121BackButton.active){bb.offClick(sr121CheckoutBack);if(!sr121BackButton.previous)bb.hide();sr121BackButton.active=false;}}catch(_){}
+}
+function sr121CheckoutBack(){
+ if(!root.hidden||!document.getElementById('checkoutView')?.classList.contains('open'))return;
+ const ctx=sr121Checkout;if(ctx?.busy||orderSending)return;
+ sr121BackButton(false);document.getElementById('checkoutView').classList.remove('open');sr121Checkout=null;
+ state.checkoutGeneration=(state.checkoutGeneration||0)+1;
+ if(ctx?.kind==='search'&&ctx.back)run(ctx.back);
+}
+function sr121PrepareRegular(){
+ sr121Checkout={kind:'regular',busy:false,done:false};document.getElementById('checkoutView').dataset.mode='regular';
+ sr121ApplyCheckoutChrome();sr121BackButton(true);
+}
+function sr121ApplyCheckoutChrome(){
+ const host=document.getElementById('checkoutView'),uz=locale()==='uz';if(!host)return;
+ const p=host.querySelector('.checkout-heading p');if(p)p.textContent=sr121Text('intro');
+ host.querySelector('[data-sr121-comment-label]')?.replaceChildren(document.createTextNode(sr121Text('comment')));
+ host.querySelector('[data-sr121-conditions-label]')?.replaceChildren(document.createTextNode(sr121Text('conditions')));
+ const title=host.querySelector('[data-sr121-top-title]');if(title)title.textContent=t('checkout');
+ const contact=host.querySelector('.checkout-v41-section-title');if(contact)contact.textContent=t('contactDetails');
+ const name=host.querySelector('label[for=buyerName]');if(name)name.textContent=t('name');
+ const phone=host.querySelector('label[for=buyerPhone]');if(phone)phone.textContent=t('phone');
+ const city=host.querySelector('label[for=buyerCity]');if(city)city.textContent=t('city');
+ const save=host.querySelector('.checkout-save-v41 b');if(save)save.textContent=uz?'Ma’lumotlarimni eslab qolish':'Запомнить мои данные';
+ const note=host.querySelector('.checkout-save-v41 small');if(note)note.textContent=uz?'Faqat shu qurilmada saqlanadi.':'Сохраняются только на этом устройстве.';
+ const confirm=host.querySelector('#confirmBtn');if(confirm&&!sr121Checkout?.busy)confirm.textContent=t('confirmOrder');
+ const terms=host.querySelector('[data-sr121-terms-copy]');if(terms)terms.textContent=sr121NeedsCargo()?extraCopy.cargoCheckout[uz?1:0]:sr121Text('stockNote');
+}
+async function sr121PrivateCheckout(){
+ const r=state.request;if(!r?.offer||r.orderId)return;
+ if(String(r.telegramId)!==String(currentTelegramUserV108()?.id))throw Error('OWNER_CONFIRMATION_REQUIRED');
+ const back=sr118CaptureOrigin();close();state.admin=false;
+ const ctx={kind:'search',request:r,back,busy:false,done:false};sr121Checkout=ctx;
+ const host=document.getElementById('checkoutView');host.dataset.mode='search';
+ document.getElementById('orderForm').style.display='block';document.getElementById('success').style.display='none';checkoutClearErrorsV41();checkoutLoadContactV41();
+ const o=r.offer,images=(r.images||[]).filter(x=>x.kind==='offer'),img=images[0]?`<img data-private-order-media="${esc(images[0].id)}" alt="${esc(t('photos'))}">`:`<div class="checkout-v41-item-placeholder">${icon('package')}</div>`;
+ const field=(key,values)=>values?.length?`<label class="field sr121-variant"><span>${esc(t(key))}</span><div class="checkout-select-wrap-v41"><select id="sr121_${key}" required>${optionsHTML(values)}</select>${icon('chevron-down')}</div></label>`:'';
+ document.getElementById('checkoutSummaryV41').innerHTML=`<div class="checkout-v41-summary-head"><div><span>${esc(r.number)}</span><b>${locale()==='uz'?'Sizning buyurtmangiz':'Ваш заказ'}</b></div></div><div class="checkout-v41-items"><div class="checkout-v41-item">${img}<div class="checkout-v41-item-copy"><b>${esc(o.title)}</b><small>${esc(t('quantity'))}: ${Number(r.quantity)}</small></div><strong>${sum(o.priceUzs*r.quantity)}</strong></div></div><div class="sr121-variants">${field('size',o.sizes)}${field('color',o.colors)}</div><div class="checkout-v41-summary-row"><span>${locale()==='uz'?'Sotuvchi':'Продавец'}</span><b>Uzbek Re’Sale ✓</b></div><div class="checkout-v41-summary-row checkout-v41-total"><span>${esc(t('total'))}</span><b>${sum(o.priceUzs*r.quantity)}</b></div>`;
+ host.classList.add('open');host.scrollTop=0;sr121ApplyCheckoutChrome();sr121BackButton(true);
+ if(window.lucide)lucide.createIcons();hydratePrivateOrderMediaV120(document.getElementById('checkoutSummaryV41'));
+ await mountCheckout();
+}
+function sr121CheckoutConsent(needs){return `<label class="sr110-check sr121-consent"><input name="consent" type="checkbox"><span>${esc(sr121Text('legalNote'))}${needs?' '+esc(sr121Text('cargoAccept')):''} <button type="button" class="sr110-link" data-sr-action="docs">${esc(t('docs'))}</button></span></label>`;}
+async function sr121MountCheckout(){
+ const host=document.getElementById('sr110CargoCheckout');if(!host)return;
+ const ctx=sr121Checkout,generation=(state.checkoutGeneration||0)+1;state.checkoutGeneration=generation;
+ const needs=sr121NeedsCargo();state.checkoutCode='';state.checkoutCargo=null;host.hidden=false;
+ host.innerHTML=`${needs?`<div class="checkout-panel sr121-cargo-panel"><h3>${esc(t('cargoChoose'))}</h3><div data-cargo-loading>${esc(t('loading'))}</div></div>`:''}<p class="sr121-payment-note">${esc(sr121Text(needs?'chinaNote':'stockNote'))}</p>${sr121CheckoutConsent(needs)}`;
+ host.querySelector('[data-sr-action=docs]').onclick=()=>openDocs(true);
+ sr121ApplyCheckoutChrome();if(!needs)return;
+ const loading=host.querySelector('[data-cargo-loading]');
+ const current=()=>state.checkoutGeneration===generation&&sr121Checkout===ctx&&loading?.isConnected&&host.contains(loading);
+ try{const d=await api('/cargo-options');if(!current())return;state.checkoutCargo=d;
+ loading.innerHTML=cargoChoices(d,'regularCargoCode');
+ host.querySelectorAll('[name=regularCargoCode]').forEach(x=>x.addEventListener('change',()=>{if(!current())return;state.checkoutCode=x.value;host.querySelectorAll('.sr110-cargo').forEach(l=>l.classList.toggle('sr121-selected',!!l.querySelector('input:checked')));}));
+ }catch(e){if(current())loading.innerHTML=`<p class="sr110-error">${esc(D[e.message]?t(e.message):t('configError'))}</p>`;}
+}
+async function sr121SubmitSearch(){
+ const ctx=sr121Checkout;if(!ctx||ctx.kind!=='search'||ctx.busy||ctx.done)return;
+ checkoutClearErrorsV41();const field=id=>document.getElementById(id);
+ const name=field('buyerName').value.trim(),phone='+998'+field('buyerPhone').value.replace(/\D/g,''),city=field('buyerCity').value,comment=field('buyerComment').value.trim();
+ let valid=true;
+ for(const [id,ok,key] of [['buyerName',name.length>=2,'CONTACT_FIELDS_REQUIRED'],['buyerPhone',/^\+998\d{9}$/.test(phone),'CONTACT_FIELDS_REQUIRED'],['buyerCity',!!city,'CONTACT_FIELDS_REQUIRED']]){
+  if(!ok){valid=false;field(id).classList.add('checkout-invalid-v41');field(id+'ErrorV41').textContent=t(key);}
+ }
+ if(!valid){hostInvalid();return;}
+ const r=ctx.request,o=r.offer;
+ const size=field('sr121_size')?.value||'',color=field('sr121_color')?.value||'';
+ if(o.sizes?.length&&!size){field('sr121_size').focus();checkoutError(Error('SIZE_REQUIRED'));return;}
+ if(o.colors?.length&&!color){field('sr121_color').focus();checkoutError(Error('COLOR_REQUIRED'));return;}
+ let payload;try{payload=checkoutPayload();}catch(e){checkoutError(e);return;}
+ ctx.busy=true;const btn=field('confirmBtn');btn.disabled=true;btn.innerHTML='<span class="checkout-spinner-v43"></span>'+(locale()==='uz'?'Yuborilmoqda…':'Отправляем…');
+ try{
+  const d=await api('/search/'+r.id+'/convert',{name,phone,city,comment,size,color,offerRevision:r.offerRevision,...payload});
+  r.orderId=d.orderId;r.status='converted';ctx.done=true;
+  if(field('checkoutSaveContactV41').checked)localStorage.setItem(UZR_CHECKOUT_CONTACT_STORAGE,JSON.stringify({name,phoneDigits:phone.slice(4),city}));else localStorage.removeItem(UZR_CHECKOUT_CONTACT_STORAGE);
+  if(!sr121CheckoutCurrent(ctx))return;
+  field('orderForm').style.display='none';field('success').style.display='block';
+  field('successOrderText').textContent=locale()==='uz'?`Buyurtma ${d.orderNumber} yaratildi. Tasdiqlash uchun siz bilan bog‘lanamiz.`:`Заказ ${d.orderNumber} создан. Мы свяжемся с вами для подтверждения.`;
+  field('checkoutView').scrollTop=0;try{uzrHaptic('success')}catch(_){}if(window.lucide)lucide.createIcons();
+ }catch(e){if(sr121CheckoutCurrent(ctx))checkoutError(e);}
+ finally{ctx.busy=false;btn.disabled=false;btn.textContent=t('confirmOrder');}
+ function hostInvalid(){document.querySelector('#checkoutView .checkout-invalid-v41')?.scrollIntoView({block:'center'});}
+}
+async function sr121OpenOrder(id){
+ const seq=(state.orderOpenSeq||0)+1;state.orderOpenSeq=seq;close();state.admin=false;
+ // A notification opens one exact, authorized order; being an admin never selects Admin Panel.
+ await openMyOrders();const d=await api('/orders/'+Number(id)+'/detail');if(seq!==state.orderOpenSeq)return;
+ openOrderDetail(d.order);if(d.order.viewerIsOwner===false)document.querySelector('#orderDetailContent .order-cancel-action-v40')?.remove();
+}
+function sr121IsOwner(){return String(state.request?.telegramId||'')===String(currentTelegramUserV108()?.id||'');}
+window.UzrSharedCheckout121={prepareRegular:sr121PrepareRegular,isSearch:()=>sr121Checkout?.kind==='search',submitSearch:sr121SubmitSearch,back:sr121CheckoutBack};
+document.getElementById('checkoutBack').onclick=sr121CheckoutBack;
+document.querySelector('#checkoutView [data-sr121-docs]')?.addEventListener('click',()=>openDocs(true));
+document.addEventListener('keydown',e=>{if(e.key==='Escape'&&root.hidden&&document.getElementById('checkoutView')?.classList.contains('open')){e.preventDefault();sr121CheckoutBack();}});
+new MutationObserver(()=>{if(!document.getElementById('checkoutView')?.classList.contains('open'))sr121BackButton(false);}).observe(document.getElementById('checkoutView'),{attributes:true,attributeFilter:['class']});
+document.addEventListener('uzr:languagechange',()=>{sr121ApplyCheckoutChrome();});
+
 translateStatic();
 // Deep links contain only identifiers; access is always checked by the Worker.
 setTimeout(async()=>{
  const param=channelStartParamV107();const m=/^(search|order)_(\d+)(?:_g([a-f0-9]{16}))?$/.exec(param);if(!m)return;
  try{
-  await auth();const r=await fetch(apiBase()+'/admin/me',{headers:{'X-Telegram-Init-Data':currentTelegramInitDataV108()}});const a=await r.json();state.admin=!!a.admin;
-  if(m[1]==='search')await detail(Number(m[2]),'?link=1'+(m[3]?'&generation='+m[3]:''));else await orderCargo(Number(m[2]),state.admin,'deepLink');
+  await auth();state.admin=false;state.request=null;state.requestBack=null;page('home');
+  if(m[1]==='search')await detail(Number(m[2]),'?link=1'+(m[3]?'&generation='+m[3]:''));else await sr121OpenOrder(Number(m[2]));
  }catch(e){view(t('requests'),'');error(e)}
 },200);
 })();
@@ -21562,4 +21631,145 @@ setTimeout(async()=>{
 #sr110Panel .sr114-cargo-summary{margin-bottom:8px!important;padding:9px 10px!important}
 #sr110Panel .sr114-cargo-summary small{font-size:9px!important}
 </style>
+<style id="uzr-review11-unified-checkout">
+/* REVIEW11: one v1 Checkout. No product-card, profile, listing or catalog layout overrides. */
+html body #checkoutView{background:var(--uzr-bg)!important}
+html body #checkoutView>.checkout-v41-inner{padding:12px 14px calc(68px + env(safe-area-inset-bottom))!important;max-width:560px!important}
+html body #checkoutView .checkout-v41-topbar{display:flex!important;align-items:center!important;gap:12px!important;margin:0 0 13px!important;min-height:42px!important}
+html body #checkoutView .checkout-v41-topbar .back{margin:0!important;flex:0 0 42px!important}
+html body #checkoutView .sr121-heading span{font-size:8px!important;letter-spacing:1.4px!important;color:var(--uzr-muted)!important}
+html body #checkoutView .sr121-heading h1{font-size:20px!important;line-height:1.15!important;margin:4px 0 0!important;color:var(--uzr-text)!important}
+html body #checkoutView #orderForm{padding:0!important}
+html body #checkoutView #checkoutSummaryV41{margin:0 0 12px!important;padding:10px 12px!important;border-radius:18px!important}
+html body #checkoutView .checkout-v41-summary-head{margin:0 0 8px!important;padding:0!important}
+html body #checkoutView .checkout-v41-summary-head b{font-size:13px!important}
+html body #checkoutView .checkout-v41-summary-head>div>span{font-size:9px!important}
+html body #checkoutView .checkout-v41-item{gap:9px!important;padding:6px 0!important;min-height:62px!important}
+html body #checkoutView .checkout-v41-item>img,html body #checkoutView .checkout-v41-item-placeholder{width:50px!important;height:56px!important;min-width:50px!important;border-radius:11px!important;object-fit:cover!important}
+html body #checkoutView .checkout-v41-item-copy b{font-size:12px!important;line-height:1.3!important}
+html body #checkoutView .checkout-v41-item-copy small{font-size:10px!important}
+html body #checkoutView .checkout-v41-item>strong{font-size:12px!important;white-space:normal!important;text-align:right!important}
+html body #checkoutView .checkout-v41-summary-row{min-height:28px!important;padding:4px 0!important;font-size:11px!important}
+html body #checkoutView .checkout-v41-total b{font-size:17px!important}
+html body #checkoutView .checkout-v41-section-title{margin:10px 2px 7px!important;font-size:12px!important}
+html body #checkoutView .checkout-panel{padding:12px!important;border-radius:18px!important;margin:0 0 10px!important}
+html body #checkoutView .sr121-contact-grid{display:grid!important;grid-template-columns:minmax(0,1.06fr) minmax(0,1fr)!important;gap:8px!important}
+html body #checkoutView .sr121-contact-grid>.field:first-child{grid-column:1/-1!important}
+html body #checkoutView .field{margin:0!important;min-width:0!important}
+html body #checkoutView .field label,html body #checkoutView .sr121-variant>span{display:block!important;margin:0 0 5px!important;font-size:11px!important;font-weight:600!important;color:var(--uzr-text)!important}
+html body #checkoutView input:not([type=checkbox]):not([type=radio]),html body #checkoutView select{height:44px!important;min-height:44px!important;padding:0 10px!important;border-radius:12px!important;font-size:14px!important;line-height:normal!important;max-width:100%!important;box-sizing:border-box!important}
+html body #checkoutView .checkout-phone-v41{display:flex!important;height:44px!important;min-height:44px!important;border-radius:12px!important}
+html body #checkoutView .checkout-phone-prefix-v41{font-size:12px!important;padding:0 6px!important;flex:0 0 auto!important}
+html body #checkoutView .checkout-phone-v41 input{min-width:0!important;width:100%!important;padding:0 5px!important;border:0!important;font-size:13px!important;background:transparent!important}
+html body #checkoutView .checkout-select-wrap-v41 select{padding-right:24px!important;white-space:nowrap!important;text-overflow:ellipsis!important}
+html body #checkoutView .checkout-select-wrap-v41>svg{right:8px!important;width:13px!important}
+html body #checkoutView .checkout-field-error:empty,html body #checkoutView .checkout-field-hint{display:none!important}
+html body #checkoutView .checkout-field-error{font-size:11px!important;margin-top:4px!important}
+html body #checkoutView .sr121-comment{margin:7px 0 0!important}
+html body #checkoutView details>summary{min-height:38px!important;display:flex!important;align-items:center!important;justify-content:space-between!important;gap:10px!important;cursor:pointer!important;font-size:12px!important;font-weight:600!important;color:var(--uzr-accent)!important;list-style:none!important}
+html body #checkoutView details>summary::-webkit-details-marker{display:none!important}
+html body #checkoutView details>summary:after{content:'⌄';font-size:18px!important;transition:transform .15s}
+html body #checkoutView details[open]>summary:after{transform:rotate(180deg)}
+html body #checkoutView textarea{height:72px!important;min-height:72px!important;font-size:14px!important;padding:10px!important}
+html body #checkoutView .checkout-save-v41{padding:7px 0 0!important;margin:3px 0 0!important;min-height:34px!important;gap:9px!important;border:0!important;background:transparent!important}
+html body #checkoutView .checkout-save-v41 b{font-size:11px!important}
+html body #checkoutView .checkout-save-v41 small{font-size:10px!important;line-height:1.3!important;margin-top:3px!important}
+html body #checkoutView .checkout-save-box-v41{width:20px!important;height:20px!important;flex-basis:20px!important}
+html body #checkoutView .sr121-cargo-panel h3{font-size:14px!important;margin:0 0 8px!important}
+html body #checkoutView .sr110-cargo{display:flex!important;gap:9px!important;align-items:center!important;padding:10px!important;margin:0 0 7px!important;min-height:58px!important;border-radius:13px!important}
+html body #checkoutView .sr110-cargo:last-child{margin-bottom:0!important}
+html body #checkoutView .sr110-cargo>input{width:18px!important;height:18px!important;min-width:18px!important;min-height:18px!important;margin:0!important;accent-color:var(--uzr-accent)!important}
+html body #checkoutView .sr110-cargo>div{flex:1!important;min-width:0!important}
+html body #checkoutView .sr110-cargo b{font-size:12px!important;line-height:1.25!important;display:block!important}
+html body #checkoutView .sr110-cargo b em{display:inline-block!important;margin-left:5px!important;font-size:9px!important;line-height:1.25!important}
+html body #checkoutView .sr110-cargo small{font-size:10px!important;line-height:1.25!important;margin-top:3px!important}
+html body #checkoutView .sr110-cargo>strong{font-size:12px!important;flex:0 0 auto!important;white-space:nowrap!important}
+html body #checkoutView .sr110-cargo.sr121-selected{border-color:var(--uzr-accent)!important;background:rgba(20,156,255,.08)!important}
+html body #checkoutView .sr121-cargo-panel .sr110-note{display:none!important}
+html body #checkoutView .sr121-payment-note{margin:5px 2px 8px!important;font-size:12px!important;color:var(--uzr-muted)!important;line-height:1.45!important}
+html body #checkoutView .sr121-consent{gap:8px!important;margin:7px 2px 6px!important;align-items:flex-start!important;font-size:11px!important;line-height:1.4!important}
+html body #checkoutView .sr121-consent>input{width:18px!important;height:18px!important;min-width:18px!important;min-height:18px!important;flex:0 0 18px!important;margin:2px 0 0!important;accent-color:var(--uzr-accent)!important}
+html body #checkoutView .sr121-consent button,html body #checkoutView [data-sr121-docs]{display:inline!important;border:0!important;background:transparent!important;color:var(--uzr-accent)!important;padding:0!important;font-size:inherit!important;text-decoration:underline!important}
+html body #checkoutView .sr121-terms{margin:4px 0 10px!important;padding:0 11px!important;border:1px solid var(--uzr-border)!important;border-radius:13px!important}
+html body #checkoutView .sr121-terms p{font-size:12px!important;line-height:1.45!important;margin:0 0 10px!important;color:var(--uzr-muted)!important}
+html body #checkoutView #confirmBtn{min-height:48px!important;height:48px!important;border-radius:14px!important;font-size:14px!important;margin:4px 0 0!important}
+html body #checkoutView .checkout-v41-secure{font-size:10px!important;line-height:1.4!important;margin:9px 5px 0!important}
+html body #checkoutView .sr121-variants{display:grid!important;grid-template-columns:1fr 1fr!important;gap:9px!important;margin:8px 0!important}
+html body #checkoutView .sr121-variants:empty{display:none!important}
+html body #checkoutView .sr121-variant{min-width:0!important}
+html body .sr110-banner>button,html body #sr110Panel [data-sr-action="new"]{
+ background:radial-gradient(120px 85px at 18% 6%,rgba(80,190,255,.50),transparent 68%),linear-gradient(145deg,#149AF4 0%,#087BDD 50%,#0268CA 100%)!important;
+ border:1px solid rgba(48,177,255,.32)!important;color:#fff!important;-webkit-text-fill-color:#fff!important;min-height:44px!important;border-radius:14px!important;font-size:13px!important;box-shadow:0 5px 15px rgba(7,108,207,.12)!important}
+html body .sr110-banner>button:active,html body #sr110Panel [data-sr-action="new"]:active{filter:brightness(.94)}
+#uzrOfficialCleanupV121{position:fixed;inset:0;z-index:4800;overflow:auto;background:var(--uzr-bg);color:var(--uzr-text);padding:14px 14px calc(64px + env(safe-area-inset-bottom));font-family:inherit}
+#uzrOfficialCleanupV121 .oc121-shell{max-width:560px;margin:auto}
+#uzrOfficialCleanupV121 .oc121-head{display:flex;gap:12px;align-items:center;margin-bottom:12px}
+#uzrOfficialCleanupV121 h2{font-size:17px;margin:0}
+#uzrOfficialCleanupV121 .oc121-note{font-size:12px;line-height:1.45;color:var(--uzr-muted);padding:10px;background:var(--uzr-surface-4);border-radius:13px}
+#uzrOfficialCleanupV121 .oc121-toolbar{display:flex;justify-content:space-between;gap:8px;margin:10px 0}
+#uzrOfficialCleanupV121 button{min-height:42px;border:1px solid var(--uzr-border);background:var(--uzr-surface-4);border-radius:12px;padding:9px 11px;color:var(--uzr-accent);font-size:12px;cursor:pointer}
+#uzrOfficialCleanupV121 .oc121-item{display:flex;align-items:center;gap:10px;padding:10px;border:1px solid var(--uzr-border);border-radius:14px;margin:8px 0;background:var(--uzr-surface-4)}
+#uzrOfficialCleanupV121 .oc121-item>input{width:20px;height:20px;accent-color:var(--uzr-accent);flex-shrink:0}
+#uzrOfficialCleanupV121 .oc121-item img,#uzrOfficialCleanupV121 .oc121-noimage{width:46px;height:52px;border-radius:9px;object-fit:cover}
+#uzrOfficialCleanupV121 .oc121-item>span{min-width:0;flex:1}
+#uzrOfficialCleanupV121 .oc121-item b{font-size:13px;display:block;overflow-wrap:anywhere}
+#uzrOfficialCleanupV121 .oc121-item small{font-size:11px;display:block;margin-top:4px;color:var(--uzr-muted)}
+#uzrOfficialCleanupV121 .oc121-actions{display:grid;gap:8px;margin-top:14px}
+#uzrOfficialCleanupV121 .oc121-actions .danger{color:#ff7786;border-color:rgba(255,100,120,.45);background:rgba(255,60,75,.06)}
+#uzrOfficialCleanupV121 button:disabled{opacity:.45;cursor:not-allowed}
+#uzrOfficialCleanupV121 .oc121-status{font-size:12px;line-height:1.5;margin-top:12px;overflow-wrap:anywhere}
+#uzrOfficialCleanupV121 .oc121-job{padding:12px;border:1px solid var(--uzr-border);border-radius:14px;margin-top:12px;font-size:12px}
+html body #adminPanel .oc121-launch{display:flex!important;justify-content:space-between!important;align-items:center!important;gap:8px!important;margin-bottom:10px!important;padding:10px!important;border:1px solid var(--uzr-border)!important;border-radius:14px!important;background:var(--uzr-surface-4)!important}
+html body #adminPanel .oc121-launch button{min-height:40px!important;border:1px solid var(--uzr-border)!important;background:transparent!important;border-radius:11px!important;color:var(--uzr-accent)!important;padding:8px 12px!important}
+@media(max-width:340px){html body #checkoutView>.checkout-v41-inner{padding-left:10px!important;padding-right:10px!important}html body #checkoutView .sr121-heading h1{font-size:18px!important}html body #checkoutView .checkout-phone-prefix-v41{font-size:11px!important;padding:0 4px!important}html body #checkoutView .checkout-phone-v41 input{font-size:12px!important;padding:0 3px!important}html body #checkoutView .sr110-cargo>strong{font-size:11px!important}html body #checkoutView .sr110-cargo b em{display:block!important;margin-left:0!important}}
+@media(prefers-reduced-motion:reduce){html body #checkoutView details>summary:after{transition:none}}
+
+html body #checkoutView #confirmBtn{background:linear-gradient(145deg,#149af4,#087bdd 55%,#0268ca)!important;border:1px solid rgba(48,177,255,.32)!important;color:#fff!important;-webkit-text-fill-color:#fff!important}
+html body #checkoutView .checkout-panel .sr121-contact-grid>.field{margin-bottom:0!important}
+
+</style>
+<script id="uzr-review11-official-cleanup">
+// REVIEW11: official-only cleanup UI. Nothing is removed until preview + explicit confirmation.
+(()=>{
+'use strict';let root=null,items=[],selected=new Set(),busy=false,oldOverflow='';
+const words={title:['Очистка товаров Uzbek Re’Sale','Uzbek Re’Sale mahsulotlarini tozalash'],choose:['Выбрать товары','Mahsulotlarni tanlash'],all:['Выбрать все','Barchasini tanlash'],none:['Снять выбор','Tanlovni bekor qilish'],selected:['Удалить выбранные','Tanlanganlarni o‘chirish'],clearAll:['Очистить весь каталог','Katalogni to‘liq tozalash'],empty:['Официальный каталог пуст','Rasmiy katalog bo‘sh'],back:['Назад','Orqaga'],note:['Только официальные товары и их фото. Ресейл, C/R-запросы, заказы и сообщения канала не удаляются.','Faqat rasmiy mahsulotlar va ularning rasmlari. Resayl, C/R-so‘rovlar, buyurtmalar va kanal xabarlari o‘chirilmaydi.'],retry:['Продолжить очистку фото','Rasmlarni tozalashni davom ettirish'],done:['Очистка завершена','Tozalash tugadi'],pending:['Товары сняты с продажи. Фото ещё в очереди очистки.','Mahsulotlar sotuvdan olindi. Rasmlar hali tozalash navbatida.'],blocked:['Эти товары есть в незавершённых UR-заказах. Завершите заказ или уберите товар из выбора:','Bu mahsulotlar tugallanmagan UR-buyurtmalarda bor. Buyurtmani yakunlang yoki mahsulotni tanlovdan olib tashlang:'],changed:['Каталог изменился. Обновите список и выберите заново.','Katalog o‘zgardi. Ro‘yxatni yangilab, qayta tanlang.'],confirm:['Удалить товары и их фото без восстановления?','Mahsulotlar va rasmlar tiklash imkoniyatisiz o‘chirilsinmi?'],type:['Для очистки ВСЕГО официального каталога введите DELETE ALL','BUTUN rasmiy katalogni tozalash uchun DELETE ALL kiriting'],shared:['Общие фото сохранены','Umumiy rasmlar saqlandi'],error:['Не удалось выполнить очистку. Данные не сбрасывались.','Tozalash bajarilmadi. Ma’lumotlar tozalanmadi.'],refresh:['Обновить','Yangilash']};
+const t=k=>words[k]?.[localStorage.getItem('uzr_language_pref_v1')==='uz'?1:0]||k;
+const esc=escapeHtml;
+async function call(body){const r=await fetch(MARKETPLACE_API+'/admin/official-cleanup',{method:body?'POST':'GET',headers:{...adminHeaders(),...(body?{'Content-Type':'application/json'}:{})},...(body?{body:JSON.stringify(body)}:{}),cache:'no-store'});const d=await r.json();if(!r.ok||!d.ok){const e=Error(d.error||'CLEANUP_FAILED');e.data=d;throw e;}return d;}
+function close(){if(busy)return;root?.remove();root=null;document.body.style.overflow=oldOverflow;}
+function status(message){const el=root?.querySelector('[data-clean-status]');if(el){el.textContent=message;el.scrollIntoView({block:'nearest'});}}
+function fail(e){if(e.message==='OFFICIAL_ACTIVE_ORDERS')status(t('blocked')+' '+(e.data?.blocked||[]).map(x=>'#'+x.listing_id+' → '+x.order_number).join('; '));else if(['OFFICIAL_SELECTION_CHANGED','CLEANUP_PREVIEW_EXPIRED'].includes(e.message))status(t('changed'));else status(t('error')+' ('+e.message+')');}
+function buttons(){if(!root)return;root.querySelector('[data-clean=selected]').textContent=t('selected')+' ('+selected.size+')';root.querySelector('[data-clean=selected]').disabled=busy||!selected.size;root.querySelector('[data-clean=all-delete]').disabled=busy||!items.length;root.querySelector('[data-clean=toggle]').textContent=selected.size===items.length&&items.length?t('none'):t('all');}
+async function load(){
+ const d=await call();items=d.items;selected=new Set([...selected].filter(id=>items.some(x=>x.id===id)));
+ if(!root)return;
+ root.innerHTML=`<div class="oc121-shell" data-no-i18n><div class="oc121-head"><button class="uzr-back-v69" type="button" data-clean="close" aria-label="${esc(t('back'))}"><svg viewBox="0 0 24 24" width="21" height="21" fill="none" stroke="currentColor" stroke-width="2"><path d="m15 18-6-6 6-6"/></svg></button><h2>${esc(t('title'))}</h2></div><p class="oc121-note">${esc(t('note'))}</p><div class="oc121-toolbar"><button type="button" data-clean="toggle">${esc(t('all'))}</button><button type="button" data-clean="refresh">${esc(t('refresh'))}</button></div><div class="oc121-list">${items.map(x=>`<label class="oc121-item"><input type="checkbox" value="${x.id}" ${selected.has(x.id)?'checked':''}>${x.image?`<img src="${esc(x.image)}" alt="">`:'<span class="oc121-noimage">□</span>'}<span><b>${esc(x.title)}</b><small>#${x.id} · ${Number(x.photos)} ${localStorage.getItem('uzr_language_pref_v1')==='uz'?'rasm':'фото'}</small></span></label>`).join('')||`<p>${esc(t('empty'))}</p>`}</div><div class="oc121-actions"><button type="button" data-clean="selected"></button><button type="button" class="danger" data-clean="all-delete">${esc(t('clearAll'))} (${items.length})</button></div><div class="oc121-status" data-clean-status role="status"></div>${d.jobs.map(j=>`<div class="oc121-job"><p>${esc(t('pending'))} ${Number(j.remainingPhotos)}</p><button type="button" data-clean="retry" data-job="${esc(j.jobId)}">${esc(t('retry'))}</button></div>`).join('')}</div>`;
+ buttons();
+}
+async function open(){
+ if(busy)return;
+ if(!root){root=document.createElement('section');root.id='uzrOfficialCleanupV121';root.setAttribute('role','dialog');root.setAttribute('aria-modal','true');oldOverflow=document.body.style.overflow;document.body.style.overflow='hidden';document.body.appendChild(root);root.addEventListener('click',click);root.addEventListener('change',e=>{if(e.target.type==='checkbox'){const id=Number(e.target.value);e.target.checked?selected.add(id):selected.delete(id);buttons();}});}
+ root.textContent=localStorage.getItem('uzr_language_pref_v1')==='uz'?'Yuklanmoqda…':'Загрузка…';
+ try{await load();}catch(e){root.innerHTML='<button type="button" data-clean="close">'+esc(t('back'))+'</button><div data-clean-status></div>';fail(e);}
+}
+async function execute(mode){
+ const d=await call({phase:'preview',mode,ids:mode==='selected'?[...selected]:undefined});
+ if(!window.confirm(t('confirm')+'\n\n'+d.count+' '+(localStorage.getItem('uzr_language_pref_v1')==='uz'?'mahsulot':'товаров')+' · '+d.photos+' '+(localStorage.getItem('uzr_language_pref_v1')==='uz'?'rasm':'фото')+'\n'+d.titles.slice(0,8).join('\n')+(d.count>8?'\n…':'')+'\n\n'+t('note')))return;
+ if(mode==='all'&&window.prompt(t('type'),'')!=='DELETE ALL')return;
+ const result=await call({phase:'confirm',planId:d.planId,confirm:d.confirmation});
+ selected.clear();await load();status(t(result.complete?'done':'pending')+(result.sharedKept?' · '+t('shared')+': '+result.sharedKept:''));
+ await loadMarketplaceCatalog();await loadOfficialList();
+}
+async function click(e){
+ const el=e.target.closest('[data-clean]');if(!el)return;const a=el.dataset.clean;
+ if(a==='close'){close();return;}if(busy)return;
+ if(a==='toggle'){selected=selected.size===items.length?new Set():new Set(items.map(x=>x.id));root.querySelectorAll('input[type=checkbox]').forEach(c=>c.checked=selected.has(Number(c.value)));buttons();return;}
+ busy=true;buttons();
+ try{if(a==='refresh')await load();else if(a==='selected')await execute('selected');else if(a==='all-delete')await execute('all');else if(a==='retry'){const d=await call({phase:'retry',planId:el.dataset.job});await load();status(t(d.complete?'done':'pending'));await loadMarketplaceCatalog();await loadOfficialList();}}
+ catch(err){fail(err);}finally{busy=false;buttons();}
+}
+window.UzrOfficialCleanup121={open};document.addEventListener('keydown',e=>{if(e.key==='Escape'&&root){e.preventDefault();close();}});
+})();
+
+</script>
 </body></html>
