@@ -18618,7 +18618,7 @@ function adminRenderOrdersV89(filter=adminOrdersFilterV89){
     }).join("");
 
     let actions=`<button onclick="UzrSearch110.adminOrder(${o.id})"><i data-lucide="eye"></i> Открыть заказ</button>`;
-    if(String(o.telegram_id||"").trim())actions+=`<button type="button" class="admin-v111-chat-button" onclick="adminOrderMessageOpenV111(${Number(o.id)})"><i data-lucide="message-circle"></i> Написать клиенту</button>`;
+    if(['new','confirmed','shipping'].includes(String(o.status||''))&&String(o.telegram_id||"").trim())actions+=`<button type="button" class="admin-v111-chat-button" onclick="adminOrderMessageOpenV111(${Number(o.id)})"><i data-lucide="message-circle"></i> Написать клиенту</button>`;
     if(status==="new"){
       actions+=`<button onclick="adminOrderStatus(${o.id},'confirmed')">Подтвердить</button><button class="danger" onclick="adminOrderStatus(${o.id},'cancelled')">Отменить</button>`;
     }else if(status==="confirmed"){
@@ -21646,7 +21646,7 @@ function sr123DrawOrder(){
  view(o.orderNumber,`<div class="sr123-detail-state"><span class="sr123-badge status-${esc(o.status)}">${esc(sr123t(o.status==='new'?'newOrder':o.status))}</span><span>${esc(date(o.createdAt))}</span></div>
  <section class="sr110-card"><div class="sr123-order-item"><span class="sr123-order-photo">${picture}</span><div><h3>${esc(first.name||o.orderNumber)}</h3><p>${esc([first.size,first.color].filter(Boolean).join(' · '))}</p><span>${esc(t('quantity'))}: ${items.length}</span></div><b>${sum(o.total)}</b></div></section>
  <section class="sr110-card">${row(t('name'),o.customerName)}${row(t('phone'),o.phone)}${row(t('city'),o.city)}${o.comment?`<p class="sr123-comment">${esc(o.comment)}</p>`:''}${o.sourceRequestId?row(t('number'),'C-'+String(o.sourceRequestId).padStart(6,'0')):''}
- <div class="sr124-telegram-card"><div><small>${esc(sr123t('telegram'))}</small><b>${esc(o.telegramUsername?'@'+o.telegramUsername:(o.telegramName||o.customerName||'—'))}</b><span>ID ${esc(o.telegramId||'—')}</span></div><div class="sr124-telegram-actions"><button type="button" data-sr-action="acTelegram">${icon('send')}<span>${esc(sr123t('openTelegram'))}</span></button><button type="button" data-sr-action="acCopyTelegram">${icon('copy')}<span>${esc(sr123t('copyId'))}</span></button></div></div>${o.telegramId?`<button type="button" class="sr110-btn secondary" onclick="adminOrderMessageOpenV111(${Number(o.id)})" style="margin-top:12px;width:100%;">${icon('message-circle')} Написать клиенту через бота</button>`:''}</section>
+ <div class="sr124-telegram-card"><div><small>${esc(sr123t('telegram'))}</small><b>${esc(o.telegramUsername?'@'+o.telegramUsername:(o.telegramName||o.customerName||'—'))}</b><span>ID ${esc(o.telegramId||'—')}</span></div><div class="sr124-telegram-actions"><button type="button" data-sr-action="acTelegram">${icon('send')}<span>${esc(sr123t('openTelegram'))}</span></button><button type="button" data-sr-action="acCopyTelegram">${icon('copy')}<span>${esc(sr123t('copyId'))}</span></button></div></div>${o.telegramId&&['new','confirmed','shipping'].includes(String(o.status||''))?`<button type="button" class="sr110-btn secondary" onclick="adminOrderMessageOpenV111(${Number(o.id)})" style="margin-top:12px;width:100%;">${icon('message-circle')} Написать клиенту через бота</button>`:''}</section>
  ${c?`<section class="sr110-card">${row(t('cargoChoose'),locale()==='uz'?c.nameUz:c.nameRu)}${row(t('rate'),'$'+(c.rateCents/100).toFixed(2))}${button('acOrderCargo',t('cargo'),'secondary')}</section>`:''}
  ${['completed','cancelled'].includes(o.status)?`<div class="sr123-delete-row">${button('removeUR',sr126t('deleteUR'),'danger')}</div>`:''}
  <div class="sr123-primary-actions">${(statuses[o.status]||[]).map(([status,label])=>`<button type="button" data-sr-action="acOrderStatus" data-status="${status}" class="sr110-btn ${status==='cancelled'?'danger':''}">${esc(sr123t(label))}</button>`).join('')}</div>`,state.adminCOrderBack||close);
@@ -22261,8 +22261,15 @@ body .admin-v111-message-dialog .admin-v111-hint{font-size:11px!important;margin
   const errors={
     ADMIN_BOT_NOT_STARTED:'Сначала откройте @resaleuzbot со своего Telegram-аккаунта и нажмите /start. Клиенту ничего не отправлено.',
     ADMIN_BOT_CHECK_FAILED:'Не удалось проверить связь с вашим ботом. Клиенту ничего не отправлено.',
-    BUYER_BLOCKED_BOT:'Клиент заблокировал бота или ещё не открыл его. Сообщение не доставлено.',
-    TELEGRAM_DELIVERY_FAILED:'Telegram не доставил сообщение. Попробуйте позже.',
+    BUYER_BLOCKED_BOT:'Покупатель заблокировал @resaleuzbot. Наличие UR-заказа не отменяет блокировку. Покупатель должен разблокировать бота и нажать Start.',
+    BUYER_BOT_NOT_STARTED:'Покупатель ещё не запускал @resaleuzbot. Попросите его открыть бота по ссылке и нажать Start. Его Premium не является препятствием для бота.',
+    BUYER_BOT_NOT_STARTED_OR_BLOCKED:'Telegram запретил писать покупателю. Скорее всего, он не запускал или заблокировал @resaleuzbot. Попросите его открыть бота и нажать Start.',
+    BUYER_BOT_NOT_STARTED_OR_CHAT_UNAVAILABLE:'Telegram не находит чат с покупателем. Попросите его открыть @resaleuzbot и нажать Start, затем повторите.',
+    BUYER_TELEGRAM_UNAVAILABLE:'Telegram-аккаунт покупателя недоступен. Свяжитесь с ним другим способом.',
+    TELEGRAM_RATE_LIMIT:'Telegram временно ограничил частоту отправки. Подождите и попробуйте снова.',
+    TELEGRAM_BOT_CONFIG_ERROR:'Ошибка подключения рабочего бота к Telegram. Проверьте BOT_TOKEN Worker; не повторяйте отправку без проверки.',
+    ORDER_NOT_ACTIVE:'Сообщения из админки доступны только для активных UR-заказов (новый, подтверждён, в доставке).',
+    TELEGRAM_DELIVERY_FAILED:'Telegram отклонил сообщение. Проверьте права бота и доступность покупателя; причина записана в Worker Logs без личного текста.',
     TELEGRAM_STATUS_UNCERTAIN:'Неизвестно, доставил ли Telegram сообщение. Проверьте переписку перед повторной отправкой.',
     SENT_BUT_BRIDGE_UNAVAILABLE:'Сообщение доставлено клиенту, но не удалось включить ответы. Не повторяйте отправку; проверьте настройки Worker.',
     MESSAGE_STATUS_UNCERTAIN:'Статус предыдущей отправки неизвестен. Не отправляйте повторно, пока не проверите Telegram.',
@@ -22281,14 +22288,20 @@ body .admin-v111-message-dialog .admin-v111-hint{font-size:11px!important;margin
     const id=Number(orderId);
     if(!Number.isSafeInteger(id)||id<1)return;
     close();
-    const order=(window.adminOrdersCacheV89||[]).find(x=>Number(x.id)===id);
+    const order=(typeof adminOrdersCacheV89!=="undefined"?adminOrdersCacheV89:[]).find(x=>Number(x.id)===id);
     // Fallback when opened from the full C→UR/order detail screen.
     const detail=order||null;
     const shade=document.createElement('div');shade.className='admin-v111-message-shade';shade.id='adminV111MessageShade';
-    shade.innerHTML='<form class="admin-v111-message-dialog" role="dialog" aria-modal="true" aria-labelledby="adminV111MessageTitle"><h2 id="adminV111MessageTitle">Написать клиенту по заказу</h2><p id="adminV111MessageDesc"></p><label for="adminV111MessageText">Ваше сообщение</label><textarea id="adminV111MessageText" required maxlength="1500" placeholder="Здравствуйте! Пишем вам по поводу вашего заказа…"></textarea><div class="admin-v111-hint">Сообщение придёт клиенту от @resaleuzbot с кнопкой ответа. Дальше можно общаться прямо в боте. Активный диалог администратора переключится на этот заказ.</div><p class="admin-v111-error" id="adminV111MessageError" role="alert" hidden></p><div class="admin-v111-controls"><button type="button" data-cancel>Отмена</button><button type="submit" data-send>Отправить в бот</button></div></form>';
+    shade.innerHTML='<form class="admin-v111-message-dialog" role="dialog" aria-modal="true" aria-labelledby="adminV111MessageTitle"><h2 id="adminV111MessageTitle">Написать клиенту по заказу</h2><p id="adminV111MessageDesc"></p><label for="adminV111MessageText">Ваше сообщение</label><textarea id="adminV111MessageText" required maxlength="1500" placeholder="Здравствуйте! Пишем вам по поводу вашего заказа…"></textarea><div class="admin-v111-hint">Сообщение придёт клиенту от @resaleuzbot с кнопкой ответа. Дальше можно общаться прямо в боте. Активный диалог администратора переключится на этот заказ. При успешной отправке группа заказов получит подтверждение.</div><p class="admin-v111-error" id="adminV111MessageError" role="alert" hidden></p><div class="admin-v111-controls"><button type="button" data-invite hidden>Копировать ссылку для покупателя</button><button type="button" data-cancel>Отмена</button><button type="submit" data-send>Отправить в бот</button></div></form>';
     const form=shade.querySelector('form');
     shade.querySelector('#adminV111MessageDesc').textContent=(detail?.order_number||('Заказ #'+id))+' · '+(detail?.name||'Покупатель');
     shade.querySelector('[data-cancel]').onclick=close;
+    const invite=shade.querySelector('[data-invite]');
+    invite.onclick=async()=>{
+      const link='https://t.me/resaleuzbot?start=ur_'+id;
+      try{await navigator.clipboard.writeText(link);invite.textContent='✅ Ссылка скопирована';}
+      catch(_){window.prompt('Скопируйте ссылку и отправьте клиенту любым доступным способом:',link);}
+    };
     shade.addEventListener('click',e=>{if(e.target===shade)close();});
     form.addEventListener('submit',async e=>{
       e.preventDefault();if(pending)return;
@@ -22296,7 +22309,7 @@ body .admin-v111-message-dialog .admin-v111-hint{font-size:11px!important;margin
       if(!text||Array.from(text).length>1500){error.textContent=errors.INVALID_MESSAGE;error.hidden=false;return;}
       const uid=window.crypto?.randomUUID?.();
       if(!uid){error.textContent='Безопасный идентификатор сообщения недоступен. Переоткройте Mini App.';error.hidden=false;return;}
-      pending=true;requestId=uid;error.hidden=true;
+      pending=true;requestId=uid;error.hidden=true;invite.hidden=true;
       shade.querySelector('[data-send]').disabled=true;shade.querySelector('[data-cancel]').disabled=true;
       try{
         // adminFetch already includes signed Telegram initData and throws on failed HTTP.
@@ -22306,9 +22319,22 @@ body .admin-v111-message-dialog .admin-v111-hint{font-size:11px!important;margin
         });
         if(!result.ok)throw Error(result.error||'REQUEST_FAILED');
         shade.remove();document.removeEventListener('keydown',esc);
-        alert('✅ Telegram принял сообщение для покупателя. Продолжайте переписку в @resaleuzbot.');
-      }catch(ex){error.textContent=errors[ex?.message]||('Ошибка отправки: '+String(ex?.message||'Неизвестная ошибка'));error.hidden=false;}
-      finally{pending=false;requestId='';shade.querySelector('[data-send]').disabled=false;shade.querySelector('[data-cancel]').disabled=false;}
+        alert('✅ Telegram принял сообщение для покупателя. '+(result.groupNotification==='sent'?'В группе заказов отправлено подтверждение.':result.groupNotification==='failed'?'Но уведомление в группе не получилось отправить.': 'Уведомление в группу не настроено.')+' Продолжайте переписку в @resaleuzbot.');
+      }catch(ex){
+        const code=String(ex?.message||'');
+        error.textContent=errors[code]||('Ошибка отправки: '+(code||'Неизвестная ошибка'));
+        error.hidden=false;
+        invite.hidden=!['BUYER_BLOCKED_BOT','BUYER_BOT_NOT_STARTED','BUYER_BOT_NOT_STARTED_OR_BLOCKED','BUYER_BOT_NOT_STARTED_OR_CHAT_UNAVAILABLE'].includes(code);
+        // On a timeout Telegram may have accepted the message. Prevent an accidental duplicate.
+        if(['TELEGRAM_STATUS_UNCERTAIN','SENT_BUT_BRIDGE_UNAVAILABLE','MESSAGE_STATUS_UNCERTAIN'].includes(code)){
+          shade.querySelector('[data-send]').dataset.uncertain='1';
+        }
+      }
+      finally{
+        pending=false;requestId='';
+        shade.querySelector('[data-send]').disabled=shade.querySelector('[data-send]').dataset.uncertain==='1';
+        shade.querySelector('[data-cancel]').disabled=false;
+      }
     });
     document.body.appendChild(shade);document.addEventListener('keydown',esc);shade.querySelector('textarea').focus();
   };
