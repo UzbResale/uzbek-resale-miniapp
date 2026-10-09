@@ -18768,62 +18768,9 @@ async function adminTab(tab,btn){
     }
 
     if(tab==="cleanup"){
-      adminV89SetWorkspace("cleanup","Очистка","Lifecycle, архив и Clean Start только Ресейл");
+      adminV89SetWorkspace("cleanup","Очистка","Истёкшие объявления и безопасная очистка");
       const d=await adminFetch("/admin/listings");
-      const all=Array.isArray(d.listings)?d.listings:[];
-      const trash=all.filter(x=>["deleted","rejected","sold","expired"].includes(String(x.status||"")));
-      const active=all.filter(x=>!["deleted","rejected","sold","expired"].includes(String(x.status||"")));
-      const deletedCount=trash.filter(x=>x.status==="deleted").length;
-      const userActive=all.filter(x=>x.owner_type!=="official"&&x.status==="approved").length;
-      const expiringSoon=all.filter(x=>x.owner_type!=="official"&&x.status==="approved"&&x.expires_at&&((new Date(String(x.expires_at).replace(" ","T")+"Z")).getTime()-Date.now())<=86400000).length;
-      const soldCleanup=all.filter(x=>x.owner_type!=="official"&&x.status==="sold"&&!x.images_deleted_at).length;
-      const cleanupErrors=all.filter(x=>x.cleanup_error).length;
-
-      c.innerHTML=`
-        <div class="admin-v89-clean-stats">
-          <div><b>${userActive}</b><span>Активные Ресейл</span></div>
-          <div><b>${expiringSoon}</b><span>Истекают ≤24ч</span></div>
-          <div><b>${soldCleanup}</b><span>Фото ждут cleanup</span></div>
-          <div><b>${cleanupErrors}</b><span>Ошибки cleanup</span></div>
-        </div>
-
-        <div class="clean-start-v88 admin-v89-clean-start">
-          <div class="clean-start-v88-head">
-            <div><small>ОПАСНАЯ ЗОНА</small><b>Clean Start</b></div>
-            <span>ADMIN ONLY</span>
-          </div>
-          <p><b>Удаляет только пользовательский Ресейл:</b> пользовательские объявления, их фотографии, R-заявки и R-чаты. <b>Товары Uzbek Re'Sale, их фото, остатки и все UR-заказы НЕ удаляются.</b></p>
-          <button class="clean-start-preview-btn-v88" type="button" onclick="adminCleanStartPreviewV88()">Проверить, что удалится и что сохранится</button>
-          <div id="cleanStartPreviewV88" class="clean-start-preview-v88" hidden></div>
-        </div>
-
-        <div class="admin-v89-section-line"><b>Архив</b><span>${trash.length}</span></div>
-        <div class="admin-v89-list">
-          ${trash.map(x=>`
-            <article class="admin-v89-archive-row">
-              <div><small>${escapeHtml(String(x.status||""))} · ${escapeHtml(String(x.owner_type||""))}</small><b>#${x.id} ${escapeHtml(String(x.title||""))}</b><span>${money(x.price||0)}${adminLifecycleInfoV51(x)?` · ${escapeHtml(adminLifecycleInfoV51(x))}`:""}</span></div>
-              <div class="admin-v89-actions">
-                <button onclick="adminOpenListing(${x.id})">Открыть</button>
-                ${x.owner_type!=="official"&&x.status==="sold"&&!x.images_deleted_at?`<button onclick="adminListingLifecycleV51(${x.id},'restore')">Вернуть</button>`:""}
-                <button class="danger" onclick="adminPermanentDeleteListing(${x.id},'${String(x.status||"").replace(/'/g,"")}')">Удалить навсегда</button>
-              </div>
-            </article>`).join("")||'<div class="admin-v89-empty"><i data-lucide="archive"></i><b>Архив пуст</b><small>Удалённых и завершённых записей нет.</small></div>'}
-        </div>
-
-        <details class="admin-v89-details">
-          <summary>Активные записи · ${active.length}</summary>
-          <div class="admin-v89-list">
-            ${active.map(x=>`
-              <article class="admin-v89-archive-row">
-                <div><small>${escapeHtml(String(x.status||""))} · ${escapeHtml(String(x.owner_type||""))}</small><b>#${x.id} ${escapeHtml(String(x.title||""))}</b><span>${money(x.price||0)}</span></div>
-                <div class="admin-v89-actions">
-                  <button onclick="adminOpenListing(${x.id})">Открыть</button>
-                  ${x.owner_type!=="official"&&x.status==="approved"?`<button onclick="adminListingLifecycleV51(${x.id},'extend')">+7 дней</button><button onclick="adminListingLifecycleV51(${x.id},'sold')">Продано</button>`:""}
-                  <button class="danger" onclick="adminDeleteListing(${x.id})">Удалить</button>
-                </div>
-              </article>`).join("")||'<div class="admin-v89-empty">Активных записей нет</div>'}
-          </div>
-        </details>`;
+      c.innerHTML=window.UzrExpiredCleanupQA5.render(Array.isArray(d.listings)?d.listings:[]);
     }
 
     window.lucide?.createIcons();
@@ -19549,47 +19496,11 @@ async function adminOpenListing(id){
  }catch(e){alert("Не удалось открыть объявление: "+String(e.message||e))}
 }
 async function adminPermanentDeleteListing(id,status){
-  const label=status==="rejected"?"отклонённое":"удалённое";
-  if(!confirm(
-    "Удалить "+label+" объявление #"+id+" НАВСЕГДА?\n\n"+
-    "Запись исчезнет из D1 и из вкладки «Очистка». Остаточные фото ImageKit будут удалены. История заказов сохранится."
-  ))return;
-
-  try{
-    const d=await adminFetch("/admin/listing-permanent?id="+encodeURIComponent(id),{method:"DELETE"});
-    alert("✓ Удалено навсегда\nФото удалено: "+Number(d.deletedImages||0));
-    try{await loadMarketplaceCatalog()}catch(_){}
-    await adminTab("cleanup");
-  }catch(e){
-    alert("Не удалось удалить навсегда: "+String(e.message||e));
-  }
+  return window.UzrExpiredCleanupQA5.permanent(id,status);
 }
-
 async function adminPurgeDeleted(){
-  if(!confirm(
-    "Очистить ВСЕ записи со статусом deleted?\n\n"+
-    "Они будут удалены из D1 навсегда. Оставшиеся фото ImageKit тоже будут удалены. История заказов не удаляется."
-  ))return;
-
-  if(!confirm("Последнее подтверждение: действительно очистить все deleted объявления?"))return;
-
-  try{
-    const d=await adminFetch("/admin/cleanup-purge",{
-      method:"POST",
-      body:JSON.stringify({mode:"deleted"})
-    });
-    const failed=Array.isArray(d.failures)?d.failures.length:0;
-    alert(
-      "✓ Очистка завершена\n"+
-      "Записей удалено: "+Number(d.purged||0)+"\n"+
-      "Фото удалено: "+Number(d.deletedImages||0)+
-      (failed?"\nОшибок: "+failed:"")
-    );
-    try{await loadMarketplaceCatalog()}catch(_){}
-    await adminTab("cleanup");
-  }catch(e){
-    alert("Ошибка очистки: "+String(e.message||e));
-  }
+  await adminTab("cleanup");
+  return window.UzrExpiredCleanupQA5.preview();
 }
 
 async function adminDeleteListing(id){
@@ -19597,7 +19508,11 @@ async function adminDeleteListing(id){
    const detail=await adminFetch("/admin/listing-detail?id="+encodeURIComponent(id));
    const x=detail.listing;
    let reason="";
-   if(["sold","deleted","rejected"].includes(String(x.status||""))){
+   if(x.owner_type==="official"){
+     $("adminListingView")?.classList.remove("open");
+     return window.UzrOfficialCleanup121.open();
+   }
+   if(["sold","expired"].includes(String(x.status||"")) || (["deleted","rejected"].includes(String(x.status||"")) && !(x.images||[]).length && !x.cleanup_error)){
      return adminPermanentDeleteListing(id,String(x.status||""));
    }
    if(x.owner_type!=="official"){
@@ -19613,7 +19528,7 @@ async function adminDeleteListing(id){
    try{await loadOfficialList()}catch(_){}
    try{await loadMarketplaceCatalog()}catch(_){}
    const cleanupBtn=[...document.querySelectorAll(".admin-tab")].find(x=>x.textContent.trim()==="Очистка"&&x.classList.contains("on"));
-   if(cleanupBtn)await adminTab("cleanup",cleanupBtn);
+   if(cleanupBtn||$("qa5Check"))await adminTab("cleanup",cleanupBtn);
  }catch(e){alert("Не удалось удалить товар: "+String(e.message||e))}
 }
 function applyTelegramUserV108(u){
@@ -22340,4 +22255,118 @@ body .admin-v111-message-dialog .admin-v111-hint{font-size:11px!important;margin
   };
 })();
 </script>
+<style id="qa5-cleanup-style">
+#adminContent .qa5-cleanup{padding:18px;border:1px solid #254d62;border-radius:20px;background:#102d3c;color:#eff8ff;margin-bottom:18px;min-width:0}
+#adminContent .qa5-cleanup h2{font-size:19px;line-height:1.25;margin:6px 0 10px}
+#adminContent .qa5-cleanup p,#adminContent .qa5-cleanup small{font-size:13px;line-height:1.5;color:#b2cddd;overflow-wrap:anywhere}
+#adminContent .qa5-tag{font-size:10px;font-weight:800;letter-spacing:1.3px;color:#4fc2ff}
+#adminContent .qa5-cleanup button{min-height:44px;border-radius:12px;border:1px solid #315b71;background:#163e52;color:#edf8ff;padding:11px 14px;font-weight:700;font-size:13px;line-height:1.4;white-space:normal;cursor:pointer;max-width:100%}
+#adminContent .qa5-cleanup button:disabled{opacity:.45;cursor:default}
+#adminContent .qa5-cleanup .qa5-primary{background:#008eea;border-color:#008eea;color:white;width:100%}
+#adminContent .qa5-cleanup .qa5-danger{background:#922c43;border-color:#b8465c;color:white;width:100%;margin-top:12px}
+#adminContent .qa5-list{display:grid;gap:8px;max-height:320px;overflow:auto;margin:12px 0}
+#adminContent .qa5-row{padding:10px;border:1px solid #2c5065;border-radius:12px;display:grid;gap:4px;min-width:0;overflow-wrap:anywhere}
+#adminContent .qa5-row b{font-size:13px;line-height:1.4}
+#adminContent .qa5-status{margin-top:12px;white-space:pre-line;font-size:13px;line-height:1.5;overflow-wrap:anywhere}
+#adminContent .qa5-status[data-error="1"]{color:#ffacb8}
+#adminContent .qa5-preserved{padding:10px 12px;border-radius:12px;background:#163e52}
+#adminContent .qa5-blocked{margin-top:14px}
+#adminContent .qa5-danger-zone{margin-top:24px}
+#adminContent .qa5-danger-zone summary{padding:16px;font-weight:700;cursor:pointer;color:#f3b4bf}
+html[data-uzr-theme="light"] #adminContent .qa5-cleanup{background:#fff;border-color:#d3e1ea;color:#122d40}
+html[data-uzr-theme="light"] #adminContent .qa5-cleanup p,html[data-uzr-theme="light"] #adminContent .qa5-cleanup small{color:#526f82}
+html[data-uzr-theme="light"] #adminContent .qa5-cleanup button:not(.qa5-primary):not(.qa5-danger){background:#edf5fa;border-color:#ccdfeb;color:#173d54}
+html[data-uzr-theme="light"] #adminContent .qa5-row{border-color:#d3e1ea}
+html[data-uzr-theme="light"] #adminContent .qa5-preserved{background:#edf5fa}
+html[data-uzr-theme="light"] #adminContent .qa5-status[data-error="1"]{color:#a12440}
+html[data-uzr-theme="light"] #adminContent .qa5-danger-zone summary{color:#a12440}
+</style>
+<script id="uzr-qa5-expired-cleanup">
+(()=>{
+'use strict';
+let plan=null,busy=false,viewEpoch=0;
+const uz=()=>localStorage.getItem('uzr_language_pref_v1')==='uz';
+const words={
+ title:['Истёкшие объявления','Muddati tugagan e’lonlar'],
+ scope:['Только пользовательский Ресейл. Срок должен действительно закончиться, а очистка фото — завершиться.','Faqat foydalanuvchilar Resayli. Muddat tugagan va rasmlar tozalangani tasdiqlangan bo‘lishi kerak.'],
+ protect:['Активные объявления, товары Uzbek Re’Sale, UR-заказы, R-заявки и история переписок не удаляются. Записи со связанными заявками сохраняются для истории.','Faol e’lonlar, Uzbek Re’Sale mahsulotlari, UR-buyurtmalar, R-so‘rovlar va yozishmalar o‘chirilmaydi. Bog‘langan so‘rovlar tarixi saqlanadi.'],
+ check:['Проверить истёкшие','Muddati tugaganlarni tekshirish'],checking:['Проверяем…','Tekshirilmoqda…'],
+ remove:['Удалить проверенные записи','Tekshirilgan yozuvlarni o‘chirish'],removing:['Удаляем…','O‘chirilmoqda…'],
+ ready:['Можно удалить','O‘chirish mumkin'],blocked:['Сохранено защитой','Himoya tufayli saqlandi'],
+ empty:['Нет записей, которые можно безопасно удалить.','Xavfsiz o‘chirish mumkin bo‘lgan yozuvlar yo‘q.'],
+ more:['За один раз удаляется не более 100 записей. Для остальных выполните новую проверку.','Bir marta ko‘pi bilan 100 ta yozuv o‘chiriladi. Qolganlari uchun yana tekshiring.'],
+ confirm:['Удалить НАВСЕГДА только проверенные истёкшие объявления?','Faqat tekshirilgan, muddati tugagan e’lonlar BUTUNLAY o‘chirilsinmi?'],
+ done:['Удалено записей','O‘chirilgan yozuvlar'],already:['Эти записи уже удалены.','Bu yozuvlar allaqachon o‘chirilgan.'],
+ newCheck:['Для следующей очистки выполните новую проверку.','Keyingi tozalash uchun yana tekshiring.'],
+ failed:['Результат не подтверждён. Выполните новую проверку списка перед повторной очисткой.','Natija tasdiqlanmadi. Qayta o‘chirishdan oldin ro‘yxatni yana tekshiring.'],
+ unsupported:['Для этого раздела нужен Worker QA5. Интерфейс обновлён, но сервер ещё старый. Ничего не удалено.','Bu bo‘lim uchun QA5 Worker kerak. Server hali eski. Hech narsa o‘chirilmadi.'],
+ archive:['Другие архивные записи','Boshqa arxiv yozuvlari'],active:['Активные пользовательские записи','Faol foydalanuvchi yozuvlari'],
+ open:['Открыть','Ochish'],permanent:['Удалить навсегда','Butunlay o‘chirish'],restore:['Вернуть','Qaytarish'],
+ photoAction:['Очистить фото','Rasmlarni tozalash'],
+ remaining:['Фото ещё не очищены — окончательное удаление пока недоступно.','Rasmlar hali tozalanmagan — butunlay o‘chirish hozircha mumkin emas.'],
+ danger:['Опасная зона · Clean Start','Xavfli bo‘lim · Clean Start'],
+ cleanNote:['Это отдельный полный сброс пользовательского Ресейла, а НЕ очистка истёкших. Для обычной очистки используйте раздел выше.','Bu foydalanuvchi Resaylining to‘liq tozalanishi, muddati tugagan e’lonlarni tozalash EMAS. Oddiy tozalash uchun yuqoridagi bo‘limdan foydalaning.'],
+ cleanCheck:['Проверить полный сброс Ресейла','Resaylni to‘liq tozalashni tekshirish']
+};
+const t=k=>words[k]?.[uz()?1:0]||k;
+const reasonsUZ={
+ R_HISTORY_PROTECTED:'Bog‘langan R-so‘rovlar mavjud. Tarix saqlandi.',UR_HISTORY_PROTECTED:'Bog‘langan UR-buyurtma mavjud. Tarix saqlandi.',
+ PHOTOS_REMAIN:'Rasmlar hali mavjud. Avval rasmlarni odatdagi usulda tozalash kerak.',PHOTOS_NOT_CONFIRMED:'Rasmlar tozalangani serverda hali tasdiqlanmagan.',
+ CLEANUP_PENDING:'Rasmlar tozalanmoqda yoki qayta urinish kutilmoqda.',EXPIRY_UNVERIFIED:'Tugash sanasi yo‘q yoki noto‘g‘ri. Yozuv saqlandi.',NOT_EXPIRED:'E’lon muddati hali tugamagan.',
+ SOLD_RETENTION_ACTIVE:'Sotilganidan beri hali 5 kun o‘tmadi.',OFFICIAL_PROTECTED:'Rasmiy mahsulotlar alohida bo‘limda tozalanadi.',
+ CLEANUP_SELECTION_CHANGED:'Ma’lumotlar o‘zgardi. Ro‘yxatni yangilab, yana tekshiring.',CLEANUP_PREVIEW_EXPIRED:'Tekshiruv eskirgan. Yana tekshiring.',
+ ORDER_DATA_INVALID:'Buyurtma tarkibida noto‘g‘ri ma’lumot bor. Xavfsiz tozalash to‘xtatildi.',RELATED_DATA_PROTECTED:'Bog‘langan ma’lumotlar himoyalangan. Tanlanganlar o‘chirilmadi.'
+};
+const esc=s=>escapeHtml(String(s??''));
+function errorText(e){if(['HTTP_404','HTTP_405','NOT_FOUND'].includes(e.code))return t('unsupported');return uz()?(reasonsUZ[e.code]||t('failed')+' ('+(e.code||'NETWORK_ERROR')+')'):(e.serverMessage||t('failed')+' ('+(e.code||'NETWORK_ERROR')+')');}
+async function call(path,opt={}){
+ const r=await fetch(MARKETPLACE_API+path,{...opt,headers:{...adminHeaders(),...(opt.body?{'Content-Type':'application/json'}:{})},cache:'no-store'});
+ let d={};try{d=await r.json();}catch(_){const e=Error('INVALID_RESPONSE');e.code='HTTP_'+r.status;throw e;}
+ if(!r.ok||d.ok!==true){const e=Error(d.error||'HTTP_'+r.status);e.code=d.error||'HTTP_'+r.status;e.serverMessage=d.message;throw e;}return d;
+}
+function date(value){if(!value)return NaN;const s=String(value);return Date.parse(s.includes('T')?s:s.replace(' ','T')+'Z');}
+function setBusy(v){busy=v;const a=document.getElementById('qa5Check');if(a){a.disabled=v;a.textContent=v?t('checking'):t('check');}const b=document.getElementById('qa5Confirm');if(b){b.disabled=v||!plan?.count;b.textContent=v?t('removing'):t('remove')+' ('+Number(plan?.count||0)+')';}}
+function status(message,error=false){const e=document.getElementById('qa5Status');if(e){e.textContent=message;e.dataset.error=error?'1':'0';}}
+function row(x){const terminal=String(x.status||''),imgs=Array.isArray(x.images)?x.images:[];
+ const canRemove=!imgs.length&&!x.cleanup_error&&(terminal!=='sold'||(x.images_deleted_at&&date(x.sold_at)<=Date.now()-5*86400000));
+ return `<article class="admin-v89-archive-row"><div><small>${esc(terminal)} · user</small><b>#${Number(x.id)} ${esc(x.title)}</b><span>${esc(money(x.price||0))} · ${esc(adminLifecycleInfoV51(x))}</span></div><div class="admin-v89-actions"><button type="button" onclick="adminOpenListing(${Number(x.id)})">${t('open')}</button>${terminal==='sold'&&!x.images_deleted_at?`<button type="button" onclick="adminListingLifecycleV51(${Number(x.id)},'restore')">${t('restore')}</button>`:''}${canRemove?`<button type="button" class="danger" onclick="adminPermanentDeleteListing(${Number(x.id)},'${terminal}')">${t('permanent')}</button>`:''}</div>${!canRemove?`<small>${t('remaining')}</small>${['deleted','rejected'].includes(terminal)?`<button type="button" onclick="adminDeleteListing(${Number(x.id)})">${t('photoAction')}</button>`:''}`:''}</article>`;
+}
+function render(all){
+ viewEpoch++;plan=null;busy=false;
+ const user=all.filter(x=>!x.owner_type||x.owner_type==='user'),archive=user.filter(x=>['sold','deleted','rejected'].includes(x.status)),active=user.filter(x=>!['sold','deleted','rejected','expired'].includes(x.status));
+ const now=Date.now(),approved=user.filter(x=>x.status==='approved'),soon=approved.filter(x=>date(x.expires_at)>now&&date(x.expires_at)<=now+86400000);
+ return `<div data-no-i18n><section class="qa5-cleanup" aria-labelledby="qa5Title"><span class="qa5-tag">SAFE CLEANUP · QA5</span><h2 id="qa5Title">${t('title')}</h2><p>${t('scope')}</p><p class="qa5-preserved">${t('protect')}</p><button id="qa5Check" class="qa5-primary" type="button" onclick="UzrExpiredCleanupQA5.preview()">${t('check')}</button><div id="qa5Preview"></div><div id="qa5Status" class="qa5-status" role="status" aria-live="polite"></div></section>
+ <div class="admin-v89-clean-stats"><div><b>${approved.length}</b><span>${uz()?'Faol Resayl':'Активные Ресейл'}</span></div><div><b>${soon.length}</b><span>${uz()?'24 soat ichida tugaydi':'Истекают ≤24ч'}</span></div><div><b>${user.filter(x=>x.status==='sold'&&!x.images_deleted_at).length}</b><span>${uz()?'Rasmlar navbatda':'Фото ждут очистки'}</span></div><div><b>${user.filter(x=>x.cleanup_error).length}</b><span>${uz()?'Tozalash xatolari':'Ошибки очистки'}</span></div></div>
+ <details class="admin-v89-details"><summary>${t('archive')} · ${archive.length}</summary><div class="admin-v89-list">${archive.map(row).join('')||'<p>—</p>'}</div></details>
+ <details class="admin-v89-details"><summary>${t('active')} · ${active.length}</summary><div class="admin-v89-list">${active.map(x=>`<article class="admin-v89-archive-row"><div><small>${esc(x.status)} · user</small><b>#${Number(x.id)} ${esc(x.title)}</b></div><div class="admin-v89-actions"><button type="button" onclick="adminOpenListing(${Number(x.id)})">${t('open')}</button>${x.status==='approved'?`<button type="button" onclick="adminListingLifecycleV51(${Number(x.id)},'extend')">+7 ${uz()?'kun':'дней'}</button><button type="button" onclick="adminListingLifecycleV51(${Number(x.id)},'sold')">${uz()?'Sotildi':'Продано'}</button>`:''}</div></article>`).join('')||'<p>—</p>'}</div></details>
+ <details class="qa5-danger-zone"><summary>${t('danger')}</summary><div class="clean-start-v88 admin-v89-clean-start"><p>${t('cleanNote')}</p><button class="clean-start-preview-btn-v88" type="button" onclick="adminCleanStartPreviewV88()">${t('cleanCheck')}</button><div id="cleanStartPreviewV88" class="clean-start-preview-v88" hidden></div></div></details></div>`;
+}
+async function preview(ids=null){
+ if(busy)return;const epoch=viewEpoch;plan=null;setBusy(true);status('');const host=document.getElementById('qa5Preview');if(host)host.innerHTML='';
+ try{
+  const d=await call('/admin/expired-cleanup',{method:'POST',body:JSON.stringify({phase:'preview',...(ids?{ids}:{})})});
+  if(epoch!==viewEpoch||!host?.isConnected)return;
+  plan=d;
+  host.innerHTML=`<p><b>${t('ready')}: ${d.count}</b> · ${t('blocked')}: ${d.blockedCount}</p>${d.items.length?`<div class="qa5-list">${d.items.map(x=>`<div class="qa5-row"><b>#${Number(x.id)} ${esc(x.title)}</b><small>${esc(x.expiresAt)}</small></div>`).join('')}</div><button id="qa5Confirm" class="qa5-danger" type="button" onclick="UzrExpiredCleanupQA5.confirm()">${t('remove')} (${d.count})</button>`:`<p>${t('empty')}</p>`}${d.hasMore?`<p>${t('more')}</p>`:''}${d.blocked.length?`<details class="qa5-blocked"><summary>${t('blocked')} (${d.blockedCount})</summary><div class="qa5-list">${d.blocked.map(x=>`<div class="qa5-row"><b>#${Number(x.id)} ${esc(x.title)}</b><small>${esc(uz()?(reasonsUZ[x.reason]||x.reason):x.message)}</small></div>`).join('')}</div>${d.blockedCount>d.blocked.length?`<small>${uz()?'Ko‘rsatilgan':'Показано'}: ${d.blocked.length} / ${d.blockedCount}</small>`:''}</details>`:''}`;
+ }catch(e){if(epoch===viewEpoch)status(errorText(e),true);}finally{if(epoch===viewEpoch)setBusy(false);}
+}
+async function confirmPlan(){
+ if(busy||!plan?.count||!plan.token)return;
+ const p=plan,epoch=viewEpoch;
+ if(!window.confirm(t('confirm')+'\n\n'+p.items.map(x=>'#'+x.id+' '+x.title).slice(0,10).join('\n')+(p.count>10?'\n…':'')+'\n\n'+t('ready')+': '+p.count+'\n'+t('protect')))return;
+ setBusy(true);status('');
+ try{
+  const d=await call('/admin/expired-cleanup',{method:'POST',body:JSON.stringify({phase:'confirm',token:p.token,confirm:p.confirmation})});
+  if(epoch!==viewEpoch)return;plan=null;document.getElementById('qa5Preview').innerHTML='';status((d.alreadyDeleted?t('already'):t('done')+': '+d.purged)+'\n'+t('newCheck'));
+ }catch(e){if(epoch===viewEpoch){plan=null;status(errorText(e),true);}}finally{if(epoch===viewEpoch)setBusy(false);}
+}
+async function permanent(id,statusValue){
+ if(statusValue==='expired'){await adminTab('cleanup');return preview([Number(id)]);}
+ if(!window.confirm((uz()?'Yozuvni butunlay o‘chirish?':'Удалить запись навсегда?')+' #'+Number(id)+'\n\n'+t('protect')))return;
+ try{const d=await call('/admin/listing-permanent?id='+encodeURIComponent(id),{method:'DELETE'});alert(d.alreadyDeleted?t('already'):t('done')+': '+d.purged);await adminTab('cleanup');}catch(e){alert(errorText(e));}
+}
+window.UzrExpiredCleanupQA5={render,preview,confirm:confirmPlan,permanent};
+})();
+</script>
+
 </body></html>
