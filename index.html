@@ -22299,7 +22299,7 @@ const words={
  done:['Удалено записей','O‘chirilgan yozuvlar'],already:['Эти записи уже удалены.','Bu yozuvlar allaqachon o‘chirilgan.'],
  newCheck:['Для следующей очистки выполните новую проверку.','Keyingi tozalash uchun yana tekshiring.'],
  failed:['Результат не подтверждён. Выполните новую проверку списка перед повторной очисткой.','Natija tasdiqlanmadi. Qayta o‘chirishdan oldin ro‘yxatni yana tekshiring.'],
- unsupported:['Для этого раздела нужен Worker QA5. Интерфейс обновлён, но сервер ещё старый. Ничего не удалено.','Bu bo‘lim uchun QA5 Worker kerak. Server hali eski. Hech narsa o‘chirilmadi.'],
+ unsupported:['Маршрут очистки не найден на сервере. Проверим, к какому Worker подключено приложение. Ничего не удалено.','Tozalash yo‘li serverda topilmadi. Ilova qaysi Worker bilan bog‘langanini tekshiring. Hech narsa o‘chirilmagan.'],
  archive:['Другие архивные записи','Boshqa arxiv yozuvlari'],active:['Активные пользовательские записи','Faol foydalanuvchi yozuvlari'],
  open:['Открыть','Ochish'],permanent:['Удалить навсегда','Butunlay o‘chirish'],restore:['Вернуть','Qaytarish'],
  photoAction:['Очистить фото','Rasmlarni tozalash'],
@@ -22318,11 +22318,23 @@ const reasonsUZ={
  ORDER_DATA_INVALID:'Buyurtma tarkibida noto‘g‘ri ma’lumot bor. Xavfsiz tozalash to‘xtatildi.',RELATED_DATA_PROTECTED:'Bog‘langan ma’lumotlar himoyalangan. Tanlanganlar o‘chirilmadi.'
 };
 const esc=s=>escapeHtml(String(s??''));
-function errorText(e){if(['HTTP_404','HTTP_405','NOT_FOUND'].includes(e.code))return t('unsupported');return uz()?(reasonsUZ[e.code]||t('failed')+' ('+(e.code||'NETWORK_ERROR')+')'):(e.serverMessage||t('failed')+' ('+(e.code||'NETWORK_ERROR')+')');}
+function errorText(e){return uz()?(reasonsUZ[e.code]||t('failed')+' ('+(e.code||'NETWORK_ERROR')+')'):(e.serverMessage||t('failed')+' ('+(e.code||'NETWORK_ERROR')+')');}
+// Read-only diagnostic. Never sends Telegram credentials to a third-party service.
+async function previewErrorText(e){
+ if(!['HTTP_404','HTTP_405','NOT_FOUND'].includes(e.code))return errorText(e);
+ let host='?', build='unknown', statusCode='no-response';
+ try{host=new URL(MARKETPLACE_API).host;}catch(_){host='invalid-api-base';}
+ try{
+  const r=await fetch(MARKETPLACE_API+'/service-status',{cache:'no-store'});
+  statusCode=String(r.status);
+  if(r.ok){const d=await r.json();build=String(d.apiBuild||'not-reported').slice(0,80);}
+ }catch(_){statusCode='network-or-cors-error';}
+ return t('unsupported')+'\nAPI: '+host+'\nRoute: /admin/expired-cleanup'+'\nHTTP: '+String(e.httpStatus||'?')+' / '+String(e.code||'?')+'\nWorker build: '+build+' (service-status '+statusCode+')';
+}
 async function call(path,opt={}){
  const r=await fetch(MARKETPLACE_API+path,{...opt,headers:{...adminHeaders(),...(opt.body?{'Content-Type':'application/json'}:{})},cache:'no-store'});
- let d={};try{d=await r.json();}catch(_){const e=Error('INVALID_RESPONSE');e.code='HTTP_'+r.status;throw e;}
- if(!r.ok||d.ok!==true){const e=Error(d.error||'HTTP_'+r.status);e.code=d.error||'HTTP_'+r.status;e.serverMessage=d.message;throw e;}return d;
+ let d={};try{d=await r.json();}catch(_){const e=Error('INVALID_RESPONSE');e.code='HTTP_'+r.status;e.httpStatus=r.status;throw e;}
+ if(!r.ok||d.ok!==true){const e=Error(d.error||'HTTP_'+r.status);e.code=d.error||'HTTP_'+r.status;e.httpStatus=r.status;e.serverMessage=d.message;throw e;}return d;
 }
 function date(value){if(!value)return NaN;const s=String(value);return Date.parse(s.includes('T')?s:s.replace(' ','T')+'Z');}
 function setBusy(v){busy=v;const a=document.getElementById('qa5Check');if(a){a.disabled=v;a.textContent=v?t('checking'):t('check');}const b=document.getElementById('qa5Confirm');if(b){b.disabled=v||!plan?.count;b.textContent=v?t('removing'):t('remove')+' ('+Number(plan?.count||0)+')';}}
@@ -22335,7 +22347,7 @@ function render(all){
  viewEpoch++;plan=null;busy=false;
  const user=all.filter(x=>!x.owner_type||x.owner_type==='user'),archive=user.filter(x=>['sold','deleted','rejected'].includes(x.status)),active=user.filter(x=>!['sold','deleted','rejected','expired'].includes(x.status));
  const now=Date.now(),approved=user.filter(x=>x.status==='approved'),soon=approved.filter(x=>date(x.expires_at)>now&&date(x.expires_at)<=now+86400000);
- return `<div data-no-i18n><section class="qa5-cleanup" aria-labelledby="qa5Title"><span class="qa5-tag">SAFE CLEANUP · QA5</span><h2 id="qa5Title">${t('title')}</h2><p>${t('scope')}</p><p class="qa5-preserved">${t('protect')}</p><button id="qa5Check" class="qa5-primary" type="button" onclick="UzrExpiredCleanupQA5.preview()">${t('check')}</button><div id="qa5Preview"></div><div id="qa5Status" class="qa5-status" role="status" aria-live="polite"></div></section>
+ return `<div data-no-i18n><section class="qa5-cleanup" aria-labelledby="qa5Title"><span class="qa5-tag">SAFE CLEANUP · QA7</span><h2 id="qa5Title">${t('title')}</h2><p>${t('scope')}</p><p class="qa5-preserved">${t('protect')}</p><button id="qa5Check" class="qa5-primary" type="button" onclick="UzrExpiredCleanupQA5.preview()">${t('check')}</button><div id="qa5Preview"></div><div id="qa5Status" class="qa5-status" role="status" aria-live="polite"></div></section>
  <div class="admin-v89-clean-stats"><div><b>${approved.length}</b><span>${uz()?'Faol Resayl':'Активные Ресейл'}</span></div><div><b>${soon.length}</b><span>${uz()?'24 soat ichida tugaydi':'Истекают ≤24ч'}</span></div><div><b>${user.filter(x=>x.status==='sold'&&!x.images_deleted_at).length}</b><span>${uz()?'Rasmlar navbatda':'Фото ждут очистки'}</span></div><div><b>${user.filter(x=>x.cleanup_error).length}</b><span>${uz()?'Tozalash xatolari':'Ошибки очистки'}</span></div></div>
  <details class="admin-v89-details"><summary>${t('archive')} · ${archive.length}</summary><div class="admin-v89-list">${archive.map(row).join('')||'<p>—</p>'}</div></details>
  <details class="admin-v89-details"><summary>${t('active')} · ${active.length}</summary><div class="admin-v89-list">${active.map(x=>`<article class="admin-v89-archive-row"><div><small>${esc(x.status)} · user</small><b>#${Number(x.id)} ${esc(x.title)}</b></div><div class="admin-v89-actions"><button type="button" onclick="adminOpenListing(${Number(x.id)})">${t('open')}</button>${x.status==='approved'?`<button type="button" onclick="adminListingLifecycleV51(${Number(x.id)},'extend')">+7 ${uz()?'kun':'дней'}</button><button type="button" onclick="adminListingLifecycleV51(${Number(x.id)},'sold')">${uz()?'Sotildi':'Продано'}</button>`:''}</div></article>`).join('')||'<p>—</p>'}</div></details>
@@ -22348,7 +22360,7 @@ async function preview(ids=null){
   if(epoch!==viewEpoch||!host?.isConnected)return;
   plan=d;
   host.innerHTML=`<p><b>${t('ready')}: ${d.count}</b> · ${t('blocked')}: ${d.blockedCount}</p>${d.items.length?`<div class="qa5-list">${d.items.map(x=>`<div class="qa5-row"><b>#${Number(x.id)} ${esc(x.title)}</b><small>${esc(x.expiresAt)}</small></div>`).join('')}</div><button id="qa5Confirm" class="qa5-danger" type="button" onclick="UzrExpiredCleanupQA5.confirm()">${t('remove')} (${d.count})</button>`:`<p>${t('empty')}</p>`}${d.hasMore?`<p>${t('more')}</p>`:''}${d.blocked.length?`<details class="qa5-blocked"><summary>${t('blocked')} (${d.blockedCount})</summary><div class="qa5-list">${d.blocked.map(x=>`<div class="qa5-row"><b>#${Number(x.id)} ${esc(x.title)}</b><small>${esc(uz()?(reasonsUZ[x.reason]||x.reason):x.message)}</small></div>`).join('')}</div>${d.blockedCount>d.blocked.length?`<small>${uz()?'Ko‘rsatilgan':'Показано'}: ${d.blocked.length} / ${d.blockedCount}</small>`:''}</details>`:''}`;
- }catch(e){if(epoch===viewEpoch)status(errorText(e),true);}finally{if(epoch===viewEpoch)setBusy(false);}
+ }catch(e){const message=await previewErrorText(e);if(epoch===viewEpoch)status(message,true);}finally{if(epoch===viewEpoch)setBusy(false);}
 }
 async function confirmPlan(){
  if(busy||!plan?.count||!plan.token)return;
