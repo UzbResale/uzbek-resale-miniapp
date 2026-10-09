@@ -18618,6 +18618,7 @@ function adminRenderOrdersV89(filter=adminOrdersFilterV89){
     }).join("");
 
     let actions=`<button onclick="UzrSearch110.adminOrder(${o.id})"><i data-lucide="eye"></i> Открыть заказ</button>`;
+    if(String(o.telegram_id||"").trim())actions+=`<button type="button" class="admin-v111-chat-button" onclick="adminOrderMessageOpenV111(${Number(o.id)})"><i data-lucide="message-circle"></i> Написать клиенту</button>`;
     if(status==="new"){
       actions+=`<button onclick="adminOrderStatus(${o.id},'confirmed')">Подтвердить</button><button class="danger" onclick="adminOrderStatus(${o.id},'cancelled')">Отменить</button>`;
     }else if(status==="confirmed"){
@@ -21645,7 +21646,7 @@ function sr123DrawOrder(){
  view(o.orderNumber,`<div class="sr123-detail-state"><span class="sr123-badge status-${esc(o.status)}">${esc(sr123t(o.status==='new'?'newOrder':o.status))}</span><span>${esc(date(o.createdAt))}</span></div>
  <section class="sr110-card"><div class="sr123-order-item"><span class="sr123-order-photo">${picture}</span><div><h3>${esc(first.name||o.orderNumber)}</h3><p>${esc([first.size,first.color].filter(Boolean).join(' · '))}</p><span>${esc(t('quantity'))}: ${items.length}</span></div><b>${sum(o.total)}</b></div></section>
  <section class="sr110-card">${row(t('name'),o.customerName)}${row(t('phone'),o.phone)}${row(t('city'),o.city)}${o.comment?`<p class="sr123-comment">${esc(o.comment)}</p>`:''}${o.sourceRequestId?row(t('number'),'C-'+String(o.sourceRequestId).padStart(6,'0')):''}
- <div class="sr124-telegram-card"><div><small>${esc(sr123t('telegram'))}</small><b>${esc(o.telegramUsername?'@'+o.telegramUsername:(o.telegramName||o.customerName||'—'))}</b><span>ID ${esc(o.telegramId||'—')}</span></div><div class="sr124-telegram-actions"><button type="button" data-sr-action="acTelegram">${icon('send')}<span>${esc(sr123t('openTelegram'))}</span></button><button type="button" data-sr-action="acCopyTelegram">${icon('copy')}<span>${esc(sr123t('copyId'))}</span></button></div></div></section>
+ <div class="sr124-telegram-card"><div><small>${esc(sr123t('telegram'))}</small><b>${esc(o.telegramUsername?'@'+o.telegramUsername:(o.telegramName||o.customerName||'—'))}</b><span>ID ${esc(o.telegramId||'—')}</span></div><div class="sr124-telegram-actions"><button type="button" data-sr-action="acTelegram">${icon('send')}<span>${esc(sr123t('openTelegram'))}</span></button><button type="button" data-sr-action="acCopyTelegram">${icon('copy')}<span>${esc(sr123t('copyId'))}</span></button></div></div>${o.telegramId?`<button type="button" class="sr110-btn secondary" onclick="adminOrderMessageOpenV111(${Number(o.id)})" style="margin-top:12px;width:100%;">${icon('message-circle')} Написать клиенту через бота</button>`:''}</section>
  ${c?`<section class="sr110-card">${row(t('cargoChoose'),locale()==='uz'?c.nameUz:c.nameRu)}${row(t('rate'),'$'+(c.rateCents/100).toFixed(2))}${button('acOrderCargo',t('cargo'),'secondary')}</section>`:''}
  ${['completed','cancelled'].includes(o.status)?`<div class="sr123-delete-row">${button('removeUR',sr126t('deleteUR'),'danger')}</div>`:''}
  <div class="sr123-primary-actions">${(statuses[o.status]||[]).map(([status,label])=>`<button type="button" data-sr-action="acOrderStatus" data-status="${status}" class="sr110-btn ${status==='cancelled'?'danger':''}">${esc(sr123t(label))}</button>`).join('')}</div>`,state.adminCOrderBack||close);
@@ -22235,4 +22236,82 @@ html[data-uzr-theme="light"] #sr110Panel .sr124-telegram-actions button{backgrou
 </style>
 
 <style id="uzr-release-cleanup">#sr110Panel #sr126ResetForm input{width:100%;box-sizing:border-box;border:1px solid var(--sr-line);border-radius:12px;background:var(--sr-surface);color:var(--sr-text);padding:12px;font:inherit}#sr110Panel .sr123-confirm-buttons{gap:10px}#sr110Panel .sr123-delete-row{margin-top:10px}</style>
+
+<style id="uzr-v111-admin-order-message-styles">
+body .admin-v111-chat-button{border:1px solid #128fe4!important;color:#c9ecff!important;background:#0b3550!important}
+body .admin-v111-message-shade{position:fixed!important;inset:0!important;z-index:2147483000!important;background:rgba(1,12,22,.82)!important;display:flex!important;align-items:center!important;justify-content:center!important;padding:18px!important;box-sizing:border-box!important}
+body .admin-v111-message-dialog{width:min(100%,470px)!important;max-height:calc(100dvh - 36px)!important;overflow:auto!important;border:1px solid #386078!important;border-radius:19px!important;background:#102634!important;color:#eef7fc!important;box-shadow:0 18px 60px rgba(0,0,0,.5)!important;padding:20px!important;font-family:inherit!important;box-sizing:border-box!important}
+body .admin-v111-message-dialog h2{font-size:19px!important;margin:0 0 6px!important;color:#fff!important}
+body .admin-v111-message-dialog p{font-size:12px!important;line-height:1.5!important;color:#afc8d9!important;margin:0 0 14px!important}
+body .admin-v111-message-dialog label{display:block!important;font-size:12px!important;font-weight:700!important;margin-bottom:6px!important;color:#fff!important}
+body .admin-v111-message-dialog textarea{width:100%!important;min-height:130px!important;box-sizing:border-box!important;resize:vertical!important;padding:12px!important;color:#edf8ff!important;-webkit-text-fill-color:#edf8ff!important;background:#091d29!important;border:1px solid #476477!important;border-radius:12px!important;line-height:1.45!important;font:inherit!important;font-size:14px!important}
+body .admin-v111-message-dialog textarea:focus{outline:2px solid #15a0f6!important;outline-offset:1px!important}
+body .admin-v111-message-dialog .admin-v111-controls{display:flex!important;gap:8px!important;justify-content:flex-end!important;margin-top:14px!important}
+body .admin-v111-message-dialog .admin-v111-controls button{border-radius:12px!important;min-height:44px!important;padding:10px 14px!important;border:1px solid #476477!important;background:#213d4e!important;color:#fff!important;font-size:13px!important;font-weight:700!important;cursor:pointer!important}
+body .admin-v111-message-dialog .admin-v111-controls button[type=submit]{background:#058af3!important;border-color:#058af3!important}
+body .admin-v111-message-dialog button:disabled{opacity:.55!important;cursor:not-allowed!important}
+body .admin-v111-message-dialog .admin-v111-error{color:#ff929c!important;white-space:pre-wrap!important;margin-top:10px!important;font-size:12px!important}
+body .admin-v111-message-dialog .admin-v111-hint{font-size:11px!important;margin-top:6px!important;color:#9bb9cd!important}
+</style>
+<script id="uzr-v111-admin-order-message-script">
+(function(){
+  'use strict';
+  let pending=false;
+  let requestId='';
+  const errors={
+    ADMIN_BOT_NOT_STARTED:'Сначала откройте @resaleuzbot со своего Telegram-аккаунта и нажмите /start. Клиенту ничего не отправлено.',
+    ADMIN_BOT_CHECK_FAILED:'Не удалось проверить связь с вашим ботом. Клиенту ничего не отправлено.',
+    BUYER_BLOCKED_BOT:'Клиент заблокировал бота или ещё не открыл его. Сообщение не доставлено.',
+    TELEGRAM_DELIVERY_FAILED:'Telegram не доставил сообщение. Попробуйте позже.',
+    TELEGRAM_STATUS_UNCERTAIN:'Неизвестно, доставил ли Telegram сообщение. Проверьте переписку перед повторной отправкой.',
+    SENT_BUT_BRIDGE_UNAVAILABLE:'Сообщение доставлено клиенту, но не удалось включить ответы. Не повторяйте отправку; проверьте настройки Worker.',
+    MESSAGE_STATUS_UNCERTAIN:'Статус предыдущей отправки неизвестен. Не отправляйте повторно, пока не проверите Telegram.',
+    MESSAGE_IN_PROGRESS:'Сообщение уже отправляется. Дождитесь результата.',
+    BUYER_CHAT_UNAVAILABLE:'Для заказа нет доступного Telegram ID клиента.',
+    ORDER_NOT_FOUND:'Этот заказ не найден или был удалён.',
+    TELEGRAM_AUTH_FAILED:'Авторизация Telegram истекла. Переоткройте Mini App.',
+    TELEGRAM_AUTH_REQUIRED:'Авторизация Telegram истекла. Переоткройте Mini App.',
+    FORBIDDEN:'Нет прав администратора.',
+    INVALID_MESSAGE:'Введите сообщение длиной до 1500 символов.'
+  };
+  function close(){if(pending)return;document.getElementById('adminV111MessageShade')?.remove();document.removeEventListener('keydown',esc);}
+  function esc(e){if(e.key==='Escape')close();}
+  window.adminOrderMessageOpenV111=function(orderId){
+    if(pending)return;
+    const id=Number(orderId);
+    if(!Number.isSafeInteger(id)||id<1)return;
+    close();
+    const order=(window.adminOrdersCacheV89||[]).find(x=>Number(x.id)===id);
+    // Fallback when opened from the full C→UR/order detail screen.
+    const detail=order||null;
+    const shade=document.createElement('div');shade.className='admin-v111-message-shade';shade.id='adminV111MessageShade';
+    shade.innerHTML='<form class="admin-v111-message-dialog" role="dialog" aria-modal="true" aria-labelledby="adminV111MessageTitle"><h2 id="adminV111MessageTitle">Написать клиенту по заказу</h2><p id="adminV111MessageDesc"></p><label for="adminV111MessageText">Ваше сообщение</label><textarea id="adminV111MessageText" required maxlength="1500" placeholder="Здравствуйте! Пишем вам по поводу вашего заказа…"></textarea><div class="admin-v111-hint">Сообщение придёт клиенту от @resaleuzbot с кнопкой ответа. Дальше можно общаться прямо в боте. Активный диалог администратора переключится на этот заказ.</div><p class="admin-v111-error" id="adminV111MessageError" role="alert" hidden></p><div class="admin-v111-controls"><button type="button" data-cancel>Отмена</button><button type="submit" data-send>Отправить в бот</button></div></form>';
+    const form=shade.querySelector('form');
+    shade.querySelector('#adminV111MessageDesc').textContent=(detail?.order_number||('Заказ #'+id))+' · '+(detail?.name||'Покупатель');
+    shade.querySelector('[data-cancel]').onclick=close;
+    shade.addEventListener('click',e=>{if(e.target===shade)close();});
+    form.addEventListener('submit',async e=>{
+      e.preventDefault();if(pending)return;
+      const text=shade.querySelector('textarea').value.trim(),error=shade.querySelector('#adminV111MessageError');
+      if(!text||Array.from(text).length>1500){error.textContent=errors.INVALID_MESSAGE;error.hidden=false;return;}
+      const uid=window.crypto?.randomUUID?.();
+      if(!uid){error.textContent='Безопасный идентификатор сообщения недоступен. Переоткройте Mini App.';error.hidden=false;return;}
+      pending=true;requestId=uid;error.hidden=true;
+      shade.querySelector('[data-send]').disabled=true;shade.querySelector('[data-cancel]').disabled=true;
+      try{
+        // adminFetch already includes signed Telegram initData and throws on failed HTTP.
+        const result=await adminFetch('/admin/orders/'+id+'/message',{
+          method:'POST',body:JSON.stringify({message:text,clientMessageId:requestId}),
+          headers:{'Content-Type':'application/json'}
+        });
+        if(!result.ok)throw Error(result.error||'REQUEST_FAILED');
+        shade.remove();document.removeEventListener('keydown',esc);
+        alert('✅ Telegram принял сообщение для покупателя. Продолжайте переписку в @resaleuzbot.');
+      }catch(ex){error.textContent=errors[ex?.message]||('Ошибка отправки: '+String(ex?.message||'Неизвестная ошибка'));error.hidden=false;}
+      finally{pending=false;requestId='';shade.querySelector('[data-send]').disabled=false;shade.querySelector('[data-cancel]').disabled=false;}
+    });
+    document.body.appendChild(shade);document.addEventListener('keydown',esc);shade.querySelector('textarea').focus();
+  };
+})();
+</script>
 </body></html>
