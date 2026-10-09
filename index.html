@@ -17530,7 +17530,9 @@ function normalizeContactRequestV50(r){
     message:String(r?.message||""),
     status:String(r?.status||"sent"),
     createdAt:r?.createdAt||r?.created_at||"",
-    updatedAt:r?.updatedAt||r?.updated_at||""
+    updatedAt:r?.updatedAt||r?.updated_at||"",
+    listingArchived:!!r?.listingArchived,
+    closeReason:String(r?.closeReason||"")
   };
 }
 async function loadContactRequestsV50({silent=false}={}){
@@ -17679,14 +17681,15 @@ function renderContactRequestsV49(){
     return;
   }
 
-  list.innerHTML=items.map(r=>`<button class="contact-request-card-v49" type="button" onclick="openProductFromRequestV49(${Number(r.listingId||0)})">
+  list.innerHTML=items.map(r=>`<button class="contact-request-card-v49" type="button" ${r.listingArchived?'disabled aria-disabled="true"':'onclick="openProductFromRequestV49('+Number(r.listingId||0)+')"'}>
     <span class="contact-request-card-photo-v49">${r.image?`<img src="${escapeHtml(r.image)}" alt="">`:'<i data-lucide="image"></i>'}</span>
     <span class="contact-request-card-main-v49">
       <b>${escapeHtml(r.productName)}</b>
       <strong>${money(r.price)}</strong>
       <small>Продавец: ${escapeHtml(r.sellerUsername?"@"+String(r.sellerUsername).replace(/^@/,""):r.sellerName)}</small>
       <small>${escapeHtml(contactRequestDateV49(r.createdAt))}</small>
-      <em class="request-status-v49 ${contactRequestStatusClassV49(r.status)}">${contactRequestStatusLabelV49(r.status)}</em>
+      <em class="request-status-v49 ${contactRequestStatusClassV49(r.status)}">${r.closeReason==='inactivity'?'Закрыта по неактивности':contactRequestStatusLabelV49(r.status)}</em>
+      ${r.listingArchived?'<small>Карточка удалена · история заявки сохранена</small>':''}
     </span>
     <i class="contact-request-card-chevron-v49" data-lucide="chevron-right"></i>
   </button>`).join("");
@@ -18647,6 +18650,14 @@ function adminRenderOrdersV89(filter=adminOrdersFilterV89){
   window.lucide?.createIcons();
 }
 
+async function adminCloseRRequestQA8(id){
+  if(!Number.isSafeInteger(Number(id))||Number(id)<1)return;
+  if(!confirm('Закрыть R-заявку? Переписка завершится, история останется.'))return;
+  try{
+    await adminFetch('/admin/contact-requests/close',{method:'POST',body:JSON.stringify({requestId:Number(id)})});
+    await adminTab('requests');
+  }catch(e){alert('Не удалось закрыть R-заявку: '+String(e?.message||e));}
+}
 function adminRenderRequestsV89(filter=adminRequestsFilterV89){
   adminRequestsFilterV89=filter;
   const host=$("adminRequestsListV89");
@@ -18679,7 +18690,9 @@ function adminRenderRequestsV89(filter=adminRequestsFilterV89){
       </div>
       ${r.message?`<div class="admin-v89-request-message">${escapeHtml(r.message)}</div>`:""}
       <div class="admin-v89-actions">
-        ${r.listingId?`<button onclick="adminOpenListing(${Number(r.listingId)})">Открыть товар</button>`:""}
+        ${r.listingId&&!r.listingArchived?`<button onclick="adminOpenListing(${Number(r.listingId)})">Открыть товар</button>`:""}
+        ${r.listingArchived?`<small>Карточка удалена · история сохранена</small>`:""}
+        ${['sent','open'].includes(String(r.status||''))?`<button type="button" onclick="adminCloseRRequestQA8(${Number(r.id)})">Закрыть заявку</button>`:""}
       </div>
     </article>
   `).join("")||'<div class="admin-v89-empty"><i data-lucide="messages-square"></i><b>R-заявок нет</b><small>Новые заявки на связь появятся здесь.</small></div>';
