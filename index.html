@@ -18808,6 +18808,38 @@ const officialColorPaletteV12=[
   ['Бежевый','#CABB9B'],['Коричневый','#76543C'],['Розовый','#E999BC'],['Жёлтый','#E4B737'],
   ['Фиолетовый','#7858AB'],['Оранжевый','#E68B3D']
 ];
+async function adminVariantSaveV12(id,variants,revision){
+  const endpoint=MARKETPLACE_API+'/admin/official-variants?id='+encodeURIComponent(id);
+  // Do not submit edited stocks to a legacy Worker that cannot guard revisions.
+  const preflight=await fetch(endpoint,{method:'GET',headers:adminHeaders()});
+  let current={};try{current=await preflight.json();}catch(_){}
+  if(!preflight.ok){
+    const e=new Error(String(current.message||current.error||('HTTP '+preflight.status)));
+    e.code=String(current.error||'VARIANTS_PREFLIGHT_FAILED');throw e;
+  }
+  if(typeof current.revision!=='string'){
+    const e=new Error('Worker не поддерживает безопасное сохранение палитры. Сначала обновите Worker из комплекта.');
+    e.code='WORKER_VARIANTS_VERSION_MISMATCH';throw e;
+  }
+  if(current.revision!==revision){
+    const e=new Error('VARIANTS_CHANGED_REFRESH_REQUIRED');
+    e.code='VARIANTS_CHANGED_REFRESH_REQUIRED';throw e;
+  }
+  const r=await fetch(endpoint,{
+    method:'POST',headers:adminHeaders(),
+    body:JSON.stringify({variants,revision})
+  });
+  let d={};
+  try{d=await r.json();}catch(_){/* non-JSON server failure */}
+  if(!r.ok||d.ok!==true){
+    const reason=String(d.message||d.error||('HTTP '+r.status));
+    const ref=d.reference?' [код '+String(d.reference)+']':'';
+    const error=new Error(reason+ref);
+    error.code=String(d.error||'VARIANTS_SAVE_FAILED');
+    throw error;
+  }
+  return d;
+}
 function officialSizeGroupsV12(category){
   switch(String(category||'').trim()){
     case 'Обувь': return [{title:'Размер обуви · EU',items:Array.from({length:15},(_,i)=>String(i+34)).flatMap(s=>Number(s)>=35&&Number(s)<=45?[s,s+'.5']:[s]).filter(s=>Number(s)<=48)}];
@@ -18903,11 +18935,12 @@ function renderAdminVariantsV12(hostId){
       const variants=await readAdminVariantsV12(hostId);
       if(!variants.length&&!confirm('Вы удаляете все цвета. Товар исчезнет из продажи. Продолжить?'))return;
       save.disabled=true;save.textContent='Сохраняем…';
-      const d=await adminFetch('/admin/official-variants?id='+encodeURIComponent(s.listingId),{method:'POST',body:JSON.stringify({variants,revision:s.revision})});
+      const d=await adminVariantSaveV12(s.listingId,variants,s.revision);
       s.revision=d.revision;await loadMarketplaceCatalog();await adminEditOfficial(s.listingId);
     }catch(e){
-      if(String(e.message).includes('VARIANTS_CHANGED_REFRESH_REQUIRED'))alert('Остатки товара изменились (например, пришёл заказ). Обновите редактор и проверьте количества перед сохранением.');
-      else alert('Не удалось сохранить варианты: '+String(e.message||e));
+      const msg=String(e.message||e);
+      if(e.code==='VARIANTS_CHANGED_REFRESH_REQUIRED'||msg.includes('VARIANTS_CHANGED_REFRESH_REQUIRED'))alert('Остатки товара изменились (например, пришёл заказ). Обновите редактор и проверьте количества перед сохранением.');
+      else alert('Не удалось сохранить цвета и размеры: '+msg);
     }finally{save.disabled=false;save.textContent='Сохранить цвета, размеры и остатки';}
   };
   setTimeout(()=>window.lucide?.createIcons(),0);
