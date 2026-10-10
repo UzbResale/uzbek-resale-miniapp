@@ -14555,6 +14555,7 @@ html body #home #homeGrid .uzr-home-photo-empty{position:absolute!important;inse
 </button>
 </div>
 
+<section class="sr110-banner" data-no-i18n aria-label="Найти товар"></section>
 <div class="uzr-home-toolbar" data-no-i18n>
   <button type="button" id="uzrHomeFilterButtonV12" aria-haspopup="dialog" aria-controls="uzrHomeFilterV12" aria-expanded="false">Фильтры</button>
   <div class="uzr-home-chips" id="uzrHomeChipsV12" aria-label="Быстрые фильтры"></div>
@@ -21432,7 +21433,7 @@ function translateStatic(){
 }
 
  document.querySelectorAll('[data-sr-copy]').forEach(el=>{const a=extraCopy[el.dataset.srCopy];if(a)el.textContent=a[locale()==='uz'?1:0]});
- document.querySelectorAll('.sr110-banner').forEach(el=>{el.innerHTML=bannerHTML(!!el.closest('#china'));el.querySelector('button').onclick=newRequest});
+ document.querySelectorAll('.sr110-banner').forEach(el=>{el.innerHTML=bannerHTML(true);el.querySelector('button').onclick=newRequest});
  document.querySelectorAll('[data-sr-label]').forEach(el=>el.textContent=t(el.dataset.srLabel));
  if(window.lucide)lucide.createIcons();
 }
