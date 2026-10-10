@@ -14524,7 +14524,14 @@ html body #home #homeGrid .uzr-home-photo-empty{position:absolute!important;inse
 @media(prefers-reduced-motion:reduce){#resaleProductV12 *,#resaleDealV12 *{transition:none!important}}
 
 </style>
-</head><body>
+<style id="official-variants-style-v12">
+.official-variant-picker-v12{padding:14px;margin:13px 0;background:var(--uzr-surface-4,#102c3a);border:1px solid #2a4c60;border-radius:16px;color:#f2f7fa}
+.official-variant-heading-v12{font-size:13px;margin-bottom:12px;color:#a6bac8}.official-variant-heading-v12 b{color:#fff}
+.official-color-options-v12{display:flex;gap:12px;flex-wrap:wrap}.official-color-options-v12 button{width:42px;height:42px;border-radius:50%;border:2px solid #647888;padding:4px;background:transparent;cursor:pointer;display:flex;align-items:center;justify-content:center}.official-color-options-v12 button.active{border-color:#31b6ff;box-shadow:0 0 0 2px rgba(49,182,255,.3)}.official-color-options-v12 i{display:block;width:29px;height:29px;border-radius:50%;border:1px solid rgba(255,255,255,.45)}
+#productSizeOptions button:disabled{opacity:.25;pointer-events:none}
+.admin-variants-v12{margin:15px 0;padding:15px;background:#102d3e;border-radius:16px;border:1px solid #2c5065;color:#eff7fa}.admin-variants-v12 h3{margin:0 0 10px}.admin-variant-line-v12{display:grid;grid-template-columns:1.15fr .7fr .8fr .85fr 1.8fr 36px;gap:5px;align-items:center;margin-bottom:8px}.admin-variant-line-v12 input{width:100%;min-width:0;background:#142b3c;border:1px solid #416078;border-radius:7px;padding:8px 5px;color:#fff;font-size:11px}.admin-variant-line-v12 button{background:#285276;color:#fff;border:0;border-radius:9px;min-height:32px}.admin-variants-v12 .admin-v12-help{font-size:11px;color:#9ab3c5;line-height:1.45;margin-bottom:10px}.admin-variants-v12>.admin-v89-primary{margin-top:10px}
+@media(max-width:430px){.admin-variant-line-v12{grid-template-columns:1fr 55px 60px 62px 27px;gap:4px}.admin-variant-line-v12 .image-url-v12{grid-column:1/-1}.admin-variant-line-v12 input{font-size:10px;padding:7px 4px}}
+</style></head><body>
 <div id="uzrConsentV58" hidden role="dialog" aria-modal="true" aria-labelledby="uzrConsentTitleV58">
   <div class="uzr-consent-card-v58">
     <div class="uzr-consent-brand-v58">
@@ -15635,6 +15642,10 @@ html body #home #homeGrid .uzr-home-photo-empty{position:absolute!important;inse
   <span class="product-old-price-v87" hidden id="pOldPriceV87"></span>
 </div>
 </div>
+<div class="official-variant-picker-v12" id="officialVariantPickerV12" hidden>
+  <div class="official-variant-heading-v12">Цвет: <b id="officialSelectedColorV12">—</b></div>
+  <div id="officialColorOptionsV12" class="official-color-options-v12"></div>
+</div>
 <div class="product-v18-size-picker" hidden="" id="productSizePicker">
 <div class="product-v18-size-label">Выберите размер</div>
 <div class="size-options product-v18-size-options" id="productSizeOptions"></div>
@@ -15901,6 +15912,43 @@ function uzrHaptic(kind="light"){if(!hapticEnabled)return;try{const h=window.Tel
 function setSwitchState(btn,on){if(!btn)return;btn.classList.toggle("on",!!on);btn.setAttribute("aria-pressed",on?"true":"false")}
 function syncV2Settings(){setSwitchState($("hapticSwitch"),hapticEnabled)}
 let selectedProductSize="";
+let selectedProductVariantV12=null;
+let selectedProductColorV12="";
+function productVariantsV12(p){return Array.isArray(p?.variants)?p.variants:[]}
+function setVariantColorV12(color){
+  if(!selected||selected.ownerType!=="official")return;
+  const variants=productVariantsV12(selected),name=String(color||'');
+  const choices=variants.filter(v=>v.colorName===name);
+  if(!choices.length)return;
+  selectedProductColorV12=name;
+  const title=$('officialSelectedColorV12');if(title)title.textContent=name;
+  document.querySelectorAll('#officialColorOptionsV12 button').forEach(b=>b.classList.toggle('active',b.dataset.color===name));
+  const available=choices.filter(v=>Number(v.stockQty)>0);
+  setProductSize(available[0]?.sizeName||choices[0]?.sizeName||'');
+  const options=$('productSizeOptions');if(options){
+    options.innerHTML=[...new Set(choices.map(v=>v.sizeName))].map(s=>{
+      const enabled=choices.some(v=>v.sizeName===s&&Number(v.stockQty)>0);
+      return `<button type="button" data-size="${escapeHtml(s)}" ${enabled?'':'disabled'}>${escapeHtml(s)}</button>`
+    }).join('');
+    options.querySelectorAll('button').forEach(b=>b.onclick=e=>{e.stopPropagation();setProductSize(b.dataset.size)});
+  }
+  setProductSize(selectedProductSize);
+  const colorPhoto=choices.find(v=>v.imageUrl)?.imageUrl;
+  if(colorPhoto){const main=document.querySelector('#bigPhoto img');if(main?.tagName==='IMG')main.src=colorPhoto;}
+}
+function mountProductVariantsV12(p){
+  const host=$('officialVariantPickerV12'),colors=$('officialColorOptionsV12');
+  const variants=productVariantsV12(p);
+  selectedProductVariantV12=null;selectedProductColorV12='';
+  if(!host||!colors)return;
+  host.hidden=!(p.ownerType==='official'&&variants.length);
+  if(host.hidden)return;
+  const names=[...new Set(variants.map(v=>v.colorName))];
+  colors.innerHTML=names.map(name=>{const v=variants.find(x=>x.colorName===name);return `<button type="button" title="${escapeHtml(name)}" data-color="${escapeHtml(name)}"><i style="background:${escapeHtml(v.colorHex)}"></i></button>`}).join('');
+  colors.querySelectorAll('button').forEach(b=>b.onclick=e=>{e.stopPropagation();setVariantColorV12(b.dataset.color)});
+  setVariantColorV12(names.find(name=>variants.some(v=>v.colorName===name&&Number(v.stockQty)>0))||names[0]);
+}
+
 function productSizes(p){
  const raw=String(p?.size||"").trim();
  if(!raw)return [];
@@ -15910,6 +15958,7 @@ function productSizes(p){
 function needsSizePicker(p){return p?.ownerType==="official"&&productSizes(p).length>1}
 function setProductSize(size){
  selectedProductSize=String(size||"").trim();
+ selectedProductVariantV12=selected?.ownerType==='official'?productVariantsV12(selected).find(v=>v.colorName===selectedProductColorV12&&v.sizeName===selectedProductSize)||null:null;
  const ps=$("pSize");if(ps)ps.textContent="Размер: "+(selectedProductSize||"—");
  document.querySelectorAll("#productSizeOptions button").forEach(b=>b.classList.toggle("active",b.dataset.size===selectedProductSize));
 }
@@ -15976,7 +16025,7 @@ const UZR_ORDER_ATTEMPT_STORAGE_V92="uzr_order_attempt_v92";
 function uzrOrderFingerprintV92(name,phone,city,items){
   return JSON.stringify({
     name:String(name||""),phone:String(phone||""),city:String(city||""),
-    items:(items||[]).map(p=>({listingId:Number(p.listingId||0),size:String(p.size||""),ownerType:String(p.ownerType||"")}))
+    items:(items||[]).map(p=>({listingId:Number(p.listingId||0),size:String(p.size||""),color:String(p.color||""),variantId:Number(p.variantId||0),ownerType:String(p.ownerType||"")}))
   });
 }
 function uzrReadOrderAttemptV92(){try{return JSON.parse(localStorage.getItem(UZR_ORDER_ATTEMPT_STORAGE_V92)||"null")}catch(_){return null}}
@@ -16385,7 +16434,7 @@ function card(p){
  rememberViewed(p.id);
  setProductFavoriteButtonV18(isFavoriteV76(p.id));
 
- const gallery=(p.images&&p.images.length?p.images:[p.image]).filter(Boolean).slice(0,6);
+ const gallery=([...(p.images&&p.images.length?p.images:[p.image]),...productVariantsV12(p).map(v=>v.imageUrl)]).filter(Boolean).filter((v,i,a)=>a.indexOf(v)===i).slice(0,12);
  let galleryIndex=0;
 
  const showGalleryPhoto=(idx)=>{
@@ -16478,7 +16527,7 @@ function card(p){
  selectedProductSize=sizes[0]||String(p.size||"");
  const picker=$("productSizePicker"),opts=$("productSizeOptions");
  if(picker&&opts){
-   picker.hidden=!needsSizePicker(p);
+   picker.hidden=!(needsSizePicker(p)||productVariantsV12(p).length>0);
    opts.innerHTML=needsSizePicker(p)?sizes.map(sz=>`<button type="button" data-size="${escapeHtml(sz)}">${escapeHtml(sz)}</button>`).join(""):"";
    opts.querySelectorAll("button").forEach(b=>b.onclick=ev=>{
      ev.stopPropagation();
@@ -16486,6 +16535,7 @@ function card(p){
    });
  }
  setProductSize(selectedProductSize);
+ mountProductVariantsV12(p);
 
  const pc=$("pCondition");
  if(pc){
@@ -16773,7 +16823,7 @@ function renderCart(){
  cart.forEach(p=>{
    const r=document.createElement("div");
    r.className="cartrow";
-   r.innerHTML=`<div class="cartpic"><img src="${p.image}" alt="${escapeHtml(p.name)}"></div><div class="grow"><b>${escapeHtml(p.name)}</b><div class="meta">Размер: ${escapeHtml(cartSizeText(p.size))}</div><div class="cart-price-row-v87"><div class="price">${money(p.price)}</div>${p.discountActive&&Number(p.originalPrice)>Number(p.price)?`<span class="cart-old-price-v87">${money(p.originalPrice)}</span><span class="cart-discount-v87">${escapeHtml(p.discountBadge||("-"+p.discountPercent+"%"))}</span>`:""}</div></div><button class="remove" type="button" aria-label="Удалить товар">×</button>`;
+   r.innerHTML=`<div class="cartpic"><img src="${p.image}" alt="${escapeHtml(p.name)}"></div><div class="grow"><b>${escapeHtml(p.name)}</b><div class="meta">${p.color?'Цвет: '+escapeHtml(p.color)+' · ':''}Размер: ${escapeHtml(cartSizeText(p.size))}</div><div class="cart-price-row-v87"><div class="price">${money(p.price)}</div>${p.discountActive&&Number(p.originalPrice)>Number(p.price)?`<span class="cart-old-price-v87">${money(p.originalPrice)}</span><span class="cart-discount-v87">${escapeHtml(p.discountBadge||("-"+p.discountPercent+"%"))}</span>`:""}</div></div><button class="remove" type="button" aria-label="Удалить товар">×</button>`;
    r.querySelector(".remove").onclick=()=>{
      const key=p.cartKey||String(p.id);
      cart=cart.filter(x=>(x.cartKey||String(x.id))!==key);
@@ -16789,7 +16839,10 @@ function add(p){
  if(!p||String(p.ownerType||"").toLowerCase()!=="official")return false;
  const chosen=needsSizePicker(p)?selectedProductSize:String(p.size||"");
  if(needsSizePicker(p)&&!chosen){alert("Выберите размер");return false}
- const item={...p,size:chosen||p.size,cartKey:String(p.id)+"::"+(chosen||p.size||"")};
+ const variant=productVariantsV12(p).length?selectedProductVariantV12:null;
+ if(productVariantsV12(p).length&&(!variant||variant.stockQty<1)){alert('Выберите доступные цвет и размер');return false;}
+ const item={...p,size:variant?.sizeName||chosen||p.size,color:variant?.colorName||'',variantId:variant?.id||null,
+   image:variant?.imageUrl||p.image,cartKey:String(p.id)+"::"+(variant?.id||chosen||p.size||"")};
  if(!cart.some(x=>(x.cartKey||String(x.id))===item.cartKey)){cart.push(item);saveCartState();}
  renderCart();return true
 }
@@ -16860,7 +16913,7 @@ function renderCheckoutSummaryV41(){
   const sellerText=sellers.length===1?sellers[0]:(sellers.length>1?`${sellers.length} продавца`:"—");
   const rows=cart.slice(0,4).map(p=>{
     const img=p.image?`<img src="${escapeHtml(p.image)}" alt="">`:`<div class="checkout-v41-item-placeholder"><i data-lucide="package"></i></div>`;
-    return `<div class="checkout-v41-item">${img}<div class="checkout-v41-item-copy"><b>${escapeHtml(p.name||"Товар")}</b><small>${p.size?`Размер: ${escapeHtml(p.size)}`:""}</small>${p.discountActive&&Number(p.originalPrice)>Number(p.price)?`<span class="checkout-discount-v87">${escapeHtml(p.discountBadge||("-"+p.discountPercent+"%"))} · <s>${money(p.originalPrice)}</s></span>`:""}</div><strong>${money(Number(p.price||0))}</strong></div>`;
+    return `<div class="checkout-v41-item">${img}<div class="checkout-v41-item-copy"><b>${escapeHtml(p.name||"Товар")}</b><small>${p.color?`Цвет: ${escapeHtml(p.color)} · `:""}${p.size?`Размер: ${escapeHtml(p.size)}`:""}</small>${p.discountActive&&Number(p.originalPrice)>Number(p.price)?`<span class="checkout-discount-v87">${escapeHtml(p.discountBadge||("-"+p.discountPercent+"%"))} · <s>${money(p.originalPrice)}</s></span>`:""}</div><strong>${money(Number(p.price||0))}</strong></div>`;
   }).join("");
   box.innerHTML=`
     <div class="checkout-v41-summary-head"><div><span>ВАШ ЗАКАЗ</span><b>${cart.length} ${cart.length===1?"товар":"товара"}</b></div><button type="button" onclick="$('checkoutView').classList.remove('open');page('cart')">Изменить</button></div>
@@ -17177,6 +17230,8 @@ $("confirmBtn").onclick=async()=>{
      price:p.price,
 
      size:p.size,
+     color:p.color||'',
+     variantId:p.variantId||null,
 
      type:p.type,
 
@@ -18064,7 +18119,7 @@ async function loadMarketplaceCatalog(){
    discountValue:Number(x.discountValue||0),
    discountStartAt:String(x.discountStartAt||""),
    discountEndAt:String(x.discountEndAt||""),
-   size:x.size||"—",model:x.model||"",color:x.color||"",
+   size:x.size||"—",model:x.model||"",color:x.color||"",variants:Array.isArray(x.variants)?x.variants:[],
    condition:x.condition||"—",type:x.ownerType==="official"?(x.sourceType==="china"?"Под заказ":"В наличии"):"Ресейл",
    category:x.category||"Другое",brand:x.brand||"",image:x.images&&x.images[0]?x.images[0].image_url:"",images:(x.images||[]).map(im=>im.image_url||im).filter(Boolean),
    ownerType:x.ownerType||"user",sourceType:x.sourceType||"",pinHome:x.pinHome===true,pinChina:x.pinChina===true||x.isPinned===true,homePinnedAt:String(x.homePinnedAt||""),isPinned:!!x.isPinned,pinnedAt:String(x.pinnedAt||x.pinned_at||""),stockQty:Number(x.stockQty??1),status:x.status||"approved",cardBadge:x.cardBadge||x.badgeType||x.badge||"",city:x.city||x.location||"",publishedAt:x.publishedAt||x.published_at||"",expiresAt:x.expiresAt||x.expires_at||"",soldAt:x.soldAt||x.sold_at||"",expiredAt:x.expiredAt||x.expired_at||"",imagesDeletedAt:x.imagesDeletedAt||x.images_deleted_at||"",purgedAt:x.purgedAt||x.purged_at||"",cleanupError:x.cleanupError||x.cleanup_error||"",createdAt:x.createdAt||x.created_at||"",updatedAt:x.updatedAt||x.updated_at||"",isFeatured:!!x.isFeatured,officialNote:x.officialNote||"",sellerTelegramId:String(x.sellerTelegramId||""),sellerName:x.sellerName||"Продавец",sellerUsername:x.sellerUsername||"",description:x.description||""
@@ -18739,6 +18794,38 @@ function adminV89ApplyStats(stats){
   set("adminV89Requests",stats?.activeRequests??stats?.requests);
 }
 
+function adminVariantLineV12(r={}){
+ const div=document.createElement('div');div.className='admin-variant-line-v12';
+ div.innerHTML=`<input class="v12-color" placeholder="Цвет" value="${escapeHtml(r.colorName||'')}"><input class="v12-hex" type="color" value="${/^#[0-9A-F]{6}$/i.test(r.colorHex||'')?r.colorHex:'#111111'}"><input class="v12-size" placeholder="S/M/L" value="${escapeHtml(r.sizeName||'')}"><input class="v12-qty" type="number" min="0" value="${Number(r.stockQty||0)}"><input class="image-url-v12" placeholder="Ссылка на фото (необязательно)" value="${escapeHtml(r.imageUrl||'')}"><button type="button" aria-label="Удалить вариант">×</button><label class="v12-file-label" style="grid-column:1/-1;font-size:11px;color:#8fb7d2">Фото цвета <input type="file" class="v12-photo-file" accept="image/*" style="width:100%;font-size:11px"></label>`;
+ div.querySelector('button').onclick=()=>div.remove();return div;
+}
+function mountAdminVariantsV12(hostId,listingId,rows){
+ const host=document.getElementById(hostId);if(!host)return;
+ host.className='admin-variants-v12';
+ host.dataset.listingId=listingId||'';
+ host.innerHTML=`<h3>Цвета, размеры и остатки</h3><div class="admin-v12-help">Одна строка = один вариант цвета и размера. Цвет выбирается палитрой. Фото — HTTPS-ссылка на изображение для этого цвета. У старых товаров без вариантов работает прежний учёт. Варианты сохраняются отдельно.</div><div class="v12-list"></div><button type="button" class="admin-v12-add">+ Добавить вариант</button>${listingId?'<button type="button" class="admin-v89-primary admin-v12-save">Сохранить варианты</button>':''}`;
+ const list=host.querySelector('.v12-list');(rows||[]).forEach(r=>list.appendChild(adminVariantLineV12(r)));
+ host.querySelector('.admin-v12-add').onclick=()=>list.appendChild(adminVariantLineV12());
+ const save=host.querySelector('.admin-v12-save');if(save)save.onclick=async()=>{
+  try{const variants=await readAdminVariantsV12(hostId);if(!variants.length)throw Error('Добавьте минимум один вариант');
+   save.disabled=true;await adminFetch('/admin/official-variants?id='+encodeURIComponent(listingId),{method:'POST',body:JSON.stringify({variants})});
+   await loadMarketplaceCatalog();await adminEditOfficial(listingId);
+  }catch(e){alert('Ошибка вариантов: '+String(e.message||e))}finally{save.disabled=false}
+ };
+}
+async function readAdminVariantsV12(hostId){
+ const host=document.getElementById(hostId);if(!host)return [];
+ const rows=[];
+ for(const line of host.querySelectorAll('.admin-variant-line-v12')){
+  const item={colorName:line.querySelector('.v12-color').value.trim(),colorHex:line.querySelector('.v12-hex').value,
+    sizeName:line.querySelector('.v12-size').value.trim(),stockQty:Number(line.querySelector('.v12-qty').value),
+    imageUrl:line.querySelector('.image-url-v12').value.trim()};
+  const file=line.querySelector('.v12-photo-file')?.files?.[0];
+  if(file){const photos=await adminPreparePhotos([file]);if(photos[0])item.photo=photos[0];}
+  rows.push(item);
+ }
+ return rows;
+}
 function adminOfficialCreateFormV89(){
   return `
     <div class="admin-v89-editor-card" id="officialCreateV89" hidden>
@@ -18781,6 +18868,7 @@ function adminOfficialCreateFormV89(){
         </div>
       </div>
 
+      <div id="adminNewVariantsV12"></div>
       ${pinPlacementFieldV119('aoPinTargetsV119')}
       <div class="admin-v89-field"><label>Описание</label><textarea id="aoDesc" rows="5" placeholder="Описание товара"></textarea></div>
       <button class="admin-v89-primary" id="aoCreateBtn" type="button" onclick="adminCreateOfficial()"><i data-lucide="plus"></i> Создать товар</button>
@@ -18789,7 +18877,7 @@ function adminOfficialCreateFormV89(){
 
 function adminShowOfficialCreateV89(){
   const box=$("officialCreateV89");
-  if(box){box.hidden=false;box.scrollIntoView({behavior:"smooth",block:"start"})}
+  if(box){box.hidden=false;box.scrollIntoView({behavior:"smooth",block:"start"});mountAdminVariantsV12('adminNewVariantsV12',null,[])}
   setTimeout(()=>window.lucide?.createIcons(),0);
 }
 
@@ -18831,7 +18919,7 @@ function adminRenderOrdersV89(filter=adminOrdersFilterV89){
     const itemRows=items.map(i=>{
       const listingId=Number(i.listingId||i.listing_id||0);
       const name=escapeHtml(i.name||i.title||"Товар");
-      const size=i.size?`<small>Размер: ${escapeHtml(String(i.size))}</small>`:"";
+      const size=`${i.color?`<small>Цвет: ${escapeHtml(String(i.color))}</small>`:""}${i.size?`<small>Размер: ${escapeHtml(String(i.size))}</small>`:""}`;
       const price=Number(i.price||0)>0?`<strong>${money(i.price)}</strong>`:"";
       const image=String(i.imageUrl||i.image_url||"");
       const privateId=String(i.privateSearchImageId||"");
@@ -19363,8 +19451,12 @@ async function adminCreateOfficial(){
    btn.disabled=true;
    btn.textContent="Загрузка фото...";
    b.photos=await adminPreparePhotos(files);
+   const newVariantsV12=await readAdminVariantsV12('adminNewVariantsV12');
+   if(newVariantsV12.length)b.stockQty=0;
    btn.textContent="Создание...";
-   await adminFetch("/admin/official",{method:"POST",body:JSON.stringify(b)});
+   const created=await adminFetch("/admin/official",{method:"POST",body:JSON.stringify(b)});
+   const variants=newVariantsV12;
+   if(variants.length&&created.id){await adminFetch('/admin/official-variants?id='+encodeURIComponent(created.id),{method:'POST',body:JSON.stringify({variants})});}
    await loadMarketplaceCatalog();
    await adminTab("official");
  }catch(e){
@@ -19464,6 +19556,7 @@ async function adminEditOfficial(id){
     const x=d.listing;
     if(!x||String(x.owner_type||"")!=="official")return;
     adminEditOfficialCurrentV89=x;
+    setTimeout(()=>mountAdminVariantsV12('adminEditVariantsV12',x.id,x.variants||[]),0);
 
     adminV89SetWorkspace("official","Редактирование товара","Основное · Цена и скидка · Фото");
     const c=$("adminContent");
@@ -19497,6 +19590,7 @@ async function adminEditOfficial(id){
         <button class="admin-v89-primary" type="button" onclick="adminSaveOfficialBasicV89()"><i data-lucide="save"></i> Сохранить основное</button>
       </section>
 
+      <div id="adminEditVariantsV12"></div>
       <section data-admin-edit-panel-v89="price" class="admin-v89-editor-card" hidden>
         <div class="admin-v89-discount-preview-big">
           <div><small>БАЗОВАЯ ЦЕНА</small><b>${money(x.price)}</b></div>
