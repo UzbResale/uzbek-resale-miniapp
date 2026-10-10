@@ -14439,6 +14439,91 @@ html body #home #homeGrid .uzr-home-photo-empty{position:absolute!important;inse
  html body #home .uzr-home-find p{font-size:10.7px!important}
 }
 </style>
+<style id="uzr-v12-resale-style">
+/* v1.2 resale-only surface. No overrides of Home, China, cargo or brand assets. */
+#resaleProductV12,#resaleDealV12{--r12-bg:var(--uzr-bg,#061b27);--r12-panel:var(--uzr-surface-4,#102c3b);--r12-text:var(--uzr-text,#eef5fb);--r12-muted:var(--uzr-muted,#90a7b8);--r12-line:var(--uzr-border,#244859);--r12-accent:#159ff5;position:fixed;inset:0;z-index:1500;overflow-y:auto;overscroll-behavior:contain;-webkit-overflow-scrolling:touch;background:var(--r12-bg);color:var(--r12-text);font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;}
+#resaleProductV12[hidden],#resaleDealV12[hidden],#resalePhotoV12[hidden]{display:none!important}
+#resaleProductV12 *,#resaleDealV12 *{box-sizing:border-box}
+#resaleProductV12 button,#resaleDealV12 button{font:inherit;color:inherit;cursor:pointer;touch-action:manipulation}
+#resaleProductV12 button:focus-visible,#resaleDealV12 button:focus-visible,#sell .r12-photo button:focus-visible{outline:2px solid #159ff5;outline-offset:3px}
+#resaleProductV12 button:disabled,#resaleDealV12 button:disabled{opacity:.5;cursor:default}
+.r12-shell{width:100%;max-width:600px;margin:0 auto;padding:14px 16px 0}
+#resaleProductV12 .r12-head,#resaleDealV12 .r12-head{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:14px;padding-top:env(safe-area-inset-top,0px)}
+.r12-head-actions{display:flex;gap:9px}
+#resaleProductV12 .r12-icon,#resaleDealV12 .r12-icon{width:44px;height:44px;border:1px solid var(--r12-line);background:var(--r12-panel);border-radius:50%;display:inline-flex;align-items:center;justify-content:center;padding:11px;flex-shrink:0}
+#resaleProductV12 svg,#resaleDealV12 svg{width:22px;height:22px;flex-shrink:0}
+#resaleProductV12 .r12-icon.is-favorite{color:#ff657c}
+#resaleProductV12 .r12-icon.is-favorite svg{fill:currentColor}
+#resaleProductV12 .r12-gallery{position:relative;border-radius:19px;overflow:hidden;background:#edf0f1;aspect-ratio:1/1;display:flex;align-items:center;justify-content:center}
+#resaleProductV12 .r12-gallery>img{display:block;width:100%;height:100%;object-fit:contain;touch-action:pan-y pinch-zoom;cursor:zoom-in}
+#resaleProductV12 .r12-gallery>span{color:#526778}
+#resaleProductV12 .r12-counter{position:absolute;right:10px;bottom:10px;border-radius:10px;padding:6px 9px;color:#fff;background:rgba(6,28,42,.83);font-size:12px;pointer-events:none}
+#resaleProductV12 .r12-arrow{position:absolute;top:45%;width:34px;height:40px;display:flex;align-items:center;justify-content:center;border-radius:12px;border:0;background:rgba(6,28,42,.72);color:white;padding:5px}
+#resaleProductV12 .r12-prev{left:9px}#resaleProductV12 .r12-next{right:9px}
+#resaleProductV12 .r12-thumbs{display:flex;gap:8px;overflow-x:auto;margin:10px 0 16px;padding:2px 1px 5px;scrollbar-width:thin}
+#resaleProductV12 .r12-thumbs button{padding:0;flex:0 0 60px;width:60px;height:60px;border:2px solid transparent;border-radius:12px;background:#e6eaed;overflow:hidden}
+#resaleProductV12 .r12-thumbs button.active{border-color:var(--r12-accent)}
+#resaleProductV12 .r12-thumbs img{width:100%;height:100%;object-fit:cover;display:block}
+#resaleProductV12 .r12-badge{display:inline-flex;align-items:center;border-radius:12px;color:white;background:#0789ed;font-size:12px;padding:6px 11px;margin:0 0 9px}
+#resaleProductV12 .r12-title{font-size:26px!important;line-height:1.16!important;font-weight:700!important;margin:0!important;color:var(--r12-text)!important;overflow-wrap:anywhere}
+#resaleProductV12 .r12-price{font-size:28px!important;line-height:1.2!important;font-weight:700!important;color:var(--r12-text)!important;margin-top:7px}
+#resaleProductV12 .r12-meta{display:flex;flex-wrap:wrap;gap:12px;font-size:12px;color:var(--r12-muted);margin:12px 0 18px}
+#resaleProductV12 .r12-meta span{display:flex;align-items:center;gap:5px;min-width:0;overflow-wrap:anywhere}
+#resaleProductV12 .r12-meta svg{width:16px;height:16px}
+#resaleProductV12 .r12-box,#resaleDealV12 .r12-box{background:var(--r12-panel);border:1px solid var(--r12-line);border-radius:17px;margin:12px 0;padding:15px}
+#resaleProductV12 details>summary{list-style:none;font-size:16px;font-weight:650;display:flex;justify-content:space-between;gap:10px;cursor:pointer}
+#resaleProductV12 details>summary::-webkit-details-marker{display:none}
+#resaleProductV12 details>summary svg{width:18px;height:18px;color:var(--r12-muted);transition:transform .15s}
+#resaleProductV12 details[open]>summary svg{transform:rotate(180deg)}
+#resaleProductV12 .r12-description{font-size:14px;line-height:1.55;color:var(--r12-muted);white-space:pre-wrap;overflow-wrap:anywhere;margin:12px 0 0}
+#resaleProductV12 .r12-specs{margin:12px 0 0;display:grid;grid-template-columns:1fr 1fr;gap:0 18px}
+#resaleProductV12 .r12-specs>div{min-width:0;display:flex;justify-content:space-between;align-items:flex-start;gap:10px;border-bottom:1px solid var(--r12-line);padding:10px 0;font-size:12px}
+#resaleProductV12 .r12-specs dt{color:var(--r12-muted)}#resaleProductV12 .r12-specs dd{margin:0;text-align:right;overflow-wrap:anywhere;font-weight:550;max-width:65%}
+#resaleProductV12 .r12-seller-title{font-size:16px;font-weight:650;margin-bottom:13px}
+#resaleProductV12 .r12-seller-row{display:flex;align-items:center;gap:12px}
+#resaleProductV12 .r12-avatar{width:62px;height:62px;flex:0 0 62px;border-radius:50%;border:1px solid var(--r12-line);background:#116997;color:white;overflow:hidden;display:flex;align-items:center;justify-content:center;font-size:22px}
+#resaleProductV12 .r12-avatar img{width:100%;height:100%;object-fit:cover}
+#resaleProductV12 .r12-seller-copy{min-width:0;flex:1}
+#resaleProductV12 .r12-seller-copy strong{display:block;font-size:16px;overflow-wrap:anywhere;color:var(--r12-text)}
+#resaleProductV12 .r12-seller-copy small{display:block;font-size:12px!important;color:var(--r12-muted)!important;margin-top:5px;overflow-wrap:anywhere}
+#resaleProductV12 .r12-reputation{font-size:12px;color:var(--r12-muted);margin-top:12px;min-height:16px}
+#resaleProductV12 .r12-reputation b{color:#ffc454;font-weight:650!important}
+#resaleProductV12 .r12-seller-more{width:100%;border-radius:12px;border:1px solid var(--r12-line);background:transparent;padding:11px;margin-top:12px;color:var(--r12-text);font-size:13px;display:flex;justify-content:center;align-items:center;gap:7px}
+#resaleProductV12 .r12-bottom{position:sticky;bottom:0;margin:18px -16px 0;padding:12px 16px calc(14px + env(safe-area-inset-bottom));background:var(--r12-bg);border-top:1px solid var(--r12-line);z-index:2}
+#resaleProductV12 .r12-primary,#resaleDealV12 .r12-primary{display:flex;align-items:center;justify-content:center;gap:9px;width:100%;min-height:52px;border-radius:14px;border:0;background:linear-gradient(115deg,#16abfa,#007df0);color:white!important;font-size:15px;font-weight:650!important;padding:13px}
+#resaleProductV12 .r12-bottom p,#resaleDealV12 .r12-hint{font-size:11px;line-height:1.5;color:var(--r12-muted);text-align:center;margin:9px 0 0}
+#resalePhotoV12{position:fixed;inset:0;z-index:1700;background:rgba(0,0,0,.96);display:flex;align-items:center;justify-content:center;overflow:auto}
+#resalePhotoV12 img{max-width:100%;max-height:92dvh;object-fit:contain;touch-action:pan-x pan-y pinch-zoom}
+#resalePhotoV12 button{position:fixed;right:18px;top:calc(18px + env(safe-area-inset-top));width:44px;height:44px;border-radius:50%;border:1px solid #678;background:#123;color:#fff;font-size:25px;z-index:2}
+#resaleDealV12{z-index:1600}
+#resaleDealV12 .r12-shell{padding-bottom:calc(28px + env(safe-area-inset-bottom))}
+#resaleDealV12 h2{font-size:20px;color:var(--r12-text);margin:0;flex:1}
+#resaleDealV12 h3{font-size:18px;margin:0 0 8px;color:var(--r12-text)}
+#resaleDealV12 p{font-size:14px;line-height:1.5;color:var(--r12-muted)}
+#resaleDealV12 .r12-deal-status{display:inline-block;padding:7px 10px;border-radius:10px;background:rgba(21,159,245,.14);color:var(--r12-accent);font-size:12px;margin-bottom:12px}
+#resaleDealV12 .r12-secondary{width:100%;min-height:46px;padding:12px;border-radius:12px;border:1px solid var(--r12-line);background:transparent;margin-top:10px;font-size:14px}
+#resaleDealV12 .r12-stars{display:flex;gap:6px;justify-content:center;margin:20px 0}
+#resaleDealV12 .r12-stars button{width:47px;height:49px;padding:4px;background:transparent;border:1px solid var(--r12-line);border-radius:10px;color:var(--r12-muted);font-size:33px}
+#resaleDealV12 .r12-stars button.active{color:#ffc454;border-color:#ffc454;background:rgba(255,196,84,.06)}
+#resaleDealV12 .r12-error{border:1px solid #985766;color:#ffbac6;border-radius:12px;padding:12px;margin-top:12px;font-size:13px;white-space:pre-wrap}
+#resaleDealV12 .r12-error[hidden]{display:none}
+#contactRequests .r12-request-actions{display:flex;gap:8px;margin:-6px 0 16px}
+#contactRequests .r12-request-actions button{flex:1;padding:11px;border-radius:12px;background:var(--uzr-surface-4,#123);border:1px solid var(--uzr-border,#244859);color:var(--uzr-text,#eef5fb);font-size:12px}
+#sell .r12-newfields{margin-top:5px}
+#sell #sellPreview{grid-template-columns:repeat(3,minmax(0,1fr))!important}
+#sell .r12-photo{position:relative;aspect-ratio:auto!important;border-radius:12px!important;overflow:hidden;background:var(--uzr-surface-4,#123);border:1px solid var(--uzr-border,#244859)}
+#sell .r12-photo>img{width:100%!important;height:auto!important;aspect-ratio:1!important;object-fit:cover!important;display:block}
+#sell .r12-photo-tools{position:relative;flex:0 0 auto;display:flex;justify-content:space-between;gap:2px;padding:5px;min-height:35px}
+#sell .r12-photo-tools button{border:0;background:transparent;color:var(--uzr-text,#eef5fb);padding:4px;min-width:26px;min-height:28px;font-size:16px}
+#sell .r12-photo-tools button:disabled{opacity:.2}
+#sell .r12-main-photo{position:absolute;top:5px;left:5px;background:#007cdb;color:#fff;border-radius:6px;padding:3px 6px;font-size:9px}
+#sell .r12-photo-help{font-size:11px;line-height:1.4;margin:8px 0;color:var(--uzr-muted,#90a7b8)}
+#sell .r12-form-error{padding:12px;margin-bottom:14px;border-radius:12px;border:1px solid #bd5363;color:#ffbac6;background:var(--uzr-surface-4,#123);font-size:13px}
+#sell .r12-form-error[hidden]{display:none!important}
+@media(max-width:360px){.r12-shell{padding-left:12px;padding-right:12px}#resaleProductV12 .r12-title{font-size:23px!important}#resaleProductV12 .r12-price{font-size:25px!important}#resaleProductV12 .r12-specs{grid-template-columns:1fr}#resaleProductV12 .r12-bottom{margin-left:-12px;margin-right:-12px;padding-left:12px;padding-right:12px}}
+@media(prefers-reduced-motion:reduce){#resaleProductV12 *,#resaleDealV12 *{transition:none!important}}
+
+</style>
 </head><body>
 <div id="uzrConsentV58" hidden role="dialog" aria-modal="true" aria-labelledby="uzrConsentTitleV58">
   <div class="uzr-consent-card-v58">
@@ -14644,46 +14729,46 @@ html body #home #homeGrid .uzr-home-photo-empty{position:absolute!important;inse
 <div class="sell-panel-head"><h2>Информация о товаре</h2></div>
 <div class="field sell-full"><label>Название товара *</label><input id="sellName" maxlength="60" placeholder="Например: Nike Air Force 1"/><small class="field-limit">до 60 символов</small></div>
 <div class="sell-two">
-<div class="field"><label>Категория *</label><select id="sellCategory"><option>Одежда</option><option>Обувь</option><option>Аксессуары</option><option>Другое</option></select></div>
+<div class="field"><label>Категория *</label><select id="sellCategory"><option value="Одежда">Одежда</option><option value="Обувь">Обувь</option><option value="Аксессуары">Аксессуары</option><option value="Другое">Другое</option></select></div>
 <div class="field"><label>Бренд</label><input id="sellBrand" maxlength="30" placeholder="Например: Nike"/><small class="field-limit">до 30 символов</small></div>
 </div>
 <div class="sell-two">
 <div class="field"><label>Размер</label><input id="sellSize" maxlength="20" placeholder="M, 42, One Size..."/><small class="field-limit">до 20 символов</small></div>
-<div class="field"><label>Состояние *</label><select id="sellCondition"><option>Новое</option><option>Отличное</option><option>Хорошее</option><option>Удовлетворительное</option></select></div>
+<div class="field"><label>Состояние *</label><select id="sellCondition"><option value="Новое">Новое</option><option value="Отличное">Отличное</option><option value="Хорошее">Хорошее</option><option value="Удовлетворительное">Удовлетворительное</option></select></div>
 </div>
 <div class="field sell-full sell-city-v16">
 <label>Город *</label>
 <select id="sellCity" required="">
 <option value="">Выберите город</option>
-<option>Ташкент</option>
-<option>Самарканд</option>
-<option>Бухара</option>
-<option>Андижан</option>
-<option>Наманган</option>
-<option>Фергана</option>
-<option>Нукус</option>
-<option>Карши</option>
-<option>Ургенч</option>
-<option>Джизак</option>
-<option>Термез</option>
-<option>Навои</option>
-<option>Гулистан</option>
-<option>Коканд</option>
-<option>Маргилан</option>
-<option>Чирчик</option>
-<option>Ангрен</option>
-<option>Алмалык</option>
-<option>Бекабад</option>
-<option>Шахрисабз</option>
-<option>Хива</option>
+<option value="Ташкент">Ташкент</option>
+<option value="Самарканд">Самарканд</option>
+<option value="Бухара">Бухара</option>
+<option value="Андижан">Андижан</option>
+<option value="Наманган">Наманган</option>
+<option value="Фергана">Фергана</option>
+<option value="Нукус">Нукус</option>
+<option value="Карши">Карши</option>
+<option value="Ургенч">Ургенч</option>
+<option value="Джизак">Джизак</option>
+<option value="Термез">Термез</option>
+<option value="Навои">Навои</option>
+<option value="Гулистан">Гулистан</option>
+<option value="Коканд">Коканд</option>
+<option value="Маргилан">Маргилан</option>
+<option value="Чирчик">Чирчик</option>
+<option value="Ангрен">Ангрен</option>
+<option value="Алмалык">Алмалык</option>
+<option value="Бекабад">Бекабад</option>
+<option value="Шахрисабз">Шахрисабз</option>
+<option value="Хива">Хива</option>
 </select>
 </div>
 <div class="field sell-full"><label>Описание</label><textarea id="sellDescription" maxlength="500" placeholder="Расскажите о вещи: особенности, дефекты (если есть), причина продажи" rows="4"></textarea><small class="field-limit">до 500 символов</small></div>
 </div>
 <div class="sell-panel">
 <div class="sell-panel-head"><h2>Цена</h2></div>
-<div class="field sell-price-field"><label>Цена, сум *</label><div class="sell-price-wrap"><input id="sellPrice" inputmode="numeric" placeholder="500000"/><span>сум</span></div></div>
-<div class="sell-moderation-note"><i data-lucide="shield-check"></i><div><b>Перед публикацией — модерация</b><span>После одобрения товар появится в каталоге.</span></div></div>
+<div class="field sell-price-field"><label>Цена, UZS *</label><div class="sell-price-wrap"><input id="sellPrice" inputmode="numeric" placeholder="500000"/><span>UZS</span></div></div>
+<div class="sell-moderation-note"><i data-lucide="shield-check"></i><div><b>Перед публикацией — модерация</b><span>После одобрения товар появится на главной.</span></div></div>
 </div>
 <button class="btn black sell-submit-premium" id="sellSubmit"><i data-lucide="send"></i><span>Отправить на модерацию</span></button>
 </div>
@@ -16294,6 +16379,7 @@ function card(p){
 
  heart.onclick=doFav;
 }e.onclick=async()=>{
+ if(String(p.ownerType||"").toLowerCase()!=="official"&&window.UzrResale120)return window.UzrResale120.open(p);
  if(String(p.ownerType||"").toLowerCase()!=="official")await waitForTelegramIdentityV108(1800);
  selected=p;
  rememberViewed(p.id);
@@ -16710,6 +16796,7 @@ function add(p){
 
 function resetPageScroll(target){const scroller=document.scrollingElement||document.documentElement;if(scroller)scroller.scrollTop=0;document.documentElement.scrollTop=0;document.body.scrollTop=0;window.scrollTo({top:0,left:0,behavior:"auto"});const app=document.querySelector(".app");if(app)app.scrollTop=0;if(target)target.scrollTop=0}
 function navigatePage(id){
+ window.UzrResale120?.closeDeal();window.UzrResale120?.closeProduct();
  if(id==="catalog"){window.UzrHome120?.legacyRoute();id="home";}
  window.UzrHome120?.closeFilters();
  document.body.classList.toggle("admin-v89-open",id==="adminPanel");
@@ -17207,6 +17294,7 @@ function currentPageId(){
   return el ? el.id : "home";
 }
 function page(id){
+ window.UzrResale120?.closeDeal();window.UzrResale120?.closeProduct();
  if(id==="catalog"){window.UzrHome120?.legacyRoute();id="home";}
  window.UzrHome120?.closeFilters();
   const officialView=$("officialStoreView");
@@ -17651,6 +17739,7 @@ function normalizeContactRequestV50(r){
     image:String(r?.imageUrl||r?.image_url||""),
     price:Number(r?.price||r?.listing_price||0),
     sellerName:String(r?.sellerName||r?.seller_name||"Продавец"),
+    buyerName:String(r?.buyerName||r?.buyer_name||""),buyerTelegramId:String(r?.buyerTelegramId||r?.buyer_telegram_id||""),deal:r?.deal||null,
     sellerUsername:String(r?.sellerUsername||r?.seller_username||""),
     sellerTelegramId:String(r?.sellerTelegramId||r?.seller_telegram_id||""),
     message:String(r?.message||""),
@@ -17876,7 +17965,7 @@ function fileToDataUrl(file){
 
 $("sellSubmit").onclick=async()=>{
   const user=await waitForTelegramIdentityV108(3000)||{};
-  const selectedFiles=[...$("sellPhotos").files];
+  const selectedFiles=window.UzrResale120?.listingFiles()||[...$("sellPhotos").files];
    if(selectedFiles.length>6){alert("Можно загрузить максимум 6 фотографий");return}
    if(selectedFiles.some(f=>f.size>10*1024*1024)){alert("Каждая фотография должна быть не больше 10 MB");return}
    const files=selectedFiles.slice(0,6);
@@ -17912,6 +18001,7 @@ $("sellSubmit").onclick=async()=>{
         title,
         category:$("sellCategory").value,
         brand:$("sellBrand").value.trim(),
+        ...(window.UzrResale120?.listingFields()||{}),
         size:$("sellSize").value.trim(),
         condition:$("sellCondition").value,
         city,
@@ -17932,7 +18022,7 @@ $("sellSubmit").onclick=async()=>{
     $("sellName").value="";$("sellBrand").value="";$("sellSize").value="";
     if($("sellCity"))$("sellCity").value="";
     $("sellPrice").value="";$("sellDescription").value="";$("sellPhotos").value="";
-    $("sellPreview").innerHTML="";
+    $("sellPreview").innerHTML="";window.UzrResale120?.resetFields();
     const successText=$("listingSuccessText");
     if(successText)successText.textContent=`Объявление #${result.listingId} отправлено на модерацию.`;
     try{document.activeElement?.blur()}catch(_){}
@@ -17974,7 +18064,7 @@ async function loadMarketplaceCatalog(){
    discountValue:Number(x.discountValue||0),
    discountStartAt:String(x.discountStartAt||""),
    discountEndAt:String(x.discountEndAt||""),
-   size:x.size||"—",
+   size:x.size||"—",model:x.model||"",color:x.color||"",
    condition:x.condition||"—",type:x.ownerType==="official"?(x.sourceType==="china"?"Под заказ":"В наличии"):"Ресейл",
    category:x.category||"Другое",brand:x.brand||"",image:x.images&&x.images[0]?x.images[0].image_url:"",images:(x.images||[]).map(im=>im.image_url||im).filter(Boolean),
    ownerType:x.ownerType||"user",sourceType:x.sourceType||"",pinHome:x.pinHome===true,pinChina:x.pinChina===true||x.isPinned===true,homePinnedAt:String(x.homePinnedAt||""),isPinned:!!x.isPinned,pinnedAt:String(x.pinnedAt||x.pinned_at||""),stockQty:Number(x.stockQty??1),status:x.status||"approved",cardBadge:x.cardBadge||x.badgeType||x.badge||"",city:x.city||x.location||"",publishedAt:x.publishedAt||x.published_at||"",expiresAt:x.expiresAt||x.expires_at||"",soldAt:x.soldAt||x.sold_at||"",expiredAt:x.expiredAt||x.expired_at||"",imagesDeletedAt:x.imagesDeletedAt||x.images_deleted_at||"",purgedAt:x.purgedAt||x.purged_at||"",cleanupError:x.cleanupError||x.cleanup_error||"",createdAt:x.createdAt||x.created_at||"",updatedAt:x.updatedAt||x.updated_at||"",isFeatured:!!x.isFeatured,officialNote:x.officialNote||"",sellerTelegramId:String(x.sellerTelegramId||""),sellerName:x.sellerName||"Продавец",sellerUsername:x.sellerUsername||"",description:x.description||""
@@ -18276,6 +18366,7 @@ async function myListingLifecycleActionV51(id,action){
       const msg={
         LISTING_NOT_ACTIVE:"Объявление уже не активно",
         IMAGES_ALREADY_PURGED:"Фотографии уже удалены. Создайте новое объявление.",
+        LISTING_DEAL_EXISTS:"По товару ожидается подтверждение сделки или сделка уже завершена.",
         NO_IMAGES_TO_RESTORE:"Фотографии уже удалены. Создайте новое объявление.",
         RESTORE_NOT_ALLOWED:"Сейчас нельзя вернуть товар в продажу.",
         RATE_LIMITED:"Слишком много действий. Попробуйте позже."
@@ -19579,9 +19670,9 @@ async function adminReviewListing(id){
   const thumbs=adminReviewImages.map((im,i)=>`<img src="${im.image_url}" onclick="adminReviewImageIndex=${i};adminRenderReviewImage()" class="admin-review-thumb">`).join("");
   $("adminReviewContent").innerHTML=`<h1>Проверка объявления</h1>
    ${adminReviewImages.length?`<div class="admin-review-main"><img id="adminReviewMainImage" onclick="adminReviewFullscreen()"><button class="review-left" onclick="adminReviewPrev()">‹</button><button class="review-right" onclick="adminReviewNext()">›</button><span id="adminReviewCounter" class="review-counter"></span></div><div class="admin-review-thumbs">${thumbs}</div>`:'<div class="empty">Фотографий нет</div>'}
-   <h2>${x.title}</h2><h3>${money(x.price||0)}</h3>
-   <div class="product-details"><span>Категория</span><span>${x.category||"—"}</span><span>Бренд</span><span>${x.brand||"—"}</span><span>Размер</span><span>${x.size||"—"}</span><span>Состояние</span><span>${x.condition||"—"}</span><span>Продавец</span><span>${x.seller_name||"—"}</span><span>Telegram</span><span>${x.seller_username?"@"+x.seller_username:"ID "+(x.seller_telegram_id||"—")}</span></div>
-   ${x.description?`<div class="admin-review-desc">${x.description}</div>`:""}
+   <h2>${escapeHtml(x.title)}</h2><h3>${money(x.price||0)}</h3>
+   <div class="product-details"><span>Категория</span><span>${x.category||"—"}</span><span>Бренд</span><span>${escapeHtml(x.brand||"—")}</span>${x.resale_model?`<span>Модель</span><span>${escapeHtml(x.resale_model)}</span>`:""}${x.resale_color?`<span>Цвет</span><span>${escapeHtml(x.resale_color)}</span>`:""}<span>Размер</span><span>${x.size||"—"}</span><span>Состояние</span><span>${x.condition||"—"}</span><span>Продавец</span><span>${x.seller_name||"—"}</span><span>Telegram</span><span>${x.seller_username?"@"+x.seller_username:"ID "+(x.seller_telegram_id||"—")}</span></div>
+   ${x.description?`<div class="admin-review-desc">${escapeHtml(x.description)}</div>`:""}
    <div class="admin-actions admin-review-actions"><button onclick="adminModerate(${x.id},'approve')">✅ Одобрить</button><button class="admin-danger" onclick="adminModerate(${x.id},'reject')">❌ Отклонить</button></div>`;
   $("adminReviewView").classList.add("open");adminRenderReviewImage();
  }catch(e){alert("Не удалось открыть объявление: "+String(e.message||e))}
@@ -19636,7 +19727,7 @@ async function adminOpenListing(id){
             : `<button class="btn white" type="button" disabled>🔒 Канал OFF</button>`)
         : "");
   const channelError=String(x.channel_post_error||"").trim();
-  $("adminListingContent").innerHTML=`<div class="admin-v106-listing-head"><small>#${Number(x.id||0)} · ${x.owner_type==="official"?"OFFICIAL":"RE'SALE"}</small><h1>${escapeHtml(x.title||"Товар")}</h1></div>${imgs.length?`<div class="admin-detail-images">${imgs.map(i=>`<img src="${escapeHtml(i.image_url||"")}">`).join("")}</div>`:""}<p><b>${money(x.price||0)}</b></p><div class="product-details"><span>Тип</span><span>${x.owner_type==="official"?"✓ Uzbek Re'Sale":"♻ Ресейл"}</span><span>Статус</span><span>${escapeHtml(String(x.status||"—"))}</span><span>Канал</span><span>${escapeHtml(channel.label)}</span><span>Категория</span><span>${escapeHtml(x.category||"—")}</span><span>Бренд</span><span>${escapeHtml(x.brand||"—")}</span><span>Размер</span><span>${escapeHtml(x.size||"—")}</span><span>Состояние</span><span>${escapeHtml(x.condition||"—")}</span>${x.owner_type==="official"?`<span>Источник</span><span>${x.source_type==="china"?"Из Китая":"В наличии"}</span><span>Остаток</span><span>${Number(x.stock_qty||0)}</span>`:""}<span>Продавец</span><span>${escapeHtml(x.seller_name||"—")}</span></div>${channelError?`<div class="admin-mini">Ошибка канала: ${escapeHtml(channelError)}</div>`:""}${x.description?`<p>${escapeHtml(x.description)}</p>`:""}<div class="admin-actions">${channelActions}<button class="btn white admin-danger" onclick="adminDeleteListing(${x.id})">🗑 Удалить объявление</button></div>`;
+  $("adminListingContent").innerHTML=`<div class="admin-v106-listing-head"><small>#${Number(x.id||0)} · ${x.owner_type==="official"?"OFFICIAL":"RE'SALE"}</small><h1>${escapeHtml(x.title||"Товар")}</h1></div>${imgs.length?`<div class="admin-detail-images">${imgs.map(i=>`<img src="${escapeHtml(i.image_url||"")}">`).join("")}</div>`:""}<p><b>${money(x.price||0)}</b></p><div class="product-details"><span>Тип</span><span>${x.owner_type==="official"?"✓ Uzbek Re'Sale":"♻ Ресейл"}</span><span>Статус</span><span>${escapeHtml(String(x.status||"—"))}</span><span>Канал</span><span>${escapeHtml(channel.label)}</span><span>Категория</span><span>${escapeHtml(x.category||"—")}</span><span>Бренд</span><span>${escapeHtml(x.brand||"—")}</span>${x.owner_type!=="official"&&x.resale_model?`<span>Модель</span><span>${escapeHtml(x.resale_model)}</span>`:""}${x.owner_type!=="official"&&x.resale_color?`<span>Цвет</span><span>${escapeHtml(x.resale_color)}</span>`:""}<span>Размер</span><span>${escapeHtml(x.size||"—")}</span><span>Состояние</span><span>${escapeHtml(x.condition||"—")}</span>${x.owner_type==="official"?`<span>Источник</span><span>${x.source_type==="china"?"Из Китая":"В наличии"}</span><span>Остаток</span><span>${Number(x.stock_qty||0)}</span>`:""}<span>Продавец</span><span>${escapeHtml(x.seller_name||"—")}</span></div>${channelError?`<div class="admin-mini">Ошибка канала: ${escapeHtml(channelError)}</div>`:""}${x.description?`<p>${escapeHtml(x.description)}</p>`:""}<div class="admin-actions">${channelActions}<button class="btn white admin-danger" onclick="adminDeleteListing(${x.id})">🗑 Удалить объявление</button></div>`;
   $("adminListingView").classList.add("open");
  }catch(e){alert("Не удалось открыть объявление: "+String(e.message||e))}
 }
@@ -22947,6 +23038,184 @@ window.UzrRArchiveV11=(()=>{
     snapshot:()=>({revision:'home-2026-10-10.2',filters:{...state},query,count:result().length,visibleIds:result().map(p=>p.id),filterOpen:modalOpen})});
   window.UZR_HOME_BUILD='UZR_V1_2_HOME_2026_10_10_2';
   syncLegacy();renderHome();
+})();
+
+</script>
+<script id="uzr-v12-resale-script">
+/* v1.2: resale product, optional listing metadata and real stars after mutual confirmation.
+ * Existing R bot transport remains; this module does not enable the future Chats tab.
+ */
+(()=>{
+'use strict';
+const $r=id=>document.getElementById(id),esc=v=>escapeHtml(String(v??''));
+const uz=()=>{try{return localStorage.getItem('uzr_language_pref_v1')==='uz'}catch(_){return false}};
+const text=(ru,u)=>uz()?u:ru;
+const moneyR=n=>new Intl.NumberFormat('ru-RU',{maximumFractionDigits:0}).format(Number(n)||0)+' UZS';
+const paths={back:'<path d="m15 5-7 7 7 7"/>',next:'<path d="m9 5 7 7-7 7"/>',down:'<path d="m6 9 6 6 6-6"/>',heart:'<path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1.1-1.1a5.5 5.5 0 0 0-7.8 7.8L12 21l8.8-8.6a5.5 5.5 0 0 0 0-7.8Z"/>',share:'<circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="m9 10 6-4M9 14l6 4"/>',map:'<path d="M20 10c0 5-8 11-8 11S4 15 4 10a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="2.5"/>',size:'<path d="m3 16 13-13 5 5-13 13-5-5Zm8-8 3 3m-6 0 3 3"/>',chat:'<path d="M21 11a8 8 0 0 1-8 8H4l-2 3V11a9 9 0 0 1 19 0Z"/>',shop:'<path d="M3 10v11h18V10M2 10l2-7h16l2 7M9 21v-8h6v8"/>',close:'<path d="m6 6 12 12M6 18 18 6"/>'};
+const icon=n=>`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${paths[n]||paths.chat}</svg>`;
+const imageURL=v=>{if(!String(v||'').trim())return '';try{const u=new URL(String(v||''),location.href);return ['https:','http:'].includes(u.protocol)?u.href:''}catch(_){return ''}};
+let currentReputation=null,current=null,pics=[],picIndex=0,productEpoch=0,returnFocus=null,oldOverflow=null,dealEpoch=0,dealId=0,dealAdmin=false,dealData=null,chosenStars=0,dealBusy=false;
+let files=[],fileURLs=new Map(),formBusy=false,featurePromise=null;
+const product=document.createElement('section');product.id='resaleProductV12';product.hidden=true;product.setAttribute('role','dialog');product.setAttribute('aria-modal','true');product.setAttribute('aria-label','Товар');product.setAttribute('data-no-i18n','');
+const deal=document.createElement('section');deal.id='resaleDealV12';deal.hidden=true;deal.setAttribute('role','dialog');deal.setAttribute('aria-modal','true');deal.setAttribute('aria-label','Сделка и оценка');deal.setAttribute('data-no-i18n','');
+const photo=document.createElement('section');photo.id='resalePhotoV12';photo.hidden=true;photo.setAttribute('role','dialog');photo.setAttribute('aria-modal','true');photo.setAttribute('aria-label','Фотография товара');photo.setAttribute('data-no-i18n','');
+document.body.append(product,deal,photo);
+function lock(){if(oldOverflow===null){oldOverflow=[document.body.style.overflow,document.documentElement.style.overflow];document.body.style.overflow='hidden';document.documentElement.style.overflow='hidden'}try{window.Telegram?.WebApp?.BackButton?.show()}catch(_){}}
+function unlock(){if(!product.hidden||!deal.hidden||!photo.hidden)return;if(oldOverflow){[document.body.style.overflow,document.documentElement.style.overflow]=oldOverflow;oldOverflow=null}try{returnFocus?.focus?.({preventScroll:true})}catch(_){}try{window.Telegram?.WebApp?.BackButton?.hide()}catch(_){}}
+function closePhoto(){photo.hidden=true;photo.innerHTML='';unlock()}
+function closeProduct(){if(product.hidden&&photo.hidden)return;productEpoch++;current=null;product.hidden=true;closePhoto();document.body.classList.remove('r12-product-open');unlock()}
+function closeDeal(){if(deal.hidden)return;dealEpoch++;deal.hidden=true;dealId=0;dealData=null;chosenStars=0;unlock()}
+function back(){if(!photo.hidden)return closePhoto();if(!deal.hidden)return closeDeal();if(!product.hidden)return closeProduct()}
+window.Telegram?.WebApp?.BackButton?.onClick?.(back);
+document.addEventListener('keydown',e=>{
+ if(e.key==='Escape'&&(!photo.hidden||!deal.hidden||!product.hidden)){e.preventDefault();e.stopImmediatePropagation();back()}
+ if(e.key==='Tab'){
+  const host=!photo.hidden?photo:!deal.hidden?deal:!product.hidden?product:null;if(!host)return;
+  const fs=[...host.querySelectorAll('button:not(:disabled),summary,a[href],input,select')].filter(x=>x.getClientRects().length);if(!fs.length)return;
+  if(e.shiftKey&&document.activeElement===fs[0]){e.preventDefault();fs.at(-1).focus()}else if(!e.shiftKey&&document.activeElement===fs.at(-1)){e.preventDefault();fs[0].focus()}
+ }
+},true);
+async function api(path,body){
+ const controller=new AbortController(),timer=setTimeout(()=>controller.abort(),20000);let response;try{response=await fetch(MARKETPLACE_API+path,{method:body===undefined?'GET':'POST',cache:'no-store',headers:body===undefined?{}:{'Content-Type':'application/json'},...(body===undefined?{}:{body:JSON.stringify(body)}),signal:controller.signal});}finally{clearTimeout(timer)}
+ const data=await response.json().catch(()=>({}));if(!response.ok||data.ok!==true){const e=new Error(data.error||'REQUEST_FAILED');e.code=data.error||'REQUEST_FAILED';e.status=response.status;throw e}return data;
+}
+function features(){if(!featurePromise)featurePromise=api('/resale/features').then(x=>{if(x.ratings!=='stars_only'||!x.listingFields?.includes('color'))throw new Error('WORKER_UPDATE_REQUIRED');return x}).catch(e=>{featurePromise=null;throw e});return featurePromise;}
+const errors={FORBIDDEN:['Нет доступа к этой заявке.','Bu arizaga ruxsat yo‘q.'],TELEGRAM_AUTH_REQUIRED:['Откройте Mini App заново через Telegram.','Mini Appni Telegram orqali qayta oching.'],REQUEST_NOT_FOUND:['Заявка не найдена.','Ariza topilmadi.'],REQUEST_CLOSED:['Заявка уже закрыта. Закрытие без подтверждения не считается сделкой.','Ariza yopilgan. Tasdiqlashsiz yopish bitim hisoblanmaydi.'],DEAL_NOT_PENDING:['Статус сделки изменился. Обновите данные.','Bitim holati o‘zgardi. Ma’lumotni yangilang.'],DEAL_STATE_CHANGED:['Данные уже изменились. Обновите сделку.','Ma’lumot o‘zgardi. Bitimni yangilang.'],LISTING_DEAL_EXISTS:['По этому товару уже есть ожидающая или подтверждённая сделка.','Bu mahsulot bo‘yicha kutilayotgan yoki tasdiqlangan bitim bor.'],LISTING_NOT_ELIGIBLE:['Товар уже недоступен для подтверждения продажи.','Mahsulot sotuvni tasdiqlash uchun mavjud emas.'],DEAL_ALREADY_RESOLVED:['Подтверждение этой сделки уже завершено или отменено.','Ushbu bitim tasdiqlangan yoki bekor qilingan.'],RATING_ALREADY_SUBMITTED:['Вы уже оценили эту сделку. Оценка сохраняется один раз.','Siz ushbu bitimni baholagansiz.'],CONFIRMED_DEAL_REQUIRED:['Оценка доступна только после подтверждения обеих сторон.','Baho faqat ikkala tomon tasdiqlagandan keyin mumkin.'],RATE_LIMITED:['Слишком много действий. Попробуйте позже.','Juda ko‘p urinish. Keyinroq qayta urinib ko‘ring.'],WORKER_UPDATE_REQUIRED:['Сначала установите новый Worker из этого комплекта. Данные формы сохранены на экране.','Avval ushbu to‘plamdagi yangi Workerni o‘rnating. Forma ma’lumoti ekranda saqlanadi.']};
+function errorText(e){const pair=errors[e.code||e.message];return pair?text(...pair):text('Не удалось выполнить действие. Проверьте соединение и повторите попытку.','Amalni bajarib bo‘lmadi. Internetni tekshirib qayta urinib ko‘ring.')}
+function gallery(index){
+ if(!current||!pics.length)return;picIndex=(index+pics.length)%pics.length;
+ const img=$r('r12Hero');img.hidden=false;img.src=pics[picIndex];img.alt=String(current.name||'');
+ $r('r12Counter').textContent=(picIndex+1)+' / '+pics.length;
+ const fallback=$r('r12PhotoMissing');if(fallback)fallback.hidden=true;
+ [...product.querySelectorAll('[data-r12-photo]')].forEach((b,i)=>{b.classList.toggle('active',i===picIndex);b.setAttribute('aria-pressed',String(i===picIndex))});
+ img.onerror=()=>{img.hidden=true;$r('r12PhotoMissing').hidden=false};
+}
+function syncFav(){const b=$r('r12Favorite');if(b&&current){const on=isFavoriteV76(current.id);b.classList.toggle('is-favorite',on);b.setAttribute('aria-pressed',String(on));b.setAttribute('aria-label',text(on?'Убрать из избранного':'В избранное',on?'Sevimlilardan o‘chirish':'Sevimlilarga qo‘shish'))}}
+function renderProduct(p){
+ const specs=[[text('Бренд','Brend'),p.brand],[text('Модель','Model'),p.model||p.resale_model],[text('Цвет','Rang'),p.color||p.resale_color],[text('Размер','O‘lcham'),p.size],[text('Категория','Kategoriya'),p.category],[text('Состояние','Holat'),p.condition]].filter(([,v])=>v&&v!=='—');
+ const name=String(p.sellerName||text('Продавец','Sotuvchi')),username=String(p.sellerUsername||'').replace(/^@/,''),ini=name.split(/\s+/).map(x=>x[0]||'').join('').slice(0,2);
+ const own=isOwnResaleProductV108(p),available=['approved',''].includes(String(p.status||''))&&(!p.expiresAt||publicTimeV119(p.expiresAt)>Date.now())&&!p.purgedAt;
+ product.innerHTML=`<div class="r12-shell">
+  <div class="r12-head"><button class="r12-icon" id="r12Back" aria-label="${text('Назад','Orqaga')}">${icon('back')}</button><div class="r12-head-actions"><button class="r12-icon" id="r12Favorite">${icon('heart')}</button><button class="r12-icon" id="r12Share" aria-label="${text('Поделиться','Ulashish')}">${icon('share')}</button></div></div>
+  <div class="r12-gallery" id="r12Gallery"><img id="r12Hero" alt=""${pics.length?'':' hidden'}><span id="r12PhotoMissing"${pics.length?' hidden':''}>${text('Фото недоступно','Foto mavjud emas')}</span><small class="r12-counter" id="r12Counter"${pics.length?'':' hidden'}></small>${pics.length>1?`<button class="r12-arrow r12-prev" id="r12Prev" aria-label="${text('Предыдущее фото','Oldingi foto')}">${icon('back')}</button><button class="r12-arrow r12-next" id="r12Next" aria-label="${text('Следующее фото','Keyingi foto')}">${icon('next')}</button>`:''}</div>
+  <div class="r12-thumbs">${pics.length>1?pics.map((url,i)=>`<button type="button" data-r12-photo="${i}" aria-label="${text('Фото','Foto')} ${i+1}"><img src="${esc(url)}" alt="" loading="lazy"></button>`).join(''):''}</div>
+  <span class="r12-badge">${text('Ресейл','Reseyl')}</span><h1 class="r12-title">${esc(p.name)}</h1><div class="r12-price">${moneyR(p.price)}</div>
+  <div class="r12-meta">${p.city?`<span>${icon('map')}${esc(p.city)}</span>`:''}${p.size&&p.size!=='—'?`<span>${icon('size')}${text('Размер','O‘lcham')}: ${esc(p.size)}</span>`:''}</div>
+  ${p.description?`<details open class="r12-box"><summary>${text('Описание','Tavsif')}${icon('down')}</summary><p class="r12-description">${esc(p.description)}</p></details>`:''}
+  ${specs.length?`<details open class="r12-box"><summary>${text('Характеристики','Xususiyatlar')}${icon('down')}</summary><dl class="r12-specs">${specs.map(([k,v])=>`<div><dt>${k}</dt><dd>${esc(v)}</dd></div>`).join('')}</dl></details>`:''}
+  <section class="r12-box"><div class="r12-seller-title">${text('Продавец','Sotuvchi')}</div><div class="r12-seller-row"><div class="r12-avatar" id="r12Avatar">${esc(ini)}</div><div class="r12-seller-copy"><strong>${esc(username?'@'+username:name)}</strong><small>${esc(username?name:(own?text('Ваш профиль','Sizning profilingiz'):text('Пользовательский профиль','Foydalanuvchi profili')))}</small></div></div><div class="r12-reputation" id="r12Reputation"></div><button class="r12-seller-more" id="r12Seller">${icon('shop')}${text('Другие товары продавца','Sotuvchining boshqa mahsulotlari')}${icon('next')}</button></section>
+  <div class="r12-bottom"><button class="r12-primary" id="r12Contact"${own||!available?' disabled':''}>${icon('chat')}<span>${own?text('Это ваше объявление','Bu sizning e’loningiz'):!available?text('Товар недоступен','Mahsulot mavjud emas'):text('Связаться с продавцом','Sotuvchi bilan bog‘lanish')}</span></button><p>${text('Это заявка на связь, не покупка через платформу. Условия сделки вы обсуждаете с продавцом.','Bu aloqa arizasi, platforma orqali xarid emas. Bitim shartlarini sotuvchi bilan kelishasiz.')}</p></div>
+ </div>`;
+ $r('r12Back').onclick=closeProduct;$r('r12Favorite').onclick=()=>{const key=favoriteKeyV76(p.id),on=!isFavoriteV76(key);favs=on?[...favs,key]:favs.filter(x=>favoriteKeyV76(x)!==key);saveFavsState();syncFavoriteDomV80(p.id,on,p);syncFav();uzrHaptic('selection')};
+ $r('r12Share').onclick=()=>shareProductV18(p);$r('r12Contact').onclick=()=>{if(own||!available)return;closeProduct();openContactRequestV49(p)};
+ $r('r12Seller').onclick=()=>{closeProduct();goSellerProfile(String(p.sellerTelegramId||''))};
+ $r('r12Prev')?.addEventListener('click',()=>gallery(picIndex-1));$r('r12Next')?.addEventListener('click',()=>gallery(picIndex+1));
+ product.querySelectorAll('[data-r12-photo]').forEach(b=>b.onclick=()=>gallery(Number(b.dataset.r12Photo)));
+ let sx=0,sy=0,swiped=false;const img=$r('r12Hero');
+ img.addEventListener('touchstart',e=>{sx=e.touches[0].clientX;sy=e.touches[0].clientY;swiped=false},{passive:true});
+ img.addEventListener('touchend',e=>{const dx=e.changedTouches[0].clientX-sx,dy=e.changedTouches[0].clientY-sy;if(Math.abs(dx)>35&&Math.abs(dx)>Math.abs(dy)*1.2){gallery(picIndex+(dx<0?1:-1));swiped=true}},{passive:true});
+ img.onclick=()=>{if(swiped){swiped=false;return}if(!pics.length)return;photo.innerHTML=`<button aria-label="${text('Закрыть фото','Fotoni yopish')}">×</button><img src="${esc(pics[picIndex])}" alt="${esc(p.name)}">`;photo.hidden=false;photo.querySelector('button').onclick=closePhoto;photo.querySelector('button').focus()};
+ gallery(0);syncFav();
+ if(p.sellerTelegramId){const avatar=new Image();avatar.alt='';avatar.src=MARKETPLACE_API+'/telegram-avatar?telegramId='+encodeURIComponent(p.sellerTelegramId);avatar.onload=()=>{if(current===p){$r('r12Avatar').textContent='';$r('r12Avatar').append(avatar)}};}
+}
+function renderReputation(r){
+ const box=$r('r12Reputation');if(!box||!r)return;
+ box.innerHTML=r.count>0?`<b>★ ${Number(r.average).toFixed(1)}</b> · ${r.count} ${text('оценок после подтверждённых сделок','tasdiqlangan bitim bahosi')}`:text('Пока нет оценок','Hali baholar yo‘q');
+}
+async function openProduct(p){
+ if(!p||String(p.ownerType||'').toLowerCase()==='official')return;
+ closeDeal();returnFocus=document.activeElement;currentReputation=null;current=p;selected=p;rememberViewed(p.id);pics=(p.images?.length?p.images:[p.image]).map(x=>imageURL(x?.image_url||x)).filter(Boolean).slice(0,6);picIndex=0;const epoch=++productEpoch;
+ product.hidden=false;document.body.classList.add('r12-product-open');lock();renderProduct(p);product.scrollTop=0;$r('r12Back').focus({preventScroll:true});
+ try{const d=await api('/resale/reputation?telegramId='+encodeURIComponent(p.sellerTelegramId));if(epoch!==productEpoch||current!==p)return;const r=d.reputation?.seller;if(!r)return;
+ currentReputation=r;renderReputation(r);
+ }catch(_){/* no fake rating when unavailable */}
+}
+function stateLabel(s){return ({none:text('Заявка на связь','Aloqa arizasi'),pending:text('Ожидает подтверждения покупателя','Xaridor tasdig‘i kutilmoqda'),completed:text('Сделка подтверждена','Bitim tasdiqlangan'),declined:text('Покупатель не подтвердил','Xaridor tasdiqlamadi'),cancelled:text('Подтверждение отменено','Tasdiqlash bekor qilingan')})[s]||s}
+function dealBody(d){
+ const admin=d.role==='admin',stars=d.myRating;
+ return `<div class="r12-box"><span class="r12-deal-status">${stateLabel(d.state)}</span><h3>${esc(d.title)}</h3><strong>${moneyR(d.price)}</strong><p>${text('Продавец','Sotuvchi')}: ${esc(d.sellerName)}<br>${text('Покупатель','Xaridor')}: ${esc(d.buyerName)}</p></div>
+  ${d.state==='none'?`<p>${text('Закрыть заявку и подтвердить состоявшуюся сделку — разные действия. Сделка засчитывается только после подтверждения продавца и покупателя.','Arizani yopish va amalga oshgan bitimni tasdiqlash — turli amallar. Bitim ikkala tomon tasdiqlagandan keyin hisoblanadi.')}</p>${d.canRequest?`<button class="r12-primary" data-r12-deal-action="request">${text('Товар передан — подтвердить продажу','Mahsulot berildi — sotuvni tasdiqlash')}</button>`:`<p class="r12-hint">${text('Подтверждение начинает продавец в этой же карточке заявки.','Tasdiqlashni sotuvchi shu ariza kartasida boshlaydi.')}</p>`}`:''}
+  ${d.state==='pending'?`<p>${text('Продавец подтвердил продажу. Покупатель должен подтвердить фактическое получение товара. Автоматического подтверждения нет.','Sotuvchi sotuvni tasdiqladi. Xaridor mahsulotni olganini tasdiqlashi kerak. Avtomatik tasdiqlash yo‘q.')}</p>${d.canConfirm?`<button class="r12-primary" data-r12-deal-action="confirm">${text('Да, товар получен','Ha, mahsulot olindi')}</button><button class="r12-secondary" data-r12-deal-action="decline">${text('Не подтверждаю','Tasdiqlamayman')}</button>`:''}${d.role==='seller'||admin?`<button class="r12-secondary" data-r12-deal-action="cancel">${text('Отменить запрос подтверждения','Tasdiqlash so‘rovini bekor qilish')}</button>`:''}`:''}
+  ${['declined','cancelled'].includes(d.state)?`<p>${text('Сделка не засчитана. Уточните детали в переписке или обратитесь в поддержку.','Bitim hisoblanmadi. Tafsilotlarni yozishmada aniqlang yoki yordamga murojaat qiling.')}</p>`:''}
+  ${d.state==='completed'?`<p>${text('Обе стороны подтвердили сделку. Продажа и покупка учтены по одному разу.','Ikkala tomon bitimni tasdiqladi. Sotuv va xarid bir marta hisoblandi.')}</p>${d.canRate?`<div class="r12-box"><h3>${d.role==='buyer'?text('Оцените продавца','Sotuvchini baholang'):text('Оцените покупателя','Xaridorni baholang')}</h3><p>${text('Только оценка 1–5. Без текста и фотографий. Необязательно.','Faqat 1–5 baho. Matn va fotosiz. Ixtiyoriy.')}</p><div class="r12-stars" role="group" aria-label="${text('Оценка','Baho')}">${[1,2,3,4,5].map(i=>`<button type="button" data-r12-star="${i}" aria-label="${i} ${text('из 5','/ 5')}" aria-pressed="false">☆</button>`).join('')}</div><button class="r12-primary" id="r12SubmitRating" disabled>${text('Сохранить оценку','Bahoni saqlash')}</button><p class="r12-hint">${text('После сохранения изменить оценку нельзя.','Saqlangandan keyin bahoni o‘zgartirib bo‘lmaydi.')}</p></div>`:stars!==null?`<div class="r12-box">${text('Ваша оценка','Sizning bahoingiz')}: <strong>${'★'.repeat(Number(stars))}${'☆'.repeat(5-Number(stars))}</strong></div>`:''}`:''}
+  ${d.notifications?.some(n=>['pending','failed','blocked','uncertain','sending'].includes(n.state))?`<div class="r12-box"><p>${text('Не все уведомления подтверждены Telegram. Сама сделка сохранена.','Barcha bildirishnomalarni Telegram tasdiqlamadi. Bitim saqlangan.')}</p>${d.notifications.some(n=>['failed','blocked','uncertain'].includes(n.state))?`<button class="r12-secondary" data-r12-deal-action="retry">${text('Повторить уведомление','Bildirishnomani takrorlash')}</button>`:''}</div>`:''}
+  ${!admin&&['sent','open'].includes(d.requestStatus)?`<button class="r12-secondary" data-r12-deal-action="closeRequest">${text('Закрыть заявку без сделки','Arizani bitimsiz yopish')}</button>`:''}
+  <button class="r12-secondary" id="r12DealRefresh">${text('Обновить статус','Holatni yangilash')}</button><div id="r12DealError" class="r12-error" role="alert" hidden></div>`;
+}
+async function openDeal(id,admin=false){
+ id=Number(id);if(!Number.isSafeInteger(id)||id<1)return;const epoch=++dealEpoch;dealId=id;dealAdmin=admin;chosenStars=0;returnFocus=document.activeElement;deal.hidden=false;lock();
+ deal.innerHTML=`<div class="r12-shell"><div class="r12-head"><button class="r12-icon" id="r12DealBack" aria-label="${text('Назад','Orqaga')}">${icon('back')}</button><h2>${text('Сделка и оценка','Bitim va baho')}</h2></div><main id="r12DealContent"><p>${text('Загрузка…','Yuklanmoqda…')}</p></main></div>`;
+ $r('r12DealBack').onclick=closeDeal;deal.scrollTop=0;
+ try{await features();const d=await api((admin?'/admin/resale-deals/':'/resale/deals/')+id);if(epoch!==dealEpoch)return;dealData=d;$r('r12DealContent').innerHTML=`<p>${esc(d.requestNumber)}</p>`+dealBody(d);bindDeal();}
+ catch(e){if(epoch!==dealEpoch)return;$r('r12DealContent').innerHTML=`<p>${esc(errorText(e))}</p><button class="r12-primary" id="r12DealRefresh">${text('Повторить','Qayta urinish')}</button>`;$r('r12DealRefresh').onclick=()=>openDeal(id,admin)}
+}
+function bindDeal(){
+ $r('r12DealRefresh').onclick=()=>openDeal(dealId,dealAdmin);
+ deal.querySelectorAll('[data-r12-star]').forEach(b=>b.onclick=()=>{chosenStars=Number(b.dataset.r12Star);deal.querySelectorAll('[data-r12-star]').forEach(x=>{const v=Number(x.dataset.r12Star);x.classList.toggle('active',v<=chosenStars);x.textContent=v<=chosenStars?'★':'☆';x.setAttribute('aria-pressed',String(v===chosenStars))});$r('r12SubmitRating').disabled=false});
+ $r('r12SubmitRating')?.addEventListener('click',()=>mutateDeal('rating'));
+ deal.querySelectorAll('[data-r12-deal-action]').forEach(b=>b.onclick=()=>mutateDeal(b.dataset.r12DealAction));
+}
+async function mutateDeal(action){
+ if(dealBusy||!dealId)return;const id=dealId,admin=dealAdmin,epoch=dealEpoch;let body=action==='rating'?{stars:chosenStars}:{confirm:true};
+ if(action==='rating'&&!(chosenStars>=1&&chosenStars<=5))return;
+ const asks={closeRequest:text('Закрыть заявку без подтверждения сделки? Переписка остановится; продажа, покупка и оценки не будут засчитаны.','Ariza bitim tasdiqlanmasdan yopilsinmi? Yozishma to‘xtaydi. Sotuv, xarid va baholar hisoblanmaydi.'),request:text('Вы передали этот товар именно покупателю из этой заявки? Ему будет отправлен запрос подтверждения.','Mahsulotni aynan ushbu arizadagi xaridorga berdingizmi? Unga tasdiqlash so‘rovi yuboriladi.'),confirm:text('Подтверждаете, что действительно получили товар? Сделка будет засчитана обеим сторонам.','Mahsulotni haqiqatan olganingizni tasdiqlaysizmi? Bitim ikkala tomonga hisoblanadi.'),decline:text('Не подтверждать получение? Сделка не будет засчитана.','Olishni tasdiqlamaysizmi? Bitim hisoblanmaydi.'),cancel:text('Отменить запрос подтверждения сделки?','Bitimni tasdiqlash so‘rovini bekor qilasizmi?'),rating:text('Сохранить оценку '+chosenStars+' из 5? Изменить её после отправки нельзя.',chosenStars+' / 5 bahoni saqlaysizmi? Keyin o‘zgartirib bo‘lmaydi.')};
+ if(asks[action]&&!confirm(asks[action]))return;
+ if(action==='retry'&&dealData?.notifications?.some(n=>n.state==='uncertain')){if(!confirm(text('Telegram мог уже отправить уведомление. Повтор может создать ещё одно сообщение. Продолжить?','Telegram bildirishnomani allaqachon yuborgan bo‘lishi mumkin. Takroriy xabar yuborilsinmi?')))return;body.confirmUncertain=true;}
+ dealBusy=true;deal.querySelectorAll('button').forEach(b=>b.disabled=true);const err=$r('r12DealError');if(err)err.hidden=true;
+ try{await api(action==='closeRequest'?'/contact-requests/close':(admin?'/admin/resale-deals/':'/resale/deals/')+id+'/'+action,action==='closeRequest'?{requestId:id}:body);if(epoch!==dealEpoch)return;await openDeal(id,admin);loadContactRequestsV50({silent:true}).then(()=>{if(currentPageId()==='contactRequests')renderContactRequestsV49()}).catch(()=>{});if(action==='request')loadMarketplaceCatalog();uzrHaptic('success');}
+ catch(e){if(epoch!==dealEpoch)return;const box=$r('r12DealError');if(box){box.textContent=errorText(e);box.hidden=false;}deal.querySelectorAll('button').forEach(b=>b.disabled=false);if($r('r12SubmitRating'))$r('r12SubmitRating').disabled=!chosenStars;}
+ finally{dealBusy=false;}
+}
+function renderRequests(){
+ const list=$r('contactRequestsListV49');if(!list)return;syncContactRequestsCountV49();
+ const data=contactRequestsCacheV50.filter(r=>contactRequestFilterV49==='active'?['sent','open'].includes(r.status):['closed','cancelled'].includes(r.status));
+ if(!data.length){list.innerHTML=`<div class="contact-requests-empty-v49" data-no-i18n><b>${text('Заявок пока нет','Hali arizalar yo‘q')}</b><p>${text('Здесь будут ваши заявки как покупателя и продавца.','Bu yerda xaridor va sotuvchi sifatidagi arizalaringiz ko‘rinadi.')}</p></div>`;return;}
+ list.innerHTML=data.map(r=>{const seller=String(r.sellerTelegramId)===currentTelegramIdV108();return `<article data-no-i18n><button class="contact-request-card-v49" data-r12-listing="${Number(r.listingId)}" type="button"${r.listingArchived?' disabled':''}><span class="contact-request-card-photo-v49">${imageURL(r.image)?`<img src="${esc(imageURL(r.image))}" alt="">`:''}</span><span class="contact-request-card-main-v49"><b>${esc(r.productName)}</b><strong>${moneyR(r.price)}</strong><small>${text(seller?'Вы продавец':'Вы покупатель',seller?'Siz sotuvchisiz':'Siz xaridorsiz')} · ${esc(r.number)}</small><small>${esc(seller?(r.buyerName||'Покупатель'):r.sellerName)}</small>${['sent','open'].includes(r.status)?`<small>${esc(contactRequestDeliveryLabelV11(r))}</small>`:''}<em class="request-status-v49 ${contactRequestStatusClassV49(r.status)}">${r.deal?stateLabel(r.deal.state):esc(contactRequestStatusLabelV49(r.status))}</em></span></button><div class="r12-request-actions"><button type="button" data-r12-deal="${r.id}">${text('Сделка и оценка','Bitim va baho')}</button>${['sent','open'].includes(r.status)?`<button type="button" data-r12-bot="${r.id}">${text('Открыть бота','Botni ochish')}</button>`:''}${contactRequestRetryableV11(r)?`<button type="button" data-r12-notice="${r.id}">${text('Повторить уведомление','Bildirishnomani takrorlash')}</button>`:''}</div></article>`}).join('');
+ list.querySelectorAll('[data-r12-notice]').forEach(b=>b.onclick=()=>retryContactNotificationV11(Number(b.dataset.r12Notice)));
+ list.querySelectorAll('[data-r12-listing]').forEach(b=>b.onclick=()=>openProductFromRequestV49(Number(b.dataset.r12Listing)));
+ list.querySelectorAll('[data-r12-deal]').forEach(b=>b.onclick=()=>openDeal(Number(b.dataset.r12Deal)));
+ list.querySelectorAll('[data-r12-bot]').forEach(b=>b.onclick=()=>{const url='https://t.me/resaleuzbot';if(window.Telegram?.WebApp?.openTelegramLink)window.Telegram.WebApp.openTelegramLink(url);else window.open(url,'_blank','noopener')});
+}
+function clearPhotos(){for(const u of fileURLs.values())URL.revokeObjectURL(u);fileURLs.clear();files=[];if($r('sellPhotos'))$r('sellPhotos').value='';renderPhotos()}
+function renderPhotos(){
+ const host=$r('sellPreview');if(!host)return;
+ host.innerHTML=files.map((f,i)=>{if(!fileURLs.has(f))fileURLs.set(f,URL.createObjectURL(f));return `<div class="r12-photo" data-no-i18n><img src="${fileURLs.get(f)}" alt="${text('Фото','Foto')} ${i+1}">${i===0?`<span class="r12-main-photo">${text('Обложка','Muqova')}</span>`:''}<div class="r12-photo-tools"><button type="button" data-r12-move="${i}" data-dir="-1"${i===0?' disabled':''} aria-label="${text('Переместить влево','Chapga surish')}">‹</button><button type="button" data-r12-remove="${i}" aria-label="${text('Удалить фото','Fotoni o‘chirish')}">×</button><button type="button" data-r12-move="${i}" data-dir="1"${i===files.length-1?' disabled':''} aria-label="${text('Переместить вправо','O‘ngga surish')}">›</button></div></div>`}).join('');
+ host.querySelectorAll('[data-r12-remove]').forEach(b=>b.onclick=()=>{if(formBusy)return;const [f]=files.splice(Number(b.dataset.r12Remove),1);URL.revokeObjectURL(fileURLs.get(f));fileURLs.delete(f);renderPhotos()});
+ host.querySelectorAll('[data-r12-move]').forEach(b=>b.onclick=()=>{if(formBusy)return;const i=Number(b.dataset.r12Move),j=i+Number(b.dataset.dir);[files[i],files[j]]=[files[j],files[i]];renderPhotos()});
+}
+function addFormFields(){
+ const group=$r('sellSize')?.closest('.sell-two');if(!group)return;
+ group.insertAdjacentHTML('beforebegin',`<div class="sell-two r12-newfields" data-no-i18n><div class="field"><label for="sellModelV12">${text('Модель · необязательно','Model · ixtiyoriy')}</label><input id="sellModelV12" maxlength="60" placeholder="Air Force 1"><small class="field-limit">${text('До 60 символов','60 belgigacha')}</small></div><div class="field"><label for="sellColorV12">${text('Цвет · необязательно','Rang · ixtiyoriy')}</label><input id="sellColorV12" maxlength="40" list="r12ColorList" placeholder="${text('Например, белый','Masalan, oq')}"><datalist id="r12ColorList">${[text('Чёрный','Qora'),text('Белый','Oq'),text('Серый','Kulrang'),text('Синий','Ko‘k'),text('Бежевый','Bej'),text('Красный','Qizil'),text('Зелёный','Yashil'),text('Коричневый','Jigarrang')].map(c=>`<option value="${esc(c)}"></option>`).join('')}</datalist><small class="field-limit">${text('Один цвет конкретной вещи','Bitta buyumning rangi')}</small></div></div>`);
+ const host=$r('sellPreview');host.insertAdjacentHTML('afterend',`<p class="r12-photo-help" data-no-i18n>${text('Первое фото — обложка. Стрелками меняйте порядок. Можно удалять фото и добавлять новые, максимум 6.','Birinchi foto — muqova. Tartibni strelkalar bilan o‘zgartiring. Eng ko‘pi 6 foto.')}</p>`);
+ $r('sellPhotos').onchange=e=>{if(formBusy)return;const incoming=[...e.target.files];e.target.value='';if(files.length+incoming.length>6)return alert(text('Максимум 6 фотографий.','Eng ko‘pi 6 foto.'));if(incoming.some(f=>f.size>10*1024*1024))return alert(text('Каждое фото — до 10 MB.','Har bir foto 10 MB gacha.'));if(incoming.some(f=>!/^image\/(jpeg|png|webp|heic|heif)$/i.test(f.type)))return alert(text('Используйте JPEG, PNG, WebP или HEIC.','JPEG, PNG, WebP yoki HEIC ishlating.'));files.push(...incoming);renderPhotos()};
+ const original=$r('sellSubmit').onclick;const error=document.createElement('div');error.className='r12-form-error';error.id='r12FormError';error.hidden=true;error.setAttribute('role','alert');error.setAttribute('data-no-i18n','');$r('sellSubmit').before(error);
+ $r('sellSubmit').onclick=async()=>{if(formBusy)return;formBusy=true;error.hidden=true;$r('sellSubmit').disabled=true;try{await features();await original();}catch(e){error.textContent=(e.status===404||e.status===200||e.message==='WORKER_UPDATE_REQUIRED')?text(...errors.WORKER_UPDATE_REQUIRED):errorText(e);error.hidden=false;}finally{formBusy=false;$r('sellSubmit').disabled=false}};
+}
+function refreshFormLabels(){
+ const root=$r('sell');if(!root)return;
+ const modelLabel=root.querySelector('label[for="sellModelV12"]'),colorLabel=root.querySelector('label[for="sellColorV12"]');
+ if(modelLabel)modelLabel.textContent=text('Модель · необязательно','Model · ixtiyoriy');
+ if(colorLabel)colorLabel.textContent=text('Цвет · необязательно','Rang · ixtiyoriy');
+ const limits=root.querySelectorAll('.r12-newfields .field-limit');
+ if(limits[0])limits[0].textContent=text('До 60 символов','60 belgigacha');
+ if(limits[1])limits[1].textContent=text('Один цвет конкретной вещи','Bitta buyumning rangi');
+ if($r('sellColorV12'))$r('sellColorV12').placeholder=text('Например, белый','Masalan, oq');
+ const hint=root.querySelector('.r12-photo-help');if(hint)hint.textContent=text('Первое фото — обложка. Стрелками меняйте порядок. Можно удалять фото и добавлять новые, максимум 6.','Birinchi foto — muqova. Tartibni strelkalar bilan o‘zgartiring. Eng ko‘pi 6 foto.');
+ const priceLabel=$r('sellPrice')?.closest('.field')?.querySelector('label');if(priceLabel){priceLabel.setAttribute('data-no-i18n','');priceLabel.textContent=text('Цена, UZS *','Narx, UZS *');}
+ renderPhotos();
+}
+const oldAdminRender=adminRenderRequestsV89;
+adminRenderRequestsV89=function(...args){oldAdminRender(...args);const host=$r('adminRequestsListV89');if(!host)return;const cards=[...host.querySelectorAll('.admin-v89-request-card')];const rows=adminRequestsCacheV89.filter(r=>adminRequestsFilterV89==='all'||(adminRequestsFilterV89==='active'?['sent','open'].includes(r.status):r.status===adminRequestsFilterV89));cards.forEach((c,i)=>{const row=rows[i];if(!row)return;const b=document.createElement('button');b.type='button';b.textContent='Сделка / оценки';b.setAttribute('data-no-i18n','');b.onclick=()=>openDeal(row.id,true);c.querySelector('.admin-v89-actions')?.append(b)})};
+renderContactRequestsV49=renderRequests;
+window.UzrResale120=Object.freeze({open:openProduct,closeProduct,openDeal,closeDeal,listingFiles:()=>files.slice(),clearPhotos,
+ listingFields:()=>({model:$r('sellModelV12')?.value.trim()||'',color:$r('sellColorV12')?.value.trim()||''}),
+ resetFields:()=>{if($r('sellModelV12'))$r('sellModelV12').value='';if($r('sellColorV12'))$r('sellColorV12').value='';clearPhotos()},
+ snapshot:()=>({revision:'2026-10-10.resale.1',productOpen:!product.hidden,productId:current?.listingId||null,photoIndex:picIndex,photoCount:pics.length,dealOpen:!deal.hidden,dealId,listingPhotoCount:files.length})});
+addFormFields();refreshFormLabels();
+document.addEventListener('uzr:languagechange',()=>{refreshFormLabels();if(current){const p=current,i=picIndex;renderProduct(p);gallery(i);renderReputation(currentReputation)}if(dealId)openDeal(dealId,dealAdmin)});
+const maintenance=$r('maintenanceView');if(maintenance)new MutationObserver(()=>{if(!maintenance.hidden){closeDeal();closeProduct()}}).observe(maintenance,{attributes:true,attributeFilter:['hidden']});
+const param=new URL(location.href).searchParams.get('rdeal')||String(window.Telegram?.WebApp?.initDataUnsafe?.start_param||'').replace(/^rdeal_/, '');
+if(/^\d{1,12}$/.test(param)){waitForTelegramIdentityV108(3500).then(u=>{if(u?.id)openDeal(Number(param))})}
 })();
 
 </script>
