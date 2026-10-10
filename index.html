@@ -1,3 +1,4 @@
+<!-- Uzbek Re'Sale v1.2: Home + filters. Existing Worker v1.1 and brand assets retained. -->
 <!-- REVIEW11: shared v1 checkout, intent-driven links, official-only cleanup -->
 <!-- REVIEW9: separate resale and official placements; based on exact REVIEW8 -->
 <!DOCTYPE html>
@@ -14296,6 +14297,130 @@ html[data-uzr-theme="light"] #adminPanel .uzr-pin-placement-v119 select{backgrou
 html[data-uzr-theme="light"] #adminPanel .uzr-pin-placement-v119 p{color:#667b89!important;}
 @media(max-width:359px){#homePinsTitleV119{font-size:17px!important;}#homePinsAllV119{font-size:10px!important;}}
 </style>
+<style id="uzr-v12-home-and-filters">
+/* Uzbek Re'Sale v1.2 — intentionally scoped to Home, the Home filter sheet and
+   removal of the retired catalog tab. Embedded logos and all other screens stay intact. */
+html body #catalog,html body #catalog.active{display:none!important}
+html body nav.uzr-home-rollout-nav{grid-template-columns:repeat(4,minmax(0,1fr))!important}
+html body nav.uzr-home-rollout-nav>.nav[data-page="catalog"]{display:none!important}
+html body #appHeader .dark-search-row-v10{grid-template-columns:minmax(0,1fr)!important;gap:0!important}
+html body #appHeader .dark-filter-btn-v10{display:none!important}
+html body #appHeader .dark-search-v10{height:49px!important;border-radius:17px!important;padding:0 14px!important}
+html body #appHeader #search{width:100%!important;min-width:0!important;font-size:15px!important;height:100%!important}
+html body #appHeader #searchClearV2:not([hidden]){display:flex!important;align-items:center;justify-content:center;flex:0 0 24px;width:24px;height:24px;margin:0;background:var(--uzr-surface-3);color:var(--uzr-muted-3);font-size:19px;border:0;border-radius:50%}
+html body #home .dark-home-v10{padding:12px 16px calc(110px + env(safe-area-inset-bottom))!important;background:var(--uzr-bg)!important}
+html body #home .dark-actions-v10{gap:10px!important;margin:0 0 14px!important}
+html body #home .dark-action-v10{height:125px!important;border-radius:19px!important;padding:14px!important;box-shadow:none!important}
+html body #home .dark-action-icon-v10{width:38px!important;height:38px!important}
+html body #home .dark-action-icon-v10 svg{width:24px!important;height:24px!important}
+html body #home .dark-action-copy-v10{left:13px!important;right:10px!important;bottom:13px!important}
+html body #home .dark-action-copy-v10 b{font-size:16px!important;font-weight:600!important}
+html body #home .dark-action-copy-v10 small{font-size:10px!important;margin-top:5px!important}
+/* Existing C-request handler, compact visual treatment; no generated illustration. */
+html body #home .sr110-banner{display:block!important;border:0!important;padding:0!important;margin:0 0 13px!important;background:none!important;box-shadow:none!important;border-radius:18px!important}
+html body #home .sr110-banner .uzr-home-find{width:100%!important;display:grid!important;grid-template-columns:43px minmax(0,1fr) 17px!important;gap:11px!important;align-items:center!important;padding:15px 13px!important;min-height:86px!important;height:auto!important;border:1px solid var(--uzr-border-strong)!important;border-radius:18px!important;background:var(--uzr-surface)!important;color:var(--uzr-text)!important;text-align:left!important;box-shadow:none!important}
+html body #home .uzr-home-find .uzr-home-find-icon{display:grid!important;place-items:center!important;width:43px!important;height:43px!important;border-radius:14px!important;background:rgba(0,157,255,.12)!important;color:var(--uzr-accent)!important}
+html body #home .uzr-home-find-icon svg{width:24px!important;height:24px!important;stroke-width:1.7!important}
+html body #home .uzr-home-find h3{margin:0 0 5px!important;font-size:15px!important;line-height:1.25!important;letter-spacing:-.2px!important;color:var(--uzr-text)!important;font-weight:600!important}
+html body #home .uzr-home-find p{margin:0!important;font-size:11.5px!important;line-height:1.45!important;color:var(--uzr-muted-3)!important;font-weight:400!important}
+html body #home .uzr-home-find>svg{width:17px!important;height:17px!important;color:var(--uzr-muted-3)!important}
+/* Home controls: the only filter button is BELOW the 3 blocks and request banner. */
+html body #home .uzr-home-toolbar{display:flex!important;align-items:center!important;gap:8px!important;margin:0 -16px 18px!important;padding:0 16px!important;min-width:0!important}
+html body #home #uzrHomeFilterButtonV12{display:inline-flex!important;align-items:center!important;justify-content:center!important;gap:7px!important;flex:0 0 auto!important;height:41px!important;min-height:41px!important;padding:0 12px!important;border:1px solid var(--uzr-border-strong)!important;border-radius:13px!important;background:var(--uzr-surface-deep)!important;color:var(--uzr-text)!important;font-size:12px!important;font-weight:500!important;white-space:nowrap!important;box-shadow:none!important}
+html body #home #uzrHomeFilterButtonV12 svg{width:18px!important;height:18px!important}
+html body #home #uzrHomeFilterButtonV12.has-filters{border-color:var(--uzr-accent)!important}
+html body #home #uzrHomeFilterButtonV12 b{min-width:17px!important;height:17px!important;border-radius:7px!important;background:#009dff!important;color:white!important;display:grid!important;place-items:center!important;font-size:10px!important}
+html body #home .uzr-home-chips{display:flex!important;align-items:center!important;gap:7px!important;overflow-x:auto!important;min-width:0!important;scrollbar-width:none!important;padding:1px 16px 1px 0!important;margin-right:-16px!important;-webkit-overflow-scrolling:touch}
+html body #home .uzr-home-chips::-webkit-scrollbar{display:none}
+html body #home .uzr-home-chip{display:inline-flex!important;align-items:center!important;justify-content:center!important;flex:0 0 auto!important;height:39px!important;min-height:39px!important;padding:0 12px!important;margin:0!important;border:1px solid var(--uzr-border)!important;border-radius:13px!important;background:var(--uzr-surface-4)!important;color:var(--uzr-muted-3)!important;font-size:12px!important;white-space:nowrap!important;font-weight:500!important}
+html body #home .uzr-home-chip.is-active{background:linear-gradient(130deg,#27adf7,#0087e9)!important;border-color:#209eed!important;color:#fff!important}
+html body #home .uzr-home-results{display:flex!important;align-items:center!important;justify-content:space-between!important;gap:9px!important;margin:0 0 13px!important;scroll-margin-top:15px!important}
+html body #home .uzr-home-results h2{margin:0!important;color:var(--uzr-text)!important;font-size:21px!important;line-height:1.2!important;font-weight:650!important;letter-spacing:-.35px!important}
+html body #home #uzrHomeCountV12{margin:5px 0 0!important;font-size:11px!important;line-height:1.4!important;color:var(--uzr-muted)!important;max-width:180px!important}
+html body #home #uzrHomeSortV12{display:inline-flex!important;align-items:center!important;justify-content:center!important;gap:7px!important;flex:0 0 auto!important;max-width:55%!important;min-height:36px!important;padding:0 10px!important;border:1px solid var(--uzr-border)!important;border-radius:13px!important;background:var(--uzr-surface-4)!important;color:var(--uzr-text)!important;white-space:nowrap!important;font-size:11px!important}
+html body #home #uzrHomeSortV12 svg{width:15px!important;height:15px!important;flex:0 0 15px!important}
+/* The gallery uses the live API data and existing product/favorite handlers. */
+html body #home #homeGrid{display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:12px 10px!important;margin:0!important;align-items:stretch!important}
+html body #home #homeGrid .uzr-home-card{display:flex!important;flex-direction:column!important;min-width:0!important;width:100%!important;height:100%!important;padding:0!important;border:1px solid var(--uzr-border)!important;border-radius:19px!important;background:var(--uzr-surface)!important;box-shadow:none!important;overflow:hidden!important}
+html body #home #homeGrid .uzr-home-card .card-media{position:relative!important;flex:0 0 auto!important;width:100%!important;height:auto!important;min-height:0!important;aspect-ratio:1/1!important;margin:0!important;padding:0!important;border:0!important;border-radius:18px 18px 0 0!important;background:#f4f4f4!important;overflow:hidden!important}
+html body #home #homeGrid .uzr-home-card .card-media .photo{position:absolute!important;inset:0!important;width:100%!important;height:100%!important;padding:0!important;margin:0!important;border:0!important;border-radius:0!important;background:#f4f4f4!important}
+html body #home #homeGrid .uzr-home-card .card-media .photo img{display:block;width:100%!important;height:100%!important;object-fit:contain!important;object-position:center!important;transform:none!important;margin:0!important;padding:0!important;border:0!important;border-radius:0!important;background:#f4f4f4!important}
+html body #home #homeGrid .uzr-home-card .product-badge-v15{position:absolute!important;top:8px!important;left:8px!important;margin:0!important;min-height:24px!important;height:24px!important;line-height:24px!important;padding:0 8px!important;border:0!important;border-radius:9px!important;font-size:10px!important;font-weight:600!important;letter-spacing:0!important;color:white!important;background:#079bf5!important;box-shadow:none!important;max-width:calc(100% - 52px)!important}
+html body #home #homeGrid .uzr-home-card .product-badge-v15.badge-china{background:#ff593b!important;color:white!important}
+html body #home #homeGrid .uzr-home-card .product-badge-v15.badge-stock{background:#137c60!important;color:white!important}
+html body #home #homeGrid .uzr-home-card .product-badge-v15.badge-official{background:#1686c3!important;color:white!important}
+html body #home #homeGrid .uzr-home-card .product-heart{position:absolute!important;top:7px!important;right:7px!important;left:auto!important;width:33px!important;height:33px!important;min-width:33px!important;border-radius:50%!important;border:1px solid rgba(255,255,255,.32)!important;padding:0!important;background:rgba(8,28,41,.75)!important;color:#f6f9fb!important;box-shadow:none!important;display:flex!important;align-items:center!important;justify-content:center!important;z-index:4!important;backdrop-filter:blur(6px)}
+html body #home #homeGrid .uzr-home-card .product-heart svg{width:21px!important;height:21px!important;stroke:currentColor!important;stroke-width:1.7!important;fill:none!important}
+html body #home #homeGrid .uzr-home-card .product-heart.is-favorite{color:#ff647e!important}
+html body #home #homeGrid .uzr-home-card .product-heart.is-favorite svg{fill:currentColor!important}
+html body #home #homeGrid .uzr-home-card .product-discount-badge-v87{top:39px!important;left:8px!important;margin:0!important;height:23px!important;min-height:23px!important;line-height:23px!important;padding:0 7px!important;border-radius:8px!important;background:#fa3e65!important;font-size:10px!important}
+html body #home #homeGrid .uzr-home-card .product-card-info-v15{display:flex!important;flex-direction:column!important;justify-content:flex-start!important;gap:0!important;height:auto!important;min-height:116px!important;flex:1 1 auto!important;padding:11px 10px 12px!important;background:var(--uzr-surface)!important;border-radius:0 0 18px 18px!important;overflow:hidden!important}
+html body #home #homeGrid .uzr-home-card .name{order:1!important;display:-webkit-box!important;-webkit-box-orient:vertical!important;-webkit-line-clamp:2!important;width:100%!important;height:36px!important;min-height:36px!important;margin:0!important;padding:0!important;white-space:normal!important;overflow:hidden!important;word-break:break-word!important;font-size:13px!important;line-height:18px!important;font-weight:550!important;color:var(--uzr-text)!important;-webkit-text-fill-color:var(--uzr-text)!important;letter-spacing:-.1px!important;text-decoration:none!important;cursor:pointer!important}
+html body #home #homeGrid .uzr-home-card .product-card-price-row-v87{order:2!important;display:flex!important;flex-direction:column!important;justify-content:center!important;align-items:flex-start!important;gap:3px!important;width:100%!important;height:41px!important;min-height:41px!important;margin:6px 0 8px!important;padding:0!important;overflow:hidden!important}
+html body #home #homeGrid .uzr-home-card .product-card-price-row-v87 .price{order:1!important;display:block!important;width:100%!important;height:auto!important;min-height:0!important;font-size:clamp(12px,4.1vw,18px)!important;line-height:21px!important;font-weight:700!important;color:var(--uzr-accent)!important;-webkit-text-fill-color:var(--uzr-accent)!important;margin:0!important;padding:0!important;white-space:nowrap!important;letter-spacing:-.3px!important}
+html body #home #homeGrid .uzr-home-card .product-card-price-row-v87 .product-card-old-price-v87{order:2!important;display:block!important;width:100%!important;min-height:0!important;height:13px!important;margin:0!important;padding:0!important;font-size:10px!important;line-height:13px!important;font-weight:400!important;white-space:nowrap!important;color:var(--uzr-muted)!important;-webkit-text-fill-color:var(--uzr-muted)!important}
+html body #home #homeGrid .uzr-home-card .product-card-bottom-v16{order:3!important;display:flex!important;flex-wrap:wrap!important;gap:4px 8px!important;width:100%!important;height:auto!important;min-height:15px!important;align-items:center!important;justify-content:flex-start!important;margin:auto 0 0!important;padding:0!important;overflow:hidden!important}
+html body #home #homeGrid .uzr-home-meta{display:inline-flex!important;gap:4px!important;align-items:center!important;min-width:0!important;max-width:100%!important;color:var(--uzr-muted-3)!important;font-size:10px!important;line-height:15px!important;white-space:nowrap!important}
+html body #home #homeGrid .uzr-home-meta svg{width:12px!important;height:12px!important;flex:0 0 12px!important}
+html body #home #homeGrid .uzr-home-meta>span{overflow:hidden!important;text-overflow:ellipsis!important;min-width:0!important}
+html body #home .uzr-home-pin{position:absolute;bottom:7px;right:7px;display:grid;place-items:center;width:23px;height:23px;border-radius:7px;background:rgba(6,24,35,.7);color:#fff}
+html body #home .uzr-home-pin svg{width:13px;height:13px}
+html body #home .uzr-home-empty{grid-column:1/-1;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:45px 20px;text-align:center;border:1px solid var(--uzr-border);border-radius:20px;background:var(--uzr-surface-4);color:var(--uzr-text)}
+html body #home .uzr-home-empty>svg{width:34px;height:34px;color:var(--uzr-accent);margin-bottom:12px}
+html body #home .uzr-home-empty h3{margin:0 0 8px;font-size:18px}
+html body #home .uzr-home-empty p{margin:0 0 18px;color:var(--uzr-muted-3);font-size:13px;line-height:1.5}
+html body #home .uzr-home-empty button{min-height:43px;padding:0 17px;background:#098feb;color:#fff;border:0;border-radius:12px;font-size:13px}
+html body #home .uzr-home-skeleton{border-radius:18px;overflow:hidden;background:var(--uzr-surface)}
+html body #home .uzr-home-skeleton>div{aspect-ratio:1/1;background:var(--uzr-surface-2)}
+html body #home .uzr-home-skeleton>i{display:block;height:16px;margin:13px 12px;background:var(--uzr-surface-2);border-radius:5px}
+/* Native modal top layer: covers the dock without conflicting with old overlays. */
+html body #uzrHomeFilterV12{position:fixed!important;inset:auto 0 0!important;margin:0 auto!important;padding:0!important;width:min(100%,600px)!important;max-width:600px!important;max-height:min(88dvh,calc(var(--hf-visible-height,100vh) - 12px))!important;height:auto!important;overflow:hidden!important;border:1px solid var(--uzr-border-strong)!important;border-bottom:0!important;border-radius:25px 25px 0 0!important;background:var(--uzr-bg)!important;color:var(--uzr-text)!important;box-shadow:0 -20px 70px rgba(0,0,0,.25)!important;z-index:6500!important;box-sizing:border-box!important}
+html body #uzrHomeFilterV12:not([open]){display:none!important}
+html body #uzrHomeFilterV12[open]{display:flex!important;flex-direction:column!important}
+#uzrHomeFilterV12::backdrop{background:rgba(0,9,16,.62);backdrop-filter:blur(2px)}
+html body #uzrHomeFilterV12 .uzr-hf-handle{width:39px;height:4px;min-height:4px;flex:0 0 4px;margin:10px auto 0;border-radius:4px;background:var(--uzr-border-soft);touch-action:none}
+html body #uzrHomeFilterV12 .uzr-hf-head{position:static!important;display:flex!important;align-items:center!important;justify-content:space-between!important;margin:0!important;padding:15px 20px 17px!important;border:0!important;background:none!important;backdrop-filter:none!important;flex:0 0 auto!important;touch-action:pan-x}
+html body #uzrHomeFilterV12 .uzr-hf-head h2{margin:0!important;font-size:24px!important;line-height:1.2!important;font-weight:650!important;color:var(--uzr-text)!important}
+html body #uzrHomeFilterV12 .uzr-hf-close{display:grid!important;place-items:center!important;width:37px!important;height:37px!important;border:1px solid var(--uzr-border)!important;border-radius:50%!important;background:var(--uzr-surface-deep)!important;color:var(--uzr-muted-3)!important;padding:0!important}
+html body #uzrHomeFilterV12 svg{width:21px!important;height:21px!important;flex:0 0 21px!important}
+html body #uzrHomeFilterV12 .uzr-hf-scroll{overflow-y:auto!important;overscroll-behavior:contain!important;min-height:0!important;padding:0 20px 18px!important;flex:1 1 auto!important;scrollbar-width:thin;scrollbar-color:var(--uzr-border-soft) transparent;-webkit-overflow-scrolling:touch}
+html body #uzrHomeFilterV12 .uzr-hf-field{margin:0 0 22px!important;padding:0!important;border:0!important;min-width:0!important}
+html body #uzrHomeFilterV12 .uzr-hf-field:last-child{margin-bottom:0!important}
+html body #uzrHomeFilterV12 .uzr-hf-field legend,html body #uzrHomeFilterV12 .uzr-hf-field>label{display:block!important;width:100%!important;margin:0 0 10px!important;padding:0!important;font-size:11px!important;font-weight:600!important;line-height:1.4!important;letter-spacing:.8px!important;text-transform:uppercase!important;color:var(--uzr-muted-3)!important}
+html body #uzrHomeFilterV12 .uzr-hf-sorts{display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:9px!important}
+html body #uzrHomeFilterV12 .uzr-hf-sorts button{display:flex!important;align-items:center!important;justify-content:flex-start!important;gap:8px!important;padding:0 12px!important;min-height:48px!important;border-radius:13px!important;border:1px solid var(--uzr-border)!important;background:var(--uzr-surface-4)!important;color:var(--uzr-muted-3)!important;font-size:12px!important;line-height:1.35!important;text-align:left!important;font-weight:500!important}
+html body #uzrHomeFilterV12 .is-active{background:#103954!important;border-color:#24a4ff!important;color:#f6fbff!important}
+html body #uzrHomeFilterV12 .is-active svg{color:#2eadff!important}
+html body #uzrHomeFilterV12 .uzr-hf-price{display:grid!important;grid-template-columns:minmax(0,1fr) 12px minmax(0,1fr) auto!important;align-items:center!important;gap:9px!important}
+html body #uzrHomeFilterV12 .uzr-hf-price input{display:block!important;width:100%!important;min-width:0!important;min-height:47px!important;height:47px!important;padding:0 12px!important;border:1px solid var(--uzr-border)!important;border-radius:13px!important;background:var(--uzr-surface-4)!important;color:var(--uzr-text)!important;-webkit-text-fill-color:var(--uzr-text)!important;font-size:16px!important;outline:none!important}
+html body #uzrHomeFilterV12 .uzr-hf-price input:focus{border-color:var(--uzr-accent)!important}
+html body #uzrHomeFilterV12 .uzr-hf-price input::placeholder{color:var(--uzr-muted)!important;-webkit-text-fill-color:var(--uzr-muted)!important;opacity:1!important}
+html body #uzrHomeFilterV12 .uzr-hf-price>span{color:var(--uzr-muted)!important;font-size:14px!important;text-align:center!important}
+html body #uzrHomeFilterV12 .uzr-hf-price>b{display:grid!important;place-items:center!important;height:35px!important;padding:0 10px!important;border:1px solid var(--uzr-border)!important;border-radius:10px!important;color:var(--uzr-accent)!important;background:var(--uzr-surface-4)!important;font-size:12px!important;letter-spacing:.3px!important}
+html body #uzrHomeFilterV12 .uzr-hf-types,html body #uzrHomeFilterV12 .uzr-hf-cities{display:flex!important;gap:7px!important;margin:0 0 9px!important;flex-wrap:wrap!important}
+html body #uzrHomeFilterV12 .uzr-hf-types button,html body #uzrHomeFilterV12 .uzr-hf-cities button{display:flex!important;gap:5px!important;align-items:center!important;justify-content:center!important;padding:0 12px!important;min-height:39px!important;border:1px solid var(--uzr-border)!important;border-radius:12px!important;background:var(--uzr-surface-4)!important;color:var(--uzr-muted-3)!important;font-size:12px!important;font-weight:500!important;white-space:nowrap!important}
+html body #uzrHomeFilterV12 .uzr-hf-types button.is-active,html body #uzrHomeFilterV12 .uzr-hf-cities button.is-active{background:#103954!important;border-color:#24a4ff!important;color:#f6fbff!important}
+html body #uzrHomeFilterV12 .uzr-hf-select{position:relative!important;width:100%!important}
+html body #uzrHomeFilterV12 .uzr-hf-select select{display:block!important;width:100%!important;height:48px!important;padding:0 40px 0 14px!important;border:1px solid var(--uzr-border)!important;border-radius:13px!important;background:var(--uzr-surface-4)!important;color:var(--uzr-text)!important;-webkit-text-fill-color:var(--uzr-text)!important;font-size:15px!important;appearance:none!important;-webkit-appearance:none!important;outline:none!important}
+html body #uzrHomeFilterV12 .uzr-hf-select>svg{position:absolute!important;right:14px!important;top:15px!important;width:17px!important;height:17px!important;pointer-events:none!important;color:var(--uzr-muted-3)!important}
+html body #uzrHomeFilterV12 .uzr-hf-foot{display:grid!important;grid-template-columns:minmax(90px,.75fr) minmax(0,1.7fr)!important;gap:10px!important;flex:0 0 auto!important;padding:15px 20px max(18px,env(safe-area-inset-bottom))!important;border-top:1px solid var(--uzr-border)!important;background:var(--uzr-bg)!important}
+html body #uzrHomeFilterV12 .uzr-hf-foot button{height:51px!important;min-height:51px!important;padding:0 12px!important;border:1px solid var(--uzr-border)!important;border-radius:14px!important;background:var(--uzr-surface-4)!important;color:var(--uzr-muted-3)!important;font-size:14px!important;font-weight:600!important}
+html body #uzrHomeFilterV12 #uzrHomeFilterApplyV12{background:linear-gradient(120deg,#22adf5,#008bf2)!important;border-color:#079ef5!important;color:#fff!important;box-shadow:none!important;font-size:13px!important}
+html body #uzrHomeFilterV12 button:disabled{opacity:.45!important;cursor:not-allowed!important}
+html body #uzrHomeFilterV12 .uzr-hf-error{color:#ff899d!important;font-size:12px!important;line-height:1.4!important;margin:9px 0 0!important}
+html body #uzrHomeFilterV12 .uzr-hf-error[hidden]{display:none!important}
+html body #uzrHomeFilterV12 :focus-visible,html body #home :is(button,.name):focus-visible{outline:2px solid var(--uzr-accent)!important;outline-offset:2px!important}
+html[data-uzr-theme="light"] body #uzrHomeFilterV12{box-shadow:0 -14px 50px rgba(23,44,65,.12)!important}
+html[data-uzr-theme="light"] body #uzrHomeFilterV12 .is-active,html[data-uzr-theme="light"] body #uzrHomeFilterV12 .uzr-hf-types button.is-active,html[data-uzr-theme="light"] body #uzrHomeFilterV12 .uzr-hf-cities button.is-active{background:#e7f3ff!important;color:#0878be!important;border-color:#149df3!important}
+@media(min-width:600px){html body #home #homeGrid .uzr-home-card .name{font-size:15px!important;line-height:20px!important;height:40px!important}html body #home #homeGrid .uzr-home-meta{font-size:11px!important}}
+@media(max-width:359px){html body #home .dark-home-v10{padding-left:12px!important;padding-right:12px!important}html body #home .dark-actions-v10{gap:7px!important}html body #home .dark-action-v10{height:116px!important}html body #home .dark-action-copy-v10 b{font-size:14px!important}html body #home .dark-action-copy-v10 small{font-size:8.5px!important}html body #home .uzr-home-find h3{font-size:13px!important}html body #home .uzr-home-find p{font-size:10.5px!important}html body #home .uzr-home-toolbar{margin-left:-12px!important;margin-right:-12px!important;padding-left:12px!important;padding-right:12px!important}html body #home #homeGrid{gap:10px 8px!important}html body #home #homeGrid .uzr-home-card .product-card-info-v15{padding:9px 8px 11px!important}html body #home #homeGrid .uzr-home-card .name{font-size:12px!important}html body #home #uzrHomeSortV12{font-size:10px!important;gap:4px!important}html body #home .uzr-home-results h2{font-size:19px!important}html body #uzrHomeFilterV12 .uzr-hf-scroll{padding-left:14px!important;padding-right:14px!important}html body #uzrHomeFilterV12 .uzr-hf-sorts button{font-size:11px!important;padding:0 9px!important;gap:5px!important}html body #uzrHomeFilterV12 .uzr-hf-foot{padding-left:14px!important;padding-right:14px!important}}
+
+html body #uzrHomeFilterV12 .uzr-hf-sorts button.is-active{background:#103954!important;border-color:#24a4ff!important;color:#f6fbff!important}
+html[data-uzr-theme="light"] body #uzrHomeFilterV12 .uzr-hf-sorts button.is-active{background:#e7f3ff!important;border-color:#149df3!important;color:#0878be!important}
+
+html body #home #homeGrid .uzr-home-photo-empty{position:absolute!important;inset:0!important;display:grid!important;place-items:center!important;color:#637586!important;background:#e9edf0!important;font-size:12px!important;padding:16px!important;text-align:center!important}
+
+</style>
 </head><body>
 <div id="uzrConsentV58" hidden role="dialog" aria-modal="true" aria-labelledby="uzrConsentTitleV58">
   <div class="uzr-consent-card-v58">
@@ -14414,34 +14539,16 @@ html[data-uzr-theme="light"] #adminPanel .uzr-pin-placement-v119 p{color:#667b89
 </button>
 </div>
 <section class="sr110-banner" data-no-i18n aria-label="Найти товар"></section>
-<div class="dark-categories-v10">
-<button onclick="openHomeCategory('Одежда')">
-<span><i data-lucide="shirt"></i></span><b>Одежда</b>
-</button>
-<button onclick="openHomeCategory('Обувь')">
-<span class="dark-shoe-svg-v10">
-<svg aria-hidden="true" viewbox="0 0 36 32">
-<path d="M5 20.5c4.2-.3 7.3-2.1 9.1-6.8l3.4 2.5c2.6 1.9 5.2 3 9.8 3.6 2.2.3 3.7 1.7 3.7 3.5 0 2.1-1.7 3.7-4.2 3.7H8.2C5.6 27 4 25.5 4 23.5c0-1.2.4-2.2 1-3Z" fill="none" stroke="currentColor" stroke-linejoin="round" stroke-width="2.2"></path>
-<path d="m14.5 14 2.4-3.2m1.4 6.2 2.2-3.1m-8 7.1h17" fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="2.2"></path>
-</svg>
-</span><b>Обувь</b>
-</button>
-<button onclick="openHomeCategory('Аксессуары')">
-<span><i data-lucide="watch"></i></span><b>Аксессуары</b>
-</button>
-<button onclick="openHomeCategory('Другое')">
-<span><i data-lucide="layout-grid"></i></span><b>Другое</b>
-</button>
+<div class="uzr-home-toolbar" data-no-i18n>
+  <button type="button" id="uzrHomeFilterButtonV12" aria-haspopup="dialog" aria-controls="uzrHomeFilterV12" aria-expanded="false">Фильтры</button>
+  <div class="uzr-home-chips" id="uzrHomeChipsV12" aria-label="Быстрые фильтры"></div>
 </div>
-<section id="homeOfficialPinsV119" hidden aria-labelledby="homePinsTitleV119">
-  <div class="dark-popular-head-v10 uzr-home-pins-head-v119"><div><small id="homePinsLabelV119" data-no-i18n>Закреплено</small><h2 id="homePinsTitleV119" data-no-i18n>От Uzbek Re’Sale</h2></div><button type="button" onclick="page('china')" id="homePinsAllV119" data-no-i18n>Все товары</button></div>
-  <div class="grid dark-product-grid-v10" id="homeOfficialPinsGridV119"></div>
-</section>
-<div class="dark-popular-head-v10">
-<h2>Популярное</h2>
-<button onclick="openHomeCatalog('all')">Смотреть все <i data-lucide="chevron-right"></i></button>
+<div class="uzr-home-results" id="uzrHomeResultsV12" data-no-i18n>
+  <div><h2 id="uzrHomeTitleV12">Все товары</h2><p id="uzrHomeCountV12" role="status" aria-live="polite">Загружаем товары…</p></div>
+  <button id="uzrHomeSortV12" type="button" aria-haspopup="dialog" aria-controls="uzrHomeFilterV12">Сначала новые</button>
 </div>
-<div class="grid dark-product-grid-v10" id="homeGrid"></div>
+<div class="grid dark-product-grid-v10" id="homeGrid" data-no-i18n></div>
+<section id="homeOfficialPinsV119" hidden aria-hidden="true"><div id="homeOfficialPinsGridV119" hidden></div></section>
 </div>
 </section>
 <section class="page" id="catalog">
@@ -15386,7 +15493,7 @@ html[data-uzr-theme="light"] #adminPanel .uzr-pin-placement-v119 p{color:#667b89
   <div class="orders-v40-list" id="ordersList"></div>
 </div>
 </section></div>
-<nav><button class="nav active" data-page="home"><span class="icon"><i data-lucide="house"></i></span>Главная</button><button class="nav" data-page="catalog"><span class="icon"><i data-lucide="layout-grid"></i></span>Каталог</button><button class="nav sell" data-page="sell"><span class="icon"><i data-lucide="plus"></i></span></button><button class="nav china-nav-v32" data-page="china"><span class="icon"><i data-lucide="plane"></i></span>Из Китая</button><button class="nav nav-profile-v13" data-page="profile"><span class="icon nav-profile-avatar-v13" id="navProfileAvatar"><i data-lucide="user"></i></span>Профиль</button></nav>
+<nav class="uzr-home-rollout-nav"><button class="nav active" data-page="home"><span class="icon"><i data-lucide="house"></i></span>Главная</button><button class="nav" data-page="catalog" hidden aria-hidden="true" tabindex="-1"><span class="icon"><i data-lucide="layout-grid"></i></span>Каталог</button><button class="nav sell" data-page="sell"><span class="icon"><i data-lucide="plus"></i></span></button><button class="nav china-nav-v32" data-page="china"><span class="icon"><i data-lucide="plane"></i></span>Из Китая</button><button class="nav nav-profile-v13" data-page="profile"><span class="icon nav-profile-avatar-v13" id="navProfileAvatar"><i data-lucide="user"></i></span>Профиль</button></nav>
 <div class="overlay product-v18-view" id="productView">
 <div class="product-v18-inner">
 <div class="product-v18-topbar">
@@ -16338,7 +16445,7 @@ function card(p){
      const ownSellerCard=!!currentTelegramId&&String(p.sellerTelegramId||"")===currentTelegramId;
      sb.innerHTML=`
        <div class="product-v18-seller-card" role="button" tabindex="0" onclick="goSellerProfile('${escapeHtml(p.sellerTelegramId)}')">
-         <div class="product-v18-seller-avatar">${avatarUrl?`<img src="${avatarUrl}" alt="" onerror="this.remove();this.parentElement.textContent='${escapeHtml(ini)}'">`:escapeHtml(ini)}</div>
+         <div class="product-v18-seller-avatar">${avatarUrl?`<img src="${avatarUrl}" alt="" data-fallback-initials="${escapeHtml(ini)}" onerror="const parent=this.parentElement;const initials=this.dataset.fallbackInitials||'';this.remove();if(parent)parent.textContent=initials;">`:escapeHtml(ini)}</div>
          <div class="product-v18-seller-copy">
            <b>${escapeHtml(sellerName)}</b>
            ${sellerUsername?`<span class="product-seller-username-v76">@${escapeHtml(sellerUsername)}</span>`:""}
@@ -16502,7 +16609,7 @@ function readPinTargetsV119(id){
 }
 function pinPlacementFieldV119(id,x={}){
   const current=pinSelectValueV119(x);
-  return `<div class="admin-v89-field uzr-pin-placement-v119" data-no-i18n><label for="${id}">Где закрепить товар</label><select id="${id}">${[['none','Не закреплять'],['home','На Главной'],['china','В «Из Китая»'],['both','На Главной и в «Из Китая»']].map(([value,label])=>`<option value="${value}" ${current===value?'selected':''}>${label}</option>`).join('')}</select><p>Без закрепления — только в «Из Китая» и официальном профиле. При закреплении «На Главной» товар становится первым в «Популярном»; обычные товары Uzbek Re’Sale туда не попадают.</p></div>`;
+  return `<div class="admin-v89-field uzr-pin-placement-v119" data-no-i18n><label for="${id}">Где закрепить товар</label><select id="${id}">${[['none','Не закреплять'],['home','На Главной'],['china','В «Из Китая»'],['both','На Главной и в «Из Китая»']].map(([value,label])=>`<option value="${value}" ${current===value?'selected':''}>${label}</option>`).join('')}</select><p>Все доступные товары отображаются на Главной. Закрепление «На Главной» поднимает товар при сортировке «Сначала новые». Закрепление в «Из Китая» действует отдельно; при сортировке по цене или от старых к новым сохраняется выбранный порядок.</p></div>`;
 }
 async function adminChoosePinV119(id){
   await adminEditOfficial(id);
@@ -16510,8 +16617,11 @@ async function adminChoosePinV119(id){
   el.closest('.uzr-pin-placement-v119').scrollIntoView({block:'center'});el.focus({preventScroll:true});
 }
 
-function render(){const needle=String(q||"").toLowerCase();let list=resaleProductsV119().filter(p=>(type==="Все"||p.type===type)&&(!ownerFilter||p.ownerType===ownerFilter)&&(category==="Все"||p.category===category)&&(!needle||[p.name,p.brand,p.category].some(v=>String(v||"").toLowerCase().includes(needle))));if(sortMode==="priceAsc")list=[...list].sort((a,b)=>a.price-b.price);if(sortMode==="priceDesc")list=[...list].sort((a,b)=>b.price-a.price);if(sortMode==="name")list=[...list].sort((a,b)=>a.name.localeCompare(b.name));const homePinned=homeOfficialProductsV119();fill("homeGrid",[...homePinned,...resaleProductsV119()].slice(0,4));const homePinsBox=$("homeOfficialPinsV119");if(homePinsBox)homePinsBox.hidden=true;const categoryBox=$("categoryFilters");if(categoryBox){categoryBox.hidden=false;categoryBox.style.display="grid";}fill("catalogGrid",list);
-const catalogResultCount=$("catalogResultCount");if(catalogResultCount)catalogResultCount.textContent=list.length+" "+(list.length===1?"товар":(list.length>=2&&list.length<=4?"товара":"товаров"));
+function render(){
+if(window.UzrHome120)window.UzrHome120.render();
+else fill("homeGrid",products.filter(availableItemV119));
+const homePinsBox=$("homeOfficialPinsV119");if(homePinsBox)homePinsBox.hidden=true;
+const retiredGrid=$("catalogGrid");if(retiredGrid)retiredGrid.replaceChildren();
 reconcileFavoritesV76();
 const favoriteItems=products.filter(p=>isFavoriteV76(p.id));
 const favoriteGrid=$("favoriteGrid");
@@ -16590,6 +16700,8 @@ function add(p){
 
 function resetPageScroll(target){const scroller=document.scrollingElement||document.documentElement;if(scroller)scroller.scrollTop=0;document.documentElement.scrollTop=0;document.body.scrollTop=0;window.scrollTo({top:0,left:0,behavior:"auto"});const app=document.querySelector(".app");if(app)app.scrollTop=0;if(target)target.scrollTop=0}
 function navigatePage(id){
+ if(id==="catalog"){window.UzrHome120?.legacyRoute();id="home";}
+ window.UzrHome120?.closeFilters();
  document.body.classList.toggle("admin-v89-open",id==="adminPanel");
  const orderDetailV40=$("orderDetailView");
  if(orderDetailV40)orderDetailV40.classList.remove("open");
@@ -17084,6 +17196,8 @@ function currentPageId(){
   return el ? el.id : "home";
 }
 function page(id){
+ if(id==="catalog"){window.UzrHome120?.legacyRoute();id="home";}
+ window.UzrHome120?.closeFilters();
   const officialView=$("officialStoreView");
   if(officialView?.classList.contains("open")) closeOfficialStore();
   const productView=$("productView");
@@ -17852,7 +17966,7 @@ async function loadMarketplaceCatalog(){
    size:x.size||"—",
    condition:x.condition||"—",type:x.ownerType==="official"?(x.sourceType==="china"?"Под заказ":"В наличии"):"Ресейл",
    category:x.category||"Другое",brand:x.brand||"",image:x.images&&x.images[0]?x.images[0].image_url:"",images:(x.images||[]).map(im=>im.image_url||im).filter(Boolean),
-   ownerType:x.ownerType||"user",sourceType:x.sourceType||"",pinHome:x.pinHome===true,pinChina:x.pinChina===true||x.isPinned===true,homePinnedAt:String(x.homePinnedAt||""),isPinned:!!x.isPinned,pinnedAt:String(x.pinnedAt||x.pinned_at||""),stockQty:Number(x.stockQty||1),status:x.status||"approved",cardBadge:x.cardBadge||x.badgeType||x.badge||"",city:x.city||x.location||"",publishedAt:x.publishedAt||x.published_at||"",expiresAt:x.expiresAt||x.expires_at||"",soldAt:x.soldAt||x.sold_at||"",expiredAt:x.expiredAt||x.expired_at||"",imagesDeletedAt:x.imagesDeletedAt||x.images_deleted_at||"",purgedAt:x.purgedAt||x.purged_at||"",cleanupError:x.cleanupError||x.cleanup_error||"",createdAt:x.createdAt||x.created_at||"",updatedAt:x.updatedAt||x.updated_at||"",isFeatured:!!x.isFeatured,officialNote:x.officialNote||"",sellerTelegramId:String(x.sellerTelegramId||""),sellerName:x.sellerName||"Продавец",sellerUsername:x.sellerUsername||"",description:x.description||""
+   ownerType:x.ownerType||"user",sourceType:x.sourceType||"",pinHome:x.pinHome===true,pinChina:x.pinChina===true||x.isPinned===true,homePinnedAt:String(x.homePinnedAt||""),isPinned:!!x.isPinned,pinnedAt:String(x.pinnedAt||x.pinned_at||""),stockQty:Number(x.stockQty??1),status:x.status||"approved",cardBadge:x.cardBadge||x.badgeType||x.badge||"",city:x.city||x.location||"",publishedAt:x.publishedAt||x.published_at||"",expiresAt:x.expiresAt||x.expires_at||"",soldAt:x.soldAt||x.sold_at||"",expiredAt:x.expiredAt||x.expired_at||"",imagesDeletedAt:x.imagesDeletedAt||x.images_deleted_at||"",purgedAt:x.purgedAt||x.purged_at||"",cleanupError:x.cleanupError||x.cleanup_error||"",createdAt:x.createdAt||x.created_at||"",updatedAt:x.updatedAt||x.updated_at||"",isFeatured:!!x.isFeatured,officialNote:x.officialNote||"",sellerTelegramId:String(x.sellerTelegramId||""),sellerName:x.sellerName||"Продавец",sellerUsername:x.sellerUsername||"",description:x.description||""
   }));
   // Keep persisted official cart prices synchronized with current server discount.
   if(cart.length){
@@ -18273,7 +18387,7 @@ function renderSellerProfileV26(profile,id,own=false,fallbackName="",fallbackUse
     <div class="seller-v26-head"><button class="seller-v26-back uzr-back-v69" type="button" onclick="sellerProfileBackV26()" aria-label="Назад"><i data-lucide="chevron-left"></i></button><h1>${own?'Мой профиль продавца':'Профиль продавца'}</h1></div>
     <section class="seller-v26-hero">
       <div class="seller-v26-identity">
-        <div class="seller-v26-avatar">${avatarUrl?`<img src="${avatarUrl}" alt="" onerror="this.remove();this.parentElement.textContent='${escapeHtml(ini)}'">`:escapeHtml(ini)}</div>
+        <div class="seller-v26-avatar">${avatarUrl?`<img src="${avatarUrl}" alt="" data-fallback-initials="${escapeHtml(ini)}" onerror="const parent=this.parentElement;const initials=this.dataset.fallbackInitials||'';this.remove();if(parent)parent.textContent=initials;">`:escapeHtml(ini)}</div>
         <div class="seller-v26-identity-copy-v76"><h2 class="seller-v26-name">${escapeHtml(name)}</h2>${username?`<div class="seller-v26-username-v76">@${escapeHtml(username)}</div>`:""}<span class="seller-v26-role">Продавец</span>${showCity?`<div class="seller-v26-location"><i data-lucide="map-pin"></i><span>${escapeHtml(city)}</span></div>`:""}</div>
       </div>
       ${about?`<p class="seller-v26-about">${escapeHtml(about)}</p>`:""}
@@ -21275,7 +21389,7 @@ function appendOrderCargo(o){
  el.querySelector('[data-sr-action=details]').onclick=()=>run(()=>orderCargo(o.id,false,'userOrder'));
  const b=el.querySelector('[data-sr-action=request]');if(b)b.onclick=()=>{state.admin=false;run(()=>detail(o.sourceRequestId))};host.appendChild(el);
 }
-function bannerHTML(){return `<div class="sr110-banner-head"><span class="sr110-banner-icon">${icon('search')}</span><div><h3>${esc(t('banner'))}</h3><p>${esc(t('bannerSub'))}</p></div></div><button type="button">${esc(t('find'))}</button>`}
+function bannerHTML(home=false){if(home)return `<button type="button" class="uzr-home-find"><span class="uzr-home-find-icon"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m16 16 4 4"/></svg></span><span><h3>${esc(t('banner'))}</h3><p>${esc(t('bannerSub'))}</p></span><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="m9 5 7 7-7 7"/></svg></button>`;return `<div class="sr110-banner-head"><span class="sr110-banner-icon">${icon('search')}</span><div><h3>${esc(t('banner'))}</h3><p>${esc(t('bannerSub'))}</p></div></div><button type="button">${esc(t('find'))}</button>`}
 const extraCopy={
  cargoThree:['3 варианта','3 variant'],cargoAtCheckout:['карго при оформлении','rasmiylashtirishda kargo'],
  cargoHeading:['Выбор карго при оформлении','Rasmiylashtirishda kargoni tanlash'],
@@ -21302,7 +21416,7 @@ function translateStatic(){
 }
 
  document.querySelectorAll('[data-sr-copy]').forEach(el=>{const a=extraCopy[el.dataset.srCopy];if(a)el.textContent=a[locale()==='uz'?1:0]});
- document.querySelectorAll('.sr110-banner').forEach(el=>{el.innerHTML=bannerHTML();el.querySelector('button').onclick=newRequest});
+ document.querySelectorAll('.sr110-banner').forEach(el=>{el.innerHTML=bannerHTML(!!el.closest('#home'));el.querySelector('button').onclick=newRequest});
  document.querySelectorAll('[data-sr-label]').forEach(el=>el.textContent=t(el.dataset.srLabel));
  if(window.lucide)lucide.createIcons();
 }
@@ -22483,6 +22597,351 @@ window.UzrRArchiveV11=(()=>{
     finally{setBusy(false);}
   }
   return {preview,confirm:confirmPlan};
+})();
+
+</script>
+<dialog id="uzrHomeFilterV12" aria-labelledby="uzrHomeFilterTitleV12" data-no-i18n></dialog>
+<script id="uzr-v12-home-and-filters-script">
+/* Uzbek Re'Sale v1.2 — Home + filters only. Uses the existing catalog, card actions and auth.
+ * No Worker writes, no fixture data, no changes to the embedded brand assets.
+ * Legacy 'catalog' navigation is redirected to Home. Chat rollout is a later stage.
+ */
+(()=>{
+  'use strict';
+  const $h=id=>document.getElementById(id);
+  const STORAGE='uzr_home_filters_v12';
+  const defaults=()=>({scope:'all',category:'all',city:'all',min:'',max:'',sort:'newest'});
+  const CATEGORIES=['Одежда','Обувь','Аксессуары','Другое'];
+  const SORTS=['newest','oldest','priceAsc','priceDesc'];
+  const copy={
+    filters:['Фильтры','Filtrlar'],filterTitle:['Фильтр','Filtr'],close:['Закрыть фильтры','Filtrlarni yopish'],
+    all:['Все','Barchasi'],resale:['Ресейл','Reseyl'],official:['Из Китая','Xitoydan'],stock:['В наличии','Mavjud'],
+    allProducts:['Все товары','Barcha mahsulotlar'],sort:['Сортировка','Saralash'],
+    newest:['Сначала новые','Avval yangilari'],oldest:['Сначала старые','Avval eskilari'],
+    priceAsc:['Дешевле','Arzonroq'],priceDesc:['Дороже','Qimmatroq'],
+    price:['Цена, UZS','Narx, UZS'],min:['От','Dan'],max:['До','Gacha'],
+    minLabel:['Минимальная цена в UZS','Eng kam narx, UZS'],maxLabel:['Максимальная цена в UZS','Eng yuqori narx, UZS'],
+    category:['Категория','Kategoriya'],allCategories:['Все категории','Barcha kategoriyalar'],
+    city:['Город','Shahar'],allCities:['Все города','Barcha shaharlar'],otherCities:['Выбрать город','Shaharni tanlash'],
+    type:['Товары','Mahsulotlar'],reset:['Сбросить','Tozalash'],clearAll:['Сбросить фильтры','Filtrlarni tozalash'],
+    emptyTitle:['Ничего не найдено','Hech narsa topilmadi'],
+    emptyBody:['Попробуйте изменить запрос или фильтры.','Qidiruv yoki filtrlarni o‘zgartiring.'],
+    noProducts:['Товары скоро появятся','Mahsulotlar tez orada paydo bo‘ladi'],
+    noProductsBody:['Пока нет доступных товаров. Загляните немного позже.','Hozircha mavjud mahsulotlar yo‘q. Biroz keyinroq qayting.'],
+    loading:['Загружаем товары…','Mahsulotlar yuklanmoqda…'],
+    errorTitle:['Не удалось загрузить товары','Mahsulotlarni yuklab bo‘lmadi'],
+    errorBody:['Проверьте соединение и повторите попытку.','Internetni tekshiring va qayta urinib ko‘ring.'],
+    photoUnavailable:['Фото недоступно','Foto mavjud emas'],retry:['Повторить','Qayta urinish'],priceInvalid:['Введите целую неотрицательную цену в UZS.','UZS da manfiy bo‘lmagan butun narx kiriting.'],
+    rangeInvalid:['Цена «От» не может быть больше цены «До».','Boshlang‘ich narx yakuniy narxdan katta bo‘lmasin.'],
+    noCity:['Город не указан','Shahar ko‘rsatilmagan'],noSize:['Размер не указан','O‘lcham ko‘rsatilmagan'],
+    size:['Размер','O‘lcham'],favorite:['Избранное','Sevimlilar'],open:['Открыть товар','Mahsulotni ochish'],
+    search:['Поиск товаров, брендов, категорий…','Mahsulot, brend, kategoriya qidirish…'],
+    clearSearch:['Очистить поиск','Qidiruvni tozalash'],pin:['Закреплено','Mahkamlangan'],
+    'Одежда':['Одежда','Kiyim'],'Обувь':['Обувь','Poyabzal'],'Аксессуары':['Аксессуары','Aksessuarlar'],'Другое':['Другое','Boshqa'],
+    'Ташкент':['Ташкент','Toshkent'],'Самарканд':['Самарканд','Samarqand'],'Бухара':['Бухара','Buxoro'],
+    'Андижан':['Андижан','Andijon'],'Наманган':['Наманган','Namangan'],'Фергана':['Фергана','Farg‘ona'],
+    'Джизак':['Джизак','Jizzax'],'Джиззак':['Джиззак','Jizzax'],'Навои':['Навои','Navoiy'],
+    'Нукус':['Нукус','Nukus'],'Ургенч':['Ургенч','Urganch'],'Карши':['Карши','Qarshi'],
+    'Термез':['Термез','Termiz'],'Гулистан':['Гулистан','Guliston'],'Чирчик':['Чирчик','Chirchiq'],
+    'Ангрен':['Ангрен','Angren'],'Коканд':['Коканд','Qo‘qon'],'Алмалык':['Алмалык','Olmaliq']
+  };
+  const lang=()=>{try{return localStorage.getItem('uzr_language_pref_v1')==='uz'?'uz':'ru'}catch(_){return 'ru'}};
+  const tr=key=>copy[key]?.[lang()==='uz'?1:0]||String(key);
+  const esc=value=>escapeHtml(String(value??''));
+  const icons={
+    sliders:'<path d="M4 6h5m4 0h7M4 18h9m4 0h3M4 12h1m4 0h11"/><circle cx="11" cy="6" r="2"/><circle cx="7" cy="12" r="2"/><circle cx="15" cy="18" r="2"/>',
+    down:'<path d="m6 9 6 6 6-6"/>',updown:'<path d="M8 4v16m-4-4 4 4 4-4M16 20V4m-4 4 4-4 4 4"/>',
+    close:'<path d="m6 6 12 12M6 18 18 6"/>',clock:'<circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/>',
+    history:'<path d="M3 4v5h5M3.5 8a9 9 0 1 1 0 8"/><path d="M12 7v5l3 2"/>',
+    cheaper:'<path d="m4 7 6 6 4-4 6 8m0-6v6h-6"/>',expensive:'<path d="m4 17 6-6 4 4 6-8m0 6V7h-6"/>',
+    city:'<path d="M20 10c0 5-8 11-8 11S4 15 4 10a8 8 0 1 1 16 0Z"/><circle cx="12" cy="10" r="2.5"/>',
+    size:'<path d="m4 15 11-11 5 5-11 11-5-5Z"/><path d="m12 7 2 2m-5 1 2 2m-5 1 2 2"/>',
+    search:'<circle cx="10.5" cy="10.5" r="6.5"/><path d="m16 16 4 4"/>',
+    pin:'<path d="m15 3 6 6-4 1-3 5-2 1-4-4 1-2 5-3 1-4ZM8 16l-5 5"/>',
+    retry:'<path d="M20 4v5h-5M4 20v-5h5M5 8a8 8 0 0 1 13-3l2 4M4 15l2 4a8 8 0 0 0 13-3"/>'
+  };
+  const icon=name=>`<svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">${icons[name]||icons.sliders}</svg>`;
+  const tidy=v=>String(v??'').trim();
+  function normalize(v){return tidy(v).toLocaleLowerCase().replace(/ё/g,'е').replace(/[’‘ʻʼ`]/g,"'").replace(/\s+/g,' ')}
+  function canonicalCategory(v){
+    const n=normalize(v);const map={'kiyim':'Одежда','poyabzal':'Обувь','aksessuarlar':'Аксессуары','boshqa':'Другое'};
+    return CATEGORIES.find(c=>normalize(c)===n)||map[n]||tidy(v)||'Другое';
+  }
+  function canonicalCity(v){
+    const n=normalize(v);if(!n||['—','-','город не указан','shahar ko‘rsatilmagan',"shahar ko'rsatilmagan"].includes(n))return '';
+    for(const [key,pair] of Object.entries(copy)){
+      if(['Ташкент','Самарканд','Бухара','Андижан','Наманган','Фергана','Джизак','Джиззак','Навои','Нукус','Ургенч','Карши','Термез','Гулистан','Чирчик','Ангрен','Коканд','Алмалык'].includes(key)&&pair.some(p=>normalize(p)===n))return key==='Джиззак'?'Джизак':key;
+    }
+    return tidy(v);
+  }
+  function priceValue(value){
+    const raw=tidy(value).replace(/[\s\u00a0\u202f]/g,'');
+    if(!raw)return null;
+    if(!/^\d{1,12}$/.test(raw))return NaN;
+    const number=Number(raw);return Number.isSafeInteger(number)?number:NaN;
+  }
+  function validState(input){
+    const s=defaults();if(!input||typeof input!=='object')return s;
+    if(['all','resale','official'].includes(input.scope))s.scope=input.scope;
+    if(SORTS.includes(input.sort))s.sort=input.sort;
+    for(const k of ['category','city'])if(typeof input[k]==='string'&&input[k].length<=100)s[k]=input[k]||'all';
+    for(const k of ['min','max'])if(priceValue(input[k])!==null&&Number.isFinite(priceValue(input[k])))s[k]=String(priceValue(input[k]));
+    if(s.min&&s.max&&Number(s.min)>Number(s.max)){s.min='';s.max=''}
+    return s;
+  }
+  let state=defaults(),query='',draft=null,modalOpen=false,previousFocus=null,previousStyles=null,bbWasVisible=false;
+  try{const stored=JSON.parse(sessionStorage.getItem(STORAGE)||'null');state=validState(stored?.filters);query=typeof stored?.query==='string'?stored.query.slice(0,200):''}catch(_){}
+  let searchTimer=0,expiryTimer=0;
+  const grid=$h('homeGrid'),dialog=$h('uzrHomeFilterV12');
+  if(!grid||!dialog)return;
+  function persist(){try{sessionStorage.setItem(STORAGE,JSON.stringify({filters:state,query}))}catch(_){}}
+  function moneyHome(n){return new Intl.NumberFormat('ru-RU',{maximumFractionDigits:0}).format(Number(n)||0)+' UZS'}
+  function count(n){if(lang()==='uz')return n+' ta mahsulot';const x=n%100,y=n%10;return n+' '+(y===1&&x!==11?'товар':y>=2&&y<=4&&!(x>=12&&x<=14)?'товара':'товаров')}
+  const showCount=n=>lang()==='uz'?`${n} ta mahsulotni ko‘rsatish`:`Показать ${count(n)}`;
+  function allItems(){
+    const seen=new Set();
+    return products.filter(p=>{
+      if(!p||!availableItemV119(p)||!Number.isFinite(Number(p.price))||Number(p.price)<=0)return false;
+      // Corrupt or ambiguous expiry dates must not make an expired user listing public.
+      if(!officialItemV119(p)&&p.expiresAt){const t=publicTimeV119(p.expiresAt);if(!Number.isFinite(t)||t<=Date.now())return false}
+      const id=String(p.listingId||p.id||'');if(!id||seen.has(id))return false;seen.add(id);return true;
+    });
+  }
+  function result(filters=state){
+    const min=priceValue(filters.min),max=priceValue(filters.max),terms=normalize(query).split(' ').filter(Boolean);
+    const list=allItems().filter(p=>{
+      if(filters.scope==='resale'&&officialItemV119(p))return false;
+      // The app's official “Из Китая” store includes both imported and locally stocked items.
+      if(filters.scope==='official'&&!officialItemV119(p))return false;
+      if(filters.category!=='all'&&canonicalCategory(p.category)!==filters.category)return false;
+      if(filters.city!=='all'&&canonicalCity(p.city)!==filters.city)return false;
+      if(min!==null&&Number(p.price)<min||max!==null&&Number(p.price)>max)return false;
+      const hay=normalize([p.name,p.brand,p.category,tr(canonicalCategory(p.category)),p.size].join(' '));
+      return terms.every(term=>hay.includes(term));
+    });
+    const created=p=>{const ts=publicTimeV119(p.createdAt||p.publishedAt);return Number.isFinite(ts)?ts:0};
+    list.sort((a,b)=>{
+      let d=0;
+      if(filters.sort==='priceAsc')d=Number(a.price)-Number(b.price);
+      else if(filters.sort==='priceDesc')d=Number(b.price)-Number(a.price);
+      else if(filters.sort==='oldest')d=created(a)-created(b);
+      else{
+        // Only Home pins retain priority, and only under the default/newest order.
+        const ap=officialItemV119(a)&&a.pinHome===true,bp=officialItemV119(b)&&b.pinHome===true;
+        if(ap!==bp)return ap?-1:1;
+        if(ap&&bp){d=(publicTimeV119(b.homePinnedAt)||0)-(publicTimeV119(a.homePinnedAt)||0);if(d)return d}
+        d=created(b)-created(a);
+      }
+      return d||(filters.sort==='oldest'?Number(a.listingId)-Number(b.listingId):Number(b.listingId)-Number(a.listingId));
+    });return list;
+  }
+  const filterCount=()=>Number(state.scope!=='all')+Number(state.category!=='all')+Number(state.city!=='all')+Number(state.min!==''||state.max!=='')+Number(state.sort!=='newest');
+  function syncLegacy(){
+    q=query;type=state.scope==='resale'?'Ресейл':'Все';ownerFilter=state.scope==='official'?'official':'';
+    category=state.category==='all'?'Все':state.category;sortMode=state.sort==='newest'?'default':state.sort;
+    const input=$h('search');if(input&&input.value!==query)input.value=query;
+    const old=$h('catalogSearchV14');if(old)old.value=query;
+    const clear=$h('searchClearV2');if(clear){clear.hidden=!query;clear.setAttribute('aria-label',tr('clearSearch'))}
+  }
+  function updateToolbar(n){
+    $h('uzrHomeTitleV12').textContent=tr('allProducts');
+    $h('uzrHomeCountV12').textContent=catalogLoaded&&!catalogLoadError?count(n):tr(catalogLoadError?'errorTitle':'loading');
+    const button=$h('uzrHomeFilterButtonV12');
+    button.innerHTML=icon('sliders')+`<span>${esc(tr('filters'))}</span>`+(filterCount()?`<b>${filterCount()}</b>`:'');
+    button.classList.toggle('has-filters',!!filterCount());button.setAttribute('aria-expanded',String(modalOpen));
+    $h('uzrHomeSortV12').innerHTML=icon('updown')+`<span>${esc(tr(state.sort))}</span>`+icon('down');
+    const choices=[['all','all'],['resale','resale'],['official','official'],...CATEGORIES.map(c=>[c,c])];
+    const strip=$h('uzrHomeChipsV12'),scroll=strip.scrollLeft;
+    strip.innerHTML=choices.map(([key,label])=>{
+      const active=key==='all'?state.scope==='all'&&state.category==='all':['resale','official'].includes(key)?state.scope===key:state.category===key;
+      return `<button type="button" data-home-chip="${esc(key)}" class="uzr-home-chip${active?' is-active':''}" aria-pressed="${active}">${esc(tr(label))}</button>`;
+    }).join('');strip.scrollLeft=scroll;
+    $h('search').placeholder=tr('search');$h('search').setAttribute('aria-label',tr('search'));
+  }
+  function homeCard(p){
+    // Reuse existing, tested favorite/product/size/cart handlers; restyle Home only.
+    const e=card(p);e.classList.add('uzr-home-card');e.setAttribute('data-no-i18n','');
+    const media=e.querySelector('.photo img');
+    if(media){
+      const fallback=()=>{e.classList.add('image-unavailable');if(!e.querySelector('.uzr-home-photo-empty')){const ph=document.createElement('span');ph.className='uzr-home-photo-empty';ph.textContent=tr('photoUnavailable');e.querySelector('.photo')?.appendChild(ph)}};
+      media.decoding='async';media.addEventListener('error',fallback,{once:true});if(!tidy(p.image))fallback();
+    }
+    const price=e.querySelector('.price');if(price)price.textContent=moneyHome(p.price);
+    const old=e.querySelector('.product-card-old-price-v87');
+    if(old){if(officialItemV119(p))old.textContent=moneyHome(p.originalPrice);else old.remove()}
+    if(!officialItemV119(p))e.querySelector('.product-discount-badge-v87')?.remove();
+    const badge=e.querySelector('.product-badge-v15');
+    if(badge){const key=officialItemV119(p)?(p.sourceType==='china'?'official':'stock'):'resale';badge.textContent=tr(key)}
+    e.querySelector('.product-more-v16')?.remove();
+    const bottom=e.querySelector('.product-card-bottom-v16');
+    if(bottom){
+      const city=canonicalCity(p.city),size=tidy(p.size);
+      bottom.innerHTML=`<span class="uzr-home-meta" title="${esc(city?tr(city):tr('noCity'))}">${icon('city')}<span>${esc(city?tr(city):tr('noCity'))}</span></span>`+
+        `<span class="uzr-home-meta" title="${esc(tr('size')+': '+(size||'—'))}">${icon('size')}<span>${esc(size&&size!=='—'?size:tr('noSize'))}</span></span>`;
+    }
+    const heart=e.querySelector('.product-heart');if(heart)heart.setAttribute('aria-label',tr('favorite')+': '+p.name);
+    const name=e.querySelector('.name');
+    if(name){name.title=String(p.name||'');name.tabIndex=0;name.setAttribute('role','button');name.setAttribute('aria-label',tr('open')+': '+p.name);name.onkeydown=ev=>{if(ev.key==='Enter'||ev.key===' '){ev.preventDefault();e.click()}}}
+    if(officialItemV119(p)&&p.pinHome===true&&state.sort==='newest'){
+      const pin=document.createElement('span');pin.className='uzr-home-pin';pin.title=tr('pin');pin.setAttribute('aria-label',tr('pin'));pin.innerHTML=icon('pin');e.querySelector('.card-media')?.appendChild(pin);
+    }
+    return e;
+  }
+  function emptyBox(title,body,button,action){
+    const el=document.createElement('div');el.className='uzr-home-empty';
+    el.innerHTML=icon('search')+`<h3>${esc(title)}</h3><p>${esc(body)}</p>`+(button?`<button type="button">${esc(button)}</button>`:'');
+    if(button)el.querySelector('button').onclick=action;return el;
+  }
+  function scheduleExpiry(){
+    clearTimeout(expiryTimer);
+    const dates=products.filter(p=>!officialItemV119(p)&&p.expiresAt).map(p=>publicTimeV119(p.expiresAt)).filter(t=>Number.isFinite(t)&&t>Date.now());
+    if(dates.length)expiryTimer=setTimeout(()=>{renderHome();if(modalOpen)updateDraft()},Math.min(2147480000,Math.max(1000,Math.min(...dates)-Date.now()+100)));
+  }
+  function renderHome(){
+    syncLegacy();const list=result();updateToolbar(list.length);
+    grid.setAttribute('aria-busy',String(!catalogLoaded));
+    const fragment=document.createDocumentFragment();
+    if(!catalogLoaded){
+      for(let i=0;i<4;i++){const el=document.createElement('div');el.className='uzr-home-skeleton';el.setAttribute('aria-hidden','true');el.innerHTML='<div></div><i></i><i></i>';fragment.appendChild(el)}
+    }else if(catalogLoadError){fragment.appendChild(emptyBox(tr('errorTitle'),tr('errorBody'),tr('retry'),()=>loadMarketplaceCatalog()))}
+    else if(!list.length){const none=allItems().length===0;fragment.appendChild(emptyBox(tr(none?'noProducts':'emptyTitle'),tr(none?'noProductsBody':'emptyBody'),none?'':tr('clearAll'),()=>{state=defaults();query='';persist();renderHome()}))}
+    else list.forEach(p=>fragment.appendChild(homeCard(p)));
+    grid.replaceChildren(fragment);scheduleExpiry();
+    if(modalOpen){refreshOptions();updateDraft()}
+  }
+  function commit(){persist();renderHome()}
+  function setQuery(value){query=String(value||'').slice(0,200);clearTimeout(searchTimer);searchTimer=setTimeout(()=>commit(),130);$h('searchClearV2').hidden=!tidy(query)}
+  function legacyRoute(){
+    clearTimeout(searchTimer);query=String(q||'').slice(0,200);state={...state,scope:ownerFilter==='official'?'official':type==='Ресейл'?'resale':'all',category:category==='Все'?'all':canonicalCategory(category)};
+    if(['priceAsc','priceDesc','oldest'].includes(sortMode))state.sort=sortMode;
+    persist();
+  }
+  function choices(){
+    const a=allItems(),cats=[...CATEGORIES,...a.map(p=>canonicalCategory(p.category))];
+    const cities=['Ташкент','Самарканд',...a.map(p=>canonicalCity(p.city)).filter(Boolean)];
+    if(draft?.city&&draft.city!=='all')cities.push(draft.city);
+    if(draft?.category&&draft.category!=='all')cats.push(draft.category);
+    return {categories:[...new Set(cats)],cities:[...new Set(cities)].sort((a,b)=>a==='Ташкент'?-1:b==='Ташкент'?1:a==='Самарканд'?-1:b==='Самарканд'?1:tr(a).localeCompare(tr(b),lang()))};
+  }
+  function refreshOptions(){
+    if(!draft)return;const values=choices();
+    for(const [id,key,list,label] of [['uzrHomeCategoryV12','category',values.categories,'allCategories'],['uzrHomeCityV12','city',values.cities,'allCities']]){
+      const el=$h(id);if(!el)continue;
+      const next=`<option value="all">${esc(tr(label))}</option>`+list.map(v=>`<option value="${esc(v)}">${esc(tr(v))}</option>`).join('');
+      if(el.dataset.optionsKey!==next){el.innerHTML=next;el.dataset.optionsKey=next;el.value=draft[key]}
+    }
+  }
+  function panelHTML(){
+    const options=choices();
+    return `<div class="uzr-hf-handle" aria-hidden="true"></div>
+      <header class="uzr-hf-head"><h2 id="uzrHomeFilterTitleV12">${esc(tr('filterTitle'))}</h2><button type="button" class="uzr-hf-close" id="uzrHomeFilterCloseV12" aria-label="${esc(tr('close'))}">${icon('close')}</button></header>
+      <div class="uzr-hf-scroll">
+        <fieldset class="uzr-hf-field"><legend>${esc(tr('sort'))}</legend><div class="uzr-hf-sorts">${SORTS.map((value,i)=>`<button type="button" data-home-sort="${value}">${icon(['clock','history','cheaper','expensive'][i])}<span>${esc(tr(value))}</span></button>`).join('')}</div></fieldset>
+        <fieldset class="uzr-hf-field"><legend>${esc(tr('price'))}</legend><div class="uzr-hf-price"><input id="uzrHomeMinV12" type="text" inputmode="numeric" pattern="[0-9 ]*" maxlength="16" autocomplete="off" placeholder="${esc(tr('min'))}" aria-label="${esc(tr('minLabel'))}" aria-describedby="uzrHomeFilterErrorV12"><span aria-hidden="true">—</span><input id="uzrHomeMaxV12" type="text" inputmode="numeric" pattern="[0-9 ]*" maxlength="16" autocomplete="off" placeholder="${esc(tr('max'))}" aria-label="${esc(tr('maxLabel'))}" aria-describedby="uzrHomeFilterErrorV12"><b>UZS</b></div><p id="uzrHomeFilterErrorV12" class="uzr-hf-error" role="alert" hidden></p></fieldset>
+        <fieldset class="uzr-hf-field"><legend>${esc(tr('type'))}</legend><div class="uzr-hf-types">${['all','resale','official'].map(key=>`<button type="button" data-home-scope="${key}">${esc(tr(key))}</button>`).join('')}</div></fieldset>
+        <div class="uzr-hf-field"><label for="uzrHomeCategoryV12">${esc(tr('category'))}</label><div class="uzr-hf-select"><select id="uzrHomeCategoryV12"><option value="all">${esc(tr('allCategories'))}</option>${options.categories.map(c=>`<option value="${esc(c)}">${esc(tr(c))}</option>`).join('')}</select>${icon('down')}</div></div>
+        <div class="uzr-hf-field"><label for="uzrHomeCityV12">${esc(tr('city'))}</label><div class="uzr-hf-cities">${['all','Ташкент','Самарканд'].map(c=>`<button type="button" data-home-city="${esc(c)}">${c==='all'?icon('city'):''}${esc(c==='all'?tr('allCities'):tr(c))}</button>`).join('')}</div><div class="uzr-hf-select"><select id="uzrHomeCityV12"><option value="all">${esc(tr('allCities'))}</option>${options.cities.map(c=>`<option value="${esc(c)}">${esc(tr(c))}</option>`).join('')}</select>${icon('down')}</div></div>
+      </div>
+      <footer class="uzr-hf-foot"><button type="button" id="uzrHomeFilterResetV12">${esc(tr('reset'))}</button><button type="button" id="uzrHomeFilterApplyV12">${esc(showCount(result(draft).length))}</button></footer>`;
+  }
+  function updateDraft(){
+    if(!draft||!modalOpen)return;
+    const min=priceValue(draft.min),max=priceValue(draft.max);
+    const error=Number.isNaN(min)||Number.isNaN(max)?'priceInvalid':min!==null&&max!==null&&min>max?'rangeInvalid':'';
+    const el=$h('uzrHomeFilterErrorV12');el.hidden=!error;el.textContent=error?tr(error):'';
+    for(const name of ['Min','Max'])$h(`uzrHome${name}V12`).setAttribute('aria-invalid',String(!!error));
+    const apply=$h('uzrHomeFilterApplyV12');apply.disabled=!!error||!catalogLoaded||catalogLoadError;
+    apply.textContent=error?tr('filters'):!catalogLoaded?tr('loading'):catalogLoadError?tr('errorTitle'):showCount(result(draft).length);
+    dialog.querySelectorAll('[data-home-sort]').forEach(b=>{const a=b.dataset.homeSort===draft.sort;b.classList.toggle('is-active',a);b.setAttribute('aria-pressed',String(a))});
+    dialog.querySelectorAll('[data-home-scope]').forEach(b=>{const a=b.dataset.homeScope===draft.scope;b.classList.toggle('is-active',a);b.setAttribute('aria-pressed',String(a))});
+    dialog.querySelectorAll('[data-home-city]').forEach(b=>{const a=b.dataset.homeCity===draft.city;b.classList.toggle('is-active',a);b.setAttribute('aria-pressed',String(a))});
+  }
+  function refreshPanel(){
+    dialog.innerHTML=panelHTML();
+    $h('uzrHomeMinV12').value=draft.min;$h('uzrHomeMaxV12').value=draft.max;
+    $h('uzrHomeCategoryV12').value=draft.category;$h('uzrHomeCityV12').value=draft.city;
+    updateDraft();
+  }
+  function resizePanel(){if(modalOpen)dialog.style.setProperty('--hf-visible-height',(window.visualViewport?.height||window.innerHeight)+'px')}
+  function telegramBack(on){
+    const bb=window.Telegram?.WebApp?.BackButton;if(!bb)return;
+    try{if(on){bbWasVisible=!!bb.isVisible;bb.onClick(closePanel);bb.show()}else{bb.offClick(closePanel);if(!bbWasVisible)bb.hide()}}catch(_){}
+  }
+  function releaseModal(){
+    if(!modalOpen)return;modalOpen=false;draft=null;
+    telegramBack(false);
+    document.body.classList.remove('uzr-home-filter-open');
+    if(previousStyles){
+      const saved=previousStyles;document.body.style.position=saved.position;document.body.style.top=saved.top;document.body.style.width=saved.width;document.body.style.overflow=saved.overflow;document.documentElement.style.overflow=saved.htmlOverflow;
+      previousStyles=null;window.scrollTo(0,saved.y);
+    }
+    // Maintenance/consent may have arrived while the filter was open; never unlock them.
+    if(maintenanceState.maintenance&&!maintenanceState.bypass){document.body.style.overflow='hidden';document.documentElement.style.overflow='hidden'}
+    $h('uzrHomeFilterButtonV12').setAttribute('aria-expanded','false');
+    if(previousFocus?.isConnected)previousFocus.focus({preventScroll:true});previousFocus=null;
+  }
+  function closePanel(){if(!modalOpen)return;if(typeof dialog.close==='function'&&dialog.open)dialog.close();else dialog.removeAttribute('open');releaseModal()}
+  function openPanel(){
+    if(modalOpen||maintenanceState.maintenance&&!maintenanceState.bypass||document.body.classList.contains('uzr-consent-lock-v58'))return;
+    clearTimeout(searchTimer);persist();renderHome();draft={...state};previousFocus=document.activeElement;
+    previousStyles={position:document.body.style.position,top:document.body.style.top,width:document.body.style.width,overflow:document.body.style.overflow,htmlOverflow:document.documentElement.style.overflow,y:window.scrollY};
+    modalOpen=true;refreshPanel();resizePanel();
+    try{if(typeof dialog.showModal==='function')dialog.showModal();else dialog.setAttribute('open','')}
+    catch(e){releaseModal();return}
+    document.body.classList.add('uzr-home-filter-open');document.body.style.position='fixed';document.body.style.top=-previousStyles.y+'px';document.body.style.width='100%';document.body.style.overflow='hidden';document.documentElement.style.overflow='hidden';
+    telegramBack(true);$h('uzrHomeFilterButtonV12').setAttribute('aria-expanded','true');$h('uzrHomeFilterCloseV12').focus({preventScroll:true});
+  }
+  function applyPanel(){
+    if($h('uzrHomeFilterApplyV12').disabled)return;
+    state=validState(draft);closePanel();commit();
+  }
+  dialog.addEventListener('cancel',e=>{e.preventDefault();closePanel()});dialog.addEventListener('close',()=>{if(!dialog.open)releaseModal()});
+  dialog.addEventListener('click',e=>{
+    if(e.target===dialog){const r=dialog.getBoundingClientRect();if(e.clientX<r.left||e.clientX>r.right||e.clientY<r.top||e.clientY>r.bottom)closePanel();return}
+    const button=e.target.closest('button');if(!button)return;
+    if(button.id==='uzrHomeFilterCloseV12')return closePanel();
+    if(button.id==='uzrHomeFilterApplyV12')return applyPanel();
+    if(button.id==='uzrHomeFilterResetV12'){draft=defaults();refreshPanel();return}
+    if(button.dataset.homeSort)draft.sort=button.dataset.homeSort;
+    if(button.dataset.homeScope)draft.scope=button.dataset.homeScope;
+    if(button.dataset.homeCity){draft.city=button.dataset.homeCity;$h('uzrHomeCityV12').value=draft.city}
+    updateDraft();
+  });
+  dialog.addEventListener('input',e=>{if(e.target.id==='uzrHomeMinV12')draft.min=e.target.value;if(e.target.id==='uzrHomeMaxV12')draft.max=e.target.value;updateDraft()});
+  dialog.addEventListener('change',e=>{if(e.target.id==='uzrHomeCategoryV12')draft.category=e.target.value;if(e.target.id==='uzrHomeCityV12')draft.city=e.target.value;updateDraft()});
+  dialog.addEventListener('keydown',e=>{
+    if(e.key==='Enter'&&e.target.tagName==='INPUT'){e.preventDefault();applyPanel()}
+    if(e.key==='Tab'){
+      const items=[...dialog.querySelectorAll('button:not(:disabled),input,select')].filter(el=>el.getClientRects().length);
+      const first=items[0],last=items[items.length-1];
+      if(e.shiftKey&&document.activeElement===first){e.preventDefault();last?.focus()}else if(!e.shiftKey&&document.activeElement===last){e.preventDefault();first?.focus()}
+    }
+  });
+  let touchY=null;
+  dialog.addEventListener('touchstart',e=>{touchY=e.target.closest('.uzr-hf-head,.uzr-hf-handle')?e.touches[0].clientY:null},{passive:true});
+  dialog.addEventListener('touchend',e=>{if(touchY!==null&&e.changedTouches[0].clientY-touchY>80)closePanel();touchY=null},{passive:true});
+  window.visualViewport?.addEventListener('resize',resizePanel);window.addEventListener('resize',resizePanel);
+  document.addEventListener('visibilitychange',()=>{if(!document.hidden){renderHome();if(modalOpen)updateDraft()}});
+  new MutationObserver(()=>{if(modalOpen&&document.body.classList.contains('uzr-consent-lock-v58'))closePanel()}).observe(document.body,{attributes:true,attributeFilter:['class']});
+  const maintenance=$h('maintenanceView');
+  if(maintenance)new MutationObserver(()=>{if(!maintenance.hidden&&modalOpen)closePanel()}).observe(maintenance,{attributes:true,attributeFilter:['hidden']});
+  $h('uzrHomeFilterButtonV12').onclick=openPanel;$h('uzrHomeSortV12').onclick=openPanel;
+  $h('uzrHomeChipsV12').addEventListener('click',e=>{
+    const b=e.target.closest('[data-home-chip]');if(!b)return;clearTimeout(searchTimer);const key=b.dataset.homeChip;
+    if(key==='all'){state.scope='all';state.category='all'}
+    else if(['resale','official'].includes(key))state.scope=state.scope===key?'all':key;
+    else state.category=state.category===key?'all':key;
+    commit();
+  });
+  $h('search').maxLength=200;$h('search').oninput=e=>setQuery(e.target.value);
+  $h('search').addEventListener('keydown',e=>{if(e.key==='Enter'){e.preventDefault();clearTimeout(searchTimer);commit();e.target.blur();$h('uzrHomeResultsV12').scrollIntoView({block:'start',behavior:'smooth'})}});
+  $h('searchClearV2').onclick=()=>{query='';clearTimeout(searchTimer);commit();$h('search').focus({preventScroll:true})};
+  document.addEventListener('uzr:languagechange',()=>{renderHome();if(modalOpen)refreshPanel()});
+  window.UzrHome120=Object.freeze({render:renderHome,openFilters:openPanel,closeFilters:closePanel,setQuery,legacyRoute,
+    // A read-only diagnostic surface: no credentials, writes, or production test records.
+    snapshot:()=>({revision:'home-2026-10-10.1',filters:{...state},query,count:result().length,visibleIds:result().map(p=>p.id),filterOpen:modalOpen})});
+  window.UZR_HOME_BUILD='UZR_V1_2_HOME_2026_10_10_1';
+  syncLegacy();renderHome();
 })();
 
 </script>
