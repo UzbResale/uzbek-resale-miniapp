@@ -16905,6 +16905,7 @@ function add(p){
 
 function resetPageScroll(target){const scroller=document.scrollingElement||document.documentElement;if(scroller)scroller.scrollTop=0;document.documentElement.scrollTop=0;document.body.scrollTop=0;window.scrollTo({top:0,left:0,behavior:"auto"});const app=document.querySelector(".app");if(app)app.scrollTop=0;if(target)target.scrollTop=0}
 function navigatePage(id){
+ const uzcPreviousPage=currentPageId();
  window.UzrResale120?.closeDeal();window.UzrResale120?.closeProduct();
  if(id==="catalog"){window.UzrHome120?.legacyRoute();id="home";}
  window.UzrHome120?.closeFilters();
@@ -16920,7 +16921,7 @@ function navigatePage(id){
  const hdr=$("appHeader");if(hdr)hdr.hidden=id!=="home";
  syncV2Settings();
  if(id==="china")renderChinaPageV32();
- window.UzrChats12?.onNavigate(id);
+ window.UzrChats12?.onNavigate(id,uzcPreviousPage);
  if(id==="privacy"){target.scrollTop=0;requestAnimationFrame(()=>{target.scrollTop=0;window.scrollTo(0,0)})}
  const navId=["viewed","settingsPage","faq","support","legalCenter","legalDocument","legalSection","myProducts","sellerProfile","orders","contactRequest","contactRequests"].includes(id)?"profile":id;document.querySelectorAll(".nav").forEach(x=>x.classList.toggle("active",x.dataset.page===navId));
  const app=document.querySelector(".app"),scroller=document.scrollingElement||document.documentElement;
@@ -23883,15 +23884,34 @@ html:has(body.uzr-chat-active),html[data-uzr-theme] body.uzr-chat-active{overflo
 
 </style>
 
+<style id="uzr-v12-chat-inbox-fixes">
+/* v1.2 chat inbox corrections: square icons and a distinct staff workspace. */
+html[data-uzr-theme] body #chats .uzc-header #uzcHeaderAvatar{flex:0 0 42px!important;width:42px!important;height:42px!important;min-width:42px!important;max-width:42px!important;min-height:42px!important;max-height:42px!important;aspect-ratio:1 / 1!important;border-radius:50%!important;transform:none!important;padding:0!important;align-self:center!important}
+html[data-uzr-theme] body #chats .uzc-header #uzcHeaderAvatar svg{width:24px!important;height:24px!important;min-width:24px!important;min-height:24px!important;flex:none!important;transform:none!important}
+html[data-uzr-theme] body #chats .uzc-product-main>.uzc-avatar{width:48px!important;height:48px!important;min-width:48px!important;min-height:48px!important;max-width:48px!important;max-height:48px!important;flex:0 0 48px!important;aspect-ratio:1 / 1!important;border-radius:50%!important;padding:0!important}
+html[data-uzr-theme] body #chats .uzc-support-row>.uzc-avatar{width:44px!important;height:44px!important;min-width:44px!important;min-height:44px!important;flex:0 0 44px!important;aspect-ratio:1 / 1!important}
+html[data-uzr-theme] body #chats .uzc-header>.uzc-icon{width:40px!important;height:40px!important;min-width:40px!important;max-width:40px!important;min-height:40px!important;max-height:40px!important;flex:0 0 40px!important;padding:0!important;aspect-ratio:1 / 1!important}
+html[data-uzr-theme] body.uzr-chat-admin nav.uzr-home-rollout-nav{display:none!important}
+html[data-uzr-theme] body #chats.is-admin:not(.is-thread) .uzc-list-brand{display:none!important}
+html[data-uzr-theme] body #chats.is-admin:not(.is-thread) .uzc-header-copy{display:block!important}
+html[data-uzr-theme] body #chats.is-admin:not(.is-thread) .uzc-list-pane{padding-bottom:18px!important}
+html[data-uzr-theme] body #chats .uzc-admin-label{margin:6px 0;color:var(--uzc-accent);font-size:10px;letter-spacing:.07em;line-height:1.4}
+html[data-uzr-theme] body #chats .uzc-admin-dock{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));align-items:stretch;flex-shrink:0;border-top:1px solid var(--uzc-border);background:var(--uzc-surface);padding:7px 6px max(10px,env(safe-area-inset-bottom));gap:2px}
+html[data-uzr-theme] body #chats .uzc-admin-dock button{display:flex;align-items:center;justify-content:center;flex-direction:column;gap:5px;background:transparent;color:var(--uzc-muted);border:0;min-height:44px;padding:5px 2px;min-width:0;font-size:9px}
+html[data-uzr-theme] body #chats .uzc-admin-dock button[aria-current]{color:var(--uzc-accent)}
+html[data-uzr-theme] body #chats .uzc-admin-dock svg{width:20px;height:20px}
+</style>
 <script id="uzr-internal-chats-v12">
 /* Uzbek Re'Sale v1.2 — chat UI and theme repair. Uses existing authenticated APIs. */
 (function(){
  'use strict';
  const $c=id=>document.getElementById(id),esc=v=>escapeHtml(String(v??''));
  let chat=null,startListing=0,startProduct=null,adminMode=false,opening=false,busy=false,epoch=0,poll=null,oldest=null,newest=0,listCursor=null,messages=new Map(),blobURLs=[],photoCache=new Map(),attempt=null;
- let listed=[],filter='all',searchTerm='',listLoading=false,photosSelected=[],previewURLs=[],refreshBusy=false,detailsFocus=null,lastReadSent=0;
+ let listed=[],filter='all',searchTerm='',listLoading=false,photosSelected=[],previewURLs=[],refreshBusy=false,detailsFocus=null,lastReadSent=0,visibilityReady=false;
+ let adminReturnTab='home';
  const drafts=new Map(),metadata=new Map();
  const shapes={
+ dashboard:'<rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/>',trash:'<path d="M3 6h18M9 6V3h6v3M5 6l1 15h12l1-15M10 10v7M14 10v7"/>',
  back:'<path d="m14 5-7 7 7 7"/>',chevron:'<path d="m9 5 7 7-7 7"/>',
  search:'<circle cx="10.5" cy="10.5" r="7.5"/><path d="m16 16 5 5"/>',
  refresh:'<path d="M20 4v5h-5M4 20v-5h5M20 9a8 8 0 0 0-14-4L4 9m0 6a8 8 0 0 0 14 4l2-4"/>',
@@ -23906,9 +23926,10 @@ html:has(body.uzr-chat-active),html[data-uzr-theme] body.uzr-chat-active{overflo
  image:'<rect x="3" y="3" width="18" height="18" rx="4"/><circle cx="8" cy="8" r="1"/><path d="m3 17 5-5 4 4 4-6 5 7"/>'
  };
  const icon=name=>`<svg viewBox="0 0 24 24" aria-hidden="true">${shapes[name]||shapes.chat}</svg>`;
- const errors={TELEGRAM_AUTH_REQUIRED:'Переоткройте Mini App через Telegram.',CHAT_MIGRATION_REQUIRED:'Сначала установите SQL-миграцию и новый Worker.',CHAT_CLOSED:'Переписка закрыта. Сообщения доступны для чтения.',CHAT_NOT_FOUND:'Чат недоступен.',FORBIDDEN:'Нет доступа.',MESSAGE_COOLDOWN_2_SECONDS:'Между сообщениями нужно подождать 2 секунды.',R_COOLDOWN_10_SECONDS:'Новую R-заявку можно создать через 10 секунд.',R_HOURLY_LIMIT_10:'Лимит: 10 новых R-заявок за час.',R_ACTIVE_LIMIT_20:'У вас уже 20 активных R-заявок.',SELLER_ACTIVE_LIMIT_20:'У продавца уже 20 активных R-заявок.',MAX_4_PHOTOS:'Можно отправить максимум 4 фотографии.',PHOTO_TOO_LARGE:'Каждая фотография должна быть не больше 5 MB.',INVALID_PHOTO:'Используйте корректные JPEG, PNG или WebP.',PHOTO_DIMENSIONS_LIMIT:'Слишком большое разрешение фотографии.',INVALID_TEXT_MAX_1000:'Максимум 1 000 символов. Удалите недопустимые символы.',EMPTY_MESSAGE:'Напишите сообщение или добавьте фото.',MESSAGE_IN_PROGRESS:'Предыдущая отправка ещё выполняется. Повторите позже с тем же сообщением.',IDEMPOTENCY_CONFLICT:'Текст или фотографии этой попытки изменились. Начните новую попытку.',PHOTO_UPLOAD_UNCERTAIN_USE_NEW_ATTEMPT:'Загрузка фото не подтверждена. Можно повторить эту попытку позже или начать новую. Сообщение ещё не сохранено.',ATTEMPT_EXPIRED:'Попытка устарела. Начните новую.',LISTING_NOT_AVAILABLE:'Товар уже недоступен.',CHAT_SERVER_ERROR:'Не удалось выполнить действие. Повторите с тем же сообщением.',MAINTENANCE:'Приложение временно на обслуживании.'};
+ const errors={CHAT_UPDATED_REFRESH:'Пришло новое сообщение. Обновите чат и повторите действие.',CHAT_VISIBILITY_MIGRATION_REQUIRED:'Для скрытия переписок установите 002_chat_visibility.sql. Остальные чаты работают.',ADMIN_CHAT_SCOPE:'Личные R-переписки доступны только в пользовательских чатах.',UR_CHAT_ONLY:'Эта функция доступна только для переписки по UR-заказу.',TELEGRAM_AUTH_REQUIRED:'Переоткройте Mini App через Telegram.',CHAT_MIGRATION_REQUIRED:'Сначала установите SQL-миграцию и новый Worker.',CHAT_CLOSED:'Переписка закрыта. Сообщения доступны для чтения.',CHAT_NOT_FOUND:'Чат недоступен.',FORBIDDEN:'Нет доступа.',MESSAGE_COOLDOWN_2_SECONDS:'Между сообщениями нужно подождать 2 секунды.',R_COOLDOWN_10_SECONDS:'Новую R-заявку можно создать через 10 секунд.',R_HOURLY_LIMIT_10:'Лимит: 10 новых R-заявок за час.',R_ACTIVE_LIMIT_20:'У вас уже 20 активных R-заявок.',SELLER_ACTIVE_LIMIT_20:'У продавца уже 20 активных R-заявок.',MAX_4_PHOTOS:'Можно отправить максимум 4 фотографии.',PHOTO_TOO_LARGE:'Каждая фотография должна быть не больше 5 MB.',INVALID_PHOTO:'Используйте корректные JPEG, PNG или WebP.',PHOTO_DIMENSIONS_LIMIT:'Слишком большое разрешение фотографии.',INVALID_TEXT_MAX_1000:'Максимум 1 000 символов. Удалите недопустимые символы.',EMPTY_MESSAGE:'Напишите сообщение или добавьте фото.',MESSAGE_IN_PROGRESS:'Предыдущая отправка ещё выполняется. Повторите позже с тем же сообщением.',IDEMPOTENCY_CONFLICT:'Текст или фотографии этой попытки изменились. Начните новую попытку.',PHOTO_UPLOAD_UNCERTAIN_USE_NEW_ATTEMPT:'Загрузка фото не подтверждена. Можно повторить эту попытку позже или начать новую. Сообщение ещё не сохранено.',ATTEMPT_EXPIRED:'Попытка устарела. Начните новую.',LISTING_NOT_AVAILABLE:'Товар уже недоступен.',CHAT_SERVER_ERROR:'Не удалось выполнить действие. Повторите с тем же сообщением.',MAINTENANCE:'Приложение временно на обслуживании.'};
 
  async function api(path,body,method){
+  if(adminMode&&path.startsWith('/chats/'))path+=(path.includes('?')?'&':'?')+'view=admin';
   const auth=currentTelegramInitDataV108();if(!auth){const e=new Error('TELEGRAM_AUTH_REQUIRED');e.code=e.message;throw e;}
   const headers={'X-Telegram-Init-Data':auth};if(body&&!(body instanceof FormData))headers['Content-Type']='application/json';
   const controller=new AbortController(),timer=setTimeout(()=>controller.abort(),body instanceof FormData?180000:20000);
@@ -23949,19 +23970,19 @@ html:has(body.uzr-chat-active),html[data-uzr-theme] body.uzr-chat-active{overflo
  function releaseURLs(){for(const u of blobURLs)URL.revokeObjectURL(u);blobURLs=[];photoCache.clear();for(const u of previewURLs)URL.revokeObjectURL(u);previewURLs=[];}
  function closeDetails(){const was=!$c('uzcDetails').hidden;$c('uzcDetails').hidden=true;if(was&&detailsFocus?.isConnected)detailsFocus.focus({preventScroll:true});}
  function closePhoto(){$c('uzcPhotoViewer').hidden=true;$c('uzcPhotoLarge').removeAttribute('src');}
- function pause(){saveDraft();epoch++;clearInterval(poll);poll=null;refreshBusy=false;releaseURLs();closeDetails();closePhoto();document.body.classList.remove('uzr-chat-thread','uzr-chat-active');$c('chats').classList.remove('is-thread');}
+ function pause(){saveDraft();epoch++;clearInterval(poll);poll=null;refreshBusy=false;releaseURLs();closeDetails();closePhoto();document.body.classList.remove('uzr-chat-thread','uzr-chat-active','uzr-chat-admin');$c('chats').classList.remove('is-thread','is-admin');$c('uzcAdminDock')?.setAttribute('hidden','');}
  function go(){opening=true;try{$c('checkoutView')?.classList.remove('open');page('chats');}finally{opening=false;}}
- function mode(thread){document.body.classList.add('uzr-chat-active');$c('chats').classList.toggle('is-thread',thread);document.body.classList.toggle('uzr-chat-thread',thread);$c('uzcListBrand').hidden=thread;$c('uzcSearchToggle').hidden=thread;$c('uzcHeaderAvatar').hidden=!thread;$c('uzcHeaderCaption').hidden=!thread;viewport();}
+ function mode(thread){document.body.classList.add('uzr-chat-active');document.body.classList.toggle('uzr-chat-admin',adminMode);$c('chats').classList.toggle('is-admin',adminMode);if($c('uzcAdminDock'))$c('uzcAdminDock').hidden=!adminMode||thread;$c('chats').classList.toggle('is-thread',thread);document.body.classList.toggle('uzr-chat-thread',thread);$c('uzcListBrand').hidden=thread;$c('uzcSearchToggle').hidden=thread;$c('uzcHeaderAvatar').hidden=!thread;$c('uzcHeaderCaption').hidden=!thread;viewport();}
  function reset(){pause();chat=null;startListing=0;startProduct=null;messages=new Map();oldest=null;newest=0;lastReadSent=0;attempt=null;photosSelected=[];clearError();}
  function badgeValue(n){const b=$c('uzcUnreadBadge');if(!b)return;b.textContent=Number(n)>0?(n>99?'99+':String(n)):'';}
  function listShell(){
-  $c('uzcList').innerHTML=`<div class="uzc-list-heading"><h2>${adminMode?'Заказы и поддержка':'Чаты'}</h2><span id="uzcListCount"></span></div>
+  $c('uzcList').innerHTML=`${adminMode?'<p class="uzc-admin-label">АДМИН · ОБРАЩЕНИЯ К МАГАЗИНУ</p>':''}<div class="uzc-list-heading"><h2>${adminMode?'Заказы и поддержка':'Чаты'}</h2><span id="uzcListCount"></span></div>
    <label class="uzc-search" id="uzcSearchBox" hidden>${icon('search')}<input id="uzcSearchInput" type="search" autocomplete="off" placeholder="Имя, товар или номер" aria-label="Поиск по загруженным чатам"></label>
-   <div class="uzc-filters" role="group" aria-label="Фильтр чатов">${[['all','Все'],...(adminMode?[]:[['r','Ресейл']]),['ur','Заказы'],...(adminMode?[['support','Поддержка']]:[]),['closed','Архив']].map(([k,v])=>`<button type="button" data-uzc-filter="${k}" aria-pressed="${filter===k}">${v}</button>`).join('')}</div>
+   <div class="uzc-filters" role="group" aria-label="Фильтр чатов">${[['all','Все'],...(adminMode?[]:[['r','Ресейл']]),['ur','Заказы'],...(adminMode?[['support','Поддержка']]:[]),['closed','Архив'],...(visibilityReady?[['hidden','Скрытые']]:[])].map(([k,v])=>`<button type="button" data-uzc-filter="${k}" aria-pressed="${filter===k}">${v}</button>`).join('')}</div>
    ${adminMode?'':`<button type="button" class="uzc-support-row" id="uzcSupport"><span class="uzc-avatar">${icon('support')}</span><span class="uzc-grow"><b>Поддержка Uzbek Re’Sale</b><small>Вопросы по приложению и заказам</small></span>${icon('chevron')}</button>`}
    <div id="uzcListRows"></div><button type="button" class="uzc-older" id="uzcMore" hidden>Загрузить ещё</button><p class="uzc-info-note" id="uzcListScope" hidden>Поиск и фильтры применены к загруженным чатам.</p>`;
   $c('uzcSupport')?.addEventListener('click',support);
-  $c('uzcList').querySelectorAll('[data-uzc-filter]').forEach(b=>b.onclick=()=>{filter=b.dataset.uzcFilter;renderListRows();});
+  $c('uzcList').querySelectorAll('[data-uzc-filter]').forEach(b=>b.onclick=()=>{const next=b.dataset.uzcFilter;if((next==='hidden')!==(filter==='hidden')){list(adminMode,next);return;}filter=next;renderListRows();});
   $c('uzcSearchInput').value=searchTerm;$c('uzcSearchBox').hidden=!searchTerm;
   $c('uzcSearchInput').oninput=e=>{searchTerm=e.target.value;renderListRows();};
   $c('uzcMore').onclick=moreList;
@@ -23970,19 +23991,20 @@ html:has(body.uzr-chat-active),html[data-uzr-theme] body.uzr-chat-active{overflo
   const root=$c('uzcListRows');if(!root)return;
   $c('uzcList').querySelectorAll('[data-uzc-filter]').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.uzcFilter===filter)));
   const term=searchTerm.toLocaleLowerCase('ru-RU').trim();
-  const rows=listed.filter(c=>(filter==='all'||filter==='closed'&&c.status==='closed'||c.kind===filter&&c.status!=='closed')&&(!term||[profileMeta(c).name,profileMeta(c).subtitle,c.number,c.id,c.title,c.preview].join(' ').toLocaleLowerCase('ru-RU').includes(term)));
+  const rows=listed.filter(c=>(c.hasMessages===true||Number(c.lastMessageId)>0)&&(filter==='all'||filter==='hidden'||filter==='closed'&&c.status==='closed'||c.kind===filter&&c.status!=='closed')&&(!term||[profileMeta(c).name,profileMeta(c).subtitle,c.number,c.id,c.title,c.preview].join(' ').toLocaleLowerCase('ru-RU').includes(term)));
   rows.sort((a,b)=>(dateValue(b.updatedAt).getTime()||0)-(dateValue(a.updatedAt).getTime()||0));root.replaceChildren();
   for(const c of rows){const m=profileMeta(c),b=document.createElement('button');b.type='button';b.className='uzc-row';b.dataset.chatId=c.id;b.setAttribute('aria-label',[m.name,m.subtitle,c.unread?c.unread+' непрочитанных':'',c.status==='closed'?'Закрыт':''].filter(Boolean).join('. '));
    b.innerHTML=`${c.kind==='support'?`<span class="uzc-avatar">${icon('support')}</span>`:avatarHTML(m.name,m.avatar,m.official)}<span class="uzc-row-copy"><b>${esc(m.name)}</b><small>${esc(m.subtitle)}</small><p>${esc(c.preview||(c.status==='closed'?'Переписка завершена':'Нет сообщений'))}</p></span><span class="uzc-row-meta"><time>${esc(timeLabel(c.updatedAt||c.createdAt))}</time>${Number(c.unread)>0?`<span class="uzc-unread">${c.unread>99?'99+':Number(c.unread)}</span>`:c.status==='closed'?icon('lock'):''}</span>`;
    b.onclick=()=>open(c.id,adminMode);root.append(b);
   }
-  if(!rows.length)root.innerHTML=`<div class="uzc-empty">${icon('chat')}<b>${listed.length?'Ничего не найдено':'Пока нет переписок'}</b><p>${listed.length?'Измените фильтр или загрузите остальные чаты.':'Откройте товар и напишите продавцу. Чат заказа из Китая появится после оформления.'}</p></div>`;
+  if(!rows.length)root.innerHTML=`<div class="uzc-empty">${icon('chat')}<b>${listed.length?'Ничего не найдено':'Пока нет переписок'}</b><p>${listed.length?'Измените фильтр или загрузите остальные чаты.':(filter==='hidden'?'Скрытых переписок нет.':adminMode?'Здесь появятся обращения после первого сообщения покупателя или менеджера.':'Диалог появится после первого отправленного сообщения. Простое открытие окна ничего не добавляет.')}</p></div>`;
   imageFallbacks(root);$c('uzcListCount').textContent=String(rows.length);$c('uzcMore').hidden=!listCursor;$c('uzcMore').disabled=listLoading;$c('uzcListScope').hidden=!listCursor||(!term&&filter==='all');
  }
- async function moreList(){if(listLoading||!listCursor)return;listLoading=true;const e=epoch;$c('uzcMore').disabled=true;try{const d=await api((adminMode?'/admin/chats':'/chats')+'?before='+encodeURIComponent(listCursor));if(e!==epoch)return;const byId=new Map(listed.map(c=>[c.id,c]));for(const c of d.chats||[])byId.set(c.id,c);listed=[...byId.values()];listCursor=d.nextCursor;renderListRows();}catch(x){if(e===epoch)fail(x);}finally{listLoading=false;if(e===epoch&&$c('uzcMore'))$c('uzcMore').disabled=false;}}
- async function list(admin=false){
-  if(busy)return;reset();adminMode=admin;listed=[];filter='all';searchTerm='';listCursor=null;const e=epoch;go();mode(false);$c('uzcTitle').textContent='Чаты';$c('uzcBack').hidden=!admin;$c('uzcBack').title=admin?'Вернуться в админку':'К списку';$c('uzcConversation').hidden=true;$c('uzcList').hidden=false;listShell();$c('uzcListRows').innerHTML='<div class="uzc-empty" role="status">Загружаем чаты…</div>';
-  try{const d=await api(admin?'/admin/chats':'/chats');if(e!==epoch)return;listed=d.chats||[];listCursor=d.nextCursor;renderListRows();if(!admin)badgeValue(d.unreadTotal||0);
+ async function moreList(){if(listLoading||!listCursor)return;listLoading=true;const e=epoch;$c('uzcMore').disabled=true;try{const d=await api((adminMode?'/admin/chats':'/chats')+'?before='+encodeURIComponent(listCursor)+(filter==='hidden'?'&hidden=1':''));if(e!==epoch)return;const byId=new Map(listed.map(c=>[c.id,c]));for(const c of d.chats||[])byId.set(c.id,c);listed=[...byId.values()];listCursor=d.nextCursor;renderListRows();}catch(x){if(e===epoch)fail(x);}finally{listLoading=false;if(e===epoch&&$c('uzcMore'))$c('uzcMore').disabled=false;}}
+ async function list(admin=false,selection='all'){
+  if(busy)return;if(admin===true&&currentPageId()==='adminPanel')adminReturnTab=document.querySelector('#adminV89Dock [data-admin-v89-tab].on')?.dataset.adminV89Tab||'home';
+  reset();adminMode=admin===true;listed=[];filter=selection;searchTerm='';listCursor=null;const e=epoch;go();mode(false);$c('uzcTitle').textContent='Чаты';$c('uzcBack').hidden=!admin;$c('uzcBack').title=admin?'Вернуться в админку':'К списку';$c('uzcConversation').hidden=true;$c('uzcList').hidden=false;listShell();$c('uzcListRows').innerHTML='<div class="uzc-empty" role="status">Загружаем чаты…</div>';
+  try{const d=await api((adminMode?'/admin/chats':'/chats')+(filter==='hidden'?'?hidden=1':''));if(e!==epoch)return;visibilityReady=!!d.capabilities?.chatVisibility;listed=d.chats||[];listCursor=d.nextCursor;listShell();renderListRows();if(!adminMode&&filter!=='hidden')badgeValue(d.unreadTotal||0);
    await enrich('all',e);if(e===epoch)renderListRows();
   }catch(x){if(e===epoch){$c('uzcListRows').innerHTML='<div class="uzc-empty"><p>Список не загружен. Нажмите кнопку обновления вверху.</p></div>';fail(x);}}
  }
@@ -24000,7 +24022,8 @@ html:has(body.uzr-chat-active),html[data-uzr-theme] body.uzr-chat-active{overflo
  }
  function wireContext(){imageFallbacks($c('uzcProductCard'));$c('uzcProductCard').querySelectorAll('[data-uzc-details]').forEach(b=>b.onclick=openDetails);$c('uzcInfo').querySelectorAll('[data-uzc-details]').forEach(b=>b.onclick=closeDetails);}
  function detail(c){
-  const m=profileMeta(c);$c('uzcTitle').textContent=m.name;$c('uzcHeaderCaption').textContent=c.kind==='r'?(c.request?.number||c.number||'R-заявка'):c.kind==='ur'?(c.order?.number||'Официальный заказ'):'Ответит команда Uzbek Re’Sale';
+  if(adminMode&&c.kind==='r')return fail({code:'ADMIN_CHAT_SCOPE'});
+  const m=profileMeta(c);$c('uzcTitle').textContent=m.name;$c('uzcHeaderCaption').textContent=c.kind==='r'?(c.request?.number||c.number||'R-заявка'):c.kind==='ur'?(c.order?.number||'Официальный заказ'):(adminMode?'Поддержка · ответ от команды':'Ответит команда Uzbek Re’Sale');
   const av=$c('uzcHeaderAvatar');av.className='uzc-avatar'+(m.official?' official':'');av.innerHTML=c.kind==='support'?icon('support'):`<span>${esc(initials(m.name))}</span>${safeImage(m.avatar)?`<img src="${esc(safeImage(m.avatar))}" alt="">`:''}`;imageFallbacks(av.parentElement);
   const closed=c.status==='closed';$c('uzcStatus').textContent=closed?'Закрыта':'Открыта';$c('uzcStatus').classList.toggle('closed',closed);$c('uzcForm').hidden=closed;$c('uzcClosed').hidden=!closed;$c('uzcClosed').textContent=closed?'Переписка закрыта. История сохранена, новые сообщения недоступны.':'';
   $c('uzcDetailsTitle').textContent=c.kind==='r'?'Заявка':c.kind==='ur'?'Заказ':'Поддержка';quickReplies(c.kind);
@@ -24011,6 +24034,10 @@ html:has(body.uzr-chat-active),html[data-uzr-theme] body.uzr-chat-active{overflo
   wireContext();imageFallbacks(info);const actions=$c('uzcActions');actions.replaceChildren();
   const button=(label,fn,type='')=>{const b=document.createElement('button');b.type='button';b.className=type;b.textContent=label;b.onclick=fn;actions.append(b);};
   if(c.request){button('Сделка и оценка',()=>{closeDetails();window.UzrResale120?.openDeal(c.request.id);},'primary');if(!closed)button('Закрыть заявку без сделки',async()=>{if(!confirm('Закрыть заявку без сделки? Переписка станет доступна только для чтения.'))return;try{await api('/contact-requests/close',{requestId:c.request.id});await refresh();}catch(x){fail(x);}},'danger');}
+  if(c.kind==='ur'&&visibilityReady)button(c.hidden?'Вернуть в мой список':'Убрать из моего списка',async()=>{
+   if(!confirm(c.hidden?'Вернуть переписку в ваш список?':'Убрать только из вашего списка? Заказ и сообщения сохранятся. Новое сообщение вернёт чат автоматически.'))return;
+   try{await api('/chats/'+c.id+'/visibility',{hidden:!c.hidden,expectedLastMessageId:Number(c.lastMessageId||0)});closeDetails();await list(adminMode);}catch(x){fail(x);}
+  },'');
   if(c.kind==='ur'&&adminMode)button(closed?'Открыть переписку снова':'Закрыть переписку',async()=>{if(!confirm(closed?'Открыть переписку снова?':'Закрыть только чат? Заказ не будет отменён.'))return;try{await api('/chats/'+c.id+'/status',{status:closed?'open':'closed'});await refresh();}catch(x){fail(x);}},closed?'primary':'');
  }
  function nearBottom(){const x=$c('uzcScroll');return x.scrollHeight-x.scrollTop-x.clientHeight<70;}
@@ -24039,12 +24066,12 @@ html:has(body.uzr-chat-active),html[data-uzr-theme] body.uzr-chat-active{overflo
  }
  async function refresh(older=false){
   if(!chat?.id||busy||refreshBusy)return;refreshBusy=true;const id=chat.id,e=epoch;
-  try{const d=await api('/chats/'+id+'/messages'+(older&&oldest?'?before='+oldest:newest?'?after='+newest:''));if(e!==epoch||chat?.id!==id)return;chat=d.chat;detail(chat);for(const m of d.messages||[]){messages.set(m.id,m);newest=Math.max(newest,m.id);}if(d.peerReadState)for(const m of messages.values())m.readBy=d.peerReadState.filter(p=>p.lastReadId>=m.id).map(p=>p.userId);if(older||oldest===null)oldest=d.nextCursor;await draw({older});if(e!==epoch)return;await readDisplayed();
+  try{const d=await api('/chats/'+id+'/messages'+(older&&oldest?'?before='+oldest:newest?'?after='+newest:''));if(e!==epoch||chat?.id!==id)return;chat=d.chat;visibilityReady=!!d.capabilities?.chatVisibility;detail(chat);for(const m of d.messages||[]){messages.set(m.id,m);newest=Math.max(newest,m.id);}if(d.peerReadState)for(const m of messages.values())m.readBy=d.peerReadState.filter(p=>p.lastReadId>=m.id).map(p=>p.userId);if(older||oldest===null)oldest=d.nextCursor;await draw({older});if(e!==epoch)return;await readDisplayed();
   }catch(x){if(e===epoch)fail(x);}finally{if(e===epoch)refreshBusy=false;}
  }
  async function open(id,admin=false){
-  if(busy||!/^(r_\d+|ur_\d+|s_\d+)$/.test(String(id)))return;reset();adminMode=admin;chat={id};const e=epoch;go();mode(true);$c('uzcList').hidden=true;$c('uzcConversation').hidden=false;$c('uzcBack').hidden=false;$c('uzcTitle').textContent='Загрузка…';$c('uzcHeaderCaption').textContent='';$c('uzcMessages').dataset.signature='';$c('uzcMessages').innerHTML='<div class="uzc-empty" role="status">Загрузка переписки…</div>';$c('uzcForm').hidden=true;$c('uzcClosed').hidden=true;$c('uzcProductCard').replaceChildren();$c('uzcActions').replaceChildren();
-  try{const d=await api('/chats/'+id+'/messages');if(e!==epoch)return;chat=d.chat;oldest=d.nextCursor;for(const m of d.messages||[]){messages.set(m.id,m);newest=Math.max(newest,m.id);}detail(chat);restoreDraft();await draw({bottom:true});if(e!==epoch)return;await readDisplayed();poll=setInterval(()=>{if(!document.hidden&&currentPageId()==='chats'&&!busy)refresh();},8000);
+  if(busy||!/^(r_\d+|ur_\d+|s_\d+)$/.test(String(id)))return;const auto=admin==='auto';if(admin===true&&String(id).startsWith('r_'))return;reset();adminMode=admin===true;chat={id};const e=epoch;go();mode(true);$c('uzcList').hidden=true;$c('uzcConversation').hidden=false;$c('uzcBack').hidden=false;$c('uzcTitle').textContent='Загрузка…';$c('uzcHeaderCaption').textContent='';$c('uzcMessages').dataset.signature='';$c('uzcMessages').innerHTML='<div class="uzc-empty" role="status">Загрузка переписки…</div>';$c('uzcForm').hidden=true;$c('uzcClosed').hidden=true;$c('uzcProductCard').replaceChildren();$c('uzcActions').replaceChildren();
+  try{const d=await api('/chats/'+id+'/messages');if(e!==epoch)return;chat=d.chat;visibilityReady=!!d.capabilities?.chatVisibility;if(auto){adminMode=chat.viewerIsStaff===true;mode(true);}oldest=d.nextCursor;for(const m of d.messages||[]){messages.set(m.id,m);newest=Math.max(newest,m.id);}detail(chat);restoreDraft();await draw({bottom:true});if(e!==epoch)return;await readDisplayed();poll=setInterval(()=>{if(!document.hidden&&currentPageId()==='chats'&&!busy)refresh();},8000);
    if(!metadata.has(id)){await enrich(chat.kind,e);if(e===epoch)detail(chat);}
   }catch(x){if(e===epoch){$c('uzcTitle').textContent='Переписка';$c('uzcMessages').innerHTML='<div class="uzc-empty"><p>Не удалось открыть чат. Вернитесь к списку и попробуйте снова.</p></div>';fail(x);}}
  }
@@ -24053,7 +24080,7 @@ html:has(body.uzr-chat-active),html[data-uzr-theme] body.uzr-chat-active{overflo
   $c('uzcTitle').textContent=p.sellerName||'Продавец';$c('uzcHeaderCaption').textContent='Новая переписка';$c('uzcHeaderAvatar').innerHTML=avatarHTML(p.sellerName||'Продавец').replace(/^<span class="uzc-avatar">|<\/span>$/g,'');$c('uzcList').hidden=true;$c('uzcConversation').hidden=false;$c('uzcBack').hidden=false;$c('uzcForm').hidden=false;$c('uzcClosed').hidden=true;$c('uzcOlder').hidden=true;$c('uzcActions').replaceChildren();$c('uzcMessages').dataset.signature='';$c('uzcProductCard').innerHTML=productCard({title:p.name||p.title,price:p.price,image:p.image,draft:true});imageFallbacks($c('uzcProductCard'));restoreDraft();quickReplies('r');await draw({bottom:true});
   await enrich('r',e);if(e!==epoch||busy||attempt)return;const me=String(currentTelegramIdV108());for(const [key,r] of metadata)if(key.startsWith('r_')&&Number(r.listingId)===id&&String(r.buyerTelegramId)===me&&['sent','open'].includes(r.status)){const draft=drafts.get('listing_'+id)||{text:$c('uzcText').value,photos:photosSelected,attempt};drafts.set(key,draft);await open(key);break;}
  }
- async function support(){if(busy)return;clearError();try{const existing=listed.find(c=>c.kind==='support'&&c.ownerId===String(currentTelegramIdV108()));if(existing)return open(existing.id);const d=await api('/chats/support',{});await open(d.chatId);}catch(x){fail(x);}}
+ async function support(){if(busy)return;const uid=String(currentTelegramIdV108()||'');if(!/^\d+$/.test(uid))return fail({code:'TELEGRAM_AUTH_REQUIRED'});await open('s_'+uid,false);}
  async function openRequest(id){await open('r_'+Number(id));}
  async function openOrder(id,admin=false){await open('ur_'+Number(id),admin);}
  $c('uzcForm').onsubmit=async event=>{
@@ -24071,7 +24098,7 @@ html:has(body.uzr-chat-active),html[data-uzr-theme] body.uzr-chat-active{overflo
  $c('uzcPhotos').onchange=()=>{const incoming=[...$c('uzcPhotos').files];$c('uzcPhotos').value='';if(busy)return;const all=[...photosSelected,...incoming];if(all.length>4)return fail({code:'MAX_4_PHOTOS'});if(incoming.some(f=>f.size>5242880))return fail({code:'PHOTO_TOO_LARGE'});if(incoming.some(f=>!['image/jpeg','image/png','image/webp'].includes(f.type)))return fail({code:'INVALID_PHOTO'});photosSelected=all;clearError();previewPhotos();saveDraft();};
  $c('uzcText').oninput=()=>{composer();saveDraft();};$c('uzcText').onkeydown=e=>{if(e.key==='Enter'&&(e.ctrlKey||e.metaKey)){e.preventDefault();$c('uzcForm').requestSubmit();}};
  $c('uzcNewAttempt').onclick=()=>{if(!busy&&confirm('Использовать новый идентификатор? Если предыдущая отправка была сохранена, это создаст ещё одно сообщение. При обычной ошибке сети сначала повторите прежнюю попытку.')){attempt=null;$c('uzcNewAttempt').hidden=true;saveDraft();clearError();composer();}};
- $c('uzcBack').onclick=()=>{if(busy)return;if(chat||startListing)list(adminMode);else if(adminMode)page('adminPanel');else page('home');};$c('uzcOlder').onclick=()=>refresh(true);$c('uzcRefresh').onclick=()=>chat?refresh():list(adminMode);
+ $c('uzcBack').onclick=()=>{if(busy)return;if(chat||startListing)list(adminMode);else if(adminMode)backToAdmin();else page('home');};$c('uzcOlder').onclick=()=>refresh(true);$c('uzcRefresh').onclick=()=>chat?refresh():list(adminMode);
  $c('uzcSearchToggle').onclick=()=>{const b=$c('uzcSearchBox');if(!b)return;b.hidden=!b.hidden;if(!b.hidden)$c('uzcSearchInput').focus();};
  for(const [id,name] of Object.entries({uzcBack:'back',uzcRefresh:'refresh',uzcSearchToggle:'search',uzcAttach:'plus',uzcSend:'send',uzcDetailsClose:'close',uzcPhotoClose:'close'}))$c(id).innerHTML=icon(name);
  $c('chats').querySelectorAll('[data-uzc-close-details]').forEach(b=>b.onclick=closeDetails);$c('uzcPhotoClose').onclick=closePhoto;
@@ -24079,17 +24106,29 @@ html:has(body.uzr-chat-active),html[data-uzr-theme] body.uzr-chat-active{overflo
  document.addEventListener('keydown',e=>{if(currentPageId()!=='chats')return;if(e.key==='Escape'){if(!$c('uzcPhotoViewer').hidden)closePhoto();else if(!$c('uzcDetails').hidden)closeDetails();else if(chat||startListing)list(adminMode);}if(e.key==='Tab'&&!$c('uzcDetails').hidden){const nodes=[...$c('uzcDetails').querySelectorAll('button:not([disabled]),a[href]')].filter(n=>n.getClientRects().length);const first=nodes[0],last=nodes.at(-1);if(e.shiftKey&&document.activeElement===first){e.preventDefault();last?.focus();}else if(!e.shiftKey&&document.activeElement===last){e.preventDefault();first?.focus();}}});
  const logo=document.querySelector('#appHeader .dark-brand-v10');if(logo){const cloned=logo.cloneNode(true);cloned.removeAttribute('onclick');cloned.removeAttribute('id');cloned.tabIndex=-1;cloned.setAttribute('aria-hidden','true');$c('uzcListBrand').append(cloned);}else $c('uzcListBrand').textContent='Uzbek Re’Sale';
  const tab=$c('uzrChatTabV12');tab.disabled=false;tab.classList.remove('uzr-chat-disabled');tab.removeAttribute('aria-disabled');tab.removeAttribute('title');if(!$c('uzcUnreadBadge'))tab.insertAdjacentHTML('beforeend','<small id="uzcUnreadBadge" aria-label="Непрочитанные"></small>');
- const adminBar=document.querySelector('[data-admin-v89-tab="orders"]')?.parentElement;if(adminBar){const b=document.createElement('button');b.type='button';b.className='admin-v89-nav-btn';b.dataset.uzcAdmin='true';b.innerHTML='<span>'+icon('chat')+'</span><b>Чаты</b>';b.onclick=()=>list(true);adminBar.append(b);}
+ function backToAdmin(tab=adminReturnTab){
+  if(busy)return;page('adminPanel');if(tab==='home')adminShowHomeV89();else adminTab(tab);
+ }
+ const adminBar=document.querySelector('[data-admin-v89-tab="orders"]')?.parentElement;
+ if(adminBar){
+  const b=document.createElement('button');b.type='button';b.className='admin-v89-nav-btn';b.dataset.uzcAdmin='true';b.innerHTML='<span>'+icon('chat')+'</span><b>Чаты</b>';b.onclick=e=>{e.preventDefault();e.stopPropagation();list(true);};adminBar.append(b);
+  const dock=document.createElement('div');dock.id='uzcAdminDock';dock.className='uzc-admin-dock';dock.hidden=true;
+  for(const [key,label,symbol] of [['home','Главная','dashboard'],['official','Товары','box'],['orders','UR','request'],['requests','R','chat'],['cleanup','Очистка','trash'],['chats','Чаты','chat']]){
+   const btn=document.createElement('button');btn.type='button';btn.dataset.uzcAdminTab=key;btn.innerHTML=icon(symbol)+'<span>'+label+'</span>';if(key==='chats')btn.setAttribute('aria-current','page');btn.onclick=()=>key==='chats'?list(true):backToAdmin(key);dock.append(btn);
+  }
+  $c('chats').append(dock);
+ }
+ tab.onclick=()=>list(false);
  const supportRoot=$c('support');if(supportRoot){const b=document.createElement('button');b.type='button';b.className='btn black';b.style.marginTop='12px';b.textContent='Внутренняя поддержка';b.onclick=support;supportRoot.append(b);}
  window.adminOrderMessageOpenV111=id=>openOrder(id,true);openContactRequestV49=start;
  const renderBefore=renderContactRequestsV49;renderContactRequestsV49=function(){renderBefore();const el=$c('contactRequestsListV49');el?.querySelectorAll('[data-r12-bot]').forEach(b=>{b.textContent='Открыть чат';b.onclick=()=>openRequest(b.dataset.r12Bot);});el?.querySelectorAll('[data-r12-deal]').forEach(b=>{if(b.parentElement.querySelector('[data-r12-bot]'))return;const btn=document.createElement('button');btn.type='button';btn.className='r12-secondary';btn.textContent='Открыть чат';btn.onclick=()=>openRequest(b.dataset.r12Deal);b.parentElement.append(btn);});};
  const orderBefore=openOrderDetail;openOrderDetail=function(o){orderBefore(o);const root=$c('orderDetailContent');const id=Number(o.id||String(o.orderNumber||o.order_number||'').replace(/^UR-/,''));if(id){const b=document.createElement('button');b.type='button';b.className='order-primary-action-v40';b.textContent='Чат по заказу';b.onclick=()=>{closeOrderDetailV40();openOrder(id);};root.querySelector('.order-actions-v40')?.prepend(b);}};
- window.UzrChats12={list,open,start,support,openRequest,openOrder,onNavigate:id=>{if(opening)return;if(id==='chats')list();else pause();}};
+ window.UzrChats12={list,open,start,support,openRequest,openOrder,onNavigate:(id,previous)=>{if(opening)return;if(id==='chats')list(previous==='adminPanel'||previous==='chats'&&adminMode);else pause();}};
  function viewport(){if(currentPageId()!=='chats')return;const v=window.visualViewport,root=$c('chats');root.style.setProperty('--uzc-vh',Math.round(v?.height||window.innerHeight)+'px');root.style.setProperty('--uzc-vtop',Math.round(v?.offsetTop||0)+'px');}
  window.visualViewport?.addEventListener('resize',()=>{const stick=nearBottom();viewport();if(stick)requestAnimationFrame(()=>{$c('uzcScroll').scrollTop=$c('uzcScroll').scrollHeight;});});window.visualViewport?.addEventListener('scroll',viewport);window.addEventListener('resize',viewport);
  async function badge(){if(document.hidden||!currentTelegramInitDataV108()||currentPageId()==='chats')return;try{const d=await api('/chats?limit=50');badgeValue(d.unreadTotal||0);}catch{}}
  setInterval(badge,30000);setTimeout(badge,1500);
- const param=new URLSearchParams(location.search).get('uzr_chat')||String(window.Telegram?.WebApp?.initDataUnsafe?.start_param||'').replace(/^chat_/, '');if(/^(r_\d+|ur_\d+|s_\d+)$/.test(param))setTimeout(async()=>{try{const d=await api('/admin/me');await open(param,!!d.admin);}catch{await open(param);}},600);
+ const param=new URLSearchParams(location.search).get('uzr_chat')||String(window.Telegram?.WebApp?.initDataUnsafe?.start_param||'').replace(/^chat_/, '');if(/^(r_\d+|ur_\d+|s_\d+)$/.test(param))setTimeout(()=>open(param,'auto'),600);
 })();
 
 </script>
