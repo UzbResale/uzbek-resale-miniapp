@@ -1,3 +1,4 @@
+<!-- Uzbek Re'Sale v1.2 chat design + dark/light repair 2026-10-11. Frontend only. -->
 <!-- Uzbek Re'Sale v1.2: existing UI + internal chats. Manual-install candidate; not deployed. Brand assets retained. -->
 <!-- REVIEW11: shared v1 checkout, intent-driven links, official-only cleanup -->
 <!-- REVIEW9: separate resale and official placements; based on exact REVIEW8 -->
@@ -15602,27 +15603,51 @@ html body #home #homeGrid .uzr-home-photo-empty{position:absolute!important;inse
   <div class="orders-v40-list" id="ordersList"></div>
 </div>
 </section></div>
-<section class="page" id="chats" data-no-i18n>
- <div class="contact-requests-v49-shell">
-  <div class="contact-requests-v49-topbar"><h2 id="uzcTitle">Чаты</h2><button type="button" class="r12-secondary" id="uzcBack" hidden>К списку</button></div>
-  <p id="uzcError" role="alert" class="r12-error" hidden></p>
-  <div id="uzcList"></div>
-  <div id="uzcConversation" hidden>
-   <details class="r12-box"><summary>Информация о заявке / заказе</summary><div id="uzcInfo"></div></details>
-   <p id="uzcStatus"></p><div id="uzcActions" class="r12-request-actions"></div>
-   <button type="button" class="r12-secondary" id="uzcOlder" hidden>Предыдущие сообщения</button>
-   <div id="uzcMessages" aria-live="polite"></div>
-   <form id="uzcForm" class="field">
-    <label for="uzcText">Сообщение · до 1 000 символов</label>
-    <textarea id="uzcText" rows="3" placeholder="Введите сообщение"></textarea>
-    <label for="uzcPhotos">Фото · до 4 файлов, каждый до 5 MB (JPEG, PNG, WebP)</label>
-    <input type="file" id="uzcPhotos" multiple accept="image/jpeg,image/png,image/webp">
-    <p id="uzcDraftLabel"></p>
-    <button class="r12-primary" type="submit" id="uzcSend">Отправить</button>
-    <button class="r12-secondary" type="button" id="uzcNewAttempt" hidden>Новая попытка с тем же сообщением</button>
-   </form>
-   <button class="r12-secondary" type="button" id="uzcRefresh">Обновить сообщения</button>
+<section class="page uzc-page" id="chats" data-no-i18n>
+ <header class="uzc-header">
+  <div id="uzcListBrand" class="uzc-list-brand"></div>
+  <button type="button" class="uzc-icon" id="uzcBack" aria-label="К списку чатов" hidden></button>
+  <div id="uzcHeaderAvatar" class="uzc-avatar" hidden></div>
+  <div class="uzc-header-copy"><h1 id="uzcTitle">Чаты</h1><p id="uzcHeaderCaption" hidden></p></div>
+  <button type="button" class="uzc-icon" id="uzcSearchToggle" aria-label="Поиск чатов"></button>
+  <button type="button" class="uzc-icon" id="uzcRefresh" aria-label="Обновить" title="Обновить"></button>
+ </header>
+ <p class="uzc-error" id="uzcError" role="alert" hidden></p>
+ <div id="uzcList" class="uzc-list-pane"></div>
+ <div id="uzcConversation" class="uzc-thread" hidden>
+  <div id="uzcProductCard" class="uzc-context"></div>
+  <div id="uzcScroll" class="uzc-scroll" tabindex="0" aria-label="История сообщений">
+   <button type="button" class="uzc-older" id="uzcOlder" hidden>Предыдущие сообщения</button>
+   <div id="uzcMessages" role="log" aria-live="polite" aria-relevant="additions"></div>
   </div>
+  <div id="uzcClosed" class="uzc-closed" hidden></div>
+  <form id="uzcForm" class="uzc-composer">
+   <div id="uzcQuickReplies" class="uzc-quick"></div>
+   <div id="uzcAttachments" class="uzc-attachments" hidden></div>
+   <div class="uzc-compose-row">
+    <button type="button" class="uzc-icon" id="uzcAttach" aria-label="Добавить фотографии"></button>
+    <label for="uzcText" class="uzc-sr-only">Сообщение, до 1 000 символов</label>
+    <textarea id="uzcText" placeholder="Сообщение…" rows="1"></textarea>
+    <button type="submit" class="uzc-send" id="uzcSend" aria-label="Отправить сообщение"></button>
+   </div>
+   <input id="uzcPhotos" type="file" accept="image/jpeg,image/png,image/webp" multiple hidden>
+   <div class="uzc-compose-foot"><span id="uzcLimitHint">До 4 фото · 5 МБ каждое</span><span id="uzcTextCount">0 / 1 000</span></div>
+   <p id="uzcDraftLabel" class="uzc-draft-label" hidden></p>
+   <button type="button" class="uzc-secondary" id="uzcNewAttempt" hidden>Начать новую попытку</button>
+  </form>
+ </div>
+ <div id="uzcDetails" class="uzc-modal" role="dialog" aria-modal="true" aria-labelledby="uzcDetailsTitle" hidden>
+  <button class="uzc-backdrop" type="button" data-uzc-close-details aria-label="Закрыть подробности"></button>
+  <section class="uzc-sheet">
+   <div class="uzc-handle"></div>
+   <div class="uzc-sheet-head"><h2 id="uzcDetailsTitle">Заявка</h2><span id="uzcStatus" class="uzc-status"></span><button type="button" class="uzc-icon" id="uzcDetailsClose" data-uzc-close-details aria-label="Закрыть подробности"></button></div>
+   <div id="uzcInfo"></div>
+   <div id="uzcActions" class="uzc-actions"></div>
+  </section>
+ </div>
+ <div id="uzcPhotoViewer" class="uzc-photo-viewer" role="dialog" aria-modal="true" aria-label="Фотография" hidden>
+  <button type="button" class="uzc-icon" id="uzcPhotoClose" aria-label="Закрыть фотографию"></button>
+  <img id="uzcPhotoLarge" alt="Фотография из переписки">
  </div>
 </section>
 
@@ -23606,115 +23631,465 @@ if(/^\d{1,12}$/.test(param)){waitForTelegramIdentityV108(3500).then(u=>{if(u?.id
 }
 </style>
 
-<style id="uzr-basic-chat-controls">
-#chats{padding-bottom:110px}
-#chats .r12-box{border:1px solid var(--uzr-border,#567);border-radius:12px;padding:12px}
-#chats .r12-primary,#chats .r12-secondary{min-height:44px;padding:10px 14px;border-radius:12px;margin:6px 0}
-#chats .r12-primary{background:var(--uzr-accent,#129fe8);color:white;border:0}
-#chats textarea{display:block;width:100%;margin:8px 0;padding:10px;resize:vertical;font:inherit}
-#chats label{display:block;margin-top:10px}
-#chats [hidden]{display:none!important}
-#chats a{color:inherit;text-decoration:underline}
+<style id="uzr-theme-chat-repair-v12">
+/* v1.2 UI repair — theme-aware text, surfaces and navigation. No image assets changed. */
+html[data-uzr-theme]{--uzc-bg:var(--uzr-bg);--uzc-surface:var(--uzr-surface);--uzc-soft:var(--uzr-surface-3);--uzc-border:var(--uzr-border);--uzc-text:var(--uzr-text);--uzc-muted:#9bb1c2;--uzc-accent:#27aaff;--uzc-primary:#087ac4;--uzc-bubble-in:#142e3e;--uzc-bubble-out:#0b5789;--uzc-nav:rgba(6,24,35,.985);--uzc-good:#4fd1a0;--uzc-danger:#ff9caf;--uzc-danger-bg:#38222e;--uzc-chip:#103e58;--uzc-nav-height:82px;color-scheme:dark}
+html[data-uzr-theme="light"]{--uzc-bg:#f3f6fa;--uzc-surface:#fff;--uzc-soft:#edf3f8;--uzc-border:#d4e0e9;--uzc-text:#152d3e;--uzc-muted:#526e80;--uzc-accent:#006fae;--uzc-primary:#0876bc;--uzc-bubble-in:#fff;--uzc-bubble-out:#e0f1ff;--uzc-nav:rgba(255,255,255,.985);--uzc-good:#087c55;--uzc-danger:#b52947;--uzc-danger-bg:#fff0f3;--uzc-chip:#e1f1ff;color-scheme:light}
+/* Bottom tab bar: its ancestor is BODY, not .app. */
+html[data-uzr-theme] body nav.uzr-home-rollout-nav{background:var(--uzc-nav)!important;background-image:none!important;color:var(--uzc-text)!important;border:1px solid var(--uzc-border)!important;border-bottom:0!important;border-radius:25px 25px 0 0!important;box-shadow:0 -4px 20px rgba(0,0,0,.05)!important;min-height:var(--uzc-nav-height)!important;padding:9px 5px max(12px,env(safe-area-inset-bottom))!important;align-items:center!important;max-width:560px!important;width:100%!important;bottom:0!important}
+html[data-uzr-theme] body nav.uzr-home-rollout-nav .nav{position:relative!important;min-width:0!important;min-height:55px!important;padding:5px 0 0!important;color:var(--uzc-muted)!important;-webkit-text-fill-color:currentColor!important;font-size:10px!important;background:transparent!important;opacity:1!important}
+html[data-uzr-theme] body nav.uzr-home-rollout-nav .nav .icon{color:inherit!important;margin-bottom:5px!important}
+html[data-uzr-theme] body nav.uzr-home-rollout-nav .nav :is(svg,svg *){stroke:currentColor!important}
+html[data-uzr-theme] body nav.uzr-home-rollout-nav .nav.active{color:var(--uzc-accent)!important}
+html[data-uzr-theme] body nav.uzr-home-rollout-nav .nav .uzr-chat-label{color:inherit!important;-webkit-text-fill-color:currentColor!important}
+html[data-uzr-theme] body nav.uzr-home-rollout-nav .nav.sell .icon{width:52px!important;height:52px!important;line-height:50px!important;margin:-14px auto 2px!important;border-radius:50%!important;color:#fff!important;background:linear-gradient(160deg,#31b2fa,#148ddc)!important;border:1px solid #7dcaff!important;display:grid!important;place-items:center!important;box-shadow:0 5px 18px rgba(17,156,235,.2)!important}
+html[data-uzr-theme] body nav.uzr-home-rollout-nav .nav.sell svg{color:#fff!important;stroke:#fff!important;width:27px!important;height:27px!important}
+html[data-uzr-theme] body #uzcUnreadBadge{position:absolute;top:0;left:calc(50% + 5px);display:grid;place-items:center;min-width:17px;height:17px;border-radius:10px;background:#d62949;color:#fff;-webkit-text-fill-color:#fff!important;font-size:10px;font-weight:650;padding:0 4px;line-height:17px}
+html[data-uzr-theme] body #uzcUnreadBadge:empty{display:none!important}
+html[data-uzr-theme] body.uzr-chat-thread nav.uzr-home-rollout-nav{display:none!important}
+/* Readable C-request banner in BOTH locations and BOTH themes. */
+html[data-uzr-theme] body :is(#home,#china) .sr110-banner .uzr-home-find{background:var(--uzc-surface)!important;color:var(--uzc-text)!important;border-color:var(--uzc-border)!important}
+html[data-uzr-theme] body :is(#home,#china) .sr110-banner .uzr-home-find h3{color:var(--uzc-text)!important;-webkit-text-fill-color:var(--uzc-text)!important;opacity:1!important}
+html[data-uzr-theme] body :is(#home,#china) .sr110-banner .uzr-home-find p{color:var(--uzc-muted)!important;-webkit-text-fill-color:var(--uzc-muted)!important;opacity:1!important}
+html[data-uzr-theme] body :is(#home,#china) .uzr-home-find-icon{background:var(--uzc-chip)!important;color:var(--uzc-accent)!important}
+html[data-uzr-theme] body :is(#home,#china) .uzr-home-find>svg{color:var(--uzc-muted)!important;stroke:currentColor!important}
+html[data-uzr-theme] body #home #homeGrid .uzr-home-card .name{color:var(--uzc-text)!important;-webkit-text-fill-color:var(--uzc-text)!important}
+html[data-uzr-theme] body #home #homeGrid .uzr-home-card .price{color:var(--uzc-accent)!important;-webkit-text-fill-color:var(--uzc-accent)!important}
+html[data-uzr-theme] body #home #homeGrid .uzr-home-card :is(.uzr-home-meta,.meta){color:var(--uzc-muted)!important;-webkit-text-fill-color:var(--uzc-muted)!important}
+/* Product page: reset text fill as well as COLOR. Old light rules used both. */
+html[data-uzr-theme] body #productView#productView,html[data-uzr-theme] body #productView#productView :is(.product-v18-inner,.product-v18-topbar,.product-v18-body,.product-v18-heading){background:var(--uzc-bg)!important;color:var(--uzc-text)!important}
+html[data-uzr-theme] body #productView#productView :is(h1,h2,h3,h4,p,span,b,strong,small,button,a,label){-webkit-text-fill-color:currentColor!important}
+html[data-uzr-theme] body #productView#productView #pName{color:var(--uzc-text)!important;-webkit-text-fill-color:var(--uzc-text)!important;opacity:1!important}
+html[data-uzr-theme] body #productView#productView #pPrice{color:var(--uzc-accent)!important;-webkit-text-fill-color:var(--uzc-accent)!important}
+html[data-uzr-theme] body #productView#productView :is(.product-v18-panel,.product-v18-seller-section,.product-v18-seller-card){background:var(--uzc-surface)!important;border-color:var(--uzc-border)!important;color:var(--uzc-text)!important}
+html[data-uzr-theme] body #productView#productView :is(.product-v18-panel-title,.product-v18-size-label,.size-picker-label,.official-variant-heading-v12,.official-variant-heading-v12 b,.product-v18-seller-name,.product-v18-seller-main b,.seller-name,.seller-main b){color:var(--uzc-text)!important}
+html[data-uzr-theme] body #productView#productView :is(.product-v18-description,#pDescription,.product-v18-published,.product-v18-seller-sub,.seller-sub,.product-seller-listings-v20 small){color:var(--uzc-muted)!important}
+html[data-uzr-theme] body #productView#productView :is(#officialVariantPickerV12,#productSizePicker){background:transparent!important;border:0!important;color:var(--uzc-text)!important;box-shadow:none!important}
+html[data-uzr-theme] body #productView#productView #productSizeOptions button{background:var(--uzc-soft)!important;color:var(--uzc-text)!important;border:1px solid var(--uzc-border)!important}
+html[data-uzr-theme] body #productView#productView #productSizeOptions button.active{background:var(--uzc-primary)!important;color:#fff!important;border-color:var(--uzc-primary)!important}
+html[data-uzr-theme] body #productView#productView .official-color-options-v12 button b{color:var(--uzc-muted)!important}
+html[data-uzr-theme] body #productView#productView .official-color-options-v12 button.active b{color:var(--uzc-accent)!important}
+html[data-uzr-theme] body #productView#productView .official-color-options-v12 button i{box-shadow:inset 0 0 0 3px var(--uzc-bg)!important}
+html[data-uzr-theme] body #productView#productView .product-v18-meta>div{border-color:var(--uzc-border)!important}
+html[data-uzr-theme] body #productView#productView .product-v18-meta>div span{color:var(--uzc-muted)!important}
+html[data-uzr-theme] body #productView#productView .product-v18-meta>div b{color:var(--uzc-text)!important}
+html[data-uzr-theme] body #productView#productView .product-v18-actions{background:var(--uzc-nav)!important;border-color:var(--uzc-border)!important;bottom:calc(var(--uzc-nav-height) + 7px + env(safe-area-inset-bottom))!important}
+html[data-uzr-theme] body #productView#productView .product-v18-actions :is(#addBtn,.product-v18-cart){background:var(--uzc-soft)!important;color:var(--uzc-accent)!important;border:1px solid var(--uzc-border)!important}
+html[data-uzr-theme] body #productView#productView .product-v18-actions :is(#buyBtn,.product-v18-buy){background:var(--uzc-primary)!important;color:#fff!important;border-color:var(--uzc-primary)!important}
+html[data-uzr-theme] body #productView#productView :is(.product-v18-panel-title,.product-seller-listings-head-v20 h3,.product-seller-listings-head-v20 b){color:var(--uzc-text)!important}
+html[data-uzr-theme] body #productView#productView :is(.product-v18-back,.product-v18-favorite,.product-v18-share){background:var(--uzc-soft)!important;border-color:var(--uzc-border)!important;color:var(--uzc-text)!important}
+/* Variant editor — swatch input background is intentionally NOT changed. */
+html[data-uzr-theme] body :is(#adminContent,#adminListingContent) .admin-v12-variant-editor{background:var(--uzc-surface)!important;color:var(--uzc-text)!important;border-color:var(--uzc-border)!important}
+html[data-uzr-theme] body :is(#adminContent,#adminListingContent) .admin-v12-variant-editor :is(h3,h4,b,strong,label,span,p,small,button,input,select){-webkit-text-fill-color:currentColor!important}
+html[data-uzr-theme] body :is(#adminContent,#adminListingContent) .admin-v12-variant-editor :is(h3,h4,b,strong,label,.admin-v12-stock-title){color:var(--uzc-text)!important}
+html[data-uzr-theme] body :is(#adminContent,#adminListingContent) .admin-v12-variant-editor :is(p,small,.admin-v12-size-label,.admin-v12-stock-warning){color:var(--uzc-muted)!important}
+html[data-uzr-theme] body :is(#adminContent,#adminListingContent) :is(.admin-v12-color-group,.admin-v12-color-card,.admin-v12-stock-grid label,.admin-v12-legacy-note){background:var(--uzc-soft)!important;border-color:var(--uzc-border)!important;color:var(--uzc-text)!important}
+html[data-uzr-theme] body :is(#adminContent,#adminListingContent) .admin-v12-variant-editor :is(input:not([type="color"]),select){background:var(--uzc-surface)!important;border-color:var(--uzc-border)!important;color:var(--uzc-text)!important}
+html[data-uzr-theme] body :is(#adminContent,#adminListingContent) .admin-v12-size-chips button{background:var(--uzc-soft)!important;color:var(--uzc-text)!important;border-color:var(--uzc-border)!important}
+html[data-uzr-theme] body :is(#adminContent,#adminListingContent) .admin-v12-size-chips button.active{background:var(--uzc-primary)!important;color:#fff!important;border-color:var(--uzc-primary)!important}
+html[data-uzr-theme] body :is(#adminContent,#adminListingContent) .admin-v12-add-color{background:var(--uzc-chip)!important;color:var(--uzc-accent)!important;border-color:var(--uzc-accent)!important}
+html[data-uzr-theme] body :is(#resaleProductV12,#resaleDealV12) :is(h1,h2,h3,p,b,strong,span,small,button){-webkit-text-fill-color:currentColor!important}
+/* End of scoped compatibility fixes. */
+html[data-uzr-theme] body #productView#productView #pAvailabilityBadge:empty,html[data-uzr-theme] body #productView#productView #pAvailabilityBadge[hidden]{display:none!important}
+html[data-uzr-theme] body #home #homeGrid .uzr-home-card .product-heart{color:#fff!important}
+html[data-uzr-theme] body #home #homeGrid .uzr-home-card .product-heart svg,html[data-uzr-theme] body #home #homeGrid .uzr-home-card .product-heart svg *{color:inherit!important;stroke:currentColor!important}
+html[data-uzr-theme] body #home #homeGrid .uzr-home-card .product-heart.is-favorite{color:#ff5e85!important}
+
+/* Reused cards must inherit the selected theme, including WebKit text fill. */
+html[data-uzr-theme] body #contactRequests .contact-request-card-main-v49 b{color:var(--uzc-text)!important;-webkit-text-fill-color:var(--uzc-text)!important}
+html[data-uzr-theme] body #contactRequests .contact-request-card-main-v49 strong{color:var(--uzc-accent)!important;-webkit-text-fill-color:var(--uzc-accent)!important}
+html[data-uzr-theme] body #contactRequests .contact-request-card-main-v49 small{color:var(--uzc-muted)!important;-webkit-text-fill-color:var(--uzc-muted)!important}
+html[data-uzr-theme] body #contactRequests .r12-actions button{background:var(--uzc-surface)!important;color:var(--uzc-text)!important;-webkit-text-fill-color:var(--uzc-text)!important;border-color:var(--uzc-border)!important}
+html[data-uzr-theme] body #adminPanel .maintenance-admin-card{background:var(--uzc-surface)!important;border-color:var(--uzc-border)!important;color:var(--uzc-text)!important}
+html[data-uzr-theme] body #adminPanel .maintenance-admin-card :is(b,#maintenanceAdminTitle,#channelPublishingAdminTitle){color:var(--uzc-text)!important;-webkit-text-fill-color:var(--uzc-text)!important}
+html[data-uzr-theme] body #adminPanel .maintenance-admin-card :is(small,#maintenanceAdminText,#channelPublishingAdminText){color:var(--uzc-muted)!important;-webkit-text-fill-color:var(--uzc-muted)!important}
+html[data-uzr-theme] body #adminV89Dock{grid-template-columns:repeat(6,minmax(0,1fr))!important;color:var(--uzc-muted)!important}
+html[data-uzr-theme] body #adminV89Dock button{color:var(--uzc-muted)!important;-webkit-text-fill-color:currentColor!important;font-size:10px!important;min-width:0!important}
+html[data-uzr-theme] body #adminV89Dock button.on{color:var(--uzc-accent)!important}
+html[data-uzr-theme] body #adminV89Dock [data-uzc-admin]{min-height:45px!important;display:flex!important;flex-direction:column!important;align-items:center!important;justify-content:center!important;gap:4px!important;padding:4px!important;background:transparent!important;border:0!important}
+html[data-uzr-theme] body #adminV89Dock [data-uzc-admin] :is(span,b){display:block;font-size:8px!important;color:inherit!important}
+html[data-uzr-theme] body #adminV89Dock [data-uzc-admin] svg{width:19px;height:19px;stroke:currentColor;fill:none;stroke-width:1.8}
+html[data-uzr-theme] body #productView#productView #pOldPrice{color:var(--uzc-muted)!important;-webkit-text-fill-color:var(--uzc-muted)!important}
+html[data-uzr-theme="light"] body :is(#homeCountV12,#chinaCount,#china .section-subtitle-v45,#home .uzr-home-results){color:var(--uzc-muted)!important;-webkit-text-fill-color:var(--uzc-muted)!important}
+html[data-uzr-theme="light"] body :is(#home,#china) .sr110-banner .uzr-home-find{background:#fff!important}
+html[data-uzr-theme="light"] body .app #cart #cartBottom #checkoutBtn{background:var(--uzc-primary)!important;color:#fff!important;-webkit-text-fill-color:#fff!important}
+html[data-uzr-theme="light"] body .app #cart .cart-head p{color:var(--uzc-muted)!important;-webkit-text-fill-color:var(--uzc-muted)!important}
+html[data-uzr-theme="light"] body .app #cart :is(.order-seller,.v87-cart-old){color:var(--uzc-muted)!important;-webkit-text-fill-color:var(--uzc-muted)!important}
+html[data-uzr-theme="light"] body :is(#china,#officialStoreView) :is(.official-profile-sub,.official-store-subtitle,.official-profile-copy small,.official-profile-copy span){color:var(--uzc-muted)!important;-webkit-text-fill-color:var(--uzc-muted)!important}
+/* Admin workspace had been hard-coded dark by v90; the same editor now follows the selected theme. */
+html[data-uzr-theme] body.admin-v89-open,
+html[data-uzr-theme] body.admin-v89-open .app,
+html[data-uzr-theme] body #adminPanel#adminPanel,
+html[data-uzr-theme] body #adminPanel#adminPanel .admin-v89-shell{background:var(--uzc-bg)!important;background-image:none!important;color:var(--uzc-text)!important}
+html[data-uzr-theme] body #adminPanel#adminPanel :is(.admin-v89-work-head,.admin-v89-dock){background:var(--uzc-nav)!important;border-color:var(--uzc-border)!important;color:var(--uzc-text)!important}
+html[data-uzr-theme] body #adminPanel#adminPanel :is(.admin-v89-hero,.admin-v89-stats button,.admin-v89-menu-grid>button,.admin-v89-editor-card,.admin-v89-edit-hero,.admin-v89-official-card,.admin-v89-order-card,.admin-v89-request-card,.admin-v89-product-row,.admin-v89-archive-row,.admin-discount-editor-v87,.admin-v12-variant-editor,.admin-v89-clean-stats>div){background:var(--uzc-surface)!important;background-image:none!important;border-color:var(--uzc-border)!important;color:var(--uzc-text)!important}
+html[data-uzr-theme] body #adminPanel#adminPanel :is(h1,h2,h3,h4,b,strong,label,.admin-v12-size-title,.admin-v12-stock-title,.admin-v12-onboard-title){color:var(--uzc-text)!important;-webkit-text-fill-color:currentColor!important}
+html[data-uzr-theme] body #adminPanel#adminPanel :is(p,small,.admin-v12-gallery-note,.admin-v12-preset-title,.admin-v12-stock-warning,.admin-mini){color:var(--uzc-muted)!important;-webkit-text-fill-color:currentColor!important}
+html[data-uzr-theme] body #adminPanel#adminPanel :is(.admin-v12-gallery-note,.admin-v89-info-note,.admin-v12-variant-head>span){background:var(--uzc-chip)!important;border-color:var(--uzc-border)!important;color:var(--uzc-muted)!important}
+html[data-uzr-theme] body #adminPanel#adminPanel :is(.admin-v89-brand small,.admin-v89-hero small,.admin-v89-official-price strong,.admin-v89-edit-hero strong){color:var(--uzc-accent)!important;-webkit-text-fill-color:currentColor!important}
+html[data-uzr-theme] body #adminPanel#adminPanel :is(input:not([type="color"]):not([type="checkbox"]),select,textarea){background:var(--uzc-soft)!important;background-image:none!important;color:var(--uzc-text)!important;-webkit-text-fill-color:var(--uzc-text)!important;border-color:var(--uzc-border)!important}
+html[data-uzr-theme] body #adminPanel#adminPanel :is(input,textarea)::placeholder{color:var(--uzc-muted)!important;opacity:.9!important}
+html[data-uzr-theme] body #adminPanel#adminPanel :is(.admin-v89-circle,.admin-v89-secondary,.admin-v89-actions button,.admin-v89-editor-nav button,.admin-v89-filter-row button,.admin-v12-size-chip){background:var(--uzc-soft)!important;color:var(--uzc-text)!important;-webkit-text-fill-color:var(--uzc-text)!important;border-color:var(--uzc-border)!important}
+html[data-uzr-theme] body #adminPanel#adminPanel :is(.admin-v89-editor-nav button.on,.admin-v89-filter-row button.on,.admin-v12-size-chip.selected,.admin-v89-primary){background:var(--uzc-primary)!important;color:#fff!important;-webkit-text-fill-color:#fff!important;border-color:var(--uzc-primary)!important}
+html[data-uzr-theme] body #adminPanel#adminPanel .admin-v12-remove-color{background:var(--uzc-danger-bg)!important;color:var(--uzc-danger)!important;-webkit-text-fill-color:currentColor!important;border-color:var(--uzc-danger)!important}
+html[data-uzr-theme] body #adminPanel#adminPanel .admin-v89-upload{background:var(--uzc-soft)!important;border-color:var(--uzc-border)!important;color:var(--uzc-text)!important}
+html[data-uzr-theme] body #adminPanel#adminPanel .admin-v89-dock button b{color:inherit!important}
+html[data-uzr-theme="light"] body #china .china-profile-v74 small{color:var(--uzc-muted)!important;-webkit-text-fill-color:currentColor!important}
+
+html[data-uzr-theme="light"] body .app #china .china-v32-official-copy small{color:var(--uzc-muted)!important;-webkit-text-fill-color:currentColor!important}
+/* Secondary text and small labels: avoid faded light-on-light leftovers. */
+html[data-uzr-theme] body #productView#productView #pOldPriceV87{color:var(--uzc-muted)!important;-webkit-text-fill-color:currentColor!important}
+html[data-uzr-theme] body #productView#productView .product-v18-seller-main>span{color:var(--uzc-muted)!important;-webkit-text-fill-color:currentColor!important}
+html[data-uzr-theme] body #sell .field-limit{color:var(--uzc-muted)!important;-webkit-text-fill-color:currentColor!important}
+html[data-uzr-theme="light"] body :is(#home,#china) :is(.product-card-old-price-v87,.product-more-v16){color:var(--uzc-muted)!important;-webkit-text-fill-color:currentColor!important}
+html[data-uzr-theme="light"] body #cart .cart-old-price-v87{color:var(--uzc-muted)!important;-webkit-text-fill-color:currentColor!important}
+html[data-uzr-theme="light"] body #profile #profileUsername{color:var(--uzc-accent)!important;-webkit-text-fill-color:currentColor!important}
+html[data-uzr-theme="light"] body #orders #ordersFiltersV40 button.active{background:var(--uzc-primary)!important;color:#fff!important;-webkit-text-fill-color:#fff!important}
+html[data-uzr-theme="light"] body #contactRequests .contact-requests-v49-tabs button{color:var(--uzc-muted)!important;-webkit-text-fill-color:currentColor!important}
+html[data-uzr-theme="light"] body #contactRequests .contact-requests-v49-tabs button.active{color:var(--uzc-accent)!important}
+html[data-uzr-theme="light"] body #sell .uploadbox small{color:var(--uzc-muted)!important;-webkit-text-fill-color:currentColor!important}
+html[data-uzr-theme="light"] body #checkoutView .checkout-v41-summary-head button,
+html[data-uzr-theme="light"] body #checkoutView .sr110-link{color:var(--uzc-accent)!important;-webkit-text-fill-color:currentColor!important}
+html[data-uzr-theme="light"] body #checkoutView .checkout-v41-summary-total b{color:var(--uzc-accent)!important;-webkit-text-fill-color:currentColor!important}
+
+/* Internal chat layout — fixed viewport avoids the old empty .app spacer. */
+html[data-uzr-theme] body #chats#chats{display:none!important}
+html[data-uzr-theme] body #chats#chats.active{display:flex!important;flex-direction:column!important;position:fixed!important;left:0!important;right:0!important;top:var(--uzc-vtop,0px)!important;bottom:auto!important;width:100%!important;max-width:560px!important;height:var(--uzc-vh,100dvh)!important;max-height:none!important;min-height:0!important;margin:0 auto!important;padding:0!important;z-index:850!important;overflow:hidden!important;transform:none!important;animation:none!important;background:var(--uzc-bg)!important;color:var(--uzc-text)!important;isolation:isolate}
+html[data-uzr-theme] body #chats *{box-sizing:border-box;-webkit-text-fill-color:currentColor!important}
+html[data-uzr-theme] body #chats [hidden]{display:none!important}
+html[data-uzr-theme] body #chats :is(button,input,textarea){font:inherit;letter-spacing:normal;touch-action:manipulation;min-width:0}
+html[data-uzr-theme] body #chats button{cursor:pointer;box-shadow:none}
+html[data-uzr-theme] body #chats button:disabled{cursor:default;opacity:.5}
+html[data-uzr-theme] body #chats :focus-visible{outline:2px solid var(--uzc-accent);outline-offset:2px}
+html[data-uzr-theme] body #chats svg{display:block;width:22px;height:22px;flex-shrink:0;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+html[data-uzr-theme] body #chats :is(.uzc-header,.uzc-sheet-head){display:flex!important;align-items:center!important;gap:10px!important;flex-shrink:0!important;padding:14px 16px!important;margin:0!important;background:var(--uzc-bg)!important;color:var(--uzc-text)!important;position:relative!important;min-height:68px!important;border:0!important;box-shadow:none!important;backdrop-filter:none!important}
+html[data-uzr-theme] body #chats .uzc-header-copy{min-width:0;flex:1}
+html[data-uzr-theme] body #chats #uzcTitle{font-size:22px!important;line-height:1.25!important;color:var(--uzc-text)!important;margin:0!important;font-weight:650!important;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+html[data-uzr-theme] body #chats.is-thread #uzcTitle{font-size:17px!important}
+html[data-uzr-theme] body #chats .uzc-header-copy p{color:var(--uzc-muted)!important;margin:3px 0 0!important;font-size:11px!important;line-height:1.25;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+html[data-uzr-theme] body #chats .uzc-list-brand{display:none;min-width:0;flex:1}
+html[data-uzr-theme] body #chats:not(.is-thread) .uzc-list-brand{display:block}
+html[data-uzr-theme] body #chats:not(.is-thread) .uzc-header-copy{display:none}
+html[data-uzr-theme] body #chats .uzc-list-brand .dark-brand-v10{pointer-events:none;max-width:165px}
+html[data-uzr-theme] body #chats .uzc-list-brand .dark-brand-v10 img{width:145px!important;height:42px!important;max-width:100%!important;object-fit:contain!important}
+html[data-uzr-theme] body #chats :is(.uzc-icon,.uzc-send){display:inline-flex;align-items:center;justify-content:center;flex:0 0 40px;width:40px;height:40px;padding:0;margin:0;border:1px solid var(--uzc-border);border-radius:50%;background:var(--uzc-soft);color:var(--uzc-text)}
+html[data-uzr-theme] body #chats .uzc-send{background:var(--uzc-primary);color:#fff;border-color:var(--uzc-primary);flex-basis:43px;width:43px;height:43px}
+html[data-uzr-theme] body #chats .uzc-list-pane{overflow-y:auto;overscroll-behavior:contain;-webkit-overflow-scrolling:touch;flex:1;min-height:0;padding:4px 16px calc(var(--uzc-nav-height) + env(safe-area-inset-bottom) + 20px)}
+html[data-uzr-theme] body #chats .uzc-list-heading{display:flex;align-items:center;justify-content:space-between;margin:8px 0 14px}
+html[data-uzr-theme] body #chats .uzc-list-heading h2{font-size:26px!important;font-weight:650!important;color:var(--uzc-text)!important;margin:0!important;line-height:1.2}
+html[data-uzr-theme] body #chats .uzc-list-heading span{color:var(--uzc-muted);font-size:12px}
+html[data-uzr-theme] body #chats .uzc-search{display:flex;align-items:center;gap:9px;border:1px solid var(--uzc-border);border-radius:14px;background:var(--uzc-surface);padding:10px 12px;margin:0 0 12px;color:var(--uzc-muted)}
+html[data-uzr-theme] body #chats .uzc-search input{border:0!important;outline:none!important;box-shadow:none!important;background:transparent!important;color:var(--uzc-text)!important;padding:0!important;width:100%;height:24px;min-height:24px!important;font-size:15px!important}
+html[data-uzr-theme] body #chats .uzc-filters{display:flex;gap:7px;overflow-x:auto;scrollbar-width:none;margin:0 0 16px;padding:1px 0}
+html[data-uzr-theme] body #chats .uzc-filters button{white-space:nowrap;min-height:39px;padding:0 13px;background:var(--uzc-soft);color:var(--uzc-muted);border:1px solid var(--uzc-border);border-radius:14px;font-size:12px;font-weight:500}
+html[data-uzr-theme] body #chats .uzc-filters button[aria-pressed="true"]{background:var(--uzc-primary);border-color:var(--uzc-primary);color:#fff}
+html[data-uzr-theme] body #chats .uzc-support-row{display:flex;align-items:center;text-align:left;gap:12px;width:100%;border:1px solid var(--uzc-border);border-radius:17px;background:var(--uzc-surface);padding:13px;margin-bottom:7px;color:var(--uzc-text)}
+html[data-uzr-theme] body #chats .uzc-support-row .uzc-avatar{width:44px;height:44px;flex-basis:44px;background:var(--uzc-chip);color:var(--uzc-accent);border-radius:14px;border:0}
+html[data-uzr-theme] body #chats .uzc-support-row b{display:block;font-size:14px;line-height:1.35;color:var(--uzc-text);font-weight:600}
+html[data-uzr-theme] body #chats .uzc-support-row small{display:block;font-size:11px;color:var(--uzc-muted)!important;margin-top:3px}
+html[data-uzr-theme] body #chats .uzc-support-row .uzc-grow{flex:1;min-width:0}
+html[data-uzr-theme] body #chats .uzc-row{display:grid;grid-template-columns:52px minmax(0,1fr) auto;align-items:center;gap:12px;width:100%;min-height:93px;padding:16px 0;border:0;border-bottom:1px solid var(--uzc-border);border-radius:0;background:transparent;color:var(--uzc-text);text-align:left;margin:0}
+html[data-uzr-theme] body #chats .uzc-avatar{position:relative;display:grid;place-items:center;overflow:hidden;flex:0 0 42px;width:52px;height:52px;aspect-ratio:1;border-radius:50%;background:var(--uzc-chip);border:1px solid var(--uzc-border);font-size:16px;font-weight:600;color:var(--uzc-accent)}
+html[data-uzr-theme] body #chats #uzcHeaderAvatar{width:42px;height:42px}
+html[data-uzr-theme] body #chats .uzc-avatar img{position:absolute;inset:0;display:block;width:100%;height:100%;object-fit:cover;background:var(--uzc-surface)}
+html[data-uzr-theme] body #chats .uzc-avatar.official{background:#fff}
+html[data-uzr-theme] body #chats .uzc-row-copy{min-width:0}
+html[data-uzr-theme] body #chats .uzc-row-copy :is(b,p,small){display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+html[data-uzr-theme] body #chats .uzc-row-copy b{color:var(--uzc-text)!important;font-size:15px;font-weight:600;line-height:1.3}
+html[data-uzr-theme] body #chats .uzc-row-copy small{color:var(--uzc-accent)!important;font-size:12px;line-height:1.3;margin:4px 0}
+html[data-uzr-theme] body #chats .uzc-row-copy p{color:var(--uzc-muted)!important;font-size:13px;line-height:1.3;margin:0}
+html[data-uzr-theme] body #chats .uzc-row-meta{height:52px;display:flex;flex-direction:column;align-items:flex-end;justify-content:space-between;max-width:62px;font-size:10px;color:var(--uzc-muted)}
+html[data-uzr-theme] body #chats .uzc-unread{display:grid;place-items:center;min-width:23px;height:23px;padding:0 6px;background:var(--uzc-primary);color:#fff;border-radius:13px;font-size:11px;font-weight:600}
+html[data-uzr-theme] body #chats .uzc-thread{display:flex;flex-direction:column;flex:1;min-height:0;overflow:hidden}
+html[data-uzr-theme] body #chats .uzc-context{flex-shrink:0;padding:0 14px 10px}
+html[data-uzr-theme] body #chats .uzc-product{border:1px solid var(--uzc-border);border-radius:17px;overflow:hidden;background:var(--uzc-surface);color:var(--uzc-text)}
+html[data-uzr-theme] body #chats .uzc-product-main{display:flex;gap:11px;align-items:center;width:100%;text-align:left;background:transparent;color:var(--uzc-text);border:0;padding:11px 12px}
+html[data-uzr-theme] body #chats .uzc-product-img{display:grid;place-items:center;overflow:hidden;border:1px solid var(--uzc-border);background:var(--uzc-soft);border-radius:12px;width:60px;height:62px;flex:0 0 60px;color:var(--uzc-muted)}
+html[data-uzr-theme] body #chats .uzc-product-img img{width:100%;height:100%;display:block;object-fit:contain}
+html[data-uzr-theme] body #chats .uzc-product-copy{flex:1;min-width:0}
+html[data-uzr-theme] body #chats .uzc-product-copy b{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;font-size:14px;font-weight:600;color:var(--uzc-text);line-height:1.35}
+html[data-uzr-theme] body #chats .uzc-product-copy strong{display:block;font-size:16px;font-weight:650;color:var(--uzc-text);margin-top:5px}
+html[data-uzr-theme] body #chats .uzc-product-copy small{display:block;font-size:11px;color:var(--uzc-muted)!important;margin-top:4px}
+html[data-uzr-theme] body #chats .uzc-open-details{display:flex;align-items:center;justify-content:center;gap:8px;border:0;border-top:1px solid var(--uzc-border);background:transparent;color:var(--uzc-accent);font-weight:550;width:100%;min-height:41px;font-size:13px}
+html[data-uzr-theme] body #chats .uzc-open-details svg{width:17px;height:17px}
+html[data-uzr-theme] body #chats .uzc-scroll{overflow-y:auto;overscroll-behavior:contain;-webkit-overflow-scrolling:touch;flex:1;min-height:0;padding:0 16px 12px;scrollbar-width:thin;scrollbar-color:var(--uzc-border) transparent}
+html[data-uzr-theme] body #chats #uzcMessages{display:flex;flex-direction:column;gap:8px;min-height:0;padding:4px 0}
+html[data-uzr-theme] body #chats .uzc-day{align-self:center;background:var(--uzc-soft);color:var(--uzc-muted);border-radius:15px;font-size:11px;padding:5px 12px;margin:7px 0}
+html[data-uzr-theme] body #chats .uzc-message{width:max-content;max-width:87%;min-width:74px;border:1px solid var(--uzc-border);padding:10px 12px 7px;border-radius:17px 17px 17px 5px;background:var(--uzc-bubble-in);color:var(--uzc-text);align-self:flex-start;overflow-wrap:anywhere}
+html[data-uzr-theme] body #chats .uzc-message.mine{align-self:flex-end;border-radius:17px 17px 5px 17px;background:var(--uzc-bubble-out);border-color:transparent}
+html[data-uzr-theme] body #chats .uzc-message p{font-size:14px!important;line-height:1.5!important;white-space:pre-wrap;margin:0 0 3px!important;color:var(--uzc-text)!important}
+html[data-uzr-theme] body #chats .uzc-message-meta{display:flex;align-items:center;justify-content:flex-end;gap:5px;margin-top:5px;font-size:9px;line-height:1.2;color:var(--uzc-muted)}
+html[data-uzr-theme="dark"] body #chats .uzc-message.mine .uzc-message-meta{color:#b6d9f2}
+html[data-uzr-theme] body #chats .uzc-msg-photos{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:5px;margin:4px 0;max-width:300px;min-width:170px}
+html[data-uzr-theme] body #chats .uzc-msg-photos.single{grid-template-columns:1fr}
+html[data-uzr-theme] body #chats .uzc-msg-photo{position:relative;display:grid;place-items:center;min-height:100px;max-height:260px;padding:0;border:1px solid var(--uzc-border);border-radius:11px;background:var(--uzc-soft);overflow:hidden;color:var(--uzc-muted);cursor:zoom-in}
+html[data-uzr-theme] body #chats .uzc-msg-photo img{width:100%;height:100%;max-height:250px;min-height:80px;object-fit:contain;display:block}
+html[data-uzr-theme] body #chats :is(.uzc-older,.uzc-secondary){border:1px solid var(--uzc-border);border-radius:12px;background:var(--uzc-soft);color:var(--uzc-accent);padding:10px 13px;min-height:41px;font-size:12px}
+html[data-uzr-theme] body #chats .uzc-older{display:block;margin:7px auto 14px}
+html[data-uzr-theme] body #chats .uzc-empty{padding:32px 12px;display:flex;flex-direction:column;align-items:center;gap:10px;color:var(--uzc-muted);text-align:center;font-size:13px;line-height:1.5}
+html[data-uzr-theme] body #chats .uzc-empty svg{width:32px;height:32px;color:var(--uzc-accent)}
+html[data-uzr-theme] body #chats .uzc-empty b{color:var(--uzc-text);font-size:16px;font-weight:600}
+html[data-uzr-theme] body #chats .uzc-empty p{max-width:300px;margin:0;color:var(--uzc-muted)}
+html[data-uzr-theme] body #chats .uzc-composer{flex-shrink:0;border:0;border-top:1px solid var(--uzc-border);background:var(--uzc-bg);border-radius:20px 20px 0 0;padding:10px 12px max(10px,env(safe-area-inset-bottom));margin:0}
+html[data-uzr-theme] body #chats .uzc-compose-row{display:flex;align-items:flex-end;gap:8px}
+html[data-uzr-theme] body #chats #uzcText{flex:1;display:block;min-width:0;width:100%;height:44px;min-height:44px;max-height:120px;margin:0!important;padding:12px!important;border:1px solid var(--uzc-border)!important;border-radius:19px!important;background:var(--uzc-surface)!important;color:var(--uzc-text)!important;box-shadow:none!important;outline:none;font-size:16px!important;line-height:20px!important;resize:none;overflow-y:auto}
+html[data-uzr-theme] body #chats :is(input,textarea)::placeholder{color:var(--uzc-muted)!important;opacity:1}
+html[data-uzr-theme] body #chats .uzc-compose-foot{display:flex;align-items:center;justify-content:space-between;gap:10px;margin:6px 2px 0;color:var(--uzc-muted);font-size:9px;line-height:1.3}
+html[data-uzr-theme] body #chats .uzc-compose-foot .over-limit{color:var(--uzc-danger)!important}
+html[data-uzr-theme] body #chats .uzc-quick{display:flex;gap:6px;overflow-x:auto;margin:0 0 9px;scrollbar-width:none;padding:1px}
+html[data-uzr-theme] body #chats .uzc-quick:empty{display:none}
+html[data-uzr-theme] body #chats .uzc-quick button{flex-shrink:0;padding:7px 10px;border:1px solid var(--uzc-border);border-radius:14px;background:var(--uzc-soft);color:var(--uzc-muted);font-size:10px;min-height:30px}
+html[data-uzr-theme] body #chats .uzc-attachments{display:flex;overflow-x:auto;gap:8px;padding:0 2px 10px}
+html[data-uzr-theme] body #chats .uzc-attachment{position:relative;width:62px;height:62px;flex:0 0 62px;border-radius:11px;background:var(--uzc-soft)}
+html[data-uzr-theme] body #chats .uzc-attachment img{width:100%;height:100%;object-fit:cover;border-radius:11px}
+html[data-uzr-theme] body #chats .uzc-attachment button{position:absolute;right:-3px;top:-3px;border:1px solid var(--uzc-border);border-radius:50%;width:23px;height:23px;display:grid;place-items:center;padding:3px;background:var(--uzc-surface);color:var(--uzc-text)}
+html[data-uzr-theme] body #chats .uzc-attachment button svg{width:13px;height:13px}
+html[data-uzr-theme] body #chats .uzc-error{flex-shrink:0;max-height:100px;overflow:auto;padding:11px 13px;margin:0 12px 9px;background:var(--uzc-danger-bg);color:var(--uzc-danger);border:1px solid var(--uzc-danger);border-radius:13px;font-size:12px;line-height:1.4}
+html[data-uzr-theme] body #chats .uzc-draft-label{color:var(--uzc-muted);font-size:11px;line-height:1.4;margin:6px 2px}
+html[data-uzr-theme] body #chats .uzc-closed{flex-shrink:0;text-align:center;background:var(--uzc-soft);color:var(--uzc-muted);border-top:1px solid var(--uzc-border);padding:15px 16px max(18px,env(safe-area-inset-bottom));font-size:13px;line-height:1.5}
+html[data-uzr-theme] body #chats :is(.uzc-modal,.uzc-photo-viewer){position:absolute;inset:0;z-index:20;display:flex;align-items:flex-end}
+html[data-uzr-theme] body #chats .uzc-backdrop{position:absolute;inset:0;border:0;background:rgba(0,9,18,.6);width:100%;height:100%;padding:0}
+html[data-uzr-theme] body #chats .uzc-sheet{position:relative;width:100%;max-height:92%;overflow-y:auto;overscroll-behavior:contain;border:1px solid var(--uzc-border);border-radius:24px 24px 0 0;background:var(--uzc-bg);padding:0 16px max(24px,env(safe-area-inset-bottom));color:var(--uzc-text)}
+html[data-uzr-theme] body #chats .uzc-handle{width:40px;height:4px;border-radius:6px;background:var(--uzc-border);margin:11px auto 2px}
+html[data-uzr-theme] body #chats .uzc-sheet-head{padding:10px 0 16px!important;min-height:56px!important}
+html[data-uzr-theme] body #chats .uzc-sheet-head h2{flex:1;font-size:18px!important;font-weight:650!important;color:var(--uzc-text)!important;margin:0!important}
+html[data-uzr-theme] body #chats .uzc-status{font-size:10px;border:1px solid var(--uzc-border);border-radius:12px;padding:7px 9px;background:var(--uzc-soft);color:var(--uzc-good)}
+html[data-uzr-theme] body #chats .uzc-status.closed{color:var(--uzc-muted)}
+html[data-uzr-theme] body #chats .uzc-info-box{background:var(--uzc-surface);border:1px solid var(--uzc-border);border-radius:16px;padding:5px 13px;margin:12px 0}
+html[data-uzr-theme] body #chats .uzc-info-row{display:flex;align-items:center;justify-content:space-between;gap:14px;padding:12px 0;border-bottom:1px solid var(--uzc-border);font-size:12px;line-height:1.45}
+html[data-uzr-theme] body #chats .uzc-info-row:last-child{border-bottom:0}
+html[data-uzr-theme] body #chats .uzc-info-row>span{color:var(--uzc-muted)}
+html[data-uzr-theme] body #chats .uzc-info-row>b{text-align:right;color:var(--uzc-text);font-weight:500;overflow-wrap:anywhere;max-width:62%}
+html[data-uzr-theme] body #chats .uzc-info-note{color:var(--uzc-muted);font-size:12px;line-height:1.55;margin:12px 0}
+html[data-uzr-theme] body #chats .uzc-actions{display:grid;gap:9px;margin-top:16px}
+html[data-uzr-theme] body #chats .uzc-actions button{min-height:47px;border:1px solid var(--uzc-border);border-radius:14px;background:var(--uzc-soft);color:var(--uzc-text);padding:10px;font-size:13px;font-weight:550}
+html[data-uzr-theme] body #chats .uzc-actions button.primary{background:var(--uzc-primary);color:#fff;border-color:var(--uzc-primary)}
+html[data-uzr-theme] body #chats .uzc-actions button.danger{color:var(--uzc-danger)}
+html[data-uzr-theme] body #chats a.uzc-telegram{display:flex;align-items:center;justify-content:center;gap:9px;min-height:42px;border:1px solid var(--uzc-border);border-radius:12px;padding:8px 12px;margin-top:10px;color:var(--uzc-accent);text-decoration:none;font-size:12px}
+html[data-uzr-theme] body #chats .uzc-photo-viewer{background:rgba(0,10,18,.97);align-items:center;justify-content:center;z-index:25;padding:60px 10px 20px}
+html[data-uzr-theme] body #chats #uzcPhotoLarge{display:block;max-width:100%;max-height:100%;object-fit:contain}
+html[data-uzr-theme] body #chats #uzcPhotoClose{position:absolute;top:12px;right:14px;background:#142a3a;color:#fff;border-color:#3b5666}
+html[data-uzr-theme] body #chats .uzc-sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+html[data-uzr-theme] body #chats .uzc-inline-link{background:transparent;border:0;color:var(--uzc-accent);padding:4px;font-size:11px}
+@media(max-width:359px){html[data-uzr-theme] body #chats .uzc-header{gap:7px!important;padding:11px 10px!important}html[data-uzr-theme] body #chats .uzc-list-pane{padding-left:12px;padding-right:12px}html[data-uzr-theme] body #chats .uzc-row{grid-template-columns:44px minmax(0,1fr) auto;gap:9px}html[data-uzr-theme] body #chats .uzc-row>.uzc-avatar{width:44px;height:44px}html[data-uzr-theme] body #chats .uzc-filters button{padding:0 10px}html[data-uzr-theme] body #chats .uzc-context{padding-left:10px;padding-right:10px}html[data-uzr-theme] body #chats .uzc-product-img{width:48px;height:52px;flex-basis:48px}}
+html[data-uzr-theme] body #chats .uzc-product-img{position:relative}
+html[data-uzr-theme] body #chats .uzc-product-img img{position:absolute;inset:0}
+html[data-uzr-theme] body #chats .uzc-header-copy{overflow:hidden}
+html[data-uzr-theme] body #chats.is-thread .uzc-header-copy{min-width:40px}
+html[data-uzr-theme] body [data-uzc-admin]{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;background:var(--uzc-soft);color:var(--uzc-accent);border:1px solid var(--uzc-border);border-radius:12px;padding:8px 12px;min-height:44px}
+html[data-uzr-theme] body [data-uzc-admin] svg{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:1.8}
+html[data-uzr-theme] body [data-uzc-admin] b{color:inherit!important;-webkit-text-fill-color:currentColor!important;font-size:10px!important}
+html:has(body.uzr-chat-active),html[data-uzr-theme] body.uzr-chat-active{overflow:hidden!important}
+
 </style>
 
 <script id="uzr-internal-chats-v12">
+/* Uzbek Re'Sale v1.2 — chat UI and theme repair. Uses existing authenticated APIs. */
 (function(){
  'use strict';
  const $c=id=>document.getElementById(id),esc=v=>escapeHtml(String(v??''));
- let chat=null,startListing=0,adminMode=false,opening=false,busy=false,epoch=0,poll=null,oldest=null,newest=0,listCursor=null,messages=new Map(),blobURLs=[],photoCache=new Map(),attempt=null;
- const drafts=new Map(); // Private drafts stay in this Mini App session, never sent to Telegram.
+ let chat=null,startListing=0,startProduct=null,adminMode=false,opening=false,busy=false,epoch=0,poll=null,oldest=null,newest=0,listCursor=null,messages=new Map(),blobURLs=[],photoCache=new Map(),attempt=null;
+ let listed=[],filter='all',searchTerm='',listLoading=false,photosSelected=[],previewURLs=[],refreshBusy=false,detailsFocus=null,lastReadSent=0;
+ const drafts=new Map(),metadata=new Map();
+ const shapes={
+ back:'<path d="m14 5-7 7 7 7"/>',chevron:'<path d="m9 5 7 7-7 7"/>',
+ search:'<circle cx="10.5" cy="10.5" r="7.5"/><path d="m16 16 5 5"/>',
+ refresh:'<path d="M20 4v5h-5M4 20v-5h5M20 9a8 8 0 0 0-14-4L4 9m0 6a8 8 0 0 0 14 4l2-4"/>',
+ close:'<path d="m6 6 12 12M18 6 6 18"/>',plus:'<path d="M12 4v16M4 12h16"/>',
+ chat:'<path d="M21 11a8.5 8.5 0 0 1-12 8L3 21l2-6A8.5 8.5 0 1 1 21 11Z"/>',
+ support:'<path d="M4 13v-2a8 8 0 0 1 16 0v2M4 12H3v6h4v-6H4Zm16 0h1v6h-4v-6h3ZM20 18a4 4 0 0 1-4 4h-4"/>',
+ send:'<path d="m22 2-7 20-4-9-9-4L22 2ZM11 13 22 2"/>',
+ request:'<rect x="5" y="3" width="14" height="18" rx="3"/><path d="M9 8h6M9 12h6M9 16h4"/>',
+ box:'<path d="m12 3 9 5v9l-9 5-9-5V8l9-5ZM3 8l9 5 9-5M12 13v9M7.5 5.5l9 5"/>',
+ lock:'<rect x="5" y="10" width="14" height="11" rx="3"/><path d="M8 10V7a4 4 0 0 1 8 0v3M12 15v2"/>',
+ info:'<circle cx="12" cy="12" r="9"/><path d="M12 11v6M12 7h.01"/>',
+ image:'<rect x="3" y="3" width="18" height="18" rx="4"/><circle cx="8" cy="8" r="1"/><path d="m3 17 5-5 4 4 4-6 5 7"/>'
+ };
+ const icon=name=>`<svg viewBox="0 0 24 24" aria-hidden="true">${shapes[name]||shapes.chat}</svg>`;
  const errors={TELEGRAM_AUTH_REQUIRED:'Переоткройте Mini App через Telegram.',CHAT_MIGRATION_REQUIRED:'Сначала установите SQL-миграцию и новый Worker.',CHAT_CLOSED:'Переписка закрыта. Сообщения доступны для чтения.',CHAT_NOT_FOUND:'Чат недоступен.',FORBIDDEN:'Нет доступа.',MESSAGE_COOLDOWN_2_SECONDS:'Между сообщениями нужно подождать 2 секунды.',R_COOLDOWN_10_SECONDS:'Новую R-заявку можно создать через 10 секунд.',R_HOURLY_LIMIT_10:'Лимит: 10 новых R-заявок за час.',R_ACTIVE_LIMIT_20:'У вас уже 20 активных R-заявок.',SELLER_ACTIVE_LIMIT_20:'У продавца уже 20 активных R-заявок.',MAX_4_PHOTOS:'Можно отправить максимум 4 фотографии.',PHOTO_TOO_LARGE:'Каждая фотография должна быть не больше 5 MB.',INVALID_PHOTO:'Используйте корректные JPEG, PNG или WebP.',PHOTO_DIMENSIONS_LIMIT:'Слишком большое разрешение фотографии.',INVALID_TEXT_MAX_1000:'Максимум 1 000 символов. Удалите недопустимые символы.',EMPTY_MESSAGE:'Напишите сообщение или добавьте фото.',MESSAGE_IN_PROGRESS:'Предыдущая отправка ещё выполняется. Повторите позже с тем же сообщением.',IDEMPOTENCY_CONFLICT:'Текст или фотографии этой попытки изменились. Начните новую попытку.',PHOTO_UPLOAD_UNCERTAIN_USE_NEW_ATTEMPT:'Загрузка фото не подтверждена. Можно повторить эту попытку позже или начать новую. Сообщение ещё не сохранено.',ATTEMPT_EXPIRED:'Попытка устарела. Начните новую.',LISTING_NOT_AVAILABLE:'Товар уже недоступен.',CHAT_SERVER_ERROR:'Не удалось выполнить действие. Повторите с тем же сообщением.',MAINTENANCE:'Приложение временно на обслуживании.'};
- function fail(e){const box=$c('uzcError');box.textContent=errors[e.code||e.message]||'Не удалось выполнить действие. Проверьте соединение и повторите.';box.hidden=false;}
- function clearError(){$c('uzcError').hidden=true;}
+
  async function api(path,body,method){
   const auth=currentTelegramInitDataV108();if(!auth){const e=new Error('TELEGRAM_AUTH_REQUIRED');e.code=e.message;throw e;}
   const headers={'X-Telegram-Init-Data':auth};if(body&&!(body instanceof FormData))headers['Content-Type']='application/json';
   const controller=new AbortController(),timer=setTimeout(()=>controller.abort(),body instanceof FormData?180000:20000);
   try{const r=await fetch(MARKETPLACE_API+path,{method:method||(body===undefined?'GET':'POST'),headers,cache:'no-store',signal:controller.signal,...(body===undefined?{}:{body:body instanceof FormData?body:JSON.stringify(body)})});const d=await r.json().catch(()=>({}));if(!r.ok||!d.ok){const e=new Error(d.error||'REQUEST_FAILED');e.code=e.message;throw e;}return d;}finally{clearTimeout(timer);}
  }
+
+ function fail(e){const box=$c('uzcError');box.textContent=errors[e?.code||e?.message]||'Не удалось выполнить действие. Проверьте соединение и повторите.';box.hidden=false;}
+ function clearError(){$c('uzcError').hidden=true;}
+ const cash=value=>Number.isFinite(Number(value))?Number(value).toLocaleString('ru-RU')+' UZS':'Цена не указана';
+ function dateValue(value){if(typeof value==='number')return new Date(value);let v=String(value||'');if(/^\d{4}-\d\d-\d\d \d/.test(v))v=v.replace(' ','T')+'Z';return new Date(v);}
+ function timeLabel(value,full=false){const d=dateValue(value);if(!Number.isFinite(d.getTime()))return '';if(full)return d.toLocaleString('ru-RU',{day:'2-digit',month:'2-digit',year:'numeric',hour:'2-digit',minute:'2-digit'});const now=new Date();return d.toDateString()===now.toDateString()?d.toLocaleTimeString('ru-RU',{hour:'2-digit',minute:'2-digit'}):d.toLocaleDateString('ru-RU',{day:'2-digit',month:'2-digit'});}
+ function dayLabel(ms){const d=dateValue(ms);if(!Number.isFinite(d.getTime()))return '';const now=new Date(),y=new Date();y.setDate(y.getDate()-1);return d.toDateString()===now.toDateString()?'Сегодня':d.toDateString()===y.toDateString()?'Вчера':d.toLocaleDateString('ru-RU',{day:'numeric',month:'long'});}
+ const safeImage=value=>{const v=String(value||'');return /^(https:\/\/|data:image\/(?:jpeg|png|webp);base64,|blob:)/i.test(v)?v:'';};
+ function productBy(id){try{return products.find(p=>Number(p.listingId||0)===Number(id));}catch{return null;}}
+ function officialLogo(){try{return OFFICIAL_STORE_LOGO||'';}catch{return '';}}
+ function initials(name){return String(name||'?').replace(/^@/,'').trim().split(/\s+/).slice(0,2).map(x=>Array.from(x)[0]||'').join('').toUpperCase()||'?';}
+ function avatarHTML(name,src='',official=false){return `<span class="uzc-avatar${official?' official':''}"><span>${esc(initials(name))}</span>${safeImage(src)?`<img src="${esc(safeImage(src))}" alt="" loading="lazy">`:''}</span>`;}
+ function imageFallbacks(root){root.querySelectorAll('.uzc-avatar img,.uzc-product-img img').forEach(img=>{img.onerror=()=>{img.remove();};});}
+ function profileMeta(c){
+  const m=metadata.get(c.id)||{},r=c.request||{},p=productBy(r.listingId||m.listingId),me=String(currentTelegramIdV108()||'');
+  if(c.kind==='ur')return {name:adminMode?(m.customerName||m.customer_name||c.order?.customerName||'Покупатель'):'Uzbek Re’Sale',subtitle:c.number||c.order?.number||c.title||'Официальный заказ',avatar:officialLogo(),official:true,image:safeImage((c.order?.items||m.items||[])[0]?.imageUrl),product:p};
+  if(c.kind==='support')return {name:adminMode?'Обращение '+String(c.ownerId||''):'Поддержка Uzbek Re’Sale',subtitle:'Вопросы по приложению',avatar:'',official:false};
+  const sellerId=String(m.sellerTelegramId||p?.sellerTelegramId||''),buyerId=String(m.buyerTelegramId||'');
+  const isSeller=sellerId===me;
+  const peerId=isSeller?buyerId:sellerId;
+  let name=isSeller?(r.buyerName||m.buyerName):(r.sellerName||m.sellerName||p?.sellerName);
+  return {name:name||c.number||r.number||'R-переписка',subtitle:r.title||m.productName||c.title||'Товар',avatar:/^\d+$/.test(peerId)?MARKETPLACE_API+'/telegram-avatar?telegramId='+peerId:'',image:safeImage(m.imageUrl||p?.image),product:p,isSeller};
+ }
+ async function enrich(kind,e){
+  const paths=kind==='r'?['/contact-requests']:kind==='ur'?[adminMode?'/admin/orders':'/orders']:kind==='all'?[...(adminMode?[]:['/contact-requests']),adminMode?'/admin/orders':'/orders']:[];
+  await Promise.all(paths.map(async p=>{try{const d=await api(p);if(e!==epoch)return;
+   for(const r of d.requests||[])metadata.set('r_'+Number(r.id),r);
+   for(const o of d.orders||[]){let items=o.items;if(typeof items==='string'){try{items=JSON.parse(items)}catch{items=[]}}metadata.set('ur_'+Number(o.id),{...o,items:Array.isArray(items)?items:[]});}
+  }catch{/* Supplementary metadata may be absent; never block authorized messages. */}}));
+ }
  function scope(){return startListing?'listing_'+startListing:chat?.id||'';}
- function saveDraft(){const key=scope();if(!key)return;drafts.set(key,{text:$c('uzcText').value,photos:[...$c('uzcPhotos').files],attempt});}
- function releaseURLs(){for(const u of blobURLs)URL.revokeObjectURL(u);blobURLs=[];photoCache.clear();}
- function pause(){saveDraft();epoch++;clearInterval(poll);poll=null;releaseURLs();}
- function go(){opening=true;page('chats');opening=false;}
- function reset(){pause();chat=null;startListing=0;messages=new Map();oldest=null;newest=0;attempt=null;clearError();}
- function renderList(items,append=false){
-  const root=$c('uzcList');if(!append){root.innerHTML='<div class="r12-request-actions"><button type="button" class="r12-secondary" id="uzcSupport">Написать в поддержку</button><a href="https://t.me/uzbek_ceo" target="_blank" rel="noopener noreferrer">Поддержка в Telegram</a></div><p>Внешний Telegram — отдельная переписка. Внутренние сообщения хранятся в приложении.</p><div id="uzcListRows"></div><button type="button" class="r12-secondary" id="uzcMore" hidden>Ещё чаты</button>';$c('uzcSupport').onclick=support;}
-  const rows=$c('uzcListRows');for(const c of items){const b=document.createElement('button');b.type='button';b.className='r12-box';b.style.cssText='display:block;width:100%;text-align:left;margin:8px 0';b.innerHTML=`<b>${esc(c.number||c.title)}</b> · ${c.kind==='support'?'Поддержка':c.kind==='ur'?'Заказ':'R-заявка'}${c.unread?` <strong>(${Number(c.unread)} новых)</strong>`:''}<p>${esc(c.preview||'Нет сообщений')}</p><small>${c.status==='closed'?'Только чтение':'Открыт'}</small>`;b.onclick=()=>open(c.id,adminMode);rows.append(b);}
-  if(!items.length&&!append)rows.textContent='Чатов пока нет.';
-  $c('uzcMore').hidden=!listCursor;$c('uzcMore').onclick=async()=>{const e=epoch;try{const d=await api((adminMode?'/admin/chats':'/chats')+'?before='+listCursor);if(e!==epoch)return;listCursor=d.nextCursor;renderList(d.chats,true);}catch(x){fail(x);}};
+ function saveDraft(){const key=scope();if(!key)return;drafts.set(key,{text:$c('uzcText').value,photos:[...photosSelected],attempt});}
+ function releaseURLs(){for(const u of blobURLs)URL.revokeObjectURL(u);blobURLs=[];photoCache.clear();for(const u of previewURLs)URL.revokeObjectURL(u);previewURLs=[];}
+ function closeDetails(){const was=!$c('uzcDetails').hidden;$c('uzcDetails').hidden=true;if(was&&detailsFocus?.isConnected)detailsFocus.focus({preventScroll:true});}
+ function closePhoto(){$c('uzcPhotoViewer').hidden=true;$c('uzcPhotoLarge').removeAttribute('src');}
+ function pause(){saveDraft();epoch++;clearInterval(poll);poll=null;refreshBusy=false;releaseURLs();closeDetails();closePhoto();document.body.classList.remove('uzr-chat-thread','uzr-chat-active');$c('chats').classList.remove('is-thread');}
+ function go(){opening=true;try{$c('checkoutView')?.classList.remove('open');page('chats');}finally{opening=false;}}
+ function mode(thread){document.body.classList.add('uzr-chat-active');$c('chats').classList.toggle('is-thread',thread);document.body.classList.toggle('uzr-chat-thread',thread);$c('uzcListBrand').hidden=thread;$c('uzcSearchToggle').hidden=thread;$c('uzcHeaderAvatar').hidden=!thread;$c('uzcHeaderCaption').hidden=!thread;viewport();}
+ function reset(){pause();chat=null;startListing=0;startProduct=null;messages=new Map();oldest=null;newest=0;lastReadSent=0;attempt=null;photosSelected=[];clearError();}
+ function badgeValue(n){const b=$c('uzcUnreadBadge');if(!b)return;b.textContent=Number(n)>0?(n>99?'99+':String(n)):'';}
+ function listShell(){
+  $c('uzcList').innerHTML=`<div class="uzc-list-heading"><h2>${adminMode?'Заказы и поддержка':'Чаты'}</h2><span id="uzcListCount"></span></div>
+   <label class="uzc-search" id="uzcSearchBox" hidden>${icon('search')}<input id="uzcSearchInput" type="search" autocomplete="off" placeholder="Имя, товар или номер" aria-label="Поиск по загруженным чатам"></label>
+   <div class="uzc-filters" role="group" aria-label="Фильтр чатов">${[['all','Все'],...(adminMode?[]:[['r','Ресейл']]),['ur','Заказы'],...(adminMode?[['support','Поддержка']]:[]),['closed','Архив']].map(([k,v])=>`<button type="button" data-uzc-filter="${k}" aria-pressed="${filter===k}">${v}</button>`).join('')}</div>
+   ${adminMode?'':`<button type="button" class="uzc-support-row" id="uzcSupport"><span class="uzc-avatar">${icon('support')}</span><span class="uzc-grow"><b>Поддержка Uzbek Re’Sale</b><small>Вопросы по приложению и заказам</small></span>${icon('chevron')}</button>`}
+   <div id="uzcListRows"></div><button type="button" class="uzc-older" id="uzcMore" hidden>Загрузить ещё</button><p class="uzc-info-note" id="uzcListScope" hidden>Поиск и фильтры применены к загруженным чатам.</p>`;
+  $c('uzcSupport')?.addEventListener('click',support);
+  $c('uzcList').querySelectorAll('[data-uzc-filter]').forEach(b=>b.onclick=()=>{filter=b.dataset.uzcFilter;renderListRows();});
+  $c('uzcSearchInput').value=searchTerm;$c('uzcSearchBox').hidden=!searchTerm;
+  $c('uzcSearchInput').oninput=e=>{searchTerm=e.target.value;renderListRows();};
+  $c('uzcMore').onclick=moreList;
  }
+ function renderListRows(){
+  const root=$c('uzcListRows');if(!root)return;
+  $c('uzcList').querySelectorAll('[data-uzc-filter]').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.uzcFilter===filter)));
+  const term=searchTerm.toLocaleLowerCase('ru-RU').trim();
+  const rows=listed.filter(c=>(filter==='all'||filter==='closed'&&c.status==='closed'||c.kind===filter&&c.status!=='closed')&&(!term||[profileMeta(c).name,profileMeta(c).subtitle,c.number,c.id,c.title,c.preview].join(' ').toLocaleLowerCase('ru-RU').includes(term)));
+  rows.sort((a,b)=>(dateValue(b.updatedAt).getTime()||0)-(dateValue(a.updatedAt).getTime()||0));root.replaceChildren();
+  for(const c of rows){const m=profileMeta(c),b=document.createElement('button');b.type='button';b.className='uzc-row';b.dataset.chatId=c.id;b.setAttribute('aria-label',[m.name,m.subtitle,c.unread?c.unread+' непрочитанных':'',c.status==='closed'?'Закрыт':''].filter(Boolean).join('. '));
+   b.innerHTML=`${c.kind==='support'?`<span class="uzc-avatar">${icon('support')}</span>`:avatarHTML(m.name,m.avatar,m.official)}<span class="uzc-row-copy"><b>${esc(m.name)}</b><small>${esc(m.subtitle)}</small><p>${esc(c.preview||(c.status==='closed'?'Переписка завершена':'Нет сообщений'))}</p></span><span class="uzc-row-meta"><time>${esc(timeLabel(c.updatedAt||c.createdAt))}</time>${Number(c.unread)>0?`<span class="uzc-unread">${c.unread>99?'99+':Number(c.unread)}</span>`:c.status==='closed'?icon('lock'):''}</span>`;
+   b.onclick=()=>open(c.id,adminMode);root.append(b);
+  }
+  if(!rows.length)root.innerHTML=`<div class="uzc-empty">${icon('chat')}<b>${listed.length?'Ничего не найдено':'Пока нет переписок'}</b><p>${listed.length?'Измените фильтр или загрузите остальные чаты.':'Откройте товар и напишите продавцу. Чат заказа из Китая появится после оформления.'}</p></div>`;
+  imageFallbacks(root);$c('uzcListCount').textContent=String(rows.length);$c('uzcMore').hidden=!listCursor;$c('uzcMore').disabled=listLoading;$c('uzcListScope').hidden=!listCursor||(!term&&filter==='all');
+ }
+ async function moreList(){if(listLoading||!listCursor)return;listLoading=true;const e=epoch;$c('uzcMore').disabled=true;try{const d=await api((adminMode?'/admin/chats':'/chats')+'?before='+encodeURIComponent(listCursor));if(e!==epoch)return;const byId=new Map(listed.map(c=>[c.id,c]));for(const c of d.chats||[])byId.set(c.id,c);listed=[...byId.values()];listCursor=d.nextCursor;renderListRows();}catch(x){if(e===epoch)fail(x);}finally{listLoading=false;if(e===epoch&&$c('uzcMore'))$c('uzcMore').disabled=false;}}
  async function list(admin=false){
-  if(busy)return;reset();adminMode=admin;const e=epoch;go();$c('uzcTitle').textContent=admin?'UR-чаты и поддержка':'Чаты';$c('uzcBack').hidden=true;$c('uzcConversation').hidden=true;$c('uzcList').hidden=false;$c('uzcList').textContent='Загрузка…';
-  try{const d=await api(admin?'/admin/chats':'/chats');if(e!==epoch)return;listCursor=d.nextCursor;renderList(d.chats);const badge=document.getElementById('uzcUnreadBadge');if(badge){const n=Number(d.unreadTotal||0);badge.textContent=n?String(n):'';}}catch(x){if(e===epoch)fail(x);}
+  if(busy)return;reset();adminMode=admin;listed=[];filter='all';searchTerm='';listCursor=null;const e=epoch;go();mode(false);$c('uzcTitle').textContent='Чаты';$c('uzcBack').hidden=!admin;$c('uzcBack').title=admin?'Вернуться в админку':'К списку';$c('uzcConversation').hidden=true;$c('uzcList').hidden=false;listShell();$c('uzcListRows').innerHTML='<div class="uzc-empty" role="status">Загружаем чаты…</div>';
+  try{const d=await api(admin?'/admin/chats':'/chats');if(e!==epoch)return;listed=d.chats||[];listCursor=d.nextCursor;renderListRows();if(!admin)badgeValue(d.unreadTotal||0);
+   await enrich('all',e);if(e===epoch)renderListRows();
+  }catch(x){if(e===epoch){$c('uzcListRows').innerHTML='<div class="uzc-empty"><p>Список не загружен. Нажмите кнопку обновления вверху.</p></div>';fail(x);}}
  }
- function restoreDraft(){const d=drafts.get(scope());$c('uzcText').value=d?.text||'';attempt=d?.attempt||null;$c('uzcPhotos').value='';if(d?.photos?.length){try{const transfer=new DataTransfer();for(const f of d.photos)transfer.items.add(f);$c('uzcPhotos').files=transfer.files;}catch{$c('uzcDraftLabel').textContent='Прикрепите фотографии повторно.';}}
-  $c('uzcNewAttempt').hidden=!attempt;$c('uzcDraftLabel').textContent=attempt?'Повтор отправит ту же попытку без дубликата.':'';
+ function previewPhotos(){
+  for(const u of previewURLs)URL.revokeObjectURL(u);previewURLs=[];const box=$c('uzcAttachments');box.replaceChildren();box.hidden=!photosSelected.length;
+  photosSelected.forEach((f,i)=>{const u=URL.createObjectURL(f);previewURLs.push(u);const item=document.createElement('div');item.className='uzc-attachment';item.innerHTML=`<img src="${u}" alt="${esc(f.name)}"><button type="button" aria-label="Убрать фото ${i+1}" ${busy?'disabled':''}>${icon('close')}</button>`;item.querySelector('button').onclick=()=>{if(busy)return;photosSelected.splice(i,1);saveDraft();previewPhotos();};box.append(item);});
  }
+ function composer(){const t=$c('uzcText'),len=Array.from(t.value).length;$c('uzcTextCount').textContent=len.toLocaleString('ru-RU')+' / 1 000';$c('uzcTextCount').classList.toggle('over-limit',len>1000);t.style.height='auto';t.style.height=Math.min(120,Math.max(44,t.scrollHeight))+'px';$c('uzcDraftLabel').hidden=!attempt;$c('uzcDraftLabel').textContent=attempt?'При повторе используется та же попытка. Не меняйте текст и фото до результата.':'';}
+ function restoreDraft(){const d=drafts.get(scope());$c('uzcText').value=d?.text||'';photosSelected=[...(d?.photos||[])];attempt=d?.attempt||null;$c('uzcPhotos').value='';$c('uzcNewAttempt').hidden=!attempt;previewPhotos();composer();}
+ function quickReplies(kind){const root=$c('uzcQuickReplies');root.replaceChildren();if(kind!=='r')return;for(const text of ['Товар актуален?','Можно больше фото?','Какое состояние?']){const b=document.createElement('button');b.type='button';b.textContent=text;b.onclick=()=>{if(busy)return;$c('uzcText').value=text;composer();saveDraft();$c('uzcText').focus();};root.append(b);}}
+ function openDetails(){detailsFocus=document.activeElement;$c('uzcDetails').hidden=false;$c('uzcDetailsClose').focus({preventScroll:true});}
+ const row=(label,value)=>`<div class="uzc-info-row"><span>${esc(label)}</span><b>${esc(value??'—')}</b></div>`;
+ function productCard({title,price,image,subtitle='',action='Открыть заявку',draft=false}){
+  return `<div class="uzc-product"><button type="button" class="uzc-product-main" ${draft?'data-uzc-draft-product':'data-uzc-details'}><span class="uzc-product-img">${icon('box')}${safeImage(image)?`<img src="${esc(safeImage(image))}" alt="">`:''}</span><span class="uzc-product-copy"><b>${esc(title||'Товар')}</b>${price!=null?`<strong>${esc(cash(price))}</strong>`:''}${subtitle?`<small>${esc(subtitle)}</small>`:''}</span>${draft?'':icon('chevron')}</button>${draft?'':`<button type="button" class="uzc-open-details" data-uzc-details>${icon('request')} ${esc(action)}</button>`}</div>`;
+ }
+ function wireContext(){imageFallbacks($c('uzcProductCard'));$c('uzcProductCard').querySelectorAll('[data-uzc-details]').forEach(b=>b.onclick=openDetails);$c('uzcInfo').querySelectorAll('[data-uzc-details]').forEach(b=>b.onclick=closeDetails);}
  function detail(c){
-  $c('uzcStatus').textContent=c.status==='closed'?'Чат закрыт · только чтение':'Чат открыт';$c('uzcForm').hidden=c.status==='closed';const root=$c('uzcInfo');root.replaceChildren();
-  if(c.request){const r=c.request;root.innerHTML=`<p>${esc(r.number)} · ${esc(r.title)} · ${money(r.price)}</p><p>Покупатель: ${esc(r.buyerName)}<br>Продавец: ${esc(r.sellerName)}</p><p>Статус заявки: ${esc(r.status)}</p>`;}
-  if(c.order){const o=c.order;root.innerHTML=`<p>${esc(o.number)} · Статус заказа: ${esc(o.status)}</p>${(Array.isArray(o.items)?o.items:[]).map(i=>`<p>${esc(i.name||i.title||'Товар')} · Цвет: ${esc(i.color||'—')} · Размер: ${esc(i.size||'—')} · Количество: ${Number(i.quantity||i.qty||1)}</p>`).join('')}<p>Итого: ${money(o.total)}</p>`;if(o.cargo){const p=document.createElement('p');p.textContent='Карго: '+[o.cargo.nameRu||o.cargo.nameUz||o.cargo.code,o.cargo.rateCents!=null?'$'+(o.cargo.rateCents/100).toFixed(2)+'/кг':'',o.cargo.minDays!=null?o.cargo.minDays+'–'+o.cargo.maxDays+' дней':''].filter(Boolean).join(' · ');root.append(p);}}
-  if(c.kind==='support')root.textContent='Внутренняя поддержка. Для отдельной переписки в Telegram: https://t.me/uzbek_ceo';
-  const actions=$c('uzcActions');actions.replaceChildren();
-  const button=(label,fn)=>{const b=document.createElement('button');b.type='button';b.className='r12-secondary';b.textContent=label;b.onclick=fn;actions.append(b);};
-  if(c.request){button('Сделка и оценка',()=>window.UzrResale120?.openDeal(c.request.id));if(c.status==='open')button('Закрыть заявку',async()=>{if(!confirm('Закрыть заявку? Переписка станет доступна только для чтения.'))return;try{await api('/contact-requests/close',{requestId:c.request.id});await refresh();}catch(x){fail(x);}});}
-  if(c.kind==='ur'&&adminMode)button(c.status==='closed'?'Открыть чат':'Закрыть чат',async()=>{try{await api('/chats/'+c.id+'/status',{status:c.status==='closed'?'open':'closed'});await refresh();}catch(x){fail(x);}});
+  const m=profileMeta(c);$c('uzcTitle').textContent=m.name;$c('uzcHeaderCaption').textContent=c.kind==='r'?(c.request?.number||c.number||'R-заявка'):c.kind==='ur'?(c.order?.number||'Официальный заказ'):'Ответит команда Uzbek Re’Sale';
+  const av=$c('uzcHeaderAvatar');av.className='uzc-avatar'+(m.official?' official':'');av.innerHTML=c.kind==='support'?icon('support'):`<span>${esc(initials(m.name))}</span>${safeImage(m.avatar)?`<img src="${esc(safeImage(m.avatar))}" alt="">`:''}`;imageFallbacks(av.parentElement);
+  const closed=c.status==='closed';$c('uzcStatus').textContent=closed?'Закрыта':'Открыта';$c('uzcStatus').classList.toggle('closed',closed);$c('uzcForm').hidden=closed;$c('uzcClosed').hidden=!closed;$c('uzcClosed').textContent=closed?'Переписка закрыта. История сохранена, новые сообщения недоступны.':'';
+  $c('uzcDetailsTitle').textContent=c.kind==='r'?'Заявка':c.kind==='ur'?'Заказ':'Поддержка';quickReplies(c.kind);
+  const info=$c('uzcInfo'),context=$c('uzcProductCard');info.replaceChildren();
+  if(c.request){const r=c.request;context.innerHTML=productCard({title:r.title||m.subtitle,price:r.price,image:m.image});info.innerHTML=productCard({title:r.title||m.subtitle,price:r.price,image:m.image,action:'Вернуться в чат'})+`<div class="uzc-info-box">${row('Номер заявки',r.number)}${row('Создана',timeLabel(c.createdAt,true))}${row('Покупатель',r.buyerName)}${row('Продавец',r.sellerName)}${row('Статус',closed?'Закрыта':'Открыта')}</div><p class="uzc-info-note">Оплату и передачу товара покупатель и продавец согласовывают напрямую. Закрытие без сделки не засчитывает покупку или продажу.</p>`;}
+  else if(c.order){const o=c.order,items=Array.isArray(o.items)?o.items:[],meta=metadata.get(c.id)||{};context.innerHTML=productCard({title:o.number,price:o.total,image:items[0]?.imageUrl,subtitle:items.length+' '+(items.length===1?'позиция':'позиции'),action:'Открыть заказ'});info.innerHTML=`<div class="uzc-info-box">${row('Номер заказа',o.number)}${row('Статус заказа',({new:'Новый',confirmed:'Подтверждён',shipping:'В доставке',completed:'Завершён',cancelled:'Отменён'})[o.status]||o.status)}${row('Покупатель',o.buyerId||meta.telegram_id||'—')}${row('Итого',cash(o.total))}</div>`+items.map(i=>`<div class="uzc-info-box">${row('Товар',i.name||i.title)}${row('Цвет',i.color||'—')}${row('Размер',i.size||'—')}${row('Количество',Number(i.quantity||i.qty||1))}</div>`).join('');if(o.cargo){const x=o.cargo;info.innerHTML+=`<div class="uzc-info-box">${row('Карго',x.nameRu||x.nameUz||x.code)}${x.minDays!=null?row('Срок',x.minDays+'–'+x.maxDays+' дней'):''}${x.rateCents!=null?row('Тариф','$'+(x.rateCents/100).toFixed(2)+'/кг'):''}</div>`;}info.innerHTML+='<p class="uzc-info-note">Закрытие переписки не отменяет заказ и не меняет его статус.</p>';}
+  else{context.innerHTML=`<div class="uzc-product"><div class="uzc-product-main"><span class="uzc-avatar">${icon('support')}</span><span class="uzc-product-copy"><b>Поможем с приложением</b><small>Опишите вопрос или приложите скриншот</small></span></div><button class="uzc-open-details" type="button" data-uzc-details>Другие способы связи ${icon('chevron')}</button></div>`;info.innerHTML='<p class="uzc-info-note">Для подробной консультации или сообщения об ошибке можно написать напрямую в Telegram. Это отдельная переписка, она не копируется в приложение.</p><a class="uzc-telegram" href="https://t.me/uzbek_ceo" target="_blank" rel="noopener noreferrer">'+icon('send')+'Написать @uzbek_ceo</a>';}
+  wireContext();imageFallbacks(info);const actions=$c('uzcActions');actions.replaceChildren();
+  const button=(label,fn,type='')=>{const b=document.createElement('button');b.type='button';b.className=type;b.textContent=label;b.onclick=fn;actions.append(b);};
+  if(c.request){button('Сделка и оценка',()=>{closeDetails();window.UzrResale120?.openDeal(c.request.id);},'primary');if(!closed)button('Закрыть заявку без сделки',async()=>{if(!confirm('Закрыть заявку без сделки? Переписка станет доступна только для чтения.'))return;try{await api('/contact-requests/close',{requestId:c.request.id});await refresh();}catch(x){fail(x);}},'danger');}
+  if(c.kind==='ur'&&adminMode)button(closed?'Открыть переписку снова':'Закрыть переписку',async()=>{if(!confirm(closed?'Открыть переписку снова?':'Закрыть только чат? Заказ не будет отменён.'))return;try{await api('/chats/'+c.id+'/status',{status:closed?'open':'closed'});await refresh();}catch(x){fail(x);}},closed?'primary':'');
  }
- async function photos(root,e){
-  for(const img of root.querySelectorAll('img[data-uzc-photo]')){if(photoCache.has(img.dataset.uzcPhoto)){img.src=photoCache.get(img.dataset.uzcPhoto);continue;}try{const r=await fetch(MARKETPLACE_API+'/chats/images/'+img.dataset.uzcPhoto,{headers:{'X-Telegram-Init-Data':currentTelegramInitDataV108()},cache:'no-store'});if(!r.ok)throw Error();const b=await r.blob();if(e!==epoch||!root.contains(img))continue;const u=URL.createObjectURL(b);blobURLs.push(u);photoCache.set(img.dataset.uzcPhoto,u);img.src=u;}catch{img.alt='Фото недоступно';}}
+ function nearBottom(){const x=$c('uzcScroll');return x.scrollHeight-x.scrollTop-x.clientHeight<70;}
+ async function readDisplayed(){if(!chat?.id||!newest||newest<=lastReadSent||document.hidden||currentPageId()!=='chats'||!nearBottom())return;const id=chat.id,e=epoch,mark=newest;try{await api('/chats/'+id+'/read',{messageId:mark});if(e===epoch&&chat?.id===id)lastReadSent=Math.max(lastReadSent,mark);}catch{/* Reading failure does not remove messages. */}}
+ async function loadPhotos(root,e){
+  await Promise.all([...root.querySelectorAll('img[data-uzc-photo]')].map(async img=>{const id=img.dataset.uzcPhoto;
+   if(photoCache.has(id)){img.src=photoCache.get(id);await img.decode().catch(()=>{});return;}
+   try{const r=await fetch(MARKETPLACE_API+'/chats/images/'+encodeURIComponent(id),{headers:{'X-Telegram-Init-Data':currentTelegramInitDataV108()},cache:'no-store'});if(!r.ok)throw Error();const b=await r.blob();if(e!==epoch||!root.contains(img))return;const u=URL.createObjectURL(b);blobURLs.push(u);photoCache.set(id,u);img.src=u;await img.decode().catch(()=>{});}catch{if(e!==epoch)return;img.replaceWith(document.createTextNode('Фото недоступно'));}
+  }));
  }
- async function draw(){
-  const root=$c('uzcMessages');root.replaceChildren();const e=epoch,me=currentTelegramIdV108();
-  for(const m of [...messages.values()].sort((a,b)=>a.id-b.id)){const a=document.createElement('article');a.className='r12-box';a.style.cssText='margin:8px 0;overflow-wrap:anywhere';
-   a.innerHTML=`<small>${m.senderId===me?'Вы':chat.kind==='r'?'Собеседник':m.senderId===String(chat.order?.buyerId||chat.ownerId)?'Покупатель':'Собеседник'} · ${esc(new Date(m.createdMs).toLocaleString())}${m.legacy?' · исходное сообщение заявки':''}</small><p style="white-space:pre-wrap">${esc(m.text)}</p>${m.attachments.map(p=>`<img data-uzc-photo="${esc(p.id)}" style="max-width:100%;max-height:320px;display:block" alt="Фото">`).join('')}${m.senderId===me&&!m.legacy?`<small>${m.readBy.length?'Прочитано':'Сохранено в приложении'}</small>`:''}`;root.append(a);}
-  $c('uzcOlder').hidden=!oldest;await photos(root,e);
+ async function draw({bottom=false,older=false}={}){
+  const root=$c('uzcMessages'),scroll=$c('uzcScroll'),oldH=scroll.scrollHeight,oldY=scroll.scrollTop,stay=nearBottom(),e=epoch,me=String(currentTelegramIdV108());
+  const records=[...messages.values()].sort((a,b)=>a.id-b.id),signature=JSON.stringify(records.map(m=>[m.id,m.text,m.readBy,m.attachments?.map(a=>a.id)]));
+  $c('uzcOlder').hidden=!oldest;
+  if(root.dataset.signature===signature){if(bottom)scroll.scrollTop=scroll.scrollHeight;return;}
+  root.dataset.signature=signature;root.replaceChildren();let previousDay='';
+  if(!records.length)root.innerHTML=`<div class="uzc-empty">${icon('chat')}<b>${startListing?'Начните разговор':'Сообщений пока нет'}</b><p>${startListing?'Напишите продавцу. Заявка появится после отправки первого сообщения.':'Здесь будет история вашей переписки.'}</p></div>`;
+  for(const m of records){const day=dayLabel(m.createdMs);if(day!==previousDay){const sep=document.createElement('div');sep.className='uzc-day';sep.textContent=day;root.append(sep);previousDay=day;}
+   const mine=String(m.senderId)===me,a=document.createElement('article');a.className='uzc-message'+(mine?' mine':'');a.dataset.messageId=String(m.id);const attachments=Array.isArray(m.attachments)?m.attachments:[];
+   a.innerHTML=`${m.text?`<p>${esc(m.text)}</p>`:''}${attachments.length?`<div class="uzc-msg-photos${attachments.length===1?' single':''}">${attachments.map(p=>`<button class="uzc-msg-photo" type="button" aria-label="Открыть фото"><img data-uzc-photo="${esc(p.id)}" alt="Фотография из переписки"></button>`).join('')}</div>`:''}<div class="uzc-message-meta"><time>${esc(timeLabel(m.createdMs))}</time>${m.legacy?'<span>Исходная заявка</span>':mine?`<span>${m.readBy?.length?'Прочитано':'Сохранено'}</span>`:''}</div>`;
+   a.querySelectorAll('.uzc-msg-photo').forEach(btn=>btn.onclick=()=>{const img=btn.querySelector('img');if(!img?.src)return;$c('uzcPhotoLarge').src=img.src;$c('uzcPhotoViewer').hidden=false;$c('uzcPhotoClose').focus();});root.append(a);
+  }
+  $c('uzcOlder').hidden=!oldest;
+  if(older)scroll.scrollTop=oldY+(scroll.scrollHeight-oldH);else if(bottom||stay)scroll.scrollTop=scroll.scrollHeight;
+  await loadPhotos(root,e);if(e!==epoch)return;if(older)scroll.scrollTop=oldY+(scroll.scrollHeight-oldH);else if(bottom||stay)scroll.scrollTop=scroll.scrollHeight;
  }
- async function readDisplayed(){if(!newest||document.hidden||currentPageId()!=='chats')return;await api('/chats/'+chat.id+'/read',{messageId:newest});}
  async function refresh(older=false){
-  if(!chat||busy&&!older)return;const id=chat.id,e=epoch;try{const d=await api('/chats/'+id+'/messages'+(older&&oldest?'?before='+oldest:newest?'?after='+newest:''));if(e!==epoch||chat?.id!==id)return;
-  chat=d.chat;detail(chat);for(const m of d.messages){messages.set(m.id,m);newest=Math.max(newest,m.id);}if(d.peerReadState)for(const m of messages.values())m.readBy=d.peerReadState.filter(p=>p.lastReadId>=m.id).map(p=>p.userId);if(older||oldest===null)oldest=d.nextCursor;
-  await draw();if(e!==epoch)return;await readDisplayed();
-  // after-pagination drains at most one additional page per user refresh/poll.
-  if(d.hasMore&&!older){$c('uzcStatus').textContent+=' · Есть ещё сообщения, нажмите «Обновить».';}
-  }catch(x){if(e===epoch)fail(x);}
+  if(!chat?.id||busy||refreshBusy)return;refreshBusy=true;const id=chat.id,e=epoch;
+  try{const d=await api('/chats/'+id+'/messages'+(older&&oldest?'?before='+oldest:newest?'?after='+newest:''));if(e!==epoch||chat?.id!==id)return;chat=d.chat;detail(chat);for(const m of d.messages||[]){messages.set(m.id,m);newest=Math.max(newest,m.id);}if(d.peerReadState)for(const m of messages.values())m.readBy=d.peerReadState.filter(p=>p.lastReadId>=m.id).map(p=>p.userId);if(older||oldest===null)oldest=d.nextCursor;await draw({older});if(e!==epoch)return;await readDisplayed();
+  }catch(x){if(e===epoch)fail(x);}finally{if(e===epoch)refreshBusy=false;}
  }
  async function open(id,admin=false){
-  if(busy)return;reset();adminMode=admin;chat={id};const e=epoch;go();$c('uzcList').hidden=true;$c('uzcConversation').hidden=false;$c('uzcBack').hidden=false;$c('uzcTitle').textContent='Чат';$c('uzcMessages').textContent='Загрузка…';$c('uzcForm').hidden=true;$c('uzcInfo').textContent='';$c('uzcActions').replaceChildren();
-  try{const d=await api('/chats/'+id+'/messages');if(e!==epoch)return;chat=d.chat;oldest=d.nextCursor;for(const m of d.messages){messages.set(m.id,m);newest=Math.max(newest,m.id);}$c('uzcTitle').textContent=chat.request?.number||chat.order?.number||'Поддержка';detail(chat);restoreDraft();await draw();if(e!==epoch)return;await readDisplayed();poll=setInterval(()=>{if(!document.hidden&&currentPageId()==='chats'&&!busy)refresh();},8000);}catch(x){if(e===epoch)fail(x);}
+  if(busy||!/^(r_\d+|ur_\d+|s_\d+)$/.test(String(id)))return;reset();adminMode=admin;chat={id};const e=epoch;go();mode(true);$c('uzcList').hidden=true;$c('uzcConversation').hidden=false;$c('uzcBack').hidden=false;$c('uzcTitle').textContent='Загрузка…';$c('uzcHeaderCaption').textContent='';$c('uzcMessages').dataset.signature='';$c('uzcMessages').innerHTML='<div class="uzc-empty" role="status">Загрузка переписки…</div>';$c('uzcForm').hidden=true;$c('uzcClosed').hidden=true;$c('uzcProductCard').replaceChildren();$c('uzcActions').replaceChildren();
+  try{const d=await api('/chats/'+id+'/messages');if(e!==epoch)return;chat=d.chat;oldest=d.nextCursor;for(const m of d.messages||[]){messages.set(m.id,m);newest=Math.max(newest,m.id);}detail(chat);restoreDraft();await draw({bottom:true});if(e!==epoch)return;await readDisplayed();poll=setInterval(()=>{if(!document.hidden&&currentPageId()==='chats'&&!busy)refresh();},8000);
+   if(!metadata.has(id)){await enrich(chat.kind,e);if(e===epoch)detail(chat);}
+  }catch(x){if(e===epoch){$c('uzcTitle').textContent='Переписка';$c('uzcMessages').innerHTML='<div class="uzc-empty"><p>Не удалось открыть чат. Вернитесь к списку и попробуйте снова.</p></div>';fail(x);}}
  }
  async function start(p){
-  if(busy||!p)return;const id=Number(p.listingId||String(p.id||'').replace(/^listing-/,''));if(!id)return;reset();adminMode=false;startListing=id;go();
-  $c('uzcTitle').textContent='Сообщение продавцу';$c('uzcList').hidden=true;$c('uzcConversation').hidden=false;$c('uzcBack').hidden=false;$c('uzcForm').hidden=false;$c('uzcOlder').hidden=true;$c('uzcActions').replaceChildren();$c('uzcMessages').replaceChildren();$c('uzcInfo').textContent=p.name||p.title||'Товар';$c('uzcStatus').textContent='Первое сохранённое сообщение создаст заявку. Оплату и передачу товара стороны согласовывают напрямую.';restoreDraft();
+  if(busy||!p)return;const id=Number(p.listingId||String(p.id||'').replace(/^listing-/,''));if(!id)return;reset();adminMode=false;startListing=id;startProduct=p;go();mode(true);const e=epoch;
+  $c('uzcTitle').textContent=p.sellerName||'Продавец';$c('uzcHeaderCaption').textContent='Новая переписка';$c('uzcHeaderAvatar').innerHTML=avatarHTML(p.sellerName||'Продавец').replace(/^<span class="uzc-avatar">|<\/span>$/g,'');$c('uzcList').hidden=true;$c('uzcConversation').hidden=false;$c('uzcBack').hidden=false;$c('uzcForm').hidden=false;$c('uzcClosed').hidden=true;$c('uzcOlder').hidden=true;$c('uzcActions').replaceChildren();$c('uzcMessages').dataset.signature='';$c('uzcProductCard').innerHTML=productCard({title:p.name||p.title,price:p.price,image:p.image,draft:true});imageFallbacks($c('uzcProductCard'));restoreDraft();quickReplies('r');await draw({bottom:true});
+  await enrich('r',e);if(e!==epoch||busy||attempt)return;const me=String(currentTelegramIdV108());for(const [key,r] of metadata)if(key.startsWith('r_')&&Number(r.listingId)===id&&String(r.buyerTelegramId)===me&&['sent','open'].includes(r.status)){const draft=drafts.get('listing_'+id)||{text:$c('uzcText').value,photos:photosSelected,attempt};drafts.set(key,draft);await open(key);break;}
  }
- async function support(){try{const d=await api('/chats/support',{});await open(d.chatId);}catch(x){fail(x);}}
+ async function support(){if(busy)return;clearError();try{const existing=listed.find(c=>c.kind==='support'&&c.ownerId===String(currentTelegramIdV108()));if(existing)return open(existing.id);const d=await api('/chats/support',{});await open(d.chatId);}catch(x){fail(x);}}
  async function openRequest(id){await open('r_'+Number(id));}
  async function openOrder(id,admin=false){await open('ur_'+Number(id),admin);}
  $c('uzcForm').onsubmit=async event=>{
-  event.preventDefault();if(busy||!scope())return;clearError();const text=$c('uzcText').value,files=[...$c('uzcPhotos').files];
+  event.preventDefault();if(busy||!scope())return;clearError();const text=$c('uzcText').value,files=[...photosSelected];
   if(Array.from(text).length>1000)return fail({code:'INVALID_TEXT_MAX_1000'});if(files.length>4)return fail({code:'MAX_4_PHOTOS'});if(files.some(f=>f.size>5*1024*1024))return fail({code:'PHOTO_TOO_LARGE'});if(files.some(f=>!['image/jpeg','image/png','image/webp'].includes(f.type)))return fail({code:'INVALID_PHOTO'});if(!text.trim()&&!files.length)return fail({code:'EMPTY_MESSAGE'});
-  if(!attempt){const key=crypto.randomUUID();attempt={key,text,files};}
+  if(!attempt)attempt={key:crypto.randomUUID(),text,files};
   if(attempt.text!==text||attempt.files.length!==files.length||attempt.files.some((f,i)=>f.name!==files[i].name||f.size!==files[i].size||f.type!==files[i].type||f.lastModified!==files[i].lastModified))return fail({code:'IDEMPOTENCY_CONFLICT'});
   const form=new FormData();form.set('text',text);form.set('clientKey',attempt.key);if(startListing)form.set('listingId',String(startListing));for(const f of files)form.append('photo',f,f.name);
-  const oldScope=scope(),e=epoch;busy=true;saveDraft();$c('uzcSend').disabled=true;$c('uzcText').disabled=true;$c('uzcPhotos').disabled=true;$c('uzcNewAttempt').disabled=true;
-  try{const d=await api(startListing?'/chats/r/start':'/chats/'+chat.id+'/messages',form);drafts.delete(oldScope);attempt=null;if(e!==epoch)return;$c('uzcText').value='';$c('uzcPhotos').value='';startListing=0;chat={id:d.chatId};busy=false;await open(d.chatId,adminMode);}
-  catch(x){if(e===epoch){fail(x);$c('uzcNewAttempt').hidden=false;}}
-  finally{busy=false;$c('uzcSend').disabled=false;$c('uzcText').disabled=false;$c('uzcPhotos').disabled=false;$c('uzcNewAttempt').disabled=false;}
+  const oldScope=scope(),e=epoch;busy=true;saveDraft();$c('uzcSend').disabled=true;$c('uzcText').disabled=true;$c('uzcPhotos').disabled=true;$c('uzcAttach').disabled=true;$c('uzcNewAttempt').disabled=true;$c('uzcSend').setAttribute('aria-busy','true');composer();
+  try{const d=await api(startListing?'/chats/r/start':'/chats/'+chat.id+'/messages',form);drafts.delete(oldScope);attempt=null;if(e!==epoch)return;$c('uzcText').value='';$c('uzcPhotos').value='';photosSelected=[];startListing=0;chat={id:d.chatId};busy=false;await open(d.chatId,adminMode);}
+  catch(x){if(e===epoch){fail(x);$c('uzcNewAttempt').hidden=false;saveDraft();}}
+  finally{busy=false;$c('uzcSend').disabled=false;$c('uzcText').disabled=false;$c('uzcPhotos').disabled=false;$c('uzcAttach').disabled=false;$c('uzcNewAttempt').disabled=false;$c('uzcSend').removeAttribute('aria-busy');composer();}
  };
- $c('uzcNewAttempt').onclick=()=>{if(!busy&&confirm('Использовать новый идентификатор? Если предыдущая отправка была сохранена, это создаст ещё одно сообщение. При обычной ошибке сети сначала повторите прежнюю попытку.')){attempt=null;$c('uzcNewAttempt').hidden=true;saveDraft();clearError();}};
- $c('uzcBack').onclick=()=>list(adminMode);$c('uzcOlder').onclick=()=>refresh(true);$c('uzcRefresh').onclick=()=>refresh();
- const tab=$c('uzrChatTabV12');tab.disabled=false;tab.classList.remove('uzr-chat-disabled');tab.removeAttribute('aria-disabled');tab.removeAttribute('title');tab.querySelector('.uzr-chat-label').insertAdjacentHTML('afterend','<small id="uzcUnreadBadge" aria-label="Непрочитанные"></small>');
- const adminBar=document.querySelector('[data-admin-v89-tab="orders"]')?.parentElement;if(adminBar){const b=document.createElement('button');b.type='button';b.textContent='Чаты';b.onclick=()=>list(true);adminBar.append(b);}
- const supportRoot=$c('support');if(supportRoot){const b=document.createElement('button');b.type='button';b.className='r12-secondary';b.textContent='Внутренняя поддержка';b.onclick=support;supportRoot.append(b);}
- window.adminOrderMessageOpenV111=id=>openOrder(id,true);
- openContactRequestV49=start;
- const renderBefore=renderContactRequestsV49;renderContactRequestsV49=function(){renderBefore();const list=$c('contactRequestsListV49');list?.querySelectorAll('[data-r12-bot]').forEach(b=>{b.textContent='Открыть чат';b.onclick=()=>openRequest(b.dataset.r12Bot);});list?.querySelectorAll('[data-r12-deal]').forEach(b=>{if(b.parentElement.querySelector('[data-r12-bot]'))return;const btn=document.createElement('button');btn.type='button';btn.textContent='Открыть чат';btn.onclick=()=>openRequest(b.dataset.r12Deal);b.parentElement.append(btn);});};
+ $c('uzcAttach').onclick=()=>{if(!busy)$c('uzcPhotos').click();};
+ $c('uzcPhotos').onchange=()=>{const incoming=[...$c('uzcPhotos').files];$c('uzcPhotos').value='';if(busy)return;const all=[...photosSelected,...incoming];if(all.length>4)return fail({code:'MAX_4_PHOTOS'});if(incoming.some(f=>f.size>5242880))return fail({code:'PHOTO_TOO_LARGE'});if(incoming.some(f=>!['image/jpeg','image/png','image/webp'].includes(f.type)))return fail({code:'INVALID_PHOTO'});photosSelected=all;clearError();previewPhotos();saveDraft();};
+ $c('uzcText').oninput=()=>{composer();saveDraft();};$c('uzcText').onkeydown=e=>{if(e.key==='Enter'&&(e.ctrlKey||e.metaKey)){e.preventDefault();$c('uzcForm').requestSubmit();}};
+ $c('uzcNewAttempt').onclick=()=>{if(!busy&&confirm('Использовать новый идентификатор? Если предыдущая отправка была сохранена, это создаст ещё одно сообщение. При обычной ошибке сети сначала повторите прежнюю попытку.')){attempt=null;$c('uzcNewAttempt').hidden=true;saveDraft();clearError();composer();}};
+ $c('uzcBack').onclick=()=>{if(busy)return;if(chat||startListing)list(adminMode);else if(adminMode)page('adminPanel');else page('home');};$c('uzcOlder').onclick=()=>refresh(true);$c('uzcRefresh').onclick=()=>chat?refresh():list(adminMode);
+ $c('uzcSearchToggle').onclick=()=>{const b=$c('uzcSearchBox');if(!b)return;b.hidden=!b.hidden;if(!b.hidden)$c('uzcSearchInput').focus();};
+ for(const [id,name] of Object.entries({uzcBack:'back',uzcRefresh:'refresh',uzcSearchToggle:'search',uzcAttach:'plus',uzcSend:'send',uzcDetailsClose:'close',uzcPhotoClose:'close'}))$c(id).innerHTML=icon(name);
+ $c('chats').querySelectorAll('[data-uzc-close-details]').forEach(b=>b.onclick=closeDetails);$c('uzcPhotoClose').onclick=closePhoto;
+ let readTimer; $c('uzcScroll').addEventListener('scroll',()=>{clearTimeout(readTimer);readTimer=setTimeout(readDisplayed,350);},{passive:true});
+ document.addEventListener('keydown',e=>{if(currentPageId()!=='chats')return;if(e.key==='Escape'){if(!$c('uzcPhotoViewer').hidden)closePhoto();else if(!$c('uzcDetails').hidden)closeDetails();else if(chat||startListing)list(adminMode);}if(e.key==='Tab'&&!$c('uzcDetails').hidden){const nodes=[...$c('uzcDetails').querySelectorAll('button:not([disabled]),a[href]')].filter(n=>n.getClientRects().length);const first=nodes[0],last=nodes.at(-1);if(e.shiftKey&&document.activeElement===first){e.preventDefault();last?.focus();}else if(!e.shiftKey&&document.activeElement===last){e.preventDefault();first?.focus();}}});
+ const logo=document.querySelector('#appHeader .dark-brand-v10');if(logo){const cloned=logo.cloneNode(true);cloned.removeAttribute('onclick');cloned.removeAttribute('id');cloned.tabIndex=-1;cloned.setAttribute('aria-hidden','true');$c('uzcListBrand').append(cloned);}else $c('uzcListBrand').textContent='Uzbek Re’Sale';
+ const tab=$c('uzrChatTabV12');tab.disabled=false;tab.classList.remove('uzr-chat-disabled');tab.removeAttribute('aria-disabled');tab.removeAttribute('title');if(!$c('uzcUnreadBadge'))tab.insertAdjacentHTML('beforeend','<small id="uzcUnreadBadge" aria-label="Непрочитанные"></small>');
+ const adminBar=document.querySelector('[data-admin-v89-tab="orders"]')?.parentElement;if(adminBar){const b=document.createElement('button');b.type='button';b.className='admin-v89-nav-btn';b.dataset.uzcAdmin='true';b.innerHTML='<span>'+icon('chat')+'</span><b>Чаты</b>';b.onclick=()=>list(true);adminBar.append(b);}
+ const supportRoot=$c('support');if(supportRoot){const b=document.createElement('button');b.type='button';b.className='btn black';b.style.marginTop='12px';b.textContent='Внутренняя поддержка';b.onclick=support;supportRoot.append(b);}
+ window.adminOrderMessageOpenV111=id=>openOrder(id,true);openContactRequestV49=start;
+ const renderBefore=renderContactRequestsV49;renderContactRequestsV49=function(){renderBefore();const el=$c('contactRequestsListV49');el?.querySelectorAll('[data-r12-bot]').forEach(b=>{b.textContent='Открыть чат';b.onclick=()=>openRequest(b.dataset.r12Bot);});el?.querySelectorAll('[data-r12-deal]').forEach(b=>{if(b.parentElement.querySelector('[data-r12-bot]'))return;const btn=document.createElement('button');btn.type='button';btn.className='r12-secondary';btn.textContent='Открыть чат';btn.onclick=()=>openRequest(b.dataset.r12Deal);b.parentElement.append(btn);});};
  const orderBefore=openOrderDetail;openOrderDetail=function(o){orderBefore(o);const root=$c('orderDetailContent');const id=Number(o.id||String(o.orderNumber||o.order_number||'').replace(/^UR-/,''));if(id){const b=document.createElement('button');b.type='button';b.className='order-primary-action-v40';b.textContent='Чат по заказу';b.onclick=()=>{closeOrderDetailV40();openOrder(id);};root.querySelector('.order-actions-v40')?.prepend(b);}};
  window.UzrChats12={list,open,start,support,openRequest,openOrder,onNavigate:id=>{if(opening)return;if(id==='chats')list();else pause();}};
- async function badge(){if(document.hidden||!currentTelegramInitDataV108()||currentPageId()==='chats')return;try{const d=await api('/chats?limit=50');const n=Number(d.unreadTotal||0);$c('uzcUnreadBadge').textContent=n?String(n):'';}catch{}}
+ function viewport(){if(currentPageId()!=='chats')return;const v=window.visualViewport,root=$c('chats');root.style.setProperty('--uzc-vh',Math.round(v?.height||window.innerHeight)+'px');root.style.setProperty('--uzc-vtop',Math.round(v?.offsetTop||0)+'px');}
+ window.visualViewport?.addEventListener('resize',()=>{const stick=nearBottom();viewport();if(stick)requestAnimationFrame(()=>{$c('uzcScroll').scrollTop=$c('uzcScroll').scrollHeight;});});window.visualViewport?.addEventListener('scroll',viewport);window.addEventListener('resize',viewport);
+ async function badge(){if(document.hidden||!currentTelegramInitDataV108()||currentPageId()==='chats')return;try{const d=await api('/chats?limit=50');badgeValue(d.unreadTotal||0);}catch{}}
  setInterval(badge,30000);setTimeout(badge,1500);
- const param=new URLSearchParams(location.search).get('uzr_chat')||String(window.Telegram?.WebApp?.initDataUnsafe?.start_param||'').replace(/^chat_/, '');
- if(/^(r_\d+|ur_\d+|s_\d+)$/.test(param))setTimeout(async()=>{try{const d=await api('/admin/me');await open(param,!!d.admin);}catch{await open(param);}},600);
+ const param=new URLSearchParams(location.search).get('uzr_chat')||String(window.Telegram?.WebApp?.initDataUnsafe?.start_param||'').replace(/^chat_/, '');if(/^(r_\d+|ur_\d+|s_\d+)$/.test(param))setTimeout(async()=>{try{const d=await api('/admin/me');await open(param,!!d.admin);}catch{await open(param);}},600);
 })();
 
 </script>
