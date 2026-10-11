@@ -14595,6 +14595,60 @@ html[data-uzr-theme] body :is(#home,#china,#favorites,#viewed,#officialStoreView
 }
 
 </style>
+<style id="uzr-v12-compact-card-finish">
+/* Final compact cards. Scoped to card markup; no nav, brand, checkout, persistent state or APIs touched. */
+html[data-uzr-theme] body :is(#home,#china,#favorites,#viewed,#officialStoreView,#sellerProfile) :is(#homeGrid,#chinaGridV32,#favoriteGrid,#viewedGrid,#officialStoreGrid,#sellerProductsGridV26) {
+  gap:12px 10px!important; align-items:start!important;
+}
+html[data-uzr-theme] body :is(#home,#china,#favorites,#viewed,#officialStoreView,#sellerProfile) :is(#homeGrid,#chinaGridV32,#favoriteGrid,#viewedGrid,#officialStoreGrid,#sellerProductsGridV26) .card.uzr-product-card-v12 {
+  height:auto!important; min-height:0!important; align-self:start!important;
+  border-radius:18px!important;
+}
+html[data-uzr-theme] body :is(#home,#china,#favorites,#viewed,#officialStoreView,#sellerProfile) :is(#homeGrid,#chinaGridV32,#favoriteGrid,#viewedGrid,#officialStoreGrid,#sellerProductsGridV26) .card.uzr-product-card-v12 .uzr-card-media-v12 {
+  margin:5px 5px 0!important;width:calc(100% - 10px)!important;
+  aspect-ratio:1.22 / 1!important;border-radius:14px!important;
+}
+html[data-uzr-theme] body :is(#home,#china,#favorites,#viewed,#officialStoreView,#sellerProfile) :is(#homeGrid,#chinaGridV32,#favoriteGrid,#viewedGrid,#officialStoreGrid,#sellerProductsGridV26) .card.uzr-product-card-v12[data-badge="china"] .uzr-card-media-v12,
+html[data-uzr-theme] body :is(#home,#china,#favorites,#viewed,#officialStoreView,#sellerProfile) :is(#homeGrid,#chinaGridV32,#favoriteGrid,#viewedGrid,#officialStoreGrid,#sellerProductsGridV26) .card.uzr-product-card-v12[data-badge="china"] .photo,
+html[data-uzr-theme] body :is(#home,#china,#favorites,#viewed,#officialStoreView,#sellerProfile) :is(#homeGrid,#chinaGridV32,#favoriteGrid,#viewedGrid,#officialStoreGrid,#sellerProductsGridV26) .card.uzr-product-card-v12[data-badge="china"] .photo img {
+ background:#fff!important;
+}
+html[data-uzr-theme] body :is(#home,#china,#favorites,#viewed,#officialStoreView,#sellerProfile) :is(#homeGrid,#chinaGridV32,#favoriteGrid,#viewedGrid,#officialStoreGrid,#sellerProductsGridV26) .card.uzr-product-card-v12 .uzr-card-info-v12 {
+ flex:0 0 auto!important; min-height:0!important; height:auto!important;
+ padding:8px 9px 10px!important; gap:0!important;
+}
+html[data-uzr-theme] body :is(#home,#china,#favorites,#viewed,#officialStoreView,#sellerProfile) :is(#homeGrid,#chinaGridV32,#favoriteGrid,#viewedGrid,#officialStoreGrid,#sellerProductsGridV26) .card.uzr-product-card-v12 .name {
+ height:32px!important; min-height:32px!important; max-height:32px!important;
+ font-size:12px!important;line-height:16px!important;font-weight:650!important;
+}
+html[data-uzr-theme] body :is(#home,#china,#favorites,#viewed,#officialStoreView,#sellerProfile) :is(#homeGrid,#chinaGridV32,#favoriteGrid,#viewedGrid,#officialStoreGrid,#sellerProductsGridV26) .card.uzr-product-card-v12 .uzr-card-price-v12 {
+ margin:2px 0 0!important;grid-template-rows:11px 23px!important;gap:0!important;
+ height:34px!important;min-height:34px!important;max-height:34px!important;
+}
+html[data-uzr-theme] body :is(#home,#china,#favorites,#viewed,#officialStoreView,#sellerProfile) :is(#homeGrid,#chinaGridV32,#favoriteGrid,#viewedGrid,#officialStoreGrid,#sellerProductsGridV26) .card.uzr-product-card-v12 .product-card-old-price-v87 {
+ height:11px!important; min-height:11px!important; font-size:9px!important;line-height:11px!important;
+}
+html[data-uzr-theme] body :is(#home,#china,#favorites,#viewed,#officialStoreView,#sellerProfile) :is(#homeGrid,#chinaGridV32,#favoriteGrid,#viewedGrid,#officialStoreGrid,#sellerProductsGridV26) .card.uzr-product-card-v12 .price {
+ height:23px!important;min-height:23px!important;line-height:23px!important;
+ font-size:clamp(12px,9.6cqw,18px)!important;letter-spacing:-.4px!important;
+}
+html[data-uzr-theme] body :is(#home,#china,#favorites,#viewed,#officialStoreView,#sellerProfile) :is(#homeGrid,#chinaGridV32,#favoriteGrid,#viewedGrid,#officialStoreGrid,#sellerProductsGridV26) .card.uzr-product-card-v12 .is-long-price .price{font-size:clamp(11px,8cqw,15px)!important;}
+html[data-uzr-theme] body :is(#home,#china,#favorites,#viewed,#officialStoreView,#sellerProfile) :is(#homeGrid,#chinaGridV32,#favoriteGrid,#viewedGrid,#officialStoreGrid,#sellerProductsGridV26) .card.uzr-product-card-v12 .uzr-card-meta-row-v12{
+ margin:4px 0 0!important; height:16px!important; min-height:16px!important; gap:6px!important;
+}
+html[data-uzr-theme] body :is(#home,#china,#favorites,#viewed,#officialStoreView,#sellerProfile) :is(#homeGrid,#chinaGridV32,#favoriteGrid,#viewedGrid,#officialStoreGrid,#sellerProductsGridV26) .card.uzr-product-card-v12 .uzr-card-meta-v12 {font-size:9px!important;line-height:16px!important;gap:3px!important;}
+html[data-uzr-theme] body :is(#home,#china,#favorites,#viewed,#officialStoreView,#sellerProfile) :is(#homeGrid,#chinaGridV32,#favoriteGrid,#viewedGrid,#officialStoreGrid,#sellerProductsGridV26) .card.uzr-product-card-v12 .uzr-card-meta-v12 svg{width:12px!important;height:12px!important;min-width:12px!important;min-height:12px!important;flex-basis:12px!important;}
+html[data-uzr-theme] body :is(#home,#china,#favorites,#viewed,#officialStoreView,#sellerProfile) :is(#homeGrid,#chinaGridV32,#favoriteGrid,#viewedGrid,#officialStoreGrid,#sellerProductsGridV26) .card.uzr-product-card-v12 .product-badge-v15{
+ top:5px!important;left:5px!important;height:23px!important;min-height:23px!important;line-height:23px!important;font-size:10px!important;
+}
+html[data-uzr-theme] body :is(#home,#china,#favorites,#viewed,#officialStoreView,#sellerProfile) :is(#homeGrid,#chinaGridV32,#favoriteGrid,#viewedGrid,#officialStoreGrid,#sellerProductsGridV26) .card.uzr-product-card-v12 .product-discount-badge-v87{top:33px!important;left:5px!important;height:20px!important;min-height:20px!important;line-height:20px!important;font-size:10px!important;}
+html[data-uzr-theme] body :is(#home,#china,#favorites,#viewed,#officialStoreView,#sellerProfile) :is(#homeGrid,#chinaGridV32,#favoriteGrid,#viewedGrid,#officialStoreGrid,#sellerProductsGridV26) .card.uzr-product-card-v12 .product-heart{top:4px!important;right:4px!important;width:33px!important;min-width:33px!important;height:33px!important;min-height:33px!important;}
+html[data-uzr-theme] body :is(#home,#china,#favorites,#viewed,#officialStoreView,#sellerProfile) :is(#homeGrid,#chinaGridV32,#favoriteGrid,#viewedGrid,#officialStoreGrid,#sellerProductsGridV26) .card.uzr-product-card-v12 .product-heart svg{width:21px!important;min-width:21px!important;height:21px!important;min-height:21px!important;flex-basis:21px!important;}
+@media(min-width:600px){
+html[data-uzr-theme] body :is(#home,#china,#favorites,#viewed,#officialStoreView,#sellerProfile) :is(#homeGrid,#chinaGridV32,#favoriteGrid,#viewedGrid,#officialStoreGrid,#sellerProductsGridV26) .card.uzr-product-card-v12 .name{font-size:14px!important;line-height:18px!important;height:36px!important;min-height:36px!important;max-height:36px!important;}
+html[data-uzr-theme] body :is(#home,#china,#favorites,#viewed,#officialStoreView,#sellerProfile) :is(#homeGrid,#chinaGridV32,#favoriteGrid,#viewedGrid,#officialStoreGrid,#sellerProductsGridV26) .card.uzr-product-card-v12 .uzr-card-meta-v12{font-size:11px!important;}
+}
+</style>
 </head><body>
 <div id="uzrConsentV58" hidden role="dialog" aria-modal="true" aria-labelledby="uzrConsentTitleV58">
   <div class="uzr-consent-card-v58">
@@ -16530,8 +16584,11 @@ function productCardMetaHtmlV12(p){
   const esc=escapeHtml;
   let cityLabel=city;
   try{if(window.UzrI18nV83&&productCardCopyV12('ru','uz')==='uz')cityLabel=window.UzrI18nV83.text(city)||city}catch(_){}
+  // Only a compact preview is shown on cards. The full existing sizes remain on product detail and in the tooltip.
+  const allSizes=size.split(/[,;]+/).map(x=>x.trim()).filter(Boolean);
+  const sizePreview=allSizes.length>3?allSizes.slice(0,2).join(', ')+ ' +'+(allSizes.length-2):size;
   return (city?`<span class="uzr-card-meta-v12" title="${esc(cityLabel)}">${place}<span>${esc(cityLabel)}</span></span>`:'')+
-    (size?`<span class="uzr-card-meta-v12" title="${esc(productCardCopyV12('Размер: ','O‘lcham: ')+size)}">${ruler}<span>${esc(size)}</span></span>`:'');
+    (size?`<span class="uzr-card-meta-v12" title="${esc(productCardCopyV12('Размер: ','O‘lcham: ')+size)}">${ruler}<span>${esc(sizePreview)}</span></span>`:'');
 }
 function productCardMarkupV12(p,badge,isFavorite){
   const esc=escapeHtml,discount=productCardDiscountV12(p),src=productCardImageV12(p.image);
