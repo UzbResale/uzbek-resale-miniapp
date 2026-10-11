@@ -1,4 +1,4 @@
-<!-- Uzbek Re'Sale v1.2: Home + filters. Existing Worker v1.1 and brand assets retained. -->
+<!-- Uzbek Re'Sale v1.2: existing UI + internal chats. Manual-install candidate; not deployed. Brand assets retained. -->
 <!-- REVIEW11: shared v1 checkout, intent-driven links, official-only cleanup -->
 <!-- REVIEW9: separate resale and official placements; based on exact REVIEW8 -->
 <!DOCTYPE html>
@@ -15602,6 +15602,30 @@ html body #home #homeGrid .uzr-home-photo-empty{position:absolute!important;inse
   <div class="orders-v40-list" id="ordersList"></div>
 </div>
 </section></div>
+<section class="page" id="chats" data-no-i18n>
+ <div class="contact-requests-v49-shell">
+  <div class="contact-requests-v49-topbar"><h2 id="uzcTitle">Чаты</h2><button type="button" class="r12-secondary" id="uzcBack" hidden>К списку</button></div>
+  <p id="uzcError" role="alert" class="r12-error" hidden></p>
+  <div id="uzcList"></div>
+  <div id="uzcConversation" hidden>
+   <details class="r12-box"><summary>Информация о заявке / заказе</summary><div id="uzcInfo"></div></details>
+   <p id="uzcStatus"></p><div id="uzcActions" class="r12-request-actions"></div>
+   <button type="button" class="r12-secondary" id="uzcOlder" hidden>Предыдущие сообщения</button>
+   <div id="uzcMessages" aria-live="polite"></div>
+   <form id="uzcForm" class="field">
+    <label for="uzcText">Сообщение · до 1 000 символов</label>
+    <textarea id="uzcText" rows="3" placeholder="Введите сообщение"></textarea>
+    <label for="uzcPhotos">Фото · до 4 файлов, каждый до 5 MB (JPEG, PNG, WebP)</label>
+    <input type="file" id="uzcPhotos" multiple accept="image/jpeg,image/png,image/webp">
+    <p id="uzcDraftLabel"></p>
+    <button class="r12-primary" type="submit" id="uzcSend">Отправить</button>
+    <button class="r12-secondary" type="button" id="uzcNewAttempt" hidden>Новая попытка с тем же сообщением</button>
+   </form>
+   <button class="r12-secondary" type="button" id="uzcRefresh">Обновить сообщения</button>
+  </div>
+ </div>
+</section>
+
 <nav class="uzr-home-rollout-nav"><button class="nav active" data-page="home"><span class="icon"><i data-lucide="house"></i></span>Главная</button><button id="uzrChatTabV12" class="nav uzr-chat-disabled" type="button" data-page="chats" disabled aria-disabled="true" title="Чаты появятся в следующем обновлении"><span class="icon"><i data-lucide="message-circle"></i></span><span class="uzr-chat-label">Чаты</span></button><button class="nav sell" data-page="sell"><span class="icon"><i data-lucide="plus"></i></span></button><button class="nav china-nav-v32" data-page="china"><span class="icon"><i data-lucide="plane"></i></span>Из Китая</button><button class="nav nav-profile-v13" data-page="profile"><span class="icon nav-profile-avatar-v13" id="navProfileAvatar"><i data-lucide="user"></i></span>Профиль</button></nav>
 <div class="overlay product-v18-view" id="productView">
 <div class="product-v18-inner">
@@ -16871,6 +16895,7 @@ function navigatePage(id){
  const hdr=$("appHeader");if(hdr)hdr.hidden=id!=="home";
  syncV2Settings();
  if(id==="china")renderChinaPageV32();
+ window.UzrChats12?.onNavigate(id);
  if(id==="privacy"){target.scrollTop=0;requestAnimationFrame(()=>{target.scrollTop=0;window.scrollTo(0,0)})}
  const navId=["viewed","settingsPage","faq","support","legalCenter","legalDocument","legalSection","myProducts","sellerProfile","orders","contactRequest","contactRequests"].includes(id)?"profile":id;document.querySelectorAll(".nav").forEach(x=>x.classList.toggle("active",x.dataset.page===navId));
  const app=document.querySelector(".app"),scroller=document.scrollingElement||document.documentElement;
@@ -22062,7 +22087,7 @@ function sr123DrawOrder(){
  view(o.orderNumber,`<div class="sr123-detail-state"><span class="sr123-badge status-${esc(o.status)}">${esc(sr123t(o.status==='new'?'newOrder':o.status))}</span><span>${esc(date(o.createdAt))}</span></div>
  <section class="sr110-card"><div class="sr123-order-item"><span class="sr123-order-photo">${picture}</span><div><h3>${esc(first.name||o.orderNumber)}</h3><p>${esc([first.size,first.color].filter(Boolean).join(' · '))}</p><span>${esc(t('quantity'))}: ${items.length}</span></div><b>${sum(o.total)}</b></div></section>
  <section class="sr110-card">${row(t('name'),o.customerName)}${row(t('phone'),o.phone)}${row(t('city'),o.city)}${o.comment?`<p class="sr123-comment">${esc(o.comment)}</p>`:''}${o.sourceRequestId?row(t('number'),'C-'+String(o.sourceRequestId).padStart(6,'0')):''}
- <div class="sr124-telegram-card"><div><small>${esc(sr123t('telegram'))}</small><b>${esc(o.telegramUsername?'@'+o.telegramUsername:(o.telegramName||o.customerName||'—'))}</b><span>ID ${esc(o.telegramId||'—')}</span></div><div class="sr124-telegram-actions"><button type="button" data-sr-action="acTelegram">${icon('send')}<span>${esc(sr123t('openTelegram'))}</span></button><button type="button" data-sr-action="acCopyTelegram">${icon('copy')}<span>${esc(sr123t('copyId'))}</span></button></div></div>${o.telegramId&&['new','confirmed','shipping'].includes(String(o.status||''))?`<button type="button" class="sr110-btn secondary" onclick="adminOrderMessageOpenV111(${Number(o.id)})" style="margin-top:12px;width:100%;">${icon('message-circle')} Написать клиенту через бота</button>`:''}</section>
+ <div class="sr124-telegram-card"><div><small>${esc(sr123t('telegram'))}</small><b>${esc(o.telegramUsername?'@'+o.telegramUsername:(o.telegramName||o.customerName||'—'))}</b><span>ID ${esc(o.telegramId||'—')}</span></div><div class="sr124-telegram-actions"><button type="button" data-sr-action="acTelegram">${icon('send')}<span>${esc(sr123t('openTelegram'))}</span></button><button type="button" data-sr-action="acCopyTelegram">${icon('copy')}<span>${esc(sr123t('copyId'))}</span></button></div></div>${o.telegramId&&['new','confirmed','shipping'].includes(String(o.status||''))?`<button type="button" class="sr110-btn secondary" onclick="adminOrderMessageOpenV111(${Number(o.id)})" style="margin-top:12px;width:100%;">${icon('message-circle')} Открыть чат с клиентом</button>`:''}</section>
  ${c?`<section class="sr110-card">${row(t('cargoChoose'),locale()==='uz'?c.nameUz:c.nameRu)}${row(t('rate'),'$'+(c.rateCents/100).toFixed(2))}${button('acOrderCargo',t('cargo'),'secondary')}</section>`:''}
  ${['completed','cancelled'].includes(o.status)?`<div class="sr123-delete-row">${button('removeUR',sr126t('deleteUR'),'danger')}</div>`:''}
  <div class="sr123-primary-actions">${(statuses[o.status]||[]).map(([status,label])=>`<button type="button" data-sr-action="acOrderStatus" data-status="${status}" class="sr110-btn ${status==='cancelled'?'danger':''}">${esc(sr123t(label))}</button>`).join('')}</div>`,state.adminCOrderBack||close);
@@ -22669,93 +22694,7 @@ body .admin-v111-message-dialog button:disabled{opacity:.55!important;cursor:not
 body .admin-v111-message-dialog .admin-v111-error{color:#ff929c!important;white-space:pre-wrap!important;margin-top:10px!important;font-size:12px!important}
 body .admin-v111-message-dialog .admin-v111-hint{font-size:11px!important;margin-top:6px!important;color:#9bb9cd!important}
 </style>
-<script id="uzr-v111-admin-order-message-script">
-(function(){
-  'use strict';
-  let pending=false;
-  let requestId='';
-  const errors={
-    ADMIN_BOT_NOT_STARTED:'Сначала откройте @resaleuzbot со своего Telegram-аккаунта и нажмите /start. Клиенту ничего не отправлено.',
-    ADMIN_BOT_CHECK_FAILED:'Не удалось проверить связь с вашим ботом. Клиенту ничего не отправлено.',
-    BUYER_BLOCKED_BOT:'Покупатель заблокировал @resaleuzbot. Наличие UR-заказа не отменяет блокировку. Покупатель должен разблокировать бота и нажать Start.',
-    BUYER_BOT_NOT_STARTED:'Покупатель ещё не запускал @resaleuzbot. Попросите его открыть бота по ссылке и нажать Start. Его Premium не является препятствием для бота.',
-    BUYER_BOT_NOT_STARTED_OR_BLOCKED:'Telegram запретил писать покупателю. Скорее всего, он не запускал или заблокировал @resaleuzbot. Попросите его открыть бота и нажать Start.',
-    BUYER_BOT_NOT_STARTED_OR_CHAT_UNAVAILABLE:'Telegram не находит чат с покупателем. Попросите его открыть @resaleuzbot и нажать Start, затем повторите.',
-    BUYER_TELEGRAM_UNAVAILABLE:'Telegram-аккаунт покупателя недоступен. Свяжитесь с ним другим способом.',
-    TELEGRAM_RATE_LIMIT:'Telegram временно ограничил частоту отправки. Подождите и попробуйте снова.',
-    TELEGRAM_BOT_CONFIG_ERROR:'Ошибка подключения рабочего бота к Telegram. Проверьте BOT_TOKEN Worker; не повторяйте отправку без проверки.',
-    ORDER_NOT_ACTIVE:'Сообщения из админки доступны только для активных UR-заказов (новый, подтверждён, в доставке).',
-    TELEGRAM_DELIVERY_FAILED:'Telegram отклонил сообщение. Проверьте права бота и доступность покупателя; причина записана в Worker Logs без личного текста.',
-    TELEGRAM_STATUS_UNCERTAIN:'Неизвестно, доставил ли Telegram сообщение. Проверьте переписку перед повторной отправкой.',
-    SENT_BUT_BRIDGE_UNAVAILABLE:'Сообщение доставлено клиенту, но не удалось включить ответы. Не повторяйте отправку; проверьте настройки Worker.',
-    MESSAGE_STATUS_UNCERTAIN:'Статус предыдущей отправки неизвестен. Не отправляйте повторно, пока не проверите Telegram.',
-    MESSAGE_IN_PROGRESS:'Сообщение уже отправляется. Дождитесь результата.',
-    BUYER_CHAT_UNAVAILABLE:'Для заказа нет доступного Telegram ID клиента.',
-    ORDER_NOT_FOUND:'Этот заказ не найден или был удалён.',
-    TELEGRAM_AUTH_FAILED:'Авторизация Telegram истекла. Переоткройте Mini App.',
-    TELEGRAM_AUTH_REQUIRED:'Авторизация Telegram истекла. Переоткройте Mini App.',
-    FORBIDDEN:'Нет прав администратора.',
-    INVALID_MESSAGE:'Введите сообщение длиной до 1500 символов.'
-  };
-  function close(){if(pending)return;document.getElementById('adminV111MessageShade')?.remove();document.removeEventListener('keydown',esc);}
-  function esc(e){if(e.key==='Escape')close();}
-  window.adminOrderMessageOpenV111=function(orderId){
-    if(pending)return;
-    const id=Number(orderId);
-    if(!Number.isSafeInteger(id)||id<1)return;
-    close();
-    const order=(typeof adminOrdersCacheV89!=="undefined"?adminOrdersCacheV89:[]).find(x=>Number(x.id)===id);
-    // Fallback when opened from the full C→UR/order detail screen.
-    const detail=order||null;
-    const shade=document.createElement('div');shade.className='admin-v111-message-shade';shade.id='adminV111MessageShade';
-    shade.innerHTML='<form class="admin-v111-message-dialog" role="dialog" aria-modal="true" aria-labelledby="adminV111MessageTitle"><h2 id="adminV111MessageTitle">Написать клиенту по заказу</h2><p id="adminV111MessageDesc"></p><label for="adminV111MessageText">Ваше сообщение</label><textarea id="adminV111MessageText" required maxlength="1500" placeholder="Здравствуйте! Пишем вам по поводу вашего заказа…"></textarea><div class="admin-v111-hint">Сообщение придёт клиенту от @resaleuzbot с кнопкой ответа. Дальше можно общаться прямо в боте. Активный диалог администратора переключится на этот заказ. При успешной отправке группа заказов получит подтверждение.</div><p class="admin-v111-error" id="adminV111MessageError" role="alert" hidden></p><div class="admin-v111-controls"><button type="button" data-invite hidden>Копировать ссылку для покупателя</button><button type="button" data-cancel>Отмена</button><button type="submit" data-send>Отправить в бот</button></div></form>';
-    const form=shade.querySelector('form');
-    shade.querySelector('#adminV111MessageDesc').textContent=(detail?.order_number||('Заказ #'+id))+' · '+(detail?.name||'Покупатель');
-    shade.querySelector('[data-cancel]').onclick=close;
-    const invite=shade.querySelector('[data-invite]');
-    invite.onclick=async()=>{
-      const link='https://t.me/resaleuzbot?start=ur_'+id;
-      try{await navigator.clipboard.writeText(link);invite.textContent='✅ Ссылка скопирована';}
-      catch(_){window.prompt('Скопируйте ссылку и отправьте клиенту любым доступным способом:',link);}
-    };
-    shade.addEventListener('click',e=>{if(e.target===shade)close();});
-    form.addEventListener('submit',async e=>{
-      e.preventDefault();if(pending)return;
-      const text=shade.querySelector('textarea').value.trim(),error=shade.querySelector('#adminV111MessageError');
-      if(!text||Array.from(text).length>1500){error.textContent=errors.INVALID_MESSAGE;error.hidden=false;return;}
-      const uid=window.crypto?.randomUUID?.();
-      if(!uid){error.textContent='Безопасный идентификатор сообщения недоступен. Переоткройте Mini App.';error.hidden=false;return;}
-      pending=true;requestId=uid;error.hidden=true;invite.hidden=true;
-      shade.querySelector('[data-send]').disabled=true;shade.querySelector('[data-cancel]').disabled=true;
-      try{
-        // adminFetch already includes signed Telegram initData and throws on failed HTTP.
-        const result=await adminFetch('/admin/orders/'+id+'/message',{
-          method:'POST',body:JSON.stringify({message:text,clientMessageId:requestId}),
-          headers:{'Content-Type':'application/json'}
-        });
-        if(!result.ok)throw Error(result.error||'REQUEST_FAILED');
-        shade.remove();document.removeEventListener('keydown',esc);
-        alert('✅ Telegram принял сообщение для покупателя. '+(result.groupNotification==='sent'?'В группе заказов отправлено подтверждение.':result.groupNotification==='failed'?'Но уведомление в группе не получилось отправить.': 'Уведомление в группу не настроено.')+' Продолжайте переписку в @resaleuzbot.');
-      }catch(ex){
-        const code=String(ex?.message||'');
-        error.textContent=errors[code]||('Ошибка отправки: '+(code||'Неизвестная ошибка'));
-        error.hidden=false;
-        invite.hidden=!['BUYER_BLOCKED_BOT','BUYER_BOT_NOT_STARTED','BUYER_BOT_NOT_STARTED_OR_BLOCKED','BUYER_BOT_NOT_STARTED_OR_CHAT_UNAVAILABLE'].includes(code);
-        // On a timeout Telegram may have accepted the message. Prevent an accidental duplicate.
-        if(['TELEGRAM_STATUS_UNCERTAIN','SENT_BUT_BRIDGE_UNAVAILABLE','MESSAGE_STATUS_UNCERTAIN'].includes(code)){
-          shade.querySelector('[data-send]').dataset.uncertain='1';
-        }
-      }
-      finally{
-        pending=false;requestId='';
-        shade.querySelector('[data-send]').disabled=shade.querySelector('[data-send]').dataset.uncertain==='1';
-        shade.querySelector('[data-cancel]').disabled=false;
-      }
-    });
-    document.body.appendChild(shade);document.addEventListener('keydown',esc);shade.querySelector('textarea').focus();
-  };
-})();
-</script>
+<script id="uzr-v111-admin-order-message-script">window.adminOrderMessageOpenV111=id=>window.UzrChats12?.openOrder(id,true);</script>
 <style id="qa5-cleanup-style">
 #adminContent .qa5-cleanup{padding:18px;border:1px solid #254d62;border-radius:20px;background:#102d3c;color:#eff8ff;margin-bottom:18px;min-width:0}
 #adminContent .qa5-cleanup h2{font-size:19px;line-height:1.25;margin:6px 0 10px}
@@ -23666,4 +23605,117 @@ if(/^\d{1,12}$/.test(param)){waitForTelegramIdentityV108(3500).then(u=>{if(u?.id
   #productView.open.official-redesign-v12 .product-v18-actions button {font-size: 12px !important;}
 }
 </style>
+
+<style id="uzr-basic-chat-controls">
+#chats{padding-bottom:110px}
+#chats .r12-box{border:1px solid var(--uzr-border,#567);border-radius:12px;padding:12px}
+#chats .r12-primary,#chats .r12-secondary{min-height:44px;padding:10px 14px;border-radius:12px;margin:6px 0}
+#chats .r12-primary{background:var(--uzr-accent,#129fe8);color:white;border:0}
+#chats textarea{display:block;width:100%;margin:8px 0;padding:10px;resize:vertical;font:inherit}
+#chats label{display:block;margin-top:10px}
+#chats [hidden]{display:none!important}
+#chats a{color:inherit;text-decoration:underline}
+</style>
+
+<script id="uzr-internal-chats-v12">
+(function(){
+ 'use strict';
+ const $c=id=>document.getElementById(id),esc=v=>escapeHtml(String(v??''));
+ let chat=null,startListing=0,adminMode=false,opening=false,busy=false,epoch=0,poll=null,oldest=null,newest=0,listCursor=null,messages=new Map(),blobURLs=[],photoCache=new Map(),attempt=null;
+ const drafts=new Map(); // Private drafts stay in this Mini App session, never sent to Telegram.
+ const errors={TELEGRAM_AUTH_REQUIRED:'Переоткройте Mini App через Telegram.',CHAT_MIGRATION_REQUIRED:'Сначала установите SQL-миграцию и новый Worker.',CHAT_CLOSED:'Переписка закрыта. Сообщения доступны для чтения.',CHAT_NOT_FOUND:'Чат недоступен.',FORBIDDEN:'Нет доступа.',MESSAGE_COOLDOWN_2_SECONDS:'Между сообщениями нужно подождать 2 секунды.',R_COOLDOWN_10_SECONDS:'Новую R-заявку можно создать через 10 секунд.',R_HOURLY_LIMIT_10:'Лимит: 10 новых R-заявок за час.',R_ACTIVE_LIMIT_20:'У вас уже 20 активных R-заявок.',SELLER_ACTIVE_LIMIT_20:'У продавца уже 20 активных R-заявок.',MAX_4_PHOTOS:'Можно отправить максимум 4 фотографии.',PHOTO_TOO_LARGE:'Каждая фотография должна быть не больше 5 MB.',INVALID_PHOTO:'Используйте корректные JPEG, PNG или WebP.',PHOTO_DIMENSIONS_LIMIT:'Слишком большое разрешение фотографии.',INVALID_TEXT_MAX_1000:'Максимум 1 000 символов. Удалите недопустимые символы.',EMPTY_MESSAGE:'Напишите сообщение или добавьте фото.',MESSAGE_IN_PROGRESS:'Предыдущая отправка ещё выполняется. Повторите позже с тем же сообщением.',IDEMPOTENCY_CONFLICT:'Текст или фотографии этой попытки изменились. Начните новую попытку.',PHOTO_UPLOAD_UNCERTAIN_USE_NEW_ATTEMPT:'Загрузка фото не подтверждена. Можно повторить эту попытку позже или начать новую. Сообщение ещё не сохранено.',ATTEMPT_EXPIRED:'Попытка устарела. Начните новую.',LISTING_NOT_AVAILABLE:'Товар уже недоступен.',CHAT_SERVER_ERROR:'Не удалось выполнить действие. Повторите с тем же сообщением.',MAINTENANCE:'Приложение временно на обслуживании.'};
+ function fail(e){const box=$c('uzcError');box.textContent=errors[e.code||e.message]||'Не удалось выполнить действие. Проверьте соединение и повторите.';box.hidden=false;}
+ function clearError(){$c('uzcError').hidden=true;}
+ async function api(path,body,method){
+  const auth=currentTelegramInitDataV108();if(!auth){const e=new Error('TELEGRAM_AUTH_REQUIRED');e.code=e.message;throw e;}
+  const headers={'X-Telegram-Init-Data':auth};if(body&&!(body instanceof FormData))headers['Content-Type']='application/json';
+  const controller=new AbortController(),timer=setTimeout(()=>controller.abort(),body instanceof FormData?180000:20000);
+  try{const r=await fetch(MARKETPLACE_API+path,{method:method||(body===undefined?'GET':'POST'),headers,cache:'no-store',signal:controller.signal,...(body===undefined?{}:{body:body instanceof FormData?body:JSON.stringify(body)})});const d=await r.json().catch(()=>({}));if(!r.ok||!d.ok){const e=new Error(d.error||'REQUEST_FAILED');e.code=e.message;throw e;}return d;}finally{clearTimeout(timer);}
+ }
+ function scope(){return startListing?'listing_'+startListing:chat?.id||'';}
+ function saveDraft(){const key=scope();if(!key)return;drafts.set(key,{text:$c('uzcText').value,photos:[...$c('uzcPhotos').files],attempt});}
+ function releaseURLs(){for(const u of blobURLs)URL.revokeObjectURL(u);blobURLs=[];photoCache.clear();}
+ function pause(){saveDraft();epoch++;clearInterval(poll);poll=null;releaseURLs();}
+ function go(){opening=true;page('chats');opening=false;}
+ function reset(){pause();chat=null;startListing=0;messages=new Map();oldest=null;newest=0;attempt=null;clearError();}
+ function renderList(items,append=false){
+  const root=$c('uzcList');if(!append){root.innerHTML='<div class="r12-request-actions"><button type="button" class="r12-secondary" id="uzcSupport">Написать в поддержку</button><a href="https://t.me/uzbek_ceo" target="_blank" rel="noopener noreferrer">Поддержка в Telegram</a></div><p>Внешний Telegram — отдельная переписка. Внутренние сообщения хранятся в приложении.</p><div id="uzcListRows"></div><button type="button" class="r12-secondary" id="uzcMore" hidden>Ещё чаты</button>';$c('uzcSupport').onclick=support;}
+  const rows=$c('uzcListRows');for(const c of items){const b=document.createElement('button');b.type='button';b.className='r12-box';b.style.cssText='display:block;width:100%;text-align:left;margin:8px 0';b.innerHTML=`<b>${esc(c.number||c.title)}</b> · ${c.kind==='support'?'Поддержка':c.kind==='ur'?'Заказ':'R-заявка'}${c.unread?` <strong>(${Number(c.unread)} новых)</strong>`:''}<p>${esc(c.preview||'Нет сообщений')}</p><small>${c.status==='closed'?'Только чтение':'Открыт'}</small>`;b.onclick=()=>open(c.id,adminMode);rows.append(b);}
+  if(!items.length&&!append)rows.textContent='Чатов пока нет.';
+  $c('uzcMore').hidden=!listCursor;$c('uzcMore').onclick=async()=>{const e=epoch;try{const d=await api((adminMode?'/admin/chats':'/chats')+'?before='+listCursor);if(e!==epoch)return;listCursor=d.nextCursor;renderList(d.chats,true);}catch(x){fail(x);}};
+ }
+ async function list(admin=false){
+  if(busy)return;reset();adminMode=admin;const e=epoch;go();$c('uzcTitle').textContent=admin?'UR-чаты и поддержка':'Чаты';$c('uzcBack').hidden=true;$c('uzcConversation').hidden=true;$c('uzcList').hidden=false;$c('uzcList').textContent='Загрузка…';
+  try{const d=await api(admin?'/admin/chats':'/chats');if(e!==epoch)return;listCursor=d.nextCursor;renderList(d.chats);const badge=document.getElementById('uzcUnreadBadge');if(badge){const n=Number(d.unreadTotal||0);badge.textContent=n?String(n):'';}}catch(x){if(e===epoch)fail(x);}
+ }
+ function restoreDraft(){const d=drafts.get(scope());$c('uzcText').value=d?.text||'';attempt=d?.attempt||null;$c('uzcPhotos').value='';if(d?.photos?.length){try{const transfer=new DataTransfer();for(const f of d.photos)transfer.items.add(f);$c('uzcPhotos').files=transfer.files;}catch{$c('uzcDraftLabel').textContent='Прикрепите фотографии повторно.';}}
+  $c('uzcNewAttempt').hidden=!attempt;$c('uzcDraftLabel').textContent=attempt?'Повтор отправит ту же попытку без дубликата.':'';
+ }
+ function detail(c){
+  $c('uzcStatus').textContent=c.status==='closed'?'Чат закрыт · только чтение':'Чат открыт';$c('uzcForm').hidden=c.status==='closed';const root=$c('uzcInfo');root.replaceChildren();
+  if(c.request){const r=c.request;root.innerHTML=`<p>${esc(r.number)} · ${esc(r.title)} · ${money(r.price)}</p><p>Покупатель: ${esc(r.buyerName)}<br>Продавец: ${esc(r.sellerName)}</p><p>Статус заявки: ${esc(r.status)}</p>`;}
+  if(c.order){const o=c.order;root.innerHTML=`<p>${esc(o.number)} · Статус заказа: ${esc(o.status)}</p>${(Array.isArray(o.items)?o.items:[]).map(i=>`<p>${esc(i.name||i.title||'Товар')} · Цвет: ${esc(i.color||'—')} · Размер: ${esc(i.size||'—')} · Количество: ${Number(i.quantity||i.qty||1)}</p>`).join('')}<p>Итого: ${money(o.total)}</p>`;if(o.cargo){const p=document.createElement('p');p.textContent='Карго: '+[o.cargo.nameRu||o.cargo.nameUz||o.cargo.code,o.cargo.rateCents!=null?'$'+(o.cargo.rateCents/100).toFixed(2)+'/кг':'',o.cargo.minDays!=null?o.cargo.minDays+'–'+o.cargo.maxDays+' дней':''].filter(Boolean).join(' · ');root.append(p);}}
+  if(c.kind==='support')root.textContent='Внутренняя поддержка. Для отдельной переписки в Telegram: https://t.me/uzbek_ceo';
+  const actions=$c('uzcActions');actions.replaceChildren();
+  const button=(label,fn)=>{const b=document.createElement('button');b.type='button';b.className='r12-secondary';b.textContent=label;b.onclick=fn;actions.append(b);};
+  if(c.request){button('Сделка и оценка',()=>window.UzrResale120?.openDeal(c.request.id));if(c.status==='open')button('Закрыть заявку',async()=>{if(!confirm('Закрыть заявку? Переписка станет доступна только для чтения.'))return;try{await api('/contact-requests/close',{requestId:c.request.id});await refresh();}catch(x){fail(x);}});}
+  if(c.kind==='ur'&&adminMode)button(c.status==='closed'?'Открыть чат':'Закрыть чат',async()=>{try{await api('/chats/'+c.id+'/status',{status:c.status==='closed'?'open':'closed'});await refresh();}catch(x){fail(x);}});
+ }
+ async function photos(root,e){
+  for(const img of root.querySelectorAll('img[data-uzc-photo]')){if(photoCache.has(img.dataset.uzcPhoto)){img.src=photoCache.get(img.dataset.uzcPhoto);continue;}try{const r=await fetch(MARKETPLACE_API+'/chats/images/'+img.dataset.uzcPhoto,{headers:{'X-Telegram-Init-Data':currentTelegramInitDataV108()},cache:'no-store'});if(!r.ok)throw Error();const b=await r.blob();if(e!==epoch||!root.contains(img))continue;const u=URL.createObjectURL(b);blobURLs.push(u);photoCache.set(img.dataset.uzcPhoto,u);img.src=u;}catch{img.alt='Фото недоступно';}}
+ }
+ async function draw(){
+  const root=$c('uzcMessages');root.replaceChildren();const e=epoch,me=currentTelegramIdV108();
+  for(const m of [...messages.values()].sort((a,b)=>a.id-b.id)){const a=document.createElement('article');a.className='r12-box';a.style.cssText='margin:8px 0;overflow-wrap:anywhere';
+   a.innerHTML=`<small>${m.senderId===me?'Вы':chat.kind==='r'?'Собеседник':m.senderId===String(chat.order?.buyerId||chat.ownerId)?'Покупатель':'Собеседник'} · ${esc(new Date(m.createdMs).toLocaleString())}${m.legacy?' · исходное сообщение заявки':''}</small><p style="white-space:pre-wrap">${esc(m.text)}</p>${m.attachments.map(p=>`<img data-uzc-photo="${esc(p.id)}" style="max-width:100%;max-height:320px;display:block" alt="Фото">`).join('')}${m.senderId===me&&!m.legacy?`<small>${m.readBy.length?'Прочитано':'Сохранено в приложении'}</small>`:''}`;root.append(a);}
+  $c('uzcOlder').hidden=!oldest;await photos(root,e);
+ }
+ async function readDisplayed(){if(!newest||document.hidden||currentPageId()!=='chats')return;await api('/chats/'+chat.id+'/read',{messageId:newest});}
+ async function refresh(older=false){
+  if(!chat||busy&&!older)return;const id=chat.id,e=epoch;try{const d=await api('/chats/'+id+'/messages'+(older&&oldest?'?before='+oldest:newest?'?after='+newest:''));if(e!==epoch||chat?.id!==id)return;
+  chat=d.chat;detail(chat);for(const m of d.messages){messages.set(m.id,m);newest=Math.max(newest,m.id);}if(d.peerReadState)for(const m of messages.values())m.readBy=d.peerReadState.filter(p=>p.lastReadId>=m.id).map(p=>p.userId);if(older||oldest===null)oldest=d.nextCursor;
+  await draw();if(e!==epoch)return;await readDisplayed();
+  // after-pagination drains at most one additional page per user refresh/poll.
+  if(d.hasMore&&!older){$c('uzcStatus').textContent+=' · Есть ещё сообщения, нажмите «Обновить».';}
+  }catch(x){if(e===epoch)fail(x);}
+ }
+ async function open(id,admin=false){
+  if(busy)return;reset();adminMode=admin;chat={id};const e=epoch;go();$c('uzcList').hidden=true;$c('uzcConversation').hidden=false;$c('uzcBack').hidden=false;$c('uzcTitle').textContent='Чат';$c('uzcMessages').textContent='Загрузка…';$c('uzcForm').hidden=true;$c('uzcInfo').textContent='';$c('uzcActions').replaceChildren();
+  try{const d=await api('/chats/'+id+'/messages');if(e!==epoch)return;chat=d.chat;oldest=d.nextCursor;for(const m of d.messages){messages.set(m.id,m);newest=Math.max(newest,m.id);}$c('uzcTitle').textContent=chat.request?.number||chat.order?.number||'Поддержка';detail(chat);restoreDraft();await draw();if(e!==epoch)return;await readDisplayed();poll=setInterval(()=>{if(!document.hidden&&currentPageId()==='chats'&&!busy)refresh();},8000);}catch(x){if(e===epoch)fail(x);}
+ }
+ async function start(p){
+  if(busy||!p)return;const id=Number(p.listingId||String(p.id||'').replace(/^listing-/,''));if(!id)return;reset();adminMode=false;startListing=id;go();
+  $c('uzcTitle').textContent='Сообщение продавцу';$c('uzcList').hidden=true;$c('uzcConversation').hidden=false;$c('uzcBack').hidden=false;$c('uzcForm').hidden=false;$c('uzcOlder').hidden=true;$c('uzcActions').replaceChildren();$c('uzcMessages').replaceChildren();$c('uzcInfo').textContent=p.name||p.title||'Товар';$c('uzcStatus').textContent='Первое сохранённое сообщение создаст заявку. Оплату и передачу товара стороны согласовывают напрямую.';restoreDraft();
+ }
+ async function support(){try{const d=await api('/chats/support',{});await open(d.chatId);}catch(x){fail(x);}}
+ async function openRequest(id){await open('r_'+Number(id));}
+ async function openOrder(id,admin=false){await open('ur_'+Number(id),admin);}
+ $c('uzcForm').onsubmit=async event=>{
+  event.preventDefault();if(busy||!scope())return;clearError();const text=$c('uzcText').value,files=[...$c('uzcPhotos').files];
+  if(Array.from(text).length>1000)return fail({code:'INVALID_TEXT_MAX_1000'});if(files.length>4)return fail({code:'MAX_4_PHOTOS'});if(files.some(f=>f.size>5*1024*1024))return fail({code:'PHOTO_TOO_LARGE'});if(files.some(f=>!['image/jpeg','image/png','image/webp'].includes(f.type)))return fail({code:'INVALID_PHOTO'});if(!text.trim()&&!files.length)return fail({code:'EMPTY_MESSAGE'});
+  if(!attempt){const key=crypto.randomUUID();attempt={key,text,files};}
+  if(attempt.text!==text||attempt.files.length!==files.length||attempt.files.some((f,i)=>f.name!==files[i].name||f.size!==files[i].size||f.type!==files[i].type||f.lastModified!==files[i].lastModified))return fail({code:'IDEMPOTENCY_CONFLICT'});
+  const form=new FormData();form.set('text',text);form.set('clientKey',attempt.key);if(startListing)form.set('listingId',String(startListing));for(const f of files)form.append('photo',f,f.name);
+  const oldScope=scope(),e=epoch;busy=true;saveDraft();$c('uzcSend').disabled=true;$c('uzcText').disabled=true;$c('uzcPhotos').disabled=true;$c('uzcNewAttempt').disabled=true;
+  try{const d=await api(startListing?'/chats/r/start':'/chats/'+chat.id+'/messages',form);drafts.delete(oldScope);attempt=null;if(e!==epoch)return;$c('uzcText').value='';$c('uzcPhotos').value='';startListing=0;chat={id:d.chatId};busy=false;await open(d.chatId,adminMode);}
+  catch(x){if(e===epoch){fail(x);$c('uzcNewAttempt').hidden=false;}}
+  finally{busy=false;$c('uzcSend').disabled=false;$c('uzcText').disabled=false;$c('uzcPhotos').disabled=false;$c('uzcNewAttempt').disabled=false;}
+ };
+ $c('uzcNewAttempt').onclick=()=>{if(!busy&&confirm('Использовать новый идентификатор? Если предыдущая отправка была сохранена, это создаст ещё одно сообщение. При обычной ошибке сети сначала повторите прежнюю попытку.')){attempt=null;$c('uzcNewAttempt').hidden=true;saveDraft();clearError();}};
+ $c('uzcBack').onclick=()=>list(adminMode);$c('uzcOlder').onclick=()=>refresh(true);$c('uzcRefresh').onclick=()=>refresh();
+ const tab=$c('uzrChatTabV12');tab.disabled=false;tab.classList.remove('uzr-chat-disabled');tab.removeAttribute('aria-disabled');tab.removeAttribute('title');tab.querySelector('.uzr-chat-label').insertAdjacentHTML('afterend','<small id="uzcUnreadBadge" aria-label="Непрочитанные"></small>');
+ const adminBar=document.querySelector('[data-admin-v89-tab="orders"]')?.parentElement;if(adminBar){const b=document.createElement('button');b.type='button';b.textContent='Чаты';b.onclick=()=>list(true);adminBar.append(b);}
+ const supportRoot=$c('support');if(supportRoot){const b=document.createElement('button');b.type='button';b.className='r12-secondary';b.textContent='Внутренняя поддержка';b.onclick=support;supportRoot.append(b);}
+ window.adminOrderMessageOpenV111=id=>openOrder(id,true);
+ openContactRequestV49=start;
+ const renderBefore=renderContactRequestsV49;renderContactRequestsV49=function(){renderBefore();const list=$c('contactRequestsListV49');list?.querySelectorAll('[data-r12-bot]').forEach(b=>{b.textContent='Открыть чат';b.onclick=()=>openRequest(b.dataset.r12Bot);});list?.querySelectorAll('[data-r12-deal]').forEach(b=>{if(b.parentElement.querySelector('[data-r12-bot]'))return;const btn=document.createElement('button');btn.type='button';btn.textContent='Открыть чат';btn.onclick=()=>openRequest(b.dataset.r12Deal);b.parentElement.append(btn);});};
+ const orderBefore=openOrderDetail;openOrderDetail=function(o){orderBefore(o);const root=$c('orderDetailContent');const id=Number(o.id||String(o.orderNumber||o.order_number||'').replace(/^UR-/,''));if(id){const b=document.createElement('button');b.type='button';b.className='order-primary-action-v40';b.textContent='Чат по заказу';b.onclick=()=>{closeOrderDetailV40();openOrder(id);};root.querySelector('.order-actions-v40')?.prepend(b);}};
+ window.UzrChats12={list,open,start,support,openRequest,openOrder,onNavigate:id=>{if(opening)return;if(id==='chats')list();else pause();}};
+ async function badge(){if(document.hidden||!currentTelegramInitDataV108()||currentPageId()==='chats')return;try{const d=await api('/chats?limit=50');const n=Number(d.unreadTotal||0);$c('uzcUnreadBadge').textContent=n?String(n):'';}catch{}}
+ setInterval(badge,30000);setTimeout(badge,1500);
+ const param=new URLSearchParams(location.search).get('uzr_chat')||String(window.Telegram?.WebApp?.initDataUnsafe?.start_param||'').replace(/^chat_/, '');
+ if(/^(r_\d+|ur_\d+|s_\d+)$/.test(param))setTimeout(async()=>{try{const d=await api('/admin/me');await open(param,!!d.admin);}catch{await open(param);}},600);
+})();
+
+</script>
 </body></html>
