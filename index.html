@@ -14837,7 +14837,7 @@ html[data-uzr-theme] body #resaleProductV12 #uspRelatedGrid .card.uzr-product-ca
         <span class="uzr-consent-doc-icon-v58"><i data-lucide="file-signature"></i></span>
         <span class="uzr-consent-doc-copy-v58">
           <b>Пользовательское соглашение</b>
-          <small>Редакция 1.1</small>
+          <small>Редакция 1.3</small>
         </span>
         <i data-lucide="chevron-right"></i>
       </button>
@@ -14845,7 +14845,7 @@ html[data-uzr-theme] body #resaleProductV12 #uspRelatedGrid .card.uzr-product-ca
         <span class="uzr-consent-doc-icon-v58"><i data-lucide="lock-keyhole"></i></span>
         <span class="uzr-consent-doc-copy-v58">
           <b>Политика конфиденциальности</b>
-          <small>Редакция 1.2</small>
+          <small>Редакция 1.4</small>
         </span>
         <i data-lucide="chevron-right"></i>
       </button>
@@ -17691,6 +17691,11 @@ $("confirmBtn").onclick=async()=>{
 
    if(!response.ok||result.ok===false){
      const serverCode=String(result.error||result.code||"").trim();
+     if(serverCode==="CONSENT_REQUIRED"){
+       try{localStorage.removeItem(UZR_CONSENT_STORAGE_KEY_V58)}catch(_){}
+       setUzrConsentErrorV82("");
+       showUzrConsentV58();
+     }
      if(response.status>=400&&response.status<500&&response.status!==429){
        uzrClearOrderAttemptV92(clientOrderIdV92);
      }
@@ -20660,8 +20665,8 @@ document.getElementById("legalDocSearchV53")?.addEventListener("input",renderLeg
 
 
 <script id="uzr-consent-v82-script">
-const UZR_CONSENT_TERMS_VERSION_V58="1.2";
-const UZR_CONSENT_PRIVACY_VERSION_V58="1.3";
+const UZR_CONSENT_TERMS_VERSION_V58="1.3";
+const UZR_CONSENT_PRIVACY_VERSION_V58="1.4";
 const UZR_CONSENT_STORAGE_KEY_V58="uzr_legal_consent_v1";
 const UZR_LEGAL_DIRECT_API_V82=window.uzrApiBaseV110()+"/legal/acceptance";
 
@@ -20841,9 +20846,9 @@ function localAcceptancePayloadV81({acceptedAt,serverSynced=false,locale}={}){
 }
 
 /*
-  Legal edition 1.1 requires a fresh acceptance.
-  A previous 1.0 acceptance does not satisfy the current 1.1 versions.
-  Once 1.1 is accepted, the same versions are stored locally and in D1.
+  Every new legal edition requires a fresh explicit acceptance.
+  A previous acceptance does not satisfy current terms 1.3 / privacy 1.4.
+  The same exact version pair must be stored locally and in D1.
 */
 async function syncLocalAcceptanceToServerV81(){
   const local=readUzrConsentV58();
@@ -20869,8 +20874,13 @@ async function acceptUzrLegalV58(){
 
   const local=localAcceptancePayloadV81({serverSynced:false});
 
-  /* Browser/preview fallback only. */
+  /* Local preview can simulate consent; Telegram must always save an authenticated acceptance. */
   if(!hasTelegramAuthV81()){
+    if(window.Telegram?.WebApp){
+      setUzrConsentBusyV81(false,"Повторить");
+      setUzrConsentErrorV82("Не удалось подтвердить Telegram-сессию. Закройте Mini App, откройте снова и повторите.");
+      return;
+    }
     writeUzrConsentV81(local);
     setUzrConsentBusyV81(false,"Продолжить");
     hideUzrConsentV58();
@@ -21701,7 +21711,10 @@ openUzrConsentLegalV58=function(kind){
 
 acceptUzrLegalV58=async function(){
   const t=legalTextV102(); setUzrConsentBusyV81(true,t.saving); setUzrConsentErrorV82(""); const local=localAcceptancePayloadV81({serverSynced:false});
-  if(!hasTelegramAuthV81()){writeUzrConsentV81(local);setUzrConsentBusyV81(false,t.continue);hideUzrConsentV58();return;}
+  if(!hasTelegramAuthV81()){
+    if(window.Telegram?.WebApp){setUzrConsentBusyV81(false,t.retry);setUzrConsentErrorV82(t.serverFailed);return;}
+    writeUzrConsentV81(local);setUzrConsentBusyV81(false,t.continue);hideUzrConsentV58();return;
+  }
   try{
     const result=await postServerLegalAcceptanceV81();
     if(result.status===409&&result.data?.error==="LEGAL_VERSION_MISMATCH"){try{localStorage.removeItem(UZR_CONSENT_STORAGE_KEY_V58)}catch(_){}setUzrConsentBusyV81(false,t.updateApp);setUzrConsentErrorV82(t.versionChanged);showUzrConsentV58();return;}
@@ -21877,7 +21890,7 @@ const button=(action,label,cls='')=>`<button type="button" class="sr110-btn ${cl
 const row=(label,value)=>`<div class="sr110-row"><span>${esc(label)}</span><strong>${esc(value===null||value===undefined||value===''?'—':value)}</strong></div>`;
 const input=(name,label,value='',opts='')=>`<label class="sr110-field field"><span>${esc(label)}</span><input name="${name}" value="${esc(value)}" ${opts}></label>`;
 function consent(offer=false){return `<label class="sr110-check"><input name="consent" type="checkbox"><span>${esc(t(offer?'offerConsent':'consent'))} <button type="button" class="sr110-link" style="border:0;background:none;padding:0" data-sr-action="docs">${esc(t('docs'))}</button></span></label>`}
-const consentPayload=()=>({accepted:true,age16:true,termsVersion:'1.2',privacyVersion:'1.3',offerVersion:'1.1'});
+const consentPayload=()=>({accepted:true,age16:true,termsVersion:UZR_CONSENT_TERMS_VERSION_V58,privacyVersion:UZR_CONSENT_PRIVACY_VERSION_V58,offerVersion:UZR_LEGAL_V110_VERSIONS.offer});
 function apiBase(){return window.uzrApiBaseV110()}
 async function auth(){const u=await waitForTelegramIdentityV108(3000);if(!u?.id||!currentTelegramInitDataV108())throw Error('TELEGRAM_AUTH_REQUIRED');return u}
 async function api(path,body,method){
