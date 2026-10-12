@@ -14676,6 +14676,149 @@ html[data-uzr-theme] body :is(#home,#china,#favorites,#viewed,#officialStoreView
 html[data-uzr-theme] body :is(#home,#china,#favorites,#viewed,#officialStoreView,#sellerProfile) :is(#homeGrid,#chinaGridV32,#favoriteGrid,#viewedGrid,#officialStoreGrid,#sellerProductsGridV26) .card.uzr-product-card-v12 .uzr-card-meta-v12{font-size:11px!important;}
 }
 </style>
+
+<style id="uzr-v121-related-approved-card-styles">
+/* Same exact approved cards as the catalog, but scoped to related sellers' listings. */
+#resaleProductV12 #uspRelatedGrid{display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;width:100%!important;min-width:0!important;align-items:stretch!important;gap:12px 10px!important;}
+#resaleProductV12 #uspRelatedGrid .card{min-width:0!important;max-width:none!important;}
+
+/* v1.2: one scoped card layout for all existing product grids.
+   No global navigation/product-page/brand styles are changed here.
+   The old-price row is reserved even when no discount is present. */
+html[data-uzr-theme] body #resaleProductV12 #uspRelatedGrid{display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:14px 12px!important;align-items:stretch!important;width:100%!important;box-sizing:border-box!important;}
+html[data-uzr-theme] body #resaleProductV12 #uspRelatedGrid[hidden]{display:none!important;}
+html[data-uzr-theme] body #resaleProductV12 #uspRelatedGrid .card.uzr-product-card-v12{--uc-card:#10212c!important;--uc-text:#f3f7fa!important;--uc-muted:#a3b6c3!important;--uc-line:#2a414f!important;--uc-media:#162c39!important;--uc-blue:#20a9ff!important;--uc-heart-bg:rgba(8,25,36,.8)!important;--uc-heart:#f7fbff!important;display:flex!important;flex-direction:column!important;position:relative!important;isolation:isolate!important;container-type:inline-size!important;width:100%!important;height:100%!important;min-width:0!important;margin:0!important;padding:0!important;border:1px solid var(--uc-line)!important;border-radius:20px!important;overflow:hidden!important;background:var(--uc-card)!important;background-image:none!important;box-shadow:0 3px 12px rgba(0,0,0,.06)!important;color:var(--uc-text)!important;text-align:left!important;cursor:pointer!important;box-sizing:border-box!important;transform:none!important;}
+html[data-uzr-theme="light"] body #resaleProductV12 #uspRelatedGrid .card.uzr-product-card-v12{--uc-card:#ffffff!important;--uc-text:#142532!important;--uc-muted:#607888!important;--uc-line:#e0e7ee!important;--uc-media:#f5f7f9!important;--uc-blue:#008fdf!important;--uc-heart-bg:rgba(255,255,255,.94)!important;--uc-heart:#102839!important;box-shadow:0 4px 16px rgba(20,42,65,.055)!important;}
+html[data-uzr-theme] body #resaleProductV12 #uspRelatedGrid .card.uzr-product-card-v12 .uzr-card-media-v12{order:0!important;position:relative!important;isolation:isolate!important;display:block!important;flex:0 0 auto!important;width:calc(100% - 12px)!important;height:auto!important;min-height:0!important;max-height:none!important;max-block-size:none!important;aspect-ratio:4 / 3!important;margin:6px 6px 0!important;padding:0!important;overflow:hidden!important;border:0!important;border-radius:15px!important;background:var(--uc-media)!important;box-shadow:none!important;}
+html[data-uzr-theme] body #resaleProductV12 #uspRelatedGrid .card.uzr-product-card-v12 .photo{position:absolute!important;inset:0!important;display:block!important;width:100%!important;height:100%!important;min-height:0!important;margin:0!important;padding:0!important;border:0!important;border-radius:inherit!important;overflow:hidden!important;background:var(--uc-media)!important;box-shadow:none!important;pointer-events:none!important;}
+html[data-uzr-theme] body #resaleProductV12 #uspRelatedGrid .card.uzr-product-card-v12 .photo img{display:block!important;width:100%!important;height:100%!important;max-width:100%!important;object-fit:contain!important;object-position:center!important;padding:0!important;margin:0!important;border:0!important;border-radius:0!important;background:transparent!important;transform:none!important;filter:none!important;}
+html[data-uzr-theme] body #resaleProductV12 #uspRelatedGrid .card.uzr-product-card-v12 .photo img[hidden]{display:none!important;}
+html[data-uzr-theme] body #resaleProductV12 #uspRelatedGrid .card.uzr-product-card-v12 .product-badge-v15{position:absolute!important;z-index:2!important;top:6px!important;left:6px!important;right:auto!important;bottom:auto!important;display:inline-flex!important;align-items:center!important;justify-content:center!important;width:auto!important;max-width:calc(100% - 54px)!important;height:25px!important;min-height:25px!important;margin:0!important;padding:0 9px!important;border:0!important;border-radius:9px!important;background:#009bf3!important;background-image:none!important;color:#ffffff!important;-webkit-text-fill-color:#ffffff!important;font-size:10.5px!important;line-height:25px!important;font-weight:650!important;letter-spacing:0!important;white-space:nowrap!important;overflow:hidden!important;text-overflow:ellipsis!important;box-shadow:none!important;pointer-events:none!important;}
+html[data-uzr-theme] body #resaleProductV12 #uspRelatedGrid .card.uzr-product-card-v12 .product-badge-v15.badge-china{background:#ff563d!important;color:#ffffff!important;-webkit-text-fill-color:#ffffff!important;}
+html[data-uzr-theme] body #resaleProductV12 #uspRelatedGrid .card.uzr-product-card-v12 .product-discount-badge-v87{position:absolute!important;z-index:2!important;top:37px!important;left:6px!important;right:auto!important;bottom:auto!important;display:inline-flex!important;align-items:center!important;justify-content:center!important;width:auto!important;max-width:calc(100% - 54px)!important;height:23px!important;min-height:23px!important;margin:0!important;padding:0 8px!important;border:0!important;border-radius:8px!important;background:#f43262!important;background-image:none!important;color:#ffffff!important;-webkit-text-fill-color:#ffffff!important;font-size:10.5px!important;line-height:23px!important;font-weight:650!important;letter-spacing:0!important;white-space:nowrap!important;box-shadow:none!important;pointer-events:none!important;}
+html[data-uzr-theme] body #resaleProductV12 #uspRelatedGrid .card.uzr-product-card-v12 .product-heart{position:absolute!important;z-index:4!important;display:flex!important;align-items:center!important;justify-content:center!important;top:4px!important;right:4px!important;left:auto!important;bottom:auto!important;width:36px!important;min-width:36px!important;height:36px!important;min-height:36px!important;padding:0!important;margin:0!important;border:1px solid rgba(128,150,164,.18)!important;border-radius:50%!important;background:var(--uc-heart-bg)!important;background-image:none!important;color:var(--uc-heart)!important;-webkit-text-fill-color:currentColor!important;box-shadow:none!important;cursor:pointer!important;pointer-events:auto!important;touch-action:manipulation!important;transform:none!important;backdrop-filter:blur(6px)!important;-webkit-backdrop-filter:blur(6px)!important;}
+html[data-uzr-theme] body #resaleProductV12 #uspRelatedGrid .card.uzr-product-card-v12 .product-heart svg{display:block!important;width:23px!important;height:23px!important;min-width:23px!important;min-height:23px!important;flex:0 0 23px!important;color:inherit!important;stroke:currentColor!important;stroke-width:1.8!important;stroke-linecap:round!important;stroke-linejoin:round!important;fill:none!important;pointer-events:none!important;}
+html[data-uzr-theme] body #resaleProductV12 #uspRelatedGrid .card.uzr-product-card-v12 .product-heart svg path{fill:none!important;stroke:currentColor!important;}
+html[data-uzr-theme] body #resaleProductV12 #uspRelatedGrid .card.uzr-product-card-v12 .product-heart.is-favorite{color:#fa476e!important;}
+html[data-uzr-theme] body #resaleProductV12 #uspRelatedGrid .card.uzr-product-card-v12 .product-heart.is-favorite svg path{fill:currentColor!important;stroke:currentColor!important;}
+html[data-uzr-theme] body #resaleProductV12 #uspRelatedGrid .card.uzr-product-card-v12 .product-heart:before,html[data-uzr-theme] body #resaleProductV12 #uspRelatedGrid .card.uzr-product-card-v12 .product-heart:after{display:none!important;content:none!important;}
+html[data-uzr-theme] body #resaleProductV12 #uspRelatedGrid .card.uzr-product-card-v12:focus-visible,html[data-uzr-theme] body #resaleProductV12 #uspRelatedGrid .card.uzr-product-card-v12 .product-heart:focus-visible{outline:2px solid var(--uc-blue)!important;outline-offset:-3px!important;}
+html[data-uzr-theme] body #resaleProductV12 #uspRelatedGrid .card.uzr-product-card-v12 .uzr-card-info-v12{order:1!important;display:flex!important;flex-direction:column!important;justify-content:flex-start!important;align-items:stretch!important;gap:0!important;width:100%!important;height:auto!important;min-height:0!important;flex:1 0 auto!important;margin:0!important;padding:10px 10px 11px!important;background:var(--uc-card)!important;background-image:none!important;border:0!important;border-radius:0!important;overflow:hidden!important;box-sizing:border-box!important;}
+html[data-uzr-theme] body #resaleProductV12 #uspRelatedGrid .card.uzr-product-card-v12 .name{order:0!important;display:-webkit-box!important;-webkit-line-clamp:2!important;-webkit-box-orient:vertical!important;width:100%!important;min-width:0!important;height:36px!important;min-height:36px!important;max-height:36px!important;margin:0!important;padding:0!important;overflow:hidden!important;text-overflow:ellipsis!important;white-space:normal!important;overflow-wrap:anywhere!important;word-break:normal!important;font-size:13px!important;line-height:18px!important;font-weight:600!important;letter-spacing:-.15px!important;color:var(--uc-text)!important;-webkit-text-fill-color:var(--uc-text)!important;text-decoration:none!important;text-align:left!important;}
+html[data-uzr-theme] body #resaleProductV12 #uspRelatedGrid .card.uzr-product-card-v12 .uzr-card-price-v12{order:1!important;display:grid!important;grid-template-columns:minmax(0,1fr)!important;grid-template-rows:14px 23px!important;align-content:end!important;align-items:end!important;justify-content:start!important;justify-items:start!important;gap:1px!important;width:100%!important;height:38px!important;min-height:38px!important;max-height:38px!important;margin:3px 0 0!important;padding:0!important;overflow:visible!important;box-sizing:border-box!important;}
+html[data-uzr-theme] body #resaleProductV12 #uspRelatedGrid .card.uzr-product-card-v12 .product-card-old-price-v87{order:0!important;grid-column:1!important;grid-row:1!important;display:block!important;width:100%!important;height:14px!important;min-height:14px!important;margin:0!important;padding:0!important;font-size:10px!important;line-height:14px!important;font-weight:400!important;letter-spacing:-.1px!important;white-space:nowrap!important;color:var(--uc-muted)!important;-webkit-text-fill-color:var(--uc-muted)!important;text-decoration:line-through!important;text-decoration-thickness:1px!important;text-overflow:clip!important;overflow:visible!important;}
+html[data-uzr-theme] body #resaleProductV12 #uspRelatedGrid .card.uzr-product-card-v12 .price{order:1!important;grid-column:1!important;grid-row:2!important;display:block!important;width:100%!important;height:23px!important;min-height:23px!important;margin:0!important;padding:0!important;font-size:clamp(13px, 10cqw, 19px)!important;line-height:23px!important;font-weight:700!important;letter-spacing:-.3px!important;font-variant-numeric:tabular-nums!important;white-space:nowrap!important;color:var(--uc-blue)!important;-webkit-text-fill-color:var(--uc-blue)!important;text-decoration:none!important;text-overflow:clip!important;overflow:visible!important;}
+html[data-uzr-theme] body #resaleProductV12 #uspRelatedGrid .card.uzr-product-card-v12 .is-long-price .price{font-size:clamp(10px, 7.7cqw, 16px)!important;letter-spacing:-.3px!important;}
+html[data-uzr-theme] body #resaleProductV12 #uspRelatedGrid .card.uzr-product-card-v12 .is-long-price .product-card-old-price-v87{font-size:clamp(8px, 6.8cqw, 10px)!important;}
+html[data-uzr-theme] body #resaleProductV12 #uspRelatedGrid .card.uzr-product-card-v12 .uzr-card-meta-row-v12{order:2!important;display:flex!important;align-items:center!important;justify-content:flex-start!important;flex-wrap:nowrap!important;gap:8px!important;width:100%!important;height:17px!important;min-height:17px!important;margin:8px 0 0!important;padding:0!important;overflow:hidden!important;border:0!important;background:transparent!important;}
+html[data-uzr-theme] body #resaleProductV12 #uspRelatedGrid .card.uzr-product-card-v12 .uzr-card-meta-v12{display:inline-flex!important;align-items:center!important;gap:4px!important;min-width:0!important;max-width:100%!important;flex:0 1 auto!important;font-size:10.5px!important;line-height:17px!important;font-weight:400!important;white-space:nowrap!important;overflow:hidden!important;color:var(--uc-muted)!important;-webkit-text-fill-color:var(--uc-muted)!important;}
+html[data-uzr-theme] body #resaleProductV12 #uspRelatedGrid .card.uzr-product-card-v12 .uzr-card-meta-v12:only-child{max-width:100%!important;flex:0 1 auto!important;}
+html[data-uzr-theme] body #resaleProductV12 #uspRelatedGrid .card.uzr-product-card-v12 .uzr-card-meta-v12:has(+.uzr-card-meta-v12){max-width:57%!important;flex:0 1 auto!important;}
+html[data-uzr-theme] body #resaleProductV12 #uspRelatedGrid .card.uzr-product-card-v12 .uzr-card-meta-v12 svg{display:block!important;width:13px!important;height:13px!important;min-width:13px!important;min-height:13px!important;flex:0 0 13px!important;stroke:currentColor!important;stroke-width:1.7!important;fill:none!important;stroke-linejoin:round!important;stroke-linecap:round!important;}
+html[data-uzr-theme] body #resaleProductV12 #uspRelatedGrid .card.uzr-product-card-v12 .uzr-card-meta-v12>span{min-width:0!important;overflow:hidden!important;text-overflow:ellipsis!important;white-space:nowrap!important;color:inherit!important;-webkit-text-fill-color:inherit!important;}
+html[data-uzr-theme] body #resaleProductV12 #uspRelatedGrid .card.uzr-product-card-v12 .uzr-card-photo-empty-v12{display:flex!important;position:absolute!important;inset:0!important;flex-direction:column!important;gap:7px!important;align-items:center!important;justify-content:center!important;padding:18px 10px 7px!important;text-align:center!important;background:var(--uc-media)!important;color:var(--uc-muted)!important;font-size:11px!important;}
+html[data-uzr-theme] body #resaleProductV12 #uspRelatedGrid .card.uzr-product-card-v12 .uzr-card-photo-empty-v12 svg{width:27px!important;height:27px!important;stroke:currentColor!important;stroke-width:1.5!important;fill:none!important;}
+html[data-uzr-theme] body #resaleProductV12 #uspRelatedGrid .card.uzr-product-card-v12 .uzr-card-photo-empty-v12[hidden]{display:none!important;}
+@media(max-width:359px){
+html[data-uzr-theme] body #resaleProductV12 #uspRelatedGrid{gap:12px 9px!important;}
+html[data-uzr-theme] body #resaleProductV12 #uspRelatedGrid .card.uzr-product-card-v12{border-radius:18px!important;}
+html[data-uzr-theme] body #resaleProductV12 #uspRelatedGrid .card.uzr-product-card-v12 .uzr-card-info-v12{padding:9px 8px 10px!important;}
+html[data-uzr-theme] body #resaleProductV12 #uspRelatedGrid .card.uzr-product-card-v12 .name{font-size:12px!important;line-height:17px!important;height:34px!important;min-height:34px!important;max-height:34px!important;}
+html[data-uzr-theme] body #resaleProductV12 #uspRelatedGrid .card.uzr-product-card-v12 .product-badge-v15{padding:0 7px!important;font-size:10px!important;}
+html[data-uzr-theme] body #resaleProductV12 #uspRelatedGrid .card.uzr-product-card-v12 .uzr-card-meta-v12{font-size:10px!important;}
+html[data-uzr-theme] body #resaleProductV12 #uspRelatedGrid .card.uzr-product-card-v12 .uzr-card-meta-row-v12{gap:6px!important;}
+}
+@media(min-width:600px){
+html[data-uzr-theme] body #resaleProductV12 #uspRelatedGrid .card.uzr-product-card-v12 .name{font-size:15px!important;line-height:20px!important;height:40px!important;min-height:40px!important;max-height:40px!important;}
+html[data-uzr-theme] body #resaleProductV12 #uspRelatedGrid .card.uzr-product-card-v12 .uzr-card-info-v12{padding:11px 12px 13px!important;}
+html[data-uzr-theme] body #resaleProductV12 #uspRelatedGrid .card.uzr-product-card-v12 .uzr-card-meta-v12{font-size:12px!important;}
+html[data-uzr-theme] body #resaleProductV12 #uspRelatedGrid .card.uzr-product-card-v12 .product-badge-v15{font-size:12px!important;height:28px!important;min-height:28px!important;}
+html[data-uzr-theme] body #resaleProductV12 #uspRelatedGrid .card.uzr-product-card-v12 .product-discount-badge-v87{top:40px!important;font-size:11px!important;}
+}
+
+
+
+/* Final compact cards. Scoped to card markup; no nav, brand, checkout, persistent state or APIs touched. */
+html[data-uzr-theme] body #resaleProductV12 #uspRelatedGrid {
+  gap:12px 10px!important; align-items:start!important;
+}
+html[data-uzr-theme] body #resaleProductV12 #uspRelatedGrid .card.uzr-product-card-v12 {
+  height:auto!important; min-height:0!important; align-self:start!important;
+  border-radius:18px!important;
+}
+html[data-uzr-theme] body #resaleProductV12 #uspRelatedGrid .card.uzr-product-card-v12 .uzr-card-media-v12 {
+  margin:5px 5px 0!important;width:calc(100% - 10px)!important;
+  aspect-ratio:1.22 / 1!important;border-radius:14px!important;
+}
+html[data-uzr-theme] body #resaleProductV12 #uspRelatedGrid .card.uzr-product-card-v12[data-badge="china"] .uzr-card-media-v12,
+html[data-uzr-theme] body #resaleProductV12 #uspRelatedGrid .card.uzr-product-card-v12[data-badge="china"] .photo,
+html[data-uzr-theme] body #resaleProductV12 #uspRelatedGrid .card.uzr-product-card-v12[data-badge="china"] .photo img {
+ background:#fff!important;
+}
+html[data-uzr-theme] body #resaleProductV12 #uspRelatedGrid .card.uzr-product-card-v12 .uzr-card-info-v12 {
+ flex:0 0 auto!important; min-height:0!important; height:auto!important;
+ padding:8px 9px 10px!important; gap:0!important;
+}
+html[data-uzr-theme] body #resaleProductV12 #uspRelatedGrid .card.uzr-product-card-v12 .name {
+ height:32px!important; min-height:32px!important; max-height:32px!important;
+ font-size:12px!important;line-height:16px!important;font-weight:650!important;
+}
+html[data-uzr-theme] body #resaleProductV12 #uspRelatedGrid .card.uzr-product-card-v12 .uzr-card-price-v12 {
+ margin:2px 0 0!important;grid-template-rows:11px 23px!important;gap:0!important;
+ height:34px!important;min-height:34px!important;max-height:34px!important;
+}
+html[data-uzr-theme] body #resaleProductV12 #uspRelatedGrid .card.uzr-product-card-v12 .product-card-old-price-v87 {
+ height:11px!important; min-height:11px!important; font-size:9px!important;line-height:11px!important;
+}
+html[data-uzr-theme] body #resaleProductV12 #uspRelatedGrid .card.uzr-product-card-v12 .price {
+ height:23px!important;min-height:23px!important;line-height:23px!important;
+ font-size:clamp(12px,9.6cqw,18px)!important;letter-spacing:-.4px!important;
+}
+html[data-uzr-theme] body #resaleProductV12 #uspRelatedGrid .card.uzr-product-card-v12 .is-long-price .price{font-size:clamp(11px,8cqw,15px)!important;}
+html[data-uzr-theme] body #resaleProductV12 #uspRelatedGrid .card.uzr-product-card-v12 .uzr-card-meta-row-v12{
+ margin:4px 0 0!important; height:16px!important; min-height:16px!important; gap:6px!important;
+}
+html[data-uzr-theme] body #resaleProductV12 #uspRelatedGrid .card.uzr-product-card-v12 .uzr-card-meta-v12 {font-size:9px!important;line-height:16px!important;gap:3px!important;}
+html[data-uzr-theme] body #resaleProductV12 #uspRelatedGrid .card.uzr-product-card-v12 .uzr-card-meta-v12 svg{width:12px!important;height:12px!important;min-width:12px!important;min-height:12px!important;flex-basis:12px!important;}
+html[data-uzr-theme] body #resaleProductV12 #uspRelatedGrid .card.uzr-product-card-v12 .product-badge-v15{
+ top:5px!important;left:5px!important;height:23px!important;min-height:23px!important;line-height:23px!important;font-size:10px!important;
+}
+html[data-uzr-theme] body #resaleProductV12 #uspRelatedGrid .card.uzr-product-card-v12 .product-discount-badge-v87{top:33px!important;left:5px!important;height:20px!important;min-height:20px!important;line-height:20px!important;font-size:10px!important;}
+html[data-uzr-theme] body #resaleProductV12 #uspRelatedGrid .card.uzr-product-card-v12 .product-heart{top:4px!important;right:4px!important;width:33px!important;min-width:33px!important;height:33px!important;min-height:33px!important;}
+html[data-uzr-theme] body #resaleProductV12 #uspRelatedGrid .card.uzr-product-card-v12 .product-heart svg{width:21px!important;min-width:21px!important;height:21px!important;min-height:21px!important;flex-basis:21px!important;}
+@media(min-width:600px){
+html[data-uzr-theme] body #resaleProductV12 #uspRelatedGrid .card.uzr-product-card-v12 .name{font-size:14px!important;line-height:18px!important;height:36px!important;min-height:36px!important;max-height:36px!important;}
+html[data-uzr-theme] body #resaleProductV12 #uspRelatedGrid .card.uzr-product-card-v12 .uzr-card-meta-v12{font-size:11px!important;}
+}
+
+
+/* Card-only typography refresh: natural flow without blank reserved name or crossed-price rows.
+   Existing business data, discount logic, click events, favorites and asset payload are unchanged. */
+html[data-uzr-theme] body #resaleProductV12 #uspRelatedGrid{align-items:stretch!important;gap:12px 10px!important;}
+html[data-uzr-theme] body #resaleProductV12 #uspRelatedGrid .card.uzr-product-card-v12{height:100%!important;min-height:0!important;align-self:stretch!important;border-radius:18px!important;}
+html[data-uzr-theme] body #resaleProductV12 #uspRelatedGrid .card.uzr-product-card-v12 .uzr-card-media-v12{aspect-ratio:1.18 / 1!important;width:calc(100% - 10px)!important;margin:5px 5px 0!important;border-radius:14px!important;}
+html[data-uzr-theme] body #resaleProductV12 #uspRelatedGrid .card.uzr-product-card-v12 .uzr-card-info-v12{display:flex!important;flex:1 1 auto!important;flex-direction:column!important;align-items:stretch!important;justify-content:flex-start!important;gap:0!important;height:auto!important;min-height:0!important;padding:8px 9px 10px!important;}
+html[data-uzr-theme] body #resaleProductV12 #uspRelatedGrid .card.uzr-product-card-v12 .name{height:auto!important;min-height:0!important;max-height:34px!important;font-size:12.5px!important;line-height:17px!important;font-weight:650!important;display:-webkit-box!important;-webkit-line-clamp:2!important;-webkit-box-orient:vertical!important;overflow:hidden!important;white-space:normal!important;overflow-wrap:anywhere!important;}
+html[data-uzr-theme] body #resaleProductV12 #uspRelatedGrid .card.uzr-product-card-v12 .uzr-card-price-v12{height:auto!important;min-height:0!important;max-height:none!important;display:flex!important;flex-direction:column!important;gap:1px!important;justify-content:flex-start!important;align-items:stretch!important;margin:5px 0 0!important;}
+html[data-uzr-theme] body #resaleProductV12 #uspRelatedGrid .card.uzr-product-card-v12 .product-card-old-price-v87{flex:0 0 auto!important;order:0!important;display:block!important;height:12px!important;min-height:12px!important;max-height:12px!important;line-height:12px!important;margin:0!important;font-size:9px!important;white-space:nowrap!important;text-overflow:ellipsis!important;overflow:hidden!important;}
+html[data-uzr-theme] body #resaleProductV12 #uspRelatedGrid .card.uzr-product-card-v12 .price{order:1!important;flex:0 0 auto!important;display:block!important;height:24px!important;min-height:24px!important;max-height:24px!important;line-height:24px!important;margin:0!important;font-size:clamp(12px,9.8cqw,18px)!important;font-weight:750!important;letter-spacing:-.38px!important;white-space:nowrap!important;}
+html[data-uzr-theme] body #resaleProductV12 #uspRelatedGrid .card.uzr-product-card-v12 .uzr-card-price-v12.is-long-price .price{font-size:clamp(11px,8.2cqw,15px)!important;}
+html[data-uzr-theme] body #resaleProductV12 #uspRelatedGrid .card.uzr-product-card-v12 .uzr-card-meta-row-v12{flex:0 0 auto!important;display:flex!important;align-items:center!important;height:auto!important;min-height:0!important;max-height:20px!important;margin:5px 0 0!important;padding:0!important;gap:6px!important;overflow:hidden!important;}
+html[data-uzr-theme] body #resaleProductV12 #uspRelatedGrid .card.uzr-product-card-v12 .uzr-card-meta-row-v12:empty{display:none!important;margin:0!important;}
+html[data-uzr-theme] body #resaleProductV12 #uspRelatedGrid .card.uzr-product-card-v12 .uzr-card-meta-v12{height:16px!important;line-height:16px!important;font-size:10px!important;}
+html[data-uzr-theme] body #resaleProductV12 #uspRelatedGrid .card.uzr-product-card-v12 .uzr-card-meta-v12 svg{width:12px!important;height:12px!important;min-width:12px!important;min-height:12px!important;}
+html[data-uzr-theme] body #resaleProductV12 #uspRelatedGrid .card.uzr-product-card-v12 .product-heart{height:33px!important;min-height:33px!important;width:33px!important;min-width:33px!important;}
+@media (max-width:359px){
+html[data-uzr-theme] body #resaleProductV12 #uspRelatedGrid .card.uzr-product-card-v12 .name{height:auto!important;min-height:0!important;max-height:32px!important;font-size:11.7px!important;line-height:16px!important;}
+html[data-uzr-theme] body #resaleProductV12 #uspRelatedGrid .card.uzr-product-card-v12 .uzr-card-info-v12{padding:7px 8px 9px!important;}
+}
+@media (min-width:600px){
+html[data-uzr-theme] body #resaleProductV12 #uspRelatedGrid .card.uzr-product-card-v12 .name{height:auto!important;min-height:0!important;max-height:40px!important;font-size:14px!important;line-height:20px!important;}
+html[data-uzr-theme] body #resaleProductV12 #uspRelatedGrid .card.uzr-product-card-v12 .uzr-card-info-v12{padding:10px 12px 12px!important;}
+html[data-uzr-theme] body #resaleProductV12 #uspRelatedGrid .card.uzr-product-card-v12 .uzr-card-meta-v12{font-size:11px!important;}
+}
+
+</style>
 </head><body>
 <div id="uzrConsentV58" hidden role="dialog" aria-modal="true" aria-labelledby="uzrConsentTitleV58">
   <div class="uzr-consent-card-v58">
@@ -24370,8 +24513,18 @@ html[data-uzr-theme] body #chats .uzc-admin-dock svg{width:20px;height:20px}
  window.adminOrderMessageOpenV111=id=>openOrder(id,true);openContactRequestV49=start;
  const renderBefore=renderContactRequestsV49;renderContactRequestsV49=function(){renderBefore();const el=$c('contactRequestsListV49');el?.querySelectorAll('[data-r12-bot]').forEach(b=>{b.textContent='Открыть чат';b.onclick=()=>openRequest(b.dataset.r12Bot);});el?.querySelectorAll('[data-r12-deal]').forEach(b=>{if(b.parentElement.querySelector('[data-r12-bot]'))return;const btn=document.createElement('button');btn.type='button';btn.className='r12-secondary';btn.textContent='Открыть чат';btn.onclick=()=>openRequest(b.dataset.r12Deal);b.parentElement.append(btn);});};
  const orderBefore=openOrderDetail;openOrderDetail=function(o){orderBefore(o);const root=$c('orderDetailContent');const id=Number(o.id||String(o.orderNumber||o.order_number||'').replace(/^UR-/,''));if(id){const b=document.createElement('button');b.type='button';b.className='order-primary-action-v40';b.textContent='Чат по заказу';b.onclick=()=>{closeOrderDetailV40();openOrder(id);};root.querySelector('.order-actions-v40')?.prepend(b);}};
- function profileContext(){if(busy||chat?.kind!=='r'||!chat.request)return null;saveDraft();return {chatId:chat.id,sellerId:String(chat.request.sellerTelegramId||''),listingId:chat.request.listingId,scroll:$c('uzcScroll').scrollTop,returnPage:'chats'};}
- async function resumeProfile(context){if(!context?.chatId)return;await open(context.chatId,false);if(chat?.id===context.chatId)requestAnimationFrame(()=>{$c('uzcScroll').scrollTop=Number(context.scroll||0);});}
+ function profileContext(){
+  if(busy||!chat)return null;
+  const me=String(currentTelegramIdV108()||''),r=chat.request||{};
+  let peerId='',peerRole='seller';
+  if(chat.kind==='r'){
+   if(String(r.sellerTelegramId||'')===me){peerId=String(r.buyerTelegramId||'');peerRole='buyer';}
+   else if(String(r.buyerTelegramId||'')===me){peerId=String(r.sellerTelegramId||'');peerRole='seller';}
+  }else if(chat.kind==='ur'&&chat.viewerIsStaff){peerId=String(chat.order?.buyerId||'');peerRole='buyer';}
+  if(!/^\d{1,20}$/.test(peerId))return null;
+  saveDraft();return {chatId:chat.id,peerId,peerRole,adminView:adminMode,listingId:r.listingId||0,scroll:$c('uzcScroll').scrollTop,returnPage:'chats'};
+ }
+ async function resumeProfile(context){if(!context?.chatId)return;await open(context.chatId,context.adminView===true);if(chat?.id===context.chatId)requestAnimationFrame(()=>{$c('uzcScroll').scrollTop=Number(context.scroll||0);});}
  window.UzrChats12={restoreClientVersion:1,list,open,start,support,openRequest,openOrder,profileContext,resumeProfile,onNavigate:(id,previous)=>{if(opening)return;if(id==='chats')list(previous==='adminPanel'||previous==='chats'&&adminMode);else pause();}};
  function viewport(){if(currentPageId()!=='chats')return;const v=window.visualViewport,root=$c('chats');root.style.setProperty('--uzc-vh',Math.round(v?.height||window.innerHeight)+'px');root.style.setProperty('--uzc-vtop',Math.round(v?.offsetTop||0)+'px');}
  window.visualViewport?.addEventListener('resize',()=>{const stick=nearBottom();viewport();if(stick)requestAnimationFrame(()=>{$c('uzcScroll').scrollTop=$c('uzcScroll').scrollHeight;});});window.visualViewport?.addEventListener('scroll',viewport);window.addEventListener('resize',viewport);
@@ -24655,13 +24808,20 @@ html body #uzpAdmin :is(input,textarea){width:100%;padding:12px;margin:8px 0;bor
   catch(e){if(epoch===publicEpoch){error(root,e,()=>seller(id,source,{force:true}));const b=document.createElement('button');b.className='usp-secondary';b.textContent=t('Назад','Orqaga');b.onclick=back;root.append(b);}}
  }
  function renderSeller(p,id){
-  const root=$p('sellerProfileContent'),own=id===currentTelegramIdV108(),user=safeUsername(p.username),items=listingItems(p,id),count=Number(p.stats?.sellerRating?.count)||0;
-  root.innerHTML=`<div class="usp-head"><button class="usp-back" id="uzpSellerBack" type="button" aria-label="${t('Назад','Orqaga')}">${icon('back')}</button><h1>${own?t('Мой профиль продавца','Sotuvchi profilim'):t('Профиль продавца','Sotuvchi profili')}</h1></div><section class="usp-seller-hero">${avatar(p,'usp-avatar-large')}<h2 class="usp-name" data-usp-user><span>${esc(p.name)}</span>${emojiBadge(p)}</h2>${user?`<p class="usp-username" data-usp-user>@${esc(user)}</p>`:''}${p.city?`<p class="usp-city">${icon('map')}<span>${esc(p.city)}</span></p>`:''}${p.about?`<p class="usp-about" data-usp-user>${esc(p.about)}</p>`:''}${stats(p)}<div class="usp-seller-actions"><button class="usp-primary" id="${own?'uzpSellerEdit':'uzpSellerWrite'}" type="button">${icon(own?'edit':'chat')}<span>${own?t('Редактировать профиль','Profilni tahrirlash'):t('Написать','Yozish')}</span></button>${!own&&user?`<a class="usp-telegram" id="uzpTelegramLink" href="https://t.me/${esc(user)}" target="_blank" rel="noopener noreferrer">${icon('telegram')}<span>Telegram</span></a>`:''}</div><p id="uspWriteHint" class="uzp-note" hidden></p></section><div class="usp-tabs" role="tablist"><button id="uzpProductsTab" type="button" role="tab" aria-controls="sellerProductsV26">${t('Объявления','E’lonlar')}</button><button id="uzpReviewsTab" type="button" role="tab" aria-controls="uzpReviews">${t('Отзывы','Sharhlar')}${count?' · '+count:''}</button></div><div id="sellerProductsV26" role="tabpanel"><div id="sellerProductsGridV26" class="usp-product-grid"></div></div><div id="uzpReviews" role="tabpanel" hidden></div>`;
-  $p('uzpSellerBack').onclick=back;$p('uzpSellerEdit')?.addEventListener('click',settings);$p('uzpSellerWrite')?.addEventListener('click',()=>writeSeller(items));
-  $p('uzpTelegramLink')?.addEventListener('click',e=>{if(window.Telegram?.WebApp?.openTelegramLink){e.preventDefault();window.Telegram.WebApp.openTelegramLink('https://t.me/'+user);}});
-  const grid=$p('sellerProductsGridV26');if(items.length)for(const item of items)grid.append(card(item));else grid.innerHTML=`<div class="usp-empty">${icon('box')}<h3>${t('Пока нет объявлений','Hozircha e’lonlar yo‘q')}</h3><p>${t('Активные товары продавца появятся здесь.','Sotuvchining faol mahsulotlari shu yerda ko‘rinadi.')}</p></div>`;
+  const root=$p('sellerProfileContent'),own=id===currentTelegramIdV108(),user=safeUsername(p.username),items=listingItems(p,id),count=Number(p.stats?.sellerRating?.count)||0,peerBuyer=!own&&source?.peerRole==='buyer';
+  root.innerHTML=`<div class="usp-head"><button class="usp-back" id="uzpSellerBack" type="button" aria-label="${t('Назад','Orqaga')}">${icon('back')}</button><h1>${own?t('Мой профиль продавца','Sotuvchi profilim'):peerBuyer?t('Профиль покупателя','Xaridor profili'):t('Профиль продавца','Sotuvchi profili')}</h1></div><section class="usp-seller-hero">${avatar(p,'usp-avatar-large')}<h2 class="usp-name" data-usp-user><span>${esc(p.name)}</span>${emojiBadge(p)}</h2>${user?`<p class="usp-username" data-usp-user>@${esc(user)}</p>`:''}${p.city?`<p class="usp-city">${icon('map')}<span>${esc(p.city)}</span></p>`:''}${p.about?`<p class="usp-about" data-usp-user>${esc(p.about)}</p>`:''}${peerBuyer&&!items.length?'':stats(p)}<div class="usp-seller-actions"><button class="usp-primary" id="${own?'uzpSellerEdit':'uzpSellerWrite'}" type="button" ${!own&&!user?'disabled aria-disabled="true" title="Нет публичного Telegram username"':''}>${icon(own?'edit':'chat')}<span>${own?t('Редактировать профиль','Profilni tahrirlash'):t('Написать в Telegram','Telegram orqali yozish')}</span></button></div>${!own&&!user?`<p class="uzp-note usp-telegram-unavailable">${t('У пользователя нет публичного Telegram username. Прямой переход в Telegram недоступен.','Foydalanuvchining ommaviy Telegram username’i yo‘q.')}</p>`:''}</section>${peerBuyer&&!items.length?'':`<div class="usp-tabs" role="tablist"><button id="uzpProductsTab" type="button" role="tab" aria-controls="sellerProductsV26">${t('Объявления','E’lonlar')}</button><button id="uzpReviewsTab" type="button" role="tab" aria-controls="uzpReviews">${t('Отзывы','Sharhlar')}${count?' · '+count:''}</button></div><div id="sellerProductsV26" role="tabpanel"><div id="sellerProductsGridV26" class="usp-product-grid"></div></div><div id="uzpReviews" role="tabpanel" hidden></div>`}`;
+  $p('uzpSellerBack').onclick=back;$p('uzpSellerEdit')?.addEventListener('click',settings);$p('uzpSellerWrite')?.addEventListener('click',()=>openUserTelegram(user));
+  
+  const grid=$p('sellerProductsGridV26');if(!grid){avatars(root);return;}if(items.length)for(const item of items)grid.append(card(item));else grid.innerHTML=`<div class="usp-empty">${icon('box')}<h3>${t('Пока нет объявлений','Hozircha e’lonlar yo‘q')}</h3><p>${t('Активные товары продавца появятся здесь.','Sotuvchining faol mahsulotlari shu yerda ko‘rinadi.')}</p></div>`;
   if(p.listingsTruncated){const note=document.createElement('p');note.className='uzp-note';note.textContent=t('Показаны последние 100 активных объявлений.','So‘nggi 100 ta faol e’lon ko‘rsatilgan.');grid.after(note);}
   $p('uzpProductsTab').onclick=()=>setSellerTab('products');$p('uzpReviewsTab').onclick=()=>setSellerTab('reviews');root.querySelector('[data-usp-rating]').onclick=()=>setSellerTab('reviews');renderReviews(p);setSellerTab(publicTab);avatars(root);
+ }
+ function openUserTelegram(username){
+  const valid=safeUsername(username);
+  if(!valid)return;
+  const url='https://t.me/'+valid;
+  try{if(window.Telegram?.WebApp?.openTelegramLink){window.Telegram.WebApp.openTelegramLink(url);return;}}catch(_){/* Use a standard link if Telegram bridge is unavailable. */}
+  const link=document.createElement('a');link.href=url;link.target='_blank';link.rel='noopener noreferrer';document.body.append(link);link.click();link.remove();
  }
  function setSellerTab(value){publicTab=value;$p('sellerProductsV26').hidden=value==='reviews';$p('uzpReviews').hidden=value!=='reviews';for(const [id,tab]of [['uzpProductsTab','products'],['uzpReviewsTab','reviews']]){const b=$p(id);b.setAttribute('aria-selected',String(value===tab));b.setAttribute('aria-pressed',String(value===tab));}}
  function renderReviews(p){const reviews=Array.isArray(p.reviews)?p.reviews:[],count=Number(p.stats?.sellerRating?.count)||0,root=$p('uzpReviews');
@@ -24671,12 +24831,6 @@ html body #uzpAdmin :is(input,textarea){width:100%;padding:12px;margin:8px 0;bor
   root.innerHTML=`<div class="usp-review-filters" aria-label="${t('Фильтр отзывов','Sharhlar filtri')}">${filters}</div><div class="usp-review-list">${visible.map(r=>`<article class="usp-review"><div class="usp-review-head">${avatar({name:r.authorName||t('Покупатель','Xaridor'),avatarUrl:r.authorAvatarUrl},'usp-review-avatar')}<div class="usp-review-author"><b data-usp-user>${esc(r.authorName||t('Покупатель','Xaridor'))}</b><time>${esc(fmtDate(r.created_at))}</time></div>${starsHTML(r.stars)}</div>${r.comment?`<p class="usp-review-text" data-usp-user>${esc(r.comment)}</p>`:''}</article>`).join('')||`<p class="uzp-note usp-center">${t('В загруженных отзывах таких оценок нет.','Yuklangan sharhlarda bunday baholar yo‘q.')}</p>`}</div>${p.reviewsTruncated?`<p class="uzp-note">${t('Показаны последние 50 оценок. Фильтр применяется к ним.','So‘nggi 50 baho ko‘rsatilgan. Filtr ular uchun amal qiladi.')}</p>`:''}`;
   root.querySelectorAll('[data-usp-filter]').forEach(b=>b.onclick=()=>{reviewFilter=Number(b.dataset.uspFilter);renderReviews(p);});avatars(root);
  }
- async function writeSeller(items){
-  if(source?.chatId){await back();return;}
-  const item=items.find(x=>Number(x.listingId)===Number(source?.listingId))||(items.length===1?items[0]:null);
-  if(item){document.body.classList.remove('seller-profile-open-v27');await window.UzrChats12.start(item);return;}
-  const hint=$p('uspWriteHint');hint.hidden=false;hint.textContent=items.length?t('Выберите объявление ниже — переписка будет привязана к этому товару.','Quyidagi e’lonni tanlang — yozishma shu mahsulotga bog‘lanadi.'):t('Нет активного объявления для нового чата. Существующая переписка доступна в разделе «Чаты».','Yangi chat uchun faol e’lon yo‘q. Mavjud yozishmalar «Chatlar» bo‘limida.');if(items.length){setSellerTab('products');$p('sellerProductsV26').scrollIntoView({behavior:'smooth',block:'start'});}
- }
  async function back(){
   publicEpoch++;const ctx=source;source=null;document.body.classList.remove('seller-profile-open-v27');
   if(ctx?.chatId){await window.UzrChats12.resumeProfile(ctx);return;}
@@ -24685,7 +24839,25 @@ html body #uzpAdmin :is(input,textarea){width:100%;padding:12px;margin:8px 0;bor
   navigatePage(ctx?.returnPage&&ctx.returnPage!=='sellerProfile'?ctx.returnPage:'profile');if(ctx?.scroll)requestAnimationFrame(()=>{const el=$p(currentPageId());if(el)el.scrollTop=ctx.scroll;});
  }
  function fromProduct(p){const ctx={returnPage:currentPageId(),listingId:p.listingId,product:p,productScroll:$p('resaleProductV12')?.scrollTop||0};if(currentPageId()==='sellerProfile')ctx.parentSeller={id:publicId,profile:publicProfile,source,tab:publicTab};return seller(String(p.sellerTelegramId||''),ctx);}
- function wireChat(c){const id=String(c.request?.sellerTelegramId||''),av=$p('uzcHeaderAvatar'),title=$p('uzcTitle');for(const el of [av,title]){if(!el)continue;el.onclick=null;el.onkeydown=null;el.removeAttribute('role');el.removeAttribute('tabindex');}if(c.kind!=='r'||!/^\d{1,20}$/.test(id)||id===currentTelegramIdV108())return;for(const el of [av,title]){if(!el)continue;el.setAttribute('role','link');el.tabIndex=0;el.setAttribute('aria-label',t('Открыть профиль продавца','Sotuvchi profilini ochish'));el.onclick=()=>{const ctx=window.UzrChats12.profileContext();if(ctx?.sellerId===id)return seller(id,ctx);};el.onkeydown=e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();el.click();}};}}
+ function wireChat(c){
+  const av=$p('uzcHeaderAvatar'),title=$p('uzcTitle');
+  for(const el of [av,title]){if(!el)continue;el.onclick=null;el.onkeydown=null;el.removeAttribute('role');el.removeAttribute('tabindex');el.removeAttribute('aria-label');}
+  const me=String(currentTelegramIdV108()||''),r=c.request||{};
+  let peerId='',role='seller';
+  if(c.kind==='r'){
+   const sellerId=String(r.sellerTelegramId||''),buyerId=String(r.buyerTelegramId||'');
+   if(sellerId===me){peerId=buyerId;role='buyer';}
+   else if(buyerId===me){peerId=sellerId;role='seller';}
+  }else if(c.kind==='ur'&&c.viewerIsStaff){peerId=String(c.order?.buyerId||'');role='buyer';}
+  if(!/^\d{1,20}$/.test(peerId)||peerId===me)return;
+  for(const el of [av,title]){
+   if(!el)continue;
+   el.setAttribute('role','link');el.tabIndex=0;
+   el.setAttribute('aria-label',role==='buyer'?t('Открыть профиль покупателя','Xaridor profilini ochish'):t('Открыть профиль продавца','Sotuvchi profilini ochish'));
+   const openPeer=()=>{const ctx=window.UzrChats12?.profileContext?.();if(!ctx||ctx.peerId!==peerId)return;seller(peerId,{...ctx,peerRole:role});};
+   el.onclick=openPeer;el.onkeydown=e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();openPeer();}};
+  }
+ }
  // Product seller block and recommendations use the SAME approved card() renderer.
  async function enhanceProduct(p){const sellerRoot=$p('r12SellerBlock'),related=$p('uspRelatedProducts');if(!sellerRoot||!p?.sellerTelegramId)return;const sid=String(p.sellerTelegramId);sellerRoot.setAttribute('role','link');sellerRoot.tabIndex=0;sellerRoot.onclick=()=>fromProduct(p);sellerRoot.onkeydown=e=>{if(e.target===sellerRoot&&(e.key==='Enter'||e.key===' ')){e.preventDefault();fromProduct(p);}};const go=$p('r12Seller');if(go)go.onclick=e=>{e.stopPropagation();fromProduct(p);};
   try{const profile=await fetchSeller(sid);if(!sellerRoot.isConnected||$p('r12SellerBlock')!==sellerRoot)return;const name=sellerRoot.querySelector('.r12-seller-copy strong');if(name)name.innerHTML=`<span>${esc(profile.name||p.sellerName||t('Продавец','Sotuvchi'))}</span>${emojiBadge(profile)}`;const copy=sellerRoot.querySelector('.r12-seller-copy small');if(copy)copy.textContent=safeUsername(profile.username)?'@'+profile.username:profile.city||'';
