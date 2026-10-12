@@ -18443,6 +18443,31 @@ function fileToDataUrl(file){
   });
 }
 
+// v1.2.2: Resize unusually large listing photos before the Worker 24 MB request limit.
+// Originals stay untouched on the user's device and the upload order stays unchanged.
+async function listingPhotoDataV122(file){
+  const original=await fileToDataUrl(file);
+  if(file.size<=2*1024*1024 || !/^image\/(jpeg|png|webp|heic|heif)$/i.test(file.type))return original;
+  let source='';
+  try{
+    source=URL.createObjectURL(file);
+    const img=new Image();
+    await new Promise((resolve,reject)=>{img.onload=resolve;img.onerror=()=>reject(new Error('PHOTO_DECODE_UNAVAILABLE'));img.src=source;});
+    if(!img.naturalWidth||!img.naturalHeight)return original;
+    const scale=Math.min(1,1800/Math.max(img.naturalWidth,img.naturalHeight));
+    const canvas=document.createElement('canvas');
+    canvas.width=Math.max(1,Math.round(img.naturalWidth*scale));
+    canvas.height=Math.max(1,Math.round(img.naturalHeight*scale));
+    const ctx=canvas.getContext('2d');
+    if(!ctx)return original;
+    ctx.fillStyle='#ffffff';ctx.fillRect(0,0,canvas.width,canvas.height);
+    ctx.drawImage(img,0,0,canvas.width,canvas.height);
+    const converted=canvas.toDataURL('image/jpeg',.84);
+    return converted.startsWith('data:image/jpeg;base64,') && converted.length<original.length?converted:original;
+  }catch(_){return original}
+  finally{if(source)URL.revokeObjectURL(source)}
+}
+
 $("sellSubmit").onclick=async()=>{
   const user=await waitForTelegramIdentityV108(3000)||{};
   const selectedFiles=window.UzrResale120?.listingFiles()||[...$("sellPhotos").files];
@@ -18466,14 +18491,21 @@ $("sellSubmit").onclick=async()=>{
     const photos=[];
     for(let i=0;i<files.length;i++){
       btn.textContent=`Загружаем фото ${i+1} из ${files.length}...`;
-      photos.push({name:files[i].name,dataUrl:await fileToDataUrl(files[i])});
+      photos.push({name:files[i].name,dataUrl:await listingPhotoDataV122(files[i])});
+    }
+    // The Worker rejects the ENTIRE request above 24 MB, including base64 encoding.
+    // Give a useful, safe explanation instead of a vague "connection" error.
+    const encodedBytes=photos.reduce((sum,p)=>sum+p.dataUrl.length,0);
+    if(encodedBytes>21*1024*1024){
+      const e=new Error('LISTING_PHOTOS_TOTAL_TOO_LARGE');e.code=e.message;throw e;
     }
 
     btn.textContent="Отправляем на модерацию...";
 
     const response=await fetch(MARKETPLACE_API+"/listings",{
       method:"POST",
-      headers:{"Content-Type":"application/json"},
+      cache:"no-store",
+      headers:{"Content-Type":"application/json","X-Telegram-Init-Data":currentTelegramInitDataV108()},
       body:JSON.stringify({
         sellerTelegramId:String(user.id),
         sellerName:[user.first_name,user.last_name].filter(Boolean).join(" "),
@@ -18491,12 +18523,10 @@ $("sellSubmit").onclick=async()=>{
       })
     });
 
-    const result=await response.json();
-    if(!response.ok||!result.ok){
-      if(result.error==="RATE_LIMITED"){
-        throw new Error("Можно отправить максимум 5 объявлений в час. Попробуйте позже.");
-      }
-      throw new Error(result.message||result.error||"Не удалось отправить объявление");
+    const result=await response.json().catch(()=>null);
+    if(!response.ok||!result?.ok){
+      const code=String(result?.error||'HTTP_'+response.status);
+      throw Object.assign(new Error(code),{code,httpStatus:response.status,serverMessage:String(result?.message||'').slice(0,300)});
     }
 
     $("sellName").value="";$("sellBrand").value="";$("sellSize").value="";
@@ -18510,10 +18540,11 @@ $("sellSubmit").onclick=async()=>{
     $("listingSuccessView").classList.add("open");
     setTimeout(()=>window.lucide&&lucide.createIcons(),0);
   }catch(error){
-    console.error(error);
-    alert("Ошибка: "+(error.message||error));
+    console.error('LISTING_SUBMIT_FAILED',error?.code||error?.message||error);
+    throw error; // The form wrapper displays a real error without clearing the draft.
   }finally{
-    btn.classList.remove("uploading");btn.disabled=false;btn.textContent="Отправить на проверку";
+    btn.classList.remove("uploading");btn.disabled=false;btn.innerHTML='<i data-lucide="send"></i><span>Отправить на модерацию</span>';
+    try{window.lucide?.createIcons?.()}catch(_){}
   }
 };
 
@@ -23778,7 +23809,44 @@ function addFormFields(){
  const host=$r('sellPreview');host.insertAdjacentHTML('afterend',`<p class="r12-photo-help" data-no-i18n>${text('Первое фото — обложка. Стрелками меняйте порядок. Можно удалять фото и добавлять новые, максимум 6.','Birinchi foto — muqova. Tartibni strelkalar bilan o‘zgartiring. Eng ko‘pi 6 foto.')}</p>`);
  $r('sellPhotos').onchange=e=>{if(formBusy)return;const incoming=[...e.target.files];e.target.value='';if(files.length+incoming.length>6)return alert(text('Максимум 6 фотографий.','Eng ko‘pi 6 foto.'));if(incoming.some(f=>f.size>10*1024*1024))return alert(text('Каждое фото — до 10 MB.','Har bir foto 10 MB gacha.'));if(incoming.some(f=>!/^image\/(jpeg|png|webp|heic|heif)$/i.test(f.type)))return alert(text('Используйте JPEG, PNG, WebP или HEIC.','JPEG, PNG, WebP yoki HEIC ishlating.'));files.push(...incoming);renderPhotos()};
  const original=$r('sellSubmit').onclick;const error=document.createElement('div');error.className='r12-form-error';error.id='r12FormError';error.hidden=true;error.setAttribute('role','alert');error.setAttribute('data-no-i18n','');$r('sellSubmit').before(error);
- $r('sellSubmit').onclick=async()=>{if(formBusy)return;formBusy=true;error.hidden=true;$r('sellSubmit').disabled=true;try{await features();await original();}catch(e){error.textContent=(e.status===404||e.status===200||e.message==='WORKER_UPDATE_REQUIRED')?text(...errors.WORKER_UPDATE_REQUIRED):errorText(e);error.hidden=false;}finally{formBusy=false;$r('sellSubmit').disabled=false}};
+ function listingErrorV122(e){
+   const code=String(e?.code||e?.message||'');
+   const map={
+     TELEGRAM_AUTH_REQUIRED:['Сессия Telegram устарела. Закройте и снова откройте Mini App.','Telegram seansi eskirgan. Mini Appni qayta oching.'],
+     MAINTENANCE_MODE:['Идут технические работы. Сохраните данные и повторите позже.','Texnik ishlar ketmoqda. Keyinroq urinib ko‘ring.'],
+     RATE_LIMITED:['Лимит — 5 объявлений за час. Попробуйте позже.','Bir soatda 5 ta e’lon mumkin. Keyinroq urinib ko‘ring.'],
+     TITLE_REQUIRED:['Введите название товара.','Mahsulot nomini kiriting.'],
+     INVALID_CATEGORY:['Проверьте категорию.','Toifani tekshiring.'],
+     INVALID_CONDITION:['Проверьте состояние товара.','Mahsulot holatini tekshiring.'],
+     INVALID_CITY:['Выберите город из списка.','Ro‘yxatdan shaharni tanlang.'],
+     INVALID_PRICE:['Укажите корректную цену в UZS.','UZSda to‘g‘ri narx kiriting.'],
+     MODEL_TOO_LONG:['Название модели слишком длинное.','Model nomi juda uzun.'],
+     COLOR_TOO_LONG:['Название цвета слишком длинное.','Rang nomi juda uzun.'],
+     BODY_TOO_LARGE:['Фотографии слишком большие для отправки. Уменьшите их количество или размер.','Fotosuratlar juda katta. Ularni kamaytiring.'],
+     LISTING_PHOTOS_TOTAL_TOO_LARGE:['Общий размер фотографий слишком большой. Удалите часть фото или выберите меньший размер.','Fotosuratlarning umumiy hajmi juda katta.'],
+     PHOTO_TOO_LARGE_MAX_10MB:['Одно из фото больше 10 МБ.','Fotosuratlardan biri 10 MB dan katta.'],
+     INVALID_IMAGE_FORMAT:['Формат фото не поддерживается. Выберите JPEG, PNG или WebP.','Foto formati qo‘llab-quvvatlanmaydi.'],
+     IMAGEKIT_PRIVATE_KEY_MISSING:['Ошибка настройки хранилища фото. Сообщите администратору.','Foto xotirasi sozlanmagan. Administratorga xabar bering.'],
+     IMAGE_UPLOAD_FAILED:['Загрузка фото не удалась. Проверьте интернет и попробуйте ещё раз.','Foto yuklanmadi. Internetni tekshiring.'],
+     HTTP_413:['Слишком большой запрос. Уменьшите фотографии и повторите.','So‘rov juda katta. Fotosuratlarni kamaytiring.'],
+     HTTP_502:['Сервер фотографий временно недоступен. Повторите позже.','Foto serveri vaqtincha ishlamayapti.'],
+     HTTP_503:['Сервис временно недоступен. Повторите позже.','Xizmat vaqtincha ishlamayapti.'],
+     HTTP_404:['Сервис публикации не найден. Сообщите администратору.','E’lon joylash xizmati topilmadi.']
+   };
+   if(map[code])return text(...map[code])+' ['+code+']';
+   if(code==='TypeError'||e instanceof TypeError)return text('Не удалось связаться с сервером. Проверьте интернет или обратитесь в поддержку.','Server bilan aloqa yo‘q. Internetni tekshiring.')+' [NETWORK_ERROR]';
+   if(code==='Image upload failed'||/^ImageKit|^IMAGEKIT_/i.test(code))return text('Не удалось загрузить фото в хранилище. Попробуйте позже или обратитесь в поддержку.','Foto yuklashda xatolik.')+' [IMAGE_UPLOAD_FAILED]';
+   return text('Отправка не подтверждена. Проверьте «Мои товары» перед повторной попыткой.','Yuborish tasdiqlanmadi. Qayta yuborishdan oldin «Mahsulotlarim»ni tekshiring.')+' ['+String(code||'UNKNOWN_ERROR').slice(0,80)+']';
+ }
+ $r('sellSubmit').onclick=async()=>{
+   if(formBusy)return;formBusy=true;error.hidden=true;$r('sellSubmit').disabled=true;
+   try{
+     // Do NOT gate listing submission on /resale/features: the optional rating/deal
+     // schema may be unavailable while the independent /listings endpoint works.
+     await original();
+   }catch(e){error.textContent=listingErrorV122(e);error.hidden=false;}
+   finally{formBusy=false;$r('sellSubmit').disabled=false}
+ };
 }
 function refreshFormLabels(){
  const root=$r('sell');if(!root)return;
