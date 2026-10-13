@@ -24997,69 +24997,13 @@ html[data-uzr-theme="light"] :is(#ac13Panel,#ac13Sheets,#ac13Toast){--ac-bg:#f2f
 @media(min-width:720px){#ac13Panel .ac-main{padding:30px}#ac13Panel .ac-grid{grid-template-columns:repeat(4,minmax(0,1fr))}#ac13Panel .ac-menu{grid-template-columns:repeat(3,minmax(0,1fr))}#ac13Panel .ac-gallery{grid-template-columns:repeat(4,minmax(0,1fr))}#ac13Panel .ac-split{display:grid;grid-template-columns:1fr 1fr;gap:16px}#ac13Sheets .ac-layer{align-items:center;padding:20px}#ac13Sheets .ac-sheet{border-radius:24px;border-bottom:1px solid var(--ac-line)}}
 @media(max-width:350px){#ac13Panel .ac-main{padding:19px 12px}#ac13Panel .ac-header{padding-left:12px;padding-right:12px}#ac13Panel h1{font-size:25px}#ac13Panel .ac-row{gap:8px;padding:11px}#ac13Panel .ac-row .ac-thumb{width:51px;height:60px}#ac13Panel .ac-stat{padding:14px 11px}#ac13Panel .ac-actions button{min-width:110px}#ac13Sheets .ac-form-grid{grid-template-columns:1fr}#ac13Sheets .ac-variant{grid-template-columns:1fr 1fr 63px}}
 @media(prefers-reduced-motion:reduce){#ac13Panel *,#ac13Sheets *{animation:none!important;transition:none!important}}
-/* Admin Control 1.0.1 — official inventory editor, responsive for Telegram WebView. */
-#ac13Panel .ac-direct-edit{font-size:11px;min-height:34px;border-radius:9px;padding:6px 8px;margin-bottom:6px;display:block;white-space:nowrap}
-#ac13Panel .ac-new-official{display:inline-flex;align-items:center;justify-content:center;gap:6px;white-space:nowrap;font-size:12px;min-height:43px;padding:8px 10px}#ac13Panel .ac-new-official svg{width:17px;height:17px}@media(max-width:350px){#ac13Panel .ac-new-official .ac-new-label{display:none}}
-#ac13Sheets .ac-step-caption{font-size:13px;font-weight:750;color:var(--ac-blue);margin:22px 0 12px;letter-spacing:.015em;padding-bottom:8px;border-bottom:1px solid var(--ac-line)}
-#ac13Sheets .ac-palette{margin:12px 0;border:1px solid var(--ac-line);border-radius:18px;background:var(--ac-card);padding:14px}
-#ac13Sheets .ac-palette-title{display:flex;flex-direction:column;gap:4px;margin-bottom:12px}
-#ac13Sheets .ac-palette-title>strong{font-size:17px;font-weight:680}
-#ac13Sheets .ac-palette-hint{color:var(--ac-muted);font-size:12px;line-height:1.4}
-#ac13Sheets .ac-swatch-grid{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:7px}
-#ac13Sheets .ac-swatch-item{min-width:0;min-height:79px;border-radius:14px;background:var(--ac-bg);border:1px solid var(--ac-line);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;padding:7px 2px}
-#ac13Sheets .ac-swatch-item.on{border-color:var(--ac-blue);background:color-mix(in srgb,var(--ac-blue) 12%,var(--ac-card));box-shadow:inset 0 0 0 1px var(--ac-blue)}
-#ac13Sheets .ac-swatch-item small{font-size:10px;max-width:100%;line-height:1.15;color:var(--ac-muted);text-align:center;overflow-wrap:anywhere}
-#ac13Sheets .ac-swatch-dot{width:29px;height:29px;flex:none;display:inline-flex;align-items:center;justify-content:center;background:var(--swatch);border:2px solid rgba(128,153,173,.38);box-shadow:0 0 0 2px var(--ac-card);border-radius:50%;color:#fff}
-#ac13Sheets .ac-swatch-dot svg{height:16px;width:16px;filter:drop-shadow(0 1px 1px rgba(0,0,0,.5));stroke-width:3}
-#ac13Sheets .ac-swatch-plus{background:var(--ac-card2);color:var(--ac-blue)}
-#ac13Sheets .ac-color-group{margin:13px 0 0;padding:13px 11px;border:1px solid var(--ac-line);border-radius:15px;background:var(--ac-bg)}
-#ac13Sheets .ac-color-head{display:flex;gap:10px;align-items:center;padding-bottom:12px;border-bottom:1px solid var(--ac-line)}
-#ac13Sheets .ac-color-headname{flex:1;min-width:0;display:flex;flex-direction:column;line-height:1.25}
-#ac13Sheets .ac-color-headname strong{font-size:14px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-#ac13Sheets .ac-color-headname small{font-size:11px;color:var(--ac-muted);margin-top:3px}
-#ac13Sheets .ac-color-remove{font-size:12px;min-height:34px;padding:7px 9px;color:var(--ac-danger);background:transparent;flex:none}
-#ac13Sheets .ac-color-caption{font-size:12px;color:var(--ac-muted);font-weight:600;margin:13px 0 9px}
-#ac13Sheets .ac-size-grid{display:flex;gap:7px;flex-wrap:wrap}
-#ac13Sheets .ac-size-grid .ac-size-pill{min-height:36px;min-width:40px;border-radius:10px;padding:7px 10px;background:var(--ac-card);font-size:12px}
-#ac13Sheets .ac-size-grid .ac-size-pill.on{border-color:var(--ac-accent);background:var(--ac-accent);color:white}
-#ac13Sheets .ac-custom-size{display:flex;gap:8px;margin:11px 0}
-#ac13Sheets .ac-custom-size input{flex:1;min-width:0;font-size:14px}
-#ac13Sheets .ac-custom-size button{flex:none;min-width:85px;padding:8px 9px;font-size:12px}
-#ac13Sheets .ac-stock-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}
-#ac13Sheets .ac-stock-item{display:flex;align-items:center;gap:9px;padding:7px 10px;border:1px solid var(--ac-line);border-radius:12px;background:var(--ac-card)}
-#ac13Sheets .ac-stock-item>span{min-width:32px;font-weight:650;font-size:13px;flex:1}
-#ac13Sheets .ac-stock-item>input{width:75px;min-height:38px;padding:6px;text-align:center;font-size:15px;font-weight:650}
-#ac13Sheets .ac-palette-total{margin-top:14px;padding:12px;border-radius:12px;background:var(--ac-card2);text-align:center;color:var(--ac-blue);font-size:13px;font-weight:650}
-#ac13Sheets .ac-photo-preview{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:7px;margin:10px 0 18px}
-#ac13Sheets .ac-photo-preview:empty{display:none}
-#ac13Sheets .ac-photo-preview img{width:100%;aspect-ratio:1;object-fit:contain;background:var(--ac-card2);border:1px solid var(--ac-line);border-radius:12px}
-#ac13Sheets .ac-delete-all-check{margin-top:12px;border:1px solid var(--ac-line);padding:12px;border-radius:12px;color:var(--ac-danger)}
-#ac13Sheets .ac-mgmt-hero{display:flex;align-items:center;gap:14px;background:var(--ac-card);border:1px solid var(--ac-line);border-radius:18px;padding:15px}
-#ac13Sheets .ac-mgmt-hero>div{display:flex;flex-direction:column;min-width:0;flex:1;gap:6px}
-#ac13Sheets .ac-mgmt-hero strong{font-size:17px;font-weight:700;line-height:1.25;overflow-wrap:anywhere}
-#ac13Sheets .ac-mgmt-hero small,#ac13Sheets .ac-mgmt-hero span{font-size:12px;color:var(--ac-muted)}
-#ac13Sheets .ac-mgmt-hero .ac-thumb{width:76px;height:80px;object-fit:cover;border-radius:13px;flex:none}
-#ac13Sheets .ac-mgmt-swatches,#ac13Panel .ac-mgmt-swatches{display:flex;gap:8px;flex-wrap:wrap;margin:14px 0}
-#ac13Sheets .ac-mgmt-color,#ac13Panel .ac-mgmt-color{display:inline-flex;align-items:center;gap:7px;min-height:34px;padding:6px 10px;font-size:12px;border:1px solid var(--ac-line);background:var(--ac-card);border-radius:99px;color:var(--ac-text)}
-#ac13Sheets .ac-mgmt-color i,#ac13Panel .ac-mgmt-color i{width:17px;height:17px;border-radius:50%;background:var(--swatch);border:1px solid rgba(128,153,173,.4)}
-#ac13Sheets .ac-mgmt-tools{display:flex;flex-direction:column;gap:9px}
-#ac13Sheets .ac-mgmt-tools>button{display:flex;align-items:center;gap:13px;min-height:70px;text-align:left;padding:13px 12px;border-radius:14px;background:var(--ac-card);border:1px solid var(--ac-line)}
-#ac13Sheets .ac-mgmt-tools>button>span{display:flex;flex:1;flex-direction:column;gap:4px;min-width:0}
-#ac13Sheets .ac-mgmt-tools strong{font-size:14px;font-weight:650}
-#ac13Sheets .ac-mgmt-tools small{font-size:12px;color:var(--ac-muted)}
-#ac13Sheets .ac-mgmt-tools svg{color:var(--ac-blue)}
-#ac13Panel .ac-official-summary{border:1px solid var(--ac-line);background:var(--ac-card2);padding:13px;border-radius:15px;margin:12px 0}
-#ac13Panel .ac-official-summary p{margin-bottom:8px}
-#ac13Panel .ac-official-summary .ac-actions{margin-top:10px}
-@media(max-width:370px){#ac13Sheets .ac-palette{padding:10px}#ac13Sheets .ac-swatch-grid{grid-template-columns:repeat(4,minmax(0,1fr))}#ac13Sheets .ac-stock-grid{grid-template-columns:1fr}#ac13Sheets .ac-custom-size button{min-width:72px;font-size:11px}#ac13Sheets .ac-sheet{padding-left:12px;padding-right:12px}#ac13Sheets .ac-mgmt-hero .ac-thumb{width:60px;height:64px}}
-
 </style>
 <section id="ac13Panel" class="page" aria-label="Административная панель"><div class="ac-shell"><div class="ac-header"><button class="ac-iconbtn" data-ac="back" aria-label="Назад"></button><div class="ac-brand"><strong>UZBEK RE’SALE</strong><span id="ac13Role">ADMIN CONTROL</span></div><button class="ac-iconbtn" data-ac="refresh" aria-label="Обновить"></button></div><main id="ac13Main" class="ac-main"></main><div class="ac-dock" id="ac13Dock" aria-label="Разделы админки"></div></div></section>
 <div id="ac13Sheets"></div><div id="ac13Toast" role="status" aria-live="polite" hidden></div>
 <script id="ac13-controller">
 (()=>{'use strict';
 const ROOT=document.getElementById('ac13Panel'),MAIN=document.getElementById('ac13Main'),SHEETS=document.getElementById('ac13Sheets');
-const BUILD='admin-control-1.0.1',P='/admin/control';
+const BUILD='admin-control-1.0.0',P='/admin/control';
 // Secure idempotency keys also work in older WebViews without randomUUID().
 function makeClientKey(){const c=window.crypto;if(typeof c?.randomUUID==='function')return c.randomUUID();if(typeof c?.getRandomValues!=='function')throw new Error('Для этого действия нужен защищённый браузер. Откройте Mini App через Telegram.');const b=c.getRandomValues(new Uint8Array(16));b[6]=(b[6]&15)|64;b[8]=(b[8]&63)|128;const h=Array.from(b,x=>x.toString(16).padStart(2,'0'));return h.slice(0,4).join('')+'-'+h.slice(4,6).join('')+'-'+h.slice(6,8).join('')+'-'+h.slice(8,10).join('')+'-'+h.slice(10).join('');}
 ROOT.setAttribute('data-no-i18n','');SHEETS.setAttribute('data-no-i18n','');
@@ -25130,11 +25074,11 @@ async function load(){const token=++seq;nav();MAIN.innerHTML='<div class="ac-loa
  }catch(e){if(token!==seq)return;MAIN.innerHTML=title(configs[view.tab]?.title||'Админ-панель')+'<div class="ac-error">'+esc(message(e))+(e.reference?' · '+esc(e.reference):'')+'</div><div class="ac-actions">'+button('Повторить','refresh','','ac-primary')+button('Выйти','exit')+'</div>';}}
 function filters(c){if(!c.filter)return '';const current=view.params[c.filter]||c.default||'all';return '<div class="ac-filters">'+c.values.map(v=>button(esc(label(v)),'filter','data-key="'+c.filter+'" data-value="'+v+'"','ac-chip '+(current===v?'on':''))).join('')+'</div>';}
 function searchBox(){return '<form class="ac-search" id="ac13Search"><input name="q" value="'+esc(view.params.q||'')+'" placeholder="Поиск по имени, названию или ID" aria-label="Поиск" maxlength="80"><button type="submit" class="ac-iconbtn" aria-label="Найти">'+ico('search')+'</button></form>';}
-function renderList(){const c=configs[view.tab];MAIN.innerHTML=title(c.title,c.subtitle,view.tab==='listings'&&can('official.write')?button(ico('plus')+'<span class="ac-new-label">Добавить</span>','official-create','aria-label="Добавить официальный товар"','ac-primary ac-new-official'): '')+searchBox()+filters(c)+(view.params.userId?'<div class="ac-note">Фильтр пользователя #'+esc(view.params.userId)+' '+button('Убрать','clear-user','','ac-link')+'</div>':'')+(view.tab==='listings'?'<div class="ac-filters">'+['all','user','china','stock'].map(v=>button(esc(label(v)),'filter','data-key="type" data-value="'+v+'"','ac-chip '+((view.params.type||'all')===v?'on':''))).join('')+'</div>':'')+'<div id="ac13Selection"></div><div id="ac13List">'+(items.length?({users:usersHTML,listings:listingsHTML,media:mediaHTML,orders:ordersHTML,requests:requestsHTML,chats:chatsHTML,reports:reportsHTML,audit:auditHTML}[view.tab])():empty())+'</div><div class="ac-pager">'+(Number(view.params.offset)>0?button('Назад','prev'):'')+'<span>Показано '+num(items.length)+'</span>'+(data.nextOffset!=null?button('Следующие','next'):'')+'</div>'+(view.tab==='media'?'<div class="ac-note">Удаление фото и удаление записи — разные действия. Связанные заявки не мешают очистке фото. «Сохранён в другом разделе» означает, что сам файл ещё используется и физически не удалён.</div>':'');
+function renderList(){const c=configs[view.tab];MAIN.innerHTML=title(c.title,c.subtitle,view.tab==='listings'&&can('official.write')?button(ico('plus'),'official-create','','ac-iconbtn'): '')+searchBox()+filters(c)+(view.params.userId?'<div class="ac-note">Фильтр пользователя #'+esc(view.params.userId)+' '+button('Убрать','clear-user','','ac-link')+'</div>':'')+(view.tab==='listings'?'<div class="ac-filters">'+['all','user','china','stock'].map(v=>button(esc(label(v)),'filter','data-key="type" data-value="'+v+'"','ac-chip '+((view.params.type||'all')===v?'on':''))).join('')+'</div>':'')+'<div id="ac13Selection"></div><div id="ac13List">'+(items.length?({users:usersHTML,listings:listingsHTML,media:mediaHTML,orders:ordersHTML,requests:requestsHTML,chats:chatsHTML,reports:reportsHTML,audit:auditHTML}[view.tab])():empty())+'</div><div class="ac-pager">'+(Number(view.params.offset)>0?button('Назад','prev'):'')+'<span>Показано '+num(items.length)+'</span>'+(data.nextOffset!=null?button('Следующие','next'):'')+'</div>'+(view.tab==='media'?'<div class="ac-note">Удаление фото и удаление записи — разные действия. Связанные заявки не мешают очистке фото. «Сохранён в другом разделе» означает, что сам файл ещё используется и физически не удалён.</div>':'');
  MAIN.querySelector('#ac13Search').onsubmit=e=>{e.preventDefault();view.params.q=new FormData(e.target).get('q');delete view.params.offset;selected.clear();load();};selectionBar();}
 function row({icon='users',image=null,title:t,meta='',right='',action='',id='',check=false}){return '<article class="ac-row">'+(check?'<label class="ac-check" aria-label="Выбрать #'+esc(id)+'"><input type="checkbox" data-select="'+esc(id)+'" '+(selected.has(String(id))?'checked':'')+'></label>':'')+(image!==null?thumb(image):'<span class="ac-avatar">'+ico(icon)+'</span>')+'<div class="ac-row-main"><div class="ac-row-title">'+esc(t)+'</div><div class="ac-row-meta">'+meta+'</div></div><div class="ac-row-side">'+right+(action?button(ico('arrow'),action,'data-id="'+esc(id)+'" aria-label="Открыть #'+esc(id)+'"','ac-iconbtn'):'')+'</div></article>';}
 function usersHTML(){return items.map(u=>row({title:[u.first_name,u.last_name].filter(Boolean).join(' ')||'Пользователь',meta:(u.username?'@'+esc(u.username)+' · ':'')+'#'+esc(u.telegram_id)+'<br>'+num(u.listings)+' объявл. · '+esc(u.city||'Город не указан')+'<br>'+badge(roles[u.role])+(u.restrictions?' '+badge('Ограничен','bad'):''),action:'user',id:u.telegram_id})).join('');}
-function listingsHTML(){return items.map(l=>row({image:l.image_url||'',title:l.title,meta:money(l.price)+' · #'+l.id+'<br>'+esc(l.seller_name||l.seller_username||'Uzbek Re’Sale')+'<br>'+badge(l.hidden_reason?'hidden':l.status,l.status==='approved'?'good':l.status==='pending'?'warn':'')+' '+num(l.photos)+' фото · '+num(l.requests)+' R',right:l.owner_type==='official'&&can('official.write')?button('Изм.','official-quick','data-id="'+l.id+'"','ac-direct-edit'):'',action:'listing',id:l.id,check:can('listings.write')})).join('');}
+function listingsHTML(){return items.map(l=>row({image:l.image_url||'',title:l.title,meta:money(l.price)+' · #'+l.id+'<br>'+esc(l.seller_name||l.seller_username||'Uzbek Re’Sale')+'<br>'+badge(l.hidden_reason?'hidden':l.status,l.status==='approved'?'good':l.status==='pending'?'warn':'')+' '+num(l.photos)+' фото · '+num(l.requests)+' R',action:'listing',id:l.id,check:can('listings.write')})).join('');}
 function mediaHTML(){const kind=view.params.kind||'cleanup';if(['queue','failed','done'].includes(kind))return items.map(j=>row({icon:'media',title:j.title||('Файл '+j.file_id),meta:'#'+esc(j.listing_id||j.source_id)+' · '+badge(j.state,j.state==='failed'?'bad':j.state==='deleted'?'good':'')+'<br>Попыток: '+j.attempts+(j.last_error?'<br>'+esc(j.last_error):''),id:j.id,check:can('media.write')&&['queued','failed'].includes(j.state)})).join('');return '<div class="ac-gallery">'+items.map(i=>'<figure class="ac-photo">'+(safeURL(i.image_url)?'<img src="'+esc(safeURL(i.image_url))+'" loading="lazy" alt="Фото объявления" referrerpolicy="no-referrer">':'<div class="ac-empty">'+ico('media')+'</div>')+'<figcaption class="ac-photo-copy">'+(can('media.write')?'<label class="ac-check"><input type="checkbox" data-select="'+i.id+'" '+(selected.has(String(i.id))?'checked':'')+'>Фото #'+i.id+'</label>':'')+'<div class="ac-photo-title">'+esc(i.title)+'</div>'+badge(i.status)+'<div>#'+i.listing_id+' · '+num(i.linked_requests)+' R-заявок</div>'+button('Открыть товар','listing','data-id="'+i.listing_id+'"','ac-link')+'</figcaption></figure>').join('')+'</div>';}
 function ordersHTML(){return items.map(o=>row({icon:'orders',title:o.order_number||'UR-'+o.id,meta:esc(o.customer_name)+' · '+money(o.total)+'<br>'+badge(o.status)+' · '+dt(o.created_at)+'<br>'+num(Array.isArray(o.items)?o.items.length:0)+' позиций',action:'order',id:o.id})).join('');}
 function requestsHTML(){return items.map(r=>row({icon:'link',title:r.request_number||'R-'+r.id,meta:esc(r.live_title||r.listing_title_snapshot||'Архивный товар')+'<br>'+esc(r.buyer_name||r.buyer_telegram_id)+' → '+esc(r.seller_name||r.seller_telegram_id)+'<br>'+badge(r.status)+' · '+num(r.messages)+' сообщ.',action:'request',id:r.id})).join('');}
@@ -25154,14 +25098,9 @@ function renderUser(d){const u=d.user;MAIN.innerHTML=title([u.first_name,u.last_
  block('Заметка администратора','<div class="ac-text">'+esc(u.note||'Заметок нет.')+'</div>'+(can('users.write')&&u.role==='user'?'<div class="ac-actions">'+button('Изменить заметку','user-note','data-id="'+u.telegram_id+'"')+'</div>':''))+
  '<div class="ac-actions">'+button('Объявления','related','data-tab="listings" data-id="'+u.telegram_id+'"')+(can('orders')?button('Заказы','related','data-tab="orders" data-id="'+u.telegram_id+'"'):'')+(can('requests')?button('R-заявки','related','data-tab="requests" data-id="'+u.telegram_id+'"'):'')+'</div><div class="ac-note">Бан не удаляет историю и не скрывает товары автоматически. Для массового скрытия откройте объявления пользователя. Поддержка и чтение своих заказов доступны.</div>';
 }
-function ac13OfficialSummary(d){
- const v=d.variants||[],colors=new Map();for(const x of v){if(!colors.has(x.colorName))colors.set(x.colorName,x.colorHex);}
- const swatches=[...colors.entries()].map(([name,hex])=>'<span class="ac-mgmt-color"><i style="--swatch:'+esc(/^#[0-9a-f]{6}$/i.test(hex)?hex:'#2481CC')+'"></i>'+esc(name)+'</span>').join('');
- return '<div class="ac-official-summary"><p>Раздел: <b>'+esc(label(d.listing.source_type))+'</b> · Вариантов: <b>'+v.length+'</b> · Остаток: <b>'+num(d.listing.stock_qty)+' шт.</b></p><div class="ac-mgmt-swatches">'+(swatches||'<span class="ac-palette-hint">Цвета пока не настроены. Нажми «Настроить товар».</span>')+'</div><div class="ac-actions">'+button('Настроить товар','official-manage','','ac-primary')+'</div></div>';
-}
-function renderListing(d){const l=d.listing,write=can('listings.write')&&(l.owner_type!=='official'||can('official.write'));MAIN.innerHTML=title(l.title,'#'+l.id+' · '+(l.owner_type==='official'?'Официальный товар':'Пользовательский Ресейл'))+'<div class="ac-gallery">'+d.images.map(i=>'<figure class="ac-photo"><img src="'+esc(safeURL(i.image_url))+'" alt="Фото товара" referrerpolicy="no-referrer"><figcaption class="ac-photo-copy">Фото #'+i.id+'</figcaption></figure>').join('')+'</div>'+block('Карточка',kv([['Статус',l.hidden_reason?'Скрыт: '+l.status:label(l.status)],['Цена',money(l.price)],['Продавец',l.seller_name||l.seller_username||l.seller_telegram_id],['Категория',l.category],['Состояние',l.condition],['Город',l.city||'—'],['Бренд',l.brand||'—'],['Размеры',l.owner_type==='official'&&d.variants?.length?[...new Set(d.variants.map(v=>v.sizeName))].join(', '):l.size||'—'],...(l.owner_type==='official'?[]:[['Модель',l.resale_model||'—'],['Цвет',l.resale_color||'—']]),['Остаток',num(l.stock_qty)],['R-заявки',num(d.requests.total)],['Срок публикации',dt(l.expires_at)],['Обновлено',dt(l.updated_at)]]))+(l.hidden_reason?'<div class="ac-note ac-warning">'+esc(l.hidden_reason)+'</div>':'')+block('Описание','<div class="ac-text">'+esc(l.description||'Описание не указано')+'</div>')+
+function renderListing(d){const l=d.listing,write=can('listings.write')&&(l.owner_type!=='official'||can('official.write'));MAIN.innerHTML=title(l.title,'#'+l.id+' · '+(l.owner_type==='official'?'Официальный товар':'Пользовательский Ресейл'))+'<div class="ac-gallery">'+d.images.map(i=>'<figure class="ac-photo"><img src="'+esc(safeURL(i.image_url))+'" alt="Фото товара" referrerpolicy="no-referrer"><figcaption class="ac-photo-copy">Фото #'+i.id+'</figcaption></figure>').join('')+'</div>'+block('Карточка',kv([['Статус',l.hidden_reason?'Скрыт: '+l.status:label(l.status)],['Цена',money(l.price)],['Продавец',l.seller_name||l.seller_username||l.seller_telegram_id],['Категория',l.category],['Состояние',l.condition],['Город',l.city||'—'],['Бренд',l.brand||'—'],['Модель',l.resale_model||'—'],['Размер',l.size||'—'],['Цвет',l.resale_color||'—'],['Остаток',num(l.stock_qty)],['R-заявки',num(d.requests.total)],['Срок публикации',dt(l.expires_at)],['Обновлено',dt(l.updated_at)]]))+(l.hidden_reason?'<div class="ac-note ac-warning">'+esc(l.hidden_reason)+'</div>':'')+block('Описание','<div class="ac-text">'+esc(l.description||'Описание не указано')+'</div>')+
  (write?'<div class="ac-actions">'+button('Редактировать','listing-edit','data-id="'+l.id+'"','ac-primary')+(['approved','pending'].includes(l.status)?button('Скрыть','listing-action','data-mode="hide"'):button('Опубликовать','listing-action','data-mode="restore"'))+(l.status==='pending'?button('Одобрить','listing-action','data-mode="approve"')+button('Отклонить','listing-action','data-mode="reject"','ac-danger'):'')+'</div>':'')+
- (l.owner_type==='official'&&can('official.write')?block('Официальный каталог',ac13OfficialSummary(d)+'<div class="ac-actions">'+button('Цвета и остатки','variants')+button('Заменить фото','official-photos')+button('Скидка','official-discount')+button('Закрепление','official-pins')+'</div>'): '')+
+ (l.owner_type==='official'&&can('official.write')?block('Официальный каталог','<div class="ac-actions">'+button('Цвета и остатки','variants')+button('Заменить фото','official-photos')+button('Скидка','official-discount')+button('Закрепление','official-pins')+'</div>'): '')+
  (can('media.write')?block('Удаление','<p>Фото удаляются отдельно. Заказы, R-заявки и сообщения сохраняются.</p><div class="ac-actions">'+(d.images.length?button('Выбрать фотографии','listing-media','data-id="'+l.id+'"')+button('Удалить все фото','listing-media-all','','ac-danger'):'')+(l.status!=='deleted'?button('Убрать карточку','listing-action','data-mode="delete"','ac-danger'):'')+button('Удалить пустую запись','permanent','','ac-danger')+'</div>'):'')+
  (can('users')&&l.seller_telegram_id?'<div class="ac-actions">'+button('Продавец','user','data-id="'+esc(l.seller_telegram_id)+'"')+'</div>':'');}
 function renderOrder(d){const o=d.order,actions={new:['confirmed','cancelled'],confirmed:['shipping','cancelled'],shipping:['completed','cancelled'],completed:[],cancelled:[]};MAIN.innerHTML=title(o.order_number||'UR-'+o.id,o.customer_name+' · '+label(o.status))+block('Покупатель',kv([['Telegram ID',o.telegram_id],['Username',o.telegram_username?'@'+o.telegram_username:'—'],['Телефон',o.phone],['Город',o.city],['Итого',money(o.total)],['Создан',dt(o.created_at)],['Заявка поиска',o.source_search_request_id?'C-'+o.source_search_request_id:'—']]))+
@@ -25185,232 +25124,16 @@ async function openChat(id){if(id.startsWith('r_')&&!can('chats.private'))throw 
 async function mediaPreview(imageIds,listingIds){const r=await sheet('Очистка фотографий',reasonForm('Сначала проверим выбранные файлы. Пока ничего не будет удалено.'),{label:'Проверить выбор',onSubmit:fd=>api('/media/preview',{imageIds,listingIds,reason:String(fd.get('reason')||'').trim()})});if(!r)return;
  const done=await sheet('Подтвердить удаление','<div class="ac-note ac-warning">'+esc(r.warning)+'</div>'+kv([['Фотографий',r.count],['Объявлений',r.listings.length]])+r.listings.map(l=>'<div class="ac-note">#'+l.id+' · '+esc(l.title)+'<br>'+l.selected+' из '+l.total+' фото · '+l.linkedRequests+' R-заявок'+(l.willHide?'<br><strong>Последнее фото: товар будет скрыт.</strong>':'')+'</div>').join('')+field('confirm','Введите «УДАЛИТЬ»','','text','required autocomplete="off"'),{label:'Удалить фотографии',danger:true,onSubmit:fd=>{if(fd.get('confirm')!=='УДАЛИТЬ')throw new Error('Введите УДАЛИТЬ.');return api('/media/commit',{token:r.token,confirm:'УДАЛИТЬ'});}});
  if(done){selected.clear();await sheet(done.complete?'Очистка обработана':'Удаление поставлено в очередь',kv([['Удалено из ImageKit',done.counts.deleted],['Ещё используется в другом разделе',done.counts.shared],['Осталось в очереди / с ошибкой',done.pending]])+'<div class="ac-note">'+(done.pending?'Файлы не потеряны: их ID сохранены. Откройте очередь и повторите очистку.':'История заявок и заказов сохранена.')+'</div>');await go('media',{kind:done.pending?'queue':'done'});}}
-async function editListing(){
- const l=detail.listing,official=l.owner_type==='official';
- const common='<div class="ac-form-grid">'+field('title','Название',l.title,'text','required maxlength="60"')+field('price','Цена, UZS',l.price,'number','required min="1" max="999999999999" step="1"')+select('category','Категория',['Одежда','Обувь','Аксессуары','Другое'],l.category)+select('condition','Состояние',['Новое','Отличное','Хорошее','Удовлетворительное'],l.condition)+select('city','Город',detail.cities,l.city||'Ташкент')+field('brand','Бренд',l.brand||'','text','maxlength="30"')+
- (official?'':field('size','Размер',l.size||'','text','maxlength="20"')+field('model','Модель',l.resale_model||'','text','maxlength="60"')+field('color','Цвет',l.resale_color||'','text','maxlength="40"'))+
- area('description','Описание',l.description||'',500)+area('reason','Причина изменения',official?'Уточнение карточки официального товара':'Обновление карточки')+'</div>';
- const r=await sheet(official?'Описание и цена · #'+l.id:'Редактировать товар',
- (official?'<div class="ac-note">Здесь меняются основные данные. Цвета, размеры и остатки редактируются отдельно через палитру — уже оформленные заказы не затрагиваются.</div>':'')+common,
- {onSubmit:fd=>{const p=Object.fromEntries(fd.entries()),reason=String(p.reason||'').trim();delete p.reason;p.price=Number(p.price);if(!Number.isSafeInteger(p.price)||p.price<1)throw new Error('Проверь цену товара.');return api('/listings/'+l.id+'/action',{action:'edit',expectedRevision:l.revision,fields:p,reason});}});
- if(r){toast('Данные товара сохранены');await load();}
-}
+async function editListing(){const l=detail.listing;const r=await sheet('Редактировать товар','<div class="ac-form-grid">'+field('title','Название',l.title,'text','required maxlength="60"')+field('price','Цена, UZS',l.price,'number','required min="1" max="999999999999" step="1"')+select('category','Категория',['Одежда','Обувь','Аксессуары','Другое'],l.category)+select('condition','Состояние',['Новое','Отличное','Хорошее','Удовлетворительное'],l.condition)+select('city','Город',detail.cities,l.city||'Ташкент')+field('brand','Бренд',l.brand||'','text','maxlength="30"')+field('size','Размер (без вариантов)',l.size||'','text','maxlength="20"')+field('model','Модель',l.resale_model||'','text','maxlength="60"')+field('color','Цвет в описании',l.resale_color||'','text','maxlength="40"')+area('description','Описание',l.description||'',500)+area('reason','Причина изменения','Обновление карточки')+'</div>',{onSubmit:fd=>{const b=Object.fromEntries(fd.entries());const reason=b.reason;delete b.reason;b.price=Number(b.price);return api('/listings/'+l.id+'/action',{action:'edit',expectedRevision:l.revision,fields:b,reason});}});if(r){toast('Карточка сохранена');await load();}}
 async function compressFiles(list){if(!list.length||list.length>6)throw new Error('Выберите от 1 до 6 фотографий.');const out=[];for(const file of list){if(file.size>15*1024*1024)throw new Error('Фото больше 15 МБ: '+file.name);if(!/^image\//.test(file.type))throw new Error('Нужны фотографии, не другие файлы.');
  const uri=URL.createObjectURL(file);try{const img=new Image();img.src=uri;await img.decode().catch(()=>{throw new Error('Не удалось прочитать '+file.name+'. Используйте JPEG, PNG или WebP.');});if(img.naturalWidth*img.naturalHeight>60000000)throw new Error('Изображение слишком большое. Сначала уменьшите его.');const ratio=Math.min(1,1600/Math.max(img.naturalWidth,img.naturalHeight));const canvas=document.createElement('canvas');canvas.width=Math.max(1,Math.round(img.naturalWidth*ratio));canvas.height=Math.max(1,Math.round(img.naturalHeight*ratio));const ctx=canvas.getContext('2d');ctx.fillStyle='#ffffff';ctx.fillRect(0,0,canvas.width,canvas.height);ctx.drawImage(img,0,0,canvas.width,canvas.height);const dataUrl=canvas.toDataURL('image/jpeg',.86);if(!dataUrl.startsWith('data:image/jpeg'))throw new Error('Не удалось подготовить фото.');out.push({name:'photo-'+(out.length+1)+'.jpg',dataUrl});}finally{URL.revokeObjectURL(uri);}}
  return out;}
-// Owner-facing official product palette, self-contained in Admin Control.
-const AC13_COLORS=[
- ['Чёрный','#171717'],['Белый','#F5F5F5'],['Серый','#858C96'],['Тёмно-серый','#4B5563'],
- ['Синий','#1556A4'],['Голубой','#45B7E8'],['Зелёный','#327A54'],['Красный','#D34445'],
- ['Бежевый','#CABB9B'],['Коричневый','#76543C'],['Розовый','#E999BC'],['Жёлтый','#E4B737'],
- ['Фиолетовый','#7858AB'],['Оранжевый','#E68B3D']
-];
-const AC13_CITIES=['Ташкент','Самарканд','Бухара','Андижан','Наманган','Фергана','Нукус','Карши','Ургенч','Джизак','Термез','Навои','Гулистан','Коканд','Маргилан','Чирчик','Ангрен','Алмалык','Бекабад','Шахрисабз','Хива'];
-function ac13SizesFor(category){
- if(category==='Обувь')return ['34','35','35.5','36','36.5','37','37.5','38','38.5','39','39.5','40','40.5','41','41.5','42','42.5','43','43.5','44','44.5','45','46','47','48'];
- if(category==='Одежда')return ['Единый','XXS','XS','S','M','L','XL','XXL','3XL','4XL','24','25','26','27','28','29','30','31','32','33','34','36'];
- if(category==='Аксессуары')return ['Единый','XS','S','M','L','XL','50','52','54','56','58','60'];
- return ['Единый','XS','S','M','L','XL'];
-}
-function ac13PaletteMarkup(){return '<div class="ac-palette" data-ac-palette><div class="ac-loading"><span class="ac-spin"></span>Загрузка палитры…</div></div>';}
-function ac13AttachPalette(layer,initialRows=[],categorySelector='[name="category"]'){
- const root=layer.querySelector('[data-ac-palette]');if(!root)throw new Error('Палитра недоступна.');
- const categoryEl=layer.querySelector(categorySelector);let counter=0;
- const groups=[];
- const add=(name,hex,sizes=[])=>{const g={id:++counter,name:String(name||''),hex:String(hex||'#2481CC'),sizes:new Map(sizes)};groups.push(g);return g;};
- const byName=new Map();
- for(const r of initialRows||[]){const name=String(r.colorName||'').trim(),key=name.toLocaleLowerCase('ru-RU');if(!name)continue;
-   let group=byName.get(key);if(!group){group=add(name,r.colorHex);byName.set(key,group);}group.sizes.set(String(r.sizeName||''),String(r.stockQty??0));}
- const groupOf=id=>groups.find(g=>g.id===Number(id));
- const totalCount=()=>groups.reduce((n,g)=>n+g.sizes.size,0);
- const paint=()=>{
-  const category=categoryEl?.value||'Одежда';const presetSizes=ac13SizesFor(category);
-  const chosen=new Set(groups.map(g=>g.name.toLocaleLowerCase('ru-RU')));
-  const swatches=AC13_COLORS.map(([name,hex])=>'<button type="button" class="ac-swatch-item'+(chosen.has(name.toLocaleLowerCase('ru-RU'))?' on':'')+'" data-ac-preset="'+esc(name)+'" aria-pressed="'+(chosen.has(name.toLocaleLowerCase('ru-RU'))?'true':'false')+'"><span class="ac-swatch-dot" style="--swatch:'+hex+'">'+(chosen.has(name.toLocaleLowerCase('ru-RU'))?ico('check'):'')+'</span><small>'+esc(name)+'</small></button>').join('');
-  const cards=groups.map(g=>{
-   const isCustom=!AC13_COLORS.some(([name])=>name===g.name);
-   const extras=[...g.sizes.keys()].filter(s=>!presetSizes.includes(s));
-   const presets=[...presetSizes,...extras];
-   const sizeButtons=presets.map(size=>'<button type="button" data-ac-size="'+esc(size)+'" data-ac-color-id="'+g.id+'" class="ac-size-pill'+(g.sizes.has(size)?' on':'')+'" aria-pressed="'+(g.sizes.has(size)?'true':'false')+'">'+esc(size)+'</button>').join('');
-   const qty=[...g.sizes.entries()].map(([s,n])=>'<label class="ac-stock-item"><span>'+esc(s)+'</span><input data-ac-stock="'+esc(s)+'" data-ac-color-id="'+g.id+'" type="number" min="0" max="100000" step="1" inputmode="numeric" value="'+esc(n)+'" aria-label="Остаток '+esc(g.name)+' '+esc(s)+'"></label>').join('');
-   return '<div class="ac-color-group" data-ac-color-group="'+g.id+'"><div class="ac-color-head"><span class="ac-swatch-dot" style="--swatch:'+esc(/^#[0-9a-f]{6}$/i.test(g.hex)?g.hex:'#2481CC')+'"></span><div class="ac-color-headname"><strong>'+esc(g.name||'Свой цвет')+'</strong><small>'+g.sizes.size+' размеров</small></div><button type="button" class="ac-color-remove" data-ac-remove="'+g.id+'">Убрать</button></div>'+
-     (isCustom?'<div class="ac-form-grid ac-color-custom">'+field('acColorName'+g.id,'Название цвета',g.name,'text','maxlength="40" data-ac-name="'+g.id+'" required')+field('acColorHex'+g.id,'Оттенок',g.hex,'color','data-ac-hex="'+g.id+'"')+'</div>':'')+
-     '<div class="ac-color-caption">Доступные размеры</div><div class="ac-size-grid">'+sizeButtons+'</div><div class="ac-custom-size"><input type="text" maxlength="30" placeholder="Свой размер, например 42/44" data-ac-size-input="'+g.id+'" aria-label="Добавить свой размер"><button type="button" data-ac-add-size="'+g.id+'">+ Размер</button></div>'+
-     '<div class="ac-color-caption">Остаток каждого размера · шт.</div><div class="ac-stock-grid">'+(qty||'<div class="ac-palette-hint">Выбери размеры выше, затем укажи количество.</div>')+'</div></div>';
-  }).join('');
-  root.innerHTML='<div class="ac-palette-title"><strong>Палитра цветов</strong><span class="ac-palette-hint">Выбери цвета товара. Для каждого — размеры и остатки.</span></div><div class="ac-swatch-grid">'+swatches+'<button type="button" class="ac-swatch-item ac-swatch-custom" data-ac-add-color aria-label="Добавить свой цвет"><span class="ac-swatch-dot ac-swatch-plus">'+ico('plus')+'</span><small>Свой цвет</small></button></div><div class="ac-selected-colors">'+(cards||'<div class="ac-note">Выбери хотя бы один цвет из палитры.</div>')+'</div><div class="ac-palette-total" data-ac-palette-total></div>';
-  refreshTotal();
- };
- function refreshTotal(){const el=root.querySelector('[data-ac-palette-total]');if(!el)return;const total=groups.reduce((n,g)=>n+[...g.sizes.values()].reduce((m,x)=>m+(Number.isFinite(Number(x))?Number(x):0),0),0);el.textContent=groups.length+' цветов · '+totalCount()+' вариантов · '+(Number.isFinite(total)?total.toLocaleString('ru-RU'):'—')+' шт.';}
- root.addEventListener('click',e=>{
-  const b=e.target.closest('button');if(!b||!root.contains(b))return;e.preventDefault();
-  if(b.hasAttribute('data-ac-preset')){const name=b.dataset.acPreset,existing=groups.find(g=>g.name===name);if(existing){if(existing.sizes.size&&!confirm('Убрать цвет «'+name+'» и его размеры из формы? Изменения пока не сохраняются.'))return;groups.splice(groups.indexOf(existing),1);}else{if(groups.length>=16)return toast('Максимум 16 цветов.');const p=AC13_COLORS.find(x=>x[0]===name);add(name,p?.[1]||'#2481CC');}paint();return;}
-  if(b.hasAttribute('data-ac-add-color')){if(groups.length>=16)return toast('Максимум 16 цветов.');const g=add('','#2481CC');paint();root.querySelector('[data-ac-name="'+g.id+'"]')?.focus();return;}
-  if(b.hasAttribute('data-ac-remove')){const g=groupOf(b.dataset.acRemove);if(!g)return;if(g.sizes.size&&!confirm('Убрать цвет и все его размеры из формы?'))return;groups.splice(groups.indexOf(g),1);paint();return;}
-  if(b.hasAttribute('data-ac-size')){const g=groupOf(b.dataset.acColorId),size=b.dataset.acSize;if(!g)return;if(g.sizes.has(size))g.sizes.delete(size);else g.sizes.set(size,'1');paint();return;}
-  if(b.hasAttribute('data-ac-add-size')){const g=groupOf(b.dataset.acAddSize),input=root.querySelector('[data-ac-size-input="'+b.dataset.acAddSize+'"]'),size=input?.value.trim();if(!g||!size||size.length>30)return toast('Укажи размер до 30 символов.');if(!g.sizes.has(size))g.sizes.set(size,'1');paint();return;}
- });
- root.addEventListener('keydown',e=>{if(e.key==='Enter'&&e.target.matches('[data-ac-size-input]')){e.preventDefault();root.querySelector('[data-ac-add-size="'+e.target.dataset.acSizeInput+'"]')?.click();}});
- root.addEventListener('input',e=>{
-  const t=e.target;if(t.hasAttribute('data-ac-stock')){const g=groupOf(t.dataset.acColorId);if(g)g.sizes.set(t.dataset.acStock,t.value);refreshTotal();}
-  if(t.hasAttribute('data-ac-name')){const g=groupOf(t.dataset.acName);if(g){g.name=t.value;const head=t.closest('.ac-color-group')?.querySelector('.ac-color-headname strong');if(head)head.textContent=g.name||'Свой цвет';}}
-  if(t.hasAttribute('data-ac-hex')){const g=groupOf(t.dataset.acHex);if(g){g.hex=t.value;const swatch=t.closest('.ac-color-group')?.querySelector('.ac-swatch-dot');if(swatch)swatch.style.setProperty('--swatch',g.hex);}}
- });
- categoryEl?.addEventListener('change',paint);
- function read({allowEmpty=false}={}){
-  if(!groups.length&&!allowEmpty)throw new Error('Выбери хотя бы один цвет товара.');if(groups.length>16)throw new Error('Максимум 16 цветов.');
-  const result=[],seenColors=new Set(),seenKeys=new Set();
-  for(const g of groups){const name=g.name.trim(),hex=g.hex.toUpperCase();if(!name||name.length>40||!/^#[0-9A-F]{6}$/.test(hex))throw new Error('Проверь название и оттенок каждого цвета.');const colorKey=name.toLocaleLowerCase('ru-RU');if(seenColors.has(colorKey))throw new Error('Цвет «'+name+'» выбран дважды.');seenColors.add(colorKey);
-   if(!g.sizes.size)throw new Error('Для цвета «'+name+'» выбери хотя бы один размер.');
-   for(const [size,raw] of g.sizes){const qty=Number(raw),key=colorKey+'::'+size.toLocaleLowerCase('ru-RU');if(!size||size.length>30||String(raw).trim()===''||!Number.isSafeInteger(qty)||qty<0||qty>100000)throw new Error('Проверь остаток «'+name+'» / '+size+' (0–100000).');if(seenKeys.has(key))throw new Error('Повторяется размер '+size+' для цвета '+name);seenKeys.add(key);result.push({colorName:name,colorHex:hex,sizeName:size,stockQty:qty});}
-  }
-  if(result.length>200)throw new Error('Не более 200 сочетаний цвета и размера.');return result;
- }
- paint();return {read,groups,refresh:paint};
-}
-function ac13LocalDatetime(value){if(!value)return '';const ms=Date.parse(String(value));if(!Number.isFinite(ms))return '';const d=new Date(ms);return new Date(ms-d.getTimezoneOffset()*60000).toISOString().slice(0,16);}
-function ac13IsoDatetime(value){const raw=String(value||'').trim();if(!raw)return null;const d=new Date(raw);if(!Number.isFinite(d.getTime()))throw new Error('Проверь даты скидки.');return d.toISOString();}
-function ac13PhotoPreview(layer){const input=layer.querySelector('[name="photos"]'),preview=layer.querySelector('[data-ac-photo-preview]');if(!input||!preview)return;let urls=[];const release=()=>{for(const u of urls)URL.revokeObjectURL(u);urls=[];};
- input.addEventListener('change',()=>{release();const files=[...input.files];preview.innerHTML=files.map(file=>{const u=URL.createObjectURL(file);urls.push(u);return '<img src="'+esc(u)+'" alt="Выбранное фото" loading="lazy">';}).join('');});
- // Revoke after the input is removed from the document; no independent timers or remote uploads.
- const mo=new MutationObserver(()=>{if(!layer.isConnected){release();mo.disconnect();}});mo.observe(document.getElementById('ac13Sheets'),{childList:true});
-}
-
-async function officialCreate(){
- let palette=null;
- const html='<div class="ac-note">Сначала выбери цвета и размеры. Товар появится в продаже только после успешного сохранения вариантов и остатков.</div>'+
-  '<div class="ac-step-caption">1 · Основная информация</div><div class="ac-form-grid">'+
-  field('title','Название товара','','text','required maxlength="60"')+
-  field('price','Цена, UZS','','number','required min="1" max="999999999999" step="1" inputmode="numeric"')+
-  select('category','Категория',['Одежда','Обувь','Аксессуары','Другое'],'Одежда')+
-  select('sourceType','Раздел',[['china','Из Китая'],['stock','В наличии · от нас']],'china')+
-  select('city','Город',AC13_CITIES,'Ташкент')+
-  field('brand','Бренд','','text','maxlength="30"')+
-  area('description','Описание','',500)+'</div>'+
-  '<div class="ac-step-caption">2 · Цвета, размеры, остатки</div>'+ac13PaletteMarkup()+
-  '<div class="ac-step-caption">3 · Фотографии</div><label class="ac-field full"><span>Общая галерея: 1–6 фото (для всех цветов)</span><input type="file" name="photos" accept="image/*" multiple required></label><div class="ac-photo-preview" data-ac-photo-preview></div>'+
-  '<div class="ac-step-caption">4 · Публикация и скидки</div><div class="ac-form-grid">'+
-  select('discountMode','Скидка',[['none','Без скидки'],['percent','Процент'],['price','Цена со скидкой']],'none')+
-  field('discountValue','Скидка (процент или итоговая цена)',0,'number','min="0" step="1"')+
-  '</div><label class="ac-check"><input type="checkbox" name="pinHome">Закрепить на главной</label><label class="ac-check"><input type="checkbox" name="pinChina">Закрепить в разделе «Из Китая»</label>'+
-  '<div class="ac-note">У каждого цвета и размера будет собственный остаток. Если в сохранении возникнет ошибка, черновая карточка останется без остатка и не попадёт в каталог.</div>';
- const r=await sheet('Добавить официальный товар',html,{label:'Создать товар с цветами',setup:layer=>{
-   palette=ac13AttachPalette(layer,[],'[name="category"]');ac13PhotoPreview(layer);
-   const mode=layer.querySelector('[name="discountMode"]'),value=layer.querySelector('[name="discountValue"]');const toggle=()=>{value.disabled=mode.value==='none';value.closest('label').style.opacity=value.disabled?'.55':'1';};mode.addEventListener('change',toggle);toggle();
-  },onSubmit:async(fd,form)=>{
-   const variants=palette.read();const price=Number(fd.get('price'));if(!Number.isSafeInteger(price)||price<1)throw new Error('Цена должна быть положительным целым числом.');
-   const discountMode=String(fd.get('discountMode')||'none'),discountValue=Number(fd.get('discountValue')||0);
-   if(discountMode==='percent'&&(!Number.isSafeInteger(discountValue)||discountValue<1||discountValue>90))throw new Error('Скидка в процентах: от 1 до 90.');
-   if(discountMode==='price'&&(!Number.isSafeInteger(discountValue)||discountValue<1||discountValue>=price))throw new Error('Цена со скидкой должна быть больше 0 и меньше обычной.');
-   const photos=await compressFiles([...form.elements.photos.files]);
-   const sizeNames=[...new Set(variants.map(v=>v.sizeName))];
-   const body={title:String(fd.get('title')||'').trim(),category:String(fd.get('category')),brand:String(fd.get('brand')||'').trim(),size:sizeNames.join(', '),condition:'Новое',city:String(fd.get('city')),price,description:String(fd.get('description')||'').trim(),sourceType:String(fd.get('sourceType')),stockQty:0,pinTargets:[...(fd.has('pinHome')?['home']:[]),...(fd.has('pinChina')?['china']:[])],discountMode:discountMode==='none'?'':discountMode,discountValue:discountMode==='none'?0:discountValue,photos};
-   if(!body.title)throw new Error('Введи название товара.');
-   // First insert an invisible zero-stock listing, then apply revision-guarded variants.
-   // Never create a second listing automatically after a partial or network failure.
-   const created=await request('/admin/official',body,'POST',90000);
-   if(!Number.isSafeInteger(Number(created.id))||Number(created.id)<1)throw new Error('Товар создан, но ID не получен. Проверь список до повтора.');
-   try{
-     await request('/admin/official-variants?id='+created.id,{variants,revision:'[]'},'POST',90000);
-     return {id:Number(created.id),saved:true,qty:variants.reduce((s,x)=>s+x.stockQty,0)};
-   }catch(ex){
-     // A timeout can mean that variants were committed: reread instead of retrying a write.
-     try{const d=await request('/admin/official-variants?id='+created.id,undefined,'GET',30000);
-       const normalized=a=>a.map(v=>[String(v.colorName).toLocaleLowerCase('ru-RU'),String(v.sizeName).toLocaleLowerCase('ru-RU'),Number(v.stockQty),String(v.colorHex).toUpperCase()]).sort((a,b)=>JSON.stringify(a).localeCompare(JSON.stringify(b)));
-       if(JSON.stringify(normalized(d.variants||[]))===JSON.stringify(normalized(variants)))return {id:Number(created.id),saved:true,qty:variants.reduce((s,x)=>s+x.stockQty,0),verifiedAfterTimeout:true};
-     }catch(_){/* preserve the created listing and its original ID */}
-     return {id:Number(created.id),saved:false,reason:message(ex)};
-   }
- }});
- if(r?.id){
-  toast(r.saved?'Товар и варианты сохранены · '+r.qty+' шт.':'Карточка #'+r.id+' создана без подтверждённых вариантов.');
-  await go('listing',{id:r.id});
-  if(!r.saved)await sheet('Товар требует настройки','<div class="ac-error">Товар #'+r.id+' сохранён, но варианты пока не подтверждены. Остаток 0. Не создавай дубль; открой «Палитра и остатки» и проверь варианты. '+esc(r.reason||'')+'</div>');
- }
-}
-async function officialPhotos(){
- const l=detail.listing;
- const html='<div class="ac-note ac-warning">Замена галереи удалит старые фото из карточки. Файлы, не удалённые ImageKit сразу, ставятся в очередь очистки. Ранее отправленные фото в истории могут перестать открываться.</div>'+
-  '<div class="ac-step-caption">Текущие фото</div><div class="ac-photo-preview">'+(detail.images||[]).map(i=>'<img src="'+esc(safeURL(i.image_url))+'" alt="Старое фото" loading="lazy">').join('')+'</div>'+
-  '<label class="ac-field"><span>Новая галерея: от 1 до 6 фото</span><input type="file" name="photos" accept="image/*" multiple required></label><div class="ac-photo-preview" data-ac-photo-preview></div>'+
-  '<div class="ac-note">Чтобы удалить только одно фото, воспользуйся разделом «Фото и очистка», не заменяя всю галерею.</div>';
- const r=await sheet('Фотографии товара #'+l.id,html,{label:'Заменить фотографии',danger:true,setup:ac13PhotoPreview,onSubmit:async(fd,form)=>{
-  const photos=await compressFiles([...form.elements.photos.files]);return request('/admin/official-images',{id:l.id,photos},'POST',90000);
- }});
- if(r){toast(r.warnings?.length?'Фото заменены; старые файлы в очереди очистки':'Фотографии заменены');await load();}
-}
-async function variants(){
- const l=detail.listing,d=await request('/admin/official-variants?id='+l.id,undefined,'GET');let palette=null;
- const old=(d.variants||[]).map(v=>({colorName:v.colorName,colorHex:v.colorHex,sizeName:v.sizeName,stockQty:v.stockQty}));
- const r=await sheet('Палитра и остатки · #'+l.id,
-  '<div class="ac-note">Цвета и размеры редактируются группами. Остаток каждой комбинации сохраняется отдельно. Если покупатель закажет товар, пока открыт редактор, устаревшее сохранение будет отклонено.</div>'+
-  '<div class="ac-form-grid">'+select('paletteCategory','Категория размеров',['Одежда','Обувь','Аксессуары','Другое'],l.category)+'</div>'+ac13PaletteMarkup()+
-  '<label class="ac-check ac-delete-all-check"><input type="checkbox" name="emptyConfirmed">Разрешить убрать все варианты и скрыть товар из продажи</label>',
-  {label:'Сохранить цвета и остатки',setup:layer=>{palette=ac13AttachPalette(layer,old,'[name="paletteCategory"]');},onSubmit:async fd=>{
-   const rows=palette.read({allowEmpty:fd.has('emptyConfirmed')});
-   if(!rows.length&&!fd.has('emptyConfirmed'))throw new Error('Для очистки всех вариантов сначала отметь подтверждение.');
-   return request('/admin/official-variants?id='+l.id,{variants:rows,revision:d.revision},'POST',90000);
-  }});
- if(r){toast('Цвета, размеры и остатки сохранены');await load();}
-}
-async function discount(){
- const l=detail.listing;
- const html='<div class="ac-form-grid">'+select('discountMode','Тип скидки',[['none','Без скидки'],['percent','Процент'],['price','Цена со скидкой']],l.discount_mode||'none')+
-  field('discountValue','Процент (1–90) или итоговая цена',l.discount_value||0,'number','min="0" step="1"')+
-  field('discountStartAt','Начало (необязательно)',ac13LocalDatetime(l.discount_start_at),'datetime-local')+
-  field('discountEndAt','Окончание (необязательно)',ac13LocalDatetime(l.discount_end_at),'datetime-local')+'</div>'+
-  '<div class="ac-note">Обычная цена: '+money(l.price)+'. Неуказанные даты означают скидку без ограничения по времени. Действующие даты не обнуляются без твоего решения.</div>';
- const r=await sheet('Скидка · #'+l.id,html,{onSubmit:fd=>{
-  const mode=String(fd.get('discountMode')),value=Number(fd.get('discountValue')||0);
-  if(mode==='percent'&&(!Number.isSafeInteger(value)||value<1||value>90))throw new Error('Скидка в процентах: 1–90.');
-  if(mode==='price'&&(!Number.isSafeInteger(value)||value<1||value>=Number(l.price)))throw new Error('Цена со скидкой должна быть положительной и меньше обычной.');
-  const from=mode==='none'?null:ac13IsoDatetime(fd.get('discountStartAt')),to=mode==='none'?null:ac13IsoDatetime(fd.get('discountEndAt'));
-  if(from&&to&&Date.parse(from)>=Date.parse(to))throw new Error('Дата окончания должна быть позже начала скидки.');
-  return request('/admin/discount',{id:l.id,discountMode:mode==='none'?'':mode,discountValue:mode==='none'?0:value,discountStartAt:from,discountEndAt:to});
- }});
- if(r){toast('Скидка сохранена');await load();}
-}
-async function pins(){
- const l=detail.listing;
- const html=select('sourceType','Тип официального товара',[['china','Из Китая'],['stock','В наличии · от нас']],l.source_type||'china')+
- '<label class="ac-check"><input type="checkbox" name="home" '+(l.pin_home?'checked':'')+'>Закрепить на главной</label>'+
- '<label class="ac-check"><input type="checkbox" name="china" '+(l.is_pinned?'checked':'')+'>Закрепить в «Из Китая»</label>'+
- '<div class="ac-note">Закрепление на главной и в разделе «Из Китая» независимы. При смене типа товара существующая история заказов остаётся неизменной.</div>';
- const r=await sheet('Размещение · #'+l.id,html,{onSubmit:fd=>request('/admin/listing-update',{id:l.id,sourceType:fd.get('sourceType'),pinTargets:['home','china'].filter(k=>fd.has(k))})});
- if(r){toast('Размещение сохранено');await load();}
-}
-async function officialManage(){
- if(!detail?.listing||detail.listing.owner_type!=='official')return;
- const l=detail.listing;const variantRows=detail.variants||[];
- const seen=new Map();for(const v of variantRows){const key=v.colorName+'|'+v.colorHex;if(!seen.has(key))seen.set(key,{name:v.colorName,hex:v.colorHex,qty:0,sizes:0});const s=seen.get(key);s.qty+=Number(v.stockQty||0);s.sizes++;}
- const colors=[...seen.values()];const swatches=colors.length?colors.map(c=>'<span class="ac-mgmt-color" title="'+esc(c.name)+' · '+c.qty+' шт."><i style="--swatch:'+esc(/^#[0-9a-f]{6}$/i.test(c.hex)?c.hex:'#2481CC')+'"></i>'+esc(c.name)+'</span>').join(''):'<span class="ac-palette-hint">Варианты пока не настроены</span>';
- const html='<div class="ac-mgmt-hero"><div><small>Официальный каталог · #'+l.id+'</small><strong>'+esc(l.title)+'</strong><span>'+money(l.price)+' · '+num(l.stock_qty)+' шт. в наличии</span></div>'+thumb(detail.images?.[0]?.image_url||'')+'</div>'+
-  '<div class="ac-mgmt-swatches">'+swatches+'</div>'+
-  '<div class="ac-step-caption">Управление товаром</div><div class="ac-mgmt-tools">'+
-  '<button type="button" data-ac-mgmt="basics">'+ico('box')+'<span><strong>Описание и цена</strong><small>Название, категория, бренд, город</small></span>'+ico('arrow')+'</button>'+
-  '<button type="button" data-ac-mgmt="variants">'+ico('plus')+'<span><strong>Палитра, размеры и остатки</strong><small>Цвета и отдельный запас для каждого размера</small></span>'+ico('arrow')+'</button>'+
-  '<button type="button" data-ac-mgmt="photos">'+ico('media')+'<span><strong>Фотографии</strong><small>Предпросмотр и замена галереи</small></span>'+ico('arrow')+'</button>'+
-  '<button type="button" data-ac-mgmt="media">'+ico('trash')+'<span><strong>Удалить отдельные фото</strong><small>Без удаления заказов и истории</small></span>'+ico('arrow')+'</button>'+
-  '<button type="button" data-ac-mgmt="discount">'+ico('chart')+'<span><strong>Скидки</strong><small>Сумма, процент и даты</small></span>'+ico('arrow')+'</button>'+
-  '<button type="button" data-ac-mgmt="pins">'+ico('home')+'<span><strong>Размещение и закрепление</strong><small>Из Китая, от нас, главная страница</small></span>'+ico('arrow')+'</button>'+
-  '</div><div class="ac-note">Каждый раздел сохраняется отдельно. Это защищает остальные данные товара от случайного изменения.</div>';
- await sheet('Управление товаром',html,{setup:layer=>{
-   layer.querySelectorAll('.ac-mgmt-hero img').forEach(img=>img.addEventListener('error',()=>{img.replaceWith(Object.assign(document.createElement('span'),{className:'ac-thumb ac-noimage',textContent:'Фото недоступно'}));},{once:true}));
-   layer.querySelectorAll('[data-ac-mgmt]').forEach(btn=>btn.addEventListener('click',async()=>{
-    btn.disabled=true;
-    try{const tool=btn.dataset.acMgmt;
-      if(tool==='basics')await editListing();
-      if(tool==='variants')await variants();
-      if(tool==='photos')await officialPhotos();
-      if(tool==='media'){await go('media',{kind:'all',listingId:l.id});layer.querySelector('[data-sheet-close]')?.click();return;}
-      if(tool==='discount')await discount();
-      if(tool==='pins')await pins();
-      const current=detail?.listing;if(current){const title=layer.querySelector('.ac-mgmt-hero strong');if(title)title.textContent=current.title;const info=layer.querySelector('.ac-mgmt-hero span');if(info)info.textContent=money(current.price)+' · '+num(current.stock_qty)+' шт. в наличии';}
-    }catch(e){await explainError(e);}finally{btn.disabled=false;}
-   }));
- }});
-}
-
+async function officialCreate(){const r=await sheet('Новый официальный товар','<div class="ac-note">После создания добавьте цвета и остатки в карточке. Создаётся одна позиция каталога; повторная отправка после сетевой ошибки может создать дубликат — сначала проверьте список.</div><div class="ac-form-grid">'+field('title','Название','','text','required maxlength="60"')+field('price','Цена, UZS','','number','required min="1" step="1"')+select('category','Категория',['Одежда','Обувь','Аксессуары','Другое'],'Одежда')+select('sourceType','Размещение',['china','stock'],'china')+field('size','Размеры через запятую','','text','maxlength="80"')+field('stockQty','Начальный остаток',1,'number','min="0" max="100000" step="1" required')+field('city','Город','Ташкент','text','required')+field('brand','Бренд','','text','maxlength="30"')+area('description','Описание','',500)+'<label class="ac-field full"><span>От 1 до 6 фото</span><input name="photos" type="file" accept="image/*" multiple required></label></div>',{label:'Создать товар',onSubmit:async(fd,form)=>{const photos=await compressFiles([...form.elements.photos.files]);const b=Object.fromEntries(fd.entries());delete b.photos;b.price=Number(b.price);b.stockQty=Number(b.stockQty);if(!Number.isInteger(b.stockQty))throw new Error('Остаток должен быть целым.');return request('/admin/official',{...b,photos,condition:'Новое',pinTargets:[]},'POST',90000);}});if(r?.id){toast('Официальный товар создан');await go('listing',{id:r.id});}}
+async function officialPhotos(){const l=detail.listing;const r=await sheet('Заменить галерею','<div class="ac-note ac-warning">Все текущие фото будут заменены. Предыдущие ссылки в истории могут стать недоступны.</div><label class="ac-field"><span>Новая галерея: от 1 до 6 фото</span><input type="file" name="photos" accept="image/*" multiple required></label>',{label:'Заменить',danger:true,onSubmit:async(fd,form)=>request('/admin/official-images',{id:l.id,photos:await compressFiles([...form.elements.photos.files])},'POST',90000)});if(r){toast(r.warnings?.length?'Галерея заменена; старые файлы в очереди очистки':'Галерея заменена');await load();}}
+async function variants(){const l=detail.listing,d=await request('/admin/official-variants?id='+l.id);let rows=(d.variants||[]).map(v=>({colorName:v.colorName,colorHex:v.colorHex,sizeName:v.sizeName,stockQty:v.stockQty}));const r=await sheet('Цвета, размеры и остатки','<div class="ac-note">Каждая строка — отдельный вариант. Изменения проверяются по серверной ревизии, чтобы не вернуть уже проданные остатки.</div><div id="ac13Variants"></div><div class="ac-actions"><button type="button" id="ac13VariantAdd">Добавить вариант</button></div>',{label:'Сохранить варианты',onSubmit:async(fd,form)=>{rows=readRows(form);if(rows.length>100)throw new Error('В редакторе не более 100 вариантов за один раз.');const seen=new Set();for(const v of rows){if(!v.colorName.trim()||!v.sizeName.trim()||!Number.isInteger(v.stockQty)||v.stockQty<0)throw new Error('Укажите цвет, размер и целый неотрицательный остаток.');const key=v.colorName.trim().toLowerCase()+'|'+v.sizeName.trim().toLowerCase();if(seen.has(key))throw new Error('Повторяется сочетание цвета и размера.');seen.add(key);}return request('/admin/official-variants?id='+l.id,{variants:rows,revision:d.revision});},setup:layer=>{const root=layer.querySelector('#ac13Variants');const draw=()=>{root.innerHTML=rows.map((v,i)=>'<div class="ac-block" data-variant><div class="ac-form-grid">'+field('colorName'+i,'Цвет',v.colorName,'text','data-vfield="colorName" maxlength="40" required')+field('colorHex'+i,'Оттенок',v.colorHex||'#171717','color','data-vfield="colorHex"')+field('sizeName'+i,'Размер',v.sizeName,'text','data-vfield="sizeName" maxlength="30" required')+field('stockQty'+i,'Остаток',v.stockQty,'number','data-vfield="stockQty" min="0" max="100000" required')+'</div><button type="button" data-vremove="'+i+'" class="ac-danger">Убрать вариант</button></div>').join('')||'<div class="ac-note">Нет вариантов. Добавьте цвет и размер. Сохранение пустого списка обнулит остаток и скроет товар.</div>';root.querySelectorAll('[data-vremove]').forEach(b=>b.onclick=()=>{rows=readRows(layer);rows.splice(Number(b.dataset.vremove),1);draw();});};layer.querySelector('#ac13VariantAdd').onclick=()=>{rows=readRows(layer);if(rows.length>=100)return toast('Максимум 100 вариантов в редакторе');rows.push({colorName:'',colorHex:'#171717',sizeName:'',stockQty:1});draw();root.lastElementChild?.scrollIntoView({block:'nearest'});};draw();}});if(r){toast('Варианты сохранены');await load();}
+ function readRows(root){return [...root.querySelectorAll('[data-variant]')].map(el=>({colorName:el.querySelector('[data-vfield="colorName"]').value.trim(),colorHex:el.querySelector('[data-vfield="colorHex"]').value,sizeName:el.querySelector('[data-vfield="sizeName"]').value.trim(),stockQty:Number(el.querySelector('[data-vfield="stockQty"]').value)}));}}
+async function discount(){const l=detail.listing;const r=await sheet('Скидка на товар',select('discountMode','Тип скидки',[['none','Без скидки'],['percent','Процент'],['price','Цена со скидкой']],l.discount_mode||'none')+field('discountValue','Процент (1–90) или итоговая цена',l.discount_value||0,'number','min="0" step="1"')+'<div class="ac-note">Цена без скидки: '+money(l.price)+'. Сохранение применит скидку без ограничения по датам.</div>',{onSubmit:fd=>request('/admin/discount',{id:l.id,discountMode:fd.get('discountMode'),discountValue:Number(fd.get('discountValue')),discountStartAt:null,discountEndAt:null})});if(r){toast('Скидка обновлена');await load();}}
+async function pins(){const l=detail.listing;const r=await sheet('Закрепление товара','<label class="ac-check"><input type="checkbox" name="home" '+(l.pin_home?'checked':'')+'>На главной</label><label class="ac-check"><input type="checkbox" name="china" '+(l.is_pinned?'checked':'')+'>В разделе «Из Китая»</label>',{onSubmit:fd=>request('/admin/listing-update',{id:l.id,pinTargets:['home','china'].filter(k=>fd.has(k))})});if(r){toast('Закрепление сохранено');await load();}}
 async function reportForm(type='',id=''){let clientKey=makeClientKey();await sheet('Сообщить о нарушении','<div class="ac-note">Жалоба попадёт администрации Uzbek Re’Sale. Она не отправляет ваши личные переписки Telegram.</div>'+select('targetType','Что произошло',[['listing','Объявление'],['user','Пользователь'],['chat','Внутренний чат'],['message','Сообщение']],type||'listing')+field('targetId','ID объекта',id,'text','required maxlength="80"')+select('category','Причина',['spam','fraud','prohibited','abuse','other'],'other')+area('details','Комментарий','',1200),{label:'Отправить жалобу',onSubmit:async fd=>{const r=await request('/reports',{targetType:fd.get('targetType'),targetId:fd.get('targetId'),category:fd.get('category'),details:fd.get('details'),clientKey});toast('Жалоба #'+r.id+' отправлена');return r;}});}
 async function act(b){const action=b.dataset.ac,id=b.dataset.id,mode=b.dataset.mode;if(action==='public-report'){await reportForm(b.dataset.type||'',id||'');return;}
  if(action==='exit'){seq++;ROOT.classList.remove('active');history=[];typeof page==='function'?page('profile'):null;return;}
@@ -25436,8 +25159,7 @@ async function act(b){const action=b.dataset.ac,id=b.dataset.id,mode=b.dataset.m
  if(action==='media-preview')return mediaPreview([...selected.keys()].map(Number));
  if(action==='retry-selection'){const r=await confirmAction('Повторить очистку','Будет обработано до 4 файлов за один запрос. Остальные останутся в очереди.',x=>api('/media/retry',{...x,ids:[...selected.keys()].slice(0,20)}));if(r){toast('Удалено: '+r.deleted+' · сохранено в других разделах: '+r.shared+' · ошибок: '+r.failed);selected.clear();await load();}return;}
  if(action==='permanent'){const l=detail.listing;const r=await confirmAction('Удалить пустую запись','Только для неактивного пользовательского объявления без фото и связанной истории. При наличии R-заявок запись останется.',x=>api('/listings/'+l.id+'/permanent',x),{danger:true,confirm:'УДАЛИТЬ ЗАПИСЬ'});if(r){toast('Запись удалена');await go('listings');}return;}
- if(action==='official-quick'){await go('listing',{id});return officialManage();}
- if(action==='official-manage')return officialManage();if(action==='official-create')return officialCreate();if(action==='official-photos')return officialPhotos();if(action==='variants')return variants();if(action==='official-discount')return discount();if(action==='official-pins')return pins();
+ if(action==='official-create')return officialCreate();if(action==='official-photos')return officialPhotos();if(action==='variants')return variants();if(action==='official-discount')return discount();if(action==='official-pins')return pins();
  if(action==='order-status'){const o=detail.order,r=await confirmAction('Изменить статус заказа',b.dataset.value==='cancelled'?'Заказ будет отменён. Система вернёт зарезервированные остатки один раз.':'Заказ '+o.order_number+' → '+label(b.dataset.value),x=>api('/orders/'+o.id+'/action',{...x,action:'status',expectedStatus:o.status,status:b.dataset.value}),{danger:b.dataset.value==='cancelled'});if(r){toast('Статус заказа обновлён');await load();}return;}
  if(action==='order-archive'){const o=detail.order,r=await confirmAction(mode==='archive'?'Архивировать заказ':'Вернуть заказ','История заказа и покупателя останется целой.',x=>api('/orders/'+o.id+'/action',{...x,action:mode}));if(r)await load();return;}
  if(action==='order-cargo'){const o=detail.order,r=await sheet('Фактический вес карго',field('actualGrams','Вес, граммы',o.cargo_actual_grams||'','number','required min="1" max="1000000" step="1"')+area('reason','Причина изменения','Поступил фактический вес'),{onSubmit:fd=>api('/orders/'+o.id+'/action',{action:'cargo',actualGrams:Number(fd.get('actualGrams')),previousCalculatedAt:o.cargo_calculated_at||null,reason:fd.get('reason')})});if(r)await load();return;}
