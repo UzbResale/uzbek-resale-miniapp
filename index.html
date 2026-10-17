@@ -15525,12 +15525,12 @@ if(/^\d{1,12}$/.test(param)){waitForTelegramIdentityV108(3500).then(u=>{if(u?.id
 </script>
 <!-- Admin Control 1.0.0: isolated, signed Mini App administration. No demo data. -->
 
-<section id="ac13Panel" class="page" aria-label="Административная панель"><div class="ac-shell"><div class="ac-header"><button class="ac-iconbtn" data-ac="back" aria-label="Назад"></button><div class="ac-brand"><strong>UZBEK RE’SALE</strong><span id="ac13Role">ADMIN CONTROL</span><small id="ac13ClientBuildTag" style="display:block;color:#777;font-size:9px;line-height:1.35;letter-spacing:.025em;margin-top:2px" aria-label="Версия интерфейса админки">UI 1.0.7 · R4.3</small></div><button class="ac-iconbtn" data-ac="refresh" aria-label="Обновить"></button></div><main id="ac13Main" class="ac-main"></main><div class="ac-dock" id="ac13Dock" aria-label="Разделы админки"></div></div></section>
+<section id="ac13Panel" class="page" aria-label="Административная панель"><div class="ac-shell"><div class="ac-header"><button class="ac-iconbtn" data-ac="back" aria-label="Назад"></button><div class="ac-brand"><strong>UZBEK RE’SALE</strong><span id="ac13Role">ADMIN CONTROL</span><small id="ac13ClientBuildTag" style="display:block;color:#777;font-size:9px;line-height:1.35;letter-spacing:.025em;margin-top:2px" aria-label="Версия интерфейса админки">UI 1.0.8 · R4.4</small></div><button class="ac-iconbtn" data-ac="refresh" aria-label="Обновить"></button></div><main id="ac13Main" class="ac-main"></main><div class="ac-dock" id="ac13Dock" aria-label="Разделы админки"></div></div></section>
 <div id="ac13Sheets"></div><div id="ac13Toast" role="status" aria-live="polite" hidden></div>
 <script id="ac13-controller">
 (()=>{'use strict';
 const ROOT=document.getElementById('ac13Panel'),MAIN=document.getElementById('ac13Main'),SHEETS=document.getElementById('ac13Sheets');
-const BUILD='admin-control-1.0.7-delivery-guard',P='/admin/control';
+const BUILD='admin-control-1.0.8-official-sync',P='/admin/control';
 // Secure idempotency keys also work in older WebViews without randomUUID().
 function makeClientKey(){const c=window.crypto;if(typeof c?.randomUUID==='function')return c.randomUUID();if(typeof c?.getRandomValues!=='function')throw new Error('Для этого действия нужен защищённый браузер. Откройте Mini App через Telegram.');const b=c.getRandomValues(new Uint8Array(16));b[6]=(b[6]&15)|64;b[8]=(b[8]&63)|128;const h=Array.from(b,x=>x.toString(16).padStart(2,'0'));return h.slice(0,4).join('')+'-'+h.slice(4,6).join('')+'-'+h.slice(6,8).join('')+'-'+h.slice(8,10).join('')+'-'+h.slice(10).join('');}
 ROOT.setAttribute('data-no-i18n','');SHEETS.setAttribute('data-no-i18n','');
@@ -16035,7 +16035,7 @@ async function act(b){const action=b.dataset.ac,id=b.dataset.id,mode=b.dataset.m
   const info=ok?'Telegram подтвердил публикацию официального товара.':
    p.pending===true?'Отправка запущена и выполняется на сервере. Подождите 15–30 секунд, обновите товар и проверьте канал. Повторно не нажимайте публикацию.':
    p.retrySafe===false||p.error==='CHANNEL_DELIVERY_UNKNOWN'||p.error==='CHANNEL_ALREADY_IN_PROGRESS'
-    ?'Отправка не подтверждена ('+String(p.error||'UNKNOWN')+'). Проверьте @resalepatriot вручную перед любыми действиями. Не создавайте дубль.':
+    ?'Отправка не подтверждена ('+String(p.error||'UNKNOWN')+'). '+String(p.message||'Проверьте @resalepatriot вручную перед любыми действиями.')+' Не создавайте дубль.':
      'Публикация не состоялась: '+String(p.message||p.error||'неизвестная ошибка');
   await sheet('Результат ручной публикации','<div class="ac-note '+(ok||p.pending?'':'ac-warning')+'">'+esc(info)+'</div>'+link);
   return;
