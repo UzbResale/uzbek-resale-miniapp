@@ -7,7 +7,7 @@
 <!-- UZBEK RE'SALE 1.1.0 PROD MAINTENANCE TEST — production API; ordinary users remain blocked while maintenance is ON. -->
 <!-- REVIEW8 from AUDIT7; local review candidate. VERSION 114: RELEASE 1.0.9C integrity fix — keeps Telegram moderation as screening, adds secure bridge/privacy/cache/ImageKit retry/deep-link handling -->
 
-<html lang="ru" data-uzr-theme="light"><head><meta name="uzr-version" content="v1.3-monochrome-ui-review3-surfaces"><meta name="uzr-maintenance-revision" content="2026-10-10.1"><script id="uzr-production-v110-config">
+<html lang="ru" data-uzr-theme="light"><head><meta name="uzr-version" content="v1.3-monochrome-review4-official-channel"><meta name="uzr-maintenance-revision" content="2026-10-10.1"><script id="uzr-production-v110-config">
 window.UZR_CONFIG_V110={environment:"production-maintenance-test",apiBase:"https://uzbek-resale-orders.amegakid.workers.dev"};
 window.uzrApiBaseV110=function(){return String(window.UZR_CONFIG_V110.apiBase).replace(/\/$/,"")};
 </script><meta charset="utf-8"/><meta content="width=device-width,initial-scale=1,viewport-fit=cover" name="viewport"/><title>Узбекский Ресейл</title><!-- v109 STOCK DISPLAY FIX: v108 + official stock quantity shown for stock and China product detail --><script src="https://telegram.org/js/telegram-web-app.js"></script><script id="uzbek-v13-lucide-vendored">/**
@@ -5563,7 +5563,10 @@ nav.uzr-home-rollout-nav .icon {width:23px!important; height:34px!important; pad
 nav.uzr-home-rollout-nav .icon svg {width:22px!important; height:22px!important; stroke-width:1.6!important; fill:none!important; color:inherit!important}
 nav.uzr-home-rollout-nav .sell .icon {width:34px!important; height:34px!important; background:#111!important; color:#fff!important; border-radius:11px!important; margin:0!important; box-shadow:none!important; transform:none!important}
 nav.uzr-home-rollout-nav .sell .icon svg {width:23px!important; height:23px!important; stroke:#fff!important; color:#fff!important; stroke-width:1.9!important}
-#navProfileAvatar img {display:none!important}
+#navProfileAvatar {width:30px!important;height:30px!important;flex:0 0 30px!important;border-radius:50%!important;overflow:hidden!important;background:#eee!important;display:flex!important;align-items:center!important;justify-content:center!important;font-weight:650!important;font-size:10px!important;color:#333!important;border:1px solid #e6e6e6!important;line-height:1!important}
+#navProfileAvatar img {display:block!important;width:100%!important;height:100%!important;object-fit:cover!important;object-position:center!important;border-radius:50%!important}
+nav.uzr-home-rollout-nav .nav-profile-v13.active #navProfileAvatar {outline:2px solid #111!important;outline-offset:2px!important}
+nav.uzr-home-rollout-nav .nav-profile-v13 #navProfileAvatar svg {display:none!important}
 #uzcUnreadBadge {position:absolute!important; top:0!important; right:calc(50% - 23px)!important; background:#111!important; color:#fff!important; border:2px solid #fff!important; border-radius:999px!important; min-width:16px!important; height:16px!important; font-size:8px!important; line-height:12px!important}
 #uzcUnreadBadge:empty {display:none!important}
 
@@ -6374,6 +6377,23 @@ body[data-uzbek-admin-covered="true"] #ac13Dock { visibility:hidden!important; p
     border-radius: 50% !important;
     background: #111 !important;
   }
+</style>
+<style id="uzbek-v13-review4-press">
+/* Press feedback uses individual 'scale', leaving translate/position intact. */
+@media (prefers-reduced-motion:no-preference){
+  .uzr-home-rollout-nav .nav .icon,
+  .uzr-home-rollout-nav .nav .nav-profile-avatar-v13{transition:scale .16s cubic-bezier(.2,.8,.2,1),background-color .16s ease!important}
+  .uzr-home-rollout-nav .nav:active .icon{scale:.90}
+  .uzr-home-rollout-nav .nav.sell:active .icon{scale:.93}
+  .ac-shell button:not(:disabled),.ac-sheet button:not(:disabled),.tg-row-v13,
+  .dark-action-v10,.uzr-home-find,.sr110-banner button,
+  .usp-emoji-button,.product-v18-actions button:not(:disabled){transition:scale .17s cubic-bezier(.2,.8,.2,1),background-color .17s ease!important}
+  .ac-shell button:active:not(:disabled),.ac-sheet button:active:not(:disabled),
+  .tg-row-v13:active,.dark-action-v10:active,.uzr-home-find:active,
+  .usp-emoji-button:active,.product-v18-actions button:active:not(:disabled){scale:.98}
+  .uzbek-nav-indicator{transition:transform 210ms cubic-bezier(.22,1,.36,1)!important}
+}
+@media (prefers-reduced-motion:reduce){.uzbek-nav-indicator{transition:none!important}}
 </style>
 </head><body>
 <div id="uzrConsentV58" hidden role="dialog" aria-modal="true" aria-labelledby="uzrConsentTitleV58">
@@ -15510,7 +15530,7 @@ if(/^\d{1,12}$/.test(param)){waitForTelegramIdentityV108(3500).then(u=>{if(u?.id
 <script id="ac13-controller">
 (()=>{'use strict';
 const ROOT=document.getElementById('ac13Panel'),MAIN=document.getElementById('ac13Main'),SHEETS=document.getElementById('ac13Sheets');
-const BUILD='admin-control-1.0.4-imagekit',P='/admin/control';
+const BUILD='admin-control-1.0.5-official-manual',P='/admin/control';
 // Secure idempotency keys also work in older WebViews without randomUUID().
 function makeClientKey(){const c=window.crypto;if(typeof c?.randomUUID==='function')return c.randomUUID();if(typeof c?.getRandomValues!=='function')throw new Error('Для этого действия нужен защищённый браузер. Откройте Mini App через Telegram.');const b=c.getRandomValues(new Uint8Array(16));b[6]=(b[6]&15)|64;b[8]=(b[8]&63)|128;const h=Array.from(b,x=>x.toString(16).padStart(2,'0'));return h.slice(0,4).join('')+'-'+h.slice(4,6).join('')+'-'+h.slice(6,8).join('')+'-'+h.slice(8,10).join('')+'-'+h.slice(10).join('');}
 ROOT.setAttribute('data-no-i18n','');SHEETS.setAttribute('data-no-i18n','');
@@ -15537,7 +15557,7 @@ async function request(path,body,method='GET',timeout=30000){
   if((path.startsWith(P)||path==='/reports')&&d.adminControlBuild!==BUILD)throw Object.assign(new Error('Версии не совпадают. Интерфейс: '+BUILD+'. Сервер: '+(d.adminControlBuild||'не указана')+'. Установите Worker и Index из одного комплекта; SQL повторять не нужно.'),{code:'ADMIN_BUILD_MISMATCH'});return d;
  }catch(e){if(e.name==='AbortError')throw new Error('Сервер не ответил вовремя. Данные формы сохранены. Перед повтором проверьте результат операции.');throw e;}finally{clearTimeout(timer);}
 }
-const api=(path,body)=>request(P+path,body,'GET',body!==undefined&&(/^\/listings\/\d+\/(action|channel)$/.test(path)||path==='/listings/bulk'||path==='/media/retry')?60000:30000);
+const api=(path,body)=>request(P+path,body,'GET',body!==undefined&&(/^\/listings\/\d+\/(action|channel|official-channel)$/.test(path)||path==='/listings/bulk'||path==='/media/retry')?60000:30000);
 function toast(t){const el=document.getElementById('ac13Toast');el.textContent=t;el.hidden=false;clearTimeout(toastTimer);toastTimer=setTimeout(()=>el.hidden=true,4200);}
 function button(text,action,attrs='',cls=''){return '<button type="button" class="'+cls+'" data-ac="'+action+'" '+attrs+'>'+text+'</button>';}
 function badge(v,cls=''){return '<span class="ac-badge '+cls+'">'+esc(label(v))+'</span>';}
@@ -15623,7 +15643,14 @@ function ac13OfficialSummary(d){
  const swatches=[...colors.entries()].map(([name,hex])=>'<span class="ac-mgmt-color"><i style="--swatch:'+esc(/^#[0-9a-f]{6}$/i.test(hex)?hex:'#2481CC')+'"></i>'+esc(name)+'</span>').join('');
  return '<div class="ac-official-summary"><p>Раздел: <b>'+esc(label(d.listing.source_type))+'</b> · Вариантов: <b>'+v.length+'</b> · Остаток: <b>'+num(d.listing.stock_qty)+' шт.</b></p><div class="ac-mgmt-swatches">'+(swatches||'<span class="ac-palette-hint">Цвета пока не настроены. Нажми «Настроить товар».</span>')+'</div><div class="ac-actions">'+button('Настроить товар','official-manage','','ac-primary')+'</div></div>';
 }
-function renderListing(d){const l=d.listing,write=can('listings.write')&&(l.owner_type!=='official'||can('official.write'));MAIN.innerHTML=title(l.title,'#'+l.id+' · '+(l.owner_type==='official'?'Официальный товар':'Пользовательский Ресейл'))+'<div class="ac-gallery">'+d.images.map(i=>'<figure class="ac-photo"><img src="'+esc(safeURL(i.image_url))+'" alt="Фото товара" referrerpolicy="no-referrer"><figcaption class="ac-photo-copy">Фото #'+i.id+'</figcaption></figure>').join('')+'</div>'+block('Карточка',kv([['Статус',l.status==='deleted'?label(l.status):l.is_hidden?'Скрыт':label(l.status)],['Цена',money(l.price)],['Продавец',l.seller_name||l.seller_username||l.seller_telegram_id],['Категория',l.category],['Состояние',l.condition],['Город',l.city||'—'],['Бренд',l.brand||'—'],['Размеры',l.owner_type==='official'&&d.variants?.length?[...new Set(d.variants.map(v=>v.sizeName))].join(', '):l.size||'—'],...(l.owner_type==='official'?[]:[['Модель',l.resale_model||'—'],['Цвет',l.resale_color||'—']]),['Остаток',num(l.stock_qty)],['R-заявки',num(d.requests.total)],['Срок публикации',dt(l.expires_at)],['Обновлено',dt(l.updated_at)]]))+(l.owner_type!=='official'?block('Публикация в @resalepatriot',kv([['Канал',l.channel_post_message_id?'Опубликовано · сообщение #'+l.channel_post_message_id:l.channel_post_status==='error'?'Ошибка: '+(l.channel_post_error||'неизвестная'): 'Не опубликовано'],['Автопубликация',d.channelPublishing?'Включена':'Выключена']])+(can('settings')?'<div class="ac-actions">'+(l.status==='approved'&&d.channelPublishing&&!l.channel_post_message_id&&can('settings.write')?button('Опубликовать в канал','channel-post','','ac-primary'):'')+button('Настройки публикаций','go','data-tab="settings"')+'</div>':'')+(d.channelPublishing?'':'<div class="ac-note ac-warning">Чтобы объявления появлялись в @resalepatriot, включи публикации в настройках.</div>')):'')+(l.is_hidden?'<div class="ac-note ac-warning">'+esc(l.hidden_reason||'Карточка скрыта администратором.')+'</div>':'')+block('Описание','<div class="ac-text">'+esc(l.description||'Описание не указано')+'</div>')+
+function renderListing(d){const l=d.listing,write=can('listings.write')&&(l.owner_type!=='official'||can('official.write'));MAIN.innerHTML=title(l.title,'#'+l.id+' · '+(l.owner_type==='official'?'Официальный товар':'Пользовательский Ресейл'))+'<div class="ac-gallery">'+d.images.map(i=>'<figure class="ac-photo"><img src="'+esc(safeURL(i.image_url))+'" alt="Фото товара" referrerpolicy="no-referrer"><figcaption class="ac-photo-copy">Фото #'+i.id+'</figcaption></figure>').join('')+'</div>'+block('Карточка',kv([['Статус',l.status==='deleted'?label(l.status):l.is_hidden?'Скрыт':label(l.status)],['Цена',money(l.price)],['Продавец',l.seller_name||l.seller_username||l.seller_telegram_id],['Категория',l.category],['Состояние',l.condition],['Город',l.city||'—'],['Бренд',l.brand||'—'],['Размеры',l.owner_type==='official'&&d.variants?.length?[...new Set(d.variants.map(v=>v.sizeName))].join(', '):l.size||'—'],...(l.owner_type==='official'?[]:[['Модель',l.resale_model||'—'],['Цвет',l.resale_color||'—']]),['Остаток',num(l.stock_qty)],['R-заявки',num(d.requests.total)],['Срок публикации',dt(l.expires_at)],['Обновлено',dt(l.updated_at)]]))+(l.owner_type!=='official'?block('Публикация в @resalepatriot',kv([['Канал',l.channel_post_message_id?'Опубликовано · сообщение #'+l.channel_post_message_id:l.channel_post_status==='error'?'Ошибка: '+(l.channel_post_error||'неизвестная'): 'Не опубликовано'],['Автопубликация',d.channelPublishing?'Включена':'Выключена']])+(can('settings')?'<div class="ac-actions">'+(l.status==='approved'&&d.channelPublishing&&!l.channel_post_message_id&&can('settings.write')?button('Опубликовать в канал','channel-post','','ac-primary'):'')+button('Настройки публикаций','go','data-tab="settings"')+'</div>':'')+(d.channelPublishing?'':'<div class="ac-note ac-warning">Чтобы объявления появлялись в @resalepatriot, включи публикации в настройках.</div>')):'')+(l.owner_type==='official'?block('Публикация официального товара',
+ '<div class="ac-note">При создании товар попадает только в каталог. В Telegram-канал он <strong>не отправляется автоматически</strong>.</div>'+
+ (l.channel_post_message_id?'<div class="ac-note ac-success">Telegram подтвердил публикацию. <a target="_blank" rel="noopener noreferrer" href="https://t.me/resalepatriot/'+Number(l.channel_post_message_id)+'">Открыть пост #'+Number(l.channel_post_message_id)+'</a></div>':
+  (l.channel_post_status==='sending'||l.channel_post_status==='published'||['CHANNEL_TELEGRAM_SEND_UNKNOWN','CHANNEL_TELEGRAM_RESPONSE_INVALID','CHANNEL_TELEGRAM_MESSAGE_ID_MISSING'].includes(String(l.channel_post_error||'')))?'<div class="ac-note ac-warning">Предыдущая отправка не подтверждена. Проверьте канал вручную: повтор заблокирован для защиты от дублей.</div>':
+  '<div class="ac-note">Статус: <strong>не публиковался</strong>.'+(l.channel_post_error?' Ошибка: '+esc(l.channel_post_error):'')+'</div>')+
+ (actor?.role==='owner'&&can('official.write')&&l.status==='approved'&&!l.is_hidden&&!l.channel_post_message_id&&l.channel_post_status!=='sending'&&l.channel_post_status!=='published'&&!['CHANNEL_TELEGRAM_SEND_UNKNOWN','CHANNEL_TELEGRAM_RESPONSE_INVALID','CHANNEL_TELEGRAM_MESSAGE_ID_MISSING'].includes(String(l.channel_post_error||''))
+ ?'<div class="ac-actions">'+button('Опубликовать вручную в @resalepatriot','official-channel-post','','ac-primary')+'</div>':'')+
+ '<div class="ac-note">Ручная публикация независима от общего переключателя автопубликации ресейла.</div>'):'')+(l.is_hidden?'<div class="ac-note ac-warning">'+esc(l.hidden_reason||'Карточка скрыта администратором.')+'</div>':'')+block('Описание','<div class="ac-text">'+esc(l.description||'Описание не указано')+'</div>')+
  (write?'<div class="ac-actions">'+button('Редактировать','listing-edit','data-id="'+l.id+'"','ac-primary')+(['approved','pending'].includes(l.status)?button('Скрыть','listing-action','data-mode="hide"'):button('Опубликовать','listing-action','data-mode="restore"'))+(l.status==='pending'?button('Одобрить','listing-action','data-mode="approve"')+button('Отклонить','listing-action','data-mode="reject"','ac-danger'):'')+'</div>':'')+
  (l.owner_type==='official'&&can('official.write')?block('Официальный каталог',ac13OfficialSummary(d)+'<div class="ac-actions">'+button('Цвета и остатки','variants')+button('Заменить фото','official-photos')+button('Скидка','official-discount')+button('Закрепление','official-pins')+'</div>'): '')+
  (can('media.write')?block('Удаление','<p>Можно удалить выбранные фото или объявление вместе с фото. История сохраняется. Продавец не получит служебное уведомление.</p><div class="ac-actions">'+(d.images.length?button('Выбрать фотографии','listing-media','data-id="'+l.id+'"')+button('Удалить все фото','listing-media-all','','ac-danger'):'')+((l.status!=='deleted'||d.images.length)?button('Удалить объявление и фото','listing-delete-all','','ac-danger'):'')+(!d.images.length&&!d.requests.total&&l.owner_type!=='official'&&['expired','sold','deleted','rejected'].includes(l.status)&&l.images_deleted_at&&!l.cleanup_error?button('Удалить пустую запись','permanent','','ac-danger'):'')+(!d.images.length?button('Очередь удаления фото','go','data-tab="media" data-kind="queue"'):'')+'</div>'):'')+
@@ -15808,7 +15835,7 @@ function ac13PhotoPreview(layer){const input=layer.querySelector('[name="photos"
 
 async function officialCreate(){
  let palette=null;
- const html='<div class="ac-note">Сначала выбери цвета и размеры. Товар появится в продаже только после успешного сохранения вариантов и остатков.</div>'+
+ const html='<div class="ac-note">Сначала выбери цвета и размеры. Товар появится в продаже только после успешного сохранения вариантов и остатков. <strong>В Telegram-канал он автоматически НЕ отправляется.</strong> Отдельная кнопка ручной публикации появится в карточке официального товара.</div>'+
   '<div class="ac-step-caption">1 · Основная информация</div><div class="ac-form-grid">'+
   field('title','Название товара','','text','required maxlength="60"')+
   field('price','Цена, UZS','','number','required min="1" max="999999999999" step="1" inputmode="numeric"')+
@@ -15819,7 +15846,7 @@ async function officialCreate(){
   area('description','Описание','',500)+'</div>'+
   '<div class="ac-step-caption">2 · Цвета, размеры, остатки</div>'+ac13PaletteMarkup()+
   '<div class="ac-step-caption">3 · Фотографии</div><label class="ac-field full"><span>Общая галерея: 1–6 фото (для всех цветов)</span><input type="file" name="photos" accept="image/*" multiple required></label><div class="ac-photo-preview" data-ac-photo-preview></div>'+
-  '<div class="ac-step-caption">4 · Публикация и скидки</div><div class="ac-form-grid">'+
+  '<div class="ac-step-caption">4 · Скидки и размещение в каталоге</div><div class="ac-form-grid">'+
   select('discountMode','Скидка',[['none','Без скидки'],['percent','Процент'],['price','Цена со скидкой']],'none')+
   field('discountValue','Скидка (процент или итоговая цена)',0,'number','min="0" step="1"')+
   '</div><label class="ac-check"><input type="checkbox" name="pinHome">Закрепить на главной</label><label class="ac-check"><input type="checkbox" name="pinChina">Закрепить в разделе «Из Китая»</label>'+
@@ -15966,6 +15993,26 @@ async function act(b){const action=b.dataset.ac,id=b.dataset.id,mode=b.dataset.m
   const r=await confirmAction(names[mode],note,x=>api('/listings/'+l.id+'/action',{...x,action:mode,expectedRevision:l.revision}),{danger:['delete','hide','reject'].includes(mode),requireReason:mode==='reject',label:isApproval?'Одобрить':'Подтвердить'});
   if(r){await load();if(isApproval){await sheet('Результат модерации',ac13PublicationResult(r,l.id));}else toast('Состояние карточки обновлено');}return;
  }
+ if(action==='official-channel-post'){
+  const l=detail?.listing;
+  if(!l||l.owner_type!=='official'||l.status!=='approved')throw new Error('Откройте одобренный официальный товар.');
+  const result=await confirmAction('Ручная публикация официального товара',
+    'Отправить официальный товар #'+l.id+' в @resalepatriot сейчас? При создании товара публикации НЕ происходит. Повторная отправка может создать дубль, поэтому автоматический повтор запрещён.',
+    ()=>api('/listings/'+l.id+'/official-channel',{confirm:true,expectedRevision:l.revision}),
+    {requireReason:false,label:'Да, опубликовать'});
+  if(!result)return;
+  const p=result.channelPublish||{};
+  await load();
+  const ok=p.published===true||p.alreadyPublished===true;
+  const link=ok&&Number.isSafeInteger(Number(p.messageId))&&Number(p.messageId)>0
+   ?'<p><a target="_blank" rel="noopener noreferrer" href="https://t.me/resalepatriot/'+Number(p.messageId)+'">Открыть публикацию в канале ↗</a></p>':'';
+  const info=ok?'Telegram подтвердил публикацию официального товара.':
+   p.retrySafe===false||p.error==='CHANNEL_DELIVERY_UNKNOWN'||p.error==='CHANNEL_ALREADY_IN_PROGRESS'
+    ?'Отправка не подтверждена. Проверьте @resalepatriot вручную перед любыми действиями. Не создавайте дубль.':
+     'Публикация не состоялась: '+String(p.message||p.error||'неизвестная ошибка');
+  await sheet('Результат ручной публикации','<div class="ac-note '+(ok?'':'ac-warning')+'">'+esc(info)+'</div>'+link);
+  return;
+ }
  if(action==='channel-post'){
   const l=detail.listing;
   const r=await confirmAction('Публикация в @resalepatriot','Отправить ранее одобренный товар #'+l.id+' в канал? Если пост уже существует, повторной отправки не будет.',()=>api('/listings/'+l.id+'/channel',{}),{requireReason:false,label:'Опубликовать'});
@@ -16070,5 +16117,35 @@ window.UzrAdminControl=Object.freeze({build:BUILD,open:window.openAdminPanel,rep
  window.addEventListener('pagehide',()=>observer.disconnect());
 })();
 
+</script>
+<script id="uzbek-v13-review4-nav-avatar">
+(()=>{'use strict';
+ const slot=document.getElementById('navProfileAvatar');if(!slot)return;
+ const profile=document.getElementById('profileAvatar');
+ const telegram=()=>window.Telegram?.WebApp?.initDataUnsafe?.user||null;
+ function initials(name){return String(name||'').trim().split(/\s+/).filter(Boolean).slice(0,2).map(s=>s[0]).join('').toLocaleUpperCase('ru-RU')||'U';}
+ function safeURL(src){try{const u=new URL(src,window.location.href);return u.protocol==='https:'&&!u.username&&!u.password?u.href:'';}catch{return '';}}
+ let applied='';
+ function update(){
+  const u=telegram(),profileImg=profile?.querySelector('img');
+  const originalSrc=u?.photo_url||profileImg?.getAttribute('src')||'';
+  const src=safeURL(originalSrc);
+  const display=[u?.first_name,u?.last_name].filter(Boolean).join(' ').trim()||document.getElementById('profileName')?.textContent||'U';
+  const fallback=initials(display);
+  const key=(u?.id||'')+'|'+src+'|'+fallback;
+  if(key===applied)return;applied=key;
+  if(!src){slot.textContent=fallback;return;}
+  const im=new Image();im.alt='';im.decoding='async';im.referrerPolicy='no-referrer';
+  im.onload=()=>{if(applied===key)slot.replaceChildren(im);};
+  im.onerror=()=>{if(applied===key)slot.textContent=fallback;};
+  slot.textContent=fallback;im.src=src;
+ }
+ const mo=new MutationObserver(update);
+ if(profile)mo.observe(profile,{childList:true,subtree:true,attributes:true,attributeFilter:['src']});
+ const name=document.getElementById('profileName');if(name)mo.observe(name,{childList:true,characterData:true,subtree:true});
+ document.addEventListener('uzr:languagechange',update);
+ window.addEventListener('pageshow',update);
+ update();
+})();
 </script>
 </body></html>
