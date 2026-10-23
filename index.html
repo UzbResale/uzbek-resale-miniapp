@@ -6548,6 +6548,20 @@ html[data-uzr-theme] body #chats .uzc-context{background:#f7f7f5!important}
 html[data-uzr-theme] body #chats .uzc-compose-row{background:#ececea!important;border-radius:25px!important}
 </style>
 
+<style id="uzr-fix3-layout">
+/* Support rows use the same thumbnail-width column as product rows. */
+html[data-uzr-theme] body #chats .uzc-row>.uzc-avatar{justify-self:center!important;align-self:center!important;width:44px!important;height:44px!important;min-width:44px!important;max-width:44px!important;border-radius:50%!important;overflow:hidden!important;display:flex!important;align-items:center!important;justify-content:center!important;box-sizing:border-box!important}
+html[data-uzr-theme] body #chats .uzc-row>.uzc-avatar img{width:100%!important;height:100%!important;object-fit:contain!important;display:block!important;border-radius:50%!important}
+html[data-uzr-theme] body #sell .sell-form{gap:12px!important}
+html[data-uzr-theme] body #sell .sell-panel{margin:0!important}
+html[data-uzr-theme] body #sell .field{margin-bottom:8px!important}
+html[data-uzr-theme] body #sell .sell-panel>.field:last-child{margin-bottom:0!important}
+html[data-uzr-theme] body #sell .sell-price-wrap{height:48px!important;border:1px solid #e5e5e5!important;background:#f7f7f7!important;border-radius:13px!important}
+html[data-uzr-theme] body #sell .sell-price-wrap #sellPrice{width:auto!important;flex:1 1 0!important;min-width:0!important;margin:0!important;padding:0 12px!important;height:100%!important;min-height:0!important;border:0!important;border-radius:0!important;background:transparent!important;box-shadow:none!important}
+html[data-uzr-theme] body #sell .sell-price-wrap>span{padding:0 12px!important}
+#sellerDiscountV14 [data-retry]{display:block;width:100%;margin-top:10px}
+#uzoError,#sellerDiscountV14 [data-error]{overflow-wrap:anywhere}
+</style>
 </head><body>
 <div id="uzrConsentV58" hidden role="dialog" aria-modal="true" aria-labelledby="uzrConsentTitleV58">
   <div class="uzr-consent-card-v58">
@@ -16354,18 +16368,35 @@ window.UzrAdminControl=Object.freeze({build:BUILD,open:window.openAdminPanel,rep
  update();
 })();
 </script>
+<script id="uzr-network-fix3">
+async function uzrFetchJsonFix3(url,options={},labels={}){
+ const controller=new AbortController(),timer=setTimeout(()=>controller.abort(),15000);
+ try{
+  const r=await fetch(url,{...options,signal:controller.signal,cache:'no-store'});
+  let d;try{d=await r.json();}catch{throw Error('Сервер вернул некорректный ответ. Код: HTTP_'+r.status);}
+  if(!r.ok||!d?.ok){const code=/^[A-Z0-9_]{1,80}$/.test(d?.error||'')?d.error:'HTTP_'+r.status;throw Error((labels[code]||'Не удалось выполнить запрос. Повторите попытку.')+' Код: '+code);}
+  return d;
+ }catch(e){if(controller.signal.aborted)throw Error('Сервер не ответил за 15 секунд. Проверьте интернет и повторите. Код: REQUEST_TIMEOUT');if(e instanceof TypeError)throw Error('Нет связи с сервером. Проверьте интернет. Код: NETWORK_ERROR');throw e;}
+ finally{clearTimeout(timer);}
+}
+</script>
 <script id="uzr-price-offers-v14">
 (()=>{'use strict';
 const esc=v=>escapeHtml(String(v??''));let generation=0,product=null,busy=false,lastFocus=null,targetOffer=null;
 const sheet=document.createElement('section');sheet.id='uzoSheet';sheet.hidden=true;sheet.setAttribute('role','dialog');sheet.setAttribute('aria-modal','true');sheet.setAttribute('aria-label','Предложение цены');sheet.dataset.noI18n='';document.body.append(sheet);
 const statuses={checkout:'Ожидает оплаты',expired:'Счёт истёк',pending:'Ожидает ответа продавца',countered:'Встречная цена продавца',accepted:'Предложение принято',rejected:'Предложение отклонено',unavailable:'Товар недоступен'};
-const labels={TELEGRAM_AUTH_REQUIRED:'Откройте приложение через Telegram.',OFFERS_MIGRATION_REQUIRED:'Предложения цены пока не подключены.',ACTIVE_OFFER_EXISTS:'У вас уже есть предложение по этому товару. Обновите список.',OFFER_ALREADY_PROCESSED:'Этот счёт уже обработан или истёк. Обновите список.',OFFER_STATE_CHANGED:'Статус изменился. Обновите список.',RATE_LIMITED:'Слишком часто. Подождите 30 секунд; максимум 10 предложений в час.',LISTING_UNAVAILABLE:'Товар уже недоступен.',INVOICE_UNAVAILABLE:'Не удалось получить счёт. Повторите попытку.',IDEMPOTENCY_CONFLICT:'Сумма изменилась. Откройте форму заново.',MAINTENANCE:'Технические работы. Попробуйте позже.',AC_CHAT_BLOCKED:'Отправка ограничена. Обратитесь в поддержку.',AC_ACCOUNT_BLOCKED:'Действие ограничено. Обратитесь в поддержку.'};
-async function api(path,body){const r=await fetch(MARKETPLACE_API+path,{method:body===undefined?'GET':'POST',headers:{'X-Telegram-Init-Data':currentTelegramInitDataV108(),...(body===undefined?{}:{'Content-Type':'application/json'})},...(body===undefined?{}:{body:JSON.stringify(body)}),cache:'no-store',signal:AbortSignal.timeout(15000)});const d=await r.json();if(!r.ok||!d.ok)throw new Error(labels[d.error]||'Не удалось выполнить действие. Повторите попытку.');return d;}
+const labels={TELEGRAM_AUTH_REQUIRED:'Откройте приложение через Telegram.',OFFERS_MIGRATION_REQUIRED:'Предложения цены ещё не настроены на сервере. Оплата не запускалась. Передайте этот код администратору.',ACTIVE_OFFER_EXISTS:'У вас уже есть предложение по этому товару. Обновите список.',OFFER_ALREADY_PROCESSED:'Этот счёт уже обработан или истёк. Обновите список.',OFFER_STATE_CHANGED:'Статус изменился. Обновите список.',RATE_LIMITED:'Слишком часто. Подождите 30 секунд; максимум 10 предложений в час.',LISTING_UNAVAILABLE:'Товар уже недоступен.',INVOICE_UNAVAILABLE:'Не удалось получить счёт. Повторите попытку.',IDEMPOTENCY_CONFLICT:'Сумма изменилась. Откройте форму заново.',MAINTENANCE:'Технические работы. Попробуйте позже.',AC_CHAT_BLOCKED:'Отправка ограничена. Обратитесь в поддержку.',AC_ACCOUNT_BLOCKED:'Действие ограничено. Обратитесь в поддержку.'};
+async function api(path,body){return uzrFetchJsonFix3(MARKETPLACE_API+path,{method:body===undefined?'GET':'POST',headers:{'X-Telegram-Init-Data':currentTelegramInitDataV108(),...(body===undefined?{}:{'Content-Type':'application/json'})},...(body===undefined?{}:{body:JSON.stringify(body)})},labels);}
 function message(s){const el=sheet.querySelector('#uzoError');if(el)el.textContent=s;}
 function close(){generation++;sheet.hidden=true;busy=false;lastFocus?.focus?.({preventScroll:true});}
 function money(n){return new Intl.NumberFormat('ru-RU').format(n)+' UZS';}
 function shell(){sheet.innerHTML=`<div class="uzo-panel"><header><h2>Предложения цены</h2><button id="uzoClose" aria-label="Закрыть">×</button></header><p class="uzo-product">${esc(product.name)}</p><div id="uzoContent">Загрузка…</div><p id="uzoError" role="status" aria-live="polite"></p><button id="uzoRefresh" class="uzo-secondary">Обновить статус</button></div>`;sheet.querySelector('#uzoClose').onclick=close;sheet.querySelector('#uzoRefresh').onclick=()=>{if(!busy)load().catch(e=>message(e.message));};}
-async function load(){const epoch=generation,d=await api('/price-offers?listingId='+product.listingId);if(sheet.hidden||epoch!==generation)return;
+async function load(){
+ const epoch=generation,refresh=sheet.querySelector('#uzoRefresh');if(refresh)refresh.disabled=true;message('');
+ try{await loadData();}catch(e){if(epoch===generation&&!sheet.hidden){const content=sheet.querySelector('#uzoContent');if(content?.textContent==='Загрузка…')content.textContent='Не удалось загрузить предложения.';message(e.message);}throw e;}
+ finally{if(epoch===generation&&refresh)refresh.disabled=false;}
+}
+async function loadData(){const epoch=generation,d=await api('/price-offers?listingId='+product.listingId);if(sheet.hidden||epoch!==generation)return;
  if(targetOffer&&!d.offers.some(o=>o.id===targetOffer)){const extra=await api('/price-offers/'+targetOffer);if(sheet.hidden||epoch!==generation)return;d.offers.unshift(...extra.offers);}
  const now=Date.now()/1000,active=d.offers.some(o=>o.role==='buyer'&&(['pending','countered'].includes(o.state)||(o.state==='checkout'&&o.expires_at>now)));
  if(!active&&d.offers.length)try{sessionStorage.removeItem('uzo14:'+currentTelegramIdV108()+':'+product.listingId);}catch{}
@@ -16392,14 +16423,15 @@ window.uzoDeepLink14=async id=>{try{const d=await api('/price-offers/'+id),o=d.o
 <script>
 (function(){
  const dialog=document.createElement('dialog');dialog.id='sellerDiscountV14';
- dialog.innerHTML='<form><div class="uzd-heading"><h2>Скидка на товар</h2><button type="button" data-close aria-label="Закрыть">×</button></div><p data-title></p><p data-base></p><label>Новая цена, UZS<input name="price" type="number" inputmode="numeric" min="1" step="1" required></label><p data-preview></p><p data-error role="status"></p><button data-save type="submit">Сохранить скидку</button><button data-remove type="button">Убрать скидку</button><small>Бесплатно. Скидка действует до отмены. Уже согласованные предложения цены не изменяются.</small></form>';
- document.body.append(dialog);let state=null,busy=false,generation=0;
+ dialog.innerHTML='<form><div class="uzd-heading"><h2>Скидка на товар</h2><button type="button" data-close aria-label="Закрыть">×</button></div><p data-title></p><p data-base></p><label>Новая цена, UZS<input name="price" type="number" inputmode="numeric" min="1" step="1" required></label><p data-preview></p><p data-error role="status"></p><button data-save type="submit">Сохранить скидку</button><button data-remove type="button">Убрать скидку</button><button data-retry type="button" hidden>Повторить загрузку</button><small>Бесплатно. Скидка действует до отмены. Уже согласованные предложения цены не изменяются.</small></form>';
+ document.body.append(dialog);let state=null,busy=false,generation=0,currentId=null;
  const el=s=>dialog.querySelector(s),errors={NOT_FOUND:'Объявление не найдено.',LISTING_UNAVAILABLE:'Скидка доступна только для активного товара.',DISCOUNT_CHANGED:'Цена изменилась. Закройте окно и откройте скидку заново.',DISCOUNT_MUST_BE_LOWER:'Новая цена должна быть ниже обычной.',TELEGRAM_AUTH_REQUIRED:'Откройте приложение через Telegram.',AC_POSTING_BLOCKED:'Редактирование объявлений ограничено.',DISCOUNT_SCHEMA_REQUIRED:'На сервере нет полей скидки. Обратитесь в поддержку.'};
- async function api(id,body){const r=await fetch(MARKETPLACE_API+'/listings/discount'+(body?'':'?listingId='+id),{method:body?'POST':'GET',headers:{'Content-Type':'application/json','X-Telegram-Init-Data':currentTelegramInitDataV108()},...(body?{body:JSON.stringify(body)}:{})});const d=await r.json();if(!r.ok||!d.ok)throw Error(errors[d.error]||'Не удалось сохранить или загрузить скидку. Попробуйте ещё раз.');return d.discount;}
+ async function api(id,body){const d=await uzrFetchJsonFix3(MARKETPLACE_API+'/listings/discount'+(body?'':'?listingId='+id),{method:body?'POST':'GET',headers:{'Content-Type':'application/json','X-Telegram-Init-Data':currentTelegramInitDataV108()},...(body?{body:JSON.stringify(body)}:{})},errors);if(!d.discount||!Number.isFinite(d.discount.basePrice))throw Error('Сервер вернул неполные данные скидки. Код: DISCOUNT_RESPONSE_INVALID');return d.discount;}
  function controls(){el('[data-save]').disabled=busy||!state;el('[data-remove]').disabled=busy||!state;el('input').disabled=busy||!state;}
  function preview(){if(!state)return;const p=Number(el('input').value);el('[data-preview]').textContent=Number.isSafeInteger(p)&&p>0&&p<state.basePrice?'Скидка '+Math.round((state.basePrice-p)*100/state.basePrice)+'% · экономия '+money(state.basePrice-p):'Укажите целую цену ниже '+money(state.basePrice);}
- window.openSellerDiscountV14=async id=>{closeMyProductActionsV25();const g=++generation;state=null;busy=false;controls();el('[data-title]').textContent='Загрузка…';el('[data-base]').textContent='';el('[data-error]').textContent='';el('[data-preview]').textContent='';el('input').value='';el('[data-remove]').hidden=true;if(!dialog.open)dialog.showModal();try{const d=await api(id);if(g!==generation||!dialog.open)return;state=d;el('[data-title]').textContent=d.title;el('[data-base]').textContent='Обычная цена: '+money(d.basePrice);el('input').value=d.active?d.price:'';el('input').max=d.basePrice-1;el('[data-remove]').hidden=!d.active;preview();controls();}catch(e){if(g===generation)el('[data-error]').textContent=e.message;}};
+ window.openSellerDiscountV14=async id=>{currentId=id;el('[data-retry]').hidden=true;closeMyProductActionsV25();const g=++generation;state=null;busy=false;controls();el('[data-title]').textContent='Загрузка…';el('[data-base]').textContent='';el('[data-error]').textContent='';el('[data-preview]').textContent='';el('input').value='';el('[data-remove]').hidden=true;if(!dialog.open)dialog.showModal();try{const d=await api(id);if(g!==generation||!dialog.open)return;state=d;el('[data-title]').textContent=d.title;el('[data-base]').textContent='Обычная цена: '+money(d.basePrice);el('input').value=d.active?d.price:'';el('input').max=d.basePrice-1;el('[data-remove]').hidden=!d.active;preview();controls();}catch(e){if(g===generation&&dialog.open){el('[data-title]').textContent='Не удалось загрузить товар';el('[data-error]').textContent=e.message;el('[data-retry]').hidden=false;controls();}}};
  async function save(remove){if(busy||!state)return;const price=Number(el('input').value);if(!remove&&(!Number.isSafeInteger(price)||price<1||price>=state.basePrice)){preview();return;}const g=generation;busy=true;controls();el('[data-error]').textContent='Сохраняем…';try{await api(state.listingId,{listingId:state.listingId,price,remove,revision:state.revision});if(g!==generation)return;dialog.close();await openMyListings();await loadMarketplaceCatalog();}catch(e){if(g===generation)el('[data-error]').textContent=e.message;}finally{if(g===generation){busy=false;controls();}}}
+ el('[data-retry]').onclick=()=>window.openSellerDiscountV14(currentId);
  el('form').onsubmit=e=>{e.preventDefault();save(false)};el('[data-remove]').onclick=()=>save(true);el('[data-close]').onclick=()=>dialog.close();el('input').oninput=preview;
  dialog.addEventListener('close',()=>{if(dialog.open)return;generation++;state=null;busy=false;});
  document.addEventListener('click',e=>{const b=e.target.closest('[data-seller-discount]');if(b){e.preventDefault();e.stopPropagation();window.openSellerDiscountV14(Number(b.dataset.sellerDiscount));}});
