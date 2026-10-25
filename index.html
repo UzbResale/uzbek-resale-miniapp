@@ -8170,19 +8170,21 @@ let adminChannelPublishingEnabled=false;
 // Send signed Telegram initData with every request to our Worker.
 // This allows the admin to keep testing while Maintenance Mode is active.
 const __uzrNativeFetch=window.fetch.bind(window);
+function uzrTrustedApiUrlSecurity14(input){
+ try{const raw=typeof input==='string'?input:input instanceof URL?input.href:input?.url;if(!raw)return false;
+ const u=new URL(raw,location.href);if(u.protocol!=='https:'||u.username||u.password)return false;
+ return [MARKETPLACE_API,ORDERS_API].some(base=>{const b=new URL(base,location.href),path=b.pathname.replace(/\/$/,'');return u.origin===b.origin&&(path===''||u.pathname===path||u.pathname.startsWith(path+'/'));});
+ }catch{return false;}
+}
 window.fetch=(input,init={})=>{
-  try{
-    const rawUrl=typeof input==="string"?input:(input&&input.url?input.url:"");
-    if(rawUrl.startsWith(MARKETPLACE_API)||rawUrl.startsWith(ORDERS_API)){
-      const headers=new Headers(init.headers||{});
-      const initData=currentTelegramInitDataV108();
-      if(initData&&!headers.has("X-Telegram-Init-Data")){
-        headers.set("X-Telegram-Init-Data",initData);
-      }
-      return __uzrNativeFetch(input,{...init,headers});
-    }
-  }catch(e){}
-  return __uzrNativeFetch(input,init);
+ try{if(uzrTrustedApiUrlSecurity14(input)){
+  const headers=new Headers(init.headers||(input instanceof Request?input.headers:undefined));
+  const initData=currentTelegramInitDataV108();
+  if(initData&&!headers.has('X-Telegram-Init-Data'))headers.set('X-Telegram-Init-Data',initData);
+  // API endpoints never require redirects. Do not forward signed sessions to a redirect target.
+  return __uzrNativeFetch(input,{...init,headers,redirect:'error'});
+ }}catch(e){}
+ return __uzrNativeFetch(input,init);
 };
 
 function applyMaintenanceState(d){
@@ -10321,7 +10323,15 @@ $("listingSuccessMyBtn").onclick=()=>{$("listingSuccessView").classList.remove("
 $("listingSuccessHomeBtn").onclick=()=>{$("listingSuccessView").classList.remove("open");page("home")};
 $("listingSuccessExitV95")?.addEventListener("click",()=>{$("listingSuccessView")?.classList.remove("open");page("home")});
 
-function renderAddresses(){const b=$("addressList");if(!b)return;let a=[];try{a=JSON.parse(localStorage.getItem("uzr_addresses")||"[]")}catch(e){}b.innerHTML=a.length?a.map((x,i)=>`<button class="list-row" onclick="deleteAddress(${i})"><i data-lucide="map-pin"></i><span>${x}</span><span class="arrow">\u00d7</span></button>`).join(""):`<div class="empty">\u0410\u0434\u0440\u0435\u0441\u043e\u0432 \u043f\u043e\u043a\u0430 \u043d\u0435\u0442</div>`;setTimeout(()=>window.lucide&&lucide.createIcons(),0)}
+function renderAddresses(){
+ const host=$('addressList');if(!host)return;let values=[];
+ try{const value=JSON.parse(localStorage.getItem('uzr_addresses')||'[]');if(Array.isArray(value))values=value.filter(x=>typeof x==='string');}catch{}
+ host.replaceChildren();
+ if(!values.length){const empty=document.createElement('div');empty.className='empty';empty.textContent='\u0410\u0434\u0440\u0435\u0441\u043e\u0432 \u043f\u043e\u043a\u0430 \u043d\u0435\u0442';host.append(empty);}
+ values.forEach((value,index)=>{const button=document.createElement('button');button.type='button';button.className='list-row';button.onclick=()=>deleteAddress(index);
+ const icon=document.createElement('i');icon.setAttribute('data-lucide','map-pin');const text=document.createElement('span');text.textContent=value;const arrow=document.createElement('span');arrow.className='arrow';arrow.textContent='\u00d7';button.append(icon,text,arrow);host.append(button);});
+ setTimeout(()=>window.lucide&&lucide.createIcons(),0);
+}
 window.deleteAddress=i=>{let a=JSON.parse(localStorage.getItem("uzr_addresses")||"[]");a.splice(i,1);localStorage.setItem("uzr_addresses",JSON.stringify(a));renderAddresses()};
 $("addAddressBtn").onclick=()=>{const v=prompt("\u0412\u0432\u0435\u0434\u0438\u0442\u0435 \u0430\u0434\u0440\u0435\u0441 \u0434\u043e\u0441\u0442\u0430\u0432\u043a\u0438");if(!v||!v.trim())return;let a=[];try{a=JSON.parse(localStorage.getItem("uzr_addresses")||"[]")}catch(e){}a.push(v.trim());localStorage.setItem("uzr_addresses",JSON.stringify(a));renderAddresses()};
 $("supportTelegram").onclick=()=>{const tg=window.Telegram&&window.Telegram.WebApp;if(tg&&tg.openTelegramLink)tg.openTelegramLink("https://t.me/uzbek_ceo");else window.open("https://t.me/uzbek_ceo","_blank")};
