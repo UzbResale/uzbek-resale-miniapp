@@ -17560,6 +17560,21 @@ if(!startLink()&&!channelStartParamV107())void waitForTelegramIdentityV108(3000)
 </script>
 
 <style id="seller-watch-style">
+#swDialog .sw-back .sw-chevron{transform:rotate(180deg)}
+#swDialog .sw-toggle>svg{width:19px;height:19px;flex:none;fill:none;stroke:currentColor;stroke-width:1.6}
+#swDialog .sw-toggle{justify-content:flex-start}
+#swDialog .sw-toggle input{margin-left:auto!important}
+#swDialog .sw-event-actions .sw-btn.primary{background:#fafaf9!important;color:#151515!important;border-color:#ddd!important}
+#swDialog .sw-navigation{position:static!important;display:flex!important;align-items:center;justify-content:space-around;padding:10px 8px 16px;margin:0 10px 8px;border:1px solid #e5e5e2;border-radius:24px;background:#fff;flex:none;transform:none!important;width:auto!important}
+#swDialog .sw-navigation button{display:flex;flex-direction:column;align-items:center;gap:4px;background:none;border:0;font-size:10px;color:#888;padding:0;width:20%}
+#swDialog .sw-navigation button.active{color:#111}
+#swDialog .sw-navigation .icon{display:grid;place-items:center;width:34px;height:34px;border-radius:12px}
+#swDialog .sw-navigation svg{width:23px;height:23px}
+#swDialog .sw-navigation .sell .icon{border-radius:50%;background:#111;color:#fff}
+#swDialog .sw-navigation img{width:30px;height:30px;border-radius:50%}
+#swDialog[data-mode=sellers] footer{border:0;background:none;padding:6px 16px}
+#swDialog[data-mode=sellers] footer button{font-size:11px;min-height:30px;padding:6px;background:none;border:0}
+
 #uzrHomeCollectionTabs{width:100%;margin:14px 0 15px;gap:8px}
 #uzrHomeCollectionTabs button{min-height:44px;font-size:14px}
 #swDialog{box-sizing:border-box;width:min(100%,520px);height:100dvh;max-height:100dvh;max-width:100vw;margin:auto;border:0;padding:0;background:#f8f8f6;color:#151515;border-radius:20px;font-family:inherit;overflow:hidden}
@@ -17618,30 +17633,94 @@ html body #orders .order-card-head-v40 .order-status-v40{font-size:10px!importan
 #swDialog .sw-toggle input:after{display:none!important;content:none!important}
 #swDialog .sw-toggle input:before{content:''!important;position:absolute!important;inset:3px auto auto 3px!important;width:17px!important;height:17px!important;border:0!important;border-radius:50%!important;background:white!important;transform:none!important}
 #swDialog .sw-toggle input:checked:before{transform:translateX(15px)!important}
+#swDialog .sw-settings .sw-toggle input{margin-left:auto!important}
+#swDialog .sw-navigation .nav-profile-avatar-v13{background:#eee;border:1px solid #ddd;border-radius:50%;font-size:13px}
 html body #orders .sw-order-status{display:inline-block;font-size:11px;color:#555;background:#f0f0ed;padding:4px 8px;border-radius:7px;width:max-content;max-width:100%}
 html[data-uzr-theme] body #chats #uzcMessages .uzc-message:not(.mine){background:#fff!important;border:1px solid #e9e9e5!important}
 #swOfferShortcut{flex:none;border:1px solid #e2e2df;border-radius:50%;width:36px;height:36px;background:#fff;color:#151515;display:grid;place-items:center;padding:8px}
 #swOfferShortcut svg{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:1.7}
+
+/* Shared geometry for pinned chat entries. */
+html[data-uzr-theme] body #chats #uzcSupport,
+html[data-uzr-theme] body #chats #swBotEntry{display:flex!important;align-items:center!important;gap:12px!important;padding:18px 0!important;margin:0!important;min-height:86px!important;border-radius:0!important}
+html[data-uzr-theme] body #chats #uzcSupport>.uzc-avatar,
+html[data-uzr-theme] body #chats #swBotEntry>.sw-bot{width:44px!important;height:44px!important;min-width:44px!important;min-height:44px!important;flex:0 0 44px!important;border-radius:50%!important;box-sizing:border-box!important}
+html[data-uzr-theme] body #chats #uzcSupport>.uzc-avatar img{width:100%!important;height:100%!important;object-fit:contain!important}
+html[data-uzr-theme] body #chats #uzcSupport>svg,
+html[data-uzr-theme] body #chats #swBotEntry>.sw-chevron{width:20px!important;height:20px!important;flex:0 0 20px!important;stroke-width:1.7!important}
+html[data-uzr-theme] body #chats #swBotEntry>span:nth-child(2){flex:1;min-width:0}
+html[data-uzr-theme] body #chats #swBotEntry b,
+html[data-uzr-theme] body #chats #uzcSupport b{font-size:14px!important;line-height:1.35!important;font-weight:650!important}
+html[data-uzr-theme] body #chats #swBotEntry small,
+html[data-uzr-theme] body #chats #uzcSupport small{font-size:12px!important;line-height:1.4!important;margin-top:4px!important}
+.sw-chevron{width:20px;height:20px;flex:none}
+#swDialog header{padding:14px 16px;gap:9px}
+#swDialog header h2{font-size:18px}
+#swDialog header small{font-size:12px}
+#swDialog .sw-back{width:24px;flex:none}
+#swDialog[data-mode=sellers] #swBody>.sw-note{display:none}
+#swDialog[data-mode=sellers] .sw-card{padding:12px;border-radius:15px}
+.sw-person>span:last-child{width:20px;height:20px;display:grid;place-items:center}
+.sw-person[aria-expanded=true] .sw-chevron{transform:rotate(-90deg)}
+.sw-settings[hidden]{display:none!important}
+.sw-settings{border:0;margin-top:8px}
+.sw-toggle{border-radius:8px;padding:0 10px;background:#f6f6f4;margin:4px 0}
+.sw-telegram-note{font-size:11px;color:#888;text-align:center;margin:12px 0}
+#swDialog .sw-link{border-top:1px solid #eee;border-radius:0;padding:10px}
+.sw-profile-link{display:block;border:0;background:none;color:#777;font-size:11px!important;text-decoration:underline;margin:0 auto;padding:4px 10px}
+.sw-error:empty{display:none}
+#swDialog[data-mode=feed] #swBody{padding:12px}
+#swDialog[data-mode=feed] #swBody>.sw-note{font-size:11px;text-align:center;max-width:270px;margin:0 auto 16px;padding:6px 10px;background:#ffffffb3;border-radius:10px}
+#swDialog .sw-event{width:calc(100% - 26px);box-sizing:border-box;padding:12px;margin:0 0 12px;border-radius:15px 15px 15px 5px;background:#fff}
+#swDialog .sw-event-product img{width:65px;height:78px}
+#swDialog .sw-event-product strong{font-size:17px}
+#swDialog .sw-event-head{font-size:13px;margin-bottom:10px}
+#swDialog .sw-event-actions button{background:#fafaf9;color:#151515;border:1px solid #ddd;border-radius:8px;min-height:34px;font-size:11px;padding:6px}
+#swDialog footer{padding:10px 16px max(10px,env(safe-area-inset-bottom))}
+html[data-uzr-theme] body #chats .uzc-sheet{border-radius:26px 26px 0 0!important;background:#fff!important;padding:0 16px 16px!important;max-height:88dvh!important}
+html[data-uzr-theme] body #chats .uzc-sheet-head{background:#fff!important;padding:18px 0!important}
+html[data-uzr-theme] body #chats .uzc-sheet:before{content:'';width:36px;height:4px;flex:none;align-self:center;border-radius:4px;background:#ddd;margin-top:9px}
+html[data-uzr-theme] body #chats .uzc-info-box{padding:8px 12px!important;background:#f8f8f6!important;border:1px solid #ececea!important}
+html[data-uzr-theme] body #chats .uzc-info-row{padding:10px 0!important;font-size:13px!important}
+html[data-uzr-theme] body #chats .uzc-actions>button{border-radius:24px!important;min-height:44px!important}
+
+#swDialog{border-radius:0!important;box-shadow:none!important;border:0!important;outline:0!important;width:min(100%,520px)!important}
+#swDialog header{border-radius:0!important}
+#swDialog::backdrop{background:#f8f8f6!important;backdrop-filter:none!important}
+#swDialog .sw-person .sw-chevron{width:22px!important;height:22px!important;display:block!important}
+#swDialog .sw-settings[hidden]{display:none!important}
+#swDialog .sw-avatar{width:46px!important;height:46px!important;border-radius:50%!important}
+#swDialog .sw-avatar img{display:block!important;width:100%!important;height:100%!important;object-fit:cover!important}
+html[data-uzr-theme] body #chats #swBotEntry>.sw-chevron{width:20px!important;height:20px!important;min-width:20px!important;margin:0!important;display:block!important}
 </style>
 <script>
 (()=>{
 const $=id=>document.getElementById(id),t=productCardCopyV12,esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const bell='<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18 8a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9M10 21h4"/></svg>';
+const chevron='<svg class="sw-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="m9 5 7 7-7 7"/></svg>';
 const avatar='<span class="sw-bot" aria-hidden="true">UZBEK</span>';
 const wallpaper='<svg xmlns="http://www.w3.org/2000/svg" width="180" height="180" viewBox="0 0 180 180"><g fill="none" stroke="#e7e7e2" stroke-width="1.2"><path d="M22 16l10-6 8 6 12 4-5 12-7-3v28H22V29l-7 3-5-12zM25 13q7 14 14 0M114 19l23 5-7 35-12-2 1-22-8 20-12-4zM41 112q10 12 24 12l10 13q-13 7-39-3l-13-6 4-13zM25 129l-2 6q29 16 54 7l-2-5M124 109l-16 12 7 14 8-3v29h26v-29l8 3 7-14-16-12q-12 12-24 0zM131 109v32M143 109v32"/></g></svg>';
 const wallURL='url("data:image/svg+xml,'+encodeURIComponent(wallpaper)+'")';document.documentElement.style.setProperty('--sw-wall',wallURL);$('uzcScroll').style.setProperty('background-image',wallURL,'important');
 const dialog=document.createElement('dialog');dialog.id='swDialog';dialog.setAttribute('aria-label',t('Отслеживаю','Kuzatyapman'));document.body.append(dialog);let generation=0,mode='sellers',events=[],next=null,focus=null;
 async function api(path='',method='GET',body){const init=currentTelegramInitDataV108();if(!init)throw Error(t('Открой приложение через Telegram.','Ilovani Telegram orqali oching.'));const r=await fetch(MARKETPLACE_API+'/seller-watch'+path,{method,headers:{'X-Telegram-Init-Data':init,...(body?{'Content-Type':'application/json'}:{})},body:body?JSON.stringify(body):undefined,cache:'no-store',signal:AbortSignal.timeout(15000)});const d=await r.json();if(!r.ok||!d.ok)throw Error(({SELF_FOLLOW:'Нельзя подписаться на себя',FOLLOW_LIMIT:'Можно отслеживать до 100 продавцов',SELLER_NOT_FOUND:'Продавец недоступен',TELEGRAM_AUTH_REQUIRED:'Открой приложение через Telegram',RATE_LIMITED:'Слишком много действий. Попробуй позже.'})[d.error]||t('Не удалось загрузить. Попробуй ещё раз.','Yuklanmadi. Qayta urinib ko‘ring.'));return d;}
 function close(){generation++;dialog.close();focus?.focus?.({preventScroll:true})}
-function frame(which){mode=which;dialog.innerHTML='<header><button type="button" class="sw-back" aria-label="Назад">‹</button>'+(which==='feed'?avatar:'')+'<div><h2>'+t('Отслеживаю','Kuzatyapman')+'</h2><small>'+ (which==='feed'?t('Бот · новые вещи и скидки','Bot · yangi mahsulotlar va chegirmalar'):t('Продавцы, на которых ты подписан','Siz kuzatayotgan sotuvchilar'))+'</small></div></header><div id="swBody"'+(which==='feed'?' style="background-image:var(--sw-wall);background-size:180px"':'')+'></div><footer><button class="sw-btn" id="swSwitch">'+(which==='feed'?t('Настроить подписки','Obunalarni sozlash'):t('Открыть чат уведомлений','Bildirishnomalar chatini ochish'))+'</button></footer>';dialog.querySelector('.sw-back').onclick=close;$('swSwitch').onclick=()=>open(which==='feed'?'sellers':'feed');}
+function frame(which){mode=which;dialog.dataset.mode=which;dialog.innerHTML='<header><button type="button" class="sw-back" aria-label="Назад">‹</button>'+(which==='feed'?avatar:'')+'<div><h2>'+(which==='feed'?'Uzbek Re’Sale':t('Отслеживаю','Kuzatyapman'))+'</h2><small>'+ (which==='feed'?t('бот','bot'):t('Продавцы, на которых ты подписан','Siz kuzatayotgan sotuvchilar'))+'</small></div></header><div id="swBody"'+(which==='feed'?' style="background-image:var(--sw-wall);background-size:180px"':'')+'></div><footer><button class="sw-btn" id="swSwitch">'+(which==='feed'?t('Настроить подписки','Obunalarni sozlash'):t('Открыть чат уведомлений','Bildirishnomalar chatini ochish'))+'</button></footer>';dialog.querySelector('.sw-back').innerHTML=chevron;dialog.querySelector('.sw-back').onclick=close;if(which==='sellers'){const source=document.querySelector('nav.uzr-home-rollout-nav');if(source){const nav=source.cloneNode(true);nav.className='sw-navigation';nav.removeAttribute('id');nav.querySelectorAll('[id]').forEach(e=>e.removeAttribute('id'));nav.querySelector('.uzbek-nav-indicator')?.remove();nav.querySelectorAll('button[data-page]').forEach(b=>{b.classList.toggle('active',b.dataset.page==='profile');b.onclick=()=>{close();source.querySelector('[data-page="'+b.dataset.page+'"]')?.click()}});dialog.append(nav)}}$('swSwitch').onclick=()=>open(which==='feed'?'sellers':'feed');}
 async function open(which='sellers'){if(!dialog.open){focus=document.activeElement;dialog.showModal()}const epoch=++generation;frame(which);$('swBody').innerHTML='<p class="sw-note">'+t('Загрузка…','Yuklanmoqda…')+'</p>';try{if(which==='sellers'){const d=await api();if(epoch!==generation)return;drawSellers(d.sellers)}else{const d=await api('/feed');if(epoch!==generation)return;events=d.events;next=d.next;drawFeed();if(events.length)await api('/read','POST',{through:events[0].cursor});refreshBadge()}}catch(e){if(epoch===generation){$('swBody').innerHTML='<p class="sw-error">'+esc(e.message)+'</p><button class="sw-btn" id="swRetry">'+t('Повторить','Qayta urinish')+'</button>';$('swRetry').onclick=()=>open(which)}}}
 function sellerOpen(id){close();window.UzrProfiles12.seller(String(id),{returnPage:currentPageId()})}
+async function loadSellerAvatar(host,r){
+const epoch=generation,initial=host.querySelector('img');if(initial)initial.remove();
+const candidates=[];
+if(/^https:\/\//.test(r.avatarUrl||''))candidates.push(r.avatarUrl);
+try{const res=await fetch(MARKETPLACE_API+'/seller?telegramId='+encodeURIComponent(r.id)+'&view=basic',{headers:{'X-Telegram-Init-Data':currentTelegramInitDataV108()},signal:AbortSignal.timeout(8000)});if(res.ok){const d=await res.json();if(/^https:\/\//.test(d.profile?.avatarUrl||''))candidates.push(d.profile.avatarUrl)}}catch{}
+candidates.push(MARKETPLACE_API+'/telegram-avatar?telegramId='+encodeURIComponent(r.id));
+for(const src of [...new Set(candidates)]){if(epoch!==generation||!host.isConnected)return;const im=new Image();im.alt=r.name;const loaded=await new Promise(resolve=>{im.onload=()=>resolve(true);im.onerror=()=>resolve(false);im.src=src});if(loaded&&epoch===generation&&host.isConnected){host.replaceChildren(im);return}}
+}
 function drawSellers(rows){const host=$('swBody');host.innerHTML='<p class="sw-note">'+t('Новые объявления и снижение цен приходят сюда и в Telegram-бот.','Yangi e’lonlar va narx pasayishi shu yerga va Telegram-botga keladi.')+'</p>'+(!rows.length?'<div class="sw-card"><b>'+t('Пока нет подписок','Hozircha obunalar yo‘q')+'</b><p class="sw-note">'+t('Открой профиль продавца и нажми «Подписаться».','Sotuvchi profilini ochib, «Obuna bo‘lish»ni bosing.')+'</p></div>':'');
-for(const r of rows){const card=document.createElement('article');card.className='sw-card';card.dataset.seller=r.id;card.innerHTML='<button class="sw-person"><span class="sw-avatar">'+esc(r.name.slice(0,2))+'<img src="'+esc(MARKETPLACE_API+'/telegram-avatar?telegramId='+r.id)+'" alt=""></span><span><b>'+esc(r.name)+'</b><small>'+esc(r.username?'@'+r.username:'')+'</small></span><span>›</span></button><div class="sw-settings"><label class="sw-toggle">'+t('Новые объявления','Yangi e’lonlar')+'<input type="checkbox" data-setting="newOn" '+(r.newOn?'checked':'')+'></label><label class="sw-toggle">'+t('Снижение цены','Narx pasayishi')+'<input type="checkbox" data-setting="discountOn" '+(r.discountOn?'checked':'')+'></label></div><p class="sw-error" role="status"></p><button class="sw-link">'+t('Отписаться','Obunani bekor qilish')+'</button>';card.querySelector('img').onerror=e=>e.target.remove();card.querySelector('.sw-person').onclick=()=>sellerOpen(r.id);card.querySelectorAll('input').forEach(input=>input.onchange=async()=>{const value=input.checked;card.querySelectorAll('input,button').forEach(x=>x.disabled=true);try{await api('/'+r.id,'POST',{[input.dataset.setting]:value});card.querySelector('.sw-error').textContent=''}catch(e){input.checked=!value;card.querySelector('.sw-error').textContent=e.message}finally{card.querySelectorAll('input,button').forEach(x=>x.disabled=false)}});card.querySelector('.sw-link').onclick=async e=>{e.target.disabled=true;try{await api('/'+r.id,'DELETE');await open('sellers')}catch(x){card.querySelector('.sw-error').textContent=x.message;e.target.disabled=false}};host.append(card)}
+for(const r of rows){const card=document.createElement('article');card.className='sw-card';card.dataset.seller=r.id;card.innerHTML='<button class="sw-person"><span class="sw-avatar">'+esc(r.name.slice(0,2))+'<img src="'+esc(MARKETPLACE_API+'/telegram-avatar?telegramId='+r.id)+'" alt=""></span><span><b>'+esc(r.name)+'</b><small>'+esc(r.username?'@'+r.username:'')+'</small></span><span>›</span></button><div class="sw-settings"><label class="sw-toggle">'+t('Новые объявления','Yangi e’lonlar')+'<input type="checkbox" data-setting="newOn" '+(r.newOn?'checked':'')+'></label><label class="sw-toggle">'+t('Снижение цены','Narx pasayishi')+'<input type="checkbox" data-setting="discountOn" '+(r.discountOn?'checked':'')+'></label></div><p class="sw-error" role="status"></p><button class="sw-link">'+t('Отписаться','Obunani bekor qilish')+'</button>';loadSellerAvatar(card.querySelector('.sw-avatar'),r);const head=card.querySelector('.sw-person'),panel=card.querySelector('.sw-settings');panel.id='swSettings'+r.id;head.setAttribute('aria-controls',panel.id);head.setAttribute('aria-expanded','false');panel.hidden=true;head.lastElementChild.innerHTML=chevron;head.onclick=()=>{panel.hidden=!panel.hidden;head.setAttribute('aria-expanded',String(!panel.hidden))};card.querySelectorAll('.sw-toggle').forEach((label,i)=>label.insertAdjacentHTML('afterbegin',i===0?bell:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M3 3h9l9 9-9 9-9-9z"/><circle cx="8" cy="8" r="1"/></svg>'));panel.insertAdjacentHTML('beforeend','<p class="sw-telegram-note">Уведомления приходят в Telegram-бот</p>');panel.append(card.querySelector('.sw-error'),card.querySelector('.sw-link'));const profileButton=document.createElement('button');profileButton.className='sw-profile-link';profileButton.textContent=t('Профиль продавца','Sotuvchi profili');profileButton.onclick=()=>sellerOpen(r.id);panel.append(profileButton);card.querySelectorAll('input').forEach(input=>input.onchange=async()=>{const value=input.checked;card.querySelectorAll('input,button').forEach(x=>x.disabled=true);try{await api('/'+r.id,'POST',{[input.dataset.setting]:value});card.querySelector('.sw-error').textContent=''}catch(e){input.checked=!value;card.querySelector('.sw-error').textContent=e.message}finally{card.querySelectorAll('input,button').forEach(x=>x.disabled=false)}});card.querySelector('.sw-link').onclick=async e=>{e.target.disabled=true;try{await api('/'+r.id,'DELETE');await open('sellers')}catch(x){card.querySelector('.sw-error').textContent=x.message;e.target.disabled=false}};host.append(card)}
 }
 async function productOpen(id){try{if(!catalogLoaded)await loadMarketplaceCatalog();const p=products.find(p=>Number(p.listingId)===Number(id));if(!p)throw Error(t('Товар больше недоступен.','Mahsulot mavjud emas.'));close();const tile=card(p);tile.click()}catch(e){const box=$('swFeedError');if(box)box.textContent=e.message}}
 function drawFeed(){const host=$('swBody');host.innerHTML='<p class="sw-note">'+t('Уведомления от продавцов. Ответы в этом чате не принимаются.','Sotuvchilardan bildirishnomalar. Bu chat javob qabul qilmaydi.')+'</p><p id="swFeedError" class="sw-error" role="status"></p>';if(!events.length)host.innerHTML+='<div class="sw-card"><b>'+t('Здесь появятся новые вещи и скидки','Bu yerda yangi mahsulotlar va chegirmalar paydo bo‘ladi')+'</b><p class="sw-note">'+t('Подпишись на продавцов, которые тебе нравятся.','Sizga yoqqan sotuvchilarga obuna bo‘ling.')+'</p></div>';
-for(const r of events){const node=document.createElement('article');node.className='sw-card';node.innerHTML='<p class="sw-event-head">'+esc((r.kind==='new'?t('Новое объявление у ','Yangi e’lon: '):t('Цена снижена у ','Narx pasaydi: '))+r.seller_name)+'</p><div class="sw-event-product">'+(/^https:\/\//.test(r.image_url||'')?'<img src="'+esc(r.image_url)+'" alt="">':'')+'<div><b>'+esc(r.title)+'</b>'+(r.old_price?'<del>'+Number(r.old_price).toLocaleString('ru-RU')+' UZS</del>':'')+'<strong>'+Number(r.price).toLocaleString('ru-RU')+' UZS</strong></div></div><div class="sw-event-actions"><button class="sw-btn primary" data-product>'+t('Открыть товар','Mahsulotni ochish')+'</button><button class="sw-btn" data-seller>'+t('Продавец','Sotuvchi')+'</button></div><p class="sw-event-date">'+esc(new Date(r.created_at).toLocaleString('ru-RU',{day:'2-digit',month:'2-digit',hour:'2-digit',minute:'2-digit'}))+'</p>';node.querySelector('img')?.addEventListener('error',e=>e.target.remove());node.querySelector('[data-product]').onclick=()=>productOpen(r.listing_id);node.querySelector('[data-seller]').onclick=()=>sellerOpen(r.seller_id);host.append(node)}
+for(const r of events){const node=document.createElement('article');node.className='sw-card sw-event';node.dataset.kind=r.kind;node.innerHTML='<p class="sw-event-head">'+esc((r.kind==='new'?t('Новое объявление у ','Yangi e’lon: '):t('Цена снижена у ','Narx pasaydi: '))+r.seller_name)+'</p><div class="sw-event-product">'+(/^https:\/\//.test(r.image_url||'')?'<img src="'+esc(r.image_url)+'" alt="">':'')+'<div><b>'+esc(r.title)+'</b>'+(r.old_price?'<del>'+Number(r.old_price).toLocaleString('ru-RU')+' UZS</del>':'')+'<strong>'+Number(r.price).toLocaleString('ru-RU')+' UZS</strong></div></div><div class="sw-event-actions"><button class="sw-btn primary" data-product>'+t('Открыть товар','Mahsulotni ochish')+'</button><button class="sw-btn" data-seller>'+t('Продавец','Sotuvchi')+'</button></div><p class="sw-event-date">'+esc(new Date(r.created_at).toLocaleString('ru-RU',{day:'2-digit',month:'2-digit',hour:'2-digit',minute:'2-digit'}))+'</p>';node.querySelector('img')?.addEventListener('error',e=>e.target.remove());node.querySelector('[data-product]').onclick=()=>productOpen(r.listing_id);node.querySelector('[data-seller]').onclick=()=>sellerOpen(r.seller_id);if(r.kind!=='new'){node.querySelector('[data-seller]').remove();node.querySelector('.sw-event-actions').style.gridTemplateColumns='1fr'}host.append(node)}
 if(next){const b=document.createElement('button');b.className='sw-btn';b.textContent=t('Показать ещё','Yana ko‘rsatish');b.onclick=async()=>{b.disabled=true;const epoch=generation;try{const d=await api('/feed?before='+next);if(epoch!==generation)return;events.push(...d.events);next=d.next;drawFeed()}catch(e){$('swFeedError').textContent=e.message;b.disabled=false}};host.append(b)}}
 async function profile(root,id,own,p){if(own||String(id)===String(currentTelegramIdV108())||!root.querySelector('.usp-seller-actions')||p?.ownerType==='official')return;const actions=root.querySelector('.usp-seller-actions');const b=document.createElement('button');b.type='button';b.className='sw-follow';b.disabled=true;b.textContent=t('Загрузка…','Yuklanmoqda…');actions.append(b);const note=document.createElement('p');note.className='sw-follow-note';note.textContent=t('Новые объявления и скидки — в боте','Yangi e’lonlar va chegirmalar — botda');b.after(note);let following=false;
 const paint=()=>{b.textContent=following?'✓ '+t('Вы подписаны','Obuna bo‘lgansiz'):'+ '+t('Подписаться','Obuna bo‘lish');b.setAttribute('aria-pressed',String(following))};
@@ -17649,7 +17728,7 @@ try{const d=await api('/'+id);if(!b.isConnected)return;following=d.following;pai
 b.onclick=async()=>{b.disabled=true;try{await api('/'+id,following?'DELETE':'POST',following?undefined:{});following=!following;paint();note.textContent=t('Новые объявления и скидки — в боте','Yangi e’lonlar va chegirmalar — botda')}catch(e){note.textContent=e.message}finally{b.disabled=false}};
 }
 async function refreshBadge(){const row=$('swBotEntry');if(!row)return;try{const d=await api();if(!row.isConnected)return;const n=row.querySelector('.sw-count');n.textContent=d.unread>99?'99+':String(d.unread);n.hidden=!d.unread}catch{}}
-function chatEntry(){if($('swBotEntry')||!$('uzcSupport'))return;const b=document.createElement('button');b.type='button';b.id='swBotEntry';b.innerHTML=avatar+'<span><b>'+t('Отслеживаю','Kuzatyapman')+'</b><small>'+t('Бот · новые объявления и скидки','Bot · yangi e’lonlar va chegirmalar')+'</small></span><span class="sw-count" hidden></span><span>›</span>';b.onclick=()=>open('feed');$('uzcSupport').after(b);refreshBadge()}
+function chatEntry(){if($('swBotEntry')||!$('uzcSupport'))return;const b=document.createElement('button');b.type='button';b.id='swBotEntry';b.innerHTML=avatar+'<span><b>'+t('Отслеживаю','Kuzatyapman')+'</b><small>'+t('Бот · новые объявления и скидки','Bot · yangi e’lonlar va chegirmalar')+'</small></span><span class="sw-count" hidden></span>'+chevron;b.onclick=()=>open('feed');$('uzcSupport').after(b);refreshBadge()}
 const original=$('uzrColProfileEntry');if(original){const b=original.cloneNode(true);b.id='swProfileEntry';b.querySelector('.tg-row-text-v13').removeAttribute('id');b.querySelector('.tg-row-text-v13').textContent=t('Отслеживаю','Kuzatyapman');b.querySelector('.tg-square-icon-v13').innerHTML=bell;b.onclick=()=>open();original.after(b)}
 window.SellerWatch={open,profile,chatEntry};dialog.addEventListener('cancel',e=>{e.preventDefault();close()});
 window.Telegram?.WebApp?.BackButton?.onClick(()=>{if(dialog.open)close()});
