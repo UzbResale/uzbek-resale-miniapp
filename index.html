@@ -6711,7 +6711,11 @@ html body #uzcSellerOfferDialog h2{margin:0 0 10px!important}html body #uzcSelle
 
 <section class="sr110-banner" data-no-i18n aria-label="&#1053;&#1072;&#1081;&#1090;&#1080; &#1090;&#1086;&#1074;&#1072;&#1088;"></section>
 <button id="uzrTodayEntry" type="button" data-no-i18n hidden><span id="uzrTodayPreviews" aria-hidden="true"></span><strong>Подборка сегодня</strong><span aria-hidden="true"></span></button>
-<div class="uzr-home-toolbar" data-no-i18n>
+<div id="uzrHomeCollectionTabs" role="group" aria-label="Разделы главной" data-no-i18n>
+  <button type="button" id="uzrHomeAllTab" aria-pressed="true" aria-controls="homeGrid" data-col-copy="all">Все товары</button>
+  <button type="button" id="uzrHomeCollectionsTab" aria-pressed="false" aria-controls="uzrHomeCommunity" data-col-copy="collections">Подборки</button>
+</div>
+<div class="uzr-home-toolbar" id="uzrHomeCatalogToolbar" data-no-i18n>
   <button type="button" id="uzrHomeFilterButtonV12" aria-haspopup="dialog" aria-controls="uzrHomeFilterV12" aria-expanded="false">&#1060;&#1080;&#1083;&#1100;&#1090;&#1088;&#1099;</button>
   <div class="uzr-home-chips" id="uzrHomeChipsV12" aria-label="&#1041;&#1099;&#1089;&#1090;&#1088;&#1099;&#1077; &#1092;&#1080;&#1083;&#1100;&#1090;&#1088;&#1099;"></div>
 </div>
@@ -6720,6 +6724,12 @@ html body #uzcSellerOfferDialog h2{margin:0 0 10px!important}html body #uzcSelle
   <button id="uzrHomeSortV12" type="button" aria-haspopup="dialog" aria-controls="uzrHomeFilterV12">&#1057;&#1085;&#1072;&#1095;&#1072;&#1083;&#1072; &#1085;&#1086;&#1074;&#1099;&#1077;</button>
 </div>
 <div class="grid dark-product-grid-v10" id="homeGrid" data-no-i18n></div>
+<section id="uzrHomeCommunity" aria-labelledby="uzrHomeCommunityTitle" data-no-i18n hidden>
+  <header><h2 id="uzrHomeCommunityTitle" data-col-copy="community">Подборки пользователей</h2><button type="button" id="uzrHomeCommunityMine" data-col-copy="shortMine">Мои</button></header>
+  <p id="uzrHomeCommunityState" class="uzr-col-note" role="status"></p>
+  <div id="uzrHomeCommunityGrid"></div>
+  <button type="button" id="uzrHomeCommunityMore" data-col-copy="more" hidden>Показать ещё</button>
+</section>
 
 </div>
 </section>
@@ -6743,6 +6753,7 @@ html body #uzcSellerOfferDialog h2{margin:0 0 10px!important}html body #uzcSelle
       <p class="uzr-col-note" id="uzrColPickerState"></p>
       <div class="uzr-col-list" id="uzrColPicker"></div>
       <button type="button" class="uzr-col-btn" id="uzrColMore" data-col-copy="more" hidden>Показать ещё</button>
+      <label class="uzr-col-public-option"><input type="checkbox" id="uzrColPublic"/><span data-col-copy="showPublic">Показать в подборках на главной</span></label>
       <p class="uzr-col-note" data-col-copy="rule">Для публикации выбери 5–6 товаров. Черновик виден только тебе.</p>
       <div class="uzr-col-actions">
         <button type="button" class="uzr-col-btn" id="uzrColSaveDraft" data-col-copy="saveDraft">Сохранить черновик</button>
@@ -6989,7 +7000,7 @@ html body #uzcSellerOfferDialog h2{margin:0 0 10px!important}html body #uzcSelle
 <button class="tg-row-v13" onclick="openMyListings()"><span class="tg-square-icon-v13 orange"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m16 3 5 4-3 5-2-1v10H8V11l-2 1-3-5 5-4a4 4 0 0 0 8 0Z"/></svg></span><span class="tg-row-text-v13">&#1052;&#1086;&#1080; &#1090;&#1086;&#1074;&#1072;&#1088;&#1099;</span><svg class="tg-row-chevron-v13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 5 7 7-7 7"/></svg></button>
 <button class="tg-row-v13" onclick="openOwnSellerProfile()"><span class="tg-square-icon-v13 purple"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 10 5 3h14l2 7M3 10a3 3 0 0 0 6 0 3 3 0 0 0 6 0 3 3 0 0 0 6 0M5 13v8h14v-8M9 21v-7h6v7"/></svg></span><span class="tg-row-text-v13">&#1055;&#1088;&#1086;&#1092;&#1080;&#1083;&#1100; &#1087;&#1088;&#1086;&#1076;&#1072;&#1074;&#1094;&#1072;</span><svg class="tg-row-chevron-v13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 5 7 7-7 7"/></svg></button>
 <button class="tg-row-v13" onclick="page('favorites')"><span class="tg-square-icon-v13 red"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1.1-1.1a5.5 5.5 0 0 0-7.8 7.8L12 21l8.8-8.6a5.5 5.5 0 0 0 0-7.8Z"/></svg></span><span class="tg-row-text-v13">&#1048;&#1079;&#1073;&#1088;&#1072;&#1085;&#1085;&#1086;&#1077;</span><svg class="tg-row-chevron-v13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 5 7 7-7 7"/></svg></button>
-<button class="tg-row-v13" type="button" id="uzrColProfileEntry" data-no-i18n><span class="tg-square-icon-v13 violet"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 5a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v16l-6-4-6 4z"/></svg></span><span class="tg-row-text-v13" id="uzrColProfileLabel">Мои подборки</span><i data-lucide="chevron-right"></i></button>
+<button class="tg-row-v13" type="button" id="uzrColProfileEntry" data-no-i18n><span class="tg-square-icon-v13 violet"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 5a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v16l-6-4-6 4z"/></svg></span><span class="tg-row-text-v13" id="uzrColProfileLabel">Мои подборки</span><svg class="tg-row-chevron-v13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 5 7 7-7 7"/></svg></button>
 <button class="tg-row-v13" onclick="page('viewed')"><span class="tg-square-icon-v13 violet"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 3v6h6M3 9a9 9 0 1 1 1 9M12 7v5l3 2"/></svg></span><span class="tg-row-text-v13">&#1055;&#1088;&#1086;&#1089;&#1084;&#1086;&#1090;&#1088;&#1077;&#1085;&#1085;&#1099;&#1077; &#1090;&#1086;&#1074;&#1072;&#1088;&#1099;</span><svg class="tg-row-chevron-v13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 5 7 7-7 7"/></svg></button>
 </div>
 <div class="tg-section-title-v13">&#1053;&#1040;&#1057;&#1058;&#1056;&#1054;&#1049;&#1050;&#1048;</div>
@@ -9078,6 +9089,7 @@ function navigatePage(id){
  requestAnimationFrame(()=>{if(app)app.scrollTop=0;if(scroller)scroller.scrollTop=0;target.scrollTop=0;window.scrollTo(0,0)});
  setTimeout(()=>{if(app)app.scrollTop=0;if(scroller)scroller.scrollTop=0;target.scrollTop=0;window.scrollTo(0,0)},30);
  render();
+ if(id==='home')window.uzrCollectionHomeReady?.();
  setTimeout(()=>window.lucide&&lucide.createIcons(),0);
 }
 
@@ -14918,6 +14930,7 @@ window.UzrRArchiveV11=(()=>{
     persist();
   }
   function showResale(){
+    window.uzrCollectionShowCatalog?.();
     clearTimeout(searchTimer);query='';state=defaults();persist();
     page('home');renderHome();
     $h('uzrHomeResultsV12')?.scrollIntoView({block:'start',behavior:'smooth'});
@@ -17228,12 +17241,33 @@ void refresh();
 .uzr-col-row span:nth-child(2){flex:1;font-size:14px;min-width:0;overflow-wrap:anywhere}
 .uzr-col-row .uzr-col-btn{min-width:42px;padding:6px 9px}
 #uzrColPicker,#uzrColMore,#uzrColReport{margin-top:10px}
+#uzrHomeCollectionTabs{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:7px;width:min(100%,272px);margin:14px auto 15px}
+#uzrHomeCollectionTabs button,#uzrHomeCommunity button:not(.uzr-community-card){border:1px solid #e4e4e1;border-radius:999px;background:#ededeb;color:#171717;font:inherit;font-size:13px;font-weight:650;min-height:42px;padding:6px 12px}
+#uzrHomeCollectionTabs button[aria-pressed=true]{background:#141414;border-color:#141414;color:white}
+#home #uzrHomeCatalogToolbar[hidden],#home #uzrHomeResultsV12[hidden],#home #homeGrid[hidden],#uzrHomeCommunity[hidden],#uzrHomeCommunity [hidden]{display:none!important}
+#uzrHomeCommunity{padding:1px 0 12px}
+#uzrHomeCommunity header{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:10px}
+#uzrHomeCommunity header h2{margin:0;color:inherit;font-size:18px;line-height:1.2;letter-spacing:-.25px}
+#uzrHomeCommunityGrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}
+#uzrHomeCommunity .uzr-community-card{display:block;min-width:0;padding:0 0 9px;overflow:hidden;border:1px solid #e5e5e3;border-radius:12px;background:#fff;color:#151515;text-align:left;font:inherit}
+.uzr-community-card strong,.uzr-community-card small{display:block;margin:5px 8px 0;overflow-wrap:anywhere}
+.uzr-community-card strong{font-size:14px;line-height:1.25}
+.uzr-community-card small{color:#686864;font-size:12px}
+.uzr-community-cover{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:2px;background:#fff}
+.uzr-community-cover .uzr-col-thumb{width:100%;height:auto;aspect-ratio:1;border-radius:0}
+#uzrHomeCommunityMore{margin-top:10px}
+#uzrColForm .uzr-col-public-option{display:flex;align-items:center;gap:8px;font-weight:500;line-height:1.35}
+#uzrColForm #uzrColPublic{appearance:auto;width:17px;height:17px;flex:none;margin:0;padding:0;accent-color:#141414}
+
 </style>
 <script>
 (()=>{
 const by=id=>document.getElementById(id),api='/v15/user-collections',lang=productCardCopyV12;
 const keyPattern=/^[0-9a-f]{32}_[0-9a-f]{20}$/;
 const copy={
+ all:['Все товары','Barcha mahsulotlar'],collections:['Подборки','Tanlovlar'],community:['Подборки пользователей','Foydalanuvchilar tanlovlari'],shortMine:['Мои','Meniki'],
+ communityEmpty:['Пока нет открытых подборок.','Hozircha ochiq tanlovlar yo‘q.'],showPublic:['Показать в подборках на главной','Bosh sahifadagi tanlovlarda ko‘rsatish'],
+ publicStatus:['На главной и по ссылке','Bosh sahifada va havola orqali'],
  mine:['Мои подборки','Tanlovlarim'],create:['+ Создать','+ Yaratish'],retry:['Повторить','Qayta urinish'],
  title:['Название подборки','Tanlov nomi'],picked:['Выбранные товары','Tanlangan mahsulotlar'],search:['Поиск товаров ресейла','Reseyl mahsulotlarini qidirish'],more:['Показать ещё','Yana ko‘rsatish'],
  rule:['Для публикации выбери 5–6 товаров. Черновик виден только тебе.','E’lon qilish uchun 5–6 ta mahsulot tanla. Qoralamani faqat o‘zing ko‘rasan.'],
@@ -17278,7 +17312,7 @@ function localize(){
 }
 async function request(path='',method='GET',body){
  const headers={};
- if(!path.startsWith('/shared/')){
+ if(!path.startsWith('/shared/')&&!path.startsWith('/community?')){
   const init=currentTelegramInitDataV108();
   if(!init)throw new Error('TELEGRAM_AUTH_REQUIRED');
   headers['X-Telegram-Init-Data']=init;
@@ -17314,11 +17348,55 @@ function openTelegram(url){
  try{if(window.Telegram?.WebApp?.openTelegramLink){window.Telegram.WebApp.openTelegramLink(url);return;}}catch{}
  window.open(url,'_blank','noopener,noreferrer');
 }
+let communityItems=[],communityOffset=0,communityLoading=false,communityDirty=true,communityError=false;
+function paintCommunity(){
+ const map=productMap(),host=by('uzrHomeCommunityGrid');
+ host.replaceChildren(...communityItems.map(c=>{
+  const b=el('button','uzr-community-card');b.type='button';b.onclick=()=>openView(c.key);
+  const cover=el('span','uzr-community-cover');
+  for(let i=0;i<4;i++)cover.append(thumb(map.get(c.ids[i])));
+  const count=lang('Товаров: ','Mahsulotlar: ')+c.ids.length;
+  b.append(cover,el('strong','',c.title),el('small','',c.author?c.author+' · '+count:count));return b;
+ }));
+}
+async function loadCommunity(reset=false){
+ if(communityLoading||(!reset&&communityOffset===null))return;
+ const offset=reset?0:communityOffset;
+ communityLoading=true;communityError=false;
+ const more=by('uzrHomeCommunityMore'),state=by('uzrHomeCommunityState');
+ more.hidden=true;state.textContent=t('loading');
+ try{
+  const d=await request('/community?offset='+offset);
+  communityItems=reset?d.collections:[...new Map([...communityItems,...d.collections].map(c=>[c.key,c])).values()];
+  communityOffset=d.nextOffset;communityDirty=false;paintCommunity();
+  state.textContent=communityItems.length?'':t('communityEmpty');
+ }catch(e){
+  state.textContent=errText(e);communityError=true;
+ }finally{
+  communityLoading=false;more.hidden=!communityError&&communityOffset===null;
+  more.textContent=communityError?t('retry'):t('more');
+ }
+}
+function setHomeCollectionTab(open){
+ by('uzrHomeAllTab').setAttribute('aria-pressed',String(!open));
+ by('uzrHomeCollectionsTab').setAttribute('aria-pressed',String(open));
+ for(const id of ['uzrHomeCatalogToolbar','uzrHomeResultsV12','homeGrid'])by(id).hidden=open;
+ by('uzrHomeCommunity').hidden=!open;
+ if(open&&communityDirty)void loadCommunity(true);
+}
+window.uzrCollectionShowCatalog=()=>setHomeCollectionTab(false);
+window.uzrCollectionHomeReady=()=>{
+ if(!by('uzrHomeCommunity').hidden&&communityDirty)void loadCommunity(true);
+};
+by('uzrHomeAllTab').onclick=()=>setHomeCollectionTab(false);
+by('uzrHomeCollectionsTab').onclick=()=>{localize();communityDirty=true;setHomeCollectionTab(true);};
+by('uzrHomeCommunityMore').onclick=()=>loadCommunity(communityError&&communityDirty);
+by('search')?.addEventListener('input',()=>setHomeCollectionTab(false));
 function drawMine(){
  const map=productMap(),host=by('uzrColMineList');
  host.replaceChildren(...mine.map(c=>{
   const box=el('article','uzr-col-box'),title=el('h3','',c.title),key=shareKey(c);
-  const visibility=c.status==='draft'?t('draft'):c.status==='published'&&key?t('published'):t('locked');
+  const visibility=c.status==='draft'?t('draft'):c.status==='published'&&key?(c.visibility==='public'?t('publicStatus'):t('published')):t('locked');
   const note=el('p','uzr-col-note',visibility+' · '+lang('Товаров: ','Mahsulotlar: ')+c.ids.length);
   const covers=el('div','uzr-col-covers');
   for(const id of c.ids.slice(0,4))covers.append(thumb(map.get(id)));
@@ -17379,6 +17457,7 @@ function drawEditor(){
 function openEditor(c){
  edit={id:c?.id||null,status:c?.status||'draft',ids:[...(c?.ids||[])],busy:false};
  pickLimit=10;localize();by('uzrColFields').disabled=false;
+ by('uzrColPublic').checked=c?.visibility==='public';
  by('uzrColTitle').value=c?.title||'';by('uzrColSearch').value='';
  by('uzrColEditHeading').textContent=c?t('edit'):t('new');
  by('uzrColSaveDraft').textContent=c?.status==='published'?t('hide'):t('saveDraft');
@@ -17398,7 +17477,8 @@ async function mutate(kind){
  }
  current.busy=true;by('uzrColFields').disabled=true;by('uzrColEditState').textContent=t('loading');
  try{
-  const d=await request(current.id?'/'+current.id:'',removing?'DELETE':'POST',removing?undefined:{title,ids:current.ids,publish});
+  const d=await request(current.id?'/'+current.id:'',removing?'DELETE':'POST',removing?undefined:{title,ids:current.ids,publish,showInCommunity:publish&&by('uzrColPublic').checked});
+  communityDirty=true;
   readTime(d);
   if(edit===current&&isOn('uzrCollectionEdit'))backPage('uzrCollectionMine');
   if(isOn('uzrCollectionMine'))void loadMine();
@@ -17435,7 +17515,9 @@ function openView(key){
  if(!keyPattern.test(key))return;
  localize();page('uzrCollectionView');void loadView(key);
 }
-by('uzrColProfileEntry').onclick=()=>{localize();page('uzrCollectionMine');void loadMine();};
+function openMine(){localize();page('uzrCollectionMine');void loadMine();}
+by('uzrColProfileEntry').onclick=openMine;
+by('uzrHomeCommunityMine').onclick=openMine;
 by('uzrColMineBack').onclick=()=>backPage('profile');
 by('uzrColEditBack').onclick=()=>{if(!edit?.busy)backPage('uzrCollectionMine');};
 by('uzrColViewBack').onclick=()=>backPage('home');
@@ -17451,6 +17533,7 @@ by('uzrColDelete').onclick=()=>mutate('delete');
 by('uzrColViewRetry').onclick=()=>{if(view)void loadView(view.key);};
 by('uzrColReport').onclick=()=>{if(view?.data)openTelegram('https://t.me/PatriotManager?'+new URLSearchParams({text:lang('Хочу сообщить о подборке: ','Tanlov haqida xabar bermoqchiman: ')+link(view.key)}));};
 window.uzrCollectionsCatalogReady=()=>{
+ if(!by('uzrHomeCommunity').hidden)paintCommunity();
  if(isOn('uzrCollectionMine')&&ready)drawMine();
  if(isOn('uzrCollectionEdit'))drawEditor();
  if(isOn('uzrCollectionView'))drawView();
