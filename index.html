@@ -545,14 +545,7 @@ header .logo{font-size: 17px; line-height: 1.05;}
 header .tag{font-size: 6.5px; letter-spacing: 2.45px; margin-top: 5px;}
 header .search{margin-top: 7px; height: 48px; border-radius: 15px; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;}
 #home{background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;}
-.home-hero{margin: 14px 18px 12px; height: 236px; border-radius: 23px; overflow: hidden; position: relative; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial; display: flex;}
-.home-hero::after{content: ""; position: absolute; inset: 0px; pointer-events: none;}
-.home-hero-copy{position: relative; z-index: 3; width: 59%; padding: 21px 0px 19px 21px; display: flex; flex-direction: column; align-items: flex-start; justify-content: center;}
 .hero-kicker{font-size: 8px; font-weight: 800; letter-spacing: 2px; margin-bottom: 7px;}
-.home-hero h1{font-size: 30px; line-height: 0.98; letter-spacing: -1px; margin: 0px 0px 10px; font-weight: 900;}
-.home-hero p{font-size: 11.5px; line-height: 1.35; margin: 0px 0px 14px; max-width: 230px;}
-.home-hero button{height: 42px; border: 0px; border-radius: 12px; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial; padding: 0px 14px; font-size: 12px; font-weight: 850; display: flex; align-items: center; gap: 7px;}
-.home-hero button svg{width: 15px; height: 15px;}
 .hero-product{position: absolute; right: -24px; bottom: -13px; width: 55%; height: 100%; z-index: 2; display: flex; align-items: flex-end; justify-content: center; transform: rotate(-7deg);}
 .hero-product-glow{position: absolute; width: 170px; height: 170px; border-radius: 50%; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial; right: 20px; bottom: 28px;}
 .hero-product img{position: relative; width: 190px; height: 190px; object-fit: contain;}
@@ -566,31 +559,17 @@ header .search{margin-top: 7px; height: 48px; border-radius: 15px; background-po
 .home-section-title{display: flex; align-items: center; justify-content: space-between; margin-top: 0px; margin-right: 0px; margin-left: 0px;}
 .home-section-title h2{letter-spacing: -0.55px; margin: 0px;}
 .home-section-title button{border: 0px; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial; font-weight: 800; padding: 5px 0px;}
-.home-categories{display: grid; margin-top: 0px; margin-right: 0px; margin-left: 0px;}
-.home-categories button{min-width: 0px; border: 0px; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial; padding: 0px; text-align: center;}
-.home-categories span{margin: 0px auto 6px; display: flex; align-items: center; justify-content: center;}
-.home-categories button:active span{background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial; }
-.home-categories b{display: block; font-weight: 650; white-space: nowrap;}
 .popular-title{margin-top: 2px;}
 .home-grid{margin-top: 0px;}
 :is(#homeGrid, #homeOfficialPinsGridV119) .heart{width: 34px; height: 34px; top: 7px; right: 7px;}
 :is(#homeGrid, #homeOfficialPinsGridV119) .badge{font-size: 8px; margin-top: 6px;}
 :is(#homeGrid, #homeOfficialPinsGridV119) .name{margin-top: 5px;}
-@media (max-width: 430px){.home-hero{height: 218px; margin-left: 16px; margin-right: 16px;}}
-@media (max-width: 430px){.home-hero-copy{padding-left: 18px; width: 61%;}}
-@media (max-width: 430px){.home-hero h1{font-size: 27px;}}
 @media (max-width: 430px){.hero-product{right: -35px; width: 57%;}}
 @media (max-width: 430px){.hero-product img{width: 170px; height: 170px;}}
 @media (max-width: 430px){.home-content{padding-left: 16px; padding-right: 16px;}}
 @media (max-width: 430px){.home-mode{min-height: 119px; padding-left: 9px; padding-right: 8px;}}
 @media (max-width: 430px){.home-mode strong{font-size: 14px;}}
 @media (max-width: 430px){.home-mode small{font-size: 8.8px;}}
-@media (max-width: 430px){.home-categories{gap: 2px;}}
-@media (max-width: 430px){.home-categories span{width: 46px; height: 46px;}}
-@media (max-width: 430px){.home-categories b{font-size: 8.5px;}}
-.home-hero.home-hero-final{display: block; position: relative; margin: 12px 16px; padding: 0px; width: auto; height: auto; aspect-ratio: 956 / 467; border-radius: 19px; overflow: hidden; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;}
-.home-hero.home-hero-final::after{display: none;}
-.home-hero.home-hero-final img{display: block; width: 100%; height: 100%; object-fit: cover; object-position: center center; margin: 0px; padding: 0px;}
 .home-content{padding: 0px 16px 26px;}
 .home-modes{margin-bottom: 19px;}
 .home-mode{border-radius: 17px; padding: 12px 9px 10px; border: 1px solid rgb(233, 233, 233);}
@@ -605,9 +584,6 @@ header .search{margin-top: 7px; height: 48px; border-radius: 15px; background-po
 .home-section-title{margin-bottom: 9px;}
 .home-section-title h2{font-size: 21px;}
 .home-section-title button{font-size: 10.5px;}
-.home-categories{margin-bottom: 19px;}
-.home-categories svg{width: 22px; height: 22px; stroke-width: 1.8;}
-.home-categories b{margin-top: 0px;}
 :is(#homeGrid, #homeOfficialPinsGridV119).grid{gap: 16px 10px;}
 :is(#homeGrid, #homeOfficialPinsGridV119) .photo{height: 184px; border-radius: 17px; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;}
 :is(#homeGrid, #homeOfficialPinsGridV119) .name{font-size: 13px; line-height: 1.18;}
@@ -619,13 +595,11 @@ header .actions{right: 0px;}
 header .brand{left: 50%; transform: translateX(-50%);}
 #adminPanel > .section, #sellerProfile > .section, #favorites > .section{padding-top: 18px; margin-top: 0px;}
 .page.active{min-height: 0px;}
-@media (max-width: 390px){.home-hero.home-hero-final{margin-left: 14px; margin-right: 14px; border-radius: 17px;}}
 @media (max-width: 390px){.home-content{padding-left: 14px; padding-right: 14px;}}
 @media (max-width: 390px){.home-modes{gap: 6px;}}
 @media (max-width: 390px){.home-mode{padding-left: 8px; padding-right: 7px;}}
 @media (max-width: 390px){.home-mode strong{font-size: 13px;}}
 @media (max-width: 390px){.home-mode small{font-size: 8px;}}
-@media (max-width: 390px){.home-categories b{font-size: 8px;}}
 #favorites .section:has(#favoriteGrid:empty){min-height: calc(100dvh - 190px); display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 20px 24px 100px;}
 #favorites .section:has(#favoriteGrid:empty) > h1{width: 100%; text-align: center; margin: 0px 0px 18px; font-size: 28px;}
 #favorites #favoriteGrid:empty{width: 100%;}
@@ -634,12 +608,6 @@ header .brand{left: 50%; transform: translateX(-50%);}
 #favorites .section:has(.empty){padding-right: 24px; padding-left: 24px;}
 #favorites .empty{display: flex; flex-direction: column; font-size: 16px;}
 #favorites .empty::before{content: "\2661 "; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial; display: flex; align-items: center; justify-content: center; font-size: 39px;}
-.home-hero.home-hero-production-final{display: block; position: relative; width: auto; height: auto; aspect-ratio: 1920 / 800; margin: 12px 16px; padding: 0px; border-radius: 19px; overflow: hidden; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial; cursor: pointer;}
-.home-hero.home-hero-production-final::after{display: none;}
-.home-hero.home-hero-production-final > img{display: block; width: 100%; height: 100%; object-fit: cover; object-position: center center; image-rendering: auto; margin: 0px; padding: 0px;}
-.home-categories{grid-template-columns: repeat(4, minmax(0px, 1fr)); gap: 10px;}
-.home-categories span{width: 54px; height: 54px; border-radius: 16px; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial; border: 1px solid rgb(233, 233, 233);}
-.home-categories b{font-size: 9px;}
 .home-modes{gap: 8px;}
 .home-mode{min-height: 106px;}
 :is(#homeGrid, #homeOfficialPinsGridV119).grid{grid-template-columns: repeat(2, minmax(0px, 1fr));}
@@ -654,9 +622,6 @@ header .brand{width: 220px;}
 header .header-fav, header .actions{top: 13px;}
 .page{padding-bottom: 86px;}
 #home{padding-bottom: 0px;}
-@media (max-width: 390px){.home-hero.home-hero-production-final{margin-left: 14px; margin-right: 14px; border-radius: 17px;}}
-@media (max-width: 390px){.home-categories{gap: 6px;}}
-@media (max-width: 390px){.home-categories span{width: 50px; height: 50px;}}
 #favorites .favorites-section{padding: 0px 16px 88px;}
 #favorites .favorites-empty-state{pointer-events: none;}
 #favorites .favorites-section{position: relative; min-height: calc(100dvh - 184px);}
@@ -703,23 +668,13 @@ header .header-fav, header .actions{top: 13px;}
 @media (max-width: 390px){.catalog-title-row h1{font-size: 26px;}}
 .product-final-view{background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;}
 .product-final-inner{padding: 0px; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;}
-.product-gallery-final{position: relative;}
 .product-circle{position: absolute; z-index: 5; border-radius: 50%; font-size: 21px; display: flex; align-items: center; justify-content: center;}
 .product-gallery-hint{position: absolute; right: 14px; bottom: 12px; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial; border-radius: 10px; padding: 5px 9px; font-size: 8px; font-weight: 800;}
-.product-body-final > h1{margin: 0px; font-size: 24px; line-height: 1.08; letter-spacing: -0.6px;}
-.product-body-final > h2{margin: 8px 0px 13px; font-size: 24px; line-height: 1;}
-.product-quick-spec{display: flex; flex-wrap: wrap;}
-.product-quick-spec span{display: inline-flex; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;}
-.product-details-final{grid-template-columns: 1fr 1.35fr; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial; border-radius: 0px;}
-.product-details-final span{padding: 5px 3px; font-size: 10px;}
 .product-details-final span:nth-child(2n){font-weight: 800;}
 #productSeller .seller-avatar{background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;}
 #productSeller .telegram-btn{border: 1px solid rgb(233, 233, 233); background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial; border-radius: 12px;}
 .product-actions-final{position: sticky; bottom: 0px; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial; display: grid; gap: 8px; padding-top: 10px;}
 .product-actions-final .btn{height: 48px; border-radius: 13px; font-size: 12px; font-weight: 850;}
-@media (max-width: 390px){.product-gallery-final{height: 325px;}}
-@media (max-width: 390px){.product-body-final{padding-left: 14px; padding-right: 14px;}}
-@media (max-width: 390px){.product-body-final > h1, .product-body-final > h2{font-size: 22px;}}
 #cart{background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial; padding-bottom: 88px;}
 #cart > .section{padding: 18px 16px 26px;}
 #cart > .section > h1{margin: 0px 0px 15px; font-size: 27px; line-height: 1; letter-spacing: -0.7px;}
@@ -757,68 +712,31 @@ header .header-fav, header .actions{top: 13px;}
 .status-excellent, .condition-excellent{background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;}
 .status-good, .condition-good{background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;}
 .status-satisfactory, .condition-satisfactory{background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;}
-.product-type-line #pType{margin: 0px;}
 .availability-badge{display: inline-flex; align-items: center; justify-content: center; line-height: 1;}
 .photo-counter{position: absolute; font-size: 8px; font-weight: 850;}
-.photo-thumbs{display: flex; overflow-x: auto; scrollbar-width: none;}
-.photo-thumbs:empty{display: none;}
-.photo-thumbs::-webkit-scrollbar{display: none;}
-.photo-thumbs img{display: block;}
 .badge.badge-resale, .resale-badge{background: none rgb(17, 17, 17); color: rgb(255, 255, 255);}
 .badge.badge-order{background: none rgb(17, 17, 17); color: rgb(255, 255, 255);}
 .badge.badge-official, .official-badge{background: none rgb(17, 17, 17); color: rgb(17, 17, 17);}
-.product-quick-spec span.spec-new{background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial; border-color: rgb(233, 233, 233);}
-.product-quick-spec span.spec-excellent, .product-quick-spec span.spec-good{background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial; border-color: rgb(233, 233, 233);}
-.product-quick-spec span.spec-fair{background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial; border-color: rgb(233, 233, 233);}
-.product-bigphoto-final img{box-sizing: border-box;}
-.photo-thumbs img{box-sizing: border-box;}
-.product-body-final{padding: 14px 16px 105px;}
-.product-type-line{display: flex; align-items: center;}
-.product-type-line .badge{margin: 0px; font-weight: 850;}
 .resale-badge{gap: 6px;}
 .official-badge{display: inline-flex; align-items: center; border-radius: 999px; padding: 6px 11px; font-size: 9px; font-weight: 850; letter-spacing: 0.02em;}
 #productSeller .official-logo-avatar img{display: block;}
 #productSeller .official-seller-card{align-items: center;}
 [hidden], .availability-badge[hidden]{display: none;}
-.product-gallery-final{height: auto; overflow: visible;}
-.product-bigphoto-final{height: 355px; margin: 0px; overflow: hidden;}
-.product-bigphoto-final img{width: 100%; height: 100%;}
 .product-circle{left: 12px; top: 12px; width: 40px; height: 40px; border: 0px; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;}
 .photo-counter{right: 12px; bottom: 12px; border-radius: 999px; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial; padding: 6px 10px;}
-.photo-thumbs{padding: 10px 14px 4px; gap: 9px; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;}
-.photo-thumbs button{width: 64px; height: 64px; flex: 0 0 64px; padding: 0px; overflow: hidden;}
-.photo-thumbs img{width: 100%; height: 100%;}
-.product-type-line{gap: 7px; margin-bottom: 9px;}
-.product-type-line .badge{min-height: 25px; padding: 0px 11px; border-radius: 999px; font-size: 8.5px;}
-.product-type-line .badge-official{background: none rgb(17, 17, 17); color: rgb(255, 255, 255);}
-.product-type-line .badge-resale{background: none rgb(17, 17, 17); color: rgb(255, 255, 255);}
-.product-type-line .badge-order{background: none rgb(17, 17, 17); color: rgb(255, 255, 255);}
 .availability-badge{min-height: 25px; padding: 0px 11px; border-radius: 999px; font-size: 8.5px; font-weight: 850;}
 .availability-badge.china{background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;}
 .availability-badge.stock{background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;}
-.product-quick-spec{gap: 7px; margin-bottom: 14px;}
-.product-quick-spec span{border: 0px; border-radius: 999px; padding: 8px 11px; font-size: 9px; font-weight: 750;}
 #pSize{background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;}
 #pCondition.spec-new{background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;}
 #pCondition.spec-excellent, #pCondition.spec-good{background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;}
 #pCondition.spec-fair{background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;}
-.product-details-final{margin: 0px 0px 13px; padding: 9px 0px; border-top: 1px solid rgb(233, 233, 233); border-bottom: 1px solid rgb(233, 233, 233);}
 .resale-badge{display: inline-flex; align-items: center; margin: 0px 0px 10px; padding: 0px 11px; min-height: 25px; border-radius: 999px; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial; font-size: 8.5px; font-weight: 850;}
 #productSeller .seller-card{margin: 0px 0px 14px; padding: 11px; border: 1px solid rgb(233, 233, 233); border-radius: 16px; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;}
 #productSeller .seller-avatar{width: 48px; height: 48px; flex: 0 0 48px;}
 #productSeller .official-badge{min-height: 0px;}
 #productSeller .seller-link{background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial; border: 0px; border-radius: 11px; font-weight: 850;}
-.product-buy-final{background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial; border: 0px;}
-.product-cart-final{border: 1.5px solid rgb(233, 233, 233);}
 #sellerProfile .seller-avatar{background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;}
-@media (max-width: 430px){.product-bigphoto-final{height: 330px;}}
-@media (max-width: 430px){.product-body-final{padding: 13px 14px 100px;}}
-.product-gallery-final{background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial; border-width: medium; border-style: none; border-color: currentcolor; border-image: none; padding: 10px 14px 0px;}
-.product-bigphoto-final{border-width: medium; border-style: none; border-color: currentcolor; border-image: none; outline: none; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial; border-radius: 18px;}
-.product-bigphoto-final img{border-width: medium; border-style: none; border-color: currentcolor; border-image: none; outline: none; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial; padding: 0px; object-fit: contain; border-radius: 18px;}
-.photo-thumbs button{border-width: medium; border-style: none; border-color: currentcolor; border-image: none; outline: none; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial; border-radius: 11px;}
-.photo-thumbs button.active{border-width: medium; border-style: none; border-color: currentcolor; border-image: none; outline: none;}
-.photo-thumbs img{border-width: medium; border-style: none; border-color: currentcolor; border-image: none; outline: none; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial; padding: 0px; border-radius: 10px; object-fit: contain;}
 #productSeller .official-logo-avatar{padding: 0px;}
 #productSeller .official-logo-avatar img{border-radius: 50%;}
 #sellerProfile .section, #sellerProfile .seller-profile-head{margin-top: 0px;}
@@ -842,36 +760,17 @@ header .header-fav, header .actions{top: 13px;}
 @media (max-width: 430px){#favorites #favoritesEmpty:not([hidden]){min-height: calc(100dvh - 270px); padding-bottom: 82px;}}
 #productView{background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;}
 #productView .inner{padding: 0px 0px 108px; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;}
-#productView .product-gallery-final{position: relative; width: 100%; margin: 0px; padding: 10px 14px 0px; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial; border: 0px;}
-#productView .product-bigphoto-final{width: 100%; height: 390px; margin: 0px; padding: 0px; overflow: hidden; border: 0px; border-radius: 22px; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;}
-#productView .product-bigphoto-final img{width: 100%; height: 100%; display: block; object-fit: contain; object-position: center center; margin: 0px; padding: 0px; border: 0px; border-radius: 0px; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;}
 #productView .product-back-final{width: 42px; height: 42px; border: 0px; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;}
 #productView .photo-counter{right: 25px; bottom: 13px; min-width: 42px; padding: 7px 10px; border-radius: 999px; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial; font-size: 10px; font-weight: 850;}
-#productView .photo-thumbs{display: flex; gap: 9px; width: 100%; overflow-x: auto; margin: 0px; padding: 11px 16px 5px; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial; scrollbar-width: none;}
-#productView .photo-thumbs::-webkit-scrollbar{display: none;}
-#productView .photo-thumbs:empty{display: none;}
-#productView .photo-thumbs button{width: 66px; height: 66px; flex: 0 0 66px; margin: 0px; padding: 0px; overflow: hidden; border: 0px; border-radius: 13px; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;}
-#productView .photo-thumbs button.active{border: 0px;}
-#productView .photo-thumbs img{width: 100%; height: 100%; object-fit: contain; margin: 0px; padding: 0px; border: 0px; border-radius: 12px; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;}
-#productView .product-body-final{padding: 12px 16px 18px; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;}
-#productView .product-type-line{display: flex; align-items: center; flex-wrap: wrap; gap: 7px; margin: 0px 0px 10px;}
 #productView .product-type-line .badge, #productView .availability-badge{display: inline-flex; align-items: center; justify-content: center; min-height: 27px; margin: 0px; padding: 0px 11px; border: 0px; border-radius: 999px; font-size: 9px; line-height: 1; font-weight: 850;}
 #productView .badge-resale, #productView .badge-order{background: none rgb(17, 17, 17); color: rgb(255, 255, 255);}
 #productView .badge-official{background: none rgb(17, 17, 17); color: rgb(17, 17, 17);}
 #productView .availability-badge.stock{background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;}
 #productView .availability-badge.china{background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;}
 #productView #pPrice{letter-spacing: -0.7px;}
-#productView .product-quick-spec{display: flex; flex-wrap: wrap; gap: 7px; margin: 14px 0px 16px;}
-#productView .product-quick-spec span{display: inline-flex; align-items: center; min-height: 30px; margin: 0px; padding: 0px 12px; border: 0px; border-radius: 999px; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial; font-size: 10px; font-weight: 750;}
 #productView #pCondition.spec-new{background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;}
 #productView #pCondition.spec-excellent, #productView #pCondition.spec-good{background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;}
 #productView #pCondition.spec-fair{background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;}
-#productView .product-details-final{display: grid; grid-template-columns: minmax(0px, 1fr) minmax(0px, 1.1fr); gap: 0px 18px; margin: 0px; padding: 4px 0px; border-top: 1px solid rgb(233, 233, 233); border-bottom: 1px solid rgb(233, 233, 233);}
-#productView .product-details-final .detail-row{display: contents;}
-#productView .product-details-final .detail-row span, #productView .product-details-final .detail-row b{min-height: 46px; display: flex; align-items: center; margin: 0px; padding: 0px 4px; border-bottom: 1px solid rgb(233, 233, 233);}
-#productView .product-details-final .detail-row span{font-size: 10px; font-weight: 500;}
-#productView .product-details-final .detail-row b{font-size: 10.5px; font-weight: 850;}
-#productView .product-details-final .detail-row:last-child span, #productView .product-details-final .detail-row:last-child b{border-bottom: 0px;}
 #productView #pDescription{margin: 13px 0px 0px; padding: 0px; font-size: 11px; line-height: 1.55;}
 #productView #productSeller{margin-top: 14px;}
 #productView #productSeller .resale-badge{min-height: 26px; margin: 0px 0px 9px; padding: 0px 11px; border-radius: 999px; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial; font-size: 9px; font-weight: 850;}
@@ -887,13 +786,8 @@ header .header-fav, header .actions{top: 13px;}
 #productView #productSeller .official-badge::before{display: none; content: none;}
 #productView #productSeller .official-badge::after{content: "\2713 "; width: 14px; height: 14px; display: inline-flex; align-items: center; justify-content: center; border-radius: 50%; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial; font-size: 9px; font-weight: 900;}
 #productView .product-actions-final{display: grid; grid-template-columns: 1fr; gap: 9px; margin-top: 15px;}
-#productView .product-buy-final, #productView .product-cart-final{width: 100%; height: 51px; min-height: 51px; margin: 0px; border-radius: 14px; font-size: 12px; font-weight: 900;}
-#productView .product-buy-final{border: 0px; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;}
-#productView .product-cart-final{border: 1.5px solid rgb(233, 233, 233); background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;}
-@media (max-width: 430px){#productView .product-bigphoto-final{height: 350px;}}
 @media (max-width: 430px){#productView #pName{font-size: 27px;}}
 @media (max-width: 430px){#productView #pPrice{font-size: 28px;}}
-@media (max-width: 430px){#productView .product-body-final{padding-left: 14px; padding-right: 14px;}}
 #sellerProfile{overflow-y: auto; overscroll-behavior: contain;}
 #sellerProfile .section{margin: 0px; padding: 0px 0px 100px;}
 #sellerProfileContent{min-height: calc(100dvh - 150px); padding-right: 14px; padding-bottom: 90px; padding-left: 14px;}
@@ -1224,16 +1118,12 @@ button:active{}
 .app-topbar-v2{height: 44px; display: grid; grid-template-columns: 42px 1fr 42px; align-items: center;}
 .icon-btn-v2{width: 38px; height: 38px; border: 0px; border-radius: 50%; display: flex; align-items: center; justify-content: center; position: relative;}
 .icon-btn-v2 svg{width: 20px;}
-.brand-v2{border: 0px; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial; display: flex; gap: 8px; align-items: center; justify-content: center;}
 .brand-mark-v2{width: 31px; height: 31px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-weight: 900;}
-.brand-v2 span:last-child{text-align: left; line-height: 1;}
-.brand-v2 small{display: block; margin-top: 3px; letter-spacing: 1.4px;}
 .search-shell-v2{height: 42px; margin-top: 7px; padding: 0px 11px; display: flex; align-items: center; gap: 8px;}
 .search-shell-v2 svg{width: 17px;}
 .search-shell-v2 input{flex: 1 1 0%; min-width: 0px; height: 100%; border: 0px; outline: 0px; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;}
 #searchClearV2{width: 24px; height: 24px; border: 0px; border-radius: 50%; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;}
 .eyebrow-v2, .settings-label-v2{display: block; font-size: 9px; font-weight: 800; letter-spacing: 1px;}
-.home-intro-v2{padding: 4px 2px 13px;}
 .home-intro-v2 h1, .page-title-v2 h1{margin: 3px 0px 0px; letter-spacing: -0.7px;}
 .home-intro-v2 p, .page-title-v2 p{margin: 5px 0px 0px;}
 .home-actions-v2{display: grid; grid-template-columns: repeat(3, minmax(0px, 1fr)); gap: 8px;}
@@ -1242,13 +1132,6 @@ button:active{}
 .home-action-v2 b{display: block; line-height: 1.15;}
 .home-action-v2 small{display: block; margin-top: 3px; line-height: 1.25;}
 .home-action-v2 > svg{position: absolute; right: 9px; bottom: 9px; width: 15px;}
-.section-head-v2{display: flex; justify-content: space-between; align-items: end; margin: 23px 2px 10px;}
-.section-head-v2 span{font-size: 9px; font-weight: 800; letter-spacing: 1px;}
-.section-head-v2 h2{margin: 3px 0px 0px;}
-.section-head-v2 button{border: 0px; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;}
-.category-strip-v2{display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px;}
-.category-strip-v2 button{border: 0px; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial; padding: 0px;}
-.category-strip-v2 span{aspect-ratio: 1 / 1; border-radius: 18px; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial; display: flex; align-items: center; justify-content: center; margin-bottom: 6px;}
 .category-strip-v2 button:nth-child(4) span{background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;}
 .product-grid-v2{grid-template-columns: repeat(2, minmax(0px, 1fr)); gap: 17px 10px; margin-top: 0px;}
 .product-grid-v2 .photo{height: auto; aspect-ratio: 0.82 / 1; border-radius: 17px; overflow: hidden; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;}
@@ -1314,9 +1197,6 @@ button:active{}
 .product-block-v2{margin-top: 10px;}
 .product-label-v2{display: block; margin: 0px 2px 7px; letter-spacing: 0.8px;}
 .product-meta-v2{background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial; border-radius: 16px; padding: 4px 12px;}
-.product-actions-v2{position: sticky; bottom: calc(8px + env(safe-area-inset-bottom)); z-index: 20; display: grid; grid-template-columns: 0.9fr 1.1fr; gap: 8px; margin-top: 17px; padding: 8px; border-radius: 17px; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;}
-.product-actions-v2 .btn{height: 48px; border-radius: 13px;}
-.product-cart-final{background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;}
 @media (max-width: 360px){.home-v2, .catalog-v2, .settings-profile-v2{padding-left: 11px; padding-right: 11px;}}
 @media (max-width: 360px){.home-intro-v2 h1, .page-title-v2 h1{font-size: 25px;}}
 @media (max-width: 360px){.home-action-v2{height: 104px; padding: 10px 8px;}}
@@ -1345,21 +1225,16 @@ b, strong, h1, h2, h3, h4, h5, h6{font-weight: var(--rs-semi); letter-spacing: -
 .profile-identity-v2 h1{font-size: 26px; font-weight: var(--rs-med);}
 .profile-identity-v2 p{font-size: 14px;}
 .app-header-v2{background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;}
-.brand-v2 b{font-size: 17px; font-weight: var(--rs-semi);}
-.brand-v2 small{font-size: 8px; font-weight: var(--rs-med);}
 .search-shell-v2{background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial; border-radius: 16px;}
 .search-shell-v2 input{font-size: 15px; font-weight: var(--rs-reg);}
 .icon-btn-v2{background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;}
 .home-intro-v2 h1, .page-title-v2 h1{font-size: 28px; font-weight: var(--rs-semi);}
 .home-intro-v2 p, .page-title-v2 p{font-size: 14px;}
 .eyebrow-v2, .section-head-v2 span{font-size: 11px; font-weight: var(--rs-med); letter-spacing: 0.08em;}
-.section-head-v2 h2{font-size: 22px; font-weight: var(--rs-semi);}
-.section-head-v2 button{font-size: 14px; font-weight: var(--rs-med);}
 .home-action-v2{background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial; border-radius: 20px;}
 .home-action-v2 b{font-size: 16px; font-weight: var(--rs-med);}
 .home-action-v2 small{font-size: 12px;}
 .action-icon-v2 svg, .category-strip-v2 svg{stroke-width: 1.9;}
-.category-strip-v2 b{font-size: 12px; font-weight: var(--rs-med);}
 .catalog-type-v2 button, .catalog-category-v2 button{font-size: 13px; font-weight: var(--rs-med);}
 .product-grid-v2 .price{font-size: 16px; font-weight: var(--rs-semi);}
 .product-grid-v2 .name{font-size: 14px; font-weight: var(--rs-med); line-height: 1.3;}
@@ -1371,7 +1246,6 @@ b, strong, h1, h2, h3, h4, h5, h6{font-weight: var(--rs-semi); letter-spacing: -
 .product-label-v2{font-size: 11px; font-weight: var(--rs-med);}
 .product-meta-v2 span{font-size: 14px; font-weight: var(--rs-reg);}
 .product-spec-v2 span{font-size: 12px; font-weight: var(--rs-med);}
-.product-actions-v2 .btn{font-size: 15px; font-weight: var(--rs-med);}
 .status-new, .badge-new{color: rgb(17, 17, 17);}
 .status-confirmed, .badge-confirmed{color: rgb(17, 17, 17);}
 .status-shipping, .badge-shipping{color: var(--rs-purple);}
@@ -1391,15 +1265,10 @@ button:active, .settings-row-v2:active, .home-action-v2:active, .category-strip-
 .telegram-identity-v3 p{margin: 3px 0px 0px; font-size: 14px; line-height: 1.25; font-weight: 400;}
 .telegram-profile-v3 .settings-label-v2{margin: 19px 14px 7px; font-size: 11px; line-height: 1; font-weight: 500; letter-spacing: 0.06em;}
 .telegram-group-v3{margin: 0px 0px 18px; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial; border-radius: 22px; overflow: hidden; border: 0px;}
-.telegram-row-v3{min-height: 54px; height: 54px; display: grid; grid-template-columns: 34px minmax(0px, 1fr) 15px; align-items: center; gap: 12px; padding: 0px 14px; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial; border: 0px; text-align: left; position: relative;}
 .telegram-static-row-v3{grid-template-columns: 34px minmax(0px, 1fr) auto;}
-.telegram-row-v3 + .telegram-row-v3::before{content: ""; position: absolute; top: 0px; left: 60px; right: 0px; height: 1px; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;}
 .telegram-row-title-v3{min-width: 0px; font-size: 16px; line-height: 1; font-weight: 400; letter-spacing: 0px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;}
-.telegram-row-v3 > svg{width: 15px; height: 15px; stroke-width: 2;}
 .telegram-row-value-v3{justify-self: end; font-size: 15px; font-weight: 400; margin-right: 4px;}
 .telegram-row-v3:has(.telegram-row-value-v3){grid-template-columns: 34px minmax(0px, 1fr) auto 15px;}
-.telegram-row-v3 .settings-icon-v2{width: 30px; height: 30px; border-radius: 8px; display: flex; align-items: center; justify-content: center; flex: 0 0 auto;}
-.telegram-row-v3 .settings-icon-v2 svg{width: 18px; height: 18px; stroke: rgb(17, 17, 17); stroke-width: 2;}
 .tg-blue{background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;}
 .tg-orange{background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;}
 .tg-purple{background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;}
@@ -1408,17 +1277,13 @@ button:active, .settings-row-v2:active, .home-action-v2:active, .category-strip-
 .tg-green{background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;}
 .tg-gray{background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;}
 .tg-indigo{background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;}
-.telegram-row-v3 small, .telegram-row-v3 .settings-row-copy-v2 small{display: none;}
 .telegram-subhead-v3{margin-bottom: 14px;}
 .telegram-subhead-v3 h1{font-size: 24px; font-weight: 500; letter-spacing: -0.015em;}
 .telegram-subhead-v3 p{display: none;}
 .telegram-static-row-v3 .switch{width: 48px; height: 28px; border-radius: 999px; margin: 0px;}
 .telegram-admin-group-v3:has(#adminPanelBtn[style*="display:none"]){display: none;}
 @media (max-width: 360px){.telegram-profile-v3{padding-left: 12px; padding-right: 12px;}}
-@media (max-width: 360px){.telegram-row-v3{padding-left: 12px; padding-right: 12px;}}
 @media (max-width: 360px){.telegram-row-title-v3{font-size: 15px;}}
-@media (max-width: 360px){.telegram-row-v3 .settings-icon-v2{width: 29px; height: 29px;}}
-.telegram-row-v3 b, .telegram-row-v3 strong{font-weight: 400;}
 :root{--rs-dark: var(--uzr-bg); --rs-dark-2: #111; --rs-surface: var(--uzr-surface-4); --rs-surface-2: var(--uzr-surface-5); --rs-border: #e9e9e9; --rs-text: #111; --rs-muted: #757575; --rs-blue: var(--uzr-accent-2);}
 .dark-home-header-v10{border-bottom: 0px; padding: 14px 16px 12px;}
 .dark-brand-row-v10{display: flex; align-items: center; justify-content: space-between; min-height: 54px;}
@@ -1436,10 +1301,6 @@ button:active, .settings-row-v2:active, .home-action-v2:active, .category-strip-
 .dark-resale-v10{border-color: rgb(233, 233, 233);}
 .dark-action-icon-v10{background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;}
 .dark-sell-icon-v10{background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;}
-.dark-categories-v10 button{position: relative; min-width: 0px; padding: 0px;}
-.dark-categories-v10 button > span{position: absolute; left: 0px; right: 0px; display: flex; align-items: center; justify-content: center;}
-.dark-categories-v10 button svg{stroke-width: 1.9;}
-.dark-categories-v10 button > b{position: absolute; left: 5px; right: 5px; line-height: 1; text-align: center;}
 .dark-shoe-svg-v10 svg{width: 34px; height: 30px;}
 .dark-popular-head-v10{display: flex; align-items: center; justify-content: space-between; margin: 0px 0px 12px;}
 .dark-popular-head-v10 h2{margin: 0px; font-size: 23px; font-weight: 600;}
@@ -1455,11 +1316,6 @@ button:active, .settings-row-v2:active, .home-action-v2:active, .category-strip-
 .settings-card-v2, .telegram-group-v3, .detail-box, .order-card, .listing-card, .admin-card, .form-card, .seller-card, .timeline, .simple-card{border-color: rgb(233, 233, 233); border-radius: 20px;}
 @media (max-width: 430px){.dark-actions-v10{gap: 8px;}}
 @media (max-width: 430px){.dark-action-v10{padding: 12px;}}
-@media (max-width: 430px){.dark-categories-v10{gap: 8px;}}
-@media (max-width: 430px){.dark-categories-v10 button{height: 108px; border-radius: 18px;}}
-@media (max-width: 430px){.dark-categories-v10 button > span{top: 24px;}}
-@media (max-width: 430px){.dark-categories-v10 button svg{width: 27px; height: 27px;}}
-@media (max-width: 430px){.dark-categories-v10 button > b{bottom: 15px; font-size: 11px;}}
 @media (max-width: 430px){.dark-popular-head-v10 h2{font-size: 21px;}}
 @media (min-width: 700px){#app, .app-shell{border: 1px solid rgb(233, 233, 233);}}
 html, body{min-height: 100%;}
@@ -1470,17 +1326,7 @@ body .app > #home.page.active{display: block; min-height: calc(100dvh - 120px); 
 :is(#homeGrid, #homeOfficialPinsGridV119) .empty-load-v2 button{margin-top: 12px; border: 0px; border-radius: 12px; padding: 9px 15px; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;}
 :is(#homeGrid, #homeOfficialPinsGridV119) .skeleton-grid-v2{grid-column: 1 / -1; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;}
 :is(#homeGrid, #homeOfficialPinsGridV119) .skeleton-grid-v2 > div{border: 1px solid rgb(233, 233, 233); background-size: 400% 100%;}
-.dark-categories-v10{display: grid; grid-template-columns: repeat(4, minmax(0px, 1fr)); gap: 10px; margin: 0px 0px 26px;}
-.dark-categories-v10 button{height: 112px; border: 1px solid rgb(233, 233, 233); border-radius: 18px;}
-.dark-categories-v10 button > span{top: 25px;}
-.dark-categories-v10 button svg{width: 29px; height: 29px; stroke: var(--uzr-accent-2);}
-.dark-categories-v10 button > b{bottom: 15px; font-size: 11px; font-weight: 500;}
 @media (min-width: 561px){body .app{border-left: 1px solid rgb(233, 233, 233); border-right: 1px solid rgb(233, 233, 233);}}
-@media (max-width: 390px){.dark-categories-v10{gap: 8px;}}
-@media (max-width: 390px){.dark-categories-v10 button{height: 102px; border-radius: 17px;}}
-@media (max-width: 390px){.dark-categories-v10 button > span{top: 22px;}}
-@media (max-width: 390px){.dark-categories-v10 button svg{width: 27px; height: 27px;}}
-@media (max-width: 390px){.dark-categories-v10 button > b{bottom: 14px; font-size: 10px;}}
 .dark-header-actions-v10{gap: 9px;}
 .dark-round-btn-v10{width: 45px; height: 45px; border-radius: 15px;}
 .dark-actions-v10{display: grid; grid-template-columns: repeat(3, minmax(0px, 1fr)); gap: 10px; margin: 8px 0px 18px;}
@@ -1511,8 +1357,6 @@ body .app > #home.page.active{display: block; min-height: calc(100dvh - 120px); 
 .tg-section-label-v12{margin: 0px 13px 7px; font-size: 10.5px; line-height: 1; font-weight: 500; letter-spacing: 0.055em;}
 .tg-group-v12, .tg-admin-wrap-v12{width: 100%; margin: 0px 0px 19px; border-radius: 18px; overflow: hidden; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial; border: 1px solid rgb(233, 233, 233);}
 .tg-admin-wrap-v12:has(#adminPanelBtn[style*="display:none"]){display: none;}
-.tg-row-v12{position: relative; width: 100%; height: 54px; min-height: 54px; padding: 0px 13px; border: 0px; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial; display: grid; grid-template-columns: 30px minmax(0px, 1fr) auto 14px; align-items: center; gap: 11px; text-align: left; border-radius: 0px; font-family:var(--uzbek-font);}
-.tg-row-v12 + .tg-row-v12::before{content: ""; position: absolute; left: 54px; right: 0px; top: 0px; height: 1px; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;}
 .tg-icon-v12{width: 30px; height: 30px; border-radius: 8px; display: flex; align-items: center; justify-content: center;}
 .tg-icon-v12 svg{width: 18px; height: 18px; stroke: rgb(17, 17, 17); stroke-width: 2;}
 .tg-i-blue{background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;}
@@ -1527,24 +1371,17 @@ body .app > #home.page.active{display: block; min-height: calc(100dvh - 120px); 
 .tg-row-title-v12{min-width: 0px; font-size: 15.5px; line-height: 1; font-weight: 400; letter-spacing: -0.005em; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;}
 .tg-row-value-v12{justify-self: end; margin-right: 3px; font-size: 13px; line-height: 1; font-weight: 400;}
 .tg-chevron-v12{width: 14px; height: 14px; stroke: rgb(17, 17, 17); stroke-width: 2;}
-.tg-row-v12:active{background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial; transform: none;}
 .tg-admin-row-v12{border-radius: 18px;}
 @media (max-width: 390px){#profile .tg-profile-v12{padding-left: 8px; padding-right: 8px;}}
 @media (max-width: 390px){.tg-profile-avatar-v12{width: 74px; height: 74px; min-width: 74px; min-height: 74px;}}
 @media (max-width: 390px){.tg-profile-identity-v12 h1{font-size: 20px;}}
 @media (max-width: 390px){.tg-profile-identity-v12 #profileUsername{font-size: 12px;}}
 @media (max-width: 390px){.tg-group-v12, .tg-admin-wrap-v12{border-radius: 17px;}}
-@media (max-width: 390px){.tg-row-v12{height: 52px; min-height: 52px; padding-left: 12px; padding-right: 12px; grid-template-columns: 29px minmax(0px, 1fr) auto 14px; gap: 10px;}}
 @media (max-width: 390px){.tg-icon-v12{width: 29px; height: 29px;}}
 @media (max-width: 390px){.tg-row-title-v12{font-size: 14.5px;}}
 @media (max-width: 390px){.tg-row-value-v12{font-size: 12.5px;}}
-@media (max-width: 390px){.tg-row-v12 + .tg-row-v12::before{left: 51px;}}
 .overlay{z-index: 1200;}
 #productView .product-body-v2{padding-bottom: 104px;}
-#productView .product-actions-v2{position: fixed; left: 50%; right: auto; bottom: calc(10px + env(safe-area-inset-bottom)); transform: translateX(-50%); width: min(100% - 28px, 532px); display: grid; grid-template-columns: 0.9fr 1.1fr; gap: 8px; margin: 0px; padding: 8px; border-radius: 17px; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial; z-index: 200;}
-#productView .product-actions-v2 .btn{width: auto; height: 48px; min-height: 48px; margin: 0px; border-radius: 13px; font-size: 11px; font-weight: 800;}
-#productView .product-actions-v2 .product-cart-final{background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial; border: 0px;}
-#productView .product-actions-v2 .product-buy-final{border: 0px;}
 .profile-identity-v2{display: flex; flex-direction: column; align-items: center; text-align: center;}
 .profile-avatar-v2{margin: 0px auto 10px;}
 .skeleton-grid-v2{grid-column: 1 / -1; display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px 10px; width: 100%;}
@@ -2918,9 +2755,6 @@ html body .dark-round-btn-v10 svg, html body .dark-filter-btn-v10 svg{stroke: rg
 html body .app :is(#sell, #favorites, #viewed, #cart, #contactRequest, #contactRequests, #myProducts, #addresses, #payments, #support, #legalCenter, #legalDocument, #legalSection, #settingsPage, #faq, #orders, #productView, #adminPanel) button.uzr-back-v69, html body :is(#officialStoreView, #orderDetailView, #checkoutView, #uzrConsentLegalV58, #sellerProfile) button.uzr-back-v69{width: 42px; height: 42px; min-width: 42px; min-height: 42px; max-width: 42px; max-height: 42px; flex: 0 0 42px; border: 1px solid rgb(233, 233, 233);}
 html body :is(#officialStoreView, #orderDetailView, #checkoutView, #uzrConsentLegalV58, #sellerProfile) button.uzr-back-v69 svg, html body .app :is(#sell, #favorites, #viewed, #cart, #contactRequest, #contactRequests, #myProducts, #addresses, #payments, #support, #legalCenter, #legalDocument, #legalSection, #settingsPage, #faq, #orders, #productView, #adminPanel) button.uzr-back-v69 svg{stroke: rgb(17, 17, 17);}
 html body :is(input, textarea)::placeholder{opacity: 1;}
-html body .app #home .dark-categories-v10 > button{opacity: 1;}
-html body .app #home .dark-categories-v10 > button svg{stroke: rgb(17, 17, 17);}
-html body .app #home .dark-categories-v10 > button > b{opacity: 1;}
 html body .app #catalog .tg-catalog-types-v14 .filter.active{border-color: rgb(233, 233, 233);}
 html body .app #catalog #categoryFilters > button.category-chip{height: 96px; padding: 0px; overflow: hidden; border-radius: 18px;}
 html body .app #catalog #categoryFilters > button.category-chip > span{width: 100%; height: 55px; min-height: 55px; display: flex; align-items: center; justify-content: center;}
@@ -2943,7 +2777,6 @@ html body .app #orders .orders-v40-filters button.active{border-color: rgb(233, 
 @media (max-width: 390px){button.uzr-back-v69{width: 40px; height: 40px; min-width: 40px; min-height: 40px; max-width: 40px; max-height: 40px; flex-basis: 40px;}}
 html body .app #orders #ordersBack.uzr-back-v69, html body #productView #productBack.uzr-back-v69, html body #checkoutView #checkoutBack.uzr-back-v69, html body #adminReviewView button.uzr-back-v69, html body #adminListingView button.uzr-back-v69{width: 42px; height: 42px; min-width: 42px; min-height: 42px; max-width: 42px; max-height: 42px; flex: 0 0 42px; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial; border: 1px solid rgb(233, 233, 233);}
 html body :is(#orders #ordersBack, #productView #productBack, #checkoutView #checkoutBack, #adminReviewView button.uzr-back-v69, #adminListingView button.uzr-back-v69) svg{stroke: rgb(17, 17, 17);}
-html body .app #home .dark-categories-v10 > button::before, html body .app #home .dark-categories-v10 > button::after{background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;}
 html body .app #catalog #filters > button.filter:not(.active){background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;}
 html body .app #catalog #sortSheetV2{background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;}
 html body .app #catalog #sortSheetV2 > select{background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;}
@@ -2974,10 +2807,6 @@ html body .app #faq .faq-v48-urgent-icon{background-position: initial; backgroun
 html body .app #faq .faq-v48-urgent-icon svg{stroke: rgb(17, 17, 17);}
 html body .app #faq .faq-v48-urgent > svg{stroke: rgb(17, 17, 17);}
 html body .app #faq .faq-v48-help-card{background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial; border: 1px solid rgb(233, 233, 233);}
-html body .app #home .dark-categories-v10 > button{background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial; border: 1px solid rgb(233, 233, 233);}
-html body .app #home .dark-categories-v10 > button > span{background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;}
-html body .app #home .dark-categories-v10 > button > span svg, html body .app #home .dark-categories-v10 .dark-shoe-svg-v10 svg{stroke: rgb(17, 17, 17);}
-html body .app #home .dark-categories-v10 > button > b{font-weight: 600;}
 html body .app :is(#contactRequests, #viewed, #faq) button.uzr-back-v69{width: 42px; height: 42px; min-width: 42px; min-height: 42px; max-width: 42px; max-height: 42px; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial; border: 1px solid rgb(233, 233, 233);}
 html body .app :is(#contactRequests, #viewed, #faq) button.uzr-back-v69 svg{stroke: rgb(17, 17, 17);}
 html body .app #faq .faq-v60-resale-boundary, html body .app #faq .faq-v59-contact-note{padding: 13px 14px; line-height: 1.5;}
@@ -3220,9 +3049,6 @@ html body .photo-counter, html body .product-gallery-hint{background-position: i
 html body .tg-switch-v13.switch:not(.on){background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;}
 html body .tg-switch-v13.switch.on{background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;}
 html body .seller-avatar, html body #productSeller .seller-avatar{background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial; border-color: rgb(233, 233, 233);}
-html body .home-categories button:active span{background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;}
-html body .tg-row-v12{background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial; border-color: rgb(233, 233, 233);}
-html body .tg-row-v12:active{background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;}
 html body .tg-settings-back-v13, html body .legal-v53-back{background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial; border-color: rgb(233, 233, 233);}
 html body .tg-settings-back-v13 svg, html body .legal-v53-back svg{stroke: rgb(17, 17, 17);}
 @keyframes uzrFavoritePopV80 { 
@@ -6595,7 +6421,28 @@ html body #uzcSellerOfferDialog{padding:20px!important;border-radius:22px!import
 html body #uzcSellerOfferDialog h2{margin:0 0 10px!important}html body #uzcSellerOfferDialog input{background:white!important;border:1px solid #deded8!important;height:50px!important;border-radius:13px!important}
 .uzri-offers{margin-bottom:18px}.uzri-offers h2{font-size:17px;margin:8px 0 12px}.uzri-card{border:1px solid #e2e2dd;background:#fafaf8;border-radius:17px;padding:14px;margin-bottom:10px}.uzri-top{display:flex;flex-wrap:wrap;gap:5px;justify-content:space-between;font-size:11px;color:#777}.uzri-top small{font-size:11px;color:#444}.uzri-card h3{font-size:15px;margin:10px 0 5px;overflow-wrap:anywhere}.uzri-card strong{font-size:20px}.uzri-actions{display:flex;flex-wrap:wrap;gap:7px;margin-top:12px}.uzri-actions button{flex:1 1 120px;border:1px solid #e1e1dc;border-radius:12px;background:#ededE9;color:#222;min-height:40px;padding:9px 12px;font:500 12px/1.3 system-ui}.uzri-actions .primary{background:#171717;color:#fff;border-color:#171717}.uzri-error{font-size:12px;color:#a02d25}.uzri-error:empty{display:none}
 </style>
+<style id="uzr-startup-style">
+#uzrStartup[hidden]{display:none!important}
+#uzrStartup{position:fixed;inset:0;z-index:4999;display:grid;place-items:center;background:#fff;color:#151515;font:inherit;touch-action:none}
+#uzrStartup .uzr-startup-inner{display:grid;justify-items:center;gap:12px;padding:24px;text-align:center}
+#uzrStartup strong{font-size:30px;font-weight:850;letter-spacing:-.065em;line-height:1.1}
+#uzrStartup small{font-size:13px;color:#636361}
+#uzrStartup .uzr-startup-ring{width:24px;height:24px;border-radius:50%;border:2px solid #dededb;border-top-color:#151515;animation:uzr-startup-spin .75s linear infinite;margin-top:3px}
+@keyframes uzr-startup-spin{to{transform:rotate(1turn)}}
+@media(prefers-reduced-motion:reduce){#uzrStartup .uzr-startup-ring{animation:none}}
+</style>
 </head><body>
+<div id="uzrStartup" role="status" data-no-i18n><div class="uzr-startup-inner"><strong>UZBEK RE’SALE</strong><span class="uzr-startup-ring" aria-hidden="true"></span><small id="uzrStartupLabel">Загружаем приложение…</small></div></div>
+<script id="uzr-startup-bootstrap">
+(()=>{
+ const splash=document.getElementById('uzrStartup');
+ try{if(localStorage.getItem('uzr_language_pref_v1')==='uz')document.getElementById('uzrStartupLabel').textContent='Ilova yuklanmoqda…';}catch{}
+ const timer=setTimeout(finish,2500);
+ function finish(){clearTimeout(timer);splash.hidden=true;}
+ window.uzrFinishStartup=finish;
+})();
+</script>
+<noscript><style>#uzrStartup{display:none!important}</style></noscript>
 <div id="uzrConsentV58" hidden role="dialog" aria-modal="true" aria-labelledby="uzrConsentTitleV58">
   <div class="uzr-consent-card-v58">
     <div class="uzr-consent-brand-v58">
@@ -8248,9 +8095,9 @@ function applyMaintenanceState(d){
   return maintenanceState;
 }
 
-async function checkServiceStatus(){
+async function checkServiceStatus({signal}={}){
   try{
-    const r=await fetch(MARKETPLACE_API+"/service-status",{cache:"no-store"});
+    const r=await fetch(MARKETPLACE_API+"/service-status",{cache:"no-store",signal});
     const d=await r.json();
     if(r.ok&&d?.ok)return applyMaintenanceState(d);
   }catch(e){
@@ -9032,6 +8879,7 @@ function renderCart(){
  if(!cart.length){
    b.innerHTML='<div class="cart-empty-v23"><div class="cart-empty-icon-v23"><i data-lucide="shopping-bag"></i></div><h2>\u041a\u043e\u0440\u0437\u0438\u043d\u0430 \u043f\u0443\u0441\u0442\u0430</h2><p>\u0414\u043e\u0431\u0430\u0432\u044c\u0442\u0435 \u043f\u043e\u043d\u0440\u0430\u0432\u0438\u0432\u0448\u0438\u0439\u0441\u044f \u0442\u043e\u0432\u0430\u0440 \u2014 \u043e\u043d \u043f\u043e\u044f\u0432\u0438\u0442\u0441\u044f \u0437\u0434\u0435\u0441\u044c.</p><button type="button" onclick="page(\'china\')">\u041f\u0435\u0440\u0435\u0439\u0442\u0438 \u043a \u043f\u043e\u043a\u0443\u043f\u043a\u0430\u043c</button></div>';
    $("cartBottom").style.display="none";
+   window.UzrReferrals?.mountCart(0);
    setTimeout(()=>window.lucide&&lucide.createIcons(),0);
    return;
  }
@@ -9049,7 +8897,9 @@ function renderCart(){
    };
    b.appendChild(r);
  });
- $("total").textContent=money(cart.reduce((s,p)=>s+p.price,0));
+ const subtotal=cart.reduce((s,p)=>s+Number(p.price||0),0);
+ $("total").textContent=money(subtotal);
+ window.UzrReferrals?.mountCart(subtotal);
 }
 
 function add(p){
@@ -10396,12 +10246,7 @@ $("supportTelegram").onclick=()=>{const tg=window.Telegram&&window.Telegram.WebA
 $("sellPhotos").onchange=e=>{const all=[...e.target.files],b=$("sellPreview");b.innerHTML="";if(all.length>6){alert("\u041c\u0430\u043a\u0441\u0438\u043c\u0443\u043c 6 \u0444\u043e\u0442\u043e\u0433\u0440\u0430\u0444\u0438\u0439");e.target.value="";return}if(all.some(f=>f.size>10*1024*1024)){alert("\u0424\u043e\u0442\u043e\u0433\u0440\u0430\u0444\u0438\u044f \u0431\u043e\u043b\u044c\u0448\u0435 10 MB");e.target.value="";return}const files=all.slice(0,6);files.forEach(f=>{const img=document.createElement("img");img.src=URL.createObjectURL(f);b.appendChild(img)})};
 renderAddresses();
 
-async function loadMarketplaceCatalog(){
- catalogLoaded=false;catalogLoadError=false;render();
- try{
-  const r=await fetch(MARKETPLACE_API+"/catalog"),d=await r.json();
-  if(!r.ok||!d.ok)throw new Error(d.error||"CATALOG_LOAD_FAILED");
-  marketProducts=(d.listings||[]).map(x=>({
+function marketplaceProductFromRowV175(x){return {
    id:"listing-"+x.id,listingId:x.id,name:x.title,price:Number(x.price||0),
    originalPrice:Number(x.originalPrice??x.price??0),
    discountActive:!!x.discountActive,
@@ -10415,7 +10260,25 @@ async function loadMarketplaceCatalog(){
    condition:x.condition||"\u2014",type:x.ownerType==="official"?(x.sourceType==="china"?"\u041f\u043e\u0434 \u0437\u0430\u043a\u0430\u0437":"\u0412 \u043d\u0430\u043b\u0438\u0447\u0438\u0438"):"\u0420\u0435\u0441\u0435\u0439\u043b",
    category:x.category||"\u0414\u0440\u0443\u0433\u043e\u0435",brand:x.brand||"",image:x.images&&x.images[0]?x.images[0].image_url:"",images:(x.images||[]).map(im=>im.image_url||im).filter(Boolean),
    ownerType:x.ownerType||"user",sourceType:x.sourceType||"",pinHome:x.pinHome===true,pinChina:x.pinChina===true||x.isPinned===true,homePinnedAt:String(x.homePinnedAt||""),isPinned:!!x.isPinned,pinnedAt:String(x.pinnedAt||x.pinned_at||""),stockQty:Number(x.stockQty??1),status:x.status||"approved",cardBadge:x.cardBadge||x.badgeType||x.badge||"",city:x.city||x.location||"",publishedAt:x.publishedAt||x.published_at||"",expiresAt:x.expiresAt||x.expires_at||"",soldAt:x.soldAt||x.sold_at||"",expiredAt:x.expiredAt||x.expired_at||"",imagesDeletedAt:x.imagesDeletedAt||x.images_deleted_at||"",purgedAt:x.purgedAt||x.purged_at||"",cleanupError:x.cleanupError||x.cleanup_error||"",bumpedAt:Number(x.bumpedAt||0),createdAt:x.createdAt||x.created_at||"",updatedAt:x.updatedAt||x.updated_at||"",isFeatured:!!x.isFeatured,officialNote:x.officialNote||"",sellerTelegramId:String(x.sellerTelegramId||""),sellerName:x.sellerName||"\u041f\u0440\u043e\u0434\u0430\u0432\u0435\u0446",sellerUsername:x.sellerUsername||"",description:x.description||""
-  }));
+  };}
+async function resolveNotificationProductV175(id){
+ const key=Number(id);
+ if(!Number.isSafeInteger(key)||key<1)return null;
+ const controller=new AbortController(),timeout=setTimeout(()=>controller.abort(),8000);
+ try{
+  const r=await fetch(MARKETPLACE_API+'/catalog?listingId='+key,{cache:'no-store',signal:controller.signal});
+  const d=await r.json();
+  if(!r.ok||!d.ok||!Array.isArray(d.listings))throw new Error('CATALOG_LOAD_FAILED');
+  const row=d.listings.find(x=>Number(x.id)===key);
+  return row?marketplaceProductFromRowV175(row):null;
+ }finally{clearTimeout(timeout);}
+}
+async function loadMarketplaceCatalog({signal}={}){
+ catalogLoaded=false;catalogLoadError=false;render();
+ try{
+  const r=await fetch(MARKETPLACE_API+"/catalog",{signal}),d=await r.json();
+  if(!r.ok||!d.ok)throw new Error(d.error||"CATALOG_LOAD_FAILED");
+  marketProducts=(d.listings||[]).map(marketplaceProductFromRowV175);
   // Keep persisted official cart prices synchronized with current server discount.
   if(cart.length){
     const latestByListing=new Map(
@@ -10460,8 +10323,8 @@ async function loadMarketplaceCatalog(){
   });
    products.splice(0,products.length,...marketProducts);
    catalogLoaded=true;catalogLoadError=false;render();window.uzrTodayCatalogReady?.();window.uzrCollectionsCatalogReady?.();
-   try{openChannelStartListingV107()}catch(e){console.warn("Channel deep link",e)}
  }catch(e){catalogLoaded=true;catalogLoadError=true;render();window.uzrCollectionsCatalogReady?.();console.error("Marketplace catalog",e)}
+ openChannelStartListingV107().catch(e=>console.warn('Channel deep link',e));
 }
 
 let __channelStartHandledV107=false;
@@ -10492,10 +10355,15 @@ function closeChannelListingUnavailableV109C(destination="catalog"){
   const overlay=$("channelListingUnavailableV109C");
   if(overlay)overlay.hidden=true;
   document.body.style.overflow=__channelUnavailablePrevOverflowV109C||"";
-  page(destination==="home"?"home":"catalog");
+  if(destination!=="stay")page(destination==="home"?"home":"catalog");
 }
-function showChannelListingUnavailableV109C(listingId){
+function showChannelListingUnavailableV109C(listingId,networkError=false){
   const copy=channelUnavailableCopyV109C();
+  if(networkError){
+    copy.title=productCardCopyV12('Не удалось загрузить товар','Mahsulot yuklanmadi');
+    copy.body=productCardCopyV12('Проверь подключение и попробуй снова.','Internetni tekshirib, qayta urinib ko‘r.');
+    copy.catalog=productCardCopyV12('Повторить','Qayta urinish');
+  }
   let overlay=$("channelListingUnavailableV109C");
   if(!overlay){
     overlay=document.createElement("div");
@@ -10514,28 +10382,35 @@ function showChannelListingUnavailableV109C(listingId){
       </div>
     </div>`;
   overlay.querySelectorAll("[data-channel-unavailable-action]").forEach(btn=>{
-    btn.onclick=()=>closeChannelListingUnavailableV109C(btn.dataset.channelUnavailableAction||"catalog");
+    btn.onclick=()=>{
+      if(networkError&&btn.dataset.channelUnavailableAction==='catalog'){
+        closeChannelListingUnavailableV109C('stay');
+        openChannelStartListingV107().catch(()=>{});
+      }else closeChannelListingUnavailableV109C(btn.dataset.channelUnavailableAction||'catalog');
+    };
   });
   __channelUnavailablePrevOverflowV109C=document.body.style.overflow||"";
   document.body.style.overflow="hidden";
   overlay.hidden=false;
   setTimeout(()=>window.lucide&&lucide.createIcons(),0);
 }
-function openChannelStartListingV107(){
-  if(__channelStartHandledV107||!catalogLoaded||catalogLoadError)return;
+async function openChannelStartListingV107(){
+  if(__channelStartHandledV107||!catalogLoaded)return;
   const param=channelStartParamV107();
   const offer=/^offer_([a-f0-9-]{36})$/.exec(param);if(offer){__channelStartHandledV107=true;window.uzoDeepLink14?.(offer[1]);return;}
   const m=/^listing_(\d+)$/.exec(param);
   if(!m)return;
   __channelStartHandledV107=true;
   const id=Number(m[1]||0);
-  const p=products.find(x=>Number(x.listingId||0)===id);
-  page("catalog");
-  if(!p){
-    showChannelListingUnavailableV109C(id);
+  let product;
+  try{product=await resolveNotificationProductV175(id);}
+  catch(e){
+    __channelStartHandledV107=false;
+    showChannelListingUnavailableV109C(id,true);
     return;
   }
-  setTimeout(()=>{const el=card(p);el.click()},40);
+  if(!product){showChannelListingUnavailableV109C(id);return;}
+  await card(product).onclick();
 }
 let myListingsAllV25=[];
 let myListingsFilterV25="all";
@@ -12384,9 +12259,17 @@ syncV2Settings();
 const initialHeader=$("appHeader");if(initialHeader)initialHeader.hidden=false;
 
 render();
-checkServiceStatus().then(state=>{
-  if(!state.maintenance||state.bypass)loadMarketplaceCatalog();
-}).finally(()=>{
+async function runInitialRequestV175(run,timeout){
+  const controller=new AbortController(),timer=setTimeout(()=>controller.abort(),timeout);
+  try{return await run({signal:controller.signal});}finally{clearTimeout(timer);}
+}
+runInitialRequestV175(checkServiceStatus,3500).then(state=>{
+  if(!state.maintenance||state.bypass){
+    runInitialRequestV175(loadMarketplaceCatalog,10000).catch(()=>{}).finally(()=>window.uzrFinishStartup?.());
+    return;
+  }
+  window.uzrFinishStartup?.();
+}).catch(()=>window.uzrFinishStartup?.()).finally(()=>{
   // v91: periodic maintenance polling starts only after the initial startup check.
   setInterval(()=>{if(!document.hidden)checkServiceStatus();},60000);
 });
@@ -17737,9 +17620,21 @@ for(const src of [...new Set(candidates)]){if(epoch!==generation||!host.isConnec
 function drawSellers(rows){const host=$('swBody');host.innerHTML='<p class="sw-note">'+t('Новые объявления и снижение цен приходят сюда и в Telegram-бот.','Yangi e’lonlar va narx pasayishi shu yerga va Telegram-botga keladi.')+'</p>'+(!rows.length?'<div class="sw-card"><b>'+t('Пока нет подписок','Hozircha obunalar yo‘q')+'</b><p class="sw-note">'+t('Открой профиль продавца и нажми «Подписаться».','Sotuvchi profilini ochib, «Obuna bo‘lish»ni bosing.')+'</p></div>':'');
 for(const r of rows){const card=document.createElement('article');card.className='sw-card';card.dataset.seller=r.id;card.innerHTML='<button class="sw-person"><span class="sw-avatar">'+esc(r.name.slice(0,2))+'<img src="'+esc(MARKETPLACE_API+'/telegram-avatar?telegramId='+r.id)+'" alt=""></span><span><b>'+esc(r.name)+'</b><small>'+esc(r.username?'@'+r.username:'')+'</small></span><span>›</span></button><div class="sw-settings"><label class="sw-toggle">'+t('Новые объявления','Yangi e’lonlar')+'<input type="checkbox" data-setting="newOn" '+(r.newOn?'checked':'')+'></label><label class="sw-toggle">'+t('Снижение цены','Narx pasayishi')+'<input type="checkbox" data-setting="discountOn" '+(r.discountOn?'checked':'')+'></label></div><p class="sw-error" role="status"></p><button class="sw-link">'+t('Отписаться','Obunani bekor qilish')+'</button>';loadSellerAvatar(card.querySelector('.sw-avatar'),r);const head=card.querySelector('.sw-person'),panel=card.querySelector('.sw-settings');panel.id='swSettings'+r.id;head.setAttribute('aria-controls',panel.id);head.setAttribute('aria-expanded','false');panel.hidden=true;head.lastElementChild.innerHTML=chevron;head.onclick=()=>{panel.hidden=!panel.hidden;head.setAttribute('aria-expanded',String(!panel.hidden))};card.querySelectorAll('.sw-toggle').forEach((label,i)=>label.insertAdjacentHTML('afterbegin',i===0?bell:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M3 3h9l9 9-9 9-9-9z"/><circle cx="8" cy="8" r="1"/></svg>'));panel.insertAdjacentHTML('beforeend','<p class="sw-telegram-note">Уведомления приходят в Telegram-бот</p>');panel.append(card.querySelector('.sw-error'),card.querySelector('.sw-link'));const profileButton=document.createElement('button');profileButton.className='sw-profile-link';profileButton.textContent=t('Профиль продавца','Sotuvchi profili');profileButton.onclick=()=>sellerOpen(r.id);panel.append(profileButton);card.querySelectorAll('input').forEach(input=>input.onchange=async()=>{const value=input.checked;card.querySelectorAll('input,button').forEach(x=>x.disabled=true);try{await api('/'+r.id,'POST',{[input.dataset.setting]:value});card.querySelector('.sw-error').textContent=''}catch(e){input.checked=!value;card.querySelector('.sw-error').textContent=e.message}finally{card.querySelectorAll('input,button').forEach(x=>x.disabled=false)}});card.querySelector('.sw-link').onclick=async e=>{e.target.disabled=true;try{await api('/'+r.id,'DELETE');await open('sellers')}catch(x){card.querySelector('.sw-error').textContent=x.message;e.target.disabled=false}};host.append(card)}
 }
-async function productOpen(id){try{if(!catalogLoaded)await loadMarketplaceCatalog();const p=products.find(p=>Number(p.listingId)===Number(id));if(!p)throw Error(t('Товар больше недоступен.','Mahsulot mavjud emas.'));close();const tile=card(p);tile.click()}catch(e){const box=$('swFeedError');if(box)box.textContent=e.message}}
+async function productOpen(id,button){
+ if(button.disabled)return;
+ const epoch=generation,box=button.closest('article').querySelector('[data-product-error]'),label=button.textContent;
+ button.disabled=true;button.textContent=t('Открываем…','Ochilmoqda…');box.textContent='';
+ try{
+  const product=await resolveNotificationProductV175(id);
+  if(epoch!==generation||!dialog.open)return;
+  if(!product){box.textContent=t('Товар больше недоступен.','Mahsulot mavjud emas.');return;}
+  close();await card(product).onclick();
+ }catch{
+  if(epoch===generation&&button.isConnected)box.textContent=t('Не удалось открыть товар. Попробуй ещё раз.','Mahsulot ochilmadi. Qayta urinib ko‘r.');
+ }finally{if(button.isConnected){button.textContent=label;button.disabled=false;}}
+}
 function drawFeed(){const host=$('swBody');host.innerHTML='<p class="sw-note">'+t('Уведомления от продавцов. Ответы в этом чате не принимаются.','Sotuvchilardan bildirishnomalar. Bu chat javob qabul qilmaydi.')+'</p><p id="swFeedError" class="sw-error" role="status"></p>';if(!events.length)host.innerHTML+='<div class="sw-card"><b>'+t('Здесь появятся новые вещи и скидки','Bu yerda yangi mahsulotlar va chegirmalar paydo bo‘ladi')+'</b><p class="sw-note">'+t('Подпишись на продавцов, которые тебе нравятся.','Sizga yoqqan sotuvchilarga obuna bo‘ling.')+'</p></div>';
-for(const r of events){const node=document.createElement('article');node.className='sw-card sw-event';node.dataset.kind=r.kind;node.innerHTML='<p class="sw-event-head">'+esc((r.kind==='new'?t('Новое объявление у ','Yangi e’lon: '):t('Цена снижена у ','Narx pasaydi: '))+r.seller_name)+'</p><div class="sw-event-product">'+(/^https:\/\//.test(r.image_url||'')?'<img src="'+esc(r.image_url)+'" alt="">':'')+'<div><b>'+esc(r.title)+'</b>'+(r.old_price?'<del>'+Number(r.old_price).toLocaleString('ru-RU')+' UZS</del>':'')+'<strong>'+Number(r.price).toLocaleString('ru-RU')+' UZS</strong></div></div><div class="sw-event-actions"><button class="sw-btn primary" data-product>'+t('Открыть товар','Mahsulotni ochish')+'</button><button class="sw-btn" data-seller>'+t('Продавец','Sotuvchi')+'</button></div><p class="sw-event-date">'+esc(new Date(r.created_at).toLocaleString('ru-RU',{day:'2-digit',month:'2-digit',hour:'2-digit',minute:'2-digit'}))+'</p>';node.querySelector('img')?.addEventListener('error',e=>e.target.remove());node.querySelector('[data-product]').onclick=()=>productOpen(r.listing_id);node.querySelector('[data-seller]').onclick=()=>sellerOpen(r.seller_id);if(r.kind!=='new'){node.querySelector('[data-seller]').remove();node.querySelector('.sw-event-actions').style.gridTemplateColumns='1fr'}host.append(node)}
+for(const r of events){const node=document.createElement('article');node.className='sw-card sw-event';node.dataset.kind=r.kind;node.innerHTML='<p class="sw-event-head">'+esc((r.kind==='new'?t('Новое объявление у ','Yangi e’lon: '):t('Цена снижена у ','Narx pasaydi: '))+r.seller_name)+'</p><div class="sw-event-product">'+(/^https:\/\//.test(r.image_url||'')?'<img src="'+esc(r.image_url)+'" alt="">':'')+'<div><b>'+esc(r.title)+'</b>'+(r.old_price?'<del>'+Number(r.old_price).toLocaleString('ru-RU')+' UZS</del>':'')+'<strong>'+Number(r.price).toLocaleString('ru-RU')+' UZS</strong></div></div><div class="sw-event-actions"><button class="sw-btn primary" data-product>'+t('Открыть товар','Mahsulotni ochish')+'</button><button class="sw-btn" data-seller>'+t('Продавец','Sotuvchi')+'</button></div><p class="sw-event-date">'+esc(new Date(r.created_at).toLocaleString('ru-RU',{day:'2-digit',month:'2-digit',hour:'2-digit',minute:'2-digit'}))+'</p><p class="sw-error" data-product-error role="status"></p>';node.querySelector('img')?.addEventListener('error',e=>e.target.remove());const openProduct=node.querySelector('[data-product]');openProduct.onclick=()=>productOpen(r.listing_id,openProduct);node.querySelector('[data-seller]').onclick=()=>sellerOpen(r.seller_id);if(r.kind!=='new'){node.querySelector('[data-seller]').remove();node.querySelector('.sw-event-actions').style.gridTemplateColumns='1fr'}host.append(node)}
 if(next){const b=document.createElement('button');b.className='sw-btn';b.textContent=t('Показать ещё','Yana ko‘rsatish');b.onclick=async()=>{b.disabled=true;const epoch=generation;try{const d=await api('/feed?before='+next);if(epoch!==generation)return;events.push(...d.events);next=d.next;drawFeed()}catch(e){$('swFeedError').textContent=e.message;b.disabled=false}};host.append(b)}}
 async function profile(root,id,own,p){if(own||String(id)===String(currentTelegramIdV108())||!root.querySelector('.usp-seller-actions')||p?.ownerType==='official')return;const actions=root.querySelector('.usp-seller-actions');const b=document.createElement('button');b.type='button';b.className='sw-follow';b.disabled=true;b.textContent=t('Загрузка…','Yuklanmoqda…');actions.append(b);const note=document.createElement('p');note.className='sw-follow-note';note.textContent=t('Новые объявления и скидки — в боте','Yangi e’lonlar va chegirmalar — botda');b.after(note);let following=false;
 const paint=()=>{b.textContent=following?'✓ '+t('Вы подписаны','Obuna bo‘lgansiz'):'+ '+t('Подписаться','Obuna bo‘lish');b.setAttribute('aria-pressed',String(following))};
@@ -17861,10 +17756,18 @@ window.UzrBundles={open};
 #rf24Dialog .rf24-status:not(:empty){margin-top:8px}
 #rf24Dialog .rf24-error{color:#a22}
 #checkoutView #rf24Checkout{padding-top:7px}
-#checkoutView .rf24-check{display:flex;align-items:center;gap:8px;padding:8px 10px;min-height:39px;box-sizing:border-box;border:1px solid #e5e5e3;border-radius:11px;background:#f8f8f7;color:#151515;font-size:12px;cursor:pointer}
-#checkoutView .rf24-check input{appearance:auto!important;display:inline-block!important;width:17px!important;height:17px!important;margin:0!important;accent-color:#151515;flex:none}
-#checkoutView .rf24-check b{margin-left:auto;white-space:nowrap;font-size:12px}
-#checkoutView .rf24-check-note{display:block;color:#646460;font-size:12px}
+#cart #rf24Cart{background:#f7f7f6;border:1px solid #e9e9e7;border-radius:13px;padding:11px;margin:9px 0 13px}
+#cart .rf24-cart-head{display:flex;align-items:center;justify-content:space-between;gap:8px;margin:0 0 3px}
+#cart .rf24-cart-head b{font-size:14px;color:#151515}
+#cart .rf24-cart-head button,#cart .rf24-cart-retry{min-height:34px;padding:4px 0;border:0;background:none;color:#333;font-weight:650;font-size:12px;cursor:pointer}
+#cart .rf24-cart-details{font-size:12px;line-height:1.4;color:#555;margin:0}
+#cart #rf24Cart .rf24-check{background:#fff;margin-top:7px}
+#rf24Dialog #rf24Shop{margin-top:9px}
+.rf24-launch-note{position:fixed;z-index:9000;left:50%;bottom:calc(86px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);width:max-content;max-width:calc(100vw - 32px);box-sizing:border-box;border-radius:12px;padding:10px 13px;background:#151515;color:#fff;font-size:13px;text-align:center;pointer-events:none}
+:is(#checkoutView,#cart) .rf24-check{display:flex;align-items:center;gap:8px;padding:8px 10px;min-height:39px;box-sizing:border-box;border:1px solid #e5e5e3;border-radius:11px;background:#f8f8f7;color:#151515;font-size:12px;cursor:pointer}
+:is(#checkoutView,#cart) .rf24-check input{appearance:auto!important;display:inline-block!important;width:17px!important;height:17px!important;margin:0!important;accent-color:#151515;flex:none}
+:is(#checkoutView,#cart) .rf24-check b{margin-left:auto;white-space:nowrap;font-size:12px}
+:is(#checkoutView,#cart) .rf24-check-note{display:block;color:#646460;font-size:12px}
 #rf24Checkout[hidden],#rf24More[hidden]{display:none!important}
 </style>
 <script>
@@ -17874,7 +17777,7 @@ window.UzrBundles={open};
  const icon=(path)=>'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">'+path+'</svg>';
  const copyIcon=icon('<rect x="8" y="8" width="11" height="12" rx="2"/><path d="M15 8V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2"/>');
  const dialog=document.createElement('dialog');dialog.id='rf24Dialog';dialog.setAttribute('data-no-i18n','');dialog.setAttribute('aria-labelledby','rf24Title');document.body.append(dialog);
- let epoch=0,quoteController=null,joining=false,joinedSession='',attempts=0;
+ let epoch=0,quoteController=null,cartController=null,cartState=null,selectedBonus=null,applyOnCart=false,joining=false,joinedSession='',attempts=0;
  const statuses={
   joined:['Вошёл','Kirdi'],waiting:['Ждём оплаты','To‘lov kutilmoqda'],
   earned:['Бонус начислен','Bonus berildi'],spent:['Бонус применён','Bonus ishlatildi'],
@@ -17946,13 +17849,18 @@ window.UzrBundles={open};
   const link=/^https:\/\/t\.me\/[A-Za-z0-9_]{5,32}\?startapp=ref_[a-f0-9]{32}$/.test(String(d.link||''))?d.link:'';
   $('rf24Body').innerHTML='<div class="rf24-hero"><span class="rf24-gift">'+icon(gift)+'</span><p>'+t('Бонус за первый полностью оплаченный заказ друга','Do‘stingizning birinchi to‘liq to‘langan buyurtmasi uchun bonus')+
    '</p></div><section class="rf24-card"><span class="rf24-muted">'+t('Доступный бонус','Mavjud bonus')+'</span><strong class="rf24-balance">'+esc(fmt(d.available))+'</strong>'+
-   (d.availableCount>1?'<p class="rf24-muted">'+t('Можно применить один бонус за заказ.','Har buyurtmada bitta bonus ishlatiladi.')+'</p>':'')+
+   (d.available>0?'<p class="rf24-muted">'+t('Один бонус на заказ. Применить его можно в корзине.','Har buyurtmada bitta bonus. Uni savatda ishlatish mumkin.')+'</p><button type="button" id="rf24Shop" class="rf24-btn">'+(cart.length?t('Применить в корзине','Savatda ishlatish'):t('К покупкам','Xaridlarga'))+'</button>':'')+
    '</section><section class="rf24-card"><h3>'+t('Твоя ссылка','Havolangiz')+'</h3>'+
    (link?'<div class="rf24-link-field"><input type="text" readonly id="rf24Link" aria-label="'+esc(t('Ссылка для друга','Do‘st uchun havola'))+'" value="'+esc(link)+'"><button type="button" id="rf24Copy" class="rf24-icon-btn" aria-label="'+esc(t('Копировать ссылку','Havolani nusxalash'))+'">'+copyIcon+'</button></div>'+
     '<button type="button" id="rf24Share" class="rf24-btn rf24-primary">'+t('Поделиться ссылкой','Havolani ulashish')+'</button>'+
     '<p class="rf24-muted rf24-note">'+esc(t('За новое приглашение: ','Yangi taklif uchun: ')+fmt(d.bonus)+(d.minimum>0?t(' · скидка на заказ от ',' · buyurtma chegirmasi uchun minimum ')+fmt(d.minimum):''))+'</p><div class="rf24-status" role="status" id="rf24ShareStatus"></div>':
     '<p class="rf24-muted">'+t('Новые приглашения пока недоступны.','Hozircha yangi takliflar qabul qilinmaydi.')+'</p>')+'</section>'+listShell(false);
   setupList(d,false,n);
+  const shop=$('rf24Shop');if(shop)shop.onclick=()=>{
+   close();
+   if(cart.length){applyOnCart=true;page('cart');}
+   else page('china');
+  };
   if(!link)return;
   $('rf24Copy').onclick=async()=>{
    const field=$('rf24Link'),message=$('rf24ShareStatus');let copied=false;
@@ -17963,7 +17871,7 @@ window.UzrBundles={open};
    if(n===epoch)message.textContent=copied?t('Ссылка скопирована','Havola nusxalandi'):t('Скопируй выделенную ссылку.','Belgilangan havolani nusxalang.');
   };
   $('rf24Share').onclick=()=>{
-   const url='https://t.me/share/url?'+new URLSearchParams({url:link,text:t('Заходи в Uzbek Re’Sale!','Uzbek Re’Sale’ga kiring!')});
+   const url='https://t.me/share/url?url='+encodeURIComponent(link)+'&text='+encodeURIComponent(t('Заходи в Uzbek Re’Sale!','Uzbek Re’Sale’ga kiring!'));
    const tg=window.Telegram?.WebApp;
    try{if(tg?.openTelegramLink){tg.openTelegramLink(url);return;}}catch{}
    window.open(url,'_blank','noopener,noreferrer');
@@ -18002,40 +17910,127 @@ window.UzrBundles={open};
    box.innerHTML='<p class="rf24-status rf24-error" role="status">'+esc(e.message||errorText(''))+'</p><button type="button" class="rf24-btn">'+t('Повторить','Qayta urinish')+'</button>';box.querySelector('button').onclick=()=>open(admin);
   }
  }
+ function showReferralNotice(text){
+  const notice=document.createElement('div');notice.className='rf24-launch-note';notice.setAttribute('role','status');notice.textContent=text;
+  document.body.append(notice);setTimeout(()=>notice.remove(),4500);
+ }
  async function checkLaunch(){
   const init=currentTelegramInitDataV108(),params=new URLSearchParams(init);
   const code=params.get('start_param')||'',session=params.get('hash')||'';
   if(joining||!session||joinedSession===session||!/^ref_(?:[a-f0-9]{32}|[1-9]\d{0,19})$/.test(code))return;
   joining=true;
-  try{await api('/join',{});joinedSession=session;}
+  try{
+   const d=await api('/join',{});joinedSession=session;
+   if(d.alreadyLinked)showReferralNotice(t('Первое приглашение уже закреплено. Другая ссылка его не меняет.','Birinchi taklif saqlangan. Boshqa havola uni o‘zgartirmaydi.'));
+  }
   catch{if(attempts++<1)setTimeout(checkLaunch,1400);}
   finally{joining=false;}
  }
+ const subtotalNow=()=>cart.reduce((sum,p)=>sum+Number(p.price||0),0);
+ const applicableCart=()=>cart.length>0&&cart.every(p=>p.ownerType==='official'&&['stock','china'].includes(p.sourceType));
+ function currentBonus(subtotal){
+  const bonus=selectedBonus;
+  if(bonus&&(bonus.subtotal!==subtotal||bonus.session!==currentTelegramInitDataV108()||!applicableCart()))selectedBonus=null;
+  return selectedBonus;
+ }
+ function offeredBonus(d,subtotal){
+  const reward=d.reward;
+  return reward&&/^[a-f0-9]{32}$/.test(reward.key)&&Number.isSafeInteger(reward.amount)&&reward.amount>0&&reward.amount<=subtotal-2?reward:null;
+ }
+ function sameReward(a,b){return !!a&&!!b&&a.key===b.key&&a.amount===b.amount;}
+ function selectBonus(reward,subtotal){
+  selectedBonus=reward?{...reward,subtotal,session:currentTelegramInitDataV108()}:null;
+ }
+ function paintTotals(subtotal){
+  const total=money(subtotal-(currentBonus(subtotal)?.amount||0));
+  if($('total'))$('total').textContent=total;
+  const checkoutTotal=$('checkoutSummaryV41')?.querySelector('.checkout-v41-total b');
+  if(checkoutTotal&&!window.UzrSharedCheckout121?.isSearch())checkoutTotal.textContent=total;
+  updatePaymentText();
+ }
+ function choiceControl(node,id,reward,subtotal){
+  const label=document.createElement('label');label.className='rf24-check';
+  label.innerHTML='<input type="checkbox" id="'+id+'"><span>'+t('Применить бонус','Bonusni ishlatish')+'</span><b>−'+esc(fmt(reward.amount))+'</b>';
+  const checkbox=label.querySelector('input');checkbox.checked=sameReward(currentBonus(subtotal),reward);checkbox.disabled=orderSending;
+  checkbox.onchange=()=>{selectBonus(checkbox.checked?reward:null,subtotal);paintTotals(subtotal);};
+  node.append(label);
+ }
+ function quoteText(d,subtotal){
+  if(d.available>0){
+   if(d.paymentAvailable&&d.minimum>subtotal)
+    return t('Бонус доступен для заказа от ','Bonus uchun minimal buyurtma ')+fmt(d.minimum)+t('. До минимума: ','. Minimumgacha: ')+fmt(d.minimum-subtotal)+'.';
+   return t('К этому заказу бонус сейчас не применяется.','Bu buyurtmaga bonus hozir qo‘llanmaydi.');
+  }
+  return t('Пока 0 сум. Бонус появится после полной оплаты первого заказа друга.','Hozircha 0 so‘m. Do‘stingiz birinchi buyurtmasini to‘liq to‘lagach, bonus beriladi.');
+ }
+ async function quoteRequest(subtotal,controller){
+  const request=new AbortController(),abort=()=>request.abort(),timeout=setTimeout(abort,6000);
+  if(controller.signal.aborted)abort();else controller.signal.addEventListener('abort',abort,{once:true});
+  try{return await api('/quote?subtotal='+encodeURIComponent(subtotal),undefined,request.signal);}
+  finally{clearTimeout(timeout);controller.signal.removeEventListener('abort',abort);}
+ }
+ function mountCart(subtotal,force=false){
+  if(!subtotal){selectedBonus=null;applyOnCart=false;cartState=null;cartController?.abort();return;}
+  const box=$('cartBottom'),total=box?.querySelector('.total');if(!total||!$('cart')?.classList.contains('active')||$('checkoutView')?.classList.contains('open'))return;
+  let node=$('rf24Cart');
+  if(!node){node=document.createElement('section');node.id='rf24Cart';node.setAttribute('aria-label',t('Бонусы','Bonuslar'));node.setAttribute('data-no-i18n','');total.before(node);}
+  paintTotals(subtotal);
+  const session=currentTelegramInitDataV108(),locale=t('ru','uz');
+  if(!force&&!applyOnCart&&cartState?.subtotal===subtotal&&cartState?.session===session&&cartState?.locale===locale&&Date.now()-cartState.time<10000)return;
+  cartController?.abort();
+  const controller=new AbortController();cartController=controller;
+  cartState={subtotal,session,locale,time:Date.now()};
+  node.innerHTML='<div class="rf24-cart-head"><b>'+t('Бонусы','Bonuslar')+'</b><button type="button">'+t('Мои бонусы','Bonuslarim')+'</button></div><div class="rf24-cart-details" role="status"></div>';
+  node.querySelector('.rf24-cart-head button').onclick=()=>open(false);
+  const details=node.querySelector('.rf24-cart-details');
+  if(!session){details.textContent=t('Открой приложение через Telegram.','Ilovani Telegram orqali oching.');return;}
+  details.textContent=t('Проверяем баланс…','Balans tekshirilmoqda…');
+  const current=()=>!controller.signal.aborted&&subtotalNow()===subtotal&&session===currentTelegramInitDataV108();
+  quoteRequest(subtotal,controller).then(d=>{
+   if(!current())return;
+   const reward=applicableCart()?offeredBonus(d,subtotal):null;
+   if(currentBonus(subtotal)&&!sameReward(currentBonus(subtotal),reward))selectBonus(null,subtotal);
+   if(reward){
+    details.textContent=t('Доступно: ','Mavjud: ')+fmt(d.available||reward.amount);
+    if(applyOnCart)selectBonus(reward,subtotal);
+    choiceControl(details,'rf24CartApply',reward,subtotal);
+   }else details.textContent=(d.available>0?t('Доступно: ','Mavjud: ')+fmt(d.available)+'. ':'')+quoteText(d,subtotal);
+   applyOnCart=false;paintTotals(subtotal);
+  }).catch(()=>{
+   if(!current())return;
+   applyOnCart=false;details.textContent=t('Не удалось проверить бонусы. ','Bonuslar tekshirilmadi. ');
+   const retry=document.createElement('button');retry.type='button';retry.className='rf24-cart-retry';retry.textContent=t('Повторить','Qayta urinish');retry.onclick=()=>mountCart(subtotal,true);details.append(retry);
+  });
+ }
  function mountCheckout(box,subtotal){
-  quoteController?.abort();quoteController=null;
-  const total=box.querySelector('.checkout-v41-total'),amount=total?.querySelector('b');if(!amount)return;
-  box.querySelector('#rf24Checkout')?.remove();amount.textContent=money(subtotal);updatePaymentText();
-  if(!currentTelegramInitDataV108()||!Number.isSafeInteger(subtotal)||subtotal<2)return;
-  const node=document.createElement('div');node.id='rf24Checkout';node.hidden=true;node.dataset.subtotal=String(subtotal);total.before(node);
+  cartController?.abort();cartState=null;quoteController?.abort();
+  const total=box.querySelector('.checkout-v41-total');if(!total)return;
+  box.querySelector('#rf24Checkout')?.remove();paintTotals(subtotal);
+  const session=currentTelegramInitDataV108();if(!session||!Number.isSafeInteger(subtotal)||subtotal<2||!applicableCart())return;
+  const node=document.createElement('div');node.id='rf24Checkout';node.setAttribute('data-no-i18n','');node.hidden=!currentBonus(subtotal);total.before(node);
+  if(!node.hidden)node.textContent=t('Проверяем бонус…','Bonus tekshirilmoqda…');
   const controller=new AbortController();quoteController=controller;
-  api('/quote?subtotal='+encodeURIComponent(subtotal),undefined,AbortSignal.any([controller.signal,AbortSignal.timeout(6000)]))
-   .then(d=>{
-    if(controller.signal.aborted||!node.isConnected)return;
-    if(d.reward&&/^[a-f0-9]{32}$/.test(d.reward.key)&&Number.isSafeInteger(d.reward.amount)&&d.reward.amount>0&&d.reward.amount<=subtotal-2){
-     const off=d.reward.amount;
-     node.dataset.key=d.reward.key;node.dataset.amount=String(off);
-     node.innerHTML='<label class="rf24-check"><input id="rf24Apply" type="checkbox"><span>'+t('Применить бонус','Bonusni ishlatish')+'</span><b>−'+esc(fmt(off))+'</b></label>';
-     const checkbox=node.querySelector('input');checkbox.disabled=orderSending;
-     checkbox.onchange=()=>{amount.textContent=money(subtotal-(checkbox.checked?off:0));updatePaymentText();};
-     node.hidden=false;
-    }else if(d.available>0){
-     node.innerHTML='<span class="rf24-check-note">'+esc(d.paymentAvailable&&d.minimum>subtotal?t('Бонус доступен для заказа от ','Bonus uchun minimal buyurtma ')+fmt(d.minimum):t('Сейчас бонус нельзя применить к этому заказу.','Bu buyurtmaga bonus qo‘llanmaydi.'))+'</span>';node.hidden=false;
-    }
-   }).catch(()=>{});
+  const current=()=>!controller.signal.aborted&&node.isConnected&&subtotalNow()===subtotal&&session===currentTelegramInitDataV108();
+  quoteRequest(subtotal,controller).then(d=>{
+   if(!current())return;
+   const reward=offeredBonus(d,subtotal);
+   const changed=!!currentBonus(subtotal)&&!sameReward(currentBonus(subtotal),reward);
+   if(changed)selectBonus(null,subtotal);
+   node.replaceChildren();node.hidden=!reward&&!d.available&&!changed;
+   if(reward)choiceControl(node,'rf24Apply',reward,subtotal);
+   if(!reward&&!node.hidden||changed){
+    const note=document.createElement('span');note.className='rf24-check-note';note.textContent=changed?t('Бонус изменился. Проверь итог перед заказом.','Bonus o‘zgardi. Buyurtma oldidan jami narxni tekshiring.'):quoteText(d,subtotal);node.append(note);
+   }
+   paintTotals(subtotal);
+  }).catch(()=>{
+   if(!current()||!currentBonus(subtotal))return;
+   node.replaceChildren();node.hidden=false;
+   choiceControl(node,'rf24Apply',currentBonus(subtotal),subtotal);
+  });
  }
  function checkoutChoice(){
-  const node=$('rf24Checkout');
-  return node?.querySelector('input')?.checked?{key:node.dataset.key,amount:Number(node.dataset.amount),subtotal:Number(node.dataset.subtotal)}:null;
+  const bonus=currentBonus(subtotalNow());
+  return bonus?{key:bonus.key,amount:bonus.amount,subtotal:bonus.subtotal}:null;
  }
  function paymentText(){
   if(!cart.length||!cart.every(i=>['stock','china'].includes(i.sourceType)&&Number.isSafeInteger(i.price)&&i.price>=0))return '';
@@ -18056,14 +18051,21 @@ window.UzrBundles={open};
   if(row&&text)row.textContent=text;
  }
  function refreshCheckout(){
-  const box=$('checkoutSummaryV41');if(box)mountCheckout(box,cart.reduce((s,p)=>s+Number(p.price||0),0));
+  selectedBonus=null;cartState=null;
+  const box=$('checkoutSummaryV41');if(box)mountCheckout(box,subtotalNow());
  }
  const entry=$('rf24ProfileEntry');
  if(entry){
   const update=()=>{entry.querySelector('.tg-row-text-v13').textContent=t('Пригласить друга','Do‘stni taklif qilish');};
   update();document.addEventListener('uzr:languagechange',update);entry.onclick=()=>open(false);
  }
- window.UzrReferrals={open,mountCheckout,checkoutChoice,refreshCheckout,paymentText,lockCheckout(on){const input=$('rf24Apply');if(input)input.disabled=on;}};
+ window.UzrReferrals={open,mountCart,mountCheckout,checkoutChoice,refreshCheckout,paymentText,lockCheckout(on){const input=$('rf24Apply');if(input)input.disabled=on;}};
+ const checkoutView=$('checkoutView');
+ if(checkoutView){
+  let wasOpen=checkoutView.classList.contains('open');
+  new MutationObserver(()=>{const isOpen=checkoutView.classList.contains('open');if(wasOpen&&!isOpen){quoteController?.abort();mountCart(subtotalNow(),true);}wasOpen=isOpen;}).observe(checkoutView,{attributes:true,attributeFilter:['class']});
+ }
+ document.addEventListener('uzr:languagechange',()=>mountCart(subtotalNow(),true));
  waitForTelegramIdentityV108(8000).then(checkLaunch).catch(()=>{});
  window.addEventListener('online',checkLaunch);
 })();
