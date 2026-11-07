@@ -10,7 +10,7 @@
 <html lang="ru" data-uzr-theme="light"><head><meta name="uzbek-resale-build" content="1.4-20261025"><meta name="uzr-version" content="1.4-20261025"><meta name="uzr-maintenance-revision" content="2026-10-10.1"><script id="uzr-production-v110-config">
 window.UZR_CONFIG_V110={environment:"production-maintenance-test",apiBase:"https://uzbek-resale-orders.amegakid.workers.dev"};
 window.uzrApiBaseV110=function(){return String(window.UZR_CONFIG_V110.apiBase).replace(/\/$/,"")};
-</script><meta charset="utf-8"/><meta content="width=device-width,initial-scale=1,viewport-fit=cover" name="viewport"/><title>&#1059;&#1079;&#1073;&#1077;&#1082;&#1089;&#1082;&#1080;&#1081; &#1056;&#1077;&#1089;&#1077;&#1081;&#1083;</title><!-- v109 STOCK DISPLAY FIX: v108 + official stock quantity shown for stock and China product detail --><script src="https://telegram.org/js/telegram-web-app.js"></script><script id="uzbek-v13-lucide-vendored">/**
+</script><meta charset="utf-8"/><meta content="width=device-width,initial-scale=1,viewport-fit=cover" name="viewport"/><title>&#1059;&#1079;&#1073;&#1077;&#1082;&#1089;&#1082;&#1080;&#1081; &#1056;&#1077;&#1089;&#1077;&#1081;&#1083;</title><!-- v109 STOCK DISPLAY FIX: v108 + official stock quantity shown for stock and China product detail --><link rel="preload" as="script" href="https://telegram.org/js/telegram-web-app.js"><script id="uzbek-v13-lucide-vendored">/**
  * @license lucide v1.8.0 - ISC
  *
  * This source code is licensed under the ISC license.
@@ -6423,26 +6423,31 @@ html body #uzcSellerOfferDialog h2{margin:0 0 10px!important}html body #uzcSelle
 </style>
 <style id="uzr-startup-style">
 #uzrStartup[hidden]{display:none!important}
-#uzrStartup{position:fixed;inset:0;z-index:4999;display:grid;place-items:center;background:#fff;color:#151515;font:inherit;touch-action:none}
-#uzrStartup .uzr-startup-inner{display:grid;justify-items:center;gap:12px;padding:24px;text-align:center}
-#uzrStartup strong{font-size:30px;font-weight:850;letter-spacing:-.065em;line-height:1.1}
-#uzrStartup small{font-size:13px;color:#636361}
-#uzrStartup .uzr-startup-ring{width:24px;height:24px;border-radius:50%;border:2px solid #dededb;border-top-color:#151515;animation:uzr-startup-spin .75s linear infinite;margin-top:3px}
-@keyframes uzr-startup-spin{to{transform:rotate(1turn)}}
-@media(prefers-reduced-motion:reduce){#uzrStartup .uzr-startup-ring{animation:none}}
+#uzrStartup{position:fixed;inset:0;z-index:4999;display:grid;place-items:center;background:radial-gradient(ellipse at 50% 44%,#fff 0,#fff 40%,#f8f8f6 100%);color:#151515;font:inherit;touch-action:none}
+#uzrStartup .uzr-startup-inner{display:grid;justify-items:center;padding:20px 24px 28px;text-align:center;transform:translateY(-14px)}
+#uzrStartup .uzr-startup-mark{display:grid;place-items:center;box-sizing:border-box;width:92px;height:92px;border:1px solid #eaeae6;border-radius:26px;background:#fff;box-shadow:0 8px 26px #1818120c;margin-bottom:17px}
+#uzrStartup .uzr-startup-mark img{display:block;width:62px;height:45px;object-fit:contain;animation:uzr-startup-pulse 1.6s ease-in-out infinite}
+#uzrStartup strong{font-size:24px;font-weight:850;letter-spacing:-.045em;line-height:1.15}
+#uzrStartup small{font-size:13px;color:#666661;margin-top:7px}
+@keyframes uzr-startup-pulse{0%,100%{opacity:1}50%{opacity:.40}}
+@media(prefers-reduced-motion:reduce){#uzrStartup .uzr-startup-mark img{animation:none}}
 </style>
 </head><body>
-<div id="uzrStartup" role="status" data-no-i18n><div class="uzr-startup-inner"><strong>UZBEK RE’SALE</strong><span class="uzr-startup-ring" aria-hidden="true"></span><small id="uzrStartupLabel">Загружаем приложение…</small></div></div>
+<div id="uzrStartup" role="status" data-no-i18n><div class="uzr-startup-inner"><span class="uzr-startup-mark" aria-hidden="true"><img src="data:image/webp;base64,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" width="62" height="45" alt=""></span><strong>UZBEK RE’SALE</strong><small id="uzrStartupLabel">Загрузка…</small></div></div>
 <script id="uzr-startup-bootstrap">
 (()=>{
  const splash=document.getElementById('uzrStartup');
- try{if(localStorage.getItem('uzr_language_pref_v1')==='uz')document.getElementById('uzrStartupLabel').textContent='Ilova yuklanmoqda…';}catch{}
- const timer=setTimeout(finish,2500);
+ try{if(localStorage.getItem('uzr_language_pref_v1')==='uz')document.getElementById('uzrStartupLabel').textContent='Yuklanmoqda…';}catch{}
+ let timer=0;
  function finish(){clearTimeout(timer);splash.hidden=true;}
+ function startTimeout(){if(!splash.hidden&&!timer)timer=setTimeout(finish,1600);}
  window.uzrFinishStartup=finish;
+ window.uzrBeginStartupTimeout=startTimeout;
+ document.addEventListener('DOMContentLoaded',startTimeout,{once:true});
 })();
 </script>
 <noscript><style>#uzrStartup{display:none!important}</style></noscript>
+<script src="https://telegram.org/js/telegram-web-app.js"></script>
 <div id="uzrConsentV58" hidden role="dialog" aria-modal="true" aria-labelledby="uzrConsentTitleV58">
   <div class="uzr-consent-card-v58">
     <div class="uzr-consent-brand-v58">
@@ -12259,6 +12264,7 @@ syncV2Settings();
 const initialHeader=$("appHeader");if(initialHeader)initialHeader.hidden=false;
 
 render();
+window.uzrBeginStartupTimeout?.();
 async function runInitialRequestV175(run,timeout){
   const controller=new AbortController(),timer=setTimeout(()=>controller.abort(),timeout);
   try{return await run({signal:controller.signal});}finally{clearTimeout(timer);}
@@ -17558,6 +17564,17 @@ html[data-uzr-theme] body #chats #uzcSupport small{font-size:12px!important;line
 .sw-chevron{width:20px;height:20px;flex:none}
 #swDialog header{padding:14px 16px;gap:9px}
 #swDialog header h2{font-size:18px}
+#swDialog .sw-refresh{margin-left:auto;flex:0 0 38px;width:38px;height:38px;display:grid;place-items:center;border:0;border-radius:11px;background:#f5f5f3;color:#262626}
+#swDialog .sw-refresh svg{width:19px;height:19px}
+#swDialog .sw-refresh:disabled{opacity:.48}
+#swDialog .sw-telegram{margin:0 0 12px;padding:12px;background:#fff}
+#swDialog .sw-telegram p{color:#646460;font-size:12px;line-height:1.45;margin:5px 0 9px}
+#swDialog .sw-telegram .sw-btn{min-height:36px;padding:6px 10px;font-size:12px}
+#swDialog .sw-telegram .sw-telegram-link{display:block;margin:6px auto 0;padding:8px;border:0;background:none;color:#4b4b47;font-size:12px;text-decoration:underline}
+#swDialog [data-sw-telegram-status]:empty{display:none}
+#swDialog .sw-loading{padding:8px 0;color:#646460;font-size:13px;text-align:center}
+#swDialog #swFeedError{margin:0}
+#swDialog #swFeedError:not(:empty){padding:0 0 10px}
 #swDialog header small{font-size:12px}
 #swDialog .sw-back{width:24px;flex:none}
 #swDialog[data-mode=sellers] #swBody>.sw-note{display:none}
@@ -17604,10 +17621,99 @@ const avatar='<span class="sw-bot" aria-hidden="true">UZBEK</span>';
 const wallpaper='<svg xmlns="http://www.w3.org/2000/svg" width="180" height="180" viewBox="0 0 180 180"><g fill="none" stroke="#e7e7e2" stroke-width="1.2"><path d="M22 16l10-6 8 6 12 4-5 12-7-3v28H22V29l-7 3-5-12zM25 13q7 14 14 0M114 19l23 5-7 35-12-2 1-22-8 20-12-4zM41 112q10 12 24 12l10 13q-13 7-39-3l-13-6 4-13zM25 129l-2 6q29 16 54 7l-2-5M124 109l-16 12 7 14 8-3v29h26v-29l8 3 7-14-16-12q-12 12-24 0zM131 109v32M143 109v32"/></g></svg>';
 const wallURL='url("data:image/svg+xml,'+encodeURIComponent(wallpaper)+'")';document.documentElement.style.setProperty('--sw-wall',wallURL);$('uzcScroll').style.setProperty('background-image',wallURL,'important');
 const dialog=document.createElement('dialog');dialog.id='swDialog';dialog.setAttribute('aria-label',t('Отслеживаю','Kuzatyapman'));document.body.append(dialog);let generation=0,mode='sellers',events=[],next=null,focus=null;
+let feedTimer=0,feedBusy=null,moreBusy=null,feedStarted=false,feedTelegram=null,lastRead=0;
+const refreshIcon='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 7v5h-5M4 17v-5h5m10.4-2A8 8 0 0 0 6 6m-1.4 8A8 8 0 0 0 18 18"/></svg>';
 async function api(path='',method='GET',body){const init=currentTelegramInitDataV108();if(!init)throw Error(t('Открой приложение через Telegram.','Ilovani Telegram orqali oching.'));const r=await fetch(MARKETPLACE_API+'/seller-watch'+path,{method,headers:{'X-Telegram-Init-Data':init,...(body?{'Content-Type':'application/json'}:{})},body:body?JSON.stringify(body):undefined,cache:'no-store',signal:AbortSignal.timeout(15000)});const d=await r.json();if(!r.ok||!d.ok)throw Error(({SELF_FOLLOW:'Нельзя подписаться на себя',FOLLOW_LIMIT:'Можно отслеживать до 100 продавцов',SELLER_NOT_FOUND:'Продавец недоступен',TELEGRAM_AUTH_REQUIRED:'Открой приложение через Telegram',RATE_LIMITED:'Слишком много действий. Попробуй позже.'})[d.error]||t('Не удалось загрузить. Попробуй ещё раз.','Yuklanmadi. Qayta urinib ko‘ring.'));return d;}
-function close(){generation++;dialog.close();focus?.focus?.({preventScroll:true})}
-function frame(which){mode=which;dialog.dataset.mode=which;dialog.innerHTML='<header><button type="button" class="sw-back" aria-label="Назад">‹</button>'+(which==='feed'?avatar:'')+'<div><h2>'+(which==='feed'?'Uzbek Re’Sale':t('Отслеживаю','Kuzatyapman'))+'</h2><small>'+ (which==='feed'?t('бот','bot'):t('Продавцы, на которых ты подписан','Siz kuzatayotgan sotuvchilar'))+'</small></div></header><div id="swBody"'+(which==='feed'?' style="background-image:var(--sw-wall);background-size:180px"':'')+'></div><footer><button class="sw-btn" id="swSwitch">'+(which==='feed'?t('Настроить подписки','Obunalarni sozlash'):t('Открыть чат уведомлений','Bildirishnomalar chatini ochish'))+'</button></footer>';dialog.querySelector('.sw-back').innerHTML=chevron;dialog.querySelector('.sw-back').onclick=close;if(which==='sellers'){const source=document.querySelector('nav.uzr-home-rollout-nav');if(source){const nav=source.cloneNode(true);nav.className='sw-navigation';nav.removeAttribute('id');nav.querySelectorAll('[id]').forEach(e=>e.removeAttribute('id'));nav.querySelector('.uzbek-nav-indicator')?.remove();nav.querySelectorAll('button[data-page]').forEach(b=>{b.classList.toggle('active',b.dataset.page==='profile');b.onclick=()=>{close();source.querySelector('[data-page="'+b.dataset.page+'"]')?.click()}});dialog.append(nav)}}$('swSwitch').onclick=()=>open(which==='feed'?'sellers':'feed');}
-async function open(which='sellers'){if(!dialog.open){focus=document.activeElement;dialog.showModal()}const epoch=++generation;frame(which);$('swBody').innerHTML='<p class="sw-note">'+t('Загрузка…','Yuklanmoqda…')+'</p>';try{if(which==='sellers'){const d=await api();if(epoch!==generation)return;drawSellers(d.sellers)}else{const d=await api('/feed');if(epoch!==generation)return;events=d.events;next=d.next;drawFeed();if(events.length)await api('/read','POST',{through:events[0].cursor});refreshBadge()}}catch(e){if(epoch===generation){$('swBody').innerHTML='<p class="sw-error">'+esc(e.message)+'</p><button class="sw-btn" id="swRetry">'+t('Повторить','Qayta urinish')+'</button>';$('swRetry').onclick=()=>open(which)}}}
+function close(){generation++;clearTimeout(feedTimer);dialog.close();focus?.focus?.({preventScroll:true})}
+function frame(which){mode=which;dialog.dataset.mode=which;dialog.innerHTML='<header><button type="button" class="sw-back" aria-label="Назад">‹</button>'+(which==='feed'?avatar:'')+'<div><h2>'+(which==='feed'?'Uzbek Re’Sale':t('Отслеживаю','Kuzatyapman'))+'</h2><small>'+ (which==='feed'?t('бот','bot'):t('Продавцы, на которых ты подписан','Siz kuzatayotgan sotuvchilar'))+'</small></div>'+(which==='feed'?'<button class="sw-refresh" id="swRefresh" type="button" aria-label="'+esc(t('Обновить уведомления','Bildirishnomalarni yangilash'))+'">'+refreshIcon+'</button>':'')+'</header><div id="swBody"'+(which==='feed'?' style="background-image:var(--sw-wall);background-size:180px"':'')+'></div><footer><button class="sw-btn" id="swSwitch">'+(which==='feed'?t('Настроить подписки','Obunalarni sozlash'):t('Открыть чат уведомлений','Bildirishnomalar chatini ochish'))+'</button></footer>';dialog.querySelector('.sw-back').innerHTML=chevron;dialog.querySelector('.sw-back').onclick=close;if(which==='sellers'){const source=document.querySelector('nav.uzr-home-rollout-nav');if(source){const nav=source.cloneNode(true);nav.className='sw-navigation';nav.removeAttribute('id');nav.querySelectorAll('[id]').forEach(e=>e.removeAttribute('id'));nav.querySelector('.uzbek-nav-indicator')?.remove();nav.querySelectorAll('button[data-page]').forEach(b=>{b.classList.toggle('active',b.dataset.page==='profile');b.onclick=()=>{close();source.querySelector('[data-page="'+b.dataset.page+'"]')?.click()}});dialog.append(nav)}}$('swSwitch').onclick=()=>open(which==='feed'?'sellers':'feed');if(which==='feed')$('swRefresh').onclick=()=>refreshFeed();}
+function showWatchError(err,which){
+ $('swBody').innerHTML='<p class="sw-error" role="status">'+esc(err.message)+'</p><button class="sw-btn" id="swRetry">'+t('Повторить','Qayta urinish')+'</button>';
+ $('swRetry').onclick=()=>which==='feed'?refreshFeed():open(which);
+}
+function scheduleFeed(){
+ clearTimeout(feedTimer);
+ if(dialog.open&&mode==='feed'&&!document.hidden)feedTimer=setTimeout(refreshFeed,15000);
+}
+async function refreshFeed(){
+ if(!dialog.open||mode!=='feed')return;
+ const epoch=generation;
+ if(feedBusy===epoch)return;
+ if(moreBusy===epoch||dialog.querySelector('[data-product]:disabled')){scheduleFeed();return;}
+ clearTimeout(feedTimer);feedBusy=epoch;
+ const refresh=$('swRefresh');refresh.disabled=true;
+ try{
+  const d=await api('/feed');if(epoch!==generation)return;
+  const latest=d.events,head=latest[0]?.cursor,previous=events[0]?.cursor;
+  const changed=!feedStarted||head!==previous||feedTelegram!==d.telegram;
+  if(changed){
+   const host=$('swBody'),top=host.scrollTop,height=host.scrollHeight;
+   if(!feedStarted||head!==previous){
+    const tail=latest.at(-1)?.cursor,known=new Set(events.map(x=>x.cursor));
+    const older=latest.some(x=>known.has(x.cursor))?events.filter(x=>x.cursor<tail):[];
+    events=[...latest,...older];if(!older.length)next=d.next;
+   }
+   feedStarted=true;feedTelegram=d.telegram;drawFeed();
+   if(top>12)host.scrollTop=top+Math.max(0,host.scrollHeight-height);
+  }
+  $('swFeedError').textContent=d.syncPending?t('Не удалось проверить новые уведомления. Попробуй обновить ещё раз.','Yangi bildirishnomalar tekshirilmadi. Qayta yangilang.'):'';
+  if(head&&head!==lastRead){
+   try{await api('/read','POST',{through:head});if(epoch===generation){lastRead=head;refreshBadge();}}catch{}
+  }else if(!head)refreshBadge();
+ }catch(e){
+  if(epoch!==generation)return;
+  if(feedStarted)$('swFeedError').textContent=e.message;else showWatchError(e,'feed');
+ }finally{
+  if(epoch===generation){feedBusy=null;refresh.disabled=false;scheduleFeed();}
+ }
+}
+async function open(which='sellers'){
+ if(!dialog.open){focus=document.activeElement;dialog.showModal()}
+ const epoch=++generation;clearTimeout(feedTimer);frame(which);
+ $('swBody').innerHTML='<p class="sw-loading" role="status">'+t('Загрузка…','Yuklanmoqda…')+'</p>';
+ if(which==='feed'){
+  feedStarted=false;feedTelegram=null;events=[];next=null;lastRead=0;
+  await refreshFeed();return;
+ }
+ try{const d=await api();if(epoch===generation)drawSellers(d.sellers,d.telegram);}
+ catch(e){if(epoch===generation)showWatchError(e,which);}
+}
+const openNotificationBot=()=>{
+ const url='https://t.me/resaleuzbot?start=watch',tg=window.Telegram?.WebApp;
+ try{if(tg?.openTelegramLink){tg.openTelegramLink(url);return;}}catch{}
+ window.open(url,'_blank','noopener,noreferrer');
+};
+function telegramPanel(state,always=false){
+ if(state==='ready'||(state!=='needs_start'&&(!always||window.Telegram?.WebApp?.initDataUnsafe?.user?.allows_write_to_pm===true)))return '';
+ const blocked=state==='needs_start';
+ return '<section class="sw-card sw-telegram"><b>'+t('Уведомления в Telegram','Telegram bildirishnomalari')+'</b><p>'+
+  (blocked?t('Бот не смог прислать сообщение. Разреши сообщения или открой бота и нажми «Запустить».','Bot xabar yubora olmadi. Xabarlarga ruxsat bering yoki botni ochib «Start» tugmasini bosing.'):
+   t('Разреши боту присылать новые объявления и скидки.','Botga yangi e’lonlar va chegirmalarni yuborishga ruxsat bering.'))+
+  '</p><button type="button" class="sw-btn" data-sw-allow>'+t('Разрешить сообщения','Xabarlarga ruxsat berish')+'</button>'+
+  (blocked?'<button type="button" class="sw-telegram-link" data-sw-bot>'+t('Открыть бота','Botni ochish')+'</button>':'')+
+  '<p data-sw-telegram-status role="status"></p></section>';
+}
+function wireTelegramPanel(host){
+ const allow=host.querySelector('[data-sw-allow]'),bot=host.querySelector('[data-sw-bot]');
+ if(bot)bot.onclick=openNotificationBot;
+ if(!allow)return;
+ const status=host.querySelector('[data-sw-telegram-status]');
+ allow.onclick=()=>{
+  const tg=window.Telegram?.WebApp;
+  if(!tg?.requestWriteAccess||tg.isVersionAtLeast&&!tg.isVersionAtLeast('6.9')){openNotificationBot();return;}
+  allow.disabled=true;
+  try{tg.requestWriteAccess(granted=>{
+   if(!allow.isConnected)return;
+   allow.disabled=false;
+   if(granted){
+    status.textContent=t('Telegram разрешил сообщения.','Telegram xabarlarga ruxsat berdi.');
+    allow.remove();if(mode==='feed')scheduleFeed();
+   }else{
+    status.textContent=t('Можно открыть бота и нажать «Запустить».','Botni ochib «Start» tugmasini bosishingiz mumkin.');
+    allow.textContent=t('Открыть бота','Botni ochish');allow.onclick=openNotificationBot;
+   }
+  });}catch{allow.disabled=false;openNotificationBot();}
+ };
+}
 function sellerOpen(id){close();window.UzrProfiles12.seller(String(id),{returnPage:currentPageId()})}
 async function loadSellerAvatar(host,r){
 const epoch=generation,initial=host.querySelector('img');if(initial)initial.remove();
@@ -17617,8 +17723,9 @@ try{const res=await fetch(MARKETPLACE_API+'/seller?telegramId='+encodeURICompone
 candidates.push(MARKETPLACE_API+'/telegram-avatar?telegramId='+encodeURIComponent(r.id));
 for(const src of [...new Set(candidates)]){if(epoch!==generation||!host.isConnected)return;const im=new Image();im.alt=r.name;const loaded=await new Promise(resolve=>{im.onload=()=>resolve(true);im.onerror=()=>resolve(false);im.src=src});if(loaded&&epoch===generation&&host.isConnected){host.replaceChildren(im);return}}
 }
-function drawSellers(rows){const host=$('swBody');host.innerHTML='<p class="sw-note">'+t('Новые объявления и снижение цен приходят сюда и в Telegram-бот.','Yangi e’lonlar va narx pasayishi shu yerga va Telegram-botga keladi.')+'</p>'+(!rows.length?'<div class="sw-card"><b>'+t('Пока нет подписок','Hozircha obunalar yo‘q')+'</b><p class="sw-note">'+t('Открой профиль продавца и нажми «Подписаться».','Sotuvchi profilini ochib, «Obuna bo‘lish»ni bosing.')+'</p></div>':'');
+function drawSellers(rows,state){const host=$('swBody');host.innerHTML='<p class="sw-note">'+t('Новые объявления и снижение цен приходят сюда и в Telegram-бот.','Yangi e’lonlar va narx pasayishi shu yerga va Telegram-botga keladi.')+'</p>'+(!rows.length?'<div class="sw-card"><b>'+t('Пока нет подписок','Hozircha obunalar yo‘q')+'</b><p class="sw-note">'+t('Открой профиль продавца и нажми «Подписаться».','Sotuvchi profilini ochib, «Obuna bo‘lish»ni bosing.')+'</p></div>':'');
 for(const r of rows){const card=document.createElement('article');card.className='sw-card';card.dataset.seller=r.id;card.innerHTML='<button class="sw-person"><span class="sw-avatar">'+esc(r.name.slice(0,2))+'<img src="'+esc(MARKETPLACE_API+'/telegram-avatar?telegramId='+r.id)+'" alt=""></span><span><b>'+esc(r.name)+'</b><small>'+esc(r.username?'@'+r.username:'')+'</small></span><span>›</span></button><div class="sw-settings"><label class="sw-toggle">'+t('Новые объявления','Yangi e’lonlar')+'<input type="checkbox" data-setting="newOn" '+(r.newOn?'checked':'')+'></label><label class="sw-toggle">'+t('Снижение цены','Narx pasayishi')+'<input type="checkbox" data-setting="discountOn" '+(r.discountOn?'checked':'')+'></label></div><p class="sw-error" role="status"></p><button class="sw-link">'+t('Отписаться','Obunani bekor qilish')+'</button>';loadSellerAvatar(card.querySelector('.sw-avatar'),r);const head=card.querySelector('.sw-person'),panel=card.querySelector('.sw-settings');panel.id='swSettings'+r.id;head.setAttribute('aria-controls',panel.id);head.setAttribute('aria-expanded','false');panel.hidden=true;head.lastElementChild.innerHTML=chevron;head.onclick=()=>{panel.hidden=!panel.hidden;head.setAttribute('aria-expanded',String(!panel.hidden))};card.querySelectorAll('.sw-toggle').forEach((label,i)=>label.insertAdjacentHTML('afterbegin',i===0?bell:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M3 3h9l9 9-9 9-9-9z"/><circle cx="8" cy="8" r="1"/></svg>'));panel.insertAdjacentHTML('beforeend','<p class="sw-telegram-note">Уведомления приходят в Telegram-бот</p>');panel.append(card.querySelector('.sw-error'),card.querySelector('.sw-link'));const profileButton=document.createElement('button');profileButton.className='sw-profile-link';profileButton.textContent=t('Профиль продавца','Sotuvchi profili');profileButton.onclick=()=>sellerOpen(r.id);panel.append(profileButton);card.querySelectorAll('input').forEach(input=>input.onchange=async()=>{const value=input.checked;card.querySelectorAll('input,button').forEach(x=>x.disabled=true);try{await api('/'+r.id,'POST',{[input.dataset.setting]:value});card.querySelector('.sw-error').textContent=''}catch(e){input.checked=!value;card.querySelector('.sw-error').textContent=e.message}finally{card.querySelectorAll('input,button').forEach(x=>x.disabled=false)}});card.querySelector('.sw-link').onclick=async e=>{e.target.disabled=true;try{await api('/'+r.id,'DELETE');await open('sellers')}catch(x){card.querySelector('.sw-error').textContent=x.message;e.target.disabled=false}};host.append(card)}
+if(rows.length){host.insertAdjacentHTML('afterbegin',telegramPanel(state,true));wireTelegramPanel(host);}
 }
 async function productOpen(id,button){
  if(button.disabled)return;
@@ -17633,9 +17740,18 @@ async function productOpen(id,button){
   if(epoch===generation&&button.isConnected)box.textContent=t('Не удалось открыть товар. Попробуй ещё раз.','Mahsulot ochilmadi. Qayta urinib ko‘r.');
  }finally{if(button.isConnected){button.textContent=label;button.disabled=false;}}
 }
-function drawFeed(){const host=$('swBody');host.innerHTML='<p class="sw-note">'+t('Уведомления от продавцов. Ответы в этом чате не принимаются.','Sotuvchilardan bildirishnomalar. Bu chat javob qabul qilmaydi.')+'</p><p id="swFeedError" class="sw-error" role="status"></p>';if(!events.length)host.innerHTML+='<div class="sw-card"><b>'+t('Здесь появятся новые вещи и скидки','Bu yerda yangi mahsulotlar va chegirmalar paydo bo‘ladi')+'</b><p class="sw-note">'+t('Подпишись на продавцов, которые тебе нравятся.','Sizga yoqqan sotuvchilarga obuna bo‘ling.')+'</p></div>';
+function drawFeed(){const host=$('swBody');host.innerHTML='<p class="sw-note">'+t('Уведомления от продавцов. Ответы в этом чате не принимаются.','Sotuvchilardan bildirishnomalar. Bu chat javob qabul qilmaydi.')+'</p><p id="swFeedError" class="sw-error" role="status"></p>'+telegramPanel(feedTelegram);wireTelegramPanel(host);if(!events.length)host.innerHTML+='<div class="sw-card"><b>'+t('Здесь появятся новые вещи и скидки','Bu yerda yangi mahsulotlar va chegirmalar paydo bo‘ladi')+'</b><p class="sw-note">'+t('Подпишись на продавцов, которые тебе нравятся.','Sizga yoqqan sotuvchilarga obuna bo‘ling.')+'</p></div>';
 for(const r of events){const node=document.createElement('article');node.className='sw-card sw-event';node.dataset.kind=r.kind;node.innerHTML='<p class="sw-event-head">'+esc((r.kind==='new'?t('Новое объявление у ','Yangi e’lon: '):t('Цена снижена у ','Narx pasaydi: '))+r.seller_name)+'</p><div class="sw-event-product">'+(/^https:\/\//.test(r.image_url||'')?'<img src="'+esc(r.image_url)+'" alt="">':'')+'<div><b>'+esc(r.title)+'</b>'+(r.old_price?'<del>'+Number(r.old_price).toLocaleString('ru-RU')+' UZS</del>':'')+'<strong>'+Number(r.price).toLocaleString('ru-RU')+' UZS</strong></div></div><div class="sw-event-actions"><button class="sw-btn primary" data-product>'+t('Открыть товар','Mahsulotni ochish')+'</button><button class="sw-btn" data-seller>'+t('Продавец','Sotuvchi')+'</button></div><p class="sw-event-date">'+esc(new Date(r.created_at).toLocaleString('ru-RU',{day:'2-digit',month:'2-digit',hour:'2-digit',minute:'2-digit'}))+'</p><p class="sw-error" data-product-error role="status"></p>';node.querySelector('img')?.addEventListener('error',e=>e.target.remove());const openProduct=node.querySelector('[data-product]');openProduct.onclick=()=>productOpen(r.listing_id,openProduct);node.querySelector('[data-seller]').onclick=()=>sellerOpen(r.seller_id);if(r.kind!=='new'){node.querySelector('[data-seller]').remove();node.querySelector('.sw-event-actions').style.gridTemplateColumns='1fr'}host.append(node)}
-if(next){const b=document.createElement('button');b.className='sw-btn';b.textContent=t('Показать ещё','Yana ko‘rsatish');b.onclick=async()=>{b.disabled=true;const epoch=generation;try{const d=await api('/feed?before='+next);if(epoch!==generation)return;events.push(...d.events);next=d.next;drawFeed()}catch(e){$('swFeedError').textContent=e.message;b.disabled=false}};host.append(b)}}
+if(next){
+ const b=document.createElement('button');b.className='sw-btn';b.textContent=t('Показать ещё','Yana ko‘rsatish');
+ b.onclick=async()=>{
+  const epoch=generation;if(feedBusy===epoch||moreBusy===epoch)return;
+  b.disabled=true;moreBusy=epoch;
+  try{const d=await api('/feed?before='+next);if(epoch!==generation)return;const top=host.scrollTop;events.push(...d.events);next=d.next;drawFeed();host.scrollTop=top;}
+  catch(e){if(epoch===generation)$('swFeedError').textContent=e.message;}
+  finally{if(epoch===generation){b.disabled=false;moreBusy=null;scheduleFeed();}}
+ };host.append(b);
+}}
 async function profile(root,id,own,p){if(own||String(id)===String(currentTelegramIdV108())||!root.querySelector('.usp-seller-actions')||p?.ownerType==='official')return;const actions=root.querySelector('.usp-seller-actions');const b=document.createElement('button');b.type='button';b.className='sw-follow';b.disabled=true;b.textContent=t('Загрузка…','Yuklanmoqda…');actions.append(b);const note=document.createElement('p');note.className='sw-follow-note';note.textContent=t('Новые объявления и скидки — в боте','Yangi e’lonlar va chegirmalar — botda');b.after(note);let following=false;
 const paint=()=>{b.textContent=following?'✓ '+t('Вы подписаны','Obuna bo‘lgansiz'):'+ '+t('Подписаться','Obuna bo‘lish');b.setAttribute('aria-pressed',String(following))};
 try{const d=await api('/'+id);if(!b.isConnected)return;following=d.following;paint();b.disabled=false}catch(e){b.textContent=t('Повторить загрузку подписки','Obunani qayta yuklash');note.textContent=e.message;b.disabled=false;b.onclick=()=>{b.remove();note.remove();profile(root,id,own,p)};return}
@@ -17646,6 +17762,8 @@ function chatEntry(){if($('swBotEntry')||!$('uzcSupport'))return;const b=documen
 const original=$('uzrColProfileEntry');if(original){const b=original.cloneNode(true);b.id='swProfileEntry';b.querySelector('.tg-row-text-v13').removeAttribute('id');b.querySelector('.tg-row-text-v13').textContent=t('Отслеживаю','Kuzatyapman');b.querySelector('.tg-square-icon-v13').innerHTML=bell;b.onclick=()=>open();original.after(b)}
 window.SellerWatch={open,profile,chatEntry};dialog.addEventListener('cancel',e=>{e.preventDefault();close()});
 window.Telegram?.WebApp?.BackButton?.onClick(()=>{if(dialog.open)close()});
+document.addEventListener('visibilitychange',()=>{if(document.hidden)clearTimeout(feedTimer);else refreshFeed();});
+window.addEventListener('online',refreshFeed);
 if(channelStartParamV107()==='watch_sellers')waitForTelegramIdentityV108(10000).then(u=>{if(u?.id)open()}).catch(()=>{});
 })();
 </script>
