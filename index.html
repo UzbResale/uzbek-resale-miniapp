@@ -7001,6 +7001,7 @@ html body #uzcSellerOfferDialog h2{margin:0 0 10px!important}html body #uzcSelle
 <button class="tg-row-v13" onclick="openOwnSellerProfile()"><span class="tg-square-icon-v13 purple"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 10 5 3h14l2 7M3 10a3 3 0 0 0 6 0 3 3 0 0 0 6 0 3 3 0 0 0 6 0M5 13v8h14v-8M9 21v-7h6v7"/></svg></span><span class="tg-row-text-v13">&#1055;&#1088;&#1086;&#1092;&#1080;&#1083;&#1100; &#1087;&#1088;&#1086;&#1076;&#1072;&#1074;&#1094;&#1072;</span><svg class="tg-row-chevron-v13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 5 7 7-7 7"/></svg></button>
 <button class="tg-row-v13" onclick="page('favorites')"><span class="tg-square-icon-v13 red"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1.1-1.1a5.5 5.5 0 0 0-7.8 7.8L12 21l8.8-8.6a5.5 5.5 0 0 0 0-7.8Z"/></svg></span><span class="tg-row-text-v13">&#1048;&#1079;&#1073;&#1088;&#1072;&#1085;&#1085;&#1086;&#1077;</span><svg class="tg-row-chevron-v13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 5 7 7-7 7"/></svg></button>
 <button class="tg-row-v13" type="button" id="uzrColProfileEntry" data-no-i18n><span class="tg-square-icon-v13 violet"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 5a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v16l-6-4-6 4z"/></svg></span><span class="tg-row-text-v13" id="uzrColProfileLabel">Мои подборки</span><svg class="tg-row-chevron-v13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 5 7 7-7 7"/></svg></button>
+<button class="tg-row-v13" type="button" id="rf24ProfileEntry" data-no-i18n><span class="tg-square-icon-v13"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 8h18v4H3zM5 12v8h14v-8M12 8v12m0-12H8a2.5 2.5 0 1 1 2.2-3.7L12 8Zm0 0h4a2.5 2.5 0 1 0-2.2-3.7L12 8Z"/></svg></span><span class="tg-row-text-v13">Пригласить друга</span><svg class="tg-row-chevron-v13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 6 6 6-6 6"/></svg></button>
 <button class="tg-row-v13" onclick="page('viewed')"><span class="tg-square-icon-v13 violet"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 3v6h6M3 9a9 9 0 1 1 1 9M12 7v5l3 2"/></svg></span><span class="tg-row-text-v13">&#1055;&#1088;&#1086;&#1089;&#1084;&#1086;&#1090;&#1088;&#1077;&#1085;&#1085;&#1099;&#1077; &#1090;&#1086;&#1074;&#1072;&#1088;&#1099;</span><svg class="tg-row-chevron-v13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 5 7 7-7 7"/></svg></button>
 </div>
 <div class="tg-section-title-v13">&#1053;&#1040;&#1057;&#1058;&#1056;&#1054;&#1049;&#1050;&#1048;</div>
@@ -9141,6 +9142,7 @@ function renderCheckoutSummaryV41(){
     ${cart.length>4?`<div class="checkout-v41-more">\u0415\u0449\u0451 ${cart.length-4}</div>`:""}
     <div class="checkout-v41-summary-row"><span>\u041f\u0440\u043e\u0434\u0430\u0432\u0435\u0446</span><b>${escapeHtml(sellerText)}</b></div>
     <div class="checkout-v41-summary-row checkout-v41-total"><span>\u0418\u0442\u043e\u0433\u043e</span><b>${money(total)}</b></div>`;
+  window.UzrReferrals?.mountCheckout(box,total);
   if(window.lucide) lucide.createIcons();
 }
 
@@ -9406,12 +9408,14 @@ $("confirmBtn").onclick=async()=>{
  const btn=$("confirmBtn");
 
  orderSending=true;
+ window.UzrReferrals?.lockCheckout(true);
 
  btn.disabled=true;
  btn.innerHTML='<span class="checkout-spinner-v43"></span><span>\u041e\u0442\u043f\u0440\u0430\u0432\u043b\u044f\u0435\u043c\u2026</span>';
  const oldFormErr=$("checkoutFormErrorV41");if(oldFormErr){oldFormErr.hidden=true;oldFormErr.innerHTML=""}
 
- const total=cart.reduce((s,p)=>s+p.price,0);
+ const referralReward=window.UzrReferrals?.checkoutChoice()||null;
+ const total=cart.reduce((s,p)=>s+p.price,0)-(referralReward?.amount||0);
 
  const tgName=telegramUser
 
@@ -9432,6 +9436,7 @@ $("confirmBtn").onclick=async()=>{
    ...cargoPayloadV110,
 
    clientOrderId:clientOrderIdV92,
+   ...(referralReward?{referralReward}:{}),
 
    name,
 
@@ -9501,8 +9506,9 @@ $("confirmBtn").onclick=async()=>{
      if(response.status>=400&&response.status<500&&response.status!==429){
        uzrClearOrderAttemptV92(clientOrderIdV92);
      }
+     if(serverCode==='REFERRAL_CHANGED')window.UzrReferrals?.refreshCheckout();
      const message=
-       ({BUNDLE_PRICE_CHANGED:"Цена комплекта изменилась. Удалите его из корзины и добавьте заново.",BUNDLE_UNAVAILABLE:"Комплект больше недоступен. Удалите его из корзины.",INCOMPLETE_BUNDLE:"Состав комплекта изменился. Удалите его из корзины и добавьте заново."})[serverCode] ||
+       ({REFERRAL_CHANGED:productCardCopyV12("Цена или бонус изменились. Проверь итог и заново подтверди заказ.","Narx yoki bonus o‘zgardi. Jami miqdorni tekshirib, buyurtmani qayta tasdiqlang."),BUNDLE_PRICE_CHANGED:"Цена комплекта изменилась. Удалите его из корзины и добавьте заново.",BUNDLE_UNAVAILABLE:"Комплект больше недоступен. Удалите его из корзины.",INCOMPLETE_BUNDLE:"Состав комплекта изменился. Удалите его из корзины и добавьте заново."})[serverCode] ||
        (["CARGO_REQUIRED","CARGO_CHANGED","CONSENT_REQUIRED"].includes(serverCode)?window.UzrSearch110.errorMessage(serverCode):
        response.status===401||response.status===403
          ?"\u041d\u0435 \u0443\u0434\u0430\u043b\u043e\u0441\u044c \u043f\u043e\u0434\u0442\u0432\u0435\u0440\u0434\u0438\u0442\u044c Telegram-\u0441\u0435\u0441\u0441\u0438\u044e. \u0417\u0430\u043a\u0440\u043e\u0439\u0442\u0435 Mini App, \u043e\u0442\u043a\u0440\u043e\u0439\u0442\u0435 \u0441\u043d\u043e\u0432\u0430 \u0438 \u043f\u043e\u0432\u0442\u043e\u0440\u0438\u0442\u0435 \u0437\u0430\u043a\u0430\u0437."
@@ -9563,6 +9569,7 @@ $("confirmBtn").onclick=async()=>{
  }finally{
 
    orderSending=false;
+   window.UzrReferrals?.lockCheckout(false);
 
    btn.disabled=false;
 
@@ -15950,7 +15957,12 @@ function renderOverview(d){const s=d.stats,metrics=[['users','\u041f\u043e\u043b
  if(can('official.write')){const b=document.createElement('button');b.type='button';b.className='s17-btn s17-admin-entry';b.textContent='Подборка сегодня';b.onclick=()=>window.uzrTodayOpenAdmin();MAIN.prepend(b);}
 
 }
-function renderMore(){const sections=[['media','\u0424\u043e\u0442\u043e \u0438 \u043e\u0447\u0438\u0441\u0442\u043a\u0430','media','\u0412\u044b\u0431\u043e\u0440 \u0444\u043e\u0442\u043e, \u043e\u0447\u0435\u0440\u0435\u0434\u044c \u0438 \u043e\u0448\u0438\u0431\u043a\u0438'],['requests','R-\u0437\u0430\u044f\u0432\u043a\u0438','link','\u0421\u0432\u044f\u0437\u044c \u0438 \u0438\u0441\u0442\u043e\u0440\u0438\u044f \u0441\u0434\u0435\u043b\u043e\u043a'],['chats','\u0412\u043d\u0443\u0442\u0440\u0435\u043d\u043d\u0438\u0435 \u0447\u0430\u0442\u044b','chat','\u041e\u0431\u0440\u0430\u0449\u0435\u043d\u0438\u044f \u0438 \u043c\u043e\u0434\u0435\u0440\u0430\u0446\u0438\u044f'],['reports','\u0416\u0430\u043b\u043e\u0431\u044b','flag','\u0420\u0430\u0437\u0431\u043e\u0440 \u043d\u0430\u0440\u0443\u0448\u0435\u043d\u0438\u0439'],['search-legacy','C-\u0437\u0430\u043f\u0440\u043e\u0441\u044b \u00b7 \u043f\u043e\u0438\u0441\u043a \u0438\u0437 \u041a\u0438\u0442\u0430\u044f','search','\u0421\u0443\u0449\u0435\u0441\u0442\u0432\u0443\u044e\u0449\u0438\u0435 \u0437\u0430\u044f\u0432\u043a\u0438 C \u0438 \u043f\u0440\u0435\u0434\u043b\u043e\u0436\u0435\u043d\u0438\u044f'],['cargo-legacy','\u0422\u0430\u0440\u0438\u0444\u044b \u043a\u0430\u0440\u0433\u043e','box','\u0421\u0443\u0449\u0435\u0441\u0442\u0432\u0443\u044e\u0449\u0438\u0435 \u0442\u0430\u0440\u0438\u0444\u044b \u0434\u043e\u0441\u0442\u0430\u0432\u043a\u0438'],['staff','\u0421\u043e\u0442\u0440\u0443\u0434\u043d\u0438\u043a\u0438','shield','\u0420\u043e\u043b\u0438 \u0438 \u043f\u0440\u0430\u0432\u0430'],['audit','\u0416\u0443\u0440\u043d\u0430\u043b \u0434\u0435\u0439\u0441\u0442\u0432\u0438\u0439','clock','\u041a\u0442\u043e \u0438 \u0447\u0442\u043e \u0438\u0437\u043c\u0435\u043d\u0438\u043b'],['settings','\u0423\u043f\u0440\u0430\u0432\u043b\u0435\u043d\u0438\u0435','settings','\u0422\u0435\u0445\u0440\u0430\u0431\u043e\u0442\u044b \u0438 \u043f\u0443\u0431\u043b\u0438\u043a\u0430\u0446\u0438\u0438']];MAIN.innerHTML=title('\u0412\u0441\u0435 \u0438\u043d\u0441\u0442\u0440\u0443\u043c\u0435\u043d\u0442\u044b','\u0414\u043e\u0441\u0442\u0443\u043f \u0437\u0430\u0432\u0438\u0441\u0438\u0442 \u043e\u0442 \u0432\u0430\u0448\u0435\u0439 \u0440\u043e\u043b\u0438')+'<div class="ac-menu">'+sections.filter(([k])=>k.endsWith('legacy')?can('official.write'):can(k)).map(([k,t,i,desc])=>button(ico(i)+'<span>'+t+'</span><small>'+desc+'</small>',k.endsWith('legacy')?k:'go','data-tab="'+k+'"')).join('')+'</div><div class="ac-note">\u041b\u0438\u0447\u043d\u044b\u0435 \u0447\u0430\u0442\u044b Telegram \u043d\u0435\u0434\u043e\u0441\u0442\u0443\u043f\u043d\u044b. \u0417\u0434\u0435\u0441\u044c \u0442\u043e\u043b\u044c\u043a\u043e \u0434\u0430\u043d\u043d\u044b\u0435 Uzbek Re\u2019Sale. \u0410\u0434\u043c\u0438\u043d\u0438\u0441\u0442\u0440\u0430\u0442\u0438\u0432\u043d\u044b\u0435 \u043f\u0440\u043e\u0441\u043c\u043e\u0442\u0440\u044b \u0432\u043d\u0443\u0442\u0440\u0435\u043d\u043d\u0438\u0445 \u043f\u0435\u0440\u0435\u043f\u0438\u0441\u043e\u043a \u0437\u0430\u043f\u0438\u0441\u044b\u0432\u0430\u044e\u0442\u0441\u044f \u0432 \u0436\u0443\u0440\u043d\u0430\u043b.</div>';}
+function renderMore(){const sections=[['media','\u0424\u043e\u0442\u043e \u0438 \u043e\u0447\u0438\u0441\u0442\u043a\u0430','media','\u0412\u044b\u0431\u043e\u0440 \u0444\u043e\u0442\u043e, \u043e\u0447\u0435\u0440\u0435\u0434\u044c \u0438 \u043e\u0448\u0438\u0431\u043a\u0438'],['requests','R-\u0437\u0430\u044f\u0432\u043a\u0438','link','\u0421\u0432\u044f\u0437\u044c \u0438 \u0438\u0441\u0442\u043e\u0440\u0438\u044f \u0441\u0434\u0435\u043b\u043e\u043a'],['chats','\u0412\u043d\u0443\u0442\u0440\u0435\u043d\u043d\u0438\u0435 \u0447\u0430\u0442\u044b','chat','\u041e\u0431\u0440\u0430\u0449\u0435\u043d\u0438\u044f \u0438 \u043c\u043e\u0434\u0435\u0440\u0430\u0446\u0438\u044f'],['reports','\u0416\u0430\u043b\u043e\u0431\u044b','flag','\u0420\u0430\u0437\u0431\u043e\u0440 \u043d\u0430\u0440\u0443\u0448\u0435\u043d\u0438\u0439'],['search-legacy','C-\u0437\u0430\u043f\u0440\u043e\u0441\u044b \u00b7 \u043f\u043e\u0438\u0441\u043a \u0438\u0437 \u041a\u0438\u0442\u0430\u044f','search','\u0421\u0443\u0449\u0435\u0441\u0442\u0432\u0443\u044e\u0449\u0438\u0435 \u0437\u0430\u044f\u0432\u043a\u0438 C \u0438 \u043f\u0440\u0435\u0434\u043b\u043e\u0436\u0435\u043d\u0438\u044f'],['cargo-legacy','\u0422\u0430\u0440\u0438\u0444\u044b \u043a\u0430\u0440\u0433\u043e','box','\u0421\u0443\u0449\u0435\u0441\u0442\u0432\u0443\u044e\u0449\u0438\u0435 \u0442\u0430\u0440\u0438\u0444\u044b \u0434\u043e\u0441\u0442\u0430\u0432\u043a\u0438'],['staff','\u0421\u043e\u0442\u0440\u0443\u0434\u043d\u0438\u043a\u0438','shield','\u0420\u043e\u043b\u0438 \u0438 \u043f\u0440\u0430\u0432\u0430'],['audit','\u0416\u0443\u0440\u043d\u0430\u043b \u0434\u0435\u0439\u0441\u0442\u0432\u0438\u0439','clock','\u041a\u0442\u043e \u0438 \u0447\u0442\u043e \u0438\u0437\u043c\u0435\u043d\u0438\u043b'],['settings','\u0423\u043f\u0440\u0430\u0432\u043b\u0435\u043d\u0438\u0435','settings','\u0422\u0435\u0445\u0440\u0430\u0431\u043e\u0442\u044b \u0438 \u043f\u0443\u0431\u043b\u0438\u043a\u0430\u0446\u0438\u0438']];MAIN.innerHTML=title('\u0412\u0441\u0435 \u0438\u043d\u0441\u0442\u0440\u0443\u043c\u0435\u043d\u0442\u044b','\u0414\u043e\u0441\u0442\u0443\u043f \u0437\u0430\u0432\u0438\u0441\u0438\u0442 \u043e\u0442 \u0432\u0430\u0448\u0435\u0439 \u0440\u043e\u043b\u0438')+'<div class="ac-menu">'+sections.filter(([k])=>k.endsWith('legacy')?can('official.write'):can(k)).map(([k,t,i,desc])=>button(ico(i)+'<span>'+t+'</span><small>'+desc+'</small>',k.endsWith('legacy')?k:'go','data-tab="'+k+'"')).join('')+'</div><div class="ac-note">\u041b\u0438\u0447\u043d\u044b\u0435 \u0447\u0430\u0442\u044b Telegram \u043d\u0435\u0434\u043e\u0441\u0442\u0443\u043f\u043d\u044b. \u0417\u0434\u0435\u0441\u044c \u0442\u043e\u043b\u044c\u043a\u043e \u0434\u0430\u043d\u043d\u044b\u0435 Uzbek Re\u2019Sale. \u0410\u0434\u043c\u0438\u043d\u0438\u0441\u0442\u0440\u0430\u0442\u0438\u0432\u043d\u044b\u0435 \u043f\u0440\u043e\u0441\u043c\u043e\u0442\u0440\u044b \u0432\u043d\u0443\u0442\u0440\u0435\u043d\u043d\u0438\u0445 \u043f\u0435\u0440\u0435\u043f\u0438\u0441\u043e\u043a \u0437\u0430\u043f\u0438\u0441\u044b\u0432\u0430\u044e\u0442\u0441\u044f \u0432 \u0436\u0443\u0440\u043d\u0430\u043b.</div>';
+ if(can('settings')&&['owner','admin'].includes(actor?.role)){
+  const referrals=button(ico('link')+'<span>Рефералка</span><small>Настройки бонусов и кто кого пригласил</small>','referrals');
+  MAIN.querySelector('.ac-menu').insertAdjacentHTML('afterbegin',referrals);
+ }
+}
 function renderUser(d){const u=d.user;MAIN.innerHTML=title([u.first_name,u.last_name].filter(Boolean).join(' ')||'\u041f\u043e\u043b\u044c\u0437\u043e\u0432\u0430\u0442\u0435\u043b\u044c','@'+(u.username||'\u0431\u0435\u0437 username')+' \u00b7 #'+u.telegram_id)+block('\u0410\u043a\u043a\u0430\u0443\u043d\u0442',kv([['\u0420\u043e\u043b\u044c',roles[u.role]],['\u0413\u043e\u0440\u043e\u0434',u.city||'\u2014'],['\u0412 \u043f\u0440\u0438\u043b\u043e\u0436\u0435\u043d\u0438\u0438 \u0441',dt(u.created_at)],['\u041f\u043e\u0441\u043b\u0435\u0434\u043d\u0438\u0439 \u0432\u0445\u043e\u0434',dt(u.last_seen_at)],['\u041e\u0431\u044a\u044f\u0432\u043b\u0435\u043d\u0438\u044f',num(d.stats.listings)],['\u0417\u0430\u043a\u0430\u0437\u044b',num(d.stats.orders)],['R-\u0437\u0430\u044f\u0432\u043a\u0438',num(d.stats.requests)],['\u0416\u0430\u043b\u043e\u0431\u044b',num(d.stats.reports)]]))+
  block('\u041e\u0433\u0440\u0430\u043d\u0438\u0447\u0435\u043d\u0438\u044f',d.restrictions.length?d.restrictions.map(b=>'<div class="ac-note"><strong>'+esc(label(b.scope==='all'?'\u0412\u0441\u0435 \u0442\u043e\u0440\u0433\u043e\u0432\u044b\u0435 \u0434\u0435\u0439\u0441\u0442\u0432\u0438\u044f':b.scope))+'</strong><br>'+esc(b.reason)+'<br>'+esc(b.until_ms?('\u0414\u043e '+dt(Number(b.until_ms))):'\u0411\u0435\u0437 \u0441\u0440\u043e\u043a\u0430')+(b.until_ms&&b.until_ms<Date.now()?' \u00b7 \u0438\u0441\u0442\u0435\u043a\u043b\u043e':'')+'</div>').join(''):'<p>\u041d\u0435\u0442 \u0443\u0441\u0442\u0430\u043d\u043e\u0432\u043b\u0435\u043d\u043d\u044b\u0445 \u043e\u0433\u0440\u0430\u043d\u0438\u0447\u0435\u043d\u0438\u0439.</p>')+
  (can('users.write')&&u.role==='user'?'<div class="ac-actions">'+button('\u041e\u0433\u0440\u0430\u043d\u0438\u0447\u0438\u0442\u044c','ban','data-id="'+u.telegram_id+'"','ac-danger')+button('\u0421\u043d\u044f\u0442\u044c \u043e\u0433\u0440\u0430\u043d\u0438\u0447\u0435\u043d\u0438\u044f','unban','data-id="'+u.telegram_id+'"')+'</div>':'')+
@@ -16292,7 +16304,9 @@ async function officialManage(){
 }
 
 async function reportForm(type='',id=''){let clientKey=makeClientKey();await sheet('\u0421\u043e\u043e\u0431\u0449\u0438\u0442\u044c \u043e \u043d\u0430\u0440\u0443\u0448\u0435\u043d\u0438\u0438','<div class="ac-note">\u0416\u0430\u043b\u043e\u0431\u0430 \u043f\u043e\u043f\u0430\u0434\u0451\u0442 \u0430\u0434\u043c\u0438\u043d\u0438\u0441\u0442\u0440\u0430\u0446\u0438\u0438 Uzbek Re\u2019Sale. \u041e\u043d\u0430 \u043d\u0435 \u043e\u0442\u043f\u0440\u0430\u0432\u043b\u044f\u0435\u0442 \u0432\u0430\u0448\u0438 \u043b\u0438\u0447\u043d\u044b\u0435 \u043f\u0435\u0440\u0435\u043f\u0438\u0441\u043a\u0438 Telegram.</div>'+select('targetType','\u0427\u0442\u043e \u043f\u0440\u043e\u0438\u0437\u043e\u0448\u043b\u043e',[['listing','\u041e\u0431\u044a\u044f\u0432\u043b\u0435\u043d\u0438\u0435'],['user','\u041f\u043e\u043b\u044c\u0437\u043e\u0432\u0430\u0442\u0435\u043b\u044c'],['chat','\u0412\u043d\u0443\u0442\u0440\u0435\u043d\u043d\u0438\u0439 \u0447\u0430\u0442'],['message','\u0421\u043e\u043e\u0431\u0449\u0435\u043d\u0438\u0435']],type||'listing')+field('targetId','ID \u043e\u0431\u044a\u0435\u043a\u0442\u0430',id,'text','required maxlength="80"')+select('category','\u041f\u0440\u0438\u0447\u0438\u043d\u0430',['spam','fraud','prohibited','abuse','other'],'other')+area('details','\u041a\u043e\u043c\u043c\u0435\u043d\u0442\u0430\u0440\u0438\u0439','',1200),{label:'\u041e\u0442\u043f\u0440\u0430\u0432\u0438\u0442\u044c \u0436\u0430\u043b\u043e\u0431\u0443',onSubmit:async fd=>{const r=await request('/reports',{targetType:fd.get('targetType'),targetId:fd.get('targetId'),category:fd.get('category'),details:fd.get('details'),clientKey});toast('\u0416\u0430\u043b\u043e\u0431\u0430 #'+r.id+' \u043e\u0442\u043f\u0440\u0430\u0432\u043b\u0435\u043d\u0430');return r;}});}
-async function act(b){const action=b.dataset.ac,id=b.dataset.id,mode=b.dataset.mode;if(action==='public-report'){await reportForm(b.dataset.type||'',id||'');return;}
+async function act(b){const action=b.dataset.ac,id=b.dataset.id,mode=b.dataset.mode;
+ if(action==='referrals')return window.UzrReferrals?.open(true);
+ if(action==='public-report'){await reportForm(b.dataset.type||'',id||'');return;}
  if(action==='exit'){seq++;ROOT.classList.remove('active');history=[];typeof page==='function'?page('profile'):null;return;}
  if(action==='back'){if(history.length){view=history.pop();selected.clear();await load();ROOT.scrollTop=0;}else await act({dataset:{ac:'exit'}});return;}
  if(action==='refresh'){selected.clear();await load();return;}
@@ -16596,7 +16610,7 @@ function shell(title,html){root.innerHTML=`<header><button type="button" data-pa
 function close(returnToOrders=false){clearReceipt();epoch++;root.hidden=true;document.body.classList.remove('pay15-open');data=null;if(returnToOrders&&admin&&document.getElementById('ac13Panel')?.classList.contains('active'))window.UzrAdminControl?.orders();}
 function tone(text){return /\u041f\u0440\u043e\u0432\u0435\u0440|\u043f\u0440\u043e\u0432\u0435\u0440/.test(text)?'review':/\u041e\u0436\u0438\u0434\u0430|\u041e\u043f\u043b\u0430\u0442\u0430 \u043e\u0441\u0442\u0430\u0442\u043a\u0430/.test(text)?'wait':/\u043e\u0442\u043a\u043b\u043e\u043d|\u041e\u0442\u043c\u0435\u043d|\u041f\u0440\u043e\u0431\u043b\u0435\u043c/.test(text)?'danger':'success';}
 function tag(text){return `<span class="pay-tag tone-${tone(text)}">${esc(text)}</span>`;}
-function summary(){const p=data.payment;return `<section class="pay-card pay-summary"><div class="pay-list-head"><b>${esc(data.order.number)}</b>${tag(screen==='receipts'&&p?p.label:labels[p?.shipping]||'\u0417\u0430\u043a\u0430\u0437')}</div>`+data.order.items.map(i=>`<div class="pay-item">${i.imageUrl||i.image||i.image_url?`<img src="${esc(i.imageUrl||i.image||i.image_url)}" alt="\u0424\u043e\u0442\u043e \u0442\u043e\u0432\u0430\u0440\u0430" onerror="this.hidden=true">`:'<span class="pay-box" aria-hidden="true"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="m12 3 9 5v8l-9 5-9-5V8Zm0 10 9-5M12 13 3 8m9 5v8M7.5 5.5l9 5"/></svg></span>'}<div><b>${esc(i.name||i.title||'\u0422\u043e\u0432\u0430\u0440')}</b><small>${esc([i.color,i.size,Number(i.quantity||i.qty||1)+' \u0448\u0442.'].filter(Boolean).join(' \u00b7 '))}</small></div>${i.price!=null||i.priceUzs!=null?`<strong>${money(Number(i.price??i.priceUzs)*Number(i.quantity||i.qty||1))}</strong>`:data.order.items.length===1?`<strong>${money(data.order.total)}</strong>`:''}</div>`).join('')+'</section>';}
+function summary(){const p=data.payment,referral=data.order.items.reduce((n,i)=>n+Number(i.referralDiscount||0),0);return `<section class="pay-card pay-summary"><div class="pay-list-head"><b>${esc(data.order.number)}</b>${tag(screen==='receipts'&&p?p.label:labels[p?.shipping]||'\u0417\u0430\u043a\u0430\u0437')}</div>`+data.order.items.map(i=>`<div class="pay-item">${i.imageUrl||i.image||i.image_url?`<img src="${esc(i.imageUrl||i.image||i.image_url)}" alt="\u0424\u043e\u0442\u043e \u0442\u043e\u0432\u0430\u0440\u0430" onerror="this.hidden=true">`:'<span class="pay-box" aria-hidden="true"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="m12 3 9 5v8l-9 5-9-5V8Zm0 10 9-5M12 13 3 8m9 5v8M7.5 5.5l9 5"/></svg></span>'}<div><b>${esc(i.name||i.title||'\u0422\u043e\u0432\u0430\u0440')}</b><small>${esc([i.color,i.size,Number(i.quantity||i.qty||1)+' \u0448\u0442.'].filter(Boolean).join(' \u00b7 '))}</small></div>${i.price!=null||i.priceUzs!=null?`<strong>${money(Number(i.price??i.priceUzs)*Number(i.quantity||i.qty||1))}</strong>`:data.order.items.length===1?`<strong>${money(data.order.total)}</strong>`:''}</div>`).join('')+(referral>0?'<small class="pay-cargo-note">'+productCardCopyV12('Учтён бонус: ','Bonus qo‘llandi: ')+'−'+money(referral)+'</small>':'')+'</section>';}
 function deliverySteps(p){const stock=p.deposit===p.goods&&!data.order.cargoSnapshot,keys=stock?['ready','completed']:['purchased','china_warehouse','transit','arrived','ready','completed'],at=keys.indexOf(p.shipping),names=stock?['\u041a \u0432\u044b\u0434\u0430\u0447\u0435','\u0417\u0430\u0432\u0435\u0440\u0448\u0451\u043d']:['\u0412\u044b\u043a\u0443\u043f\u043b\u0435\u043d','\u0421\u043a\u043b\u0430\u0434 \u0432 \u041a\u0438\u0442\u0430\u0435','\u0412 \u043f\u0443\u0442\u0438','\u041f\u0440\u0438\u0431\u044b\u043b','\u041a \u0432\u044b\u0434\u0430\u0447\u0435','\u0417\u0430\u0432\u0435\u0440\u0448\u0451\u043d'];return panel('\u042d\u0442\u0430\u043f\u044b \u0434\u043e\u0441\u0442\u0430\u0432\u043a\u0438',`<ol class="pay-track">${keys.map((k,i)=>`<li class="${i<at?'done':i===at?'current':''}"><span>${i<at?'\u2713':''}</span><small>${names[i]}</small></li>`).join('')}</ol>`);}
 function totals(p){return row('\u0421\u0442\u043e\u0438\u043c\u043e\u0441\u0442\u044c \u0442\u043e\u0432\u0430\u0440\u0430',money(p.goods))+row('\u041f\u0440\u0435\u0434\u043e\u043f\u043b\u0430\u0442\u0430',money(p.deposit)+(p.deposit_paid?' \u00b7 \u043f\u043e\u0434\u0442\u0432\u0435\u0440\u0436\u0434\u0435\u043d\u0430':''))+row('\u041a\u0430\u0440\u0433\u043e',p.deposit===p.goods&&!data.order.cargoSnapshot?'\u041d\u0435 \u043f\u0440\u0438\u043c\u0435\u043d\u044f\u0435\u0442\u0441\u044f':p.cargo_uzs===null?'\u0415\u0449\u0451 \u043d\u0435 \u0440\u0430\u0441\u0441\u0447\u0438\u0442\u0430\u043d\u043e':money(p.cargo_uzs))+(p.fx?`<small class="pay-cargo-note">${p.cargo_grams/1000} \u043a\u0433 \u00d7 $${(p.rate_cents/100).toFixed(2)} \u00b7 \u043a\u0443\u0440\u0441 ${money(p.fx)} \u0437\u0430 $1</small>`:'')+row('\u041e\u0441\u0442\u0430\u0442\u043e\u043a \u0437\u0430 \u0442\u043e\u0432\u0430\u0440',money(p.goods-p.deposit))+row('\u041a \u043e\u043f\u043b\u0430\u0442\u0435',p.balance_paid?'0 UZS':!p.deposit_paid?money(p.deposit):p.balance===null?'\u041f\u043e\u0441\u043b\u0435 \u0440\u0430\u0441\u0447\u0451\u0442\u0430 \u043a\u0430\u0440\u0433\u043e':money(p.balance));}
 function receipts(){return data.receipts.map(r=>panel(r.stage==='deposit'?'\u041f\u0440\u0435\u0434\u043e\u043f\u043b\u0430\u0442\u0430':'\u041e\u043f\u043b\u0430\u0442\u0430 \u043e\u0441\u0442\u0430\u0442\u043a\u0430',row('\u0421\u0443\u043c\u043c\u0430',money(r.amount))+tag({pending:'\u041f\u0440\u043e\u0432\u0435\u0440\u043a\u0430 \u043e\u043f\u043b\u0430\u0442\u044b',accepted:'\u041f\u043e\u0434\u0442\u0432\u0435\u0440\u0436\u0434\u0451\u043d',rejected:'\u0427\u0435\u043a \u043e\u0442\u043a\u043b\u043e\u043d\u0451\u043d',stale:'\u0423\u0441\u0442\u0430\u0440\u0435\u043b'}[r.state])+(r.reason?`<p class="pay-notice tone-danger">${esc(r.reason)}</p>`:'')+(r.files?.length?r.files:[{id:r.id,mime:r.mime}]).map((f,i)=>`<div class="pay-receipt-file"><span class="pay-file-icon ${f.mime==='application/pdf'?'pdf':'png'}">${String(f.mime||'file').split('/').pop().toUpperCase()}</span><div><b>\u0427\u0435\u043a ${i+1}</b><small>${f.bytes?Math.ceil(f.bytes/1024)+' \u041a\u0411 \u00b7 ':''}${String(f.mime||'file').split('/').pop().toUpperCase()}</small></div>${btn('\u041e\u0442\u043a\u0440\u044b\u0442\u044c','file',true,`aria-label="\u041e\u0442\u043a\u0440\u044b\u0442\u044c \u0447\u0435\u043a ${i+1}" data-id="${f.id}"`)}</div>`).join('')+(admin&&r.state==='pending'?`<form data-form="review"><input type="hidden" name="receiptId" value="${r.id}"><label class="pay-check"><input name="fundsChecked" type="checkbox">\u041f\u043e\u0441\u0442\u0443\u043f\u043b\u0435\u043d\u0438\u0435 ${money(r.amount)} \u043f\u0440\u043e\u0432\u0435\u0440\u0435\u043d\u043e</label>${btn('\u041f\u043e\u0434\u0442\u0432\u0435\u0440\u0434\u0438\u0442\u044c','accept')}<div class="pay-or">\u0438\u043b\u0438</div><h3 class="pay-danger-heading">\u041f\u0440\u0438\u0447\u0438\u043d\u0430 \u043e\u0442\u043a\u043b\u043e\u043d\u0435\u043d\u0438\u044f</h3>${input('\u0423\u043a\u0430\u0436\u0438\u0442\u0435 \u043f\u0440\u0438\u0447\u0438\u043d\u0443 \u0434\u043b\u044f \u043f\u043e\u043a\u0443\u043f\u0430\u0442\u0435\u043b\u044f','reason')}${btn('\u041e\u0442\u043a\u043b\u043e\u043d\u0438\u0442\u044c \u0441 \u043f\u0440\u0438\u0447\u0438\u043d\u043e\u0439','reject',true)}</form>`:''))).join('');}
@@ -16654,7 +16668,7 @@ html body #officialStoreView .official-store-avatar,html body #officialStoreView
  const review=document.createElement('section');review.className='pay-checkout-review';confirmBtn.before(review);
  const controls=document.createElement('div');controls.className='pay-checkout-controls';controls.innerHTML='<button type="button" id="pay-checkout-prev">\u041d\u0430\u0437\u0430\u0434</button><button type="button" id="pay-checkout-next">\u0414\u0430\u043b\u0435\u0435 \u2014 \u0434\u043e\u0441\u0442\u0430\u0432\u043a\u0430</button>';confirmBtn.before(controls);
  const esc=x=>String(x||'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
- function show(){form.dataset.payStep=step;bar.querySelectorAll('span').forEach((s,i)=>s.classList.toggle('current',i+1===step));document.getElementById('pay-checkout-prev').hidden=step===1;document.getElementById('pay-checkout-next').hidden=step===3;document.getElementById('pay-checkout-next').textContent=step===1?'\u0414\u0430\u043b\u0435\u0435 \u2014 \u0434\u043e\u0441\u0442\u0430\u0432\u043a\u0430':'\u0414\u0430\u043b\u0435\u0435 \u2014 \u043f\u043e\u0434\u0442\u0432\u0435\u0440\u0436\u0434\u0435\u043d\u0438\u0435';review.hidden=step!==3;if(step===3){const selected=form.querySelector('input[type=radio]:checked'),cargo=selected?.closest('label')?.textContent?.replace(/\u0420\u0435\u043a\u043e\u043c\u0435\u043d\u0434\u0443\u0435\u043c/g,' \u00b7 ').replace(/(\d+)[\u2013-](\d+)/g,'$1\u2013$2 ').replace(/(\u0434\u043d\u0435\u0439)(\$)/g,'$1 \u00b7 $2')||'\u0422\u0430\u0440\u0438\u0444 \u043d\u0435 \u0432\u044b\u0431\u0440\u0430\u043d';const totalText=document.querySelector('#checkoutSummaryV41 .checkout-v41-total b')?.textContent||'',total=Number(totalText.replace(/[^0-9]/g,'')),depositText=total>0?Math.ceil(total/2).toLocaleString('ru-RU')+' UZS (50%)':'\u0412 \u043d\u0430\u043b\u0438\u0447\u0438\u0438 \u2014 100%; \u043f\u043e\u0434 \u0437\u0430\u043a\u0430\u0437 \u0438\u0437 \u041a\u0438\u0442\u0430\u044f \u2014 50%';review.innerHTML='<h3>\u041f\u0440\u043e\u0432\u0435\u0440\u044c\u0442\u0435 \u0434\u0430\u043d\u043d\u044b\u0435</h3><div class="checkout-review-line"><span>\u041f\u043e\u043a\u0443\u043f\u0430\u0442\u0435\u043b\u044c</span><b>'+esc(document.getElementById('buyerName').value)+'<small>+998 '+esc(document.getElementById('buyerPhone').value)+'</small><small>'+esc(document.getElementById('buyerCity').value)+'</small></b></div><div class="checkout-review-line"><span>\u0414\u043e\u0441\u0442\u0430\u0432\u043a\u0430</span><b>'+esc(cargo)+'</b></div><div class="checkout-review-line"><span>\u041f\u0440\u0435\u0434\u043e\u043f\u043b\u0430\u0442\u0430</span><b>'+esc(depositText)+'</b></div><p class="checkout-review-info">\u041a\u0430\u0440\u0433\u043e \u043e\u043f\u043b\u0430\u0447\u0438\u0432\u0430\u0435\u0442\u0441\u044f \u043e\u0442\u0434\u0435\u043b\u044c\u043d\u043e \u043f\u043e \u0444\u0430\u043a\u0442\u0438\u0447\u0435\u0441\u043a\u043e\u043c\u0443 \u0432\u0435\u0441\u0443.</p>';confirmBtn.textContent='\u041f\u043e\u0434\u0442\u0432\u0435\u0440\u0434\u0438\u0442\u044c \u0438 \u043f\u0435\u0440\u0435\u0439\u0442\u0438 \u043a \u043e\u043f\u043b\u0430\u0442\u0435';}view.scrollTop=0;const inner=view.querySelector('.checkout-v41-inner');if(inner)inner.scrollTop=0;}
+ function show(){form.dataset.payStep=step;bar.querySelectorAll('span').forEach((s,i)=>s.classList.toggle('current',i+1===step));document.getElementById('pay-checkout-prev').hidden=step===1;document.getElementById('pay-checkout-next').hidden=step===3;document.getElementById('pay-checkout-next').textContent=step===1?'\u0414\u0430\u043b\u0435\u0435 \u2014 \u0434\u043e\u0441\u0442\u0430\u0432\u043a\u0430':'\u0414\u0430\u043b\u0435\u0435 \u2014 \u043f\u043e\u0434\u0442\u0432\u0435\u0440\u0436\u0434\u0435\u043d\u0438\u0435';review.hidden=step!==3;if(step===3){const selected=form.querySelector('input[type=radio]:checked'),cargo=selected?.closest('label')?.textContent?.replace(/\u0420\u0435\u043a\u043e\u043c\u0435\u043d\u0434\u0443\u0435\u043c/g,' \u00b7 ').replace(/(\d+)[\u2013-](\d+)/g,'$1\u2013$2 ').replace(/(\u0434\u043d\u0435\u0439)(\$)/g,'$1 \u00b7 $2')||'\u0422\u0430\u0440\u0438\u0444 \u043d\u0435 \u0432\u044b\u0431\u0440\u0430\u043d';const totalText=document.querySelector('#checkoutSummaryV41 .checkout-v41-total b')?.textContent||'',total=Number(totalText.replace(/[^0-9]/g,'')),depositText=(!window.UzrSharedCheckout121?.isSearch()&&window.UzrReferrals?.paymentText())||(total>0?Math.ceil(total/2).toLocaleString('ru-RU')+' UZS (50%)':'\u0412 \u043d\u0430\u043b\u0438\u0447\u0438\u0438 \u2014 100%; \u043f\u043e\u0434 \u0437\u0430\u043a\u0430\u0437 \u0438\u0437 \u041a\u0438\u0442\u0430\u044f \u2014 50%');review.innerHTML='<h3>\u041f\u0440\u043e\u0432\u0435\u0440\u044c\u0442\u0435 \u0434\u0430\u043d\u043d\u044b\u0435</h3><div class="checkout-review-line"><span>\u041f\u043e\u043a\u0443\u043f\u0430\u0442\u0435\u043b\u044c</span><b>'+esc(document.getElementById('buyerName').value)+'<small>+998 '+esc(document.getElementById('buyerPhone').value)+'</small><small>'+esc(document.getElementById('buyerCity').value)+'</small></b></div><div class="checkout-review-line"><span>\u0414\u043e\u0441\u0442\u0430\u0432\u043a\u0430</span><b>'+esc(cargo)+'</b></div><div class="checkout-review-line"><span>\u041f\u0440\u0435\u0434\u043e\u043f\u043b\u0430\u0442\u0430</span><b data-rf24-deposit>'+esc(depositText)+'</b></div><p class="checkout-review-info">\u041a\u0430\u0440\u0433\u043e \u043e\u043f\u043b\u0430\u0447\u0438\u0432\u0430\u0435\u0442\u0441\u044f \u043e\u0442\u0434\u0435\u043b\u044c\u043d\u043e \u043f\u043e \u0444\u0430\u043a\u0442\u0438\u0447\u0435\u0441\u043a\u043e\u043c\u0443 \u0432\u0435\u0441\u0443.</p>';confirmBtn.textContent='\u041f\u043e\u0434\u0442\u0432\u0435\u0440\u0434\u0438\u0442\u044c \u0438 \u043f\u0435\u0440\u0435\u0439\u0442\u0438 \u043a \u043e\u043f\u043b\u0430\u0442\u0435';}view.scrollTop=0;const inner=view.querySelector('.checkout-v41-inner');if(inner)inner.scrollTop=0;}
  document.getElementById('pay-checkout-prev').onclick=()=>{step=Math.max(1,step-1);show()};document.getElementById('pay-checkout-next').onclick=()=>{const error=document.getElementById('checkoutFormErrorV41');if(step===1){const name=document.getElementById('buyerName'),phone=document.getElementById('buyerPhone'),city=document.getElementById('buyerCity');if(!name.value.trim()||!/^\d{9}$/.test(phone.value.replace(/\D/g,''))||!city.value){error.hidden=false;error.textContent='\u0417\u0430\u043f\u043e\u043b\u043d\u0438\u0442\u0435 \u0438\u043c\u044f, \u0442\u0435\u043b\u0435\u0444\u043e\u043d (9 \u0446\u0438\u0444\u0440) \u0438 \u0433\u043e\u0440\u043e\u0434.';return;}}if(step===2){const cargo=document.getElementById('sr110CargoCheckout');if(cargo&&!cargo.hidden){const radios=cargo.querySelectorAll('input[type=radio]');if(radios.length&&!cargo.querySelector('input[type=radio]:checked')){error.hidden=false;error.textContent='\u0412\u044b\u0431\u0435\u0440\u0438\u0442\u0435 \u043a\u0430\u0440\u0433\u043e.';return;}const cbs=[...cargo.querySelectorAll('input[type=checkbox]')];if(cbs.some(x=>!x.checked)){error.hidden=false;error.textContent='\u041f\u0440\u0438\u043c\u0438\u0442\u0435 \u0443\u0441\u043b\u043e\u0432\u0438\u044f \u043f\u043e\u043a\u0443\u043f\u043a\u0438.';return;}}}error.hidden=true;step++;show()};
  let wasOpen=view.classList.contains('open');new MutationObserver(()=>{const on=view.classList.contains('open');if(on&&!wasOpen){step=1;show()}wasOpen=on}).observe(view,{attributes:true,attributeFilter:['class']});show();
 })();
@@ -17796,6 +17810,262 @@ $('buSave').onclick=async()=>{const btn=$('buSave');btn.disabled=true;try{await 
 }
 window.Telegram?.WebApp?.BackButton?.onClick(()=>{if(dialog.open)close()});
 window.UzrBundles={open};
+})();
+</script>
+
+<style>
+#rf24Dialog{box-sizing:border-box;max-width:100vw;width:min(100%,520px);height:100dvh;max-height:100dvh;margin:auto;padding:0;border:0;border-radius:0;background:#f8f8f6;color:#151515;font:inherit}
+#rf24Dialog[open]{display:flex;flex-direction:column}#rf24Dialog::backdrop{background:#fff}
+#rf24Dialog .rf24-head{display:flex;align-items:center;gap:12px;padding:8px 16px;min-height:56px;background:#fff;border-bottom:1px solid #e9e9e6}
+#rf24Dialog .rf24-head h2{margin:0;font-size:20px;letter-spacing:-.025em}
+#rf24Dialog button,#rf24Dialog input{font:inherit}
+#rf24Dialog .rf24-icon-btn{display:grid;place-items:center;width:36px;height:40px;min-width:36px;padding:0;border:0;background:transparent;color:#151515;cursor:pointer}
+#rf24Dialog svg{width:21px;height:21px;display:block;flex:none}
+#rf24Body{flex:1;overflow:auto;overscroll-behavior:contain;padding:16px 16px max(22px,env(safe-area-inset-bottom,0px));box-sizing:border-box}
+#rf24Dialog .rf24-hero{text-align:center;padding:0 12px 15px;margin-bottom:1px}
+#rf24Dialog .rf24-gift{display:grid;place-items:center;width:58px;height:58px;margin:0 auto 11px;border-radius:17px;background:#eee;color:#141414}
+#rf24Dialog .rf24-gift svg{width:30px;height:30px}
+#rf24Dialog h3{font-size:16px;line-height:1.2;margin:0 0 10px;letter-spacing:-.015em}
+#rf24Dialog p{margin:0;line-height:1.45}
+#rf24Dialog .rf24-muted{color:#646460;font-size:12px;line-height:1.45}
+#rf24Dialog .rf24-card{background:#fff;border:1px solid #e2e2de;border-radius:16px;padding:13px;margin-bottom:14px}
+#rf24Dialog .rf24-balance{display:block;margin-top:3px;font-size:27px;letter-spacing:-.04em;overflow-wrap:anywhere}
+#rf24Dialog .rf24-link-field{display:flex;align-items:center;gap:4px;padding:1px 4px 1px 10px;border:1px solid #dededb;border-radius:10px;background:#f8f8f7;margin-bottom:8px}
+#rf24Dialog .rf24-link-field input{display:block;width:100%;min-width:0;padding:0;border:0!important;background:transparent!important;color:#161616!important;font-size:13px;text-overflow:ellipsis;box-shadow:none!important}
+#rf24Dialog .rf24-btn{display:block;width:100%;min-height:42px;padding:8px 12px;border:1px solid #dededb;border-radius:11px;background:#fff;color:#161616;font-weight:650;cursor:pointer}
+#rf24Dialog .rf24-primary{background:#151515;color:#fff;border-color:#151515}
+#rf24Dialog .rf24-btn:disabled{opacity:.55;cursor:default}
+#rf24Dialog .rf24-list{padding:0 12px}
+#rf24Dialog .rf24-row{display:grid;grid-template-columns:34px minmax(0,1fr) auto;gap:8px;align-items:center;padding:10px 0}
+#rf24Dialog .rf24-row+.rf24-row{border-top:1px solid #ededeb}
+#rf24Dialog .rf24-row b,#rf24Dialog .rf24-row small{display:block;overflow-wrap:anywhere}
+#rf24Dialog .rf24-row b{font-size:14px}
+#rf24Dialog .rf24-avatar{display:grid;place-items:center;width:34px;height:34px;border-radius:50%;background:#efefed;font-size:11px;font-weight:750}
+#rf24Dialog .rf24-state{text-align:right;max-width:110px}
+#rf24Dialog .rf24-chip{display:inline-block;border-radius:999px;padding:4px 7px;background:#efefed;color:#333;font-size:10.5px;font-weight:650;text-align:center;line-height:1.25}
+#rf24Dialog .rf24-state .rf24-muted{font-size:10px;margin-top:3px}
+#rf24Dialog .rf24-empty{padding:12px 0}
+#rf24Dialog .rf24-note{margin-top:8px!important}
+#rf24Dialog .rf24-field{display:block;font-size:13px;font-weight:600;margin:12px 0}
+#rf24Dialog .rf24-field input{display:block;width:100%;min-height:43px;box-sizing:border-box;margin:5px 0 0;padding:8px 10px;border:1px solid #dededb;border-radius:10px;background:#fafaf9;color:#161616}
+#rf24Dialog .rf24-toggle{display:flex;align-items:center;justify-content:space-between;gap:12px;font-size:14px;font-weight:650}
+#rf24Dialog .rf24-toggle{position:relative;cursor:pointer}
+#rf24Dialog input.rf24-switch{position:absolute;right:0;opacity:0;width:42px;height:25px;pointer-events:none}
+#rf24Dialog .rf24-track{position:relative;width:42px;height:25px;flex:0 0 42px;border-radius:999px;background:#cececa}
+#rf24Dialog .rf24-track::before{content:'';position:absolute;width:19px;height:19px;left:3px;top:3px;border-radius:50%;background:#fff}
+#rf24Dialog .rf24-switch:checked+.rf24-track{background:#151515}
+#rf24Dialog .rf24-switch:checked+.rf24-track::before{left:20px}
+#rf24Dialog .rf24-switch:focus-visible+.rf24-track{outline:2px solid #151515;outline-offset:3px}
+#rf24Dialog .rf24-switch:disabled+.rf24-track{opacity:.55}
+#rf24Dialog .rf24-status{font-size:12px;color:#444;line-height:1.4}
+#rf24Dialog .rf24-status:not(:empty){margin-top:8px}
+#rf24Dialog .rf24-error{color:#a22}
+#checkoutView #rf24Checkout{padding-top:7px}
+#checkoutView .rf24-check{display:flex;align-items:center;gap:8px;padding:8px 10px;min-height:39px;box-sizing:border-box;border:1px solid #e5e5e3;border-radius:11px;background:#f8f8f7;color:#151515;font-size:12px;cursor:pointer}
+#checkoutView .rf24-check input{appearance:auto!important;display:inline-block!important;width:17px!important;height:17px!important;margin:0!important;accent-color:#151515;flex:none}
+#checkoutView .rf24-check b{margin-left:auto;white-space:nowrap;font-size:12px}
+#checkoutView .rf24-check-note{display:block;color:#646460;font-size:12px}
+#rf24Checkout[hidden],#rf24More[hidden]{display:none!important}
+</style>
+<script>
+(()=>{
+ const esc=escapeHtml,t=productCardCopyV12,$=id=>document.getElementById(id),fmt=n=>new Intl.NumberFormat('ru-RU').format(Number(n)||0)+t(' сум',' so‘m');
+ const gift='<path d="M3 8h18v4H3zM5 12v8h14v-8M12 8v12m0-12H8a2.5 2.5 0 1 1 2.2-3.7L12 8Zm0 0h4a2.5 2.5 0 1 0-2.2-3.7L12 8Z"/>';
+ const icon=(path)=>'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">'+path+'</svg>';
+ const copyIcon=icon('<rect x="8" y="8" width="11" height="12" rx="2"/><path d="M15 8V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2"/>');
+ const dialog=document.createElement('dialog');dialog.id='rf24Dialog';dialog.setAttribute('data-no-i18n','');dialog.setAttribute('aria-labelledby','rf24Title');document.body.append(dialog);
+ let epoch=0,quoteController=null,joining=false,joinedSession='',attempts=0;
+ const statuses={
+  joined:['Вошёл','Kirdi'],waiting:['Ждём оплаты','To‘lov kutilmoqda'],
+  earned:['Бонус начислен','Bonus berildi'],spent:['Бонус применён','Bonus ishlatildi'],
+  revoked:['Бонус отозван','Bonus bekor qilindi'],previous:['Уже покупал','Oldin xarid qilgan'],
+  not_eligible:['Без бонуса','Bonussiz']
+ };
+ function errorText(code){
+  const words={
+   TELEGRAM_AUTH_REQUIRED:['Открой приложение через Telegram.','Ilovani Telegram orqali oching.'],
+   FORBIDDEN:['Нет доступа к этому разделу.','Bu bo‘limga ruxsat yo‘q.'],
+   REFERRAL_INVALID_SETTINGS:['Проверь сумму бонуса и минимальный заказ. Для включения укажи бонус больше нуля.','Bonus va minimal buyurtma miqdorini tekshiring. Yoqish uchun bonus noldan katta bo‘lsin.'],
+   REFERRAL_PAYMENT_NOT_READY:['Сначала настрой приём оплаты и проверку чеков.','Avval to‘lov va chek tekshiruvini sozlang.'],
+   REFERRAL_SETTINGS_CHANGED:['Настройки уже изменились. Обнови экран и попробуй снова.','Sozlamalar o‘zgargan. Sahifani yangilab qayta urining.']
+  };
+  return words[code]?t(...words[code]):t('Не удалось загрузить данные. Попробуй ещё раз.','Ma’lumot yuklanmadi. Qayta urinib ko‘ring.');
+ }
+ async function api(path='',body,signal){
+  const init=currentTelegramInitDataV108();if(!init)throw new Error(errorText('TELEGRAM_AUTH_REQUIRED'));
+  const response=await fetch(MARKETPLACE_API+'/referrals'+path,{
+   method:body===undefined?'GET':'POST',cache:'no-store',signal:signal||AbortSignal.timeout(10000),
+   headers:{'X-Telegram-Init-Data':init,...(body===undefined?{}:{'Content-Type':'application/json'})},
+   ...(body===undefined?{}:{body:JSON.stringify(body)})
+  });
+  const d=await response.json();if(!response.ok||!d.ok)throw new Error(errorText(d.error));return d;
+ }
+ function close(){epoch++;dialog.close();}
+ dialog.addEventListener('cancel',e=>{e.preventDefault();close()});
+ window.Telegram?.WebApp?.BackButton?.onClick(()=>{if(dialog.open)close()});
+ function frame(admin){
+  const title=admin?t('Рефералка','Taklif dasturi'):t('Пригласить друга','Do‘stni taklif qilish');
+  dialog.innerHTML='<header class="rf24-head"><button type="button" class="rf24-icon-btn" aria-label="'+esc(t('Назад','Orqaga'))+'">'+icon('<path d="m15 5-7 7 7 7"/>')+'</button><h2 id="rf24Title">'+esc(title)+'</h2></header><div id="rf24Body"></div>';
+  dialog.querySelector('button').onclick=close;
+ }
+ const nameOf=r=>r.name||(r.username?'@'+r.username:t('Пользователь Telegram','Telegram foydalanuvchisi'));
+ function timeLabel(raw){
+  const date=new Date(String(raw||'').replace(' ','T')+(String(raw||'').endsWith('Z')?'':'Z'));
+  return Number.isNaN(date.getTime())?'':date.toLocaleString(t('ru-RU','uz-UZ'),{day:'numeric',month:'short',hour:'2-digit',minute:'2-digit',timeZone:'Asia/Tashkent'});
+ }
+ function rowsHtml(items,admin){
+  return items.map(r=>{
+   const name=nameOf(r),initial=name.replace(/^@/,'').trim().split(/\s+/).slice(0,2).map(x=>[...x][0]||'').join('').toLocaleUpperCase();
+   const inviter=r.inviterName||(r.inviterUsername?'@'+r.inviterUsername:t('Пользователь Telegram','Telegram foydalanuvchisi'));
+   const status=t(...(statuses[r.status]||statuses.joined));
+   return '<div class="rf24-row"><span class="rf24-avatar" aria-hidden="true">'+esc(initial)+'</span><div><b>'+esc(name)+'</b>'+
+    (r.username&&r.name?'<small class="rf24-muted">@'+esc(r.username)+'</small>':'')+
+    (admin?'<small class="rf24-muted">'+t('Пригласил: ','Taklif qildi: ')+esc(inviter+(r.inviterUsername&&r.inviterName?' · @'+r.inviterUsername:''))+'</small><small class="rf24-muted">'+esc(timeLabel(r.enteredAt))+'</small>':'')+
+    '</div><div class="rf24-state"><span class="rf24-chip">'+esc(status)+'</span>'+
+    (r.amount>0&&['earned','spent'].includes(r.status)?'<small class="rf24-muted">'+(r.status==='earned'?'+':'')+esc(fmt(r.amount))+'</small>':'')+'</div></div>';
+  }).join('');
+ }
+ function setupList(d,admin,n){
+  const list=$('rf24List'),more=$('rf24More'),status=$('rf24ListStatus');let next=d.next;
+  list.innerHTML=rowsHtml(d.items||[],admin)||'<p class="rf24-empty rf24-muted">'+t('Пока никто не вошёл по ссылке.','Havola orqali hali hech kim kirmadi.')+'</p>';
+  more.hidden=!next;
+  more.onclick=async()=>{
+   more.disabled=true;status.textContent='';
+   try{
+    const data=await api((admin?'/admin':'')+'?before='+encodeURIComponent(next));if(n!==epoch)return;
+    list.insertAdjacentHTML('beforeend',rowsHtml(data.items,admin));next=data.next;more.hidden=!next;
+   }catch(e){if(n===epoch)status.textContent=e.message;}
+   finally{if(n===epoch)more.disabled=false;}
+  };
+ }
+ function listShell(admin){
+  return '<h3>'+ (admin?t('Кто вошёл по ссылкам','Havolalar orqali kirganlar'):t('Кто вошёл по ссылке','Havola orqali kirganlar'))+
+   '</h3><div id="rf24List" class="rf24-card rf24-list"></div><button type="button" class="rf24-btn" id="rf24More" hidden>'+t('Показать ещё','Yana ko‘rsatish')+'</button><div id="rf24ListStatus" class="rf24-status rf24-error" role="status"></div>';
+ }
+ function drawUser(d,n){
+  const link=/^https:\/\/t\.me\/[A-Za-z0-9_]{5,32}\?startapp=ref_[a-f0-9]{32}$/.test(String(d.link||''))?d.link:'';
+  $('rf24Body').innerHTML='<div class="rf24-hero"><span class="rf24-gift">'+icon(gift)+'</span><p>'+t('Бонус за первый полностью оплаченный заказ друга','Do‘stingizning birinchi to‘liq to‘langan buyurtmasi uchun bonus')+
+   '</p></div><section class="rf24-card"><span class="rf24-muted">'+t('Доступный бонус','Mavjud bonus')+'</span><strong class="rf24-balance">'+esc(fmt(d.available))+'</strong>'+
+   (d.availableCount>1?'<p class="rf24-muted">'+t('Можно применить один бонус за заказ.','Har buyurtmada bitta bonus ishlatiladi.')+'</p>':'')+
+   '</section><section class="rf24-card"><h3>'+t('Твоя ссылка','Havolangiz')+'</h3>'+
+   (link?'<div class="rf24-link-field"><input type="text" readonly id="rf24Link" aria-label="'+esc(t('Ссылка для друга','Do‘st uchun havola'))+'" value="'+esc(link)+'"><button type="button" id="rf24Copy" class="rf24-icon-btn" aria-label="'+esc(t('Копировать ссылку','Havolani nusxalash'))+'">'+copyIcon+'</button></div>'+
+    '<button type="button" id="rf24Share" class="rf24-btn rf24-primary">'+t('Поделиться ссылкой','Havolani ulashish')+'</button>'+
+    '<p class="rf24-muted rf24-note">'+esc(t('За новое приглашение: ','Yangi taklif uchun: ')+fmt(d.bonus)+(d.minimum>0?t(' · скидка на заказ от ',' · buyurtma chegirmasi uchun minimum ')+fmt(d.minimum):''))+'</p><div class="rf24-status" role="status" id="rf24ShareStatus"></div>':
+    '<p class="rf24-muted">'+t('Новые приглашения пока недоступны.','Hozircha yangi takliflar qabul qilinmaydi.')+'</p>')+'</section>'+listShell(false);
+  setupList(d,false,n);
+  if(!link)return;
+  $('rf24Copy').onclick=async()=>{
+   const field=$('rf24Link'),message=$('rf24ShareStatus');let copied=false;
+   try{await navigator.clipboard.writeText(link);copied=true;}catch{
+    field.focus();field.select();field.setSelectionRange(0,link.length);
+    try{copied=document.execCommand('copy');}catch{}
+   }
+   if(n===epoch)message.textContent=copied?t('Ссылка скопирована','Havola nusxalandi'):t('Скопируй выделенную ссылку.','Belgilangan havolani nusxalang.');
+  };
+  $('rf24Share').onclick=()=>{
+   const url='https://t.me/share/url?'+new URLSearchParams({url:link,text:t('Заходи в Uzbek Re’Sale!','Uzbek Re’Sale’ga kiring!')});
+   const tg=window.Telegram?.WebApp;
+   try{if(tg?.openTelegramLink){tg.openTelegramLink(url);return;}}catch{}
+   window.open(url,'_blank','noopener,noreferrer');
+  };
+ }
+ function drawAdmin(d,n){
+  let cfg=d.settings;
+  const disabled=d.canEdit?'':' disabled';
+  $('rf24Body').innerHTML='<form class="rf24-card" id="rf24Config"><label class="rf24-toggle"><span>'+t('Принимать новые приглашения','Yangi takliflarni qabul qilish')+'</span><input id="rf24Enabled" type="checkbox" class="rf24-switch" role="switch" '+(cfg.enabled?'checked':'')+disabled+'><span class="rf24-track" aria-hidden="true"></span></label>'+
+   '<label class="rf24-field">'+t('Бонус за друга, сум','Do‘st uchun bonus, so‘m')+'<input id="rf24Amount" type="number" min="0" max="1000000000" step="1" inputmode="numeric" required value="'+Number(cfg.amount)+'"'+disabled+'></label>'+
+   '<label class="rf24-field">'+t('Минимальная сумма заказа для скидки, сум','Chegirma uchun minimal buyurtma, so‘m')+'<input id="rf24Minimum" type="number" min="0" max="1000000000" step="1" inputmode="numeric" required value="'+Number(cfg.minimum)+'"'+disabled+'></label>'+
+   (d.canEdit?'<button class="rf24-btn rf24-primary" id="rf24Save" type="submit">'+t('Сохранить','Saqlash')+'</button>':'')+
+   '<p class="rf24-muted rf24-note">'+t('Новые условия действуют для новых приглашений. У уже приглашённых условия сохраняются.','Yangi shartlar yangi takliflarga tegishli. Oldingi takliflar shartlari saqlanadi.')+'</p>'+
+   '<div class="rf24-status" role="status" id="rf24SaveStatus"></div></form>'+listShell(true);
+  setupList(d,true,n);
+  $('rf24Config').onsubmit=async e=>{
+   e.preventDefault();if(!d.canEdit)return;
+   const b=$('rf24Save'),status=$('rf24SaveStatus');if(b.disabled)return;
+   const fields=[$('rf24Enabled'),$('rf24Amount'),$('rf24Minimum')];
+   const body={enabled:fields[0].checked,amount:fields[1].valueAsNumber,minimum:fields[2].valueAsNumber,revision:cfg.revision};
+   b.disabled=true;fields.forEach(x=>x.disabled=true);status.textContent='';status.classList.remove('rf24-error');
+   try{const result=await api('/admin',body);if(n!==epoch)return;cfg=result.settings;status.textContent=t('Настройки сохранены','Sozlamalar saqlandi');}
+   catch(err){if(n===epoch){status.textContent=err.message;status.classList.add('rf24-error');}}
+   finally{if(n===epoch){b.disabled=false;fields.forEach(x=>x.disabled=false);}}
+  };
+ }
+ async function open(admin=false){
+  const n=++epoch;frame(admin);if(!dialog.open)dialog.showModal();
+  $('rf24Body').textContent=t('Загрузка…','Yuklanmoqda…');
+  try{
+   if(!currentTelegramInitDataV108())await waitForTelegramIdentityV108(2500);
+   const d=await api(admin?'/admin':'');if(n!==epoch||!dialog.open)return;
+   if(admin)drawAdmin(d,n);else drawUser(d,n);
+  }catch(e){
+   if(n!==epoch||!dialog.open)return;const box=$('rf24Body');
+   box.innerHTML='<p class="rf24-status rf24-error" role="status">'+esc(e.message||errorText(''))+'</p><button type="button" class="rf24-btn">'+t('Повторить','Qayta urinish')+'</button>';box.querySelector('button').onclick=()=>open(admin);
+  }
+ }
+ async function checkLaunch(){
+  const init=currentTelegramInitDataV108(),params=new URLSearchParams(init);
+  const code=params.get('start_param')||'',session=params.get('hash')||'';
+  if(joining||!session||joinedSession===session||!/^ref_(?:[a-f0-9]{32}|[1-9]\d{0,19})$/.test(code))return;
+  joining=true;
+  try{await api('/join',{});joinedSession=session;}
+  catch{if(attempts++<1)setTimeout(checkLaunch,1400);}
+  finally{joining=false;}
+ }
+ function mountCheckout(box,subtotal){
+  quoteController?.abort();quoteController=null;
+  const total=box.querySelector('.checkout-v41-total'),amount=total?.querySelector('b');if(!amount)return;
+  box.querySelector('#rf24Checkout')?.remove();amount.textContent=money(subtotal);updatePaymentText();
+  if(!currentTelegramInitDataV108()||!Number.isSafeInteger(subtotal)||subtotal<2)return;
+  const node=document.createElement('div');node.id='rf24Checkout';node.hidden=true;node.dataset.subtotal=String(subtotal);total.before(node);
+  const controller=new AbortController();quoteController=controller;
+  api('/quote?subtotal='+encodeURIComponent(subtotal),undefined,AbortSignal.any([controller.signal,AbortSignal.timeout(6000)]))
+   .then(d=>{
+    if(controller.signal.aborted||!node.isConnected)return;
+    if(d.reward&&/^[a-f0-9]{32}$/.test(d.reward.key)&&Number.isSafeInteger(d.reward.amount)&&d.reward.amount>0&&d.reward.amount<=subtotal-2){
+     const off=d.reward.amount;
+     node.dataset.key=d.reward.key;node.dataset.amount=String(off);
+     node.innerHTML='<label class="rf24-check"><input id="rf24Apply" type="checkbox"><span>'+t('Применить бонус','Bonusni ishlatish')+'</span><b>−'+esc(fmt(off))+'</b></label>';
+     const checkbox=node.querySelector('input');checkbox.disabled=orderSending;
+     checkbox.onchange=()=>{amount.textContent=money(subtotal-(checkbox.checked?off:0));updatePaymentText();};
+     node.hidden=false;
+    }else if(d.available>0){
+     node.innerHTML='<span class="rf24-check-note">'+esc(d.paymentAvailable&&d.minimum>subtotal?t('Бонус доступен для заказа от ','Bonus uchun minimal buyurtma ')+fmt(d.minimum):t('Сейчас бонус нельзя применить к этому заказу.','Bu buyurtmaga bonus qo‘llanmaydi.'))+'</span>';node.hidden=false;
+    }
+   }).catch(()=>{});
+ }
+ function checkoutChoice(){
+  const node=$('rf24Checkout');
+  return node?.querySelector('input')?.checked?{key:node.dataset.key,amount:Number(node.dataset.amount),subtotal:Number(node.dataset.subtotal)}:null;
+ }
+ function paymentText(){
+  if(!cart.length||!cart.every(i=>['stock','china'].includes(i.sourceType)&&Number.isSafeInteger(i.price)&&i.price>=0))return '';
+  const subtotal=cart.reduce((s,i)=>s+i.price,0),choice=checkoutChoice(),discount=choice?.subtotal===subtotal?choice.amount:0;
+  if(!Number.isSafeInteger(subtotal)||subtotal<1||!Number.isSafeInteger(discount)||discount<0||discount>=subtotal)return '';
+  let running=0,used=0,stock=0,china=0;
+  for(const i of cart){
+   running+=i.price;
+   const allocation=Number(BigInt(discount)*BigInt(running)/BigInt(subtotal)),price=i.price-allocation+used;
+   if(i.sourceType==='stock')stock+=price;else china+=price;
+   used=allocation;
+  }
+  const note=china&&stock?'':china?' (50%)':' (100%)';
+  return money(stock+Math.ceil(china/2))+note;
+ }
+ function updatePaymentText(){
+  const row=document.querySelector('#checkoutView [data-rf24-deposit]'),text=paymentText();
+  if(row&&text)row.textContent=text;
+ }
+ function refreshCheckout(){
+  const box=$('checkoutSummaryV41');if(box)mountCheckout(box,cart.reduce((s,p)=>s+Number(p.price||0),0));
+ }
+ const entry=$('rf24ProfileEntry');
+ if(entry){
+  const update=()=>{entry.querySelector('.tg-row-text-v13').textContent=t('Пригласить друга','Do‘stni taklif qilish');};
+  update();document.addEventListener('uzr:languagechange',update);entry.onclick=()=>open(false);
+ }
+ window.UzrReferrals={open,mountCheckout,checkoutChoice,refreshCheckout,paymentText,lockCheckout(on){const input=$('rf24Apply');if(input)input.disabled=on;}};
+ waitForTelegramIdentityV108(8000).then(checkLaunch).catch(()=>{});
+ window.addEventListener('online',checkLaunch);
 })();
 </script>
 
