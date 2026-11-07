@@ -8190,7 +8190,7 @@ const UZR_ORDER_ATTEMPT_STORAGE_V92="uzr_order_attempt_v92";
 function uzrOrderFingerprintV92(name,phone,city,items){
   return JSON.stringify({
     name:String(name||""),phone:String(phone||""),city:String(city||""),
-    items:(items||[]).map(p=>({listingId:Number(p.listingId||0),size:String(p.size||""),color:String(p.color||""),variantId:Number(p.variantId||0),ownerType:String(p.ownerType||"")}))
+    items:(items||[]).map(p=>({listingId:Number(p.listingId||0),size:String(p.size||""),color:String(p.color||""),variantId:Number(p.variantId||0),bundleId:String(p.bundleId||""),bundlePrice:Number(p.bundlePrice||0),ownerType:String(p.ownerType||"")}))
   });
 }
 function uzrReadOrderAttemptV92(){try{return JSON.parse(localStorage.getItem(UZR_ORDER_ATTEMPT_STORAGE_V92)||"null")}catch(_){return null}}
@@ -9039,9 +9039,10 @@ function renderCart(){
    const r=document.createElement("div");
    r.className="cartrow";
    r.innerHTML=`<div class="cartpic"><img src="${escapeHtml(p.image)}" alt="${escapeHtml(p.name)}"></div><div class="grow"><b>${escapeHtml(p.name)}</b><div class="meta">${p.color?'\u0426\u0432\u0435\u0442: '+escapeHtml(p.color)+' \u00b7 ':''}\u0420\u0430\u0437\u043c\u0435\u0440: ${escapeHtml(cartSizeText(p.size))}</div><div class="cart-price-row-v87"><div class="price">${money(p.price)}</div>${p.discountActive&&Number(p.originalPrice)>Number(p.price)?`<span class="cart-old-price-v87">${money(p.originalPrice)}</span><span class="cart-discount-v87">${escapeHtml(p.discountBadge||("-"+p.discountPercent+"%"))}</span>`:""}</div></div><button class="remove" type="button" aria-label="\u0423\u0434\u0430\u043b\u0438\u0442\u044c \u0442\u043e\u0432\u0430\u0440">\u00d7</button>`;
+   if(p.bundleId){const note=document.createElement("small");note.textContent="Комплект: "+p.bundleName+" · удаляется целиком";r.querySelector(".grow").append(note);}
    r.querySelector(".remove").onclick=()=>{
      const key=p.cartKey||String(p.id);
-     cart=cart.filter(x=>(x.cartKey||String(x.id))!==key);
+     cart=cart.filter(x=>p.bundleId?x.bundleId!==p.bundleId:(x.cartKey||String(x.id))!==key);
      saveCartState();
      renderCart();
    };
@@ -9443,6 +9444,8 @@ $("confirmBtn").onclick=async()=>{
    items:cart.map(p=>({
 
      id:p.id,
+     bundleId:p.bundleId||null,
+     bundlePrice:p.bundlePrice||null,
 
      name:p.name,
 
@@ -9499,7 +9502,8 @@ $("confirmBtn").onclick=async()=>{
        uzrClearOrderAttemptV92(clientOrderIdV92);
      }
      const message=
-       ["CARGO_REQUIRED","CARGO_CHANGED","CONSENT_REQUIRED"].includes(serverCode)?window.UzrSearch110.errorMessage(serverCode):
+       ({BUNDLE_PRICE_CHANGED:"Цена комплекта изменилась. Удалите его из корзины и добавьте заново.",BUNDLE_UNAVAILABLE:"Комплект больше недоступен. Удалите его из корзины.",INCOMPLETE_BUNDLE:"Состав комплекта изменился. Удалите его из корзины и добавьте заново."})[serverCode] ||
+       (["CARGO_REQUIRED","CARGO_CHANGED","CONSENT_REQUIRED"].includes(serverCode)?window.UzrSearch110.errorMessage(serverCode):
        response.status===401||response.status===403
          ?"\u041d\u0435 \u0443\u0434\u0430\u043b\u043e\u0441\u044c \u043f\u043e\u0434\u0442\u0432\u0435\u0440\u0434\u0438\u0442\u044c Telegram-\u0441\u0435\u0441\u0441\u0438\u044e. \u0417\u0430\u043a\u0440\u043e\u0439\u0442\u0435 Mini App, \u043e\u0442\u043a\u0440\u043e\u0439\u0442\u0435 \u0441\u043d\u043e\u0432\u0430 \u0438 \u043f\u043e\u0432\u0442\u043e\u0440\u0438\u0442\u0435 \u0437\u0430\u043a\u0430\u0437."
        : response.status===409
@@ -9508,7 +9512,7 @@ $("confirmBtn").onclick=async()=>{
          ?"\u0421\u0435\u0440\u0432\u0438\u0441 \u0437\u0430\u043a\u0430\u0437\u043e\u0432 \u0432\u0440\u0435\u043c\u0435\u043d\u043d\u043e \u043d\u0435\u0434\u043e\u0441\u0442\u0443\u043f\u0435\u043d. \u041a\u043e\u0440\u0437\u0438\u043d\u0430 \u0438 \u0432\u0432\u0435\u0434\u0451\u043d\u043d\u044b\u0435 \u0434\u0430\u043d\u043d\u044b\u0435 \u0441\u043e\u0445\u0440\u0430\u043d\u0435\u043d\u044b \u2014 \u043f\u043e\u043f\u0440\u043e\u0431\u0443\u0439\u0442\u0435 \u0435\u0449\u0451 \u0440\u0430\u0437."
        : serverCode
          ?`\u041d\u0435 \u0443\u0434\u0430\u043b\u043e\u0441\u044c \u043e\u0444\u043e\u0440\u043c\u0438\u0442\u044c \u0437\u0430\u043a\u0430\u0437: ${serverCode}`
-         :"\u041d\u0435 \u0443\u0434\u0430\u043b\u043e\u0441\u044c \u043e\u0444\u043e\u0440\u043c\u0438\u0442\u044c \u0437\u0430\u043a\u0430\u0437. \u041a\u043e\u0440\u0437\u0438\u043d\u0430 \u0438 \u0432\u0432\u0435\u0434\u0451\u043d\u043d\u044b\u0435 \u0434\u0430\u043d\u043d\u044b\u0435 \u0441\u043e\u0445\u0440\u0430\u043d\u0435\u043d\u044b \u2014 \u043f\u043e\u043f\u0440\u043e\u0431\u0443\u0439\u0442\u0435 \u0435\u0449\u0451 \u0440\u0430\u0437.";
+         :"\u041d\u0435 \u0443\u0434\u0430\u043b\u043e\u0441\u044c \u043e\u0444\u043e\u0440\u043c\u0438\u0442\u044c \u0437\u0430\u043a\u0430\u0437. \u041a\u043e\u0440\u0437\u0438\u043d\u0430 \u0438 \u0432\u0432\u0435\u0434\u0451\u043d\u043d\u044b\u0435 \u0434\u0430\u043d\u043d\u044b\u0435 \u0441\u043e\u0445\u0440\u0430\u043d\u0435\u043d\u044b \u2014 \u043f\u043e\u043f\u0440\u043e\u0431\u0443\u0439\u0442\u0435 \u0435\u0449\u0451 \u0440\u0430\u0437.");
      throw new Error(message);
    }
 
@@ -10415,7 +10419,7 @@ async function loadMarketplaceCatalog(){
     let changed=false;
     cart=cart.map(item=>{
       const latest=latestByListing.get(Number(item.listingId||0));
-      if(!latest)return item;
+      if(!latest||item.bundleId)return item;
       const next={
         ...item,
         price:Number(latest.price||0),
@@ -17733,6 +17737,51 @@ const original=$('uzrColProfileEntry');if(original){const b=original.cloneNode(t
 window.SellerWatch={open,profile,chatEntry};dialog.addEventListener('cancel',e=>{e.preventDefault();close()});
 window.Telegram?.WebApp?.BackButton?.onClick(()=>{if(dialog.open)close()});
 if(channelStartParamV107()==='watch_sellers')waitForTelegramIdentityV108(10000).then(u=>{if(u?.id)open()}).catch(()=>{});
+})();
+</script>
+
+<style>
+#buDialog{margin:auto;padding:0;border:0;border-radius:0;width:min(100%,520px);max-width:100vw;height:100dvh;max-height:100dvh;background:#fafaf8;color:#111;font:inherit}
+#buDialog[open]{display:flex;flex-direction:column}#buDialog::backdrop{background:#fff}
+#buDialog header{display:flex;align-items:center;gap:12px;padding:16px;background:white;border-bottom:1px solid #eee}#buDialog h2{font-size:21px;margin:0}
+#buBody{padding:16px;overflow:auto;flex:1}#buDialog button,#buDialog input,#buDialog select{font:inherit}
+.bu-btn{border:1px solid #ddd;border-radius:14px;padding:12px;width:100%;background:white;color:#111;cursor:pointer;margin:8px 0}
+.bu-primary{background:#111;color:#fff;border-color:#111}.bu-back{background:none;border:0;font-size:24px!important}
+.bu-card{border:1px solid #e1e1df;background:#fff;border-radius:18px;padding:13px;margin-bottom:14px;text-align:left;width:100%;color:#111}
+.bu-card h3{margin:0 0 12px;font-size:18px}.bu-pics{display:grid;grid-template-columns:1fr 1fr;gap:9px}
+.bu-pics img{width:100%;height:112px;object-fit:contain;background:#f4f4f2;border-radius:12px}.bu-pics span{display:block;font-size:12px;margin:6px 0 12px}
+.bu-price{display:block;font-size:21px;margin-top:9px}.bu-muted{color:#888;font-size:12px;line-height:1.5}
+#buDialog select,#buDialog input[type=text],#buDialog input[type=number]{width:100%;box-sizing:border-box;padding:12px;border:1px solid #ddd;border-radius:10px;margin:7px 0 13px;background:white;color:#111}
+#buDialog label{display:block;font-size:13px}#buDialog .bu-choice{display:flex;align-items:center;gap:10px;padding:8px 0}#buDialog .bu-choice input{width:18px;height:18px}
+#buDialog .bu-choice img{width:40px;height:45px;object-fit:contain}#buError{color:#a22;font-size:13px}
+#china .china-v32-logo{display:grid!important;place-items:center!important}#chinaOfficialLogoV32{width:86%!important;height:86%!important;object-fit:contain!important;position:static!important}
+#cartList .meta::before{content:none!important}
+#buChina{font:inherit;min-height:46px;margin:0 0 20px}#buAdmin{margin:12px 0}
+</style>
+<script>
+(()=>{
+const esc=escapeHtml,$=id=>document.getElementById(id),fmt=n=>Number(n).toLocaleString('ru-RU')+' UZS';
+const dialog=document.createElement('dialog');dialog.id='buDialog';dialog.setAttribute('aria-label','Комплекты с выгодой');document.body.append(dialog);let token=0,admin=false;
+const button=document.createElement('button');button.id='buChina';button.className='bu-btn bu-primary';button.textContent='Комплекты с выгодой →';button.onclick=()=>open(false);document.querySelector('#china .china-v32-section-head').before(button);
+const ab=button.cloneNode(true);ab.id='buAdmin';ab.textContent='Комплекты с выгодой · управление';ab.onclick=()=>open(true);document.getElementById('adminV89Workspace').before(ab);
+async function api(method='GET',data){const r=await fetch(MARKETPLACE_API+'/bundles'+(method==='GET'&&admin?'?admin=1':''),{method,headers:{'X-Telegram-Init-Data':currentTelegramInitDataV108(),...(data?{'Content-Type':'application/json'}:{})},body:data?JSON.stringify(data):undefined,signal:AbortSignal.timeout(15000)});const d=await r.json();if(!r.ok||!d.ok)throw Error(({BUNDLE_PRICE_MUST_BE_LOWER:'Цена комплекта должна быть ниже суммы товаров',FORBIDDEN:'Доступ только для администратора',INVALID_BUNDLE:'Выберите 2–6 вещей, название и цену',INVALID_BUNDLE_PRODUCT:'Один из товаров недоступен'})[d.error]||d.message||'Не удалось загрузить комплекты');return d}
+function close(){token++;dialog.close()}dialog.addEventListener('cancel',e=>{e.preventDefault();close()});
+function frame(title,back){dialog.innerHTML='<header><button class="bu-back" aria-label="Назад">←</button><h2>'+esc(title)+'</h2></header><div id="buBody"></div>';dialog.querySelector('.bu-back').onclick=back||close}
+function pics(b){return '<div class="bu-pics">'+b.items.map(i=>'<div><img src="'+esc(i.image)+'" alt=""><span>'+esc(i.title)+'</span></div>').join('')+'</div>'}
+async function open(isAdmin=false){admin=isAdmin;if(!dialog.open)dialog.showModal();frame(admin?'Управление комплектами':'Комплекты с выгодой');const epoch=++token;$('buBody').textContent='Загрузка…';try{if(!catalogLoaded)await loadMarketplaceCatalog();const d=await api();if(epoch!==token)return;const host=$('buBody');host.innerHTML=admin?'<button class="bu-btn bu-primary" id="buCreate">+ Создать комплект</button>':'';if(admin)$('buCreate').onclick=()=>edit();if(!d.bundles.length)host.insertAdjacentHTML('beforeend','<p class="bu-muted">Пока нет комплектов с выгодой.</p>');for(const b of d.bundles){const card=document.createElement('button');card.className='bu-card';card.innerHTML='<h3>'+esc(b.title)+' <span style="float:right">›</span></h3>'+pics(b)+'<strong class="bu-price">'+fmt(b.price)+'</strong><div class="bu-muted">'+(b.available?'Экономия '+fmt(b.original-b.price):'Товары недоступны')+(admin?(b.active?' · Опубликован':' · Скрыт'):'')+'</div>';card.onclick=()=>admin?edit(b):detail(b);host.append(card)}}catch(e){$('buBody').textContent=e.message;const retry=document.createElement('button');retry.className='bu-btn';retry.textContent='Повторить';retry.onclick=()=>open(admin);$('buBody').append(retry)}}
+function detail(b){frame(b.title,()=>open(false));const host=$('buBody');host.innerHTML='<div class="bu-muted">Выберите параметры каждой вещи</div>';const selected=[];
+for(const i of b.items){const p=products.find(p=>Number(p.listingId)===i.id);if(!p){host.innerHTML='Товар недоступен. Обновите каталог.';return}selected.push(p);const variants=productVariantsV12(p),v=variants.filter(v=>v.stockQty>0),sizes=productSizes(p).filter(x=>!['—','-'].includes(x));if(variants.length&&!v.length){host.innerHTML='Варианты товара закончились. Выберите другой комплект.';return}const card=document.createElement('div');card.className='bu-card';card.innerHTML='<div class="bu-pics"><img src="'+esc(i.image)+'" alt=""><div><b>'+esc(i.title)+'</b><p>'+fmt(i.price)+'</p></div></div><label>'+(v.length?'Цвет и размер':'Размер')+'<select data-pick="'+i.id+'"><option value="">Выберите</option>'+ (v.length?v.map(x=>'<option value="'+x.id+'">'+esc(x.colorName+' · '+x.sizeName)+'</option>'): (sizes.length?sizes:['Без размера']).map(x=>'<option value="'+esc(x)+'">'+esc(x)+'</option>')).join('')+'</select></label>';host.append(card)}
+host.insertAdjacentHTML('beforeend','<div class="bu-card"><div class="bu-muted">По отдельности: '+fmt(b.original)+'</div><b class="bu-price">'+fmt(b.price)+'</b><p>Экономия '+fmt(b.original-b.price)+'</p><small class="bu-muted">Доставка рассчитывается отдельно.</small></div><p id="buError" role="status"></p><button id="buAdd" class="bu-btn bu-primary">Добавить комплект в корзину</button>');
+$('buAdd').onclick=()=>{if(cart.some(x=>x.bundleId===b.id)){$('buError').textContent='Этот комплект уже в корзине';return}const result=[];let used=0;for(let k=0;k<selected.length;k++){const p=selected[k],pick=host.querySelector('[data-pick="'+b.items[k].id+'"]').value;if(!pick){$('buError').textContent='Выберите параметры каждой вещи';return}const v=productVariantsV12(p).find(v=>String(v.id)===pick),price=k===selected.length-1?b.price-used:Math.floor(b.price*b.items[k].price/b.original);used+=price;result.push({...p,size:v?.sizeName||(pick==='Без размера'?'':pick),color:v?.colorName||'',variantId:v?.id||null,price,originalPrice:b.items[k].price,discountActive:true,discountBadge:'Комплект',bundleId:b.id,bundleName:b.title,bundlePrice:b.price,cartKey:'bundle:'+b.id+':'+p.listingId})}cart.push(...result);saveCartState();renderCart();close();page('cart')}
+}
+function edit(b){frame(b?'Редактировать комплект':'Создать комплект',()=>open(true));const opts=products.filter(p=>p.ownerType==='official'&&p.sourceType==='china');for(const item of b?.items||[]){if(!opts.some(p=>Number(p.listingId)===item.id))opts.push({listingId:item.id,name:item.title+' · недоступен',price:item.price,image:item.image})}const ids=b?.items.map(x=>x.id)||[];const host=$('buBody');
+host.innerHTML='<label>Название<input id="buTitle" type="text" maxlength="80" value="'+esc(b?.title||'')+'"></label><label>Цена комплекта, UZS<input id="buPrice" type="number" min="1" step="1" value="'+(b?.price||'')+'"></label><p class="bu-muted">Выберите от 2 до 6 товаров из нашего каталога «Из Китая».</p><div id="buChoices">'+opts.map(p=>'<label class="bu-choice"><input type="checkbox" value="'+p.listingId+'" '+(ids.includes(Number(p.listingId))?'checked':'')+'><img src="'+esc(p.image)+'" alt=""><span>'+esc(p.name)+'<br>'+fmt(p.price)+'</span></label>').join('')+'</div><p id="buSum"></p><label class="bu-choice"><input id="buActive" type="checkbox" '+(!b||b.active?'checked':'')+'>Опубликовать</label><p id="buError" role="status"></p><button class="bu-btn bu-primary" id="buSave">Сохранить комплект</button>';
+if(b){const hide=document.createElement('button');hide.className='bu-btn';hide.textContent='Скрыть комплект';hide.onclick=async()=>{hide.disabled=true;try{await api('DELETE',{id:b.id});await open(true)}catch(e){$('buError').textContent=e.message;hide.disabled=false}};host.append(hide)}
+const sum=()=>{$('buSum').textContent='По отдельности: '+fmt([...host.querySelectorAll('#buChoices input:checked')].reduce((s,x)=>s+Number(opts.find(p=>Number(p.listingId)===Number(x.value)).price),0))};host.querySelectorAll('#buChoices input').forEach(x=>x.onchange=sum);sum();
+$('buSave').onclick=async()=>{const btn=$('buSave');btn.disabled=true;try{await api('POST',{id:b?.id,title:$('buTitle').value,price:Number($('buPrice').value),items:[...host.querySelectorAll('#buChoices input:checked')].map(x=>Number(x.value)),active:$('buActive').checked});await open(true)}catch(e){$('buError').textContent=e.message;btn.disabled=false}};
+}
+window.Telegram?.WebApp?.BackButton?.onClick(()=>{if(dialog.open)close()});
+window.UzrBundles={open};
 })();
 </script>
 
